@@ -14,8 +14,8 @@
   },
   {
     "path": "README.md",
-    "bytes": 4341,
-    "sha256": "d7435a4a3dd001b9689e1effd922f0c57a3ee01cd0133c5a9831f92a96c61a27",
+    "bytes": 4924,
+    "sha256": "2ddb595affe8a49fbb03f0b08e81f5b8cbcb0ae9de95ef8e02952558d4dc24fe",
     "added_for_repository": true
   },
   {
@@ -334,6 +334,13 @@
     "changed_for_export": false
   },
   {
+    "path": "SO101/code/hiwonder-SoArm-101/docs-requirements.txt",
+    "bytes": 116,
+    "sha256": "ec747ab3841a75a2c9aca78aa9f77d022bb86ef47f4286b22ea1ab3edfcb31e8",
+    "original_sha256": "ec747ab3841a75a2c9aca78aa9f77d022bb86ef47f4286b22ea1ab3edfcb31e8",
+    "changed_for_export": false
+  },
+  {
     "path": "SO101/code/hiwonder-SoArm-101/docs/README.md",
     "bytes": 5660,
     "sha256": "e555f0dc260e8a2c3859f8e314035eb7f750eefbcc1f7e3f90b032856228406b",
@@ -436,13 +443,6 @@
     "bytes": 1696,
     "sha256": "f5d62dbc48d66f37ba1b5f6f07f0cafac75c5743a94921739eba2811f4dca8ef",
     "original_sha256": "f5d62dbc48d66f37ba1b5f6f07f0cafac75c5743a94921739eba2811f4dca8ef",
-    "changed_for_export": false
-  },
-  {
-    "path": "SO101/code/hiwonder-SoArm-101/docs-requirements.txt",
-    "bytes": 116,
-    "sha256": "ec747ab3841a75a2c9aca78aa9f77d022bb86ef47f4286b22ea1ab3edfcb31e8",
-    "original_sha256": "ec747ab3841a75a2c9aca78aa9f77d022bb86ef47f4286b22ea1ab3edfcb31e8",
     "changed_for_export": false
   },
   {
@@ -4072,6 +4072,13 @@
     "changed_for_export": false
   },
   {
+    "path": "SO101/code/hiwonder-SoArm-101/tests/utils.py",
+    "bytes": 6716,
+    "sha256": "5e3d9db655073b9f60b78e9f6e3276eca3433a12c518f844021b6c51976fe83f",
+    "original_sha256": "5e3d9db655073b9f60b78e9f6e3276eca3433a12c518f844021b6c51976fe83f",
+    "changed_for_export": false
+  },
+  {
     "path": "SO101/code/hiwonder-SoArm-101/tests/utils/test_encoding_utils.py",
     "bytes": 4571,
     "sha256": "580ab5d5cbd059b3c801c2a28311032b52b2cf2575a3e293274c3949404a4d34",
@@ -4125,13 +4132,6 @@
     "bytes": 7575,
     "sha256": "588f3b73e6834f20d55229b1844c9c08e12a67cca942436bfaab11c6722f93d1",
     "original_sha256": "588f3b73e6834f20d55229b1844c9c08e12a67cca942436bfaab11c6722f93d1",
-    "changed_for_export": false
-  },
-  {
-    "path": "SO101/code/hiwonder-SoArm-101/tests/utils.py",
-    "bytes": 6716,
-    "sha256": "5e3d9db655073b9f60b78e9f6e3276eca3433a12c518f844021b6c51976fe83f",
-    "original_sha256": "5e3d9db655073b9f60b78e9f6e3276eca3433a12c518f844021b6c51976fe83f",
     "changed_for_export": false
   },
   {
@@ -4303,6 +4303,13 @@
     "changed_for_export": false
   },
   {
+    "path": "SO101/code/lerobot/docs-requirements.txt",
+    "bytes": 113,
+    "sha256": "9b826056b28f78ef5a98ea74960560bf117de4f9c68a3aac112d0c60e84f5db8",
+    "original_sha256": "9b826056b28f78ef5a98ea74960560bf117de4f9c68a3aac112d0c60e84f5db8",
+    "changed_for_export": false
+  },
+  {
     "path": "SO101/code/lerobot/docs/README.md",
     "bytes": 5521,
     "sha256": "165d87151d472890158ded4a228e3d21bebfe0bcd73adfff646d1fa58b020f36",
@@ -4356,13 +4363,6 @@
     "bytes": 333,
     "sha256": "b80931a074f1bebf79b33bcac668edf999cc657c3665937e697da4e263ce3837",
     "original_sha256": "b80931a074f1bebf79b33bcac668edf999cc657c3665937e697da4e263ce3837",
-    "changed_for_export": false
-  },
-  {
-    "path": "SO101/code/lerobot/docs-requirements.txt",
-    "bytes": 113,
-    "sha256": "9b826056b28f78ef5a98ea74960560bf117de4f9c68a3aac112d0c60e84f5db8",
-    "original_sha256": "9b826056b28f78ef5a98ea74960560bf117de4f9c68a3aac112d0c60e84f5db8",
     "changed_for_export": false
   },
   {
@@ -6382,6 +6382,13 @@
     "changed_for_export": false
   },
   {
+    "path": "SO101/code/lerobot/tests/utils.py",
+    "bytes": 6035,
+    "sha256": "89e6c5e3082b100596074d8354bb4a96235d4b8f9ba29f1967eb1bc2ad3bf216",
+    "original_sha256": "89e6c5e3082b100596074d8354bb4a96235d4b8f9ba29f1967eb1bc2ad3bf216",
+    "changed_for_export": false
+  },
+  {
     "path": "SO101/code/lerobot/tests/utils/test_encoding_utils.py",
     "bytes": 4399,
     "sha256": "5f273a01b55e67a121d652230bdfbeb9d2edc2848b4e04ec4d9c8a0efd4dea00",
@@ -6435,13 +6442,6 @@
     "bytes": 3371,
     "sha256": "62c64f704101c41bee3b2449718afb4fbb5c3c498f30cda38a966a6e95d31160",
     "original_sha256": "62c64f704101c41bee3b2449718afb4fbb5c3c498f30cda38a966a6e95d31160",
-    "changed_for_export": false
-  },
-  {
-    "path": "SO101/code/lerobot/tests/utils.py",
-    "bytes": 6035,
-    "sha256": "89e6c5e3082b100596074d8354bb4a96235d4b8f9ba29f1967eb1bc2ad3bf216",
-    "original_sha256": "89e6c5e3082b100596074d8354bb4a96235d4b8f9ba29f1967eb1bc2ad3bf216",
     "changed_for_export": false
   },
   {
@@ -7386,6 +7386,18 @@
     "bytes": 2707,
     "sha256": "042caaa498a6334ec7285331c846da5ef10fbbdd913ac603e70939c5f524ecb1",
     "added_for_repository": true
+  },
+  {
+    "path": "docs/DEMOS.md",
+    "added_for_repository": true,
+    "bytes": 2466,
+    "sha256": "270dc043b969fa2bcc35c453e0db2a9cab9091b9eeee094c61a1b9ac11f096e8"
+  },
+  {
+    "path": "docs/video_attachments.json",
+    "added_for_repository": true,
+    "bytes": 2203,
+    "sha256": "d1e14945e0451069e44c99fdbb19277ad556696bd6d803536e1efb721f32c85e"
   },
   {
     "path": "environments/ali-jetson/INSTALLER_SOURCE.json",
@@ -26194,8 +26206,8 @@
   },
   {
     "path": "repository/export_summary.json",
-    "bytes": 311,
-    "sha256": "7ffac161d7d8ce19dc2beb02b0460959795161f0f353c86a7cb4122ed08100f1",
+    "bytes": 388,
+    "sha256": "ab54c97102007615864def27c7f3f15e99d9c0477f8de6df8734a670ac159a6f",
     "added_for_repository": true
   },
   {

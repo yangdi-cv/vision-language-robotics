@@ -1,0 +1,42 @@
+{
+  "repository": "yangdi-cv/vision-language-robotics",
+  "issue": "https://github.com/yangdi-cv/vision-language-robotics/issues/1",
+  "issue_number": 1,
+  "videos": [
+    {
+      "file": "reports/alibaba_engineering/videos/ch03/desktop_pickplace_example.mp4",
+      "attachment_url": "https://github.com/user-attachments/assets/c7d395a4-e22e-47d6-8c61-0f5f704611de",
+      "sha256": "cc297cc7e16849c212037a85b651ffc569595059204515e140f421a731d61041"
+    },
+    {
+      "file": "reports/alibaba_engineering/videos/ch04/hierarchical_long_example.mp4",
+      "attachment_url": "https://github.com/user-attachments/assets/8f9e9a59-083e-4486-a52a-0391b92c173a",
+      "sha256": "541a325bade39e9cffcce334dd8b09fe97ff799051473a53e6113aebbf3c17e8"
+    },
+    {
+      "file": "reports/alibaba_engineering/videos/ch05/milestone_monitor_example.mp4",
+      "attachment_url": "https://github.com/user-attachments/assets/3064e5c8-09fe-414a-b275-c156ba8bce83",
+      "sha256": "df7c2e9bb717f7bc83270e838215636ea526e3d0730b17a543b6d2ef98f31a27"
+    },
+    {
+      "file": "reports/alibaba_engineering/videos/ch06/policy_handover_success.mp4",
+      "attachment_url": "https://github.com/user-attachments/assets/7f9c5dad-2e8d-4513-a863-6791e6cf6072",
+      "sha256": "488bde174c3da79e65fae2d6b28dccb9179799f5564b206071d3bfea852a750d"
+    },
+    {
+      "file": "reports/alibaba_engineering/videos/ch07/jetson_vision_pc_execution.mp4",
+      "attachment_url": "https://github.com/user-attachments/assets/f3b872d7-9f98-4c89-a769-b0bc0f4f3e8b",
+      "sha256": "6f7311d173cc624267c1c995ec80c0c29fa249f04eed8665e77f8fd6fb3d997a"
+    },
+    {
+      "file": "reports/alibaba_engineering/videos/ch05/mobile_navigation_operation.mp4",
+      "attachment_url": "https://github.com/user-attachments/assets/436bb141-7333-4f43-85c7-de7a269b3662",
+      "sha256": "f136d2398375689adf950e5e558aed1aa16bef9b6478645ff3ef9c35b3b93826"
+    },
+    {
+      "file": "reports/alibaba_engineering/videos/ch03/pi05_official_long_task00.mp4",
+      "attachment_url": "https://github.com/user-attachments/assets/20abbd93-ff6b-4cee-a306-2c3d4b9969d6",
+      "sha256": "764737ab594719191d756e0a7b0001d25276a971b4275308946069957f06bcec"
+    }
+  ]
+}

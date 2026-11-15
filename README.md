@@ -1,5 +1,23 @@
 # Vision-Language Robotics
 
+<!-- BEGIN INLINE DEMOS -->
+
+### Qwen分层与π0.5执行
+
+LIBERO长任务示例：Qwen负责分解和中间完成检查，π0.5输出动作。正式30回合为28次成功，仅翻译对照为29次。
+
+https://github.com/user-attachments/assets/8f9e9a59-083e-4486-a52a-0391b92c173a
+
+### 同场景导航与操作
+
+Nav2停靠后，由π0.5抓碗、放入抽屉并关闭。视频为开发回合，未使用真实移动机器人。
+
+https://github.com/user-attachments/assets/436bb141-7333-4f43-85c7-de7a269b3662
+
+[查看全部可播放视频](docs/DEMOS.md)
+
+<!-- END INLINE DEMOS -->
+
 视觉语言引导的机器人操作：从桌面机械臂观察工具、公开视觉语言动作策略复现，到任务分层、视觉完成检查、可供性定位、同场景移动操作和Jetson推理服务。
 
 这是个人研究与工程记录。代码保留各阶段的目录和实验条件，便于对照报告阅读。这里同时包含成功、未改善的对照和已发现的实现问题。

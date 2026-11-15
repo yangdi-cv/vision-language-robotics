@@ -10,5 +10,6 @@
     "platform_binaries": 127,
     "deployment_copy": 29,
     "credentials_or_generated_tokenizer": 8
-  }
+  },
+  "stage": "initial_source_selection_before_test_inputs_and_readme_updates"
 }
