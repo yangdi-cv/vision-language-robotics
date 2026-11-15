@@ -1,0 +1,690 @@
+\chapter{Visual Affordance Localization and Physical Execution Interface}
+The planning and control interface follows the official MoveIt configuration guidelines\cite{moveit}.
+
+
+On the basis of limited skills, affordance learning transforms visual outputs into executable positions. Engineering validation sequentially checks data, coordinates, planning, actual joint feedback, and policy handoff; localization success and complete task success are counted separately.
+
+\section{Visual Affordance Data, Handle Localization, and three-dimensional Backprojection}
+
+\label{stage:s17}
+
+Affordance in this report refers to locations suitable for robots to apply actions, such as the proximity points of drawer handles. Labels are automatically generated using simulated images, segmentation, and depth to train the Qwen localization adapter.
+
+\subsection{Visual Affordance Data and LoRA}\label{s17-detail-1}
+
+The generator exports RGB, ground-truth depth, segmentation masks, drawer opening, and 2D and 3D labels for the handle, bowl, and drawer interior from simulation. Qwen receives RGB and outputs relative coordinates from 0--1000, subsequently mapped to a 512-pixel image. Point supervision uses visible-mask centroids; the cabinet uses a two-dimensional bounding box.
+
+The data includes static frames, open-loop action replays from prior simulation episodes where the policy was actually executed, and action template replays transferred to other initial states. Here, ``actual simulation episodes'' refers to simulation episodes where the policy was genuinely run, not real-world robotic data.
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2647}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2647}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.4707}}@{}}
+\caption{Visual Affordance Data and LoRA: Setup and Results}\label{tab:s17-1}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Purpose
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Initial state
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Description
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Purpose
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Initial state
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Description
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Training & 17--49 & Actual training consists of 780 frames, including replayed motion transfers and static frames \\
+Validation Checkpoint Selection & 13--16 & 48 visible handle examples used for checkpoint selection \\
+Test & 0--12 & 350 frames after filtering, 1014 matched QA pairs \\
+\end{longtable}\endgroup
+
+The training/validation data container data\_train\_v1 contains 886 frames; the full data\_v1 container has 802 frames, not all of which belong to the test set, with static images covering 0--49. The base evaluation file contains 498 frames, and the LoRA file contains 350 frames; this report only compares on the same (id, query) 1014 outputs.
+
+Divided into ``initial-state isolation, shared action templates'': Training did not use test initial states, but transfer replay reused existing test-round action templates. Therefore, this is generalization across initial states under the same scene and camera conditions, not testing under an independent trajectory distribution. 350 frames exhibit temporal correlation and are not 350 independent tasks; all 50 official initial states have already been used in development or data.
+
+LoRA uses r=8, alpha=16, fine-tuning only the language layer q\_proj/v\_proj, with approximately 2.95 million trainable parameters, gradient accumulation of 4, training for 600 steps, learning rate of 1e-4. The recorded training wall-clock time is approximately 413 seconds, with peak memory usage of about 9201 MiB; these are single-run records on this machine, not edge-device performance. The weights are located at affordance/lora\_v1/best\_adapter.
+
+\subsection{Metric Definitions, Baselines, and Constraints}\label{s17-detail-2}
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2785}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2313}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2436}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2465}}@{}}
+\caption{Metric Definitions, Baselines, and Constraints: Settings and Results}\label{tab:s17-2}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Test metrics
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Qwen base
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Affordance LoRA
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Fixed-point during training
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Test metrics
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Qwen base
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Affordance LoRA
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Fixed-point during training
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+4-pixel neighborhood hit of the handle & 62/350, 17.7\% & 345/350, 98.6\% & 115/350, 32.9\% \\
+Strict pixel hit rate & 20/350, 5.7\% & 323/350, 92.3\% & 61/350, 17.4\% \\
+Median 3D error of grasp & 7.798cm & 1.368cm & not computed \\
+Cabinet frame average IoU & 0.647 & 0.986 & Not applicable \\
+\end{longtable}\endgroup
+
+Neighborhood hit means that the implementation window within a radius of 4 pixels around the predicted pixel intersects with the target mask; strict hit requires that the predicted pixel itself falls within the target mask. The strict rate with fixed point refers to the recalculated result after existing predictions, without re-calling the model. The fixed point uses only the median of visible handle labels from training initial states 17--49, approximately (222.62, 327.59), and does not use test labels for point selection.
+
+The hit rate in the bowl's neighborhood improved from 98.8\% \(\rightarrow\) 100\% (171 instances), and the placement point hit rate remained at 99.3\% \(\rightarrow\) 99.3\% (143 instances), indicating that the improvement was primarily concentrated on small handles, rather than uniform improvement across all targets.
+
+3D coordinates are obtained by back-projecting the predicted 2D points, simulation ground-truth depth, and known camera intrinsic and extrinsic parameters, using a local 5\(\times\)5 depth median. The approximate lower bound of 1.4 cm process error is related to the difference between surface points and geometric reference centers. Therefore, the results cannot be expressed as monocular depth network accuracy, true RGB-D accuracy, end-effector localization error, or grasp success rate. The localization adapter is currently not integrated with Nav2, \(\pi\)0.5 actions, or milestone judgment.
+
+The relevant code is in affordance/gen\_dataset.py, add\_camera.py, train\_lora.py, eval\_qwen.py; the recompute script is in reports/20261114/recompute\_audit.py.
+
+
+\subsection{Correspondence between Pixels, Depth, and World Coordinates}\label{s17-detail-3}
+
+The network outputs relative coordinates \((a,b)\) in the range 0 to 1000, which are then converted to 512-pixel coordinates \(u=512a/1000\), \(v=512b/1000\). Depth is taken as the median of valid values in a 5\(\times\)5 window around that point. The rendered image and label must use the same flip function; do not directly apply intrinsic parameters from other image orientations.
+
+The currently implemented paired back-projection formula is: \[u_r=W-1-u,\qquad
+ \boldsymbol p_c=\left[\frac{(u_r-W/2)z}{f},-\frac{(v-H/2)z}{f},-z\right]^T,
+ \qquad\boldsymbol p_w=R_{wc}\boldsymbol p_c+\boldsymbol t_{wc}.\]
+
+where \(W=H=512\), \(z\) is the optical depth, \(f=(H/2)/\tan(\mathrm{fovy}/2)\). The negative depth axis and lateral reversal correspond to the current MuJoCo rendering convention. Projection, depth, and segmentation come from paired implementations; after image rotation, cropping, or extrinsic parameter changes, all must be updated together, not just the display.
+
+The lower bound of the 1.4 cm error partly arises from the discrepancy between the predicted surface point and the geometric reference center. Therefore, the three-dimensional metric represents the localization error of this back-projection pipeline, not the monocular depth network error, nor the robotic end-effector control error.
+
+
+\stagefigure{figures/ch06/s17_affordance_example.png}{First paired test example. White cross indicates handle annotation, circles indicate model predictions; overall hit rate is separately computed from full test statistics.}{fig:s17-retained}
+
+\paragraph{Stage Conclusion} On a 350-frame test subset, the 4B model strictly improved handle hit rate from 5.7\% to 92.3\%, and 4-pixel neighborhood hit rate from 17.7\% to 98.6\%. The fixed-pixel-point baseline excludes some explanations that rely solely on memorizing fixed positions. Training and test initial states are separated, but action templates are shared. Depth is provided by simulator ground truth; testing remains within the same scene and does not represent cross-scene or real-world three-dimensional localization capability.
+
+\stagecode{s17}
+
+\FloatBarrier
+
+\section{Operation, Maintenance, and Reproducibility Fixes}
+
+\label{stage:s18}
+
+Based on actual feedback, complete the input files, unify inference logs, and add step-by-step checkpointing, abnormal return codes, and memory usage limits, enabling problem localization even after long sessions are interrupted.
+
+\subsection{Scope of Changes and Code Entry Points}\label{s18-detail-1}
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.3047}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.6953}}@{}}
+\caption{Scope of Changes and Code Entry Points: Settings and Results}\label{tab:s18-1}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Content
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+This stage achieves
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Content
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+This stage achieves
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+worker blocking read & JSON line reading with deadlines, exception handling, and process cleanup \\
+Image swapping & single shared memory with lock-protected metadata and pixels, two independent readers \\
+Inference budget & upper limits of 64/128/256 for short-term JSON goals, constrained by a limited set of goals \\
+Detection/Depth & FP32/FP16 with 768/640 depth input comparison, default configuration retained \\
+LoRA & validate and save the best adapter every 40 steps, early stopping \\
+ACT & manifest-driven partitioning, sampling episodes first then frames, periodic simulation validation \\
+Repeating code & publicly handing over training/evaluation shared implementation; language dispatch reusing the same execution loop \\
+\end{longtable}\endgroup
+
+Main experiments are located at \path|experiments/alibaba_pc_revision/|. Production code modifications are in \path|perception/qwen_scene/| and \path|perception/web_workbench/server.py|. Historical handover training and evaluation entry points retain their original paths, accessed via compatible entry points that invoke shared implementations.
+
+\subsection{Model Process Timeout and Exit Handling}\label{s18-detail-2}
+
+The original stdout.readline might wait indefinitely for a complete line. The new reader waits with a timeout, detects EOF, invalid JSON, and overly large responses; on failure, it terminates and recycles the model process. Two existing language dispatch entry points have been integrated, with a default response timeout of 90 seconds. For graceful shutdown, it first sends a stop request, then terminates the process according to timeout rules to avoid infinite waiting in the main flow.
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3252}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3480}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3268}}@{}}
+\caption{Model process timeout and exit handling: settings and results}\label{tab:s18-2}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Software Testing
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Results
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Total time including recovery / s
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Software Testing
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Results
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Total time including recovery / s
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+silent & TimeoutError & 2.202 \\
+crash & RuntimeError & 0.008 \\
+malformed & RuntimeError & 0.007 \\
+healthy & ok & 0.007 \\
+\end{longtable}\endgroup
+
+The test includes silent, abnormal exits, invalid JSON, and normal responses, all using local simulated processes. Read timeout and process cleanup are two phases; the total time in the table includes cleanup waiting time. This is not referred to as a robot hardware robustness test.
+
+The relevant code is located at \path|perception/qwen_scene/worker_client.py|, \path|experiments/alibaba_baseline/scripts/integrated_demo.py|, \path|experiments/alibaba_extension/scripts/run_qwen_nav_act.py|.
+
+\subsection{Image Memory Transfer and Consistency}\label{s18-detail-3}
+
+The original webpage saves PNGs frame by frame, with two inference processes decoding them separately. Now, the camera thread writes RGB data, frame number, reception time, and rotation information into a shared memory. Locks are added during write and read operations. Readers copy the entire frame immediately after reading and release the lock, not holding the lock during inference and not accumulating intermediate frames. Existing PNG sources can still be used as compatible inputs.
+
+Using 12 existing wrist images, each repeated three times, comparing one write and two independent reads. Statistics exclude the first two attempts in each group, including overhead from message notifications and pixel verification; the file scheme is affected by system caching and is not a cold disk performance test.
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1909}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1909}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1971}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2190}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2021}}@{}}
+\caption{Image Memory Transfer and Consistency: Setup and Results}\label{tab:s18-3}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+method
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+effective test frame count
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Writing median / ms
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Double-read completion median / ms
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Dual Read P95 / ms
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+method
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+effective test frame count
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Writing median / ms
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Double-read completion median / ms
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Dual Read P95 / ms
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+png & 34 & 15.692 & 22.191 & 23.493 \\
+shared & 34 & 0.069 & 0.789 & 1.733 \\
+\end{longtable}\endgroup
+
+A total of 144 reads verified pixel hash against frame number, with no inconsistencies; after continuous writing of 100 frames, only the latest frame was read. The analysis images and results submitted to Qwen can still be archived; visual results still incur storage overhead; what is removed here is the PNG round-trip during real-time frame swapping, not the deletion of all records.
+
+\stagefigure{figures/ch06/s18_pc_latency_b204fdc9.png}{Time spent on image exchange and goal reasoning}{fig:s18-detail-1}
+
+This result confirms that image swapping has room for optimization, but it cannot prove it is the biggest bottleneck of the entire system. Target inference still takes about 260ms, and longer scene descriptions will increase the time further. If the webpage is already running, it needs to be restarted to use the new frame transmission method; the real camera and master-slave control were not activated in this phase.
+
+The relevant code is located at \path|perception/qwen_scene/frame_transport.py|, \path|continuous_worker.py|, \path|vision_worker.py|, \path|perception/web_workbench/server.py|; testing is conducted in \path|scripts/bench_runtime.py|.
+
+\subsection{Output Length and Constrained Decoding}\label{s18-detail-4}
+
+On the same Qwen base, prompt, and image, run interleaved with 64, 128, 256 generation limits and four settings with 64 plus constraints. Each of the 12 target use cases is repeated twice, and statistics are collected after preheating.
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1481}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1420}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1420}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1420}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1420}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1420}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1420}}@{}}
+\caption{Output Length and Constrained Decoding: Settings and Results}\label{tab:s18-4}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Upper bound / Constraint
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Median / s
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+P95 / s
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Average generated tokens
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Format is valid
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Target complete match
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+truncated
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Upper bound / Constraint
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Median / s
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+P95 / s
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Average generated tokens
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Format is valid
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Target complete match
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+truncated
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+64 / none & 0.260 & 0.261 & 16.0 & 24/24 & 20/24 & 0 \\
+128 / none & 0.260 & 0.261 & 16.0 & 24/24 & 20/24 & 0 \\
+256 / none & 0.260 & 0.262 & 16.0 & 24/24 & 20/24 & 0 \\
+64 / has & 0.262 & 0.264 & 16.0 & 24/24 & 20/24 & 0 \\
+\end{longtable}\endgroup
+
+All these responses ended normally within 16 tokens, so reducing the upper limit did not noticeably accelerate generation; a large upper limit does not mean the model will necessarily generate up to that limit. Constrained decoding limits the output to the 7 types of JSON target objects supported by the current task, which can constrain format and field combinations, but it is not a general JSON syntax implementation and does not fix incorrect target selection.
+
+Maintain an independent budget for long scene descriptions; tighten the short decision interface to 128 and allow task-specific configuration; do not uniformly change the entire observation window to 64. Syntax validity cannot be equated with target existence or instruction clarity.
+
+The relevant code is located at \path|scripts/bench_qwen.py|, \path|perception/qwen_scene/engine.py|, \path|experiments/alibaba_baseline/scripts/qwen_goal_worker.py|.
+
+\subsection{Detection and Depth Reasoning Comparison}\label{s18-detail-5}
+
+Using 8 existing simulated RGB-D scenes, each repeated twice. Input detection fixed at 640, depth compared at 768 and 640, recording serial model call duration. It does not include full web rendering or camera capture. FP16 mapped to current Ultralytics quantize=16, additional check that actual network parameter type is float16.
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2329}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1895}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1895}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1895}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1985}}@{}}
+\caption{Detection and Depth Reasoning Comparison: Settings and Results}\label{tab:s18-5}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Accuracy / Depth Dimension
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Median / ms
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+P95 / ms
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Original-scale AbsRel
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Scale-aligned AbsRel
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Accuracy / Depth Dimension
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Median / ms
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+P95 / ms
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Original-scale AbsRel
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Scale-aligned AbsRel
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+FP32 / 768 & 8.69 & 9.27 & 4.475 & 0.089 \\
+FP16 / 768 & 8.59 & 9.15 & 4.472 & 0.089 \\
+FP16 / 640 & 8.15 & 8.44 & 4.375 & 0.102 \\
+\end{longtable}\endgroup
+
+The FP16 gain in this stage is small; 640 is slightly faster, but the relative error after scale alignment increases from approximately 0.089 to 0.102. The original scale error is large, indicating that the predicted distances in these simulation scenarios cannot be directly used as metric depth for grasping.
+
+Scale alignment uses the proportion estimated from simulation ground truth per image, solely for diagnosing relative geometric performance; this ground truth cannot be relied upon during deployment. Due to limited scene numbers and domain differences between simulation and reality, model runs are conducted in group order; no claims are made regarding real camera accuracy or stable production acceleration. Variations in detection box counts are merely recorded; no human-annotated ground truth for object detection exists, and detection accuracy is not reported.
+
+Inference-related configurations have added precision and depth dimension settings, and removed redundant device-level explicit synchronization; FP32/768 remains the default. Synchronization is still necessary when reading GPU outputs to CPU, and asynchronous inference or dual-stream completion is not claimed.
+
+The relevant code is located at \path|scripts/bench_vision.py|, \path|perception/qwen_scene/vision_engine.py|.
+
+
+\subsection{Bounded Memory Loading and Fault Handling}\label{s18-detail-6}
+
+\subsubsection{Memory Fault and Load Recovery}\label{s18-detail-7}
+
+During heavy validation, two models resided simultaneously, with process RSS briefly reaching approximately 20.4 GiB. The workstation has only about 30 GiB of system memory with no swap, and systemd-oomd terminated the VSCode process group containing the experiment twice. Separating the Unix session did not separate the systemd resource group, so the original background startup method was insufficient to protect the editor. The logs do not provide evidence of GPU failure or other hardware damage based on this.
+
+Fixing is done in two steps: the experiment is placed into an independent systemd user service, with a soft limit of 14 GiB and a hard limit of 16 GiB, and the experiment exits if exceeded; the model reads, converts, and transfers to GPU in blocks according to TensorStore/Orbax original storage, with cache limits of 16/32 MiB, no longer copying full weights multiple times to host memory. LoRA increments are merged back into the original model structure block by block, and both base and adapter inference use the same loading path.
+
+The base process's observation RSS peaks at approximately 3.81 GiB, while the process group including page cache amounts to about 10.67 GiB. The base with 51 arrays/408 blocks matches entirely with the true zero-increment adapter hash, with maximum action difference of 0, passing the original 0.001 threshold. Historical process outputs still show a 0.00146 discrepancy, which is retained for record but not counted as training gain. Current mathematical merging passes four self-contained CPU tests: simulated attention, KV, feed-forward layout, and zero-increment bit preservation.
+
+System memory protection was not disabled, no modifications were made to Swap, graphics drivers, or hardware upgrades. Relevant code is located in \path|scripts/bounded_restore.py|, \path|chunk_math.py|, \path|watch_resources.py|, and the fault logs with actual resource data are in \path|resource_checks/|.
+
+
+\subsection{Submission Package and Image, Log Semantic Revisions}\label{s18-detail-8}
+
+Fixed the issue where the submission package missed closed\_loop\_iteration/data/cases.json, and attached 720 labeled samples corresponding to 120 original trace.npz. Added a unified CPU test command and independent dependency list; in a newly created Python 3.11 environment and temporary extraction directory, 44/44 tests passed (36 original, 8 new), and the first version of closed-loop testing passed all 5 items.
+
+The camera and LIBERO planning/checking reuse SceneEngine.generate, each time returning a fixed model revision, complete prompt and hash, code/pixel hash, generation parameters, and library version; workers persistently record requests and replies; V2 scoring supplements LoRA hash, actual scoring prompt, and threshold. analyze defaults to rotation 0 and actually modifies pixels; if upstream real-time frames have already been rotated, explicitly skip secondary rotation. Real Qwen weights passed the single-planning-interface check successfully, without updating existing success rate.
+
+Both legacy and strict episodes now write atomic result.json plus per-event and per-step fsynced JSONL. On exceptions, results and trace.npz are saved before renderer cleanup. Forced termination retains completed records, without promising resumable execution or intact video. Fault-injection and SIGKILL tests passed. Delivery: deliverables/20261113\_阿里\_代码修订/阿里\_修订源码.zip, with revision notes, acceptance results, and test logs. Earlier PDFs, packages, and experiments are retained; no training, batch evaluation, or hardware motion was run.
+
+
+\subsection{Limitations of Visual Judgment and Incremental Run Logging}\label{s18-detail-9}
+
+\subsubsection{Negative Results and Engineering Maintenance}\label{s18-detail-10}
+
+Multi-image memory may confuse the current image with historical images; grippers may be mistaken for drawers; prompt option lists may induce copy-pasting. Cropping and zooming did not improve drawer boundary judgment—0/9 correct for fully closed states using full images, only 1/9 with cropping, and cropping may lose protruding parts of drawers. These results support retaining failure cases and cannot equate multiple confirmations with independent judgments.
+
+This maintenance does not alter the prompt, policy, or historical results; it only affects subsequent new rounds: the launcher passes through the systemd return code, returns nonzero after capturing exceptions in a single round, and batch processing stops upon encountering a failure. Qwen requests and full responses, visual events, applied actions, and joint state increments are written to JSONL and fsynced; progress.json is atomically replaced per control step. Full responses retain the model version, prompt, generation configuration, and input pixel hash. Complete videos and the old-format trace still require normal termination to be generated; logs do not support resuming from a breakpoint, and writing to disk at each step also increases wall-clock overhead from un-re-measured operations.
+
+
+\paragraph{Phase Conclusion} Code, results, and input versions begin to be saved separately. Information such as image rotation, model and prompt sources, exit status, etc., is incorporated into engineering verification. This section is organized by specific faults and their validation fixes. Currently, there remains an abnormal MoveIt destructor exit, and thus, cannot treat action reaching position as the entire software lifecycle being fully normal.
+
+\stagecode{s18}
+
+\FloatBarrier
+
+\section{Visual Affordance Localization-Driven MoveIt Execution in Simulation}
+
+\label{stage:s19}
+
+Let the predicted handle pose undergo depth back-projection, coordinate transformation, and MoveIt planning to drive the real simulated joints in MuJoCo. The controller reads actual joint positions and velocities, without faking feedback using command values.
+
+\subsection{Comparison Results}\label{s19-detail-1}
+
+Two existing initial states 2 and 3, two camera translation conditions not used in training for this stage (3 cm along camera horizontal/vertical axes), each condition paired with oracle, base, and lora, totaling 12 rounds. Oracle uses ground-truth target upper bound; base and lora use the same 4B BF16 model, identical prompts and control parameters, differing only in adapter switching. All initial states have historical usage and cannot be termed independent new initial states.
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}@{}}
+\caption{Control Results: Settings and Outcomes}\label{tab:s19-1}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Localization method
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Navigate to the destination
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Pre-contact passage
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Median positioning error in mm
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Clean abnormal episodes
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Localization method
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Navigate to the destination
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Pre-contact passage
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Median positioning error in mm
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Clean abnormal episodes
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Ground-truth localization & 4/4 & 4/4 & 6.2 & 1 \\
+Base & 4/4 & 0/4 & 73.3 & 2 \\
+Low-rank adaptation & 4/4 & 4/4 & 10.4 & 2 \\
+\end{longtable}\endgroup
+
+The sample size is small and is only used to validate whether "the localization output can change the actual reaching effect." It cannot be extrapolated to cross-scenario capabilities. Failures and planning rejections are retained and not rerun for coverage.
+
+\stagefigure{figures/ch06/s19_grounding_comparison.png}{First observation under same pairing conditions, green is reference handle point, red is model prediction}{fig:s19-detail-1}
+
+\subsection{Implementation and Validation}\label{s19-detail-2}
+
+Navigation, perception, and joint execution share a single physical instance. Collision geometry comes from the current simulation scene, and feedback from the MoveIt execution interface reads actual qpos/qvel; control is limited-torque PD with gravity compensation, preserving the original model inertia and physics substeps. No runtime direct assignment of qpos or mock joint feedback is used to substitute execution.
+
+The pre-contact target is the predicted handle point plus a world offset of (-0.12, -0.10, +0.10) m, with orientation inherited from the initial TCP. This is a fixed skill template, not a learned 6D grasp. Joint PD is 400/40, trajectory at 20 Hz, velocity/acceleration scaling of 0.12, joint position tolerance of 0.015 rad, and hold for 1.5 seconds. All positioning modes use the same set of parameters.
+
+After model placement, re-localize to confirm visually with TCP distance to the newly predicted target \(\leq\) 25mm, allowing at most one correction. Ground-truth coordinates do not participate in model mode correction or stopping, serving only for post-hoc error scoring; additionally, upon pre-contact, require ground-truth error \(\leq\) 30mm, no environmental or self-collision, and physical instances unchanged. Oracle is recorded separately without visual confirmation. Original LIBERO task success is saved as libero\_original\_task\_success.
+
+\subsection{Issues Encountered During Development}\label{s19-detail-3}
+
+The initial PD140/20 did not meet joint tolerance. It was changed to 400/40 on a ground-truth development episode and then frozen. The static URDF tool frame was checked against MuJoCo at 8 poses. After navigation ran in simulation, an FK discrepancy of about 0.206mm remained, so strict checks blocked execution. Integrated qpos and derived poses referred to different times; synchronizing with forward before reading state reduced the navigation-development discrepancy to about 5\(\times\)\(10^{-12}\)m and allowed execution. The coordinate-check threshold was not relaxed.
+
+Development results for nominal initial state 0: LoRA pre-contact error approximately 9.2mm, visual re-observation residual 5.6mm; base approximately 97.6mm, failed. Navigation re-measurement navigation\_dev2 is also in place. These development results are not included in the above table.
+
+Trajectory execution manager crashes during partial shutdown in MoveIt Humble, consistent with known upstream issue stack. Action results and cleanup\_ok are recorded separately; system ROS has not been upgraded or claimed resolved for this shutdown issue. Control logs retain true joint, torque, and contact information.
+
+\subsection{Limitations and Future Work}\label{s19-detail-4}
+
+Depth and collision maps come from simulation ground truth; navigation uses ideal odometry and known maps, without SLAM. Only tested in a single kitchen, single handle, with fixed pre-contact pose; camera perturbations are not across scenes. Did not label current in-place result as autonomous grasping, nor did we substitute the prior \(\pi\)0.5 full-task closed-loop conclusion.
+
+MoveIt directly completing handle contact, grasping, and pulling has not been verified. In this phase, we additionally performed a pre-contact handoff with \(\pi\)0.5 to complete the original task's functional testing, see Section 6; we cannot classify \(\pi\)0.5's operations as MoveIt grasping. In the current phase, there is no connection to a physical robotic arm, no Jetson performance testing has been run, and no new fine-tuned weights have been applied.
+
+\subsection{Per-Step Results and Files}\label{s19-detail-5}
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1357}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1860}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1357}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1357}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1357}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1357}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1357}}@{}}
+\caption{Per-round results and files: Settings and Results}\label{tab:s19-2}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedleft
+Initial state
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Perspective
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Localization
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Pre-contact
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Error in mm
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Planning count
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Error
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedleft
+Initial state
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Perspective
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Localization
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Pre-contact
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Error in mm
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Planning count
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Error
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+2 & \path|camera_right_3cm| & Ground Truth Localization & Passed & 6.9 & 1 & \\
+2 & \path|camera_right_3cm| & base & failed & 170.5 & 2 & planning or execution return code 99999 \\
+2 & \path|camera_right_3cm| & Low-rank adaptation & Passed & 11.0 & 1 & \\
+2 & camera\_up\_3cm & true localization & passed & 1.8 & 1 & \\
+2 & camera\_up\_3cm & base & failed & 77.7 & 2 & planning or execution return code -2 \\
+2 & camera\_up\_3cm & low-rank adaptation & passed & 9.9 & 1 & \\
+3 & \path|camera_right_3cm| & Ground-truth localization & Passed & 6.9 & 1 & \\
+3 & \path|camera_right_3cm| & Base & Failed & 69.0 & 1 & \\
+3 & \path|camera_right_3cm| & Low-rank adaptation & Passed & 6.2 & 1 & \\
+3 & camera\_up\_3cm & ground-truth localization & passed & 5.5 & 1 & \\
+3 & camera\_up\_3cm & base & failed & 41.8 & 1 & \\
+3 & camera\_up\_3cm & low-rank adaptation & passed & 11.3 & 1 & \\
+\end{longtable}\endgroup
+
+The relevant code is in scripts/. PROTOCOL.md records the frozen settings, research/ records interface selection and coordinate verification. Results are in results//case\_result.json, video rollout.mp4, step-by-step logs events.jsonl, controller feedback controller\_\emph{.json, planning results plans/attempt}/moveit\_result.json. SUMMARY.json allows tracing each row of this table. README.md provides commands, environment, and limitations.
+
+
+\subsection{Control Input and State Synchronization}\label{s19-detail-6}
+
+Joint actuation uses proportional, damping, and model bias compensation, and is implemented as: \[\boldsymbol\tau=\operatorname{clip}\left(400(\boldsymbol q_d-\boldsymbol q)-40\dot{\boldsymbol q}+\boldsymbol b(\boldsymbol q,\dot{\boldsymbol q}),\boldsymbol\tau_{\min},\boldsymbol\tau_{\max}\right).\] \(\boldsymbol q_d\) is the joint target after trajectory interpolation, \(\boldsymbol q\) and velocity come from the physics simulation, \(\boldsymbol b\) is the MuJoCo bias term, including gravity and velocity-related terms. The upper and lower bounds use the original actuator range; 400 and 40 are control parameters frozen after this development, not tuned separately for different models.
+
+The planner's tool coordinates were first verified against eight static poses using the simulated tool point. Coordinate checks after real navigation again exposed integration timing issues: joint positions had been updated, but derived poses still corresponded to previous time steps. After calling forward before reading to unify the cache, the numerical difference between the two forward kinematics dropped to approximately \(5\times10^{-12}\) meters. This indicates mathematical consistency at the same time step, not physical localization achieving this precision.
+
+The actuators publish actual joint feedback; successful planning, actual trajectory completion, visual reconfirmation, and exit cleanup are separately recorded. There are still known destructor exceptions for the current partial MoveIt exits; action results cannot mask process lifecycle issues.
+
+
+\paragraph{Stage Conclusion} Under two initial states and two camera translation conditions, LoRA pre-contact passed 4/4, base 0/4, true-value localization 4/4; median positioning errors were 10.4, 73.3, and 6.2 millimeters, respectively. The target is the pre-approach position approximately 18.5 cm diagonally in front and above the object, not contact or grasping. Collision map and depth are known quantities from simulation, with only four conditions.
+
+\stagecode{s19}
+
+\FloatBarrier
+
+\section{Handover without Reset \pifive{} and Skill Compatibility}
+
+\label{stage:s20}
+
+After MoveIt reaches its position, stop the joint trajectory driver, keep the joint states unchanged, and hand over control to \pifive{}, then let Qwen monitor the bowl-moving and drawer-closing tasks.
+
+\subsection{Handover of Complete Task Without Reset}\label{s20-detail-1}
+
+After the first development probe passed at initial state0, previously used states1,4,5 were added to check repeatability. This section contains 4 episodes, with full-task success of 2/4. These states were used historically and do not form a cross-scene test. Success rates for adding pre-contact versus native \(\pi\)0.5 were not directly compared, so no improvement in full-task performance is claimed.
+
+The execution order is: Nav2 docking, LoRA localization, MoveIt pre-contact, stopping MoveIt and joint bridge, retaining the current qpos and handing it over to \(\pi\)0.5 OSC to execute bowl placement and drawer closing. Handover records assert that joint states before and after each step are identical, with no prior unfolding or resetting to a familiar pose. \(\pi\)0.5 uses official weights and has not been fine-tuned during this phase.
+
+Qwen checks milestones in the order of text memory for bowl insertion into drawer and drawer closure, querying every 10 policy steps; it stops only upon visual confirmation, with a 520-step upper limit as fallback. The official task predicate is only used for shadow logging and final scoring, not to drive policy termination. Confirmation delay is calculated as the difference between Qwen's stopping step and the first official success step; if unsuccessful, it is not counted; this is merely post-hoc diagnosis. Strategy time remains simulation steps and cannot be treated as real-time performance on edge devices. The previous prompt's "dark cabinet" notation remains unchanged.
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 14\tabcolsep) * \real{0.1250}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 14\tabcolsep) * \real{0.1250}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 14\tabcolsep) * \real{0.1250}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 14\tabcolsep) * \real{0.1250}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 14\tabcolsep) * \real{0.1250}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 14\tabcolsep) * \real{0.1250}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 14\tabcolsep) * \real{0.1250}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 14\tabcolsep) * \real{0.1250}}@{}}
+\caption{No-reset handover for full task: Setup and results}\label{tab:s20-1}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedleft
+Initial state
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Pre-contact passage
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+No reset handoff
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+policy steps
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Qwen completed
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Official task success
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Confirm delay step
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Cleanup complete
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedleft
+Initial state
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Pre-contact passage
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+No reset handoff
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+policy steps
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Qwen completed
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Official task success
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Confirm delay step
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Cleanup complete
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+0 & yes & yes & 290 & yes & yes & 37 & no \\
+1 & Yes & Yes & 380 & Yes & Yes & 17 & No \\
+4 & is & is & 520 & no & no & None & no \\
+5 & is & is & 520 & no & no & None & is \\
+\end{longtable}\endgroup
+
+Intermediate milestones still have limitations: at step 390, when initial state 4 confirmed the bowl was inserted into the drawer, it was inconsistent with the shadow region annotation. The region check was defined as 2 cm beyond the drawer site boundary, which falls under geometric diagnostics rather than the official full-task predicate, and thus cannot be directly treated as a strict false positive rate. The fact that the process did not halt prematurely does not imply that the intermediate visual judgment was reliable; no mid-process prompt modification or confirmation rule adjustment occurred during this phase.
+
+The relevant code is located in scripts/sim\_combined.py, combined\_worker.py, and run\_combined.py. COMBINED\_SUMMARY.json and the policy\_handover.json, milestone\_checks.json, policy\_inputs/, and rollout.mp4 files save the handover and execution results. This entry point serves as a probe for this phase and has not yet been integrated into a general skill scheduler; full operations are still performed by \(\pi\)0.5, and affordance only determines the pre-contact position.
+
+\subsection{Native Skill Diagnosis for Failed Initial States}\label{s20-detail-2}
+
+After failure in the complete handoff from initial state 4, only perform a single \(\pi\)0.5 diagnosis without executing pre-contact, using the same Nav2, original skills, and Qwen monitor. The selection occurs after observing failure, not a pre-frozen benefit trial; Nav2 wall-clock execution does not guarantee frame-by-frame state identity, thus cannot serve as a strict causal or overall success rate comparison.
+
+Native Initial State 4: Official Success True, Qwen Completion True, Policy Steps 320, No Errors.
+
+The native control achieved success in 320 steps, while the pre-contact phase failed at 520 steps, suggesting that the handoff posture may affect policy performance; a single post-hoc selected episode cannot establish causality.
+
+Grasp pre-contact is used to validate localization to the action interface and cannot be assumed as a default prerequisite for all \(\pi\)0.5 skills. For the current full task—first moving the bowl, then closing the drawer—the timing of using handle affordance should be determined by stage conditions; additional preposed poses may cause a shift in the policy's input distribution. This round only verifies physical interface connectivity and will not replace the previous native closed-loop version with a complete handoff version.
+
+
+\subsection{Why Not Default to Adding Preceding Actions}\label{s20-detail-3}
+
+The original complete skill was to first move the bowl and then close the drawer; handle pre-approach is merely a validation to locate the execution interface and is not necessarily an action that should be performed at the start of the task. Additional changes to arm posture might take the low-level policy away from its familiar state. Therefore, during actual execution, the native \(\pi\)0.5 is retained as the default, and explicit planning is only invoked when stage conditions and task requirements necessitate it.
+
+When handing over, unchanged joint arrays indicate that the robot has not been reset to the home pose; simulation pauses during model loading, so this check does not verify the real robot's support control, gravity sag, and communication latency during waiting. Moving to the real robot still requires independent continuous control and supervised experiments.
+
+The correct next step here is to define skill prerequisites and stage interfaces, rather than forcing all autonomous tasks to attach to the same pre-approach action handle.
+
+
+\paragraph{Stage Conclusion} One development probe plus three replicative rounds, overall task success rate 2/4; native control for failure initial state 4 bypassed pre-contact and succeeded at step 320. Additional preposed postures may interfere with policy and should not be default-added to all skills. A single post-hoc control cannot establish causality; existing native closed-loop policy remains.
+
+\stagecode{s20}
+
+\stagevideo{videos/ch06/policy_handover_success.mp4}
+
+\FloatBarrier

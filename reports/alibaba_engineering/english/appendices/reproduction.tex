@@ -1,0 +1,120 @@
+\chapter{Running and Directory Examples}
+
+This appendix retains runtime and directory snippets from each phase. They correspond to historical environments and data and should not directly overwrite existing outputs; rerunning should use a new experiment identifier and prepare the required weights and data from the original project. These models, simulations, or physical commands were not executed during the writing of this paper.
+
+\section*{S08 Runtime Example}
+\noindent\path|experiments/vla_libero/REPORT.md|
+
+\hypertarget{s08-command-1}{}
+
+\begin{Verbatim}[breaklines=true,breakanywhere=true,fontsize=\footnotesize]
+
+experiments/vla_libero/
+  configs/protocol.json        Fixed Task and Intervention Protocol
+  configs/checkpoint_objects.json official weight objects and verification information
+  scripts/fetch_sources.py     Fixed upstream source code
+  scripts/install.py           Independent environment dependencies
+  scripts/install_simulation.py simulation dependencies
+  scripts/download_segments.py weight segmented download
+  scripts/verify_checkpoint.py CRC32C/MD5 and SHA256 checksums
+  scripts/simulation_smoke.py Camera and physics interface check
+  scripts/evaluate.py          Model closed-loop and intervention
+  scripts/tests.py             Input and Protocol Regression
+  scripts/analyze.py           Pairwise statistics and charts
+  scripts/verify.py            Original trajectory verification
+  scripts/release_stability.py replay and gripper release check
+  scripts/benchmark_inference.py fixed input timing
+  scripts/video.py            Task-critical frames and demonstrations
+  scripts/visual_comparison.py Input intervention control video
+  scripts/report.py            Report and source code package
+  results/                    Local actions, states, and videos
+  figures/
+  third_party/sources.json     upstream fixed version
+  README.md / RESEARCH.md
+
+\end{Verbatim}
+
+\section*{S11 Runtime Example}
+\noindent\path|experiments/vla_libero/checker_v2/REPORT.md|
+
+\hypertarget{s11-command-2}{}
+
+\begin{Verbatim}[breaklines=true,breakanywhere=true,fontsize=\footnotesize]
+
+experiments/vla_libero/
+  checker_v2/
+    PROTOCOL.json                  Original Acceptance and Data Protocol
+    CONFIRMATION_PROTOCOL.json     New confirmation set and visual affordance rules
+    DATA_REVIEW.md                 Data Review Record
+    scripts/
+      generate.py                 Simulation counterfactual and natural rollout data
+      audit_data.py               Data partitioning and duplicate checking
+      protocol.py                 Input, classification scores, threshold, and metrics
+      train.py                    JSON supervised development version
+      train_classification.py     Language-layer classification training
+      train_vision.py             Vision + Language Adaptation
+      final_evaluate.py           original independent test
+      generate_confirmation.py    New initial state confirmation data
+      collect_confirmation_natural.py Reserved natural round collection
+      confirmation_evaluate.py    Reserved for independent confirmation evaluation
+      evaluate_loop.py: Offline evaluation must pass before enabling closed-loop.
+      test_v2.py                  Unit test
+    data/                         Original data, images, and states
+    results/model/                Language layer weights and test results
+    results/model_vision/         weights and validation results for vision layer development
+    confirmation/                 unrated new confirmed data
+  scripts/
+    completion_checker_v2.py       Checker inference encapsulation and scope of application
+    qwen_planner.py                Original worker adds explicit adapter parameters
+    run_hierarchical.py            Add optional checker parameter to existing closed-loop
+
+\end{Verbatim}
+
+\section*{S12 Runtime Example}
+\noindent\path|experiments/vla_libero/checker_v2/EXPLORATORY_REPORT.md|
+
+\hypertarget{s12-command-3}{}
+
+\begin{Verbatim}[breaklines=true,breakanywhere=true,fontsize=\footnotesize]
+
+experiments/vla_libero/checker_v2/
+  EXPLORATORY_PROTOCOL.json         Model, Thresholds, and Fixed Episodes
+  EXPLORATORY_AMENDMENT.json        Exploratory simulation separated from original acceptance
+  EXPLORATORY_METRICS_PROTOCOL.json Metric Definitions and Predicate Mappings
+  scripts/evaluate_loop.py          Entry point for paired execution
+  scripts/summarize_loop.py         Per-round metrics and action consistency
+  scripts/test_loop_metrics.py      Time-alignment and switch statistics test
+  results/exploratory_metrics.json summary
+  results/exploratory_metrics.csv   per-step table
+  results/exploratory_episode_metrics.json
+  results/exploratory_pair_integrity.json
+experiments/vla_libero/hierarchical/
+  checker_v2_exploratory_base/libero_10/taskXX_initYY/
+  checker_v2_exploratory_v2/libero_10/taskXX_initYY/
+    result.json / trace.npz / rollout.mp4 / qwen_inputs/
+
+\end{Verbatim}
+
+\section*{S13 Runtime Example}
+\noindent\path|experiments/vla_libero/selective_execution/REPORT.md|
+
+\hypertarget{s13-command-4}{}
+
+\begin{Verbatim}[breaklines=true,breakanywhere=true,fontsize=\footnotesize]
+
+experiments/vla_libero/selective_execution/
+  PROTOCOL.json / CALIBRATION.json / EVALUATION_LOCK.json
+  ANALYSIS_PLAN.json / RESOURCES.json
+  scripts/run.py                 Simulation, model actions, and step-by-step logging
+  scripts/worker.py              Qwen selects the target, reuses existing translation/checking
+  scripts/control.py             Gating, ticketing, and stopping; does not receive ground-truth task
+  scripts/protocol.py            Instruction construction, development calibration, and offline scoring
+  scripts/analyze.py / verify.py  paired statistics and state verification
+  scripts/build.py               Charts, reports, actual videos, and source code package
+  tests/test_selective.py        12 self-contained CPU checks
+  plans/<pilot|eval>/<condition>.json  Actual model selection/translation and prompt version
+  episodes/<stage>/<condition>/<method>/
+    result.json / trace.npz / trace.jsonl / events.jsonl
+    rollout.mp4 / images/ / policy_inputs/ / policy_queries.jsonl
+
+\end{Verbatim}

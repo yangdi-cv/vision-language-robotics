@@ -1,0 +1,1323 @@
+\chapter{From Demonstration to Autonomous Operation}
+The runtime entry points for the open policies and baselines come from OpenPI\cite{openpi} and LIBERO\cite{libero}; a fixed source version within the project is used for reproduction.
+
+
+Early desktop experiments demonstrated that geometric conditions can help small-sample policies, but their control conditions were ideal. Real camera and SO101 experiments revealed input, coordinate, normalization, and execution constraints, so subsequent work first established reproducible action references using publicly available task weights.
+
+\section{Desktop Autonomous Pick-and-Place Simulation}
+
+\label{stage:s05}
+
+Place three colored blocks and two boxes on the same MuJoCo tabletop, connecting language parsing, target coordinate estimation, grasp-and-place execution, and placement verification. Compare the geometric method with target-conditioned ACT.
+
+\subsection{Scene and System Configuration}\label{s05-detail-1}
+
+The scene contains three blocks (red, blue, green) and two fixed shallow boxes. The block colors and positions are randomly permuted to avoid fixed color-position correspondences. The ViperX dual-arm model is used, with only the right arm performing grasping and placing actions, while the left arm remains in its initial state.
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.3468}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.6532}}@{}}
+\caption{Scene and System Configuration: Settings and Results}\label{tab:s05-1}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Project
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Configuration
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Project
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Configuration
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Simulation & MuJoCo2.3.7, dm-control1.0.14 \\
+Physical cycle & 2ms, 500Hz \\
+Camera & Fixed top-down RGB and simulated depth, 640\(\times\)480 \\
+Pose estimation & color connected components, depth median, camera intrinsic/extrinsic inverse projection \\
+Language Module & Qwen3-VL-4B-Instruct + Task Selection LoRA \\
+Action Module & Script Geometric Baseline, Goal-Conditioned ACT Two Approaches \\
+ACT control & 25Hz command; re-predict action blocks every 25 steps \\
+Action representation & 8D end-effector reference: xyz, wxyz quaternion, gripper opening \\
+\end{longtable}\endgroup
+
+The end-effector reference is driven by mocap constraints to control the robot, and grasping relies on physical contact between the gripper and the object. The end-effector constraint serves as an ideal position control baseline, without introducing real motor torque and velocity limits. The object is not bound to the gripper during execution, nor is its position directly modified. This interface is for the current simulator and has not yet been mapped to SO101 joint actuation.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Current image and instruction
+\item
+  Qwen target parsing
+\item
+  Goal and Destination Check
+\item
+  RGB-D target coordinates
+\item
+  Goal-conditioned ACT
+\item
+  Physical grasping and placing
+\item
+  Position and Contact Checks
+\end{enumerate}
+
+\stagefigure{figures/ch03/s05_pickplace_sequence.jpg}{Place the blue block into the left box}{fig:s05-detail-1}
+
+\subsection{Geometric Grasp-and-Release Baseline}\label{s05-detail-2}
+
+First, perform approach, descent, closure, lift, translation, release, and withdrawal using known object positions, then replace the known positions with RGB-D estimated results. Both schemes use the same layout and target combinations.
+
+Initial diagonal grasps succeeded in 24 out of 30 trials on two sets of standard tasks, with failures including missed grasps and objects being pushed off the table. After changing the end-effector grasp direction to vertical, the same tasks were rerun:
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.6186}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.3814}}@{}}
+\caption{Geometric Grasp-and-Release Baseline: Setup and Results}\label{tab:s05-2}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+condition
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Success
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+condition
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Success
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Given position, 5 layouts \(\times\) 6 tasks & 30/30 \\
+RGB-D position, 5 layouts \(\times\) 6 tasks & 30/30 \\
+Block half-side lengths 16/24/28 mm, each with 6 tasks & 18/18 \\
+friction coefficients 0.4/0.7/1.3, each with 6 tasks & 18/18 \\
+\end{longtable}\endgroup
+
+All 96 tasks successfully placed the target object into the box. Success requires the gripper to make contact, lift the object by more than 6 cm, and satisfy a 1-second sampling stability check at the end within the designated box; additionally, verify that the object contacts the box bottom and that the gripper shows no residual contact at the end.
+
+RGB-D baseline group initial position estimation average error 6.32mm, maximum 8.80mm. Although the large-size group completed box placement, among the 6 tasks with a 28mm half-side length, 4 tasks pushed non-target objects by more than 10mm, with a maximum displacement of 12.28mm. Therefore, ``target box placement success'' and ``no interference with other objects'' need to be counted separately.
+
+\stagefigure{figures/ch03/s05_physical_baseline_7e5b7090.png}{Grasp pose comparison}{fig:s05-detail-2}
+
+These tasks share fixed camera, box positions, and limited layouts, not 96 independent complex scenes. The results are used to verify the physical execution pipeline and basic workspace, not as production success rates.
+
+\subsection{Language Goal Selection and LoRA}\label{s05-detail-3}
+
+Construct 10 layouts and 100 image instructions, including scenarios with explicitly colored/purpose boxes, missing colors, ambiguous instructions, negative operations, and targets being removed. The base model correctly executes all explicit instructions but arbitrarily selects targets and boxes for ambiguous instructions.
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5819}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.4181}}@{}}
+\caption{Language Goal Selection and LoRA: Setup and Results}\label{tab:s05-3}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Base Test
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Results
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Base Test
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Results
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Explicit instruction & 60/60 \\
+Full field match for all cases & 87/100 \\
+In non-executable use cases, execution proposed & 10/40 \\
+\end{longtable}\endgroup
+
+To address this issue, perform LoRA adaptation with 60 training examples and 240 updates, freezing the visual module and training only the language attention q\_proj/v\_proj, with r=8, alpha=16, and learning rate 5e-5. Train with layout seed 400--405, validate with 406--407, and test with 408--409.
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.4455}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2773}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2773}}@{}}
+\caption{Language Goal Selection and LoRA: Setup and Results}\label{tab:s05-4}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Grouping
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Base
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+LoRA
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Grouping
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Base
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+LoRA
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Validate 20 trials, new layout with same instruction template & 17/20 & 20/20 \\
+Tested 20 trajectories, new layouts with same instruction template & 18/20 & 20/20 \\
+44 novel untrained phrasings & 32/44 & 40/44 \\
+\end{longtable}\endgroup
+
+In the revised wording, the number of instances where execution is not required but proposed has dropped from 12 to 4. The remaining errors are all "put the blue block into the box": the model still defaults to selecting the left box. This indicates that leaving layout for testing to achieve full score does not mean language generalization is reliable.
+
+\stagefigure{figures/ch03/s05_goal_comparison_2c140d24.png}{Goal Selection Comparison}{fig:s05-detail-3}
+
+The launcher requires explicit instructions specifying the target color and destination box, and verifies whether the model's suggestion is consistent. During on-site operation of "put the blue block into the box," LoRA still suggested the left box, but the launcher returned a clarification-required status and did not proceed with grasping and placing.
+
+\subsection{Demonstration Data for the Current Task and ACT}\label{s05-detail-4}
+
+66 demonstration trajectories were derived from successful RGB-D script trajectories, totaling 26466 frames at 25Hz, 320\(\times\)240. Divided by layout: 54 for training, 6 for validation, and 6 for testing; training only covers 4 layouts, with strong correlation between trajectories and frames.
+
+The images come from H264-rendered videos, and the action labels correspond to the end-effector reference at the next sampling instant. This is data from the current desktop task, with an action dimension of 8, not the 14-dimensional joint actions previously handed over by ALOHA, nor human teleoperation data.
+
+The two versions of ACT use the same data, number of training steps, and main architecture: ResNet18, 256-dimensional Transformer, 4 heads, 2-layer encoder, action block 50, update after 25 steps. Each is trained for 10000 updates, and weights are selected based on validation error.
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2491}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.4753}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2757}}@{}}
+\caption{Demonstration data for the current task and ACT: Setup and Results}\label{tab:s05-5}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Configuration
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+State input
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Best validation normalized L1
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Configuration
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+State input
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Best validation normalized L1
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+RGB version & 6 joints, gripper, color/box task symbols, totaling 12 dimensions & 0.0332 \\
+Coordinate-augmented version & Above state plus RGB-D-measured initial target xyz, totaling 15 dimensions & 0.0281 \\
+\end{longtable}\endgroup
+
+Placement success on the 12 new development tasks was 3/12 and 12/12 respectively. A further continuous-release check of the coordinate-augmented version found residual contact in 1 case. Both models were then frozen for final comparison on 10 additional layouts, seed800--809, and 60 tasks:
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.4045}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2837}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3118}}@{}}
+\caption{Demonstration data for the current task and ACT: Setup and Results}\label{tab:s05-6}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Freeze model
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Placement successful
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Release and bottom-contact verification
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Freeze model
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Placement successful
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Release and bottom-contact verification
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+RGB + Joint + Task Symbol & 20/60 & 20/60 \\
+Include RGB-D initial target coordinates & 60/60 & 60/60 \\
+\end{longtable}\endgroup
+
+\stagefigure{figures/ch03/s05_policy_features_c302bf84.png}{ACT Input Condition Comparison}{fig:s05-detail-4}
+
+Replay of saved actions, called with the same float32 type and sampling, aligns point-by-point with the original object positions, followed by inspection of the final contact segment. The gain from coordinate augmentation indicates that, for current small-sample, small-target tasks, providing geometric positional conditioning is more effective than relying solely on RGB features. Only one random seed was trained for each version, so differences cannot be fully attributed to a single factor, nor can they be used to compare the superiority of different tasks or datasets.
+
+\subsection{Localization Error Sensitivity}\label{s05-detail-5}
+
+For the frozen coordinate-augmented version, add zero-mean Gaussian perturbations independently along each axis to the initial target xyz on the same 12 tasks. These perturbations constitute a predefined error model, not real camera noise measurements.
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5276}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.4724}}@{}}
+\caption{Localization Error Sensitivity: Setup and Results}\label{tab:s05-7}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Add coordinate perturbation
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Placement successful
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Add coordinate perturbation
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Placement successful
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Without additional perturbation & 12/12 \\
+per axis \(\sigma\) = 5mm & 10/12 \\
+per axis \(\sigma\) = 10 mm & 8/12 \\
+\end{longtable}\endgroup
+
+\stagefigure{figures/ch03/s05_coordinate_noise_76bee20a.png}{Coordinate noise comparison}{fig:s05-detail-5}
+
+Therefore, the high success rate under ideal depth conditions cannot be directly transferred to real monocular cameras. Position estimation and coordinate calibration remain the primary interfaces; the uncalibrated distances from current monocular depth models cannot be directly used as metric inputs for this policy.
+
+\subsection{Online Process and Placement Check}\label{s05-detail-6}
+
+An execution entry has been added to read the current simulated image in real-time, invoke Qwen and LoRA, perform target checking and RGB-D localization, then control the robot within the same scene via ACT. On the new layout seed900, the task "put the blue block into the left box" completes grasping, placing, releasing, and bottom-contact verification. Unlike the previous stage's cross-simulator workflow, here both language and action processing occur within the same scene.
+
+Additionally, in the 12 language testing tasks, concatenating LoRA output with ACT passed all 12 explicit tasks under the release check. The action phase updates the policy using RGB and joint feedback; language is parsed only once at the beginning, without re-planning for multi-step tasks. The simulation clock is paused during language reasoning, and the current pipeline does not measure end-to-end latency for real-time continuous operation.
+
+Visual completion checking uses image pairs from three stages of 6 tasks: before manipulation, while holding, and after release, for a total of 18 pairs:
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3916}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3143}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2941}}@{}}
+\caption{Online Process and Placement Check: Setup and Results}\label{tab:s05-8}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Qwen checking method
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Completion candidate proposed in the completed case.
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+False positive completion during incomplete stages
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Qwen checking method
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Completion candidate proposed in the completed case.
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+False positive completion during incomplete stages
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Before/Current Full Map & 0/6 & 0/12 \\
+add left-right box local magnification & 4/6 & 1/12 \\
+\end{longtable}\endgroup
+
+The full-image approach returned uncertain for every case. Cropped views improved visibility but still falsely confirmed completion in one case where the object was held. The current completion check uses simulator positions and contact states. Qwen visual judgments are candidate observations only and do not trigger subsequent actions.
+
+\stagefigure{figures/ch03/s05_placement_checks_c371e542.png}{Visual completion check}{fig:s05-detail-6}
+
+
+\subsection{Subsequent Periodic Validation and Model Selection Comparison}\label{s05-detail-7}
+
+\subsubsection{LoRA Periodic Validation and Early Stopping}\label{s05-detail-8}
+
+Adopting the same 60 training, 20 validation, and 20 test trajectories as in the tabletop goal selection, separated by layout but without changing labels. The visual module is frozen during training, with LoRA fine-tuning applied only to the language attention q\_proj/v\_proj with r=8, alpha=16, and learning rate 5e-5. Validation loss and full goal matching are computed every 40 steps; tie-breaking is based on matching count priority, with improvement of at least 0.001 in loss as the criterion; early stopping is triggered if improvement does not occur for three consecutive times.
+
+\stagefigure{figures/ch03/s05_lora_validation_e0b755e0.png}{LoRA Validation Process}{fig:s05-detail-7}
+
+Step 40 validation achieved 12/20, step 80 reached 20/20; thereafter, the match count no longer increased, and the loss improvement did not reach the set threshold, ending at step 200. Both the selected step 80 and the final step 200 model tests achieved 20/20.
+
+In practice, 200 steps were still trained, and the overhead of periodic inference verification was borne; one cannot claim that "selecting 80 steps" means "only incurring 80 steps of training cost." This verification targets the selection and stopping procedure; using the old data split, one cannot treat 20/20 as a new breakthrough in language generalization.
+
+The relevant code is in \path|scripts/train_lora.py|; splitting and sequential prediction are in \path|runs/lora_validation/|.
+
+\subsubsection{ACT Data Splitting and Model Selection}\label{s05-detail-9}
+
+Continue using the 66 script demonstrations from the desktop task, with trajectories divided as 54/6/6 by layout, and normalization only sourced from training data. Training reads episode lists and boundaries from the manifest, first uniformly sampling episodes, then sampling frames within each trajectory, ensuring action blocks do not span across trajectories. All current trajectories are 401 frames long; theoretically, the distributions of the two sampling methods are identical. This reconstruction primarily improves readability and compatibility with variable-length data, without attributing any gains to the change in sampling.
+
+The ACT input consists of RGB, joint/gripper, task symbol, and initial RGB-D coordinates, trained for 10000 steps. Validation L1 is computed every 2000 steps, and physical simulations are run on six tasks with fixed layout 1100. The model with the lowest L1 and the model with the highest simulation success count are separately saved; if success counts are equal, the earlier model is retained. For the 24 tasks in layouts 1200--1203, evaluation occurs only after model selection is complete.
+
+\stagefigure{figures/ch03/s05_act_selection_b816338f.png}{Offline Error and Simulation Validation}{fig:s05-detail-8}
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2587}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2386}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2386}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2641}}@{}}
+\caption{ACT Data Splitting and Model Selection: Settings and Results}\label{tab:s05-9}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Selection Criteria
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Select and update the number
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+New task succeeded
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Offline test normalized L1
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Selection Criteria
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Select and update the number
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+New task succeeded
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Offline test normalized L1
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Validation L1 & 10000 & 24/24 & 0.0287 \\
+Validation Simulation Success Count & 4000 & 21/24 & 0.0452 \\
+\end{longtable}\endgroup
+
+Validation shows L1 decreases from 4000 to 6000 steps, but the number of successful simulations drops from 6 to 4, indicating they are not fully aligned. However, selecting a model based on only one layout and six tasks may also misselect the 4000-step model: it achieves only 21/24 in the new task, whereas the 10000-step model achieves 24/24. Current results do not support the claim that ``switching to success rate selection is always better''. In the next round, we should expand the validation layouts, repeat training seeds, and predefine tie-breaking rules.
+
+Success criteria include lifting, gripper contact, stable placement within the designated box, release, and box-bottom contact. Execution still uses the original tabletop task's ideal end-effector constraints and simulated depth, without transferring SO101, nor is it a full mobile grasping robot. Only one random seed was trained, and testing uses only four new layouts.
+
+The new training, validation, and final evaluation reuse \path|scripts/act_runner.py|. The old public handover task's training and evaluation compatibility entry points have been changed to public implementations, and language dispatch also reuses the same handover execution/video loop. The public training entry performs one training, validation, and save check; the public execution entry completes one handover in known layout 1003; these are compatibility checks, not re-executing the original 30-time success rate evaluation.
+
+The relevant code is located in \path|scripts/train_act.py|, \path|act_runner.py|, \path|public_act_trainer.py|, \path|public_act_evaluate.py|, \path|aloha_runner.py|. Training data directory, output directory, training steps, validation interval, and layout seed can be configured via CLI; however, corresponding environments and data must still be prepared, and this is not referred to as cross-machine zero-configuration installation.
+
+
+\subsection{Expanded Validation Layouts and Replicated Training Seeds}\label{s05-detail-10}
+
+\subsubsection{ACT Expanded Validation and Retraining}\label{s05-detail-11}
+
+The original 66 demonstrations and the 54/6/6 trajectory partitioning remain unchanged; this stage does not add demonstration data. Training random seeds 20261024 and 20261025, each for 10000 steps, with validation on six layouts (1500--1505) every 2000 steps, each layout with six tasks. The model selection rule is pre-fixed: prioritize higher success count, tie-break by lower validation L1, and if still tied, choose the earlier update; additionally, save the model with the lowest validation L1. For layouts 1600--1607 (eight layouts), each with six tasks, testing occurs only at the end.
+
+\stagefigure{figures/ch03/s05_expanded_validation_a8d80218.png}{Expanded Validation}{fig:s05-detail-9}
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1987}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2278}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1912}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1912}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1912}}@{}}
+\caption{ACT Expanded Validation and Retraining: Settings and Results}\label{tab:s05-10}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Training seed
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Selection method
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Update count
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Independent test success
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Test normalized L1
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Training seed
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Selection method
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Update count
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Independent test success
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Test normalized L1
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+20261024 & Validation L1 & 10000 & 41/48 & 0.0291 \\
+20261024 & Simulation Success Count + Tiebreaker L1 & 8000 & 48/48 & 0.0289 \\
+20261025 & Validation L1 & 10000 & 48/48 & 0.0274 \\
+20261025 & Simulation Success Count + Tiebreaker L1 & 10000 & 48/48 & 0.0274 \\
+\end{longtable}\endgroup
+
+Two selection methods share the same training process within the same training seed to avoid conflating selection gains with different training runs. Validation layout and tie-breaking rules are adjusted simultaneously, so this stage cannot be solely attributed to either one. Two training seeds are still insufficient to cover training variance; demonstrations come from scripts, and execution continues to use the original simulation ideal end-effector constraints and simulated depth, without proving SO101 dynamics or real-world visual generalization.
+
+The relevant code is in \path|scripts/train_act_expanded.py|, and the execution loop reuses \path|experiments/alibaba_pc_revision/scripts/act_runner.py|; all historical and incremental tests are in \path|runs/act_seed_20261024/|, \path|runs/act_seed_20261025/|.
+
+
+\paragraph{Stage Conclusion} The autonomous grasp-and-release process can run, and the impact of coordinate noise on success has been measured, providing a reference for identifying ideal control conditions in subsequent work. The end-effector is driven toward the desired position via position-reference constraints, achieving near-ideal position control; depth is directly provided by simulation and cannot yet represent real motor or real camera conditions.
+
+\stagecode{s05}
+
+\stagevideo{videos/ch03/desktop_pickplace_example.mp4}
+
+\FloatBarrier
+
+\section{Early Jetson and Real Camera Testing}
+
+\label{stage:s06}
+
+Using real camera images for identifying earphone cases and boxes, supplementing target detection training, and experimenting with robotic arm tracking based on bounding boxes. Vision-language models were also deployed and tested in the Jetson environment at that time.
+
+\subsection{Environment and Data Flow}\label{s06-detail-1}
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.2994}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.7006}}@{}}
+\caption{Environment and Data Flow: Setup and Results}\label{tab:s06-1}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Project
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Actual setup
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Project
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Actual setup
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Hardware & Jetson Orin Nano, approximately 8GB shared memory \\
+System & Ubuntu22.04.5, L4T R36.4.7, 15W mode; frequency not locked \\
+Base environment & existing an-project, Python3.10.19, PyTorch2.8.0, CUDA12.6; no modified packages installed \\
+Vision-dependent & Project-independent Ultralytics 8.4.175 coverage directory, system TensorRT 10.7.0 \\
+Qwen dependencies & Separate loading directories for Transformers5.8.1, bitsandbytes0.50.2, and related dependencies \\
+Camera & V4L2, 640\(\times\)480, rotated 90° counterclockwise; device supports up to 30fps, actual throughput to be measured separately \\
+\end{longtable}\endgroup
+
+The camera thread continuously updates a latest frame slot. Qwen takes the current frame after the previous round ends, while TensorRT detects and uses depth from another latest frame; the same detection and depth share the image. Model inputs are delivered via memory, and saving PNGs is only for input archiving and does not serve as inter-model image transmission. Both streams can run simultaneously, but they are not strictly time-synchronized fusion of the same frame.
+
+The relevant code is located at \path|scripts/jetson_qwen.py|, \path|jetson_vision.py|, and \path|paired_vision.py|. In this report, scripts and runs are relative to \path|experiments/alibaba_jetson_revision/|.
+
+\subsection{Backend Comparison of Detection and Depth}\label{s06-detail-2}
+
+Formally, using the same batch of 10 real wrist images, each repeated 3 times; all three settings fixed at 640\(\times\)640 padding, with 3 warm-up runs for each backend. Timing includes serial detection, depth, preprocessing, postprocessing, and CPU output copy, excluding camera capture and file decoding. FP16 checks the actual predictor backend parameters; the original YOLO wrapper objects, due to deep copy, can still retain FP32.
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2826}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2391}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2391}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2391}}@{}}
+\caption{Backend Comparison of Detection and Depth: Settings and Results}\label{tab:s06-2}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+backend
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Number of samples
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Median elapsed time ms
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+P95 ms
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+backend
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Number of samples
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Median elapsed time ms
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+P95 ms
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+pytorch\_fp32 & 30 & 87.99 & 94.15 \\
+pytorch\_fp16 & 30 & 83.54 & 90.77 \\
+tensorrt\_fp16 & 30 & 49.93 & 50.65 \\
+\end{longtable}\endgroup
+
+Under this batch of inputs, the serial processing speed in TensorRT is approximately 1.76 times that of FP32. The engine is compiled on the target Jetson; compilation overhead is separated from steady-state inference time. TensorRT 10.7's compatibility handling for exporting detection heads will alter the backend implementation and cannot be simply attributed to the floating-point bit width itself.
+
+\stagefigure{figures/ch03/s06_jetson_latency_834f2111.png}{End-side latency}{fig:s06-detail-1}
+
+Depth models do not have real-world distance ground truth; numerical consistency does not equal depth accuracy; no metric calibration or hand-eye calibration was performed in this stage. Current general detectors do not provide valid bounding boxes for these images under a 0.35 threshold, and specialized recognition for earphone cases still requires task-specific data or other localization methods. Inference speed cannot be used to prove that grasp detection is already effective.
+
+The related code is at \path|scripts/paired_vision.py|; frame-by-frame results are at \path|runs/jetson/paired_vision/|.
+
+\subsection{Continuous Execution and Latest Frame}\label{s06-detail-3}
+
+Lightweight scene observation uses the existing Qwen3-VL-2B NF4 base model on the device; this phase retests without loading any other project adapters. It differs from the workstation 4B model, so no conclusions about speedup before and after 4B quantization can be drawn from this. Initially, when TensorRT was initialized in another thread, the first CUDA graph capture conflicted with Qwen generation; this was resolved by initializing, preheating, and synchronizing the engine first in the main thread, then entering continuous operation, which passed the retest.
+
+The first 60 joint tests showed that the vision thread rewrote its entire JSON history on every result, increasing CPU serialization work as the sequence grew. Results were changed to append-only JSONL, with one final summary, followed by a full rerun of 60 iterations with the same model, input mode, and 15W setting. The first iteration is warm-up, leaving 59 Qwen iterations for the statistics below; the first 5 vision results are reported separately as initialization.
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5258}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.4742}}@{}}
+\caption{Continuous Execution vs. Latest Frame: Setup and Results}\label{tab:s06-3}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Metrics
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Median / P95
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Metrics
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Median / P95
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Qwen complete reasoning s & 5.71 / 5.88 \\
+Frame selection: host frame age (ms) & 49.63 / 91.87 \\
+output frame age s & 5.79 / 5.95 \\
+Joint detection + depth ms & 62.02 / 75.12 \\
+Linked visual result frame age ms & 107.85 / 156.35 \\
+\end{longtable}\endgroup
+
+60 rounds completed, visual thread recorded 1414 results, no abnormalities recorded for camera or model threads. Qwen CUDA allocation peak approximately 1.61GiB; process RSS peak approximately 4.37GiB. CUDA allocation does not equal whole-machine RAM usage.
+
+During continuous operation, onboard sampling collected a total of 338 samples, with an average VDD\_IN of 10.24W, maximum GPU temperature of 63.7°C, and maximum RAM usage of 5294MB across the entire system. These readings include activity from other components of the system, are not from an external power meter, and do not subtract an idle baseline.
+
+Timing starts after the age is returned from the host read, not exposure time. The results show that frames from several seconds ago mainly come from generation latency; old frames are not queued for inference. Continuous operation in static scenes can verify stability and frame scheduling, but does not represent dynamic target tracking capability.
+
+Log cost measured separately on Jetson CPU, 10 times per bin, counting only JSON encoding, excluding file I/O or GPU.
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3267}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3465}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3267}}@{}}
+\caption{Continuous Execution vs. Latest Frame: Setup and Results}\label{tab:s06-4}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Number of historical entries
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Rewrite all ms values in the JSON.
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Add median ms for single line
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Number of historical entries
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Rewrite all ms values in the JSON.
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Add median ms for single line
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+100 & 1.759 & 0.011 \\
+1000 & 13.395 & 0.009 \\
+2000 & 27.200 & 0.009 \\
+5000 & 70.576 & 0.009 \\
+\end{longtable}\endgroup
+
+Median inference time over 10 rounds: the old logging method was 6.81\(\rightarrow\)10.28 seconds, while the JSONL method was 5.82\(\rightarrow\)5.71 seconds. Incremental appending eliminated the encoding overhead that grows with the number of historical entries; since the two full system runs were performed sequentially without synchronized timing, not all the time difference can be attributed to this single modification. Original runs and failure logs are retained.
+
+The relevant code is at \path|scripts/jetson_qwen.py|; results are at \path|runs/jetson/qwen_steady_jsonl/|.
+
+\subsection{Effective Range of Real-World Observations}\label{s06-detail-4}
+
+The actual scene includes a deep blue plastic shell, a black mousepad, and a gripper. Four states were collected: in-place, completely removed, relocated, and partially visible at the edge, with two adjacent frames taken for each state. The first "removed" instance still showed the target at the edge; after reviewing screenshots, it was re-labeled as partially visible, and true "no-target" states were re-collected.
+
+\stagefigure{figures/ch03/s06_scene_cases.jpg}{Scene Examples}{fig:s06-detail-2}
+
+The target visibility of the 2B base is consistent with manual inspection at 6/8; for the PC-side 4B base, it is also 6/8. Adjacent frames are highly correlated; this is merely a small sample of four scenario states, not an independent large test set. JSON parseability and target judgment correctness are counted separately; failure cases such as target removal are retained.
+
+These observations indicate that visual-language output still requires localization verification and task constraints; currently, a single sentence "target visible" is not directly converted into robotic arm actions.
+
+The relevant code is in \path|scripts/pc_scene_eval.py| and \path|jetson_qwen.py|; inputs are in \path|runs/jetson/scene*/|.
+
+\subsection{Jetson Migration of Self-developed 4B Model and LoRA}\label{s06-detail-5}
+
+Read the original fixed version Qwen3-VL-4B-Instruct from the workstation, save the NF4 quantized weights, and compute using BF16. The language and visual linear layers participate in quantization, while the output heads are excluded according to configuration; the original BF16 cache and LoRA files remain unchanged. Subsequently, transfer the new weights and the original best\_adapter from step 80 to Jetson, verifying that the SHA256 checksums match on both ends. The adapter is loaded according to the original structure, without merging, and without wrapping the 4B adapter onto the 2B model.
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5691}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.4309}}@{}}
+\caption{Jetson Migration of Self-developed 4B Model with LoRA: Setup and Results}\label{tab:s06-5}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Running Settings
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Original 20 test cases with complete field matching
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Running Settings
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Original 20 test cases with complete field matching
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Original PC BF16 + LoRA & 20/20 \\
+This stage PC NF4 + same LoRA & 20/20 \\
+This stage Jetson NF4 + same LoRA & 20/20 \\
+\end{longtable}\endgroup
+
+Median/P95 of Jetson full inference latency is 5.22 / 5.25 seconds; number of output tokens per example is retained in the record. Peak CUDA allocation is approximately 2.86 GiB.
+
+These are 20 instructions from the original split, with only two test layouts, insufficient to generalize real-world desktop task success rates. No retraining or adapter selection was performed using the test set; it validates the migration results of the same adapter under NF4 and Jetson runtime conditions, not navigation or robotic arm execution success rates.
+
+The relevant code is in \path|scripts/quantize_qwen.py| and \path|jetson_adapter_eval.py|; the results are in \path|runs/pc_nf4_adapter/| and \path|runs/jetson/adapter_eval/|.
+
+\subsection{Linking Endpoint Objectives to Simulation Policies}\label{s06-detail-6}
+
+Transfer the 20 actual outputs of 4B+LoRA running on Jetson to the PC, load the first-round ACT model selected based on simulation success count. For executable goals, re-establish simulation in the corresponding layouts 408 and 409; before execution, confirm that the initialized RGB image matches the image seen by the language model. The model's output determines whether to execute and the target color and box; evaluation labels are only used for post-hoc statistics.
+
+12 executable instructions succeeded in 10; 8 instructions lacking targets, ambiguous, or negated were not executed. Although the two red target tasks in layout 408 completed lifting, grasping, and releasing, they did not stably enter the designated box, thus retained as failures. Target field 20/20 match does not equal action 20/20 success.
+
+This is an offline staged handover using saved outputs, without accounting for network round-trip latency, and the simulation did not advance during Qwen's waiting period; thus, it cannot be termed a real-time heterogeneous closed loop. The two layouts do not replace the previous independent test sets.
+
+With the same configuration, a full repeat still yields 10/12 successes, and all 8 negative instructions were not executed. The relevant code is in \path|scripts/bridge_eval.py|; results are in \path|runs/bridge_v2/| and \path|runs/bridge_repeat/|, with partially interrupted runs from the first consistency check preserved in \path|runs/bridge/|.
+
+
+\subsection{Self-collected Earphone Case and Box Detection Model}\label{s06-detail-7}
+
+2026-10-24, trained YOLO26n on 100 images of size 640\(\times\)480 captured by the wrist-mounted camera, with classes earbud\_case and container. The camera was rotated 0 degrees, maintaining the forward orientation during capture.
+
+A total of 81 headphone case frames and 74 box frames; 15 background images were reviewed and supplemented with empty annotations. All 100 images are used for training, and 20 images are selected as fitting check images using random seed 20261024. The check images overlap with the training set, and there is no independent validation set, so the accuracy on new scenes cannot be assessed based on this.
+
+Training used RTX4090, Ultralytics8.4.175, YOLO26n pretrained weights, 640 input, batch16, 100 epochs, approximately 50 seconds. The best weights achieved mAP50 of 0.995 and mAP50-95 of 0.964 on the overlap validation set; recall rates for both classes were 1.0. These metrics only reflect fitting on the training samples.
+
+\begin{itemize}
+\tightlist
+\item
+  Training script: scripts/train.py
+\item
+  Data split: split.json
+\item
+  Training log: train.log
+\item
+  Weights: runs/all100\_v1/weights/best.pt
+\item
+  Curves and Checkplots: runs/all100\_v1/
+\item
+  20 detection previews: runs/fit\_check\_preview/
+\end{itemize}
+
+Next, check for missed and false detections under the new real-time camera placement, and then decide whether to supplement images. The detection boxes have not yet been transformed into robotic arm coordinates and are not directly used for motion control.
+
+
+\subsection{Target Observation and Constrained Following}\label{s06-detail-8}
+
+Reusing YOLO26n trained on self-collected data, observe the earbud case in the wrist-mounted camera. Only process earbud\_case, confirm a single target across three consecutive frames, using center-point smoothing and a 40-pixel center tolerance. Immediately clear the target if not detected; do not select a target if multiple candidates exist. Output pixel offset and timestamp, without outputting robotic arm actions.
+
+Script: scripts/observe\_target.py. Jetson reuses the Python/Torch and independent Ultralytics dependencies from an-project without modifying the environment.
+
+The current stage is in visual observation mode with no serial port access. The saved grasp\_clearance\_v4 pose is merely a joint reference and is not the calibrated spatial minimum height; the power clearance verification has not been completed. Do not treat the elbow joint angle threshold as protection for the end-effector Z height. Automatic head-down motion requires prior verification of kinematics or constrained motion range; it is recommended to first confirm a fixed top-down pose verified on-site and only test base left-right tracking. After losing the target, tracking should first be stopped; automatic search sweeping requires separate verification of its range.
+
+\subsubsection{Current Running Method: YOLO + Depth}\label{s06-detail-9}
+
+VLM inference was retained on the PC; Jetson is currently running scripts/dual\_\allowbreak model\_\allowbreak observer.py. Do not load Qwen, Transformers, or bitsandbytes. Dedicated detection uses earbud\_container.pt, and depth uses Jetson's existing yolo26n-depth.engine. The interface displays real-time RGB, bounding boxes, and depth maps; latest.json-like states and vision.jsonl contain pixel error, depth prediction in the center region of the bounding box, the depth quantile of the central region, and the time received by the host.
+
+Two models have been successfully launched in real-world tests, with a depth valid pixel ratio of 1.0; when the current camera is pointing upward, the target state is "lost". Processing a single state sample takes approximately 118ms, and this is not used as an official performance benchmark. The program does not access the serial port, and allow\_lowering and motion\_enabled are always false. Press Q or close the window to release the camera.
+
+The three-model attempt failed to run through the new interface this time due to insufficient memory in the TensorRT engine for depth, caused by Qwen and detection PyTorch cache occupancy; after switching to the dual-model option, VLM was exited, and construction of the new detection engine was stopped. The original PT and existing depth engine were retained, and no modifications were made to the an-project installation. The failure of the three-model setup does not affect the previously obtained Qwen deployment results from independent experiments.
+
+\subsubsection{Constrained Low-Head Test}\label{s06-detail-10}
+
+lookdown\_prefix.py uses the original demonstration frames 0--160 at half speed and does not exceed this endpoint; it reads the latest detection/depth results and stops updating the target and maintains the joints when a target is detected or depth/data freshness anomalies occur. Initially misidentified the edge chair as an earphone case; after screenshot verification, added edge exclusion and rear-segment confirmation. resume\_lookdown.py previously triggered single-step limits; continue\_lookdown\_slow.py employs finer time interpolation to continue within the designated range; ultimately stops when the real blue case enters the field of view, verified by screenshot. Only visual-triggered stops are implemented during motion; continuous robotic arm tracking has not yet been realized.
+
+The historical encoder has the most count of limit edge overshoot; the code still strictly restricts the target within the original range, allowing only a measured recovery error of up to 5 counts and ensuring the target moves toward the limit boundary. This rule is not equivalent to spatial height constraints.
+
+
+\subsection{Correction of Object Transfer Replay Results}\label{s06-detail-11}
+
+Under fixed suspension, pre-recorded segmented motions were executed to achieve gripping, lifting, transporting, releasing, and returning. The motion source was taught trajectories, with on-site manual confirmation; no YOLO or Qwen-generated actions were used. In the second full process, feedback indicated the gripper still collided with the table, so revision\_03 was marked as failing the collision-free validation and was no longer reused as a verified path.
+
+Base-following has also undergone directional checks: when measuring approximately ±3 degrees, a lateral pixel change of about -0.332 pixels per encoder count was observed. The initial version used a ±10-degree range for left and right, with a maximum of 2 counts per step and a 35-pixel dead zone; the revised version changed to 4 counts per step and a 20-pixel dead zone, while retaining other joint target and lost-stop rules. On-site feedback indicated that following was possible but with small amplitude and slow speed, without independent multi-scenario success rate. Joint range limitations do not equate to end-effector spatial collision avoidance with the table.
+
+
+\paragraph{Stage Conclusion} Stage records including on-device timing, real-scene inputs, and expanded validation were preserved, and the on-site code and results were archived back to the workstation. This stage was recorded separately from the later-recovered Jetson environment. Visual tracking does not equate to vision-language-action (VLA) policy control, and monocular depth has not become a reliable safety distance.
+
+\stagecode{s06}
+
+\FloatBarrier
+
+\section{Training and Testing SmolVLA on SO101}
+
+\label{stage:s07}
+
+Collect three real demonstrations from vertical reaching to picking up, placing down, and returning, and adapt them using SmolVLA (Small Vision-Language-Action Model). First, perform leave-one-trajectory-out validation, then record limited real robot trials.
+
+\subsection{Base Model Input and Output Checks}\label{s07-detail-1}
+
+\subsubsection{Completed}\label{s07-detail-2}
+
+The PC workstation has been restored, and the camera, Qwen continuous observation, self-trained YOLO, and depth display are operating normally. SmolVLA, using an independent environment and fixed official weights, has completed inference from real-recorded images, language, and joint states to a 50-step six-dimensional action, without enabling the robotic arm.
+
+\subsubsection{Conditional Control}\label{s07-detail-3}
+
+On the same recorded frame, using 3 random seeds, each seed respectively inputs the original instruction, different instructions, and a black image; the same seed maintains identical flow matching noise. All 9 outputs are finite values.
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.4662}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5338}}@{}}
+\caption{Conditional Control: Settings and Results}\label{tab:s07-1}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Project
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+The records of this phase are as follows:
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Project
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+The records of this phase are as follows:
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Output shape & 1 \(\times\) 50 \(\times\) 6 \\
+Median inference time over 9 repetitions & 0.160 seconds \\
+Repetition Time Range & 0.135--0.166 seconds \\
+Action difference under language switching & 0.332 (averaged after scaling by joint action standard deviation per robot) \\
+Action difference between image and black image & 0.139 (same scaling method) \\
+\end{longtable}\endgroup
+
+The difference indicates that vision and language are involved in the output, but it does not mean the model has correctly understood the instruction or can grasp successfully. The test is merely a functional comparison within the same frame and is not a task evaluation; the elapsed time is also not an official benchmark under exclusive GPU usage, as the PC vision workstation runs concurrently.
+
+\subsubsection{Current Limitations}\label{s07-detail-4}
+
+Local single-trajectory demonstrations are used for statistical normalization, with the wrist view mapped to camera1. Compatibility with the pre-trained base weight distribution has not been verified. The base model output is not connected to the motors, true hardware success rate has not been measured, and success is not defined as the action being close to the demonstrated value.
+
+
+\subsection{Training and Held-Out Evaluation for Real-World Demonstration-Based Learning}\label{s07-detail-5}
+
+\subsubsection{Completion of this phase}\label{s07-detail-6}
+
+Three native teleoperation demonstrations have been used for actual SmolVLA fine-tuning, no longer running only base weights. The original 1908 frames are retained; after removing front and back waiting periods and startup alignment, 900 frames are retained for training. Each retains vertical departure, approach, grasp, mousepad placement, and return to vertical; wrist -90° during motion is already active and not redundantly overlaid.
+
+Image and joint readings use host timestamps. The median interval from state to image reception is approximately 0.15 milliseconds, and from image reception to action transmission is 2.8 to 3.7 milliseconds; these are not exposure synchronization accuracies. Images, full six-dimensional states, and actions are all limited. Image sampling can reveal operational phases but cannot prove that every frame is collision-free.
+
+\subsubsection{Training and Hold-out Check}\label{s07-detail-7}
+
+The first two demonstrations provide 589 training frames; the third, with 311 frames, is held out in full. Normalization uses only per-joint statistics from the first two demonstrations. Starting from the fixed official SmolVLA weights, the vision-language backbone is frozen and the action expert plus permitted projection layers are trained, about 99.88 million parameters. Batch size is 2, learning rate1e-4, with 1500 optimizer updates. Images are aspect-ratio-preserving padded to 256\(\times\)256. A single wrist-camera view predicts 50 future six-dimensional absolute actions.
+
+Third, uniformly sample 12 observation positions, fix the random seeds at each position, and compare the outputs between the base weights and the fine-tuned weights. The window ends at the end of this clause, with actions not carried over across clauses, and the trailing padding is not included in evaluation. The table shows the average absolute error over the next maximum of 50 steps, with the first five dimensions in degrees and the gripper in percentage points.
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}@{}}
+\caption{Training and Held-Out Check: Setup and Results}\label{tab:s07-2}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Joint
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Before fine-tuning
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+After fine-tuning
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Maintain current position baseline
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Joint
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Before fine-tuning
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+After fine-tuning
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Maintain current position baseline
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Base & 8.55 & 8.34 & 3.33 \\
+Shoulder joint & 22.94 & 15.36 & 12.37 \\
+Elbow joint & 38.80 & 35.48 & 22.27 \\
+Wrist pitch & 31.79 & 18.61 & 10.88 \\
+Wrist rotation & 4.92 & 4.00 & 1.31 \\
+Gripper & 10.91 & 13.48 & 9.81 \\
+\end{longtable}\endgroup
+
+\stagefigure{figures/ch03/s07_holdout_mae.png}{Holdout Action Error}{fig:s07-detail-1}
+
+This 1500-step model, on the third demonstration, did not achieve better six-dimensional 50-step error than the ``maintain current position'' baseline, and thus failed validation. During the 150-step exploration run, some joints performed better, indicating that increasing training steps did not stabilize improvement on this held-out demonstration; it is thus not yet possible to determine whether data coverage, training configuration, or stage identification dominates.
+
+These are the open-loop errors on the recorded trajectories, not real hardware success rates. Only one trajectory and one task are held out; thus, one cannot conclude that there is generalization in position or language. When the object is stationary, occluded, or viewed from a similar angle, a single wrist image may not be sufficient to distinguish task phases; the state is a critical input to the model and must be used in real-time during actual execution.
+
+\subsubsection{Three-Training-Version}\label{s07-detail-8}
+
+After completing the held-out check, restart from the same base weights and train three models jointly for 900 frames. The third model among the three jointly trained models also participated in training, and its error can only be called a fitting check. The training-intra first-step MAE for the three jointly trained models are as follows: base 2.14°, shoulder 4.29°, elbow 12.02°, wrist pitch 6.56°, wrist yaw 1.18°, gripper 3.71 percentage points; the corresponding baseline values for the same set of observation points are approximately 1.27°, 1.67°, 2.11°, 1.29°, 0.41°, 1.31 percentage points. Even though the fitting check within training did not meet the first-step baseline, the model should not be directly deployed on hardware. The model is not connected to motors and did not perform any autonomous grasping.
+
+\stagefigure{figures/ch03/s07_training_loss_70023fc4.png}{Training Loss}{fig:s07-detail-2}
+
+
+\subsection{Short-window approach strategy}\label{s07-detail-9}
+
+\subsubsection{Data and Training}\label{s07-detail-10}
+
+The three recorded demonstrations are truncated to 16 frames before the first clear gripper closure, retaining the upright pose at the start. This is a gripper-angle heuristic, not a calibrated tabletop height. The first two provide 232 training frames, the third 105 held-out frames; training on all three uses 337 frames. Single-wrist RGB images are aspect-ratio-preserving padded to 256\(\times\)256. State and action targets use the local calibration coordinates. The recorded actions already contain the wrist −90° offset; it is not added again.
+
+The prediction window was changed from 50 steps to 10 steps (nominal 1 second), with the model still using the official SmolVLA action expert and flow matching, without YOLO or pre-recorded trajectories for action generation. After high-learning-rate training, error rebound was observed, so training was stopped and the best checkpoint was retained; subsequently, fine-tuning was performed for 3000 steps from the best weights obtained through joint training of three models at a learning rate of 2e-5.
+
+\stagefigure{figures/ch03/s07_first_step_mae_c613ad75.png}{Error change of the first step}{fig:s07-detail-3}
+
+\subsubsection{Offline Check}\label{s07-detail-11}
+
+The checkpoint selected in the refinement stage is at step 3000. Observations are uniformly sampled from 36 points across the three training records. The MAE of the first step for the first five joints is 1.66°, with the 95th percentile absolute error at 4.81°, and the 95th percentile change in predicted first step relative to the actual state is 8.24°.
+
+The pre-set limited trial check results for this stage: True. This is an internal numerical screening during training, not independent generalization, motion collision safety, or real-task success validation. The third held-out performance is still insufficient, and we do not claim that repositioning will enable correct approach or tracking.
+
+\subsubsection{Execution Constraints}\label{s07-detail-12}
+
+Physical robot script \path|scripts/run_approach_policy.py| re-reads current joint and camera states, re-inferencing each round, only limiting speed after the first step; defaults to not writing to motors. Execution requires explicit parameters and on-site confirmation; initial pose must be close to the recorded starting point. First round maximum duration: 8 seconds, starting relative angle limit approximately 8°, 4 ticks per iteration, gripper not enabled; maintain torque until stable, then turn OFF. Check file binds to selected weights SHA256; weights change requires re-execution of checks.
+
+There are currently no physical test results; both arms remain powered off for the planned test. The next step will only involve restricted, unloaded proximity tests with personnel on site. Even if the model outputs valid numerical values, it does not mean the actions conform to the instructions, nor does it guarantee that the complete pick-and-place task has been successfully completed.
+
+
+\subsection{Impact of Limited Physical Trials and Action Constraints}\label{s07-detail-13}
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.1689}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2967}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2872}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2471}}@{}}
+\caption{Impact of Limited Physical Trials and Action Constraints: Setup and Results}\label{tab:s07-3}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Test
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Model and Execution Method
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Actual observation
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Conclusion
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Test
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Model and Execution Method
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Actual observation
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Conclusion
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Base model short trial & only take the first step direction each time, max 2 counts per round, total range 22 counts & shoulder approx. 0.44 degrees, wrist pitch approx. 1.58 degrees, others change very little & action interface responds, not completed yet \\
+Fine-tuning short window & 4 counts per round, total angle approximately 8 degrees, gripper not actuated & 36 rounds in 8 seconds; first five joint changes approximately -3.6, 5.01, 8.18, 7.82, 0 degrees & reached near limits, did not form a usable task \\
+20\% single-step residual & target is the current measured position plus 20\% of the model residual, maximum 5 degrees per round & elbow approximately 4.04 degrees, wrist pitch approximately 1.41 degrees & one controlled incremental execution, not a continuous autonomous policy \\
+50\% single-step version & Code prepared & Not launched on the same day & Not listed as tested results \\
+\end{longtable}\endgroup
+
+One cannot infer from "the model suggests the elbow joint should move another 20 degrees" that the controller will immediately execute 20 degrees. Actual motion is simultaneously constrained by interpolation ratio, per-step count, total envelope, error stopping, and communication rhythm; for example, a 4-step count corresponds to only approximately 0.35 degrees. The initial short test's "position change during inference" check also treated the robot's own motion as anomalous; subsequently, this check was limited to before torque activation, while retaining post-execution tracking error checks.
+
+These issues explain part of the "almost no movement," but do not prove that the policy can correctly grasp after removing restrictions. Normalization, camera slots, initial gripper opening, and task data coverage have not been sufficiently validated; three real demonstrations are insufficient to resolve these issues. The final record indicates that autonomous approach and object pickup were not achieved, and subsequent physical attempts were halted, shifting focus to a repeatable simulation baseline.
+
+
+\paragraph{Stage Conclusion} Original data: 1908 frames, after processing, 900 frames retained; the model after 1500 updates did not exceed the baseline of maintaining its current position on the held-out trajectory, and autonomous target picking was not achieved. Offline trajectory error and actual grasp success rate must be treated separately. Three data samples are insufficient to prove generalization in position or language; real-world trial results cannot be substituted by training loss.
+
+\stagecode{s07}
+
+\FloatBarrier
+
+\section{Reproduction of \pifive{} in LIBERO in Closed Loop}
+
+\label{stage:s08}
+
+To reduce hardware and interface differences and converge to the publicly available operational tasks in LIBERO, use the \pifive{} weights provided by OpenPI to check the complete process from image, language, and robot state to action execution.
+
+\subsection{Scope and Selection of This Phase}\label{s08-detail-1}
+
+Use the official OpenPI checkpoint \(\pi\)0.5 LIBERO task, as it provides the corresponding model, input-output conversion, and evaluation entry points, allowing us to first verify whether the execution pipeline is functioning correctly. The new environment is separated from the manufacturer's LeRobot, existing SmolVLA, and ROS environments. In this phase, the serial port is not opened, no physical robotic arm is operated, and no dependence on Jetson, IMU, or ZED is required. Relevant code is located in scripts/install.py and scripts/fetch\_sources.py.
+
+LIBERO uses a fixed-base robotic arm without mobile navigation. It addresses the current most critical question: ``Can VLA complete operations in physical simulation?'' rather than directly completing the full navigation-and-grasping task. Existing results from navigation and MoveIt remain separately preserved, without re-packaging the cross-simulator pipeline into a unified closed loop.
+
+The high-level perception and decision module in the task book is retained. In this phase, \(\pi\)0.5 is not the Qwen base, and existing Qwen LoRA adapters are not integrated into this experiment; first, establish a reliable VLA execution reference, and then separately evaluate the connection between high-level task decomposition and the executor.
+
+\subsection{Unified Observation and Action Interface}\label{s08-detail-2}
+
+The input consists of RGB images from the external camera and wrist camera, a natural language task description, and an eight-dimensional robot state. The state comprises the end-effector position, axis-angle orientation, and joint positions of the two fingers. The rendering resolution is 256\(\times\)256, and the two image streams are rotated 180° and then padded and resized to 224\(\times\)224 following the official procedure. The model uses the normalization and input-output transformations provided with the checkpoint. Relevant code is located in scripts/evaluate.py, as well as upstream openpi/policies/libero\_policy.py.
+
+The model predicts a 10\(\times\)7 action block; the baseline re-reads the image and state after executing the first 5 steps. Actions include three-dimensional translation, three-dimensional rotation, and gripper control, which are converted into motor commands by LIBERO's OSC\_POSE low-level controller and then advanced via MuJoCo. During execution, robot joint or object positions are not set frame-by-frame; instead, only the publicly available initial states are restored at the beginning of each episode.
+
+In each episode, save the actual controller parameters, control range, joint states and velocities, motor outputs, full model prediction blocks, actual actions, simulation time, and official task predicates. The model input does not include these evaluation-target information. If the model outputs invalid actions, the environment reports an error, or the task times out, record these cases separately and do not count them as successful.
+
+\stagefigure{figures/ch03/s08_observation_views_bc76090f.png}{Two RGB observations of the model: external camera and wrist camera.}{fig:s08-detail-1}
+
+\subsection{Task and Evaluation Protocol}\label{s08-detail-3}
+
+Baseline presets four task sets: Spatial, Object, Goal, and Long-Horizon, each with 10 tasks, and each task uses publicly available initial states 0, 1, 2, totaling 120 planning rounds. Initial states are fixed, environment seed is 7, and action sampling noise is determined by task and initial state; paired interventions share the same initial state and model noise. Currently, each task only uses 3 initial states, which is not equivalent to the official protocol of 50 trials per task, and results cannot be directly compared with the paper's overall score ranking.
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.3831}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.6169}}@{}}
+\caption{Task and Evaluation Protocol: Setup and Results}\label{tab:s08-1}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Set
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+value
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Set
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+value
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Initial wait & 10 empty actions, waiting for object stabilization \\
+Control rate & 20Hz \\
+Baseline reobservation & every 5 actions \\
+Action generation & 10-step flow matching integration, output 10-step actions \\
+Success & Original environment task predicate holds \\
+Timeout steps & Spatial220; Object280; Goal300; Long-Horizon520 \\
+\end{longtable}\endgroup
+
+The paired tasks are fixed as Spatial and Goal tasks 0, 3, 6 before viewing results, using the same three initial states. We separately test zeroing out two image channels, freezing the initial image, replacing the task instruction, adding 5mm Gaussian noise to position measurements, introducing a two-step delay in the action queue, as well as increasing the execution block length and reducing the denoising steps. Relevant code and complete definitions are in configs/protocol.json.
+
+\subsection{Official Model Weights Closed-Loop Results}\label{s08-detail-4}
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3426}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2852}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3722}}@{}}
+\caption{Official model weights closed-loop results: settings and outcomes}\label{tab:s08-2}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Task Set
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Success / Total
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+95\% Wilson interval
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Task Set
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Success / Total
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+95\% Wilson interval
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+libero\_spatial & 30/30 & 88.6\%---100.0\% \\
+libero\_object & 29/30 & 83.3\%---99.4\% \\
+libero\_goal & 29/30 & 83.3\%---99.4\% \\
+libero\_10 & 29/30 & 83.3\%---99.4\% \\
+\end{longtable}\endgroup
+
+\stagefigure{figures/ch03/s08_success_summary.png}{Baseline and intervention results under the same initial states.}{fig:s08-detail-2}
+
+These results come from weights officially trained on LIBERO, demonstrating the performance of this machine execution pipeline and checkpoint under specified conditions, and do not indicate that this project learned these tasks from scratch. Task success is an environmental target predicate, not judged by the vision-language model itself.
+
+\stagefigure{figures/ch03/s08_rollout_examples_33770969.png}{Keyframes from actual rollouts; title indicates task and outcome.}{fig:s08-detail-3}
+
+\subsubsection{Supplementary Check After Loosening the Gripper}\label{s08-detail-5}
+
+The official predicate may hold while the object is still being gripped. Therefore, we additionally replayed the actual actions from 117 successful episodes, first verifying the full joint trajectory, then maintaining the end-effector and opening the gripper for 1 second. Finally, 113/117 frames satisfied the goal over the last 0.5 seconds, and 114/117 frames satisfied the goal at the final frame.
+
+With the displacement of both Panda finger joints being at least 0.03 m, confirming the gripper is fully opened (not the calibrated fingertip clearance), 116 groups reached the opening threshold; among them, 112 groups successfully maintained the target while fully opened.
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2859}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2380}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2380}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2380}}@{}}
+\caption{Supplementary Check After Loosening the Gripper: Settings and Results}\label{tab:s08-3}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Task Set
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Replay successful episodes
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+After releasing the grip, continue to satisfy
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+final frame satisfies
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Task Set
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Replay successful episodes
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+After releasing the grip, continue to satisfy
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+final frame satisfies
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+libero\_10 & 29 & 26 & 26 \\
+libero\_goal & 29 & 29 & 29 \\
+libero\_object & 29 & 29 & 29 \\
+libero\_spatial & 30 & 29 & 30 \\
+\end{longtable}\endgroup
+
+The maximum joint position difference between replay and the original trajectory is 0.00e+00. This is an additional physical stability check that does not alter the official success rate or increase the number of VLA evaluation rounds; for the subsequent 1 second, a fixed gripper release hold command is used, without pretending the model autonomously completed this phase. The relevant code is in scripts/release\_stability.py.
+
+\stagefigure{figures/ch03/s08_release_check_afa70239.png}{Additional check: official stop with fixed gripper release held; subsequent commands are not model-generated actions.}{fig:s08-detail-4}
+
+Fixed gripper hold is not a subsequent behavior of the original policy. Additional test failures indicate that the target was not maintained under this fixed operational protocol, and thus cannot be used to assert that the model will inevitably fail to continue execution; it highlights the need to distinguish between early-stopping predicates and actual operation completion confirmation.
+
+\subsection{Visual, Language, and Execution Intervention}\label{s08-detail-6}
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2288}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1928}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1928}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1928}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1928}}@{}}
+\caption{Visual, Language, and Execution Intervention: Setup and Results}\label{tab:s08-4}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+condition
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Paired Baselines
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Intervention results
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+success \(\rightarrow\) failure
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Failure \(\rightarrow\) Success
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+condition
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Paired Baselines
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Intervention results
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+success \(\rightarrow\) failure
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Failure \(\rightarrow\) Success
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Image zeroing & 17/18 & 0/18 & 17 & 0 \\
+Freeze initial frame & 17/18 & 0/18 & 17 & 0 \\
+Replacement Command (Original Target) & 17/18 & 6/18 & 11 & 0 \\
+State position noise 5mm & 17/18 & 17/18 & 0 & 0 \\
+action delay 100ms & 17/18 & 18/18 & 0 & 1 \\
+Replan every 10 steps & 17/18 & 18/18 & 0 & 1 \\
+5-step denoising & 17/18 & 18/18 & 0 & 1 \\
+\end{longtable}\endgroup
+
+Image zeroing and freezing are used to check visual input dependence and are not real camera error models. Replaced instructions are first evaluated by the original task score; original task failure may result from the model correctly responding to the alternative instruction or from ineffective behavior, so it does not directly equate to a decline in language capability. For alternative goals that can be evaluated within the same scene in the Goal, additionally record whether their predicate has been satisfied and compare the first action block change under identical initial states and identical noise.
+
+The 18 sets of initial action blocks for replacement commands show an average absolute change of 0.12680 (in action interface units); among the 9 evaluable alternative goals, 9 previously satisfied the alternative predicate. In this set of Goal conditions, the satisfaction of the alternative predicate supports the model in modifying actions based on language; this conclusion is limited to these checked tasks and does not generalize to untrained tasks, Chinese instructions, or complex ambiguous commands.
+
+\stagefigure{figures/ch03/s08_visual_intervention_61edf4a4.png}{Real-time, zeroed, and frozen visual controls for the same initial state; below shows the actual image submitted to the model.}{fig:s08-detail-5}
+
+State noise is only added to the end-effector position measurements submitted to the model, without modifying the actual object or robot states. Action delay is a 100ms FIFO queue in simulation, not letting the program sleep for 100ms. The two distinguish observation error from execution lag.
+
+\subsection{Inference Latency and Execution Efficiency}\label{s08-detail-7}
+
+The median end-to-end inference time, excluding the first call in each round, is 0.073s, P95 is 0.078s, over 7963 calls. This timing includes input conversion, model inference, and CPU action return; the first call may include JIT compilation, and original records are retained.
+
+This phase uses synchronous evaluation, during which the simulator pauses while waiting for the policy. Actions are executed at a 20 Hz simulation clock and do not imply that the real robot can sustainably wait for the model at the same speed. Increasing the number of actions executed per call reduces model invocation frequency but prolongs the time without new observations; reducing the denoising integration steps lowers computational load but may affect action quality. Both modifications were tested in conjunction with the original weights, and any reduction in computation time should not be automatically interpreted as an improvement in the policy.
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2623}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2459}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2459}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2459}}@{}}
+\caption{Inference Latency and Execution Efficiency: Settings and Results}\label{tab:s08-5}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Fixed input comparison
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Invocation count
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Median latency / ms
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+P95/ms
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Fixed input comparison
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Invocation count
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Median latency / ms
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+P95/ms
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+10-step denoising & 36 & 72.07 & 75.66 \\
+5-step denoising & 36 & 62.07 & 65.93 \\
+\end{longtable}\endgroup
+
+Additionally, with 12 alternating repetitions of identical observations and identical action noise in the preset task, excluding the first compilation; the median inference speedup from 10 steps to 5 steps is 1.16x. This is single-model timing, excluding environment advancement, and does not represent improved success rate. Relevant code is in scripts/benchmark\_inference.py.
+
+\subsection{Failures and Applicability Boundaries}\label{s08-detail-8}
+
+All completed episodes retain results, control trajectories, and videos. Success counts are based on the original task predicate, with timeouts and failures separated. Failure analysis requires examining the target selection, approach, grasp, transport, and placement phases, not just the final success rate. Independent verification re-reads the saved arrays to check 20Hz time progression, actual execution order of each prediction block, delay queue, initial state, and success flag. Relevant code is in scripts/verify.py.
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5067}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.4933}}@{}}
+\caption{Failures and Applicability Boundaries: Settings and Results}\label{tab:s08-6}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Check items
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Results
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Check items
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Results
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Rounds checked & 246 \\
+Control samples & 41677 \\
+Action block execution & Checked \\
+Paired initial state & Checked \\
+Original task criterion & Checked \\
+mocap & no mocap-driven in the model \\
+Error directory & 0 \\
+\end{longtable}\endgroup
+
+This stage still has clear limitations: the public tasks overlap with the model training distribution; each task has a small test set; no self-finetuning or visual domain randomization training was performed; real sensor exposure latency and network delays were not simulated; the low-level controller uses the baseline's built-in controller, which does not represent the bandwidth of the SO101 motors. The current results cannot be extrapolated to conclude that a home robotic arm will grasp.
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.3161}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2280}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2280}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2280}}@{}}
+\caption{Failures and Applicability Boundaries: Settings and Results}\label{tab:s08-7}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Baseline failure tasks
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Initial state
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+State
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Control the number of steps
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Baseline failure tasks
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Initial state
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+State
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Control the number of steps
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+libero\_10 / 8 & 0 & timeout & 520 \\
+libero\_goal / 0 & 1 & timeout & 300 \\
+libero\_object / 0 & 2 & timeout & 280 \\
+\end{longtable}\endgroup
+
+
+\subsection{Original Stage Reproduction Entry}\label{s08-detail-9}
+
+\subsubsection{Reproduction and Source Code Directory}\label{s08-detail-10}
+
+\noindent See \hyperlink{s08-command-1}{the corresponding entry in Appendix D} for run commands and directory examples.\par
+
+The source code package does not include official weights, environments, upstream large assets, or original trajectory arrays. After downloading a fixed version according to the README, run it. Official source code and weights are available via upstream repositories and local RESEARCH.md; do not misrepresent third-party implementations as self-implemented. Save the installed locked version and environment information separately; dependency compatibility is detailed in ENVIRONMENT\_NOTES.md.
+
+
+\paragraph{Stage Conclusion} The baseline completed 120 episodes, of which 117 succeeded; additionally, 126 paired input interventions were completed, with trajectories and videos saved. Tests with zeroed or frozen real-time images demonstrate that visual input affects policy execution. Here, the official task weights for LIBERO are used, belonging to reproduction and evaluation. Subsequent modifications to the task, inputs, or training one's own adapter should be scored separately.
+
+\stagecode{s08}
+\stagevideo{videos/ch03/pi05_official_long_task00.mp4}
+
+\FloatBarrier

@@ -1,0 +1,480 @@
+\chapter{Small Models and Edge Deployment}
+The performance sampling interface refers to the official PyTorch profiling documentation \cite{profiler}, with sampling overhead recorded separately from regular inference latency.
+
+
+Edge-side operations first verify the availability of the software stack and quantized storage, then perform accuracy comparisons under identical inputs, and finally measure latency and joint service performance. The recovered self-owned board and the environment borrowed in October shall not be treated as the same version; their speed and accuracy shall not be combined into a single conclusion.
+
+\section{Jetson Recovery and Independent GPU Environment}
+
+\label{stage:s21}
+
+Restore the board-end system, create an independent inference environment, install compatible PyTorch, quantization libraries, and low-rank adaptation tools according to the JetPack and CUDA versions, and verify GPU computation and 4-bit loading step by step.
+
+\subsection{Conclusion}\label{s21-detail-1}
+
+PyTorch, torchvision, and bitsandbytes specifically for Jetson, compatible with JetPack 6.2.1/CUDA 12.6, have been installed on ali-jetson. Actual CUDA computation, NF4 matrix multiplication, quantized storage, and PEFT direct loading all function properly across machines. No source code compilation of bitsandbytes is required. The next phase will start with 2B models, with 4B models reserved for later.
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2449}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3094}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.4456}}@{}}
+\caption{Conclusion: Settings and Results}\label{tab:s21-1}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Component
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Version / Source
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Check
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Component
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Version / Source
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Check
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+torch & 2.8.0, Jetson AI Lab jp6/cu126 & CUDA12.6, device Orin, SM8.7, matrix multiplication passes \\
+torchvision & 0.23.0, same as above & CUDA NMS enabled \\
+bitsandbytes & 0.48.0.dev0+ff389db, same as above & NF4 quantization, 4-bit Linear forward pass \\
+transformers & 4.57.6 & Qwen3-VL model class and AutoProcessor are importable, weights not loaded \\
+PEFT & 0.18.1 & Directly loading adapters onto pre-quantized small models passes, without merging \\
+accelerate & 1.12.0 & Dependency installation completed, pip check passed \\
+\end{longtable}\endgroup
+
+torch/vision/bnb are from https://pypi.jetson-ai-lab.io/jp6/cu126, not generic aarch64 torch. Installation reports record the download URL and SHA256; subsequent HF dependencies are constrained to fix these three packages and NumPy 1.26.4 to prevent the resolver from replacing the Jetson build. System Python remains unmodified.
+
+\subsection{Memory and Runtime Status}\label{s21-detail-2}
+
+\begin{itemize}
+\tightlist
+\item
+  Switched from graphical.target to multi-user.target and set as default; to restore the desktop, use sudo systemctl set-default graphical.target and sudo systemctl isolate graphical.target.
+\item
+  No NVMe on the board. SD card swap was subsequently enabled, which has been set up at /swapfile-ali-jetson with 8GiB size, permissions 600, and written to fstab; existing zram is approximately 3.7GiB with priority 5, while the new disk swap has priority -2. Total swap is approximately 11.7GiB. The original fstab backup is located at /etc/fstab.before-ali-jetson-20261114.
+\item
+  Software installation and on-board small model testing use systemd-run --user, with MemoryHigh=5G, MemoryMax=6G, OOMPolicy=stop. Small tests do not represent the peak load of large models.
+\item
+  The power supply maintains nvpmodel mode 0 (15W). jetson\_clocks is not enabled; reading shows CPU at dynamic frequency, GPU 306--624.75MHz, EMC FreqOverride=0. No frequency locking or power mode change is set.
+\item
+  When switching off the desktop mode, the USB network service stops, and the connection is subsequently restored via the local network 192.168.31.168 on the same board. The board-side user is csip, with the working directory /home/csip/ali-jetson/deployment\_20261114.
+\end{itemize}
+
+\subsection{Fixed Compatibility Issues}\label{s21-detail-3}
+
+Upon first importing PEFT, Transformers indirectly imports SciPy. Torch first loads the system's old libstdc++, while Conda's SciPy requires GLIBCXX\_3.4.32, causing an import error. The project-specific jetson\_python.sh script resolves this by explicitly using ali-jetson/lib/libstdc++.so.6 via LD\_PRELOAD; this only affects the current process without replacing system libraries or globally modifying shell configurations. This script also limits CPU threads.
+
+\subsection{PC Pre-quantization and Cross-device Verification}\label{s21-detail-4}
+
+The test uses a small, single-layer Llama test fixture (128 hidden dimensions) with random initialization, solely for storage/kernel/API compatibility, not for Qwen capability testing.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  The PC, within a memory-limited systemd unit, quantizes the FP16 test fixture to NF4 (double\_quant=true) and saves it with save\_pretrained.
+\item
+  Construct non-zero PEFT q\_proj/v\_proj adapters, save them independently without merging. Save the base/logits after adapter application for the same input.
+\item
+  PC reloads the quantized directory for verification; transmit the same quantized directory, adapter, and reference to Orin, directly restore pre-quantized weights and load PEFT.
+\end{enumerate}
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.4555}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2722}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2722}}@{}}
+\caption{PC Pre-quantization and Cross-device Verification: Settings and Results}\label{tab:s21-2}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Metrics
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+PC reboot
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Jetson reload
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Metrics
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+PC reboot
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Jetson reload
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Maximum absolute difference of base logits before saving to PC & 0.0 & 0.0 \\
+Before saving to PC, adapt logits maximum absolute difference & 0.0 & 0.0 \\
+Maximum output change introduced by adapter & 0.17041015625 & 0.17041015625 \\
+\end{longtable}\endgroup
+
+PC is torch2.7.1+cu126/bnb0.48.2, Jetson is torch2.8.0/bnb0.48.0.dev0+ff389db; the current small fixture supports cross-version storage and recovery. Zero difference only corresponds to this fixed-input small model and cannot infer that Qwen's numerical values are completely identical across devices. The actual Qwen loading, visual preprocessing, and image output precision still require verification in the next phase.
+
+\subsection{Local Files}\label{s21-detail-5}
+
+\begin{itemize}
+\tightlist
+\item
+  install\_stack.sh: Fixed-version installation with dependency constraints.
+\item
+  setup\_headless\_swap.sh: SD swap configuration.
+\item
+  jetson\_python.sh: Process-level C++ runtime library fix.
+\item
+  stack\_probe.py: CUDA/NF4 import and matrix testing.
+\item
+  smoke\_nf4.py: PC prepare / Jetson verify small fixture test.
+\item
+  tiny\_nf4\_transfer/: PC fixtures and PC reload results.
+\item
+  software\_stack\_20261114/deployment\_20261114/: Board-side installation report, pip pre- and post-lists, pip check, power/swap status, stack\_result.json, nf4\_transfer.log, board-side verify\_result.json.
+\end{itemize}
+
+
+\paragraph{Stage Conclusion} The restored Orin Nano 8GB has established a runnable inference software stack. Testing was conducted separately for the environment and early borrowed devices, with memory insufficiency handled via gated restricted processes and swap space. Runnable on-device does not equate to latency compliance. The loading process using SD card swap space and stable inference without swap must be treated separately.
+
+\stagecode{s21}
+
+\FloatBarrier
+
+\section{2B Adaptation and Precision Comparison with PC and Jetson}
+
+\label{stage:s22}
+
+Train a 2B affordance LoRA using the same data split and hyperparameters, then compare progressively under PC BF16, PC NF4, and Jetson NF4 to distinguish the effects of model scale, quantization, and hardware.
+
+\subsection{Experiment Setup and Training}\label{s22-detail-1}
+
+The 2B base is Qwen/Qwen3-VL-2B-Instruct, revision \path|89644892e4d85e24eaac8bacfd4f463576704203|; the weight SHA256 matches the official file metadata. Directly invoke the existing affordance/train\_lora.py, replacing only the model source.
+
+Training initial states 17--49, validation 13--16, same 48 samples; test 0--12, same 350 frames. 780 training frames, 600 optimization steps, gradient accumulation 4, learning rate 1e-4, r8/alpha16/dropout0.05, same task sampling weights and seed 20261114, validate every 150 steps. Validation selects point based on median pixel error of handle; two protocol.json files are field-by-field identical. Both are initial-state isolated, action template shared, not cross-scenario or independent action distribution generalization.
+
+2B selected at step 600, median validation error 1.026 pixels, trainable parameters 1,605,632, training wall-clock time 334.7 seconds, peak CUDA allocation 4748.9MiB. Training did not sample points from the test set.
+
+The official evaluation invokes the single-run main process of the original eval\_qwen.py, retaining the original applicability, prompt, parsing, and scoring; each completed configuration undergoes only one full test. All generations are greedy, with a maximum of 40 new tokens, BF16 computation, and SDPA. NF4 quantizes only the language linear layers, while the visual tower and shared embedding output heads remain in BF16; PEFT is loaded directly without merging.
+
+4B BF16 reused the already saved results from 350 frames without reselection. After NF4 export, the model was reloaded and evaluated on the PC, then the same file and adapter were sent to Jetson for SHA256 verification.
+
+\subsection{Accuracy Comparison}\label{s22-detail-2}
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.2512}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1498}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1498}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1498}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1498}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1498}}@{}}
+\caption{Accuracy Comparison: Settings and Results}\label{tab:s22-1}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Configuration (all 512 pixels)
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+strict hit rate
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+4-pixel neighborhood hit
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+3D grasp pose error / cm
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Cabinet frame IoU
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Effective 3D samples
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Configuration (all 512 pixels)
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+strict hit rate
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+4-pixel neighborhood hit
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+3D grasp pose error / cm
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Cabinet frame IoU
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Effective 3D samples
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Workstation / 2B / Base / bf16 & 0.0\% & 0.0\% & --- & 0.000 & 0/350 \\
+Workstation / 2B / Low-Rank Adaptation / bf16 & 93.7\% & 98.6\% & 1.515 & 0.987 & 350/350 \\
+Workstation / 4B / Base / bf16 & 5.7\% & 17.7\% & 7.798 & 0.647 & 350/350 \\
+Workstation / 4B / Low-Rank Adaptation / bf16 & 92.3\% & 98.6\% & 1.368 & 0.986 & 350/350 \\
+Workstation / 2B / Low-Rank Adaptation / nf4 & 91.1\% & 95.7\% & 1.551 & 0.976 & 350/350 \\
+Workstation / 4B / Low-Rank Adaptation / nf4 & 92.3\% & 99.1\% & 1.340 & 0.981 & 350/350 \\
+Jetson / 2B / Low-Rank Adaptation / nf4 & 91.1\% & 95.7\% & 1.548 & 0.975 & 350/350 \\
+\end{longtable}\endgroup
+
+\stagefigure{figures/ch07/s22_precision_comparison.png}{Visual Affordance Localization Precision Comparison}{fig:s22-detail-1}
+
+Strict hit rate requires the predicted pixel itself to fall within the target mask; neighborhood hit defines intersection with the mask within a 4-pixel square window. Parse failures are counted as failures and are not excluded from the hit rate denominator; the 3D values in the table are computed only on projectable outputs and also list coverage counts.
+
+3D ground-truth depth from simulation, back-projected with camera parameters, still has a lower bound error of approximately 1.4 cm per surface point/geometric center, which cannot be interpreted as real-world ranging or grasping accuracy. Complete bowl/placement point metrics are in SUMMARY.json; 350 frames include correlated views from the same episode and cannot be treated as 350 independent robotic tasks.
+
+\subsection{Output Protocol and Diagnostics}\label{s22-detail-3}
+
+Under long localization prompts, the 2B base often outputs additional label explanations, which are truncated within the 40-token limit: 350 instances of "handle," 143 instances of "placement point," and 350 instances of "cabinet frame" all failed parsing, while 171 instances of "bowl" parsed normally. Therefore, the zero hit rate in the official base table reflects current interface inadequacy and cannot be directly interpreted as the absence of visual localization capability.
+
+To distinguish between formatting and localization, another informal diagnostic was conducted by having the CPU read the saved raw text, extract the coordinate arrays that had already been fully output, without re-instantiating the model. This diagnostic yielded: base handle strict hit rate 1.7\%, neighborhood hit rate 6.3\%, 3D median error 16.11cm, cabinet IoU 0.594. This diagnostic does not replace production parsing nor participate in checkpoint selection. The LoRA gain encompasses both output formatting alignment and localization improvement, and cannot attribute all gains solely to visual capability.
+
+\subsection{PC/Jetson Per-Step Consistency}\label{s22-detail-4}
+
+The 2B NF4 comparison contains 1014 queries: raw text is identical for 774 (76.33\%), and parsed coordinates/boxes for 774 (76.33\%). Actual input tokens, image tensors, and image-grid hashes all match on 1014 inputs; output token sequences match on 774.
+
+Identical inputs do not imply that different GPU kernels must be bit-identical; if they differ, retain output line by line. The Transformers/PEFT versions on PC and board are identical, and Torch, torchvision, and bitsandbytes use their respective compatible builds, so platform comparison also includes software stack differences and cannot attribute all differences solely to GPU hardware. Compare quantization before and after, and device changes separately, without conflating them into a single change. In this phase, 1014 actual input tokens, image tensors, and grids from the four PC configurations are identical line by line, recorded in PC\_INPUT\_CHECK.json; historical 4B BF16 does not preserve the same line-by-line input metadata, so only original protocols, images, and prompts can be verified, and historical hashes cannot be reconstructed.
+
+\subsection{Loading and Memory}\label{s22-detail-5}
+
+On the 2B board, this process's first load (synchronizing processor, model, adapter, and GPU) took 17.21 seconds. The operating system file cache was not cleared, so this is not a cold boot baseline.
+
+Process VmHWM peak 1.625GiB, stable period cgroup sampling highest 1.854GiB, CUDA allocation peak 2.111GiB, CUDA reserved peak 2.168GiB; tegrastats full-stage system RAM highest 4089MB. The above metrics cannot be summed; system RAM includes system and cache, CUDA memory may also overlap with shared physical memory.
+
+The board-end kernel does not provide cgroup memory.peak, so this field is null, and we do not fake the peak value by taking the maximum from the steady-state sampling. We retain VmHWM, CUDA peak, and the original tegrastats records starting from before loading.
+
+The officially evaluated model has a cgroup maximum swap of 0 bytes, with stable segment system swap I/O page changes showing both page-in and page-out increments as 0; at termination, /proc/swaps shows no active devices. Swap space is reserved during loading, swapped off before official evaluation, and restored to the original zram and 8GiB SD swap afterward. Both installation and inference have systemd memory limits, with board-side MemoryMax=6G, 15W, and jetson\_clocks not locked.
+
+4B board-end full 350 frames not executed; the complete board-end accuracy and per-item consistency conclusions of this phase only apply to 2B. Optional probe loading has passed, taking 39.52 seconds, and completed one query on validation set images; this is not a 4B accuracy or latency evaluation.
+
+\subsection{Engineering Issues and Solutions}\label{s22-detail-6}
+
+The first NF4 export on PC encountered CPU memory inflation and triggered systemd protection; training and two full BF16 evaluations were not lost or rerun. Subsequently, an independent constrained unit was adopted, with the shared output head explicitly preserved, successfully saving the NF4 files; thereafter, compilation threads were limited and configurations were run sequentially without increasing memory limits. The PC driver script encountered a termination parsing error due to edits made during execution, but all four PC evaluations at this stage have already saved 1014 unique question-answer pairs and complete resource records; the driver error is documented separately, with no reruns of tests or synthetic output generation.
+
+The first inference startup from the board, although the model itself has swap=0, still exhibits swap I/O at the system level. 31 uncompleted attempts are marked as invalid. The new tag now includes gated loading/swap-off control, and inference begins only after swapoff is confirmed, running 350 frames in a single pass for evaluation. Original failure files are retained and not overwritten by successful results.
+
+The saved tokenizer emitted a generic regular-expression warning. It was not modified solely in response to that warning; actual input tokens and image hashes were used to verify matched inputs. Conclusions are limited to the current images, prompt, single scene, and checkpoint.
+
+
+\paragraph{Stage Conclusion} 2B BF16 strictly achieved 328/350 hit rate; 2B NF4 achieved 319/350 on both PC and Jetson. All 1014 input-output pairs had consistent input hashes, with 774 instances showing identical original text and coordinate outputs. BF16 is brain floating-point 16-bit format, NF4 is 4-bit normalized quantization format. Stable evaluation showed no swap space activity; device output consistency does not equal overall accuracy.
+
+\stagecode{s22}
+
+\FloatBarrier
+
+\section{Jetson Visual Service and PC Simulation Joint Debugging}
+
+\label{stage:s23}
+
+Host the 2B quantized model on the board, providing handle points to the PC via an SSH tunnel. The PC maintains a single physical scene, completing navigation, back-projection, planning, and joint execution.
+
+\subsection{Visual Servoing and PC Co-Simulation}\label{s23-detail-1}
+
+The service binds only to Jetson's 127.0.0.1, forwarding requests via SSH tunnel to PC's 127.0.0.1, processing requests serially, and does not load Qwen on the PC. Using 512 size, as this configuration has already been validated in the previous stage with 350-frame precision; new sizes not yet validated for precision are not selected. The service returns two-dimensional handle points, which the PC uses to back-project with simulated depth and then passes to MoveIt to physically drive the same world's joints.
+
+Simulation pauses while awaiting the model response. Passing a joint episode therefore demonstrates a working functional chain, not compliance with the \(\leq\)3-second real-time requirement. Joint episodes stop at pre-contact and do not execute a grasp or the full original LIBERO task.
+
+Current record: 3 episodes, pre-contact passed 3/3.
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}@{}}
+\caption{Visual Servoing and PC Joint Simulation: Setup and Results}\label{tab:s23-1}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedleft
+Initial state
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Navigation successful
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Pre-contact passage
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+True error in mm
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Visual residual mm
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedleft
+Initial state
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Navigation successful
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Pre-contact passage
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+True error in mm
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Visual residual mm
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+2 & yes & yes & 18.2 & 5.3 \\
+3 & yes & yes & 8.5 & 5.8 \\
+4 & yes & yes & 15.4 & 7.5 \\
+\end{longtable}\endgroup
+
+No swap check during stable service segment: True. Model first load time: 11.77 seconds.
+
+
+\paragraph{Stage Conclusion} Three joint pre-contact rounds passed 3/3, with errors of 18.2, 8.5, and 15.4 millimeters; six formal responses' image hashes matched the PC source frames, with no swap activity in stable segments. Simulation paused during model return; joint success cannot substitute real-time compliance. The 512-pixel configuration retains the existing 350-frame precision baseline without physical robotic arm co-tuning.
+
+\stagecode{s23}
+
+\stagevideo{videos/ch07/jetson_vision_pc_execution.mp4}
+
+\FloatBarrier
+
+\section{Edge-side Latency, Resources, and Operator Analysis}
+
+\label{stage:s24}
+
+Fixed validation set of five images, comparing 512, 384, and 256 pixels under 15W power consumption, recording output length, wall-clock latency, and resource usage; also perform an independent operator performance profiling.
+
+\subsection{Delay Settings and Results}\label{s24-detail-1}
+
+Input consists of the first 5 frames sorted from the frozen validation set, without using test350. For each frame, four types of questions are asked: handle, bowl, place, and cabinet, with 20 trials per category, plus one warm-up trial per category not counted. Dimensions follow the image rotation order to reduce the impact of fixed ordering; P95 is merely an exploratory small-sample quantile. max\_new\_tokens is set to 40, with greedy decoding, and the original prompt is not shortened.
+
+Wall-clock time starts from when the PC/board-side test script reads and processes the image, until text generation ends; excluding network transmission. Internal model time is stored separately and cannot replace end-to-end latency. Output length is also reported, as different problems generate varying numbers of tokens.
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1429}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1429}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1429}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1429}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1429}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1429}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1429}}@{}}
+\caption{Delay Settings and Results: Settings and Results}\label{tab:s24-1}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedleft
+size
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Query
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+times
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+P50 seconds
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+P95 seconds
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+average output tokens
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\(\leq\)3 seconds P95
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedleft
+size
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Query
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+times
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+P50 seconds
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+P95 seconds
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+average output tokens
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\(\leq\)3 seconds P95
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+512 & all & 20 & 5.06 & 7.15 & 19 & not met \\
+512 & handle & 5 & 5.07 & 5.09 & 17 & not met \\
+512 & cabinet & 5 & 7.14 & 7.15 & 25 & not met \\
+384 & all & 20 & 4.91 & 6.97 & 19 & not met \\
+384 & handle & 5 & 4.92 & 4.95 & 17 & not met \\
+384 & cabinet & 5 & 6.97 & 6.99 & 25 & not met \\
+256 & all & 20 & 4.78 & 6.85 & 19 & not met \\
+256 & handle & 5 & 4.79 & 4.81 & 17 & not met \\
+256 & cabinet & 5 & 6.83 & 6.86 & 25 & not met \\
+\end{longtable}\endgroup
+
+First load time: 24.34 seconds, without clearing OS page cache, not considered a cold start. During stable segment, model swap and global swap I/O are both 0. NF4 keeps the visual tower and shared lm\_head in BF16, with other quantization settings consistent with the previous stage.
+
+\subsection{Power Consumption, Frequency, and Resources}\label{s24-detail-2}
+
+Using mode 0 of the 15W configuration, jetson\_clocks frequency locking was not invoked. Actual measurements show GPU frequency ranging from a minimum of 306MHz to a maximum of 624.75MHz, dynamically adjusted by nvhost\_podgov; CPU0 frequency ranges from 729.6MHz to 1510.4MHz. tegrastats records actual load and frequency every 100ms. The current board boot configuration does not provide the MAXN SUPER mode, and this test did not switch or flash firmware.
+
+Model process MemoryHigh5GiB, MemoryMax6GiB. Allow SD/zram as reserve during loading; after loading, disable swap and begin stable measurement; restore original SD and zram at the end. Do not count results slowed by SD swapping as valid real-time tests.
+
+After downsampling, the latency remains close to 5 seconds, and the 25-token cabinet bounding box output is noticeably slower than the 17-token point output, indicating that further pixel reduction yields limited gains. The correlation between latency and output length is merely an observation and cannot replace CUDA profiler analysis that decomposes prefill, per-token decoding, and kernel overhead; do not draw hasty conclusions based on this.
+
+\subsection{Single Operator Analysis}\label{s24-detail-3}
+
+In addition to the formal latency, another validation plot was used for diagnostics, generating 17 tokens and capturing 41434 CUDA kernel events. The total kernel duration accumulated to 2.85 seconds; this value may include overlaps and cannot be directly added to CPU time. Inference times with the profiler enabled are not mixed into the P50/P95 values in the above table.
+
+Regular users are initially restricted by CUPTI permissions and have no GPU events; retain this record. Subsequently, grant only administrator privileges to this restricted profiling process without modifying global driver permissions. The first administrator launch did not start profiling due to gate file permissions, and the save failed; after fixing the gate, profiling completed.
+
+According to the CPU table, cudaLaunchKernel was called 41431 times, consuming approximately 1.08 seconds of self-time; 4-bit matrix-vector computation took about 1.11 seconds of CUDA time, plus dequantization, copying, and numerous small operators. Dequantization and scheduling overhead are candidate optimization points for the next step, but these times cannot be directly subtracted to claim compliance. Currently, Triton is not installed on ali-jetson. An official Jetson AI Lab-compatible precompiled package 3.4.0 has been found, but prior to installation, it was verified that the current Transformers' NF4 quantizer does not cover is\_compileable=False, and the existing automatic compilation entry point will reject this combination; therefore, installation or bypassing the check was not performed. This restriction does not mean all NF4 models cannot be manually compiled; separate compatibility verification is required.
+
+Subsequently, static KV caching and compiled decoding can be verified in an isolated environment: first confirm output consistency, then measure speed and full precision; no longer relying solely on using larger models or resizing images. Refer to the interfaces at \href{https://docs.pytorch.org/docs/2.8/profiler.html}{PyTorch 2.8 profiler}, \href{https://developer.nvidia.com/nvidia-development-tools-solutions-err-nvgpuctrperm-cupti}{NVIDIA CUPTI permission documentation}, and \href{https://huggingface.co/docs/transformers/v4.57.1/en/llm_optims}{Transformers static caching and compilation}.
+
+
+\subsection{Different Metrics for Resource Statistics}\label{s24-detail-4}
+
+Resource Summary (MiB, different metrics are not additive, Jetson uses shared physical memory):
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1946}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1946}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1946}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1946}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2215}}@{}}
+\caption{Different metrics for resource statistics: settings and results}\label{tab:s24-2}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Stage
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Process VmHWM
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+maximum cgroup sampling
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+CUDA peak allocation
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Maximum whole-board RAM reported by tegrastats
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Stage
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Process VmHWM
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+maximum cgroup sampling
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+CUDA peak allocation
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Maximum whole-board RAM reported by tegrastats
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Latency Screening & 1657 & 2310 & 2162 & 4060 \\
+Service Coordination & 1660 & 1661 & 2162 & 4063 \\
+\end{longtable}\endgroup
+
+
+\paragraph{Stage Conclusion} The P50 values are approximately 5.06, 4.91, and 4.78 seconds, and the P95 values are approximately 7.15, 6.97, and 6.85 seconds, all failing to meet the 3-second target. A single profiling capture captures approximately 41000 CUDA kernel events. P50 and P95 refer to the 50th and 95th percentiles, respectively, with small sample sizes. Profiling overhead is not included in latency; the current quantizer's automatic compilation compatibility has not been fully integrated, and no comprehensive precision evaluation has been added for new sizes.
+
+\stagecode{s24}
+
+\FloatBarrier

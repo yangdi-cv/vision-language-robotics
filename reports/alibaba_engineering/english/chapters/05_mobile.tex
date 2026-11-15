@@ -1,0 +1,1546 @@
+\chapter{Specified Target and In-Scene Movement Operations}
+Explicit visual goal reference Point-VLA\cite{pointvla}, data pairing reference shortcut learning analysis\cite{shortcut}, action guidance reference CAG\cite{cag}. Local experimental scope is separately noted, and borrowing of ideas is not presented as complete reproduction of the original paper.
+
+
+Moving only the specified single object is finer than the original task requirement and better exposes issues with target binding and stopping. Public methods referencing local policy adaptation have not resolved all problems; scene navigation operations first unify the physical world and coordinate interface.
+
+\section{Specified Target and Selective Handling Diagnosis}
+
+\label{stage:s13}
+
+Change the task to only move the specified object while leaving the other one in place, and check whether the low-level actions truly change according to the target after the high-level planner selects the correct target.
+
+\subsection{Task Design and Evaluation}\label{s13-detail-1}
+
+Adopting the two basket-insertion scenarios from LIBERO-Long—can/condiment and cheese/butter—swap the target and kept objects, yielding four instructions. Example: ``Only place the lettered can into the basket; leave the condiment can in place. Stop after placing, do not move other objects.'' Do not alter the initial object states, do not change the scene or dynamics, and do not substitute mocap for \(\pi\)0.5 actions.
+
+This is a custom selective task, not a new original LIBERO-Long score. All methods ignore the original long-task done signal returned by step. Whether the target is in the basket, object positions, and contact ground truth are only logged and used for offline scoring; they do not determine termination nor are they fed into the model.
+
+Each episode allows at most 300 steps. After autonomous stop or budget expiration, the system must maintain for 25 steps, with the last 10 frames having the target still within the original In basket region, not in contact with the gripper, and the maximum displacement of the object center throughout the process not exceeding 30 millimeters, to be considered selectively successful. Center displacement tolerance allows for minor movement and does not imply no contact or no rotation. During the hold phase, the last gripper command is maintained, and no automatic release of the gripper is granted to any group for additional success.
+
+The flat policy lacks an independent end token, so its budget termination does not count as autonomous stopping; the primary comparison remains the selective success condition shared by all methods. One cannot claim superiority solely based on the number of autonomous stops merely because another group implemented a stop interface.
+
+\subsection{Development Trial and Freezing Setup}\label{s13-detail-2}
+
+First, run four fixed English reference skills from initial state 0. A feasible window refers to a sequence of 10 consecutive steps where the target enters the basket, does not contact the gripper, and the object has not exceeded its limits. Timestamp calibration uses only the data here: round up the final step of the window to the nearest 10 steps; if no feasible window exists, use the preset 150 steps.
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2901}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2366}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2366}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2366}}@{}}
+\caption{Development Pilot and Freezing Setup: Settings and Results}\label{tab:s13-1}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Objective
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Has entered the basket
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Final step of the first feasible window
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Develop timing threshold
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Objective
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Has entered the basket
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Final step of the first feasible window
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Develop timing threshold
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+alphabet\_soup\_1 & is & 183 & 190 \\
+tomato\_sauce\_1 & no & none & 150 \\
+cream\_cheese\_1 & is & 152 & 160 \\
+butter\_1 & is & none & 150 \\
+\end{longtable}\endgroup
+
+Then, initial state 0 runs seven small trials (28 episodes), not counted toward evaluation scores. The official initial states are 3--7, with two scenes \(\times\) two directions \(\times\) five initial states = 20 conditions; seven groups totaling 140 episodes. Parameters, calibration, and execution source code are frozen before evaluation, and no adjustments to timing or prompts are made based on the official results. These are initial states not used for hyperparameter tuning in this phase; the scenes remain known public scenes and cannot be considered as generalization to new worlds.
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2637}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3593}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3769}}@{}}
+\caption{Development Pilot and Freezing Setup: Settings and Results}\label{tab:s13-2}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Method
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Policy instruction
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Termination method
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Method
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Policy instruction
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Termination method
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Complete Chinese & including goal, preserving objects and stop requirements & 300-step budget \\
+Only translate & Qwen's actual translation in English & 300-step budget \\
+Single-skill continuous & Qwen-selected target then converted fixed English skills & 300-step budget \\
+Fixed 150 steps & same skill & two gated votes after 150 steps \\
+Development timing & same skill & calibration moment after development for dual-ticket backdoor control \\
+Visual stop & same skill & Qwen start/current frame judgment, gated two votes \\
+Freeze check image & same skill & only replace the current check image with the start image \\
+\end{longtable}\endgroup
+
+All five same-skill conditions share the same target selection and English instruction. A wrong model selection is not corrected on its behalf. Qwen selects an ID from the supplied two-object vocabulary, and skill text is generated from a fixed template. This is not open-vocabulary localization or unconstrained multistep planning.
+
+Stop checking every 10 steps; querying is only allowed when the previous command was open and the gripper width exceeds 0.07. Two consecutive confirmations are required; closing the gripper or a gap exceeding 20 steps clears the old ticket. The two tickets are not assumed statistically independent. All methods at the low level read the current 224-pixel RGB/wrist image and 8-dimensional robot state; Qwen reads a separate 512-pixel image. Each prediction spans 10 steps, with the first 5 steps executed, explicitly providing paired noise.
+
+\subsection{Pairing Results and Control Interpretation}\label{s13-detail-3}
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}@{}}
+\caption{Paired results and control explanations: settings and results}\label{tab:s13-3}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Method
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Selective success
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Final 10 frames of trajectory go into the basket
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Keep object displacement within limits
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Premature termination
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Method
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Selective success
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Final 10 frames of trajectory go into the basket
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Keep object displacement within limits
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Premature termination
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Complete Chinese & 4/20 & 8/20 & 13/20 & 0 \\
+Only translate & 0/20 & 20/20 & 0/20 & 0 \\
+Single-skill continuous & 0/20 & 19/20 & 0/20 & 0 \\
+Fixed 150 steps & 10/20 & 10/20 & 10/20 & 10 \\
+Development Schedule & 8/20 & 10/20 & 8/20 & 10 \\
+Visual Stop & 4/20 & 17/20 & 4/20 & 2 \\
+Freeze Check Plot & 0/20 & 19/20 & 0/20 & 0 \\
+\end{longtable}\endgroup
+
+The four directions corresponding to each condition are as follows, with each cell's denominator being 5. All four directions are counted toward the total score; feasible directions that have been verified and those that have not are listed separately during development.
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 14\tabcolsep) * \real{0.1929}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 14\tabcolsep) * \real{0.1153}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 14\tabcolsep) * \real{0.1153}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 14\tabcolsep) * \real{0.1153}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 14\tabcolsep) * \real{0.1153}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 14\tabcolsep) * \real{0.1153}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 14\tabcolsep) * \real{0.1153}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 14\tabcolsep) * \real{0.1153}}@{}}
+\caption{Paired results and control explanations: settings and results}\label{tab:s13-4}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Command
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Full Chinese instruction
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Only translate
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Single-skill persistence
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Fixed at 150 steps
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+De\-vel\-op\-ment sched\-ul\-ing
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Visual stop
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Frozen Check Diagram
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Command
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Full Chinese instruction
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Only translate
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Single-skill persistence
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Fixed at 150 steps
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+De\-vel\-op\-ment sched\-ul\-ing
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Visual stop
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Frozen Check Diagram
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Canned alphabet soup into basket; retain tomato sauce can & 2/5 & 0/5 & 0/5 & 5/5 & 3/5 & 4/5 & 0/5 \\
+Tomato sauce can into basket; retain alphabet soup can & 0/5 & 0/5 & 0/5 & 0/5 & 0/5 & 0/5 & 0/5 \\
+Cheese spread box into basket; keep butter & 1/5 & 0/5 & 0/5 & 5/5 & 5/5 & 0/5 & 0/5 \\
+Butter into basket; keep cream cheese box & 1/5 & 0/5 & 0/5 & 0/5 & 0/5 & 0/5 & 0/5 \\
+\end{longtable}\endgroup
+
+\stagefigure{figures/ch05/s13_directions_ec69e6e8.png}{Feasible and reverse directions}{fig:s13-detail-1}
+
+With visual stop as reference, compute the increase and loss of success rates under the same scene, goal, and initial state.
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2046}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1988}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1988}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1988}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1988}}@{}}
+\caption{Paired results and control explanations: settings and results}\label{tab:s13-5}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Another approach
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+pair count
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Visual affordance localization increases success.
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Visual loss success
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Descriptive precision p
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Another approach
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+pair count
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Visual affordance localization increases success.
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Visual loss success
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Descriptive precision p
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Complete Chinese & 20 & 3 & 3 & 1.000 \\
+only translate & 20 & 4 & 0 & 0.125 \\
+Single-skill continuous & 20 & 4 & 0 & 0.125 \\
+Fixed 150 steps & 20 & 0 & 6 & 0.031 \\
+Development Timing & 20 & 2 & 6 & 0.289 \\
+Freeze Check Diagram & 20 & 4 & 0 & 0.125 \\
+\end{longtable}\endgroup
+
+Only two scenarios, five initial states per direction, with shared noise and multiple controls. p only describes this batch of pairs and is not intended as a general significance or generalization conclusion. Each comparison should be viewed separately: how much better visual affordance localization is compared to continuous execution, how much better real-time images are compared to frozen images, and whether it exceeds the development timing rules. Complete Chinese/only translate while changing the policy instruction; do not attribute differences solely to visual inspection.
+
+Additionally, perform a post-hoc sensitivity analysis on tolerance, recalculating only the allowed displacement of retained objects, without altering the main score's 30 mm standard, nor adjusting the model or selecting the most favorable threshold based on this:
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}@{}}
+\caption{Paired results and control explanations: settings and results}\label{tab:s13-6}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Method
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+10 millimeters
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+20 millimeters
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+30 mm (main)
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+50 millimeters
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Method
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+10 millimeters
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+20 millimeters
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+30 mm (main)
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+50 millimeters
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Complete Chinese & 4/20 & 4/20 & 4/20 & 4/20 \\
+Only translate & 0/20 & 0/20 & 0/20 & 0/20 \\
+Single-skill continuous & 0/20 & 0/20 & 0/20 & 0/20 \\
+Fixed 150 steps & 10/20 & 10/20 & 10/20 & 10/20 \\
+Development Schedule & 8/20 & 8/20 & 8/20 & 8/20 \\
+Visual Stop & 4/20 & 4/20 & 4/20 & 4/20 \\
+Freeze Check Plot & 0/20 & 0/20 & 0/20 & 0/20 \\
+\end{longtable}\endgroup
+
+\subsection{Where Failures Occur}\label{s13-detail-4}
+
+"Place the object stably" and "retained object not out of bounds" are recorded separately to avoid counting success when both tasks are completed. Additionally, it records whether a valid completion window occurred, whether the retained object was moved afterward, and whether the process stopped prematurely.
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}@{}}
+\caption{Where does failure occur: settings and results}\label{tab:s13-7}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Method
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Number of model checks
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Average decision steps
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Autonomous stop turn
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Exceeding limits after missing the feasible window
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Method
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Number of model checks
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Average decision steps
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Autonomous stop turn
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Exceeding limits after missing the feasible window
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+complete Chinese & 0 & 300.0 & 0 & 2 \\
+only translate & 0 & 300.0 & 0 & 10 \\
+Single-skill continuous & 0 & 300.0 & 0 & 10 \\
+Fixed 150 steps & 0 & 172.0 & 20 & 0 \\
+Development Time & 0 & 184.5 & 20 & 2 \\
+Visual Stop & 233 & 260.5 & 7 & 6 \\
+frozen check diagram & 274 & 300.0 & 0 & 10 \\
+\end{longtable}\endgroup
+
+The average number of decision steps includes failures and cannot be used alone for efficiency ranking. Checker calls do not include shared target selection/translation per condition (each called once, officially 40 times total); full Chinese execution does not use shared planning. The simulator pauses during inference and should not be used to claim real-time frequency on actual hardware.
+
+Qwen selects the target with a correctness rate of 20/20. Whether the low-level system adheres to the target is to be judged separately: the feasible window for developing reference skills and the formal results in both directions are retained. If an object is moved first and then placed correctly at the target, the stop-check cannot undo this violation of constraints; only if a feasible window already exists but execution continues beyond limits does it require further checks of visual judgment, gating, and vote delay.
+
+There are two specific errors in the development trial: the cheese was already in the basket at step 160 without contacting the gripper, yet the model still responded that the task was not completed; the reverse ketchup instruction received a completion confirmation at step 180, but the ketchup target was not in the basket. The figure below shows the actual model inputs and final frame of these two development rounds.
+
+There is occlusion of the target inside the basket; the simulator's completion label does not equal sufficient judgment from this image. Visibility still requires manual review, and one cannot directly treat all missed confirmation frames as high-confidence training positive examples, nor can one conclude that using a larger model will solve the problem.
+
+\stagefigure{figures/ch05/s13_development_errors_8543e730.png}{Two check errors from the development trial}{fig:s13-detail-2}
+
+The demonstration selects task00\_target0\_init03. The selection rule is to pick the first ``visual success, continuous failure'' formal condition by index (if none exists, take the first condition), solely for demonstration purposes and without altering statistics. After each group, retain the true final frame; the video at 20fps is simulation time and does not include inference waiting.
+
+\stagefigure{figures/ch05/s13_video_keyframe_82fe181b.png}{Actual screenshots from seven rounds}{fig:s13-detail-3}
+
+\subsection{Execution and Physical State Verification}\label{s13-detail-5}
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5967}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.4033}}@{}}
+\caption{Execution and Physical State Verification: Setup and Results}\label{tab:s13-8}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Verification Items
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Results
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Verification Items
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Results
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Formal complete round & 140 \\
+Develop full trial round & 28 \\
+officially decoded frames in the video & 39980 \\
+Formal model policy query & 7268 \\
+Formal Check Opportunity & 1657 \\
+rounds where original Long policy continues after success & 69 \\
+Pairing before skill termination & 80 \\
+Stop-before-input/action pair check & Passed \\
+Number of restored physical states & 39840 \\
+Maximum position difference of restored object (m) & 0.003001 \\
+Instantaneous difference in restored contact/relationship labels & 2 / 94 \\
+Final success score difference after recovery & 0 \\
+Self-contained CPU check & 12 passed \\
+\end{longtable}\endgroup
+
+Verify sequentially the actual policy inputs, noise, action blocks, and executed actions; after stopping, a fixed hold command is issued without trajectory compensation. Freeze the figure group to check the recorded pixels and prompts actually fed into the model. Additionally, re-forward the saved simulator states to independently recalculate target relationships, gripper contacts, and the full displacement of retained objects. There is an instantaneous discrepancy between state recalculation and cached values at invocation, but the final scores for the 140 official rounds remain consistent.
+
+The original step-by-step states, input graphs, and videos are saved in the experiment directory. The source code package only includes code, configurations, result metadata, and report figures, without base weights, original large arrays, or all images; full recomputation requires the original experiment data or rerunning the experiments. CPU testing comes with its own data and does not depend on these files.
+
+During development, the final gripper opening was mistakenly treated as object release; this version has been saved with source code in development/open\_gripper\_score, and subsequently changed to offline contact labels and rerun. This report does not include data from this version. Original Long control and historical results remain unmodified.
+
+
+\subsection{Complete Constraints and Wrist-View Comparison}\label{s13-detail-6}
+
+\subsubsection{Problems and Experimental Scope}\label{s13-detail-7}
+
+The target objects are drawn from two scenarios: canned soup/ketchup and cheese/butter, with the designated object to be transported swapped. The final scoring requires simultaneously: the target object must be stably placed inside the basket without contacting the gripper, and the cumulative maximum displacement of the object must not exceed 30 millimeters. After stopping, the system continues for an additional 25 steps, with the last 10 steps used to check stability. This is a custom selective task score, not the overall task success rate of the original LIBERO-Long.
+
+The original Long success signal does not trigger control stop. The policy predicts 10 steps of action each time, but only executes the first 5 steps; Qwen checks use gripper opening door control, with intervals of 10 steps and two consecutive votes. Object relationships and contact ground truth are only used for recording, scoring, and offline labeling and are not passed to the model. The two online viewpoint experiments use the same forward skill instructions, action noise, policy inputs, and stopping rules.
+
+The relevant code is in \path|scripts/design.py|, \path|scripts/episode.py|; scoring and control reuse \path|../selective_execution/scripts/protocol.py|, \texttt{control.py}.
+
+\subsubsection{Full Constraint Propagation}\label{s13-detail-8}
+
+The original instruction only provided the low-level policy ``pick up the specified object and place it in the basket''. The new instruction retains this prefix and appends ``the other item remains in place, do not move other objects, stop after placing''. To avoid misinterpreting truncation as the policy not understanding constraints, we first invoke the actual policy tokenizer for verification: maximum 38 tokens, length limit 200, all constraints are preserved.
+
+The development set contains 4 scenario conditions, each comparing continuous execution, timed stop, and visual stop, resulting in 12 paired conditions. Forward instruction results are drawn from previously frozen rounds, while new constraint instructions run 12 new rounds.
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2779}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2407}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2407}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2407}}@{}}
+\caption{Full Constraint Propagation: Setup and Results}\label{tab:s13-9}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Instruction format
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Selective success
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Paired addition successful
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Pairwise loss
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Instruction format
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Selective success
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Paired addition successful
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Pairwise loss
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Forward skill instruction & 3/12 & --- & --- \\
+Add global constraints & 2/12 & 0 & 1 \\
+\end{longtable}\endgroup
+
+Additional constraints did not improve this development sample, and the reverse objective did not yield new successes. Under the conditions declared prior to execution, no new initial states for 72 rounds are initiated. This is a development screening result; the sample size is insufficient to support a general judgment of language capability.
+
+The relevant code is in \path|scripts/run.py|, \texttt{execution.py}, and \path|token_preflight.py|; settings and results are in \texttt{PROTOCOL.json}, \path|TOKEN_PREFLIGHT.json|, and \path|PILOT_GATE.json|.
+
+\subsubsection{Offline Multi-view Comparison}\label{s13-detail-9}
+
+From the 4 continuous execution rounds starting from initial state 0, sample 50 valid check moments; additionally, run 12 new observation rounds from initial states 8--10, yielding 155 check moments. At each moment, restore the same simulation state and render 512-pixel third-person and wrist-view images, ensuring both candidate schemes observe the same physical state. Labels correspond to the target selected by the model; if the selected target is incorrect, do not silently replace it with the correct answer.
+
+\stagefigure{figures/ch05/s13_camera_pair_f44ba92e.png}{Comparison of cameras in the same state}{fig:s13-detail-4}
+
+The original two-frame check serves as a reference. For all comparative views, three images are input with identical prompts: third-person view at the start, current third-person view, and current auxiliary view. In the control group, the third image is repeated as the current third-person view; in the experimental group, it is replaced by the wrist view. Thus, the number of images, dimensions, generation limits, and prompts are consistent, differing only in the pixels of the third image.
+
+Strict prompt requirements confirm that the target has been placed at the destination and released; respond with "unknown" if visibility is insufficient. The original two-frame reference uses the previous questioning method and boolean output; its difference from the strict three-frame scheme is not only in the camera, and the discrepancy cannot be entirely attributed to wrist viewpoint.
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1445}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1715}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1368}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1368}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1368}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1368}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1368}}@{}}
+\caption{Multi-view Offline Comparison: Setup and Results}\label{tab:s13-10}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Data
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Checking method
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+True confirmation / positive example
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+False positive / negative example
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Recall
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+False positive rate
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Uncertain
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Data
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Checking method
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+True confirmation / positive example
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+False positive / negative example
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Recall
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+False positive rate
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Uncertain
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Developing 50-frame & original two-frame reference & 6/18 & 4/32 & 33.3\% & 12.5\% & 0 \\
+Development of 50-frame & strict three-frame·repeated image & 0/18 & 0/32 & 0\% & 0\% & 2 \\
+Developing 50-frame & Strict three-frame·Wrist & 0/18 & 0/32 & 0\% & 0\% & 1 \\
+New initial state 155 frames & original two-frame reference & 38/66 & 11/89 & 57.6\% & 12.4\% & 0 \\
+New initial state 155 frames & Strict three-frame·repeated image & 0/66 & 0/89 & 0\% & 0\% & 0 \\
+New initial state 155 frames & Strict three-frame·wrist & 1/66 & 0/89 & 1.5\% & 0\% & 6 \\
+\end{longtable}\endgroup
+
+All 615 checks returned parseable results. The low false positive rate of the strict policy is accompanied by nearly zero recall, primarily outputting "not\_done", making it unsuitable as an effective stopper. The wrist view can show partially occluded objects, but visibility does not equate to the model's ability to stably confirm them.
+
+Frames within the same episode are highly correlated; the number of frames in the table describes classification performance and does not equate to 205 independent task episodes. Labels come from physical predicates and are not manually annotated for human visibility frame-by-frame. Recomputing the physical cache after recovery may slightly differ from the online instant, so online performance still requires separate validation.
+
+The relevant code is in \path|scripts/prepare_views.py|, \path|view_checker.py|, \path|view_worker.py|, \path|view_run.py|; data indexing, raw responses, and statistics are in \path|view_audit/|, \path|VIEW_SUMMARY.json|.
+
+\subsubsection{Multi-view Online Verification}\label{s13-detail-10}
+
+Offline results did not become a barrier to online small-scale trials. Both three-frame checkers were actually connected to the same policy and stop control, each running 4 paired rounds, comparing the actual selective scores.
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2485}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1879}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1879}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1879}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1879}}@{}}
+\caption{Multi-view Online Validation: Setup and Results}\label{tab:s13-11}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+method
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+New run round
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Selective success
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+The target ultimately stabilizes in the basket.
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Keep the object from exceeding limits
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+method
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+New run round
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Selective success
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+The target ultimately stabilizes in the basket.
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Keep the object from exceeding limits
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Strictly three-frame·repeated image & 4 & 0/4 & 3/4 & 0/4 \\
+Strictly Three-Frame·Wrist & 4 & 0/4 & 3/4 & 0/4 \\
+Timed stop reference (old round) & 0, reuse 4 & 2/4 & 2/4 & 2/4 \\
+\end{longtable}\endgroup
+
+The strategy input hash values were identical for the two new rounds before divergence, with a maximum action difference of 0. Neither the repeated diagram nor the wrist-based plan successfully prevented subsequent actions on the retained objects. The wrist-based plan yielded no net increase in success, and thus was not expanded to 36 new rounds under the established conditions. The old timing results serve only as a reference and are not claimed to be fully consistent with the new process step by step.
+
+Original episodes are saved in \path|episodes/live_pilot_duplicate_control/|, \path|episodes/live_pilot_wrist/|; online entry point is at \path|scripts/live.py|, summary available at \path|LIVE_SUMMARY.json|.
+
+\subsubsection{Prompt Review and Explanation}\label{s13-detail-11}
+
+Strict phrasing might have turned "seeing completion" into an overly strong judgment criterion. To distinguish this effect, conduct another bounded development review: retain the original pre- and post-destination phrasing and boolean output, and only add explanatory text for the third auxiliary image. Still use the same three-image repeated comparison, without changing the model or training new parameters.
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2490}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1878}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1878}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1878}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1878}}@{}}
+\caption{Prompt Review and Explanation: Settings and Results}\label{tab:s13-12}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Develop 50 frames
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+True confirmation / 18
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Misidentification / 32
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Recall
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+False positive rate
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Develop 50 frames
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+True confirmation / 18
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Misidentification / 32
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Recall
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+False positive rate
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Original Query Expansion · Repeat Figure & 3 & 1 & 16.7\% & 3.1\% \\
+Original Query Expansion · Wrist & 5 & 2 & 27.8\% & 6.3\% \\
+\end{longtable}\endgroup
+
+These 100 calls were only performed on development data. The wrist view brought 2 additional correct confirmations but also 1 additional false alarm; it was not validated on new initial states and was not integrated into the official closed-loop. The results indicate that the strictness of the prompt significantly affects completion recall and also suggest that perspective expansion must be calibrated alongside judgment criteria. Continuing to randomly modify prompts is insufficient to demonstrate actual gains; this phase concludes here.
+
+The relevant code is in \path|scripts/minimal_view.py|, the full prompt and call counts are in \path|minimal_view/PROTOCOL.json|, and the statistics are in \path|MINIMAL_VIEW_SUMMARY.json|.
+
+
+\subsection{Selective Task Reproduction Entry Point}\label{s13-detail-12}
+
+\subsubsection{Code Directory and Reproduction}\label{s13-detail-13}
+
+\noindent See \hyperlink{s13-command-4}{the corresponding entry in Appendix D} for run commands and directory examples.\par
+
+The relevant code is located in scripts/run.py, control.py, and protocol.py; model loading and communication use existing modules in perception/qwen\_scene/ and vla\_libero/scripts/. Fixed upstream and visible RESOURCES.json, RESEARCH.md.
+
+\begin{Verbatim}[breaklines=true,breakanywhere=true,fontsize=\footnotesize]
+bash experiments/vla_libero/scripts/python_shared experiments/vla_libero/selective_execution/scripts/run.py --stage pilot
+bash experiments/vla_libero/scripts/python_shared experiments/vla_libero/selective_execution/scripts/run.py --stage eval
+.venvs/openpi-libero/bin/python experiments/vla_libero/selective_execution/scripts/analyze.py --phase eval
+bash experiments/vla_libero/scripts/python_shared experiments/vla_libero/selective_execution/scripts/verify.py --phase eval --physics
+\end{Verbatim}
+
+Using the local openpi-libero and qwen-scene environments, the 4090 co-resident setup is configured as \path|XLA_PYTHON_CLIENT_MEM_FRACTION=0.40|, \path|PREALLOCATE=false|. Full simulation requires publicly available assets and specified model cache; GPU-free testing is described in README. No physical robotic arm is connected, and no new models are trained.
+
+
+\stagefigure{figures/ch05/s13_outcomes.png}{Different execution and stopping behaviors in selective manipulation.}{fig:s13-retained}
+
+\paragraph{Stage Conclusion} In the main comparison over 140 episodes, visual stopping occurred in 4/20, and fixed 150-step execution in 10/20. Qwen selecting the correct target does not imply that the low-level policy can reliably execute according to the selection. This section separates target selection errors from stopping timing errors to avoid attributing all failures to visual judgment.
+
+\stagecode{s13}
+
+\FloatBarrier
+
+\section{Reference to Public Methods and Explicit Goal Interface}
+
+\label{stage:s14}
+
+Following the CAG (counterfactual action guidance) zero-shot form and the explicit goal approach of Point-VLA, we construct paired data mapping the same observation to different goals, and train a lightweight policy adapter.
+
+\subsection{Target Fork Data and Policy Adaptation}\label{s14-detail-1}
+
+\subsubsection{Instruction Response Diagnosis}\label{s14-detail-2}
+
+Two Long basket tasks are selected: soup/tomato sauce and cheese/butter, at initial states0 and11. Each condition receives the affirmative single-skill instructions ``move only the first object\,``move only the second object, and the original two-object instruction, giving 12 episodes. Model, observations, initial state, and action noise are matched. Each output contains 10 steps, of which the first 5 are executed.
+
+Sample at steps 0, 50, 100, 150, 200, 250 along the first trajectory, calling three instructions and one repeated instruction for each of the 24 identical observation points, totaling 96 additional inferences. Images, proprioceptive states, and noise hashes are consistent, but actual target tokens differ; repeated actions under the same condition differ by 0. The RMS of target-swapping actions across four initial observation points is approximately 0.016--0.030 (model control inputs), indicating that language has entered the reasoning process.
+
+All three instructions in each of the four scene conditions caused the first object to be lifted first; none of the 4 requests to prioritize the second object were satisfied. Here, ``lifted means the object remained 20mm above its initial height, in gripper contact with the gripper closed, for 3 consecutive steps. This is a behavioral proxy, reported separately from final task success.
+
+Therefore, this phase did not modify tokenization or input interfaces, but instead supplemented goal-conditioned skills. The relevant code is located in \path|instruction_response/scripts/run.py|, \texttt{analyze.py}, and is recorded item by item in the SUMMARY.json file in this directory.
+
+\subsubsection{Single-Object Teaching and Physical Validation}\label{s14-detail-3}
+
+Following the idea of relative grasp poses with respect to reference objects, reuse the original robosuite OSC control interface to execute within the same Long scenario: clearing, approaching, grasping, lifting, moving to the basket, releasing, and returning. The grasp pose is taken from the successfully completed first trajectory, and demonstrations are generated based on the target object's position. Execution still proceeds through the original joint control, dynamics, and contact models, without using mocap, nor directly modifying object positions.
+
+This generator has simulation ground truth and serves as the source of training data, not the VLA algorithm. The two development backward small tests are only used to confirm the physical feasibility of data generation. Official candidates are pre-divided by initial states: training 20--25, validation 26--27; first-round policy testing 28--29, second-round testing 30--31.
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}@{}}
+\caption{Single-object demonstration and physical validation: setup and results}\label{tab:s14-1}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Data section
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Candidate trajectory
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Accepted
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Not accepted
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Data section
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Candidate trajectory
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Accepted
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Not accepted
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Training & 24 & 21 & 3 \\
+Validation & 8 & 8 & 0 \\
+\end{longtable}\endgroup
+
+Acceptance criteria require the target to be stably placed and released within the basket, with the maximum displacement of the specified retained object throughout the process not exceeding 30 millimeters. 3 complete grasping failure trajectories are retained and not used for training. Training inputs include only images, body-state, instructions, and actual actions, without teacher-provided object coordinates or stage labels; stage labels are used only for sampling.
+
+Independently restored 10595 taught simulation states, with all 32 final acceptance labels being consistent. The maximum positional difference between restored and cached objects was approximately 2.587 mm. The two-target taught demonstrations across 16 layouts shared identical initial images and states.
+
+The relevant code is in \path|skill_bootstrap/scripts/teacher.py|, \texttt{generate.py}, and \path|audit_data.py|; the partitioning and filtering results are in DATA\_PROTOCOL.json, MANIFEST.json, and DATA\_AUDIT.json.
+
+\subsubsection{First Policy Adaptation}\label{s14-detail-4}
+
+Using the original \(\pi\)0.5 checkpoint, add native LoRA, training only 49,987,584 parameters, accounting for 1.47\% of the 3.40B model parameters. All base models and visual encoders remain frozen; image processing, tokenization, action normalization, and action block formatting follow the original implementation. Call the fixed version of openpi's train\_step without replacing the underlying policy.
+
+First 200 steps, batch 1, sampled by task/goal and demonstration phase. Validation fixed to 16 frames from initial states 26--27, checkpoints selected by matching loss from validation stream. Pre-training random LoRA loss was 0.02769, minimum was 0.01337, selected step 200. This ``pre-training'' is not the original base without adapter: in this version, official LoRA A and B are randomly initialized.
+
+In independent initial states 28--29, complete single-object transfer changed from 0/8 to 1/8, and lifting the specified object first changed from 3/8 to 4/8. The requirement for prioritizing the second item remains 0/4. Offline loss reduction did not compensate for the lack of target selection capability.
+
+The related code is in \path|scripts/train_lora.py|; training, validation, and selection are in \path|lora_pilot/|. The adapter increment is stored in adapter\_best.npz and does not overwrite the original base.
+
+\subsubsection{Target Fork Pairing Adaptation}\label{s14-detail-5}
+
+Two successful demonstrations may have many different intermediate frames, yet only a short segment requires different actions under identical states. After inspecting the accepted trajectories, it was found that: 9 training layout pairs and 4 validation layout pairs had frame-by-frame identical RGB, wrist images, and proprioceptive states at the branching frames; the maximum action difference was approximately 0.59--0.90. The branching in the can-opener scene occurs at frame 9, and in the cheese scene at frame 20.
+
+\stagefigure{figures/ch05/s14_paired_observation_68b37fe2.png}{Same observation with different target actions}{fig:s14-detail-1}
+
+In the second round, continue training for 600 steps from the first-round weights, with batch size 2. Half of the batch comes from two opposite goals under shared observations, while the other half maintains sampling from the original phase. During pairing, only provide the model with different natural language goals and correct action labels, avoiding reliance solely on visual cues to determine which item to move. No failed trajectories are added, and no test images are used for training.
+
+Validation used the original 16-frame stage samples, plus 8 target-fork validation layout samples, selecting the model by averaging the two losses with equal weight. The final selection was step 400. Since this stage also changed the sampling, update frequency, and reset the optimizer, it is not considered an ablation result for ``only changing sampling''.
+
+\stagefigure{figures/ch05/s14_loss_b4439336.png}{Two-wheel validation loss}{fig:s14-detail-2}
+
+The relevant code is in \path|scripts/train_pair_lora.py|; the branch audit is in \path|PAIRED_BRANCH_AUDIT.json|, and settings and selection are in \path|lora_paired/|.
+
+\subsubsection{Closed-loop Results with New Layout}\label{s14-detail-6}
+
+Each round has 8 conditions: two scenes \(\times\) two goals \(\times\) two new initial states. The base and adaptation strategies use the same initial states, noise, forward skill instructions, and action interfaces, with each executed for 300 steps followed by a 25-step hold. The original Long success signal is only recorded, not used to control stopping; no Qwen checker is connected, and low-level execution capability is first isolated.
+
+``"Complete single-item handling" requires that the target remains inside the basket in the last 10 steps without contacting the gripper, and the specified other item's total displacement does not exceed 30 millimeters. "Legitimate window" only indicates that the condition was satisfied at some point during execution, and does not mean the policy will autonomously stop.
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2589}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1853}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1853}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1853}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1853}}@{}}
+\caption{Closed-loop results with new layout: Settings and Results}\label{tab:s14-2}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Stage / Test Layout
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Policy
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+First lift the specified object
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+There is a legally valid completion window.
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Complete single-object transfer
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Stage / Test Layout
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Policy
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+First lift the specified object
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+There is a legally valid completion window.
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Complete single-object transfer
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+First Round / 28--29 & Base & 3/8 & 3/8 & 0/8 \\
+First round / 28--29 & LoRA200 steps & 4/8 & 3/8 & 1/8 \\
+Pairwise Adaptation / 30--31 & Base & 5/8 & 4/8 & 0/8 \\
+Pairwise Adaptation / 30--31 & Pairwise Adaptation & 5/8 & 5/8 & 1/8 \\
+\end{longtable}\endgroup
+
+\stagefigure{figures/ch05/s14_results_03eb45a0.png}{Closed-loop results for two-wheeled system}{fig:s14-detail-3}
+
+Second round organized by scene/goal:
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3196}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3402}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3402}}@{}}
+\caption{Closed-loop results with new layout: Settings and Results}\label{tab:s14-3}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Task and Objectives
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Second-round baseline: Select correctly / Complete successfully
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Second-round adaptation: Select correctly / Complete successfully
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Task and Objectives
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Second-round baseline: Select correctly / Complete successfully
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Second-round adaptation: Select correctly / Complete successfully
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Scene 0 / Goal 0 & 2/2 · 0/2 & 2/2 · 0/2 \\
+Scene 0 / Goal 1 & 1/2 · 0/2 & 1/2 · 1/2 \\
+Scene 1 / Goal 0 & 2/2 · 0/2 & 2/2 · 0/2 \\
+Scene 1 / Goal 1 & 0/2 · 0/2 & 0/2 · 0/2 \\
+\end{longtable}\endgroup
+
+In the second round, the initial correct object selection remained at 5/8 versus 5/8, showing no improvement. The only complete gain came from scenario 0, initial state 30, specified ketchup: the base similarly lifted the object first but failed to complete placement; adaptation improved subsequent completion under this condition. The cheese/butter scenario with reversed goal still failed. Thus, this round has not yet restored reliable goal selection capability, and cannot treat single-instance completion as general language-conditioned improvement.
+
+The two rounds use different test layouts, each paired with its own base-model baseline. In the second round, 1 paired case changed from failure to complete success and 0 changed from success to failure. With only one training seed and two test initial states per target, this does not establish broad generalization or statistical significance.
+
+The first round restored 5200 simulation states and reproduced all 16 final scores; the second restored 5200 states with 0 final-score differences. Action inputs and saved traces were checked over 960 policy queries per round, 1920 in total, plus 48\(\times\)2 same-state counterfactual points. First-round images and action-generation records are retained rather than overwritten by subsequent results.
+
+The accompanying video shows two fixed simulation episodes from the second round, scene0, initial state30, with tomato sauce as the requested target. Episodes were not selected by success or failure. All 326 frames are retained. Playback follows simulation time at 20Hz and excludes inference waiting.
+
+The relevant code is in \path|scripts/evaluate_policy.py|, \path|evaluate_paired.py|, \path|safe_eval.py|, \texttt{summarize.py}; results are in SUMMARY.json, SUMMARY\_PAIRED.json.
+
+
+\subsection{Counterfactual Action-Guided Zero-Shot Form}\label{s14-detail-7}
+
+\subsubsection{Reference Methods and Reproduction Boundaries}\label{s14-detail-8}
+
+Reference paper "When Vision Overrides Language: Evaluating and Mitigating Counterfactual Failures in VLAs" (2026 preprint): https://arxiv.org/html/2602.17659v1 . Adopt the training-free variant in Equation 4 to amplify action differences induced by language under the same observation: \path|a = a_cond + (w - 1) × (a_cond - a_null)|
+
+The guidance scale is fixed at 1 for the original policy and 1.5 as used in the paper, without searching for additional scales. The two branches share the same weights, images, and explicit sampling noise; the empty task is set before the original input transformation. Currently, actions are mixed in 7-dimensional unnormalized space, including the gripper; guidance is not applied within the flow matching internal velocity field. Model action unnormalization is an affine transformation, with combination coefficients summing to 1, thus mathematically compatible with the prior linear combination. The original environment controller's range handling is retained, without adding new action scaling or clipping.
+
+The author's project link is inaccessible, and the official code has not been verified. This implementation is based on the formulas in the paper and explicit local conventions, and does not claim to match the author's sampling details point by point. It also does not reproduce the other version that requires training an independent visual-action prior.
+
+In Scene 0, the targets 0/1 are respectively the soup can and ketchup; in Scene 1, they are respectively cheese and butter; initial states 0 and 11 each specify two objects, totaling 8 conditions, with each condition comparing the two methods. The initial states have already been involved in prior diagnosis and serve as a development control, not an independent test. Each episode consists of 300 policy steps and 25 hold steps; each prediction predicts 10 steps, with the first 5 steps executed; original Long success is only recorded and not used for early stopping.
+
+\subsubsection{Input and Formula Control Check}\label{s14-detail-9}
+
+5 CPU tests cover scale 1/0, formulas, same branches, and invalid parameters. Real model checking: scale 1 relative to original policy maximum action difference 0.0, same noise repeated difference 0.0, with/empty instruction action RMS difference 0.057409.
+
+Pre-checks had identified a discrepancy between specific configurations and the general implementation: although the general-purpose tokenizer \(\pi\)0.5 supports encoding states as text, the locally fixed pi05\_libero explicitly disables discrete\_state\_input. Initially, since the empty task still had a State text check, it reported an error before model inference or episode execution; the configuration was subsequently corrected and verified against the actual setup. The actual empty task decodes to a newline; both the original image and state dictionary fields are retained. No modifications were made to the model configuration to bypass the check.
+
+All 960 policy queries were verified and saved with inputs, seed noise, composite formulas, and actual executed actions, with maximum formula deviation of 0.0. The initial and stabilized state hashes for both methods are consistent under each condition. Additionally, 5200 physical states were recomputed and restored, with 16 final scores being consistent.
+
+\subsubsection{Paired Closed-Loop Results}\label{s14-detail-10}
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}@{}}
+\caption{Paired closed-loop results: settings and outcomes}\label{tab:s14-4}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Method
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Contact the specified object
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+First lift, choose correctly
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+legal completion window
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Complete success
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Method
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Contact the specified object
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+First lift, choose correctly
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+legal completion window
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Complete success
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+original \(\pi\) 0.5 & 8/8 & 4/8 & 4/8 & 0/8 \\
+CAG 1.5 & 8/8 & 4/8 & 4/8 & 1/8 \\
+\end{longtable}\endgroup
+
+\stagefigure{figures/ch05/s14_results_599aec80.png}{Round Results}{fig:s14-detail-4}
+
+``Contacting the specified object'' only indicates that the gripper has touched the target during this round, not equivalent to successful selection. The first lift requires the target to rise more than 20 millimeters, gripper contact, and a closed command sustained for 3 steps. Complete success requires the target to be in the basket and separated from the gripper in the last 10 steps, while the other object's total displacement does not exceed 30 millimeters. These three metrics cannot be interchanged, nor can local complete constraint scores be treated as original LIBERO leaderboard scores.
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2329}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1918}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1918}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1918}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1918}}@{}}
+\caption{Paired closed-loop results: settings and outcomes}\label{tab:s14-5}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Scene / Initial State / Specified Goal
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+The original policy lifts first
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+CAG lifts first
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Original policy fully succeeds
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+CAG complete success
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Scene / Initial State / Specified Goal
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+The original policy lifts first
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+CAG lifts first
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Original policy fully succeeds
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+CAG complete success
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+0 / 0 / 0 & 0 & 0 & No & Yes \\
+0 / 0 / 1 & 0 & 0 & No & No \\
+0 / 11 / 0 & 0 & 0 & No & No \\
+0 / 11 / 1 & 0 & 0 & No & No \\
+1 / 0 / 0 & 0 & 0 & No & No \\
+1 / 0 / 1 & 0 & 0 & No & No \\
+1 / 11 / 0 & 0 & 0 & No & No \\
+1 / 11 / 1 & 0 & 0 & No & No \\
+\end{longtable}\endgroup
+
+\stagefigure{figures/ch05/s14_video_frame_eb7295e2.png}{Screenshot of fixed-condition replay}{fig:s14-detail-5}
+
+The video condition is fixed to Scene 1, initial state 0, and specified butter before observing the outcome. Retain the full 326 frames, played at 20Hz simulation time, without GPU inference latency, and without filtering segments based on success.
+
+\subsubsection{Resources, Files, and Posterior Judgments}\label{s14-detail-11}
+
+The original policy makes one model call per step, while CAG makes two per step; actual median query times are 0.082 seconds and 0.157 seconds respectively (excluding simulation advancement; including local input checking and logging). A total of 1440 closed-loop branch inferences were performed, plus 4 model pre-checks. The model is loaded via original chunking; runs in an independent systemd unit with MemoryHigh=14GiB and MemoryMax=16GiB, without dual-model residency, without modifying Swap, or disabling memory protection. Sampled RSS peak for the model process is approximately 5.78GiB, and for the process group approximately 5.21GiB. The initial soft memory limit for independent physical recomputation was set too low at 2GiB, causing throttling; after adjusting to soft 4GiB and hard 6GiB, recomputation continued within the same run; no OOM occurred, and no strategy episode was restarted.
+
+Target selection has not improved; the only newly added full success comes from scenario 0, initial state 0, with the condition specifying the original priority soup can, where both methods initially select the soup can. The benefit manifests as avoiding subsequent movement of another object under this condition, which cannot be interpreted as understanding the reverse goal. This phase concludes here without expanding the search scale. If subsequent validation of the visual goal interface is required, it must distinguish between upper-bound experiments with correct target boxes and real visual predicted boxes, and cannot assume that an untrained \(\pi\)0.5 can understand the newly added labels. All results are retained and not overwritten by the previous phase's delivery.
+
+\begin{Verbatim}[breaklines=true,breakanywhere=true,fontsize=\footnotesize]
+cag_reproduction/
+  scripts/mixing.py, cag_policy.py dual-branch and formula
+  scripts/run.py                   Model control check, 16 development rounds
+  scripts/summarize.py              Input and Action Verification
+  tests/test_mixing.py              5 CPU tests
+  PROTOCOL.json, CONTROL_CHECK.json
+  SUMMARY.json, PHYSICS_AUDIT.json
+  development/base/, cag15/         original episodes, actions, inputs, and videos
+\end{Verbatim}
+
+The related code is located in the above scripts directory. The source code package includes the source code, statistics, and calling dependencies for this stage; it does not include the base, all trajectories, or images. Full GPU reproduction still requires the original environment and LIBERO assets. CPU testing after source code extraction only uses synthetic arrays. The weights have not changed, so no new adapter files were added in this stage.
+
+
+\subsection{Publicly Runnable Instances and Target Graph Interface}\label{s14-detail-12}
+
+\subsubsection{Complete Running Example of the Official Open-Source Solution}\label{s14-detail-13}
+
+Using the openpi framework, pi05\_libero weights, and accompanying LIBERO environment publicly released by Physical Intelligence. Not merely running model import or offline prediction, but a continuous closed-loop: ``new camera image and original task instruction \(\rightarrow\) action block \(\rightarrow\) Panda's OSC controller \(\rightarrow\) new image''. Predict 10 steps each time, execute the first 5 steps, then acquire a new image. No Qwen, scripted teacher actions, trajectory replay, or object teleportation as alternative strategies. The official success signal is used only for termination and scoring.
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.3103}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2299}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2299}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2299}}@{}}
+\caption{Complete running example of the officially open-source solution: Setup and Results}\label{tab:s14-6}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Original task
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Initial state
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Results
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Control the number of steps
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Original task
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Initial state
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Results
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Control the number of steps
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Canister and ketchup into basket & 32 & Success & 349 \\
+Canister and ketchup into basket & 33 & Success & 313 \\
+Cheese and butter into basket & 32 & Success & 249 \\
+Cheese and butter into basket & 33 & Success & 339 \\
+Place cup into microwave and close door & 32 & Success & 242 \\
+Place cup into microwave and close door & 33 & Success & 243 \\
+\end{longtable}\endgroup
+
+\stagefigure{figures/ch05/s14_official_instances_d32be2d2.png}{This instance of three autonomous tasks}{fig:s14-detail-6}
+
+These 6 new episodes are saved independently and not mixed into the previous 117/120 performance. The original basket task required moving both items, while the new task in the next section requires moving only the specified item, leaving the other untouched; the two sets of tasks and initial states differ, so the 6/6 result cannot be directly compared with the subsequent 2/8. Their purpose is to provide complete instances that can be viewed, restarted, and verified, and they cannot be used to claim that any modified task can be completed. The model still uses the official weights, and the reproduced results are not considered self-trained outcomes. Relevant code is located in \path|official_instance/scripts/run.py| and \texttt{start.sh}.
+
+\subsubsection{Explicit Goal Interface and Data Design}\label{s14-detail-14}
+
+Following the idea of Point-VLA: retain the current agent view and wrist image, and additionally provide an initial reference image marking the target. Use this image in the originally unused third image slot, and explicitly enable the mask; in text mode, keep the mask disabled. In visual mode, use a fixed instruction without object names, with the target indicated by a red box; in text mode, use the object name. The reference image remains fixed throughout the episode and is not updated from ground truth during the process.
+
+The target boxes in this stage are from simulation segmentation and represent an upper limit test under precise localization conditions. They do not equate to achieving Qwen target localization, nor do they equate to fully reproducing the official Point-VLA code or weights. Both the current image and reference image are 224-pixel inputs, with the base and visual encoder frozen, and only the LoRA adapters for the language and action experts are fine-tuned.
+
+\stagefigure{figures/ch05/s14_goal_interface.png}{Different goals and positions in the same scene}{fig:s14-detail-7}
+
+To reduce the association of "background/location determines target", two targets within the same layout are added, and the XY positions of the two objects are swapped at initialization. The swap only occurs before the policy begins, and object positions are not altered during control. New training initial states: 36--39, validation: 40; old training: 20--25, validation: 26--27 are retained. If any candidate target fails the requirement of stable placement and the other object's full displacement does not exceed 30 mm, the entire pair is excluded from training. Ultimately, 22 training layout pairs and 7 validation layout pairs are selected, with 44 and 14 trajectories respectively.
+
+The script teacher generates actions using object ground truth, solely for data synthesis and not counted toward VLA success rate. Initial state 41 was not involved in data generation or model selection during this stage, while 42 remains retained. Whether the public base has encountered similar training layouts cannot be excluded by this experiment; therefore, here we only refer to the retained initial states from this stage's fine-tuning.
+
+The relevant code is located in \path|point_target/scripts/layout.py|, \texttt{prepare.py}, and \path|goal_inputs.py|. The Point-VLA method originates from: https://arxiv.org/abs/2512.18933; the data design references the Shortcut Learning study: https://proceedings.mlr.press/v305/xing25a.html.
+
+\subsubsection{Bounded Joint Adaptation and Held-Out Initial State Testing}\label{s14-detail-15}
+
+1000 steps, batch size 2, starting from the original base and zero-B LoRA, without carrying over the adapter from the previous training round. Only 49,987,584 LoRA parameters are trainable, with main parameters in FP32. Text/object image batch exact 1:1; tasks and layouts uniformly sampled, with each batch pairing two target types, 40\% sampling from shared-observation target branching points, the rest sampled by action phase. New translation moves both reference image and bounding box together; official training's original current camera cropping, rotation, and color augmentation are retained.
+
+The average flow matching loss on fixed validation samples decreased from 0.036058 to 0.002871, and step 1000 was selected. There was no basis to change weights or add further training based on test results.
+
+\stagefigure{figures/ch05/s14_validation_03dca31b.png}{Fixed validation loss}{fig:s14-detail-8}
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2964}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2345}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2345}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2345}}@{}}
+\caption{Bounded Joint Adaptation and Held-out Initial State Testing: Setup and Results}\label{tab:s14-7}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Policy/Input
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+First correct selection
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+legal completion window
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Complete single-object transfer
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Policy/Input
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+First correct selection
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+legal completion window
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Complete single-object transfer
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Original weights · text & 4/8 & 3/8 & 2/8 \\
+Adapted weights · Text & 4/8 & 4/8 & 2/8 \\
+Adapted weights · Target graph & 1/8 & 1/8 & 0/8 \\
+\end{longtable}\endgroup
+
+\stagefigure{figures/ch05/s14_results_8f7ac150.png}{Closed-loop results}{fig:s14-detail-9}
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2847}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3541}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3612}}@{}}
+\caption{Bounded Joint Adaptation and Held-out Initial State Testing: Setup and Results}\label{tab:s14-8}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Input mode
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Original position: selected/correct
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Swap positions: select correct / successful
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Input mode
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Original position: selected/correct
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Swap positions: select correct / successful
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Base & 2/4 · 1/4 & 2/4 · 1/4 \\
+text & 1/4 · 0/4 & 3/4 · 2/4 \\
+goal & 1/4 · 0/4 & 0/4 · 0/4 \\
+\end{longtable}\endgroup
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2176}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1781}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1781}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1853}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2409}}@{}}
+\caption{Bounded Joint Adaptation and Held-out Initial State Testing: Setup and Results}\label{tab:s14-9}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Specified target/layout
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Original weights first
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Take the text first
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Take the target map first
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Complete success: original / text / image
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Specified target/layout
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Original weights first
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Take the text first
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Take the target map first
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Complete success: original / text / image
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Soup Pot / In-place & Soup Pot & Not explicitly lifted & Not explicitly lifted & Failed/Failed/Failed \\
+ketchup / in-place & not explicitly lifted & not explicitly lifted & not explicitly lifted & failed/failed/failed \\
+Soup Pot / Swap & Not Clearly Lifted & Not Clearly Lifted & Not Clearly Lifted & Fail/Fail/Fail \\
+Tomato sauce / swap & not explicitly lifted & tomato sauce & not explicitly lifted & failure/success/failure \\
+Cheese / In-place & Cheese & Cheese & Cheese & Success/Failure/Failure \\
+Butter / In-place & Cheese & Cheese & Cheese & Fail/Fail/Fail \\
+Cheese / Swap & Cheese & Cheese & Not explicitly lifted & Success/Success/Failure \\
+Butter / Swap & Butter & Butter & Not explicitly lifted & Fail/Fail/Fail \\
+\end{longtable}\endgroup
+
+The first requirement is to select correctly such that the gripper contacts, closes, and lifts the object by 20 mm for 3 consecutive steps; a legal window indicates that the requirement was ever met during the process, but does not guarantee sustained fulfillment. Complete success requires that, in the final 10 steps, the target remains stably in the basket and separates from the gripper, while the other object's total displacement does not exceed 30 mm. Each episode consists of 300 policy steps and 25 hold steps, without early termination using ground truth. The initial states and sampling noise are consistent across all three modes for each condition.
+
+Adapting text and target images to use the same weight, therefore they are input-mode counterparts and cannot be separately isolated to evaluate the contributions of data augmentation, position swapping, or joint training. Only swapping the initial reference image's red bounding box with the same observation probe results in a median action difference RMS of 0.012440, indicating that the input affects prediction; whether the correct choice is made must be evaluated based on the closed-loop results above, not by action value changes alone.
+
+The goal-image mode degenerates on this held-out initial state, with first correct selection at only 1/8 and complete success at 0/8, underperforming the text-only mode with same weight. This adaptation is not yet usable; no additional training or expansion of initial states is added in this phase to seek positive results; this also cannot be used to refute the original paper's method. The official original task instances are still run successfully independently.
+
+The relevant code is in \path|point_target/scripts/train.py|, \path|policy_runtime.py|, \texttt{evaluate.py}, and \texttt{summarize.py}.
+
+\subsubsection{Verification, Boundaries, and Follow-up Arrangements}\label{s14-detail-16}
+
+The text branch transformation is identical to the original plan, with the target image only adding the third image and mask. The original camera, state, and red-boxed task tokens have been verified. The target box is validated through segmentation and RGB directional pre-checking, with illustrations saved; there is a minor time difference between cached images and real-time rendering, and directional checks and target visibility are verified separately, without using flipped boxes for training.
+
+For 40 new candidate teacher demonstrations, including rejected candidates, 13194 simulation states were independently recomputed, with all final acceptance labels reproduced. For 24 policy tests, 7800 states were recomputed and all final scores matched. Inputs, predicted actions, and applied actions are retained for 1440 actual policy queries and 8 additional box-swap probes. The 6 official-policy episodes were also checked for agreement between applied actions and predicted action chunks, with the official final-step success predicate true.
+
+All model tasks run individually within an isolated user service, with soft 14GiB and hard 16GiB limits, continuing to use chunked loading; CPU data and recomputation are limited to 4/6GiB. No modifications were made to the system Python, Swap, ROS2, or connections to physical devices.
+
+If explicit interfaces yield stable gains, then connect visual prediction boxes and separately report performance of accurate boxes versus predicted boxes; if no gains are observed, first align image conditions with actions, and do not continue claiming skill improvement based solely on validation loss reduction. For SO101 real robot tasks, data adaptation for the corresponding robot and camera is required; in this phase, Panda simulation weights will not be directly applied to the real robot.
+
+
+\subsection{Post-deployment verification: The interpretation of old adaptation scores must retain conditions}\label{s14-detail-17}
+
+During subsequent checks of weight merging for the target graph branch, it was found that the low-rank increment of the attention output layer cannot be directly added via naive per-head matrix multiplication. The semantics of the original operator's two summations must remain consistent with the unmerged execution. In fixed 32-bit floating-point operator checks, the naive implementation showed a maximum difference of approximately 16.6893, while correcting according to the original operator's semantics reduced this to approximately \(1.91\times10^{-6}\); this is a local operator test, not a task success rate.
+
+On six sets of saved actual inputs under the same adapter, read the outputs from the old deployment, the native unmerged reference, and the corrected merged output, yielding the table below. The values were recalculated from existing arrays and were not run on the new model when writing the report.
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3043}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3455}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3502}}@{}}
+\caption{Post-deployment verification: The interpretation of the old adaptation score requires retention of the condition: setting versus result}\label{tab:s14-10}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Input ID
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Old deployment relative to maximum action difference before merge
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Correct and merge the relative unmerged maximum action difference
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Input ID
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Old deployment relative to maximum action difference before merge
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Correct and merge the relative unmerged maximum action difference
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+0 & 0.03208 & 0.00195 \\
+1 & 0.60550 & 0.00366 \\
+2 & 0.58115 & 0.01035 \\
+3 & 0.37429 & 0.00447 \\
+4 & 0.42658 & 0.01144 \\
+5 & 0.19806 & 0.00275 \\
+\end{longtable}\endgroup
+
+The action difference uses interface output units, and the seven-dimensional action contains different physical quantities, so it cannot be uniformly interpreted as angular error. Correction and merging still exhibit BF16 numerical differences; the closed-loop re-measurement without native adapter merging has not been completed, and no new training has been performed.
+
+Therefore, the aforementioned goal image and text alignment scores should be annotated as results obtained under the deployment implementation at that time and cannot be used alone to refute the training method or paper approach. It has been confirmed that the goal image branch was affected by the merged implementation; other shared paths should also be checked item by item; official base models without adapters are unaffected by this issue. The current system in the same scenario uses unadapted \(\pi\)0.5, and the Qwen adapter is loaded directly via PEFT, and is also unaffected by this old JAX merge issue.
+
+
+\subsection{Explicit Target Instance Runtime Entry Point}\label{s14-detail-18}
+
+\subsubsection{File Directory and Startup Method}\label{s14-detail-19}
+
+\begin{Verbatim}[breaklines=true,breakanywhere=true,fontsize=\footnotesize]
+official_instance/
+  index.html, start.sh, python_model.sh
+  scripts/run.py, build_page.py
+  runs/fresh_original/             6 original task inputs, actions, and videos
+point_target/
+  scripts/layout.py, prepare.py, goal_inputs.py
+  scripts/train.py, policy_runtime.py, evaluate.py
+  training/                       incremental weights, training and validation records
+  evaluation/base|text|goal/       24 policy tests
+  SUMMARY.json, PHYSICS_AUDIT.json
+\end{Verbatim}
+
+Local instance page: http://127.0.0.1:8793. Re-run single task (using new tag):
+
+\begin{Verbatim}[breaklines=true,breakanywhere=true,fontsize=\footnotesize]
+bash experiments/vla_libero/official_instance/start.sh --tag my_demo --tasks 9 --initials 32
+\end{Verbatim}
+
+The ``Autonomous Task Demonstration/index.html'' delivered can be opened directly to view the 6 recordings of this run. The source code ZIP does not include the base, complete environment, training trajectories, or all frames; full GPU operation requires the publicly available assets listed in the README; the incremental adapter is provided separately and cannot run as a complete model independently. CPU image testing uses synthetic inputs and does not depend on hidden case files. Relevant code directories retain their original hierarchy for inspection.
+
+
+\paragraph{Stage Conclusion} The CAG development iteration did not improve initial target selection; the explicit target graph version achieved only 1/8 correct first selections on held-out initial states. Meanwhile, the official original task instances had 6/6 successful iterations. The local reference implementation and data scale differ from the original paper, so negative results cannot be interpreted as refuting the paper's method. Official task reproduction and custom target capability are separately reported.
+
+\stagecode{s14}
+
+\FloatBarrier
+
+\section{Navigation and Manipulation in the Same Physical Scene}
+
+\label{stage:s15}
+
+Add a planar mobile base to the LIBERO kitchen scene, allowing the Panda robot, workbench, objects, camera, and obstacles to share the same MuJoCo instance. After Nav2 navigation docking, deploy the robotic arm via control, followed by \pifive{} operation.
+
+\subsection{Already Completed}\label{s15-detail-1}
+
+\begin{itemize}
+\tightlist
+\item
+  Query and compare the implementations, maintenance information, and licenses of robosuite, ManiSkill, RoboCasa, and the official mujoco\_ros2\_control; record in research/SELECTION.md. The upstream Omron XML and MIT license text for robosuite are preserved in third\_party/ as fixed commits, not as unattributed copies.
+\item
+  Add mobile bases to appropriate kitchen countertops; Panda, table, objects, camera, and obstacles share the same MuJoCo instance. The fixed table mounting method in the living room scene causes penetration, explicitly rejecting direct extension.
+\item
+  The base uses three planar joints and limited-force velocity actuators, following the official robosuite design; replaces the original Rethink fixed mount without moving it together. Does not include differential wheels, inline skates, or suspension dynamics.
+\item
+  Nav2 operates with a known map, ideal simulated poses, and actual MuJoCo raycasts; not SLAM/AMCL. Low-level raycasts and high-level point clouds respectively cover ground obstacles and tabletop overhangs.
+\item
+  Development round results/nav05 completed Nav2 docking, arm extension, \(\pi\)0.5 grasping the bowl and placing it in the bottom drawer, then closing it. The scene was not reset after navigation; navigation error was approximately 1.64 cm, with 317 steps for operations.
+\end{itemize}
+
+Latest results: After locally loading the official tf2/tf2\_ros 0.25.24 library, initial states 0/1/2 all successfully completed navigation and manipulation in the same scenario (3/3 development regression); individual case verification of actual images, model actions, continuous time, grasping and releasing, and video playback passed. See PROGRESS.md and results/regression\_summary.json. Previous timeouts, collisions, and clock synchronization issues are retained; replacing the clock is not treated as a separate fix.
+
+\subsection{Key Corrections}\label{s15-detail-2}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Directly adding a base to the original desktop installation will cause collision penetration with furniture; do not resolve this by disabling collisions.
+\item
+  The original kitchen Panda model includes approximately 274kg of fixed Rethink fixtures; mobile extensions must truly replace this fixture and synchronize with robosuite metadata.
+\item
+  Only low-positioned lasers will miss tabletop overhangs; high-positioned obstacles must also be incorporated into the local point cloud and map.
+\item
+  The initial TF for navigation must include map\(\rightarrow\)odom\(\rightarrow\)base\_footprint\(\rightarrow\)base\_link; isolate the ROS communication domain and simulation clock per episode to avoid cross-episode mixing.
+\item
+  Parking brake provides limited friction; during operation, do not modify qpos or fix objects; do not fake closed-loop behavior using trajectory replay.
+\end{enumerate}
+
+
+\subsection{Development Regression for Three Initial States}\label{s15-detail-3}
+
+In this phase, priority is given to unifying the physical scene without connecting real hardware devices. For the fixed kitchen task "put the black bowl into the bottom drawer and close it," navigation, robotic arm, camera, table, and objects are all advanced by the same MuJoCo instance. The scene is not reset after navigation, and \(\pi\)0.5 reads real-time RGB and robot state to generate actions.
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}@{}}
+\caption{Development regression for three initial states: setup and results}\label{tab:s15-1}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Initial state
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Nav2 has arrived
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Operation completed
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Docking error
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+\(\pi\)0.5 action steps
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Initial state
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Nav2 has arrived
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Operation completed
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Docking error
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+\(\pi\)0.5 action steps
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+0 & Success & Success & 1.65cm & 308 \\
+1 & Success & Success & 1.50cm & 318 \\
+2 & Success & Success & 1.42cm & 223 \\
+\end{longtable}\endgroup
+
+Three cases were all verified for actual grasping, object lifting, and final release; the action sequence matches the model output, inference images are continuously updated, video is fully decoded, and navigation collision stop events are 0. This is merely a development regression for three initial states of the same task and does not represent multi-task or real-world success rate.
+
+The main issues encountered include residual original fixed brackets, desktop overhangs leaking into the costmap, and the known MessageFilter deadlock symptoms in this machine's tf2 0.25.23. After reviewing the official upstream issues and release package information, I unpacked version 0.25.24 in the project directory and set only the library search path for the experimental subprocess; system packages were not modified. The fixed library loading path has been verified within the process maps. Old failed rounds and clock comparisons are retained; it cannot be claimed that merely changing the clock has identified or fixed the root cause.
+
+Reference: https://github.com/ros2/geometry2/issues/992. Since GDB stack traces were not collected on this machine, the term ``specific lock ring'' is interpreted consistently with upstream, rather than independently proven. The current fix retains dynamic sensor fusion and does not treat disabling collision or switching to trajectory replay as solutions.
+
+Not yet completed: visual affordance model, Qwen decomposition LoRA, and their formal closed-loop integration. Visual affordance has only been verified on 6-view annotations of 18 real handle components, without training or independent evaluation. Localization still relies on known maps/ideal simulated odometry, with base approximated as a limited-force plane; no conclusions on SLAM, AMCL, inline skating, mobile base hardware, or multi-workstation generalization.
+
+
+\stagefigure{figures/ch05/s15_mobile_scene.jpg}{A mobile manipulator and kitchen countertop in the same MuJoCo world. This figure is from the development round nav05.}{fig:s15-retained}
+
+\paragraph{Stage Conclusion} After correcting the support frame collision, obstacle perception, and coordinate transformation, the three initial development states completed navigation and manipulation. The task scene was not regenerated after navigation. The base is modeled as a finite-force planar velocity approximation; localization uses simulated pose and known map; real wheel-ground slip, mapping, and localization errors are not included.
+
+\stagecode{s15}
+
+\stagevideo{videos/ch05/mobile_navigation_operation.mp4}
+
+\FloatBarrier
+
+\section{Qwen Task Admission and Memory Milestone Monitoring}
+
+\label{stage:s16}
+
+Integrate Qwen into the same scene pipeline to handle acceptance or rejection of requests, site and skill matching, and stage checks with textual memory.
+
+\subsection{Scope and System Implementation of This Phase}\label{s16-detail-1}
+
+The execution pipeline is: user instruction and scene image \(\rightarrow\) Qwen selects a station/skill or rejects \(\rightarrow\) Nav2 docks \(\rightarrow\) \(\pi\)0.5 executes the English skill command \(\rightarrow\) Qwen performs visual inspection and stops. The station is only kitchen\_counter, and the verified skills are only bowl\_to\_bottom\_drawer\_and\_close; therefore, the high-level capability should be termed task eligibility and single-skill matching, not multi-skill long-range planning.
+
+The system reuses the scene and navigation programs from mobile\_vla via independent subclasses; no modifications were made to existing mobile\_vla or vla\_libero code or historical results. Navigation and manipulation share the same MuJoCo world and objects; after docking, the robotic arm is deployed via control without regenerating the grasping scene. The chassis employs planar velocity control with finite actuation approximations, and navigation uses simulated poses; it does not yet include real-world tire-ground slip, SLAM, or AMCL localization errors.
+
+The Qwen3-VL-4B base model processes tasks and stop judgments within an independent PyTorch worker; \(\pi\)0.5 uses publicly available pi05\_libero weights and chunked loading, and does not include the strategy adapter trained in this project. Qwen starts prior to JAX, and per round, memory is limited by a systemd user unit (MemoryHigh 16G, MemoryMax 18G, OOMPolicy=stop).
+
+Official LIBERO predicates are used solely to record whether the task is truly successful and to score after stopping, without driving visual stopping. Reaching 520 policy-controlled steps is a unified fallback rule. Task rejection does not initiate navigation or policy execution.
+
+The relevant code is located in scripts/skills.py, scripts/qwen\_worker.py, scripts/sim\_server\_qwen.py, and scripts/run\_case\_qwen.py.
+
+\subsection{Three Versions of Visual Stop Results}\label{s16-detail-2}
+
+Initially, a direct comparison was made between the operation start frame and the current frame to judge the entire condition ``the bowl is inside the drawer and the door is closed''. All five feasible requests completed navigation and the task, but none of the 110 checks confirmed completion, with 60 occurring after the official success. After the drawer is closed, the bowl becomes invisible, and the robotic arm obstructs the view, making it difficult to verify the full task in a single judgment.
+
+Then it was changed to ordered milestones: first confirm that the bowl is inside the drawer, record the fact as textual memory, then judge whether the drawer is closed. Each time, only one 512-pixel agentview image is observed, requiring description before judgment, identifying the white two-fingered object as the gripper. The first online version still exhibited misstops and missed stops. The second version adjusted the question about the bowl to avoid listing answers leading to copying, and increased the confirmation of drawer closure to three consecutive times; bowl-in-drawer confirmation remains once.
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.2176}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1722}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1525}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1525}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1525}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1525}}@{}}
+\caption{Three versions of visual stop: settings and results}\label{tab:s16-1}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Version
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Initial online state
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Official task success
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Correct autonomous stop
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Misstop
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Succeeded but did not stop autonomously
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Version
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Initial online state
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Official task success
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Correct autonomous stop
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Misstop
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Succeeded but did not stop autonomously
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Task start/current frame judgment & 0--2, including two rewritten versions containing initial state 0 & 5/5 & 0/5 & 0 & 5 \\
+First text-memory milestone monitor & 3--7 & 4/5 & 3/5 & 1 & 1 \\
+Second text-memory milestone monitor & 8--12 & 4/5 & 4/5 & 0 & 0 \\
+\end{longtable}\endgroup
+
+In the second version, another task failure episode reached the upper limit, and Qwen did not falsely report completion. Therefore, "stop decision 5/5 correct" includes four correct stops after successes and one correct non-stop after failure, which does not equal 5/5 task success.
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2294}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2294}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2294}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.3119}}@{}}
+\caption{Three versions of visual stop: settings and results}\label{tab:s16-2}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Initial state
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+First official successful step
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Stop step
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Stop result
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Initial state
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+First official successful step
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Stop step
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Stop result
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+8 & 223 & 250 & Correctly stopped, 27 steps late \\
+9 & 267 & 290 & Correctly stopped, 23 steps late \\
+10 & None & 520 & Operation failed, no unintended stop \\
+11 & 227 & 250 & Correctly stopped, 23 steps late \\
+12 & 302 & 320 & Correct stop, 18 steps late \\
+\end{longtable}\endgroup
+
+Here, "step" refers to the simulation control step at which the policy action is applied, not milliseconds, and does not include wall-clock time during Qwen's inference waiting. The three versions use different initial states and simultaneously adjust the question phrasing and confirmation count, so they cannot be considered strictly paired ablations, and the improvement cannot be attributed solely to the three consecutive votes.
+
+Drawers nearly closed but differing by 1--2 cm have previously caused false stops; the latest five iterations do not cover similar boundary cases, so the false stops in this batch cannot be used to infer millimeter-level state recognition. The historical prompt mentions a "dark cabinet" inconsistent with the white cabinet body; during this phase, the original text is retained to correspond with historical results; any rewriting requires separate online validation.
+
+The relevant code is in scripts/milestones.py and scripts/skills.py; the original episodes are in \path|results/ms_zh_i03| to i07, \path|results/ms2_zh_i08| to i12. Complete early results are in RESULTS.md.
+
+
+\paragraph{Stage Conclusion} Task decision correct in 7/7; stop decisions in the latter rounds correct in 5/5, with actual task success in 4/5. Failed rounds were not falsely reported as completed. Only one kitchen station and one skill were validated, which should be termed task admission with single-skill matching. The current base model has not undergone specialized fine-tuning for instruction decomposition.
+
+\stagecode{s16}
+
+\stagevideo{videos/ch05/milestone_monitor_example.mp4}
+
+\FloatBarrier

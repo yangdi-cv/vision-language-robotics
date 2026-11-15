@@ -26,3 +26,8 @@
 | 7 | S22 | [2B适配与PC、Jetson精度对照](../reports/alibaba_engineering/code_index/ch07/s22.md) |
 | 7 | S23 | [Jetson视觉服务与PC仿真联调](../reports/alibaba_engineering/code_index/ch07/s23.md) |
 | 7 | S24 | [端侧时延、资源与算子剖析](../reports/alibaba_engineering/code_index/ch07/s24.md) |
+
+
+## English report
+
+The [complete English engineering report](../reports/alibaba_engineering/english/build/main_en.pdf) uses the same chapter structure and code paths. [LaTeX sources and build instructions](../reports/alibaba_engineering/english/README.md) are included.

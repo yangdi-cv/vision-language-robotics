@@ -1,0 +1,41 @@
+\chapter{Terminology and Acronyms}
+\begin{longtable}{p{.18\linewidth}p{.72\linewidth}}
+\toprule Name & Meaning in this report \\\midrule\endhead
+VLM & Vision-Language Model (Vision-Language Model), receives images and text, typically outputs text or location descriptions.\\
+VLA & Vision-Language-Action Model, mapping vision, language, and robot state to action.\\
+ACT & Action Chunking with Transformers, predicting a sequence of actions at once.\\
+LoRA & Low-Rank Adaptation, adapting existing models by training fewer additional parameters.\\
+RGB-D & Combination of color images and depth maps. Simulated ground-truth depth and real sensor depth are respectively indicated.\\
+BF16 & 16-bit Brain Floating Point (Brain Floating Point 16), a 16-bit floating-point representation.\\
+NF4 & 4-bit normalized quantization format (NormalFloat 4), used to reduce model weight storage.\\
+ROS2 & The second generation of the Robot Operating System, providing node communication, coordinate transformations, and tools.\\
+Nav2 & ROS2 navigation framework, responsible for path planning, local obstacle avoidance, and goal reaching.\\
+MoveIt & robotic arm motion planning framework, calling inverse kinematics, collision checking, and trajectory execution interfaces.\\
+MuJoCo & physics simulator for robotic dynamics and contact processes.\\
+LIBERO & A public benchmark for learning and evaluating language-conditioned robotic manipulation.\\
+affordance & a location or region in a scene suitable for performing a certain type of action, such as a handle that can be grasped.\\
+Closed-loop & re-read observations and states after execution, then decide the next step based on that.\\
+P50 / P95 & The 50th and 95th percentiles. These are used to describe the latency distribution and must be accompanied by the sample size.\\
+Swap space & fallback space used when memory is insufficient. Loading phase and stable inference phase are recorded separately.\\
+Shadow-only logging & only record real states for post-hoc evaluation, do not use it to drive model decisions or stop.\\
+IoU & Intersection over Union: The ratio of the intersection area between the predicted region and the reference region to the union area.\\
+Strict / Neighborhood Hit & Whether the operation point falls within the target mask; neighborhood hit allows distance to mask boundary not exceeding 4 pixels.\\
+MAE / L1 & Mean Absolute Error; must specify concrete units such as actions, pixels, meters, or degrees.\\
+FP16 / FP32 / INT8 & 16-bit floating point, 32-bit floating point, and 8-bit integer representations; quantization ranges are noted in the experiments.\\
+KV Cache & Key-Value Cache, reusing intermediate states of already generated text to reduce redundant computation.\\
+EOS & End-of-sequence token; a missing token or incomplete structure may indicate truncation by the generation-length limit.\\
+TF & Coordinate Transformation System, maintains the coordinate relationships between the camera, robotic arm, and the world.\\
+URDF & Unified Robot Description Format, describing links, joints, geometry, and inertia.\\
+KDL / OMPL & Kinematics and Sampling-based Motion Planning Tools, called via the MoveIt interface.\\
+PD control & proportional-derivative feedback control, generating control inputs based on position and velocity errors.\\
+motion capture-driven & setting the end-effector reference directly via the simulator's motion capture target, which is more ideal than real joint torque control.\\
+JIT & Just-in-time compilation; the first call includes compilation overhead, measured separately from inference after warm-up.\\
+CUDA / CUPTI & NVIDIA GPU Computing Platform and its Performance Sampling Interface.\\
+RSS / cgroup & resident memory of processes and Linux process group resource limits; not simply additive with shared GPU memory.\\
+JSON / JSONL & structured text formats; JSONL saves records line by line, facilitating recovery after interruption.\\
+SHA256 & File content digest, used to verify consistency of inputs, weights, and assets.\\
+McNemar test & a statistical test for paired binary outcomes; significance cannot be judged solely by the difference in success counts in small samples.\\
+Wilson interval & one way of estimating the binomial proportion confidence interval, reflecting uncertainty under finite samples.\\
+Action block & Predicting multi-step actions at once; executing some steps and then re-observing and reasoning again.\\
+Low-rank adaptation & incrementally merging adapters into base weights; must verify tensor axis order and output not merged with reference.\\
+\bottomrule\end{longtable}

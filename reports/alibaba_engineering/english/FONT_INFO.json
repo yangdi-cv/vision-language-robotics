@@ -1,0 +1,22 @@
+{
+  "text_family": "Times New Roman",
+  "headings_and_code_family": "Times New Roman",
+  "math_family": "Times-compatible newtxmath",
+  "embedded_pdf_fonts": [
+    "TimesNewRomanPS-BoldMT",
+    "TimesNewRomanPSMT",
+    "FandolSong-Regular-Identity-H",
+    "NewTXMI",
+    "txsys",
+    "NewTXMI7",
+    "LMRoman10-Regular",
+    "LMRoman8-Regular",
+    "txmiaX",
+    "NewTXBMI",
+    "txexs",
+    "TimesNewRomanPS-ItalicMT"
+  ],
+  "regular_and_bold_times_embedded": true,
+  "font_files_in_repository": false,
+  "font_installer_sha256_verified_against_ubuntu_package": "db56595ec6ef5d3de5c24994f001f03b2a13e37cee27bc25c58f6f43e8f807ab"
+}

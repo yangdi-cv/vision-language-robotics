@@ -1,0 +1,557 @@
+\chapter{Prototype and Initial Baselines}
+The training and data interface in this chapter refer to the LeRobot project \cite{lerobot}, and the Qwen model loading follows the official implementation \cite{qwen}.
+
+
+The foundational platform first addresses whether the data and action interfaces are trustworthy, then discusses whether the model outputs are meaningful. The first-round Qwen adaptation, action chunk training, and cross-simulator workflow are all retained under their respective conditions.
+
+\section{SO101 Base Platform and Teaching Tools}
+
+\label{stage:s01}
+
+First, establish a connection between the computer and the master-slave robotic arm, completing serial port identification, calibration, teleoperation, and teaching playback. During teaching, simultaneously save images, joint states, and sent actions; playback is used to verify the consistency between recording and execution interface.
+
+\subsection{Hardware, Environment, and Reproducible Initialization}\label{s01-detail-1}
+
+The earliest software validation was based on Ubuntu 22.04 and RTX 4090 workstations. The LeRobot 0.3.4 engineering build is preserved, with the packaging script used to isolate the ROS2 Python search path. The environment is named hiwonder-so101; the environment was previously migrated with an old directory, and some entry points still reference the old absolute paths, so explicit interpreter paths are used, without assuming that standard conda or pip entries will work.
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.3305}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.6695}}@{}}
+\caption{Hardware, Environment, and Reproducible Startup: Setup and Results}\label{tab:s01-1}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Project
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Record dated 2026-10-12
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Project
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Record dated 2026-10-12
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Main arm & black SO101, as teleoperation input \\
+From arm & white SO101, execute target joint position \\
+Black arm stable serial port identifier & \path|usb-1a86_USB_Single_Serial_5CE5121669-if00| \\
+White arm stable serial port identifier & \path|usb-1a86_USB_Single_Serial_5CE5122996-if00| \\
+Temporary device IDs & Main arm ttyACM0, Slave arm ttyACM1; may change after reinsertion \\
+Camera & icSpring, 640\(\times\)480; at that time, the image node was video0 \\
+Code and Calibration & SO101/code/lerobot; SO101/calibration/ \\
+\end{longtable}\endgroup
+
+The serial port roles are identified one by one and a stable identifier is used to initiate; device numbers are not permanently mapped. After read-only verification of the master-slave arm motor calibration values against the saved file, on-site operation confirms remote operation. Here, a baseline for hardware communication and action interface is established.
+
+\subsection{Teaching Record and Playback Interface}\label{s01-detail-2}
+
+The recording tool simultaneously saves images, measured joint states, sent targets, and host timestamps. The actions executed in the recording are the actual sent targets, not substituted by the main arm readings. The camera first checks and records preparation before starting acquisition; if calibration is inconsistent, the recording is canceled. A complete demonstration has been recorded and replayed; subsequent replays also include start-point alignment and segment verification.
+
+At different times, there are three sources of motion: human movement of the main arm generates the target, replaying previously recorded targets via a program, and the model predicts the target based on the current image and state. All three share the serial port and motor interface, but do not share the conclusion of "model autonomously completes." The object transfer process with fixed trajectories was later found to involve collisions with the table, and thus cannot be retained as a collision-free passage case.
+
+\subsection{Image Rotation and Wrist Bias Recorded Separately}\label{s01-detail-3}
+
+The screen rotation alters the displayed view and the pixels seen by the model, while wrist offset changes the target from the arm joint; the two are independent transformations. When the temporary wrist mapping is set to -90 degrees, the original calibration file hash is retained; real teaching records capture the actual actions dispatched, so training and inference cannot re-apply the same offset. The original images for the mouse pad task are recorded with rotation=0 and cannot be inferred solely from the web display direction.
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2269}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3720}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.4011}}@{}}
+\caption{Image rotation and wrist bias recorded separately: setup and results}\label{tab:s01-2}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Information
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+meaning
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Objects that need to remain consistent
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Information
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+meaning
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Objects that need to remain consistent
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Image rotation & transformation from raw sensor pixels to display or model pixels & images, boxes, points, depth, and camera intrinsics \\
+Wrist offset & fixed angular difference in master-slave joint mapping & measured states, sent actions, and normalized statistics \\
+Motor Calibration & Encoder Zero Position and Valid Range & Hardware, Saved Files, and Runtime Configuration \\
+\end{longtable}\endgroup
+
+The encoder increment-to-angle conversion is calculated based on 4096 counts corresponding to one full rotation, i.e., the angular change is approximately the count change multiplied by 360/4096. This conversion describes joint angle increments and does not equal end-effector spatial height or collision clearance.
+
+
+\paragraph{Stage Conclusion} A complete demonstration recording and playback has been completed. Subsequently, due to a change in wrist mounting orientation, a temporary -90 degree mapping was introduced; this mapping must be saved alongside the recorded data. Device identifiers, calibration files, and angular conventions must be saved with each run. Trajectory playback demonstrates that the recording and execution interface is functional and is not counted as autonomous model operation.
+
+\stagecode{s01}
+
+\FloatBarrier
+
+\section{Camera, Scene Understanding, and Observation Workbench}
+
+\label{stage:s02}
+
+Integrate the wrist-mounted camera, Qwen scene description, YOLO object detection, and monocular depth display into the web page. After the model completes one inference, retrieve the new frame at that moment; operators can read the output from the previous round while waiting.
+
+\subsection{Frame Sampling Method for Continuous Observations}\label{s02-detail-1}
+
+The workstation consists of three types of tasks: image acquisition, detection and depth processing, and scene description. The camera continuously updates the latest frame; after Qwen completes one inference, it reads the most recent image to start the next round. While new results are being generated, the interface continues to display the previous result, allowing operators to read it. This design does not queue every frame for the slow model.
+
+Let the moment when the image is read and returned by the host be \(t_r\), the moment when the model is submitted be \(t_s\), and the moment when the output is generated be \(t_o\). Then, the age of the frame at the time of capture is \(t_s - t_r\), and the age of the frame corresponding to the output is \(t_o - t_r\). These timestamps do not include sensor exposure time; even without queuing, slower generation will cause the output to correspond to a frame from several seconds prior.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  The camera thread writes the latest RGB frame and its sequence number.
+\item
+  Fast visual branch processes detection and depth, retaining the serial number used in this stage.
+\item
+  After the text branch becomes idle, take the latest frame, save this frame and the model's response.
+\item
+  The interface should separately indicate processing time and image age to prevent treating old results as current moments.
+\end{enumerate}
+
+\subsection{Observation Interface and Motion Permissions}\label{s02-detail-2}
+
+Early desktop windows were later unified into web pages, preserving original RGB, depth, or detection views, and text scene observations. Structured fields returned by the model are intended for programmatic reading, while the interface can display natural language. Observation results do not automatically translate into motion permissions; in subsequent limited-skill systems, only requests explicitly passing task scope checks will be entered into execution.
+
+When the general detector does not cover specific earphone cases, additional task annotations and dedicated detection models are added. Monocular depth maps can show relative distance, but uncalibrated metric outputs cannot be directly used to constrain the robotic arm's descent. In real-world scenarios, cases have occurred where the observed spatial distance significantly deviated from the predicted distance, so the depth branch is retained as auxiliary observation rather than the sole basis for safety.
+
+\subsection{Shared Functionality and Subsequent Replacement}\label{s02-detail-3}
+
+The web page also included the display of orientation from the inertial measurement unit and showed the boards mounted on the link relative to the initial reference orientation. This feature belongs to the observation infrastructure, and this paper does not expand on experiments related to another robotics control topic. In subsequent VLA web pages, this area was replaced with action model output and state display; however, when the serial port is occupied by the running program, it is necessary to distinguish between real-time joint feedback and historical snapshots, and snapshots cannot be fed into the model and then be called a complete real-time closed loop.
+
+
+\stagefigure{figures/ch02/s02_web_workbench_preview.png}{Early web workbench. The interface shown is preserved from the original to illustrate the composition of the observation functionality.}{fig:s02-retained}
+
+\paragraph{Phase Conclusion} A prototype capable of simultaneously observing video, detection results, and textual descriptions was developed. The interface initially adjusted the viewing direction and depth grayscale, but later converged to a web-based workbench. Monocular depth has not been calibrated to real-world scale and cannot be directly used as a collision avoidance distance. Inertial sensors were only introduced as a shared observation feature; their control experiments are not included in this report.
+
+\stagecode{s02}
+
+\FloatBarrier
+
+\section{First Round Qwen Adaptation and Action Chunking Strategy Training}
+
+\label{stage:s03}
+
+Construct image-and-instruction examples using real demonstration frame sampling, then fine-tune Qwen with low-rank adaptation. On the action side, adopt ACT (Action Chunk Transformer), independently trained and evaluated in simulation using publicly available dual-arm handover data.
+
+\subsection{Qwen Image and Instruction Evaluation}\label{s03-detail-1}
+
+Using the fixed Qwen3-VL-4B-Instruct version, 24 frames are taken from one existing physical SO101 demonstration. Queries refer to a ``dark-blue plastic shell\,``blue earbud protective case, and an absent ``red cup, for 72 queries in total. Outputs describe target visibility and locate/observe subtasks; no joint commands are produced.
+
+The reference labels come from a single automated image review, without using the answers from the tested model as labels, nor undergoing independent manual verification. The 24 frames belong to the same video, exhibiting high correlation; thus, the results can only be termed provisional label matching rate.
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.4967}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5033}}@{}}
+\caption{Qwen Image and Instruction Evaluation: Setup and Results}\label{tab:s03-1}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Metrics
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Results
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Metrics
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Results
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+JSON format valid & 72/72 \\
+Visibility of Object & 66/72 (91.67\%) \\
+Deep blue plastic housing & 23/24; Positive recall 12/13 \\
+blue earphone case & 19/24; positive recall 8/13 \\
+Nonexistent red cup & 24/24 correct rejection \\
+Median / P95 duration & 0.380 / 0.566 seconds \\
+\end{longtable}\endgroup
+
+Constantly answering "invisible" matches 46/72, indicating class distribution skew; one should also consider positive recall. After changing the description, missed detections increase, so one cannot assert stable understanding based solely on a single overall metric. Timing is targeted at short structured responses and does not directly compare with the longer natural language descriptions on the workbench.
+
+\stagefigure{figures/ch02/s03_qwen_instruction_08ff905c.png}{Qwen Evaluation}{fig:s03-detail-1}
+
+\subsection{First-round training of Qwen LoRA}\label{s03-detail-2}
+
+Split by image frames: 48/12/12 training/validation/test cases; different formulations of the same frame are grouped together. Still drawn from the same video, not cross-scenario validation. Freeze the visual module; only apply LoRA to the language self-attention's q\_proj/v\_proj: r=8, alpha=16, dropout=0.05, learning rate 5e-5, 120 updates, gradient accumulation 2, training parameters 2,949,120. Supervise only the answer tokens, retain input prefix for verification.
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3370}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3315}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3315}}@{}}
+\caption{Qwen LoRA First-Stage Training: Settings and Results}\label{tab:s03-2}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Grouping
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Base
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+LoRA
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Grouping
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Base
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+LoRA
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Validation 12 trials & 11/12 & 12/12 \\
+Test 12 trajectories & 11/12 & 11/12 \\
+\end{longtable}\endgroup
+
+The test did not improve; extremely low training loss may reflect memorization and cannot claim generalization improvement. Another abridged prompt reload test exhibited field omission and subtask inconsistency; using the full prompt from the training protocol passed. Both results are retained, indicating the adapter's prompt sensitivity.
+
+\stagefigure{figures/ch02/s03_qwen_lora_comparison_3da6789e.png}{LoRA Comparison}{fig:s03-detail-2}
+
+\subsection{ACT Training and Physical Simulation Evaluation}\label{s03-detail-3}
+
+Using publicly available ALOHA dual-arm block handover demonstration: 50 episodes, 20,000 frames, 50Hz, 480\(\times\)640 RGB, 14-dimensional dual-arm joint/gripper states and actions. Frame counts of images and actions are verified episode by episode, split as 40/5/5 per episode; self-trained normalization statistics are derived solely from the training set, and future action sequences do not span episodes.
+
+Self-trained ACT starts from random policy parameters, with ResNet18 initialized using ImageNet, \textbf{without loading publicly available ACT policy weights}. chunk=100, batch=8, learning rate 1e-4, backbone 1e-5, seed=2026, totaling 5,000 updates, recording training time of 236.3 seconds. Validation and test each use 64 hierarchical samples to evaluate normalized action L1.
+
+\begin{itemize}
+\tightlist
+\item
+  Validation L1: 0.9928 \(\rightarrow\) 0.2844; Best validation 0.2714.
+\item
+  Final model checkpoint test L1: 0.2839.
+\item
+  Offline error reduction does not equate to successful grasping; conduct actual rollouts instead.
+\end{itemize}
+
+\stagefigure{figures/ch02/s03_act_learning_604e4f8c.png}{ACT Curve}{fig:s03-detail-3}
+
+When running the policy in \path|gym_aloha/AlohaTransferCube-v0|, fix seeds 1000--1009, with a maximum of 400 steps per run; a maximum task reward \(\geq\)4 is considered successful cube transfer. Reset the policy action cache each time, input the current RGB and joint state to the model, and save the sequence of actions, rewards, and video.
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2875}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2325}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.4800}}@{}}
+\caption{ACT Training and Real Physical Simulation Evaluation: Setup and Results}\label{tab:s03-3}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Policy Source
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Success
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Description
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Policy Source
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Success
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Description
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Publicly pre-trained ACT & 7/10 (70\%) & External control, trained using all 50 episodes, cannot be considered autonomous training results \\
+Self-trained ACT final weights & 2/10 (20\%) & First-round baseline, still unstable; two failed trials achieved reward 2, but did not complete handover \\
+\end{longtable}\endgroup
+
+The same seed is used for paired comparisons; only 10 samples are available, and no conclusions regarding confidence stability or real hardware transfer are provided. The public policy does not exactly match the self-trained data volume or training configuration here; this serves as a reference comparison rather than a fair ablation.
+
+\stagefigure{figures/ch02/s03_act_rollout_comparison.png}{Success Rate Comparison}{fig:s03-detail-4}
+
+\stagefigure{figures/ch02/s03_rollout_contact_sheet_f2db237e.jpg}{Keyframes from actual simulation}{fig:s03-detail-5}
+
+Save separate latency checks for single trials; do not mix them into the 10-trial success rate statistics. Most calls to \path|select_action| only retrieve cached actions and cannot treat their sub-millisecond median as the full network inference latency; complete chunks are recorded separately in \path|*_act_latency_001/latencies.csv|, with very few samples including cold-starts, and are not used as a stable performance baseline.
+
+\subsection{Finite Hierarchical Chains and Failure Recovery}\label{s03-detail-4}
+
+In this stage, integration explicitly uses \textbf{base Qwen + public ACT}, without treating the first-round LoRA or low-success-rate self-trained ACT as the integrated model. Qwen observes the simulation initial RGB and instruction, selecting only the already implemented skill transfer\_red\_cube or observe; ACT executes and records the result using simulation rewards. This is a single high-level selection with low-level visual feedback execution, and has not yet implemented Qwen's continuous monitoring, automatic retries, or multi-step planning.
+
+Tested 5 red square handover commands and 2 blue ball commands, seeds 1010--1016. The initial model selected the correct skill 5/7 times; both blue ball commands incorrectly selected and executed the red square skill, indicating that relying solely on prompt rejection is unreliable.
+
+Add a limited instruction grammar authorization independent of model output and test labels: only accept explicit red square grasp commands, and reject or do not support target entry into observe. Same use case retesting: the model itself remains 5/7 correct, but effective dispatch achieves 7/7 correct, with blue ball misexecution dropping from 2/2 to 0/2; red square execution success remains 3/5. \textbf{7/7 is the constrained dispatch result, not an improvement in Qwen accuracy.} Instruction grammar coverage is limited and cannot replace general language understanding.
+
+
+\paragraph{Phase Conclusion} The first round of Qwen testing involved 72 combinations of image instructions; ACT established a comparison among self-training, publicly available weights, and actual simulation rounds. Frames extracted from the same video exhibit strong correlation. Early match rates and action round counts should be listed separately in the original report, not merged into a general robot success rate.
+
+\stagecode{s03}
+
+\FloatBarrier
+
+\section{Training Expansion, Depth Localization, and Initial Pipeline Integration}
+
+\label{stage:s04}
+
+Continue training ACT, adding simulated depth, scene segmentation, and Qwen localization adaptation, and test the language part with INT8 (8-bit integer) and key-value caching. Navigation and robotic arm planning have also begun to be integrated into the task pipeline.
+
+\subsection{ACT Additional Training and More Reliable Evaluation}\label{s04-detail-1}
+
+Continuing from weights trained for 5,000 updates, further training for 15,000 updates, totaling 20,000. Using the same publicly available demonstrations, 40/5/5 episode split, training set statistics, chunk100, batch8, learning rate 1e-4/backbone1e-5. \textbf{Optimizer reinitialized, not seamless continuation including optimizer state; no public ACT weights loaded.} This stage took 798.2 seconds, during which other GPU experiments were running concurrently, and thus cannot serve as a pure training throughput benchmark.
+
+The best validation L1 during additional training was 0.2588. Final weights gave validation error 0.2850 and L1 of 0.2909 on 64 sampled test frames. Their offline error did not improve, so the best checkpoint is chosen using the \textbf{validation set}; the final update is not automatically the best model.
+
+\stagefigure{figures/ch02/s04_act_continuation_53e2c29e.png}{Validation curves during continued training}{fig:s04-detail-1}
+
+Using 5 additional hyperparameter seeds 2000--2004, compare performance after re-observation following 10/25/100 actions: success rates of 2/5, 1/5, 4/5 respectively, selecting 100. The selection rule is preset as success count, average highest reward, and if tied, longer action interval. New test seeds 3000--3029 are not involved in selection; here, there is no proof that more frequent updates are necessarily better.
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3103}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3130}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3767}}@{}}
+\caption{ACT Additional Training and More Reliable Evaluation: Settings and Results}\label{tab:s04-1}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Policy
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Same as 30 test seeds successful
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Description
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Policy
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Same as 30 test seeds successful
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Description
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Original self-trained 5k final weights & 8/30 (26.67\%) & Baseline consistent with the previous delivery \\
+Original self-trained 5k best validation weights & 8/30 (26.67\%) & Control group with the same validation selection rule \\
+Added to 20k best validation weights & 16/30 (53.33\%) & Same action interval 100; improved 8 times, still unstable \\
+Publicly pre-trained ACT & 25/30 (83.33\%) & External reference, not self-trained results \\
+\end{longtable}\endgroup
+
+\stagefigure{figures/ch02/s04_act_test30.png}{Results of 30 actual rollouts}{fig:s04-detail-2}
+
+Compared to the best validation model at 5k, 11 seeds changed from failure to success, and 3 changed from success to failure; not all conditions improved. The figure shows the 95\% Wilson interval, and there remains considerable uncertainty after 30 trials. Since public models were trained with different amounts of data and configurations, they cannot be used for fair training ablation. The original 10-trial results and the new 30-trial results used different seeds and are reported separately; the 30-trial results should not be used to rewrite the old data.
+
+Each actual MuJoCo run consists of 400 steps, saving actions, rewards, and videos, with handoff deemed successful if the highest task reward \(\geq\) 4. Offline validation error cannot substitute for these success rates. Multiple seeds only cover the current simulator's block initial position distribution and do not represent generalization to real robots or other tasks.
+
+\subsection{RGB and Depth Evaluation Independent of Individual Real Videos}\label{s04-detail-2}
+
+30 new MuJoCo scenes were generated, seeds 4000--4029; 10 scenes each for red/blue/green blocks, varying block size, position, and camera, generating 120 target instructions and negative instructions. Each scene still contains only one visible block, with background structures largely consistent, not complex real-world scenes.
+
+Label sources are the differential visible pixels from two renderings of the target material (black/white) within the same geometric scene, yielding the true target bounding box; depth comes from the simulator's optical depth rendering, saved in meters. Labels are not generated by the tested Qwen. The first call to dm\_control segmentation rendering resulted in an index error; thus, we switched to paired material differential rendering, explicitly preserving the scheme and generation code.
+
+\stagefigure{figures/ch02/s04_contact_sheet_b6636723.jpg}{Data Example}{fig:s04-detail-3}
+
+Qwen takes RGB input and instruction, outputting target visibility, normalized bounding box, and skill suggestions; the backend uses the median of a 5\(\times\)5 depth block centered on the predicted box. Depth enters the backend target description, \textbf{without being used as additional network input, nor implementing camera-to-arm/map extrinsics}.
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.6047}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.3953}}@{}}
+\caption{RGB and depth evaluation independent of individual real videos: setup and results}\label{tab:s04-2}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Base Qwen metrics
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+120-case results
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Base Qwen metrics
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+120-case results
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+format, target visibility, skill suggestion match & each 120/120 \\
+Positive localization IoU \(\geq\) 0.5 & 58/60 \\
+Average IoU of detected positives & 0.7032 \\
+Center depth mean absolute error & 0.00057m \\
+Negative instruction skill matching & 30/30 \\
+\end{longtable}\endgroup
+
+Depth error is very small, primarily because simulated depth is ideal, blocks are visible, and the center point usually falls on the target surface; it cannot be regarded as real depth accuracy or calibration results. The 120 queries come from 30 images, exhibiting shared image and scene structure correlations, and thus cannot be treated as 120 independent real-world scenes. Skill matching is suggested for interface testing; actual execution still requires more stringent full-task authorization and cannot be performed merely because ``red is graspable.''
+
+\subsection{New LoRA: Scene-Grouped Localization Adaptation}\label{s04-detail-3}
+
+Training/validation/test are split by 18/6/6 scenes, corresponding to 72/24/24 instructions. All phrasings for the same image stay in the same split, without mixing training and test data. Labels come from the simulator-derived difference boxes and explicit skill rules described above, not model self-labeling.
+
+Freeze the visual model; only the language q\_proj/v\_proj uses r8, alpha16, dropout 0.05, learning rate 5e-5, trained for 240 updates, with 2,949,120 trainable parameters. Supervise only the response tokens, ensuring input prefix consistency. After reloading the saved adapter in a separate process, evaluate 48 held-out validation/test cases not involved in training.
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2485}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2308}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2327}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2879}}@{}}
+\caption{New LoRA: Localization Adaptation Grouped by Scenario: Settings and Results}\label{tab:s04-3}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Grouping
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Base-average IoU
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+LoRA average IoU
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Visibility/Skill Alignment
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Grouping
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Base-average IoU
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+LoRA average IoU
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Visibility/Skill Alignment
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Validate 12 positive examples & 0.7281 & 0.8644 & Both sides 24/24 \\
+Test 12 positive examples & 0.7254 & 0.8275 & Both sides 24/24 \\
+\end{longtable}\endgroup
+
+\stagefigure{figures/ch02/s04_lora_localization_5a072d09.png}{Visual Affordance Localization Comparison}{fig:s04-detail-4}
+
+Localization boxes improved on simulated-scene tests in this round; semantic accuracy was already at its ceiling and showed no further gain. The small dataset, single block, shared simulator, and very low training loss leave memorization possible; real-world or cross-simulator generalization is not claimed. This and the preceding single-video LoRA use separate datasets and interfaces. Earlier results are retained and are not replaced by the new tests.
+
+\subsection{Native INT8 vs. KV Cache Actual Comparison}\label{s04-detail-4}
+
+Fixed 40 test cases, same model/prompt/generation limit; after training and other GPU models in this phase, run three groups sequentially; each group loads independently, excluding the first generation from timing percentiles. No multi-round interleaving or repetition was performed, so the numbers represent a single controlled comparison, not stable production latency.
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2452}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1968}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1860}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1860}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1860}}@{}}
+\caption{Native INT8 vs. KV Cache: Settings and Results}\label{tab:s04-4}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Configuration
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+After loading, allocated GPU memory: GiB
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+per-inference latency in seconds
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+P95 seconds
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Goal/Skill Alignment
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Configuration
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+After loading, allocated GPU memory: GiB
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+per-inference latency in seconds
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+P95 seconds
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Goal/Skill Alignment
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+BF16+KV Cache & 8.266 & 0.456 & 0.713 & 40/40 \\
+Language INT8 + KV Cache & 4.891 & 1.920 & 3.082 & 40/40 \\
+BF16 Disable KV Cache & 8.266 & 1.432 & 2.319 & 40/40 \\
+\end{longtable}\endgroup
+
+\stagefigure{figures/ch02/s04_quantization_cache_a85968c4.png}{Quantization and Caching}{fig:s04-detail-5}
+
+INT8 converts 252 language Linear layers; the vision tower and lm\_head remain unquantized. VRAM usage falls by about 40.8\%, but this machine runs about 4.2 times slower. Disabling KV Cache is also substantially slower. The workbench therefore retains BF16 with caching; lower memory use is not treated as acceleration. BF16\(\rightarrow\)FP16 activation conversion during quantized inference is recorded in the logs. \href{https://huggingface.co/docs/transformers/v4.57.0/quantization/bitsandbytes}{Transformers quantization documentation}
+
+The actual mixed-precision quantized weights are approximately 5GB, already saved locally; new processes load directly from this directory and pass singleton checks. It is a \textbf{PC quantized model verified on the 4090}, not a verified Jetson model; cannot infer Orin speed, power consumption, or ARM operator compatibility.
+
+\subsection{Nav2, MoveIt, and Qwen Task Workflow}\label{s04-detail-5}
+
+Nav2 uses actual Gazebo11/TurtleBot3, existing maps, AMCL, and planning/control nodes; both "enter desktop station" and "return" actions are completed. The default position tolerance is approximately 0.25m; action success does not equate to millimeter-level station localization, and odometry records cannot be directly treated as map coordinate errors.
+
+MoveIt2 uses independent domain63 and Panda mock\_components, planning and simulating execution for all 3 valid joint targets; another out-of-bound target failed to find a valid target state, returning error -27 and no execution occurred. Retain actual planned points and mock joint feedback. \textbf{This is a simulated control interface, not including contact physics for grasping}; MoveGroup returns executed\_trajectory as empty, unable to fabricate actual executed trajectories, feedback records are logged separately.
+
+Further validate end-to-end execution:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Current MuJoCo initial RGB
+\item
+  Base Qwen recommendation
+\item
+  Complete task grammar and timing authorization
+\item
+  Nav2 to fixed desk station
+\item
+  Public ACT block handover
+\item
+  Read actual simulation rewards
+\item
+  Nav2 returned
+\end{enumerate}
+
+A successful run saves the original image, Qwen response, authorization, Nav2 action, ACT video/reward, return, and the real simulation rosbag. It uses \textbf{public ACT and known successful seed1003 interface smoke testing}, not the success rate of self-trained models, nor unseen seed generalization tests.
+
+\textbf{The Gazebo chassis and MuJoCo arms reside in separate simulators, with no shared robot model/physical world/extrinsic parameters; MoveIt is another independent planning interface.} The current validation task workflow and module handoff do not qualify as ``a single mobile manipulator completing navigation and grasping in the same scene''. Qwen only provides a single high-level suggestion, without continuous visual state judgment, retry, or autonomous recovery.
+
+\stagefigure{figures/ch02/s04_navigation_trace_2f625cf4.png}{Actual odometry during navigation}{fig:s04-detail-6}
+
+\subsection{Testable Interface, Failure Logs, and Research Drafts}\label{s04-detail-6}
+
+Full process recorded in simulation ROS2 bag, totaling 2364 messages, including odom, scan, cmd\_vel, clock, tf, and tf\_static; SQLite integrity check passed. Can be used for subsequent regression collection/parsing interface rehearsal, source still from simulator.
+
+Task authorization only accepts fully supported handover commands; it does not accept target replacement, negation, additional tasks, only-grasp requests, expired results, or cancellations; if any stage fails, subsequent dispatching is halted. Passing 15 software checks does not count as 15 actual robot robustness experiments.
+
+The first goal was rejected before Nav2 was activated in its lifecycle; the second waited for navigation to become active before AMCL initial localization, forming a startup dependency, ultimately timing out. It has been changed to AMCL active \(\rightarrow\) initialpose \(\rightarrow\) bt\_navigator active \(\rightarrow\) action, and both failure directories are retained. The SIGINT/-2 process in the shutdown log is not a criterion for success or failure of the target stage.
+
+The technical paper draft uses the actual results from this stage, explicitly stating the reproduction scope, sample sizes, and limits of novelty.
+
+The next step should prioritize alignment with scene robots and coordinate systems, complex goals, and independent real-world data, before proceeding with Jetson and enterprise testing; this phase does not treat preparatory work that can be completed offline as unachieved hardware deliverables.
+
+
+\paragraph{Phase Conclusion} Initial integration has been established between Nav2 navigation, MoveIt planning, and ACT execution, along with training records selecting checkpoints based on the validation set. During this period, navigation and grasping operate in different simulated environments, and MoveIt execution utilizes a simulated interface; it is not yet a mobile operation within the same physical world.
+
+\stagecode{s04}
+
+\FloatBarrier

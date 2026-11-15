@@ -7,15 +7,15 @@
   },
   {
     "path": "PROJECT_LOG.md",
-    "bytes": 173704,
-    "sha256": "73e0c4a5b405e239d6e3900cd421e095ebbcde70d8621b1262a581b23eee1280",
+    "bytes": 174560,
+    "sha256": "94f2f83612e88ca8f8633d00692b42fe9cc76b3479d07db003f76a8ae8adcfdf",
     "original_sha256": "73e0c4a5b405e239d6e3900cd421e095ebbcde70d8621b1262a581b23eee1280",
     "changed_for_export": false
   },
   {
     "path": "README.md",
-    "bytes": 4924,
-    "sha256": "2ddb595affe8a49fbb03f0b08e81f5b8cbcb0ae9de95ef8e02952558d4dc24fe",
+    "bytes": 5089,
+    "sha256": "ebc97eb5ea89b09c1b6893e93fec50bfd30994f4fa60ccb8c6feba52f44b8848",
     "added_for_repository": true
   },
   {
@@ -7383,8 +7383,8 @@
   },
   {
     "path": "docs/CODE_MAP.md",
-    "bytes": 2707,
-    "sha256": "042caaa498a6334ec7285331c846da5ef10fbbdd913ac603e70939c5f524ecb1",
+    "bytes": 2979,
+    "sha256": "8a9dcf82efd8cc532cb6056d177e6ce8875b3adee95e37c6af94f592d1b47624",
     "added_for_repository": true
   },
   {
@@ -25144,8 +25144,8 @@
   },
   {
     "path": "reports/alibaba_engineering/README.md",
-    "bytes": 3436,
-    "sha256": "68b5e2f4a3d29c37aee619d386775d0e39b59d7e2510988d5e0dee12c7c9b2a6",
+    "bytes": 3795,
+    "sha256": "4eab246ebad82311da2207eb9528dde334dbb311c4cd30db8e026b9aa2f17412",
     "original_sha256": "68b5e2f4a3d29c37aee619d386775d0e39b59d7e2510988d5e0dee12c7c9b2a6",
     "changed_for_export": false
   },
@@ -25456,6 +25456,150 @@
     "sha256": "eba810264c1194fc582be2d02bbc4e88a0965bd1bd1442580092cc69a8cb07d9",
     "original_sha256": "eba810264c1194fc582be2d02bbc4e88a0965bd1bd1442580092cc69a8cb07d9",
     "changed_for_export": false
+  },
+  {
+    "path": "reports/alibaba_engineering/english/BUILD_DIAGNOSTICS.json",
+    "added_for_repository": true,
+    "bytes": 213,
+    "sha256": "746eef472ae492e28a1773f3d44b9efea2ee7d3ac798dcb4e4d4cc344017ad39"
+  },
+  {
+    "path": "reports/alibaba_engineering/english/FONT_INFO.json",
+    "added_for_repository": true,
+    "bytes": 631,
+    "sha256": "2a87f182ca20160aa742f25ee9c89a9030c37daf4642b48c062e6af40aa75e2d"
+  },
+  {
+    "path": "reports/alibaba_engineering/english/README.md",
+    "added_for_repository": true,
+    "bytes": 1801,
+    "sha256": "9c7af67bbc9e7bf9c59085514eeecf5107f68100b7228856affd0f96d930f8ad"
+  },
+  {
+    "path": "reports/alibaba_engineering/english/TRANSLATION_CHECK.json",
+    "added_for_repository": true,
+    "bytes": 425,
+    "sha256": "29ae166fbd419b8d9a65ac73aa144889a96cba916fd4f4463f9097cc7991c9a8"
+  },
+  {
+    "path": "reports/alibaba_engineering/english/VALIDATION.json",
+    "added_for_repository": true,
+    "bytes": 3940,
+    "sha256": "caaf5e91f875defe00dd6b5af76743bd1fb2e245e3783ad5d94a2a9b8d539d51"
+  },
+  {
+    "path": "reports/alibaba_engineering/english/appendices/code_map.tex",
+    "added_for_repository": true,
+    "bytes": 11758,
+    "sha256": "72584489827ba53dacc37cd1803c9af7023319e82a588351bd4bcee5a93cbb77"
+  },
+  {
+    "path": "reports/alibaba_engineering/english/appendices/glossary.tex",
+    "added_for_repository": true,
+    "bytes": 4617,
+    "sha256": "b779e3fc7357cfc46c4dff3fda558dc62446da3b714eda5e78b02a150b98f5ac"
+  },
+  {
+    "path": "reports/alibaba_engineering/english/appendices/media_index.tex",
+    "added_for_repository": true,
+    "bytes": 4506,
+    "sha256": "8d298bbd3a5783884a654bd87158ddd70f26b094e4c851781aedad33bb64f443"
+  },
+  {
+    "path": "reports/alibaba_engineering/english/appendices/reproduction.tex",
+    "added_for_repository": true,
+    "bytes": 6172,
+    "sha256": "9189c32eb9ea5322abbdbae242f4b5a33035da8a0bba3a46c002aee9a044058e"
+  },
+  {
+    "path": "reports/alibaba_engineering/english/build.sh",
+    "added_for_repository": true,
+    "bytes": 638,
+    "sha256": "cdbadfbfcfd5a52e1e418b82a7f72ab9fcb2473cd60a9636edc8d42dc24c1f66"
+  },
+  {
+    "path": "reports/alibaba_engineering/english/build/main_en.pdf",
+    "added_for_repository": true,
+    "bytes": 11267305,
+    "sha256": "86aa932168949165c7bef273d5130ad7086e6002c04b1571b5b27e8d6b82e552"
+  },
+  {
+    "path": "reports/alibaba_engineering/english/chapters/00_abstract.tex",
+    "added_for_repository": true,
+    "bytes": 3228,
+    "sha256": "ebc4d1b624082dbfd875ac3c4a874dee1bda925bd6292c28a01fa39cf2db9287"
+  },
+  {
+    "path": "reports/alibaba_engineering/english/chapters/01_overview.tex",
+    "added_for_repository": true,
+    "bytes": 8324,
+    "sha256": "b60cd1c659c276355415a4a57757b7cc54da7826f028c9255aad6e71b03afec0"
+  },
+  {
+    "path": "reports/alibaba_engineering/english/chapters/02_platform.tex",
+    "added_for_repository": true,
+    "bytes": 39917,
+    "sha256": "eca462ee73e6033893b07bcd875daa47d0948cca0857fc396830a4e6e1b826e0"
+  },
+  {
+    "path": "reports/alibaba_engineering/english/chapters/03_autonomy.tex",
+    "added_for_repository": true,
+    "bytes": 90540,
+    "sha256": "bb71ba90f7e25aa72bc13b270da5bf4e3ed443e8636973898812c120a1b40022"
+  },
+  {
+    "path": "reports/alibaba_engineering/english/chapters/04_hierarchy.tex",
+    "added_for_repository": true,
+    "bytes": 99226,
+    "sha256": "8588d5ab252baef09850f7812bcdfa1ab6228aeb7d3c6b0c540c963e6bfca3c0"
+  },
+  {
+    "path": "reports/alibaba_engineering/english/chapters/05_mobile.tex",
+    "added_for_repository": true,
+    "bytes": 106109,
+    "sha256": "ef77fcc6bac6fe1a7361abb9ae8d88842d4cba6a22a1c5bea581fb95fdd57380"
+  },
+  {
+    "path": "reports/alibaba_engineering/english/chapters/06_affordance.tex",
+    "added_for_repository": true,
+    "bytes": 50920,
+    "sha256": "3dbc270d4fe33e840d4cb44f80d8703bb9d44e36797f16ee83ecdce7ce241d87"
+  },
+  {
+    "path": "reports/alibaba_engineering/english/chapters/07_edge.tex",
+    "added_for_repository": true,
+    "bytes": 33572,
+    "sha256": "ee680ed04e35ebf2871fe56d868d107b89f89f129a7c48f4fa67182b8c11dffa"
+  },
+  {
+    "path": "reports/alibaba_engineering/english/chapters/08_conclusions.tex",
+    "added_for_repository": true,
+    "bytes": 7624,
+    "sha256": "b5885afcab2e7e81ad383f04cb799952da3c5cbba0d2ee85bfc8937407091a4b"
+  },
+  {
+    "path": "reports/alibaba_engineering/english/main_en.tex",
+    "added_for_repository": true,
+    "bytes": 1052,
+    "sha256": "d25d341704ae1513aded112463aeef6edbc6925f768018a98f64c010c1df1d24"
+  },
+  {
+    "path": "reports/alibaba_engineering/english/preamble.tex",
+    "added_for_repository": true,
+    "bytes": 1933,
+    "sha256": "9f63863b0c70edd75177d1d57784e8cf164a108c6ce64c93033d850fc853f3c6"
+  },
+  {
+    "path": "reports/alibaba_engineering/english/references.tex",
+    "added_for_repository": true,
+    "bytes": 1814,
+    "sha256": "cd7043752a00885f70e9dc848ab89e0849c68bb046732c2966e22a7e66f78215"
+  },
+  {
+    "path": "reports/alibaba_engineering/english/validate.py",
+    "added_for_repository": true,
+    "bytes": 3210,
+    "sha256": "020a554296de9bef3051d092514c8e8f0591e85e98f953f683f6cde8f737f516"
   },
   {
     "path": "reports/alibaba_engineering/expansion_stats.json",

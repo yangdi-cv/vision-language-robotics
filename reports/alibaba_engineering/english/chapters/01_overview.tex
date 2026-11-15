@@ -1,0 +1,48 @@
+\chapter{Project Goals, Scope, and Reading Guidelines}
+\section{Problems to Solve}
+The goal of the project is to enable robots to perform operations based on images and natural language instructions, rather than merely outputting textual descriptions or repeating pre-recorded trajectories. To this end, target understanding, operation location selection, action generation, physical execution, completion judgment, and runtime maintenance must be addressed separately.
+
+In this report, VLM (Vision-Language Model) primarily refers to models like Qwen that receive images and text and output text or location descriptions; VLA (Vision-Language-Action Model) primarily refers to models like \pifive{} and SmolVLA that directly generate robot actions. After Qwen outputs a position, the planner executes it, forming a modular system; it is described separately from the trajectory generated directly by action models producing joint or end-effector actions.
+\section{Three Paths Gradually Formed by the System}
+\begin{enumerate}
+\item Observation Path: Camera images enter the object detection, depth display, and scene description modules for operator observation.
+\item Policy trajectory: Image, language, and robot state enter the action model, which outputs an action block; after execution, observation is repeated.
+\item Explicit path localization: The vision model provides a two-dimensional operational point, which is transformed into the robot's coordinate system using depth and calibration information, and then executed via the planner and controller.
+\end{enumerate}
+The three paths share modules but have different inputs, outputs, and validation methods. Early demonstrations, public reproduction, self-training modules, and real hardware trials are respectively marked in the main text.
+\section{Technical Chapters and Timeline}
+This report is organized into six technical sections according to the problem, each comprising four sub-stages. Section numbering reflects technical relationships and does not rigidly correspond to chronological order; for example, edge environment preparation and affordance execution development overlapped in timing. Early stages primarily occurred in October 2026, while unified VLA validation, same-scenario operations, and new edge evaluations were concentrated in November.
+\begin{table}[htbp]\centering\begin{tabular}{p{.10\linewidth}p{.31\linewidth}p{.49\linewidth}}
+\toprule Chapter & Topic & Core Question Addressed \\\midrule
+I & Prototype and Initial Baseline & Are the data, observation, and action interfaces available? \\
+II & From Demonstration to Autonomous Operation & Can Existing Policies Truly Generate Task Actions? \\
+Three & Hierarchical Planning and Visual Affordance Localization & When does the high-level model provide additional benefit? \\
+IV & Objectives and Motion Operations & Can objectives be conveyed to the execution end, and can navigation operations be performed within the same scene? \\
+Five & Visual Affordance and Physical Interface & Can predicted operation points alter the actual reached position? \\
+Six & Small Models and Edge Deployment & Can accuracy, memory, and latency all meet the requirements?\\\bottomrule
+\end{tabular}\caption{Technical Chapters and Focus Issues}\end{table}
+\section{Rules for Result Usage}
+Success rate varies with task, initial state, execution budget, and evaluation criteria. Successes are separately counted for pre-contact positioning, single-object manipulation, placing into containers, and the full LIBERO task; development rounds, validation set, and test set are separately recorded. Image examples are provided to illustrate scenarios and errors but cannot substitute for overall evaluation. Videos are saved in an English-named directory alongside the report, with relative paths provided in the main text.
+
+\section{Inputs, Outputs, and Control Conditions at Different Stages}
+\begin{longtable}{p{.19\linewidth}p{.23\linewidth}p{.23\linewidth}p{.23\linewidth}}
+\toprule Path & Input & Output & Execution and Scoring\\\midrule\endhead
+SO101 Teaching and Playback & Main Arm Joints, Camera & Slave Arm Joint Targets & Real Servos; Human Observation Task\\
+Desktop geometry and ACT & color/depth images or states & end-effector action sequences & ideal position-driven; simulation judgment\\
+Public LIBERO policy & Two image streams, instruction, and state & Continuous action chunks & Dynamics simulation; official success check\\
+Qwen high-level & scene graph, task or stage memory & instruction, judgment or operation point & hand over to existing policy or planner\\
+Visual affordance localization & two-dimensional points, depth, and camera parameters & World coordinates and joint trajectories & MoveIt planning; joint torque control\\
+Jetson visual service & consistent image requests with PC & structured results such as points, boxes, etc. & PC waits for return; measured latency separately\\
+\bottomrule\caption{System trajectory capability boundaries}\end{longtable}
+\section{Use of Ground Truth Information in Different Experiments}
+Simulation can provide precise states, but how they are used affects the conclusions. The official success checkers of public benchmarks are used for scoring and native round termination; intermediate predicates of hierarchical policies are only recorded post-hoc, and the final subgoal still terminates by native success or step limit. Only subsequent milestone versions in the same scenario validate active stopping by the visual model, and the two cannot be conflated.
+
+Affordance training uses automatically annotated segmentation and position ground truth; three-dimensional back-projection uses simulated depth, and collision scenes are also constructed in simulation. Therefore, while operation points are predicted by the visual model, this does not imply that depth, mapping, and obstacle avoidance are also estimated by the model. Navigation uses a known map and ideal odometry, and thus does not belong to autonomous simultaneous localization and mapping (SLAM) in unknown environments. The report retains these settings in the corresponding experiments.
+\section{Data Partitioning and Units of Measurement}
+A single image may correspond to multiple queries, such as handles, bowls, placement points, and cabinet frames; 350 frames and 1014 queries are two counts from the same test set and cannot be treated as two independent sample sets. Simulation episodes, visual inspection counts, policy call counts, and control step counts are also separately measured. The seconds in latency refer to actual elapsed time; simulation steps divided by simulation frequency yield simulated time, and experiments where the simulator pauses during model inference do not satisfy the meaning of real-time operation.
+
+The affordance data is isolated by initial state: training 17--49, validation 13--16, test 0--12; different initial states still share generated action templates and camera configurations, thus only testing intra-scenario variations and not serving as generalization to new action patterns or new scenes. The 20 fitting-check images from the early 100 detection training images still belong to the training data and will not be referred to as independent validation in the main text.
+\section{Separate Logging of Models and Environments}
+Models with the same name but different quantization ranges, library versions, prompts, and action interfaces may produce different outputs. The Jetson board borrowed in October and the board restored in November belong to two separate software stacks; the former's quantization range includes linear layers of vision, while the latter retains higher precision for the visual branches and output layer. Performance metrics from different stages are reported under their respective conditions and are not directly ranked for hardware superiority.
+
+The fixed-source version of this report and the corresponding run commands are based on those recorded within the project, with appendices providing entry points for reference. Code directories are indexed by section, but shared implementations remain in their original locations to avoid generating multiple versions with differing behaviors upon report replication. This report does not involve any new training, closed-loop, or hardware testing.

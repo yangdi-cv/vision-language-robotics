@@ -1,0 +1,36 @@
+\documentclass[a4paper,oneside,openany,11pt]{book}
+\usepackage[left=26mm,right=24mm,top=25mm,bottom=25mm]{geometry}
+\usepackage{fontspec,xeCJK}
+\setCJKmainfont{FandolSong-Regular.otf}
+\setCJKsansfont{FandolSong-Regular.otf}
+\setCJKmonofont{FandolSong-Regular.otf}
+\usepackage{newtxmath}
+\setmainfont{Times New Roman}
+\setsansfont{Times New Roman}
+\setmonofont{Times New Roman}[Scale=0.90]
+\usepackage[english]{babel}
+\usepackage{graphicx,booktabs,longtable,array,amsmath,calc,fvextra,xurl}
+\usepackage{caption,placeins}
+\usepackage[hidelinks,unicode,bookmarksnumbered]{hyperref}
+\hypersetup{pdftitle={Vision-Language-Guided Robot Manipulation: Technical and Engineering Report},pdfsubject={Complete English edition, v0.2}}
+\captionsetup{font=small,labelfont=bf}
+\linespread{1.15}
+\setlength{\parindent}{1.5em}
+\setlength{\parskip}{2pt}
+\setcounter{tocdepth}{1}
+\setcounter{secnumdepth}{2}
+\pagestyle{plain}
+\emergencystretch=4em
+\Urlmuskip=0mu plus 1mu
+\graphicspath{{../}}
+\newcommand{\stagefigure}[3]{\par\begin{center}\begin{minipage}{\linewidth}\centering\includegraphics[width=.94\linewidth,height=.42\textheight,keepaspectratio]{#1}\captionof{figure}{#2}\label{#3}\end{minipage}\end{center}\par}
+\newcommand{\stagecode}[1]{\par\noindent\small Related code: see entry \hyperlink{code-#1}{\texttt{#1} in Appendix A}.\normalsize\par}
+\newcommand{\stagevideo}[1]{\par\noindent\small Related video: \path{#1}.\normalsize\par}
+\newcommand{\pifive}{\texorpdfstring{\ensuremath{\pi}0.5}{pi0.5}}
+\providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\providecommand{\passthrough}[1]{#1}
+\makeatletter
+\renewcommand{\@pnumwidth}{2.5em}
+\renewcommand{\@tocrmarg}{3.5em}
+\makeatother
+\newcommand{\motionfigure}[3]{\par\begin{center}\begin{minipage}{\linewidth}\centering\includegraphics[width=.98\linewidth,height=.78\textheight,keepaspectratio]{#1}\captionof{figure}{#2}\label{#3}\end{minipage}\end{center}\par}

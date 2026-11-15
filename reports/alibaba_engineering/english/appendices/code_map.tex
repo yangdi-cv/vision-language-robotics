@@ -1,0 +1,224 @@
+\chapter{Chapter and Code Locations}
+\label{app:code}
+The code still runs in the original project directory. Below are reading entry points organized by report sections; data, environment, and models are not assumed to be independently runnable source code in the code index. Shared modules maintain a single implementation; specific packaging scope is detailed in \path{REPOSITORY_LAYOUT.md}.
+\section*{S01 SO101 Basic Platform and Teaching Tools}
+\hypertarget{code-s01}{}
+Reading index: \path{code_index/ch02/s01.md}.
+\paragraph{Related Code}
+\noindent\path{SO101}\par
+\noindent\path{datasets}\par
+\noindent\path{environments}\par
+\paragraph{Original Report and Records}
+\noindent\path{PROJECT_LOG.md}\par
+\noindent\path{SO101}\par
+\section*{S02 Camera, Scene Understanding, and Observation Workbench}
+\hypertarget{code-s02}{}
+Reading index: \path{code_index/ch02/s02.md}.
+\paragraph{Related Code}
+\noindent\path{perception/qwen_scene}\par
+\noindent\path{perception/web_workbench}\par
+\noindent\path{perception/vla_workbench}\par
+\paragraph{Original Report and Records}
+\noindent\path{PROJECT_LOG.md}\par
+\section*{S03 First Qwen Adaptation and Action Chunking Strategy Training}
+\hypertarget{code-s03}{}
+Reading index: \path{code_index/ch02/s03.md}.
+\paragraph{Related Code}
+\noindent\path{experiments/alibaba_baseline}\par
+\paragraph{Original Report and Records}
+\noindent\path{experiments/alibaba_baseline/REPORT.md}\par
+\section*{S04 Training Expansion, Depth Localization, and Initial Pipeline Integration}
+\hypertarget{code-s04}{}
+Reading index: \path{code_index/ch02/s04.md}.
+\paragraph{Related Code}
+\noindent\path{experiments/alibaba_extension}\par
+\paragraph{Original Report and Records}
+\noindent\path{experiments/alibaba_extension/REPORT.md}\par
+\noindent\path{experiments/alibaba_pc_revision/REPORT.md}\par
+\section*{S05 Simulation of Autonomous Pick-and-Place on a Tabletop}
+\hypertarget{code-s05}{}
+Reading index: \path{code_index/ch03/s05.md}.
+\paragraph{Related Code}
+\noindent\path{experiments/desktop_pickplace}\par
+\noindent\path{experiments/alibaba_pc_revision/scripts/train_act.py}\par
+\noindent\path{experiments/alibaba_jetson_revision/scripts/train_act_expanded.py}\par
+\paragraph{Original Report and Records}
+\noindent\path{experiments/desktop_pickplace/REPORT.md}\par
+\noindent\path{experiments/alibaba_pc_revision/REPORT.md}\par
+\noindent\path{experiments/alibaba_jetson_revision/REPORT.md}\par
+\section*{S06 Early Jetson and Real Camera Testing}
+\hypertarget{code-s06}{}
+Reading index: \path{code_index/ch03/s06.md}.
+\paragraph{Related Code}
+\noindent\path{experiments/alibaba_jetson_revision}\par
+\noindent\path{tools/annotate_earbud.py}\par
+\noindent\path{experiments/earbud_detector}\par
+\noindent\path{experiments/earbud_tracking}\par
+\paragraph{Original Report and Records}
+\noindent\path{experiments/alibaba_jetson_revision/REPORT.md}\par
+\noindent\path{PROJECT_LOG.md}\par
+\noindent\path{experiments/earbud_detector/README.md}\par
+\noindent\path{experiments/earbud_tracking/README.md}\par
+\section*{Training and Testing SmolVLA on S07 SO101}
+\hypertarget{code-s07}{}
+Reading index: \path{code_index/ch03/s07.md}.
+\paragraph{Related Code}
+\noindent\path{experiments/smolvla_pc}\par
+\paragraph{Original Report and Records}
+\noindent\path{experiments/smolvla_pc/mousepad_report/REPORT.md}\par
+\noindent\path{experiments/smolvla_pc/approach_report/REPORT.md}\par
+\section*{S08 Closed-Loop Reproduction of \pifive{} on LIBERO}
+\hypertarget{code-s08}{}
+Reading index: \path{code_index/ch03/s08.md}.
+\paragraph{Related Code}
+\noindent\path{experiments/vla_libero/scripts/evaluate.py}\par
+\noindent\path{experiments/vla_libero/configs}\par
+\paragraph{Original Report and Records}
+\noindent\path{experiments/vla_libero/REPORT.md}\par
+\section*{S09 Long-Task Decomposition and Chinese-English Translation Correspondence}
+\hypertarget{code-s09}{}
+Reading index: \path{code_index/ch04/s09.md}.
+\paragraph{Related Code}
+\noindent\path{experiments/vla_libero/scripts/run_hierarchical.py}\par
+\noindent\path{experiments/vla_libero/scripts/qwen_planner.py}\par
+\noindent\path{experiments/vla_libero/qwen8b_comparison/scripts}\par
+\paragraph{Original Report and Records}
+\noindent\path{PROJECT_LOG.md}\par
+\noindent\path{experiments/vla_libero/HANDOFF_QWEN.md}\par
+\noindent\path{experiments/vla_libero/qwen8b_comparison/REPORT.md}\par
+\noindent\path{experiments/vla_libero/INTEGRATION_PLAN.md}\par
+\section*{S10 Execution State Management and Controlled Recovery}
+\hypertarget{code-s10}{}
+Reading index: \path{code_index/ch04/s10.md}.
+\paragraph{Related Code}
+\noindent\path{experiments/vla_libero/recovery_study}\par
+\noindent\path{experiments/vla_libero/closed_loop_iteration}\par
+\paragraph{Original Report and Records}
+\noindent\path{experiments/vla_libero/recovery_study/REPORT.md}\par
+\noindent\path{experiments/vla_libero/closed_loop_iteration/REPORT.md}\par
+\section*{S11 Low-Rank Adaptation of the Visual Completion Checker}
+\hypertarget{code-s11}{}
+Reading index: \path{code_index/ch04/s11.md}.
+\paragraph{Related Code}
+\noindent\path{experiments/vla_libero/checker_v2}\par
+\paragraph{Original Report and Records}
+\noindent\path{experiments/vla_libero/checker_v2/REPORT.md}\par
+\section*{Closed-Loop Operation and Input Correspondence of the S12 Checker}
+\hypertarget{code-s12}{}
+Reading index: \path{code_index/ch04/s12.md}.
+\paragraph{Related Code}
+\noindent\path{experiments/vla_libero/monitor_causality}\par
+\noindent\path{experiments/vla_libero/constraint_retention}\par
+\paragraph{Original Report and Records}
+\noindent\path{experiments/vla_libero/monitor_causality/REPORT.md}\par
+\noindent\path{experiments/vla_libero/checker_v2/EXPLORATORY_REPORT.md}\par
+\noindent\path{experiments/vla_libero/constraint_retention/REPORT.md}\par
+\section*{S13 Specified Target and Selective Handling Diagnosis}
+\hypertarget{code-s13}{}
+Reading index: \path{code_index/ch05/s13.md}.
+\paragraph{Related Code}
+\noindent\path{experiments/vla_libero/selective_execution}\par
+\noindent\path{experiments/vla_libero/instruction_response}\par
+\paragraph{Original Report and Records}
+\noindent\path{experiments/vla_libero/selective_execution/REPORT.md}\par
+\noindent\path{experiments/vla_libero/instruction_response/RESEARCH.md}\par
+\section*{S14 Reference to Public Methods and Explicit Goal Interface}
+\hypertarget{code-s14}{}
+Reading index: \path{code_index/ch05/s14.md}.
+\paragraph{Related Code}
+\noindent\path{experiments/vla_libero/cag_reproduction}\par
+\noindent\path{experiments/vla_libero/skill_bootstrap}\par
+\noindent\path{experiments/vla_libero/point_target}\par
+\paragraph{Original Report and Records}
+\noindent\path{experiments/vla_libero/cag_reproduction/REPORT.md}\par
+\noindent\path{experiments/vla_libero/skill_bootstrap/REPORT.md}\par
+\noindent\path{experiments/vla_libero/point_target/REPORT.md}\par
+\noindent\path{experiments/vla_libero/target_skill/PLAN.md}\par
+\noindent\path{experiments/vla_libero/target_skill/SEMANTIC_CHECK.json}\par
+\section*{S15 Navigation and Manipulation in the Same Physical Scene}
+\hypertarget{code-s15}{}
+Reading index: \path{code_index/ch05/s15.md}.
+\paragraph{Related Code}
+\noindent\path{experiments/mobile_vla/scripts}\par
+\noindent\path{experiments/mobile_vla/configs}\par
+\paragraph{Original Report and Records}
+\noindent\path{experiments/mobile_vla/README.md}\par
+\section*{S16 Qwen Task Admission and Memory Milestone Monitoring}
+\hypertarget{code-s16}{}
+Reading index: \path{code_index/ch05/s16.md}.
+\paragraph{Related Code}
+\noindent\path{experiments/mobile_qwen/scripts/skills.py}\par
+\noindent\path{experiments/mobile_qwen/scripts/milestones.py}\par
+\noindent\path{experiments/mobile_qwen/scripts/qwen_worker.py}\par
+\paragraph{Original Report and Records}
+\noindent\path{experiments/mobile_qwen/reports/20261114/STAGE_REPORT.md}\par
+\noindent\path{experiments/mobile_qwen/RESULTS.md}\par
+\section*{S17 Visual Affordance Data, Handle Localization, and three-dimensional Backprojection}
+\hypertarget{code-s17}{}
+Reading index: \path{code_index/ch06/s17.md}.
+\paragraph{Related Code}
+\noindent\path{experiments/mobile_qwen/affordance}\par
+\paragraph{Original Report and Records}
+\noindent\path{experiments/mobile_qwen/reports/20261114/STAGE_REPORT.md}\par
+\section*{S18 Operation, Maintenance, and Reproducibility Fixes}
+\hypertarget{code-s18}{}
+Reading index: \path{code_index/ch06/s18.md}.
+\paragraph{Related Code}
+\noindent\path{perception/qwen_scene/engine.py}\par
+\noindent\path{experiments/mobile_qwen/scripts/durable_log.py}\par
+\noindent\path{experiments/mobile_qwen/scripts/launch.sh}\par
+\noindent\path{experiments/alibaba_pc_revision/scripts}\par
+\paragraph{Original Report and Records}
+\noindent\path{PROJECT_LOG.md}\par
+\noindent\path{experiments/mobile_qwen/README.md}\par
+\noindent\path{experiments/alibaba_pc_revision/REPORT.md}\par
+\section*{S19 Visual Affordance Localization Drives MoveIt Actual Simulation Execution}
+\hypertarget{code-s19}{}
+Reading index: \path{code_index/ch06/s19.md}.
+\paragraph{Related Code}
+\noindent\path{experiments/mobile_qwen/closed_loop_20261115/scripts/run_cases.py}\par
+\noindent\path{experiments/mobile_qwen/closed_loop_20261115/scripts/physics_bridge.py}\par
+\noindent\path{experiments/mobile_qwen/closed_loop_20261115/scripts/plan_execute.py}\par
+\paragraph{Original Report and Records}
+\noindent\path{experiments/mobile_qwen/closed_loop_20261115/REPORT.md}\par
+\section*{S20 Handover without Reset \pifive{} and Skill Compatibility}
+\hypertarget{code-s20}{}
+Reading index: \path{code_index/ch06/s20.md}.
+\paragraph{Related Code}
+\noindent\path{experiments/mobile_qwen/closed_loop_20261115/scripts/sim_combined.py}\par
+\noindent\path{experiments/mobile_qwen/closed_loop_20261115/scripts/run_combined.py}\par
+\noindent\path{experiments/mobile_qwen/closed_loop_20261115/scripts/run_native_control.py}\par
+\paragraph{Original Report and Records}
+\noindent\path{experiments/mobile_qwen/closed_loop_20261115/REPORT.md}\par
+\section*{S21 Jetson Recovery and Independent GPU Environment}
+\hypertarget{code-s21}{}
+Reading index: \path{code_index/ch07/s21.md}.
+\paragraph{Related Code}
+\noindent\path{experiments/mobile_qwen/jetson/software_stack_20261114}\par
+\noindent\path{experiments/mobile_qwen/jetson/stage2_20261114/scripts}\par
+\paragraph{Original Report and Records}
+\noindent\path{experiments/mobile_qwen/jetson/SOFTWARE_STACK_REPORT.md}\par
+\section*{S22 2B Adaptation and Precision Comparison with PC and Jetson}
+\hypertarget{code-s22}{}
+Reading index: \path{code_index/ch07/s22.md}.
+\paragraph{Related Code}
+\noindent\path{experiments/mobile_qwen/jetson/stage2_20261114/scripts}\par
+\paragraph{Original Report and Records}
+\noindent\path{experiments/mobile_qwen/jetson/stage2_20261114/REPORT.md}\par
+\section*{S23 Jetson Visual Service and PC Simulation Joint Debugging}
+\hypertarget{code-s23}{}
+Reading index: \path{code_index/ch07/s23.md}.
+\paragraph{Related Code}
+\noindent\path{experiments/mobile_qwen/jetson/stage3_20261115/scripts/vision_service.py}\par
+\noindent\path{experiments/mobile_qwen/closed_loop_20261115/scripts/remote_grounding_worker.py}\par
+\paragraph{Original Report and Records}
+\noindent\path{experiments/mobile_qwen/jetson/stage3_20261115/REPORT.md}\par
+\section*{S24 On-device Latency, Resources, and Operator Analysis}
+\hypertarget{code-s24}{}
+Reading index: \path{code_index/ch07/s24.md}.
+\paragraph{Related Code}
+\noindent\path{experiments/mobile_qwen/jetson/stage3_20261115/scripts/latency_probe.py}\par
+\noindent\path{experiments/mobile_qwen/jetson/stage3_20261115/scripts/profile_one.py}\par
+\paragraph{Original Report and Records}
+\noindent\path{experiments/mobile_qwen/jetson/stage3_20261115/REPORT.md}\par
+\noindent\path{experiments/mobile_qwen/jetson/stage3_20261115/compiler_preflight.json}\par

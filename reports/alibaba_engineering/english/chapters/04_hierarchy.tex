@@ -1,0 +1,1427 @@
+\chapter{Qwen Hierarchical Execution and Visual Completion Checking}
+
+This chapter proceeds along the question: What exactly does the high level add? It sequentially compares translation, subgoal decomposition, failure recovery, completion judgment, and visual intervention. Different versions have independent outputs and initial states, and cannot be rewritten with later success to cover earlier failures.
+
+\section{Chinese Long-Task Decomposition and Translation Correspondence}
+
+\label{stage:s09}
+
+Let Qwen first understand the long Chinese instruction, then pass the English subgoal to \pifive{} for execution. To distinguish the gains from language translation versus hierarchical planning, add a flat execution control that translates the entire instruction only.
+
+\subsection{Input Division between High-Level and Low-Level}\label{s09-detail-1}
+
+The high-level Qwen receives separately rendered 512-pixel third-person images and Chinese tasks; the low-level \(\pi\)0.5 still uses the official external, wrist images and robot state transitions. The high-level additional rendering does not replace or resample the strategy input. Qwen outputs English sub-goals, and \(\pi\)0.5 generates action blocks according to the sub-goals, with no replacement of internal network layers between models.
+
+The completion checker compares the sub-target's start frame with the current frame. After the object enters the basket, only its dark top may be visible; single-frame recognition easily misidentifies similar objects on the table as the target; frame-by-frame comparison is used to focus on changes in the target region. The gripper's opening gate reduces premature confirmation during object holding, and the state only switches after two consecutive successful responses. The gate uses the robot's own state, not the object's ground truth.
+
+The last subgoal is not prematurely terminated by Qwen and continues until official success or the 520-step upper limit, maintaining the same termination behavior as the flat baseline. Confirmation of prior subgoals uses only the model's visual results; official records are saved separately for analysis. A different termination protocol is adopted by the later visual stop system in the same scenario and cannot be mixed with the former.
+
+\subsection{Version for Long-Horizon Tasks and Strong Baselines}\label{s09-detail-2}
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2711}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2119}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2119}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.3050}}@{}}
+\caption{Version for long-horizon tasks and strong baselines: Settings and Results}\label{tab:s09-1}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Configuration
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Number of rounds
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Success
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Scope of Application
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Configuration
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Number of rounds
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Success
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Scope of Application
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Direct Chinese for \(\pi\)0.5 & 30 & 22/30 & Flat Chinese baseline \\
+Early hierarchical v1 & 30 & 16/30 & No debouncing and early termination allowed for final goal \\
+Hierarchical v2 & 30 & 27/30 & Includes one rerun for coverage, as development record \\
+Frozen Hierarchical v3 First Run & 30 & 28/30 & Official Result Retained \\
+Qwen translates only the entire sentence after giving \(\pi\)0.5 & 30 & 29/30 & must-be-retained strong control \\
+flat execution & 30 & 29/30 & prior public task baselines \\
+\end{longtable}\endgroup
+
+Three public initial states per task. Hierarchical planning outperforms direct Chinese translation but does not exceed it; this set of samples supports the role of language processing, but does not yet support an independent advantage in hierarchical success rate. Early claims attributing all gains solely to language understanding are overstated, as not all influencing factors were independently ablated.
+
+Changes from v1 to subsequent versions include two-ticket confirmation, delaying termination of the final subgoal, and relaxing format checks for unused prompt fields. Multiple changes occurred simultaneously, so it is not a single-factor causal experiment. For one task, the first run timed out but the retry succeeded; subsequent frozen versions retained the first result without overwriting it with the retry as the official statistic.
+
+\subsection{Replanning and Full-Phrase Backtracking}\label{s09-detail-3}
+
+When a subgoal exceeds the budget, the remaining steps can be replanned based on the current image; if the new plan simply repeats the previously stuck steps, the entire English task execution is rolled back. The old official v3 default disables replanning; recovery experiments use a new output directory. Recovery on single instances for the three failure conditions did not form a complete 30-round regression, and later it was found that the recovery prefix differed, so it cannot be merged with fixed-start experiments.
+
+Reports should include the translation-only, frozen hierarchical, and direct-Chinese baselines together, distinguishing ``instruction understanding\, ``stage progression\, and ``action correction. No dedicated instruction-decomposition adapter was trained in this stage; Qwen remains the base model.
+
+
+\subsection{B and 8B Completion Check Diagnosis}\label{s09-detail-4}
+
+\subsubsection{Scope and Methodology}\label{s09-detail-5}
+
+The same completion-check prompt is run sequentially on two models using 8 before/after image pairs at 512\(\times\)512 from existing LIBERO-Long episodes. The cases were fixed before loading 8B: four historical misclassifications and four controls, with four positive and four negative labels in total. This is difficult-case diagnosis, not a random test set or a task-success evaluation.
+
+Both models are official Instruct base models, using BF16, SDPA, CUDA on a single card, greedy decoding, up to 96 new tokens, without LoRA and without CPU offloading; first pre-warmed once, then retained the first output for each example. The four weight shards downloaded for 8B have been verified against the official LFS SHA256. The old engine and hierarchical execution program remain unchanged.
+
+\subsubsection{Experimental Results}\label{s09-detail-6}
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.4102}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2949}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2949}}@{}}
+\caption{Experimental Results: Setup and Outcomes}\label{tab:s09-2}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Metrics
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+4B
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+8B
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Metrics
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+4B
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+8B
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Actual parameter count & 4.438 B & 8.767 B \\
+Consistent with recorded predicate & 4/8 & 4/8 \\
+legal output & 8/8 & 8/8 \\
+Loading time & 6.15 s & 8.19 s \\
+Median time per check, including preprocessing & 0.527 s & 0.796 s \\
+Checking phase PyTorch peak allocation & 8.44 GiB & 16.53 GiB \\
+Check phase PyTorch peak reserved & 8.48 GiB & 16.57 GiB \\
+\end{longtable}\endgroup
+
+The memory statistics do not include overhead from other processes such as the desktop or CUDA context, nor are they the peak memory usage of the entire machine during full model loading. The timing is a single measured instance for the current prompt and short output.
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.3014}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2329}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2329}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2329}}@{}}
+\caption{Experimental Results: Setup and Outcomes}\label{tab:s09-3}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+example
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+label recording
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+4B
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+8B
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+example
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+label recording
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+4B
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+8B
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+wrong\_plate & no & no & no \\
+false\_done\_mug & no & yes & no \\
+plate\_viewpoint & yes & no & yes \\
+basket\_occlusion & yes & no & no \\
+soup\_done & yes & yes & yes \\
+soup\_not\_done & no & no & yes \\
+false\_done\_pot & no & yes & yes \\
+microwave\_done & yes & yes & no \\
+\end{longtable}\endgroup
+
+\subsubsection{Explanations and Limitations}\label{s09-detail-7}
+
+This 8B revision corrected the two cases false\_done\_mug and plate\_viewpoint, but degenerated in the two cases soup\_not\_done and microwave\_done, with the same total consistency count as 4B; the median time for short-output checks increased by approximately 51\%. These results do not support directly replacing the existing 4B; thus, retain the original online configuration. A larger parameter count does not guarantee more reliable completion judgments of this type.
+
+8B BF16 has been independently loaded and dual-image inference completed on this local RTX 4090. This time, it was not co-resident with \(\pi\)0.5; the existing VRAM records of 4B with \(\pi\)0.5 cannot be directly substituted for 8B co-resident testing. To replace the online system, additional measurements or time-sharing operation is still required.
+
+Labels come from official predicates corresponding to the first subgoal in previous rounds and are not included in the model prompt. In a single viewpoint, aspects such as left-right reference, object occlusion, whether still supported by the gripper, and contact boundaries upon landing on the plate may be ambiguous; especially for the two cases plate\_viewpoint and wrong\_plate, which have visually similar appearances but different labels. Explanations should combine the original image and full trajectory, and not treat every inconsistency as a pure visual recognition error.
+
+No new simulation episodes, re-planning regressions, fine-tuning, or physical robotic arm trials have been run. 8 diagnostic examples are insufficient to demonstrate that a larger model improves final task success rate; the next step should be to review left-right reference and occlusion examples before deciding whether to perform full paired regression.
+
+
+\stagefigure{figures/ch04/s09_long0_initial.png}{Observation from a LIBERO long-task, serving as the input background for high-level decomposition and checking.}{fig:s09-retained}
+
+\paragraph{Stage Conclusion} The frozen hierarchical version achieved 28/30, direct Chinese 22/30, and only translation 29/30. The results indicate that the Chinese gain is primarily explainable by language processing, and no additional success rate advantage of hierarchy has been proven. Only three initial states per task, conclusions are limited by sample size. Historical development versions and rerun results should be separated from the frozen version.
+
+\stagecode{s09}
+
+\stagevideo{videos/ch04/hierarchical_long_example.mp4}
+
+\FloatBarrier
+
+\section{Execution State Management and Controlled Recovery}
+
+\label{stage:s10}
+
+Analyze near-terminal failures, step timeouts, and insufficient replanning coverage, then conduct controlled comparisons by fixing the recovery start state, introducing controlled perturbations, and varying recovery methods.
+
+\subsection{Existing Results and Issues of This Phase}\label{s10-detail-1}
+
+True VLA closed-loop has already been completed in the same LIBERO/Panda environment: RGB, language, and robot state inputs enter the official pre-trained \(\pi\)0.5 checkpoint, the model outputs actions, which are executed by the controller in the simulator; not pre-recorded trajectories or directly setting end-effector poses. The four-task set baseline is 117/120, with an additional 126 paired interventions of inputs and execution settings. These existing results are not counted as new experiments in this phase.
+
+The current results for long-horizon tasks are as follows. Each group consists of 10 tasks, with 3 publicly available initial states per task, resulting in a small sample size.
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3356}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2676}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3968}}@{}}
+\caption{Existing Results and the Problem of This Phase: Setup and Results}\label{tab:s10-1}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Configuration
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+success count
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Usage Instructions
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Configuration
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+success count
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Usage Instructions
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\(\pi\)0.5 directly receives Chinese & 22/30 & Flat Chinese baseline \\
+Qwen Hierarchical v1 & 16/30 & Historical Development Version, including 2 program errors \\
+Qwen Hierarchical v2 & 27/30 & includes reruns, not considered as frozen first-run results \\
+Qwen Hierarchical v3 & 28/30 & Frozen first-run results \\
+Qwen only translates, then executed by \(\pi\)0.5 & 29/30 & Must retain strong control condition \\
+\(\pi\)0.5 English original instruction & 29/30 & from previous English baseline \\
+\end{longtable}\endgroup
+
+In the 30 pairs of trials where direct Chinese execution was performed versus those where only translation was applied, 22 pairs succeeded, 7 pairs transitioned from failure to success, and 1 pair failed. Between only translation and hierarchical v3, 28 pairs succeeded, 1 pair succeeded only with translation, and 1 pair failed. The current results do not yet show hierarchical planning outperforming only translation; not all changes in performance relative to direct Chinese execution can be attributed to planning capability, and one cannot assert from this small sample that hierarchical planning lacks value under other conditions.
+
+Historical audits found that v2 switched sub-goals 3 times due to budget exhaustion, while v3 did so 2 times; both instances for v3 occurred in the final failed rounds. Timeout switches are confirmed program behavior, but one cannot assert that removing them will rescue the task merely based on correlation.
+
+The relevant code is in \path|recovery_study/scripts/audit.py|; per-round indices are in \path|episode_index.csv|, and summarized in \texttt{audit.json}.
+
+\subsection{Execution Logic Improvements}\label{s10-detail-2}
+
+The original execution chain was "decompose task---execute sub-goals---Qwen compare consecutive frames---switch to next step". In this phase, historical entry points are retained, and an independent improved version is added, with the following main modifications.
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.4176}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5824}}@{}}
+\caption{Execution Logic Improvement: Settings and Results}\label{tab:s10-2}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Problem
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+improved
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Problem
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+improved
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Subgoal timeout may directly jump to the next step & timeout only records incomplete status and triggers recovery; when no recovery budget remains, continue with the current goal until the total step limit \\
+Replanning treats all prior steps as completed & only passes in steps confirmed by vision, and previously attempted goals are not added to the completion list \\
+The same boundary simultaneously satisfies completion and timeout & Process completion confirmation first, no longer re-plan for already completed goals \\
+``Pick up'' and ``put down'' are separated, but the check requires gripper opening & the transport step must include placing the final state; reject common independent expressions of picking up, grasping, lifting \\
+Unfulfilled requirements from re-planning are missed & assign numbers to unconfirmed goals, the returned plan must cover each number once \\
+Knob operation also requires the gripper to be open before checking & adds an experimental switch to check by action type; if misconfirmation occurs, default to disabling \\
+New experiments overwrite existing outputs & new entry refuses to overwrite existing \texttt{result.json}; original results unchanged with old entry \\
+\end{longtable}\endgroup
+
+The target ID verification ensures formal coverage but does not guarantee that the natural language rewrite is semantically correct; independent picking checks serve only as interface protection for common expressions and are not complete natural language proofs. Visual confirmation may also be erroneous, so "confirmed" does not equate to the simulator's ground truth.
+
+The new version does not hide full-sentence retry within replanning. Full-sentence retry and replanning are compared as independent strategies to avoid attributing the benefit of re-executing the full task to the planner. The final subgoal still ends with LIBERO's official success criterion or step limit, so the current setup remains the baseline evaluation protocol and does not indicate that true autonomous termination on real hardware has been solved.
+
+The relevant code is in \path|scripts/subgoal_state.py|, \path|scripts/run_hierarchical_recovery.py|, \path|scripts/qwen_planner_recovery.py|. The hashes of the original \path|run_hierarchical.py|, \path|qwen_planner.py|, \texttt{evaluate.py} have been verified and no modifications were made.
+
+\subsection{Paired Recovery Experiment}\label{s10-detail-3}
+
+\subsubsection{Experiment Starting Point}\label{s10-detail-4}
+
+Fixedly select three failed episodes from the previous v2: t2 initial state 2 (turn on stove and place kettle), t4 initial state 2 (place two cups on separate plates), t8 initial state 2 (place two kettles on stove). Each time, start from the same public initial state, replay the first 150 steps of actions from the historical episode, then restore. Each state uses two sets of action noise: 31001 and 31002.
+
+Before each restoration, verify the complete simulator state hash. All policies and noise repetitions for the same task start from identical initial states; the maximum difference between the end position at step 150 during replay and the previous record is 0. Each method is granted an additional 370-step action budget, totaling no more than the original task's 520 steps. Each policy predicts 10 steps, executes only the first 5, then re-observes, and paired branches use the same noise seed.
+
+This constitutes three independently selected fault states, each repeated twice randomly, not six independent scenarios, nor a new overall success rate evaluation for Long. The stage switching and invocation counts may differ across different policies, and one cannot interpret the same seed as implying identical subsequent trajectories.
+
+\subsubsection{Preliminary Control and Subsequent Constraint Version}\label{s10-detail-5}
+
+In the first phase, three strategies were fixed, with a total of 18 attempts: continuing atomic goals, directly executing the official complete English task, and original Qwen re-planning. The original re-planning produced two structurally invalid outputs at t8, and these two attempts did not execute recovery actions, thus remaining as program failures; after identifying the cause, the remaining scheduled items were continued without rerunning to overwrite.
+
+Subsequently, to address the previously identified target omission and step granularity issues, 6 constrained re-planning iterations were added. This was an exploratory improvement following the preliminary results and not a pre-emptive independent test set.
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2980}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1755}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1755}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1755}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1755}}@{}}
+\caption{Preliminary control and subsequent constrained version: Settings and Results}\label{tab:s10-3}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Recovery method
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Attempt count
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Actual executed actions
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Success
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Program failed
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Recovery method
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Attempt count
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Actual executed actions
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Success
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Program failed
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Continue atomic goal, confirm then switch & 6 & 6 & 0 & 0 \\
+Retry entire task & 6 & 6 & 0 & 0 \\
+Original Qwen re-planning, no full-sentence rollback & 6 & 4 & 0 & 2 \\
+Replanning with Target Coverage and Final-State Constraints & 6 & 6 & 0 & 0 \\
+Open inspection door control (additional detection) by action type on furnace platform & 2 & 2 & 0 & 0 \\
+\end{longtable}\endgroup
+
+The constrained version returns acceptable final-state plans on all 6 trials, retains unconfirmed goals, and no longer exhibits formatting errors; however, it does not complete the rescue task. Improvements in interface correctness and task success rate must be described separately.
+
+\stagefigure{figures/ch04/s10_recovery_outcomes_dea9060e.png}{Three recovery start states and ending views with different approaches}{fig:s10-detail-1}
+
+Each row in the figure corresponds to the same recovery start; subsequent columns show the first set of noisy results for continuation, full-sentence retry, and constrained re-planning. The figure displays the end states, but scores are still computed using the official criteria, not based on human perception of success.
+
+\subsubsection{Normal Initial States and Specified Correction Commands}\label{s10-detail-6}
+
+Two additional normal initial state functional checks are performed at the new execution entry: at t0, initial state 0 completed successfully in 292 steps; at t9, initial state 0 timed out after 520 steps, with the final cup-in-oven criterion false and door-closed criterion true, yielding a combined success rate of 1/2. This configuration simultaneously altered the planning prompt, timeout rules, and budget, so these two cases cannot isolate the impact of any single change, nor can they be used to declare the new version superior to the old.
+
+Regarding the off-center white cup issue, two additional manual instruction probing trials were conducted, explicitly requiring "pick up the white cup again and place it at the center of the left plate, then place the yellow-white cup at the center of the right plate." No target coordinates or numerical thresholds were provided to the policy; both trials failed to complete. This only indicates that under these two noisy repetitions, explicit linguistic requirements still fail to resolve the correction for this state; it is not the result of Qwen autonomously generating instructions, and it is insufficient to prove that \(\pi\)0.5 universally fails to correct such deviations.
+
+This phase involved 26 recovery attempts, 2 specified instruction probes, and 2 normal initial state checks; among them, 2 were not executed due to planning format errors. A total of 10432 steps were advanced by actual new branches and normal initial states, plus prefix replay and contact diagnosis replay, which are not counted again as new model episodes.
+
+The relevant code is located at \path|recovery_study/scripts/run_paired.py|, \path|run_contract.py|, \path|run_guided.py|. The four protocol files preserve the experimental design for each phase; gated retesting is found in \path|typed_gate_protocol.json| and \path|run_typed_gate.py|.
+
+\subsection{Detailed Failure Analysis}\label{s10-detail-7}
+
+\subsubsection{White Cup: Has contacted the target plate, but not sufficiently centered}\label{s10-detail-8}
+
+The previous description of this state as ``wrong plate placement'' is inaccurate. After fixed replay and inspection of the contact and positional relationship with the target plate, it was found that the white cup contacts the target plate, and its center is also higher than the plate's center, but the horizontal center distance is approximately 38.5 millimeters. LIBERO's \texttt{On} criterion also requires the center distance to be less than 30 millimeters; thus, the failure reason is eccentricity, not an incorrect plate identity.
+
+\stagefigure{figures/ch04/s10_plate_boundary.png}{Contact of the white mug and the success-criterion boundary}{fig:s10-detail-2}
+
+In the first results for continuation, full-instruction retry, and the original replanner, the white mug remained about 38.5mm off target. The yellow-and-white mug was already within its target plate's success region. Even if the task semantically ``looks complete, the remaining geometric error requires an active correction by the policy. Repeating the original request at the high level did not produce that correction.
+
+The relevant code is in \path|recovery_study/scripts/inspect_contact.py|, and the numerical data is in \path|plate_contact_diagnostic.json|. These positions, contacts, and predicates are only for offline interpretation and are not fed into the control policy or Qwen.
+
+\subsubsection{Furnace Platform: Replanning May Omit Incomplete Requirements}\label{s10-detail-9}
+
+The original re-planning provided only the step of placing the pot in both repetitions, without retaining the unconfirmed requirement to turn on the stove. The constrained version retained both the goals of turning on the stove and placing the pot, but the task still timed out.
+
+In some trajectories from the original goal and constraint version, the stove-opening criterion had previously been satisfied; however, the system did not query the completion check. The reason was that the robot still held the knob, and the unified grasping-release gating mechanism blocked the query. For example, in the first group of the constraint version, the stove-opening criterion was met at step 165 after recovery, yet zero completion queries were made in that episode. This indicates that not all failures can be attributed to the execution policy failing to open the stove.
+
+Based on this, two additional paired detections were added: state, action noise, Qwen-generated plans and prompts are all consistent with the constrained version, allowing only state-change goals such as turning on the stove to query when the gripper is closed, while moving targets still require release. Both attempts failed, and were respectively misjudged as completed at steps 80 and 140 after recovery; at that time, the true value of turning on the stove was still false, and the process had already switched. The gating is too strict, possibly missing valid completions; relaxing the gate exposes the checker's misjudgments, and cannot be solved by simple on/off toggling.
+
+This feature is retained as the \texttt{-\/-operation-checks} experimental toggle, defaulting to disabled. It verifies the coupling issue between gating and visual judgment, not for improving success rate. Ground truth is only used for offline diagnosis and logging; runtime switching still depends on the visual response.
+
+\subsubsection{Two Kettles: Format Validity Requires Checkable Steps}\label{s10-detail-10}
+
+The original re-planning returns a list of strings twice, while the old interface requires a list of objects, causing program failure; even if mechanically converted into objects, the content remains independent ``pick---place'' steps, which does not match the rule of checking the final state after opening the gripper. The constrained version no longer produces these interface errors but still fails to place both pots correctly. Accepting JSON is not completing the task, and relaxing parsing cannot substitute for correct skill granularity.
+
+\subsubsection{Microwave Oven: Two Tickets May Still Result in the Same Misjudgment}\label{s10-detail-11}
+
+In the normal initial state check, the visual responses at steps 300 and 320 both deemed the cup had been placed in the microwave; however, the official criteria for cup entry at both moments were false. The second ticket triggered a switch to the door-closing phase, resulting in the door being closed but the cup target remaining incomplete.
+
+Two consecutive votes can filter out some instantaneous judgment errors, but they are not two independent pieces of information. The model may repeat the same judgment error under similar viewpoints. Previous manual alignment diagnostic statistics on 52 historical queries from the first phase of t2 and t4 for v2/v3 did not reveal confirmed error switches, and cannot be used to infer safety for other tasks; the microwave oven round in that phase is a clear counterexample.
+
+\subsubsection{Why Previous Successful Recovery Cases Differ from This Result}\label{s10-detail-12}
+
+Previous re-planning led previously succeeded from initial state t4-2, but cannot be regarded as a repetition from the same recovery starting point in this phase. Comparing the old leading policy with this fixed-source round, the end position at step 150 differs by approximately 37.1 millimeters, and the actions in the first 150 steps are also different. This comparison of fixed failure states in this phase addresses conditional recovery capability and cannot be directly combined with different trajectory starting points for calculation.
+
+\subsection{Validation, Limitations, and Future Work}\label{s10-detail-13}
+
+Passed 10 state-and-gate tests and 6 target-constraint tests; 26 recovery attempts with identical task-start hashes, end-prefix replay error is 0. Original official results and old run entry points remain unchanged. All new actions were executed in simulation, without connecting to physical robotic arms; no new weights were downloaded, trained, or quantized in this phase.
+
+The most worthwhile direction right now is not to scale up the model, but rather to tackle two smaller, clearly verifiable problems.
+
+\textbf{First, improve the reliability of the completion checker.} Compile examples such as ``contacted but eccentric, near container but not inserted, still gripped, knob not yet opened, target occluded'' from existing trajectories, and split them into development and independent validation sets based on complete episodes. The goal is not merely to output success/failure, but to allow for uncertainty and distinguish between target identity, spatial relationships, and whether the object has been released. It is necessary to simultaneously evaluate false positives, false negatives, and switching latency; merely improving per-frame accuracy does not necessarily improve final success rate. Dual-view may be a candidate, but has not yet been validated.
+
+\textbf{Second, validate the near-endpoint correction skill independently.} Separate ``completing the task from a normal starting position'' and ``re-grasping, centering, and releasing after having been displaced''. First, establish a small number of repeatable biased states and corresponding correction demonstrations in simulation, then determine whether fine-tuning the policy for this skill is necessary. The failure of the last two specified commands indicates that additional data for this part is worthwhile, but it is not sufficient grounds to initiate large-scale training.
+
+Robustness only appears stably on these controlled states, then returns to the full regression of 10 tasks \(\times\) 3 initial states to check whether normal tasks have degraded. We will not conduct the expanded evaluation of 200 episodes, will not consider passing the new version if 1/2 of the functionality checks pass, and will not package new interface protections as improved success rates.
+
+Navigation, Jetson, and SO101 migration continue to be listed as independent validation scope; they are not incorporated into the already-completed LIBERO closed-loop in this phase.
+
+
+\subsection{Subsequent Controlled Fault Injection and Degradation Re-evaluation}\label{s10-detail-14}
+
+\subsubsection{t9 Localization and Single Entrance}\label{s10-detail-15}
+
+Fixed t9 initial state 0, same action noise, 512-pixel observation images, dual tickets, gripper gating, and 520-step upper limit. Initial planning uses pre-saved English sub-goals to eliminate initial Qwen-generated text variation, then separately replaces execution logic, object names, and restores settings.
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.4800}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2600}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2600}}@{}}
+\caption{t9 Localization and Single Entrance: Setup and Results}\label{tab:s10-4}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Configuration
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Results
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Steps
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Configuration
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Results
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Steps
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Historical logic + original ``yellow and white mug'' plan & success & 257 \\
+Strict logic + same original plan & success & 257 \\
+Strict logic + new ``mug with yellow handle'' plan & success & 267 \\
+Strict logic + new plan + recovery triggered at 150 steps & success & 267 \\
+\end{longtable}\endgroup
+
+The first two groups exhibit point-wise identical action trajectories under the same original plan. This run did not reproduce the previous timeout stably, so no specific modification can be identified as the cause. The initial images of the previous failed episode and this run under the same configuration are pixel-wise identical, but the first step action has a maximum absolute difference of approximately 0.000247, and subsequent trajectories have diverged. The results of the four groups and their comparison are saved in \path|t9_results.json| and \path|t9_conclusion.json|; recorded as not localized, and no further investigation will be pursued.
+
+The external execution entry point is unified as \path|scripts/run_hierarchical.py|:
+
+\begin{itemize}
+\tightlist
+\item
+  \path!--execution-profile legacy|strict!Choose historical or strict state transition.
+\item
+  \path!--planner-profile base|contract!Choose original or target coverage/final state constraint planning.
+\item
+  \path!--recovery-mode continue|full|replan! Distinguishes between continuing, retrying the entire sentence, and replanning.
+\item
+  \texttt{-\/-operation-checks} remains the default disabled experimental option.
+\end{itemize}
+
+Qwen workers are uniformly launched by \path!qwen_planner.py --profile base|contract!. Original recovery files retain implementation modules and compatibility wrappers, shared helper functions such as image and serial port-agnostic process communication, and no longer maintain two separate worker loops. Historical algorithm implementations are retained for reproduction purposes; no additional parallel startup entry points will be added in the future. Pure flat execution no longer loads unnecessary Qwen workers.
+
+\subsubsection{Controlled Perturbation Experiment}\label{s10-detail-16}
+
+\paragraph{Three Types of Perturbations}\label{s10-detail-17}
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2717}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3145}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.4138}}@{}}
+\caption{Three types of perturbations: settings and results}\label{tab:s10-5}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Type
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Long task
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Injection method
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Type
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Long task
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Injection method
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Undo placing an object into the basket & t0, return the soup can and ketchup bottle to their original table poses & after the first target is placed, restore the soup can to its original table pose \\
+Violate operation precondition & t3, put bowl into bottom drawer and close it & close the bottom drawer initially open before placing the bowl \\
+Undo the placement of a cup & t4, place two cups separately on a plate & after placing and releasing the white cup, restore it to its original tabletop pose \\
+\end{longtable}\endgroup
+
+For each category, use public initial states 0/1/2. For the same injected state, compare continuing the original plan, retrying the entire English sentence, and Qwen re-planning based on the current image. The hash of the perturbed states for the three branches is identical, and the action noise seed is the same; each is given a 420-step recovery budget. In the t4 part, the source plan contains only one full-sentence goal; at this time, ``continue'' retains the real current full-sentence instruction, without deliberately modifying it to an incomplete instruction to create a gap.
+
+The environment code constructs and checks perturbations using ground truth; the policy and Qwen do not read these values. Recovery calls occur at agreed-upon injection moments, testing the ability to recover after notified perturbations, not automatic fault detection. The recovery budget for new branches is also not used as a standard Long leaderboard score.
+
+\paragraph{Results}\label{s10-detail-18}
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2603}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2466}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2466}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2466}}@{}}
+\caption{Results: Settings and Results}\label{tab:s10-6}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+perturbation
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Continue with the original plan
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Please retry the entire sentence.
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Replanning with Qwen
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+perturbation
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Continue with the original plan
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Please retry the entire sentence.
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Replanning with Qwen
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+t0, undo basket placement & 0/3 & 2/3 & 0/3 \\
+t3, close drawer & 0/3 & 0/3 & 0/3 \\
+t4, undo white cup & 2/3 & 1/3 & 0/3 \\
+Total & 2/9 & 3/9 & 0/9 \\
+\end{longtable}\endgroup
+
+\stagefigure{figures/ch04/s10_recovery_pair_ae5ee43c.png}{Recovery results under the same perturbation state}{fig:s10-detail-3}
+
+There are examples where control policies successfully recover, indicating that not all states in this phase are unexecutable; however, drawer-type states have still not been rescued by any method, so it is not possible to predefine all nine states as recoverable. Since the Qwen approach did not exceed full-sentence retry, the recovery experiment for this phase concludes without further expanding the initial state set.
+
+The retained planning text also exposes two specific issues: the basket-putting task may add unnecessary can/bottle-opening actions; after the drawer is closed, it may still only provide bowl-placement and drawer-closing actions without compensating for the prerequisite of opening the drawer. These are semantic issues that JSON-format checks cannot resolve, and no additional planner branches will be added at this stage.
+
+The protocol is at \path|injection_protocol.json|, individual results are at \path|injection_results.json|, and videos, states, and actions are at \path|results/injection/|.
+
+
+\paragraph{Stage Conclusion} 26 recovery attempts from three natural failure states were unsuccessful; subsequent 27 controlled recoveries also did not confirm additional benefits from Qwen. The analysis revised early interpretations of object eccentricity and visual completion states. The choice of recovery starting point affects experimental difficulty. Unsuccessful results are retained as well, but the diagnosis itself is not presented as an improvement in recovery performance.
+
+\stagecode{s10}
+
+\FloatBarrier
+
+\section{Low-Rank Adaptation of the Visual Completion Checker}
+
+\label{stage:s11}
+
+Convert the problem into start frame, current frame, and subgoal instruction to completion judgment. Construct near-completion examples such as eccentric, suspended, and gripped-but-not-released cases, and train and validate the checker.
+
+\subsection{First Version Checker: Data and Threshold Calibration}\label{s11-detail-1}
+
+\subsubsection{Completion Checker LoRA}\label{s11-detail-2}
+
+\paragraph{Data and Labels}\label{s11-detail-3}
+
+Extracted 720 image pairs from the 120 baseline episodes of the previous four LIBERO task sets. The first image is the initial frame of the episode, and the second image is taken at early, mid, 20 steps before the end, 5 steps before the end, 1 step before the end, and at the end. The k-th frame of the video corresponds to the state after executing k steps, and the label is read from \texttt{trace.predicate{[}k-1{]}}; this is not a Qwen-generated answer.
+
+Isolated by initial state ID: initial state 0 for training, initial state 1 for validation, initial state 2 for testing, each with 40 complete episodes, totaling 240 examples. Episode and initial state hashes do not overlap; identical image pairs and instructions do not overlap across sets. The task itself is shared across the three sets, validating the effect of this LoRA with held-out initial states, not generalization to a new task; shared initial states do not mean the base pre-training has never seen them.
+
+A total of 240 examples, comprising the last 5 steps and the last 1 step, are designated as boundary examples and treated separately. Among them, 80 examples on the training side are excluded from training, 80 examples on the validation side are excluded from weight selection, and 80 examples on the test side are still fully reported without hiding hard examples. Therefore, actual training uses 160 examples, weight selection employs a fixed set of 64 examples (32 positive and 32 negative) from the validation set, and the final test set of 240 examples is divided into regular 160 examples and boundary 80 examples. Subsequent threshold calibration uses the complete validation set of 240 examples, and test scores are not used for threshold selection.
+
+Images are uniformly two 256\(\times\)256 RGB frames, matching the source video resolution; no depth input is provided in this stage. Labels indicate that all task/goal conditions are fully satisfied. Standard tasks provide positional relationship examples, while Long tasks provide multi-condition examples; the final criterion is not arbitrarily mapped to any intermediate subgoal.
+
+\paragraph{Training Configuration and Weights}\label{s11-detail-4}
+
+Base model is fixed revision of \path|Qwen/Qwen3-VL-4B-Instruct|, BF16; visual module frozen, only LoRA training on language layer q/v projections, rank 8, alpha 16, dropout 0.05. Trainable parameters: 2,949,120, AdamW learning rate 5e-5, gradient accumulation 2, balanced positive-negative sampling, fixed 180 updates.
+
+Every 60 updates are evaluated on the same validation subset, prioritizing the highest balanced accuracy, and then selecting the one with lower false positive rate. The weight at step 180 was chosen, achieving a validation balanced accuracy of 87.5\%. No weight was selected for the test set, and no multi-round hyperparameter search was performed.
+
+The weights are at \path|results/checker_lora/best_adapter/|. Training, validation, and post-fine-tuning testing took approximately 103 seconds, excluding prior baseline testing, data extraction, initial loading, and subsequent calibration. The peak memory allocation recorded by PyTorch was approximately 8.79GiB. A separate new process has reloaded the saved adapter, and its independent CLI output matches the saved test probabilities.
+
+\paragraph{Independent Testing: General Recognition Improvement, Severe False Positives at Boundaries}\label{s11-detail-5}
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3930}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2965}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3105}}@{}}
+\caption{Independent Test: General Recognition Improvement, Severe Boundary False Positives: Setup and Results}\label{tab:s11-1}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+240 complete test cases, greedy output
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Base
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+LoRA
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+240 complete test cases, greedy output
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Base
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+LoRA
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Overall Accuracy & 82.9\% & 63.3\% \\
+Balance Accuracy & 51.6\% & 72.9\% \\
+Recall completed, 39 cases & 2/39 (5.1\%) & 34/39 (87.2\%) \\
+Incomplete false alarms, 201 cases & 4/201 (2.0\%) & 83/201 (41.3\%) \\
+output format valid & 240/240 & 240/240 \\
+\end{longtable}\endgroup
+
+Most baselines answered incomplete, achieving high overall accuracy due to a large number of negative examples. LoRA can identify more completed samples, but this comes with increased false positives, so one cannot simply highlight the improvement in balanced accuracy.
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3940}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2842}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3217}}@{}}
+\caption{Independent Test: General Recognition Improvement, Severe Boundary False Positives: Setup and Results}\label{tab:s11-2}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Hierarchical view, greedy output
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Base
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+LoRA
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Hierarchical view, greedy output
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Base
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+LoRA
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Conventional 160 examples accuracy & 76.9\% & 86.3\% \\
+Conventional negative example false positive rate & 0/121 & 17/121 (14.0\%) \\
+False positive rate for 80 boundary cases & 4/80 (5.0\%) & 66/80 (82.5\%) \\
+\end{longtable}\endgroup
+
+\stagefigure{figures/ch04/s11_checker_core_3bdc7ffb.png}{Confusion matrix for 160 typical cases}{fig:s11-detail-1}
+
+\paragraph{Validation Set Threshold Calibration}\label{s11-detail-6}
+
+In addition, perform constrained binary classification based on the relative probability of true/false following a fixed JSON prefix. Both base and LoRA models use the same method, selecting the threshold with the highest recall under the constraint that the false positive rate on the validation set does not exceed 5\%. This is an additional runtime calibration point; all original greedy results are retained.
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3344}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3292}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3363}}@{}}
+\caption{Validation Set Threshold Calibration: Settings and Results}\label{tab:s11-3}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+After calibration, complete 240 test cases.
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Base
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+LoRA
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+After calibration, complete 240 test cases.
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Base
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+LoRA
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Recall & 3/39 (7.7\%) & 5/39 (12.8\%) \\
+False alarms for incomplete & 10/201 (5.0\%) & 14/201 (7.0\%) \\
+Conventional false positive negatives & 2/121 (1.7\%) & 1/121 (0.8\%) \\
+80 boundary false positives & 8/80 (10.0\%) & 13/80 (16.3\%) \\
+\end{longtable}\endgroup
+
+LoRA threshold is 0.985936. The 5\% constraint on the validation set does not guarantee that the test set also satisfies it, and the low false positive setting loses most of the completion recall. Therefore, these weights are not yet suitable for automatic phase switching. The positive data samples are mainly successful final frames, which may include associations between execution phases and robotic arm poses; in the next round, we should supplement visually similar but failed final frames and counterfactual negative examples, rather than immediately deploying on the robot.
+
+The base and LoRA use the same prompt for this stage; these numbers are not equivalent to the results from the original hierarchical system's completion-check prompts. Boundary subsets containing only negative examples do not report balanced accuracy to avoid assigning misleading values to single-class samples.
+
+
+\subsection{Second Checker: Approximate Completion Data and Independent Testing}\label{s11-detail-7}
+
+\subsubsection{Objectives and Acceptance Criteria}\label{s11-detail-8}
+
+The specific problem to be addressed is: when an object appears to have reached near a container or plate but is still being gripped, suspended in the air, or deviated from the effective region, the checker prematurely confirms completion.
+
+Offline acceptance pre-requisites: The false positive rate of incomplete examples must not exceed 5\%, the completion recall must be at least 20\%, and performance must be at least 15 percentage points higher than the baseline with the same input format. Thresholds are selected from the validation set; the test set is not involved in training, weight selection, or threshold adjustment. Unknown or rejected confirmations are not counted toward completion recall.
+
+Only run the paired closed-loop after offline validation: fix the existing plan and control parameters, compare the baseline with the checker, requiring a success rate of no less than 28/30 while reducing erroneous switches. This stage has not yet been initiated.
+
+\subsubsection{Data and Labels}\label{s11-detail-9}
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2397}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2397}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2397}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2810}}@{}}
+\caption{Data and Labels: Setup and Results}\label{tab:s11-4}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+partition
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+example
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Scene Group
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Purpose
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+partition
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+example
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Scene Group
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Purpose
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Training & 468 & 77 & Parameter Update \\
+Validation & 288 & 54 & Select weights, thresholds \\
+Independent Test & 284 & 53 & One-time evaluation of the language model \\
+\end{longtable}\endgroup
+
+799 examples are constructed from simulation states, 241 examples are from existing policy episodes. Synthetic scenes use Long initial states 3--10; training, validation, and test sets are isolated by initial state and scene group. Existing Long initial states 0--2 are reserved for closed-loop evaluation. Natural episodes are partitioned by source and checked for image-pair and scene-group cross-over.
+
+Synthetic examples are compared using identical robot poses, cameras, and backgrounds to avoid the model making judgments based solely on whether the robotic arm has returned to its home position. In some scenarios, another object is placed first, covering the second subgoal. Camera positions and field of view have minor variations; the current data remains limited to assets and tasks from LIBERO and cannot be used to claim generalization capability in real-world scenarios.
+
+Completion labels require simultaneously satisfying task relations, non-robotic support contact, and not being physically grasped. Satisfying only the simulated In geometric relation is insufficient, as it may include suspended objects. Examples labeled as unknown include critical eccentricity, contact edge cases, severely occluded targets, and visually identical but physically distinct states. All physical labels are used only for offline data and evaluation and are not used as runtime model inputs.
+
+During review, corrected the issue of only counting visibility caused by collision geometries; training only began after correction and re-generation. For two pots with identical shapes, avoid using internal IDs that cannot be determined from the image. Detailed rules are in DATA\_REVIEW.md.
+
+\subsubsection{Training Process}\label{s11-detail-10}
+
+Base is locally available Qwen3-VL-4B, BF16. Initially supervised trained with complete JSON text, recall was insufficient; subsequently switched to directly optimizing a three-class decision (yes/no/unknown) to reduce the loss occupied by fixed output format.
+
+The language-layer version applies LoRA with rank 8 for q/v, alpha 16, dropout 0.05, approximately 2.95 million trainable parameters, learning rate 5e-5, gradient accumulation 3. Each development phase consists of 360 updates, with the second phase continuing training from the weights of the first phase. Weights are selected solely based on the validation set.
+
+When adding the visual layer adaptation, retain the language layer LoRA and incorporate visual attention qkv, totaling approximately 3.74 million trainable parameters, and retrain for 360 updates. Its validation threshold adopts a 2\% false positive upper bound as a safety margin, while the test acceptance remains at 5\%. Additional confirmation data for initial states 11 and 12 are prepared to avoid treating the already-scored original test set as an independent test; the visual version at this stage failed validation, and the confirmation set remains un-scored.
+
+When the probability is close to 1, floating-point numbers lose ordering differences, so the threshold uses the log-odds of yes relative to no/unknown, computed in double precision. The threshold is not a confidence percentage.
+
+\subsubsection{Independent Test Results}\label{s11-detail-11}
+
+The language-layer version is tested after the new process reloads the weights. Both use thresholds determined by the validation set and have the same input format.
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1842}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2192}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2283}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1842}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1842}}@{}}
+\caption{Independent test results: settings and outcomes}\label{tab:s11-5}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+model
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Complete recall
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+False positive rate for incomplete tasks
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Confirm quantity
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Conclusion
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+model
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Complete recall
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+False positive rate for incomplete tasks
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Confirm quantity
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Conclusion
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Base & 3/105, 2.9\% & 1/179, 0.6\% & 4/284 & Insufficient recall \\
+Language Layer LoRA & 28/105, 26.7\% & 12/179, 6.7\% & 40/284 & False positive rate exceeds threshold \\
+\end{longtable}\endgroup
+
+Recall increased by 23.8 percentage points but did not meet all acceptance criteria. The baseline is more conservative, so improvement cannot be claimed solely based on recall. Samples exhibit intra-group correlation; the results above are from the current fixed test set and do not constitute statistical significance or real-world deployment safety guarantees.
+
+Simply tightening the language layer threshold on the original validation set, reducing the false positive rate to 2\%, also drops recall to 14.8\%, insufficient to solve the problem. After adding visual affordance, selecting the 120th update; the reloaded validation recall is 14.8\%, false positive rate 1.7\%, yielding a 13.0 percentage point gain relative to the baseline, still failing to meet development screening requirements. The visual version has no independent test results.
+
+
+\subsection{Checker Interface and Files}\label{s11-detail-12}
+
+\subsubsection{Interfaces and Code Directory}\label{s11-detail-13}
+
+\noindent See \hyperlink{s11-command-2}{the corresponding entry in Appendix D} for run commands and directory examples.\par
+
+The relevant data code is in \path|checker_v2/scripts/generate.py| and audit\_data.py; the relevant training code is in train\_classification.py and train\_vision.py; the relevant evaluation code is in protocol.py and final\_evaluate.py. The complete original data is stored locally, and the source code package does not include images, simulation states, and base weights.
+
+The new inference interface is available as an explicit option; the default system retains the original checker. Planning still uses the base model. The adapter is used only for object-transfer completion checks within its supported scope. Uncovered categories, including stove switching and door manipulation, fall back to the original implementation. The interface has unit tests, but no completed closed-loop validation is claimed.
+
+
+\stagefigure{figures/ch04/s11_validation_false_positives.png}{Examples of false positives by the checker. The final version must explain item-by-item the physical state and visual discernibility.}{fig:s11-retained}
+
+\paragraph{Stage Conclusion} V2 processed 1040 examples, achieving a recall improvement from 2.9\% to 26.7\%; the false positive rate was 6.7\%, exceeding the preset 5\% upper limit. The visual layer adaptation did not pass validation set screening. The false positive rate is the proportion of incomplete examples incorrectly judged as completed; the recall rate is the proportion of completed examples correctly identified. Offline results cannot directly substitute for closed-loop validation.
+
+\stagecode{s11}
+
+\FloatBarrier
+
+\section{Closed-loop Role of the Checker and Input Correspondence}
+
+\label{stage:s12}
+
+Compare visual inspection, frozen images, fixed-timestep switching, and always maintaining the first subgoal during real execution rounds, and supplement wrist-view perspective and task constraint propagation.
+
+\subsection{Frozen V2 Checker Pairwise Closed-Loop}\label{s12-detail-1}
+
+\subsubsection{Why Continue Running Closed-Loop}\label{s12-detail-2}
+
+In previous independent offline testing, V2 improved recall from 2.9\% to 26.7\%, while false positive rate increased from 0.6\% to 6.7\%, failing to meet the preset 5\% upper limit. This conclusion is retained for this phase, but it is separated from exploratory simulation: actual closed-loop operation includes gripper gating, two consecutive confirmations, and low-level policy behavior; offline false positives cannot be directly converted to task failure.
+
+Offline labels require to be in place, supporting contact, and released; closed-loop retains the LIBERO official success check. The two standards differ. In this phase, offline labels are not modified, thresholds are not reselected, and original test results are not re-scored and treated as new tests.
+
+\subsubsection{Fixed Baseline Conditions}\label{s12-detail-3}
+
+\begin{itemize}
+\tightlist
+\item
+  All lower levels use the same official \(\pi\)0.5 LIBERO checkpoint, 10-step denoising, applied to the first 5 steps of each action block.
+\item
+  Fixed v3 recorded English sub-goals and Chinese full instruction sentences; for each round, fixed initial state, environment seed, and action sampling noise, without regenerating the plan.
+\item
+  Third-person 512-pixel start frame and current frame; check when gripper opens, switch only after continuous confirmation from two instances.
+\item
+  Each subgoal has a budget of 300 steps, with a maximum of 520 steps per episode; the final subgoal ends either by official success or step count limit. Budget overrun and visual confirmation are counted separately.
+\item
+  V2 uses a frozen adapter in the language layer, log-odds threshold 3.2480709186546264. Steps not covered, such as door and oven switches and independent picking up, retain base fallback.
+\item
+  The two groups alternate in execution, running in turn based on task and initial state. Simulation ground truth is only saved for evaluation and does not participate in checking or control.
+\end{itemize}
+
+30 pairs of plans and seeds are consistent, with a maximum action difference of 0 before the first switch; among them, 20 pairs have identical actions throughout. This stage is not a physical robotic arm experiment.
+
+\subsubsection{Closed-loop Results}\label{s12-detail-4}
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3926}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3037}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3037}}@{}}
+\caption{Closed-loop results: Settings and outcomes}\label{tab:s12-1}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Metrics
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Base Checker
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+V2 Classification Checker
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Metrics
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Base Checker
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+V2 Classification Checker
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Official Success & 28/30 & 28/30 \\
+Timeout episodes & 2 & 2 \\
+Visual Affordance Localization & 19 & 12 \\
+Verifiable correct confirmation & 17 & 10 \\
+Error confirmation switch & 1 & 1 \\
+No corresponding final predicate confirmation & 1 & 1 \\
+Over budget advancement & 2 & 1 \\
+Achieved but not confirmed rounds/phases & 8 & 15 \\
+Successful but no subgoal switch & 9 & 17 \\
+Total check counts & 135 & 145 \\
+\end{longtable}\endgroup
+
+Cases where the goal is achieved but not confirmed to include the final task being successfully completed are not equivalent to task failure. There is no corresponding final task predicate for independently picking up a book, so the truth value of the "book has been placed in the storage box" cannot substitute for the pick-up action; such confirmations do not count toward error switch counts. For two visually identical pots, the first stage evaluates as "on the stove" for either one arbitrarily.
+
+The average latency for correctly confirmed cases is 2.13 / 2.14 seconds of simulation time, with sample counts of 17 / 10. There are 9 paired rounds where both groups correctly confirmed, with an average latency of 2.03 / 2.26 seconds, and V2 minus base is 0.22 seconds. Unconfirmed cases are listed separately to avoid only counting quickly successful cases.
+
+Pairwise successful results: Only base succeeded in 0 episodes, only V2 succeeded in 0 episodes; exact two-sided McNemar p=1. Only 3 initial states per task; do not draw broad generalization conclusions from this.
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3677}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3162}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3162}}@{}}
+\caption{Closed-loop results: Settings and outcomes}\label{tab:s12-2}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Task
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Base
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+V2
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Task
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Base
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+V2
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+t0 Double-can into basket & 3/3 & 3/3 \\
+t1 Cheese Butter & 3/3 & 3/3 \\
+t2 furnace ignition and pot placement & 2/3 & 2/3 \\
+t3 bowl into drawer & 3/3 & 3/3 \\
+t4 Double Cup Placement on Plate & 3/3 & 3/3 \\
+t5 book storage & 3/3 & 3/3 \\
+t6 cup and pudding & 3/3 & 3/3 \\
+t7 cheese soup can & 3/3 & 3/3 \\
+t8 double kettle on stove & 2/3 & 2/3 \\
+t9 mug into microwave & 3/3 & 3/3 \\
+\end{longtable}\endgroup
+
+\stagefigure{figures/ch04/s12_exploratory_success_bc9ca426.png}{Number of successful episodes per task pair}{fig:s12-detail-1}
+
+\subsubsection{What this round validates}\label{s12-detail-5}
+
+First, the closed-loop system can continue operating as exploration even if the offline threshold is not passed, but both conclusions should be retained separately. This phase neither proves that a single false alarm will directly cause closed-loop failure nor proves that improving offline recall will enhance task success.
+
+Second, in some episodes, \(\pi\)0.5 completed the entire task before the first subgoal was confirmed. This indicates that the low-level behaviors on the current baseline may cover action sequences longer than a single subgoal. Relying solely on task success rate is insufficient to prove the effectiveness of the high-level completion check; therefore, this phase additionally supplements the number of confirmations, the proportion of unconfirmed cases, and the proportion of actions across the entire trajectory.
+
+Third, the primary measurable changes of V2 are the inspection method and runtime; whether it is worth deploying still depends on the improvement of specific errors, rather than the weights having already been trained. The fallback for uncovered operations must also be listed separately and cannot be treated as categories already resolved by LoRA.
+
+\subsubsection{False Positive Label Review and Subsequent Decision Making}\label{s12-detail-6}
+
+Among the 12 false positives in the offline test, 7 were near-contact, 2 were clearly offset, 2 were on the outer edge, and 1 involved holding without release; among these, 9 were labeled as unknown, and 5 had established simulation task relationships but did not meet stricter support/release requirements. This is a post-evaluation semantic review and is not used to modify original thresholds or erase failure results.
+
+Currently, we no longer blindly expand to thousands of similar static images. If further training is pursued, we should first supplement natural processes and identifiable challenging counterexamples that genuinely affect the closed-loop performance; the wrist camera should first check visibility before deciding to include them. The completion checker phase concludes based on the results of this phase, and subsequent priorities should focus on navigation and grasping within the same physical scene, reusing existing check and logging interfaces.
+
+
+\subsection{Visual Affordance Localization and Stage Transition Attribution}\label{s12-detail-7}
+
+\subsubsection{Problems and Existing Foundations}\label{s12-detail-8}
+
+The original \(\pi\)0.5 completed 117/120 closed-loop trials in LIBERO; in existing Chinese Long counterparts, Qwen hierarchical achieved 28/30, while only translation achieved 29/30. The existing checker V2 achieved 28/30 in both exploratory paired closed-loop and baseline trials, with faster single-check speed but no improvement in success rate. These results indicate the system is functioning normally, but cannot yet prove that visual-phase checking brought additional success.
+
+The question in this phase is: Can the task still be completed by removing the current visual input or canceling stage progression, without modifying the low-level policy or plan? If yes, the next step should be to design tasks that genuinely require high-level intervention, rather than continuing to optimize the checker under the same success rate.
+
+The existing numbers are for background only and are not mixed with the current stage's rounds. The current 30 initial states are from previously studied Long tasks 0--9 and initial states 0--2, belonging to mechanism diagnosis rather than new generalization evaluation.
+
+\subsubsection{Paired Protocols and Five Interventions}\label{s12-detail-9}
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2281}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3135}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.4584}}@{}}
+\caption{Paired protocols and five interventions: settings and results}\label{tab:s12-3}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Group
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+checker visible content
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Switching rule
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Group
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+checker visible content
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Switching rule
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Normal vision & subgoal start frame + current real frame & base Qwen judgment, release gate, two consecutive votes \\
+Freeze old image & start frame + same start frame & same judgment and gating; only replace check image \\
+Predefined time & without calling Qwen & award completion ticket after 150 steps, still requires same gating and two tickets \\
+V2 inspection scheme & start frame + current real frame & original LoRA + prompt + classification threshold; fallback base for unsupported operations \\
+Keep the first instruction & do not call Qwen & do not advance the stage, disable the 300-step stage budget; until official success or 520 steps \\
+\end{longtable}\endgroup
+
+The first four groups all retain a 300-step stage budget, with timeout advancement and completion judgment counted separately. The preset 150 steps is a unified pre-defined parameter, not adjusted per task; actual switching still waits for gate release and two queries, so it does not necessarily occur at step 150. Keeping the first instruction as a clearly distinct mechanism-controlled action, it cannot be called a flat baseline that directly hands off the entire long task to the policy.
+
+All methods use the same frozen historical Qwen plan from this stage, which no longer calls the planner to generate new plans. Therefore, the results cannot be interpreted as a comparison of Chinese comprehension, translation, or decomposition quality. The full Chinese sentence is retained in the record, while the lower level actually receives the same English sub-goals.
+
+The policy uses the official \(\pi\)0.5 checkpoint, predicting 10 steps at a time, executing the first 5 steps and then observing; explicit noise input with the same seed. Qwen3-VL-4B and V2 adapter co-reside throughout the entire run of all methods, with the adapter disabled during base model generation. The V2 control is the full approach including prompting, LoRA, and scoring threshold, not attributing LoRA separately.
+
+\stagefigure{figures/ch04/s12_image_intervention_0989cbe3.png}{Freezing intervention only modifies the check input. The low-level still reads the real current image.}{fig:s12-detail-2}
+
+The relevant code is in \path|monitor_causality/scripts/interventions.py|, \path|run_study.py|, and \path|runner_snapshot.py|. Old entry points and historical results remain unchanged.
+
+\subsubsection{Official Results and Task Differences}\label{s12-detail-10}
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2036}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1991}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1991}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1991}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1991}}@{}}
+\caption{Official Results and Task Differences: Settings and Results}\label{tab:s12-4}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Method
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+official success
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Successful and no switch
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Actual Qwen check call
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Total number of stage switches
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Method
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+official success
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Successful and no switch
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Actual Qwen check call
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Total number of stage switches
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Normal Vision & 28/30 & 9 & 132 & 21 \\
+Freeze old map & 28/30 & 25 & 157 & 5 \\
+Predefined Time & 28/30 & 10 & 0 & 20 \\
+V2 inspection plan & 28/30 & 17 & 139 & 13 \\
+keep the first instruction & 28/30 & 28 & 0 & 0 \\
+\end{longtable}\endgroup
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1667}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1667}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1667}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1667}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1667}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1667}}@{}}
+\caption{Official Results and Task Differences: Settings and Results}\label{tab:s12-5}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Task
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Normal vision
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Freeze old image
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Prespecified time instant
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+V2 check
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Keep the first line
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Task
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Normal vision
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Freeze old image
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Prespecified time instant
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+V2 check
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Keep the first line
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+0 & 3/3 & 3/3 & 3/3 & 3/3 & 3/3 \\
+1 & 3/3 & 3/3 & 3/3 & 3/3 & 3/3 \\
+2 & 2/3 & 2/3 & 2/3 & 2/3 & 2/3 \\
+3 & 3/3 & 3/3 & 3/3 & 3/3 & 3/3 \\
+4 & 3/3 & 3/3 & 3/3 & 3/3 & 3/3 \\
+5 & 3/3 & 3/3 & 3/3 & 3/3 & 3/3 \\
+6 & 3/3 & 3/3 & 3/3 & 3/3 & 3/3 \\
+7 & 3/3 & 3/3 & 3/3 & 3/3 & 3/3 \\
+8 & 2/3 & 2/3 & 2/3 & 2/3 & 2/3 \\
+9 & 3/3 & 3/3 & 3/3 & 3/3 & 3/3 \\
+\end{longtable}\endgroup
+
+Task ID mappings are as follows, with complete English sub-goals preserved per initial state in PROTOCOL.json:
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.3156}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.6844}}@{}}
+\caption{Official Results and Task Differences: Settings and Results}\label{tab:s12-6}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Task
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Long-task instruction
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Task
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Long-task instruction
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+0 & Put the alphabet soup can and the tomato sauce can both into the basket \\
+1 & Put the cream cheese box and the butter into the basket \\
+2 & Open the stove and place the Moka pot on the stove \\
+3 & Put the black bowl into the bottom drawer of the cabinet, then close the drawer \\
+4 & Place the white mug on the left plate, and place the yellow-and-white mug on the right plate \\
+5 & Pick up the book and place it in the rear compartment of the desk organizer \\
+6 & Place the white mug on the plate, then put the chocolate pudding on the right side of the plate \\
+7 & Put the alphabet soup can and the cream cheese box into the basket \\
+8 & Place both Moka pots on the stove \\
+9 & Place the yellow-and-white striped mug into the microwave oven, then close the microwave door \\
+\end{longtable}\endgroup
+
+Under the same initial state, with normal vision as the left reference, the success gains/losses of the other method are as follows:
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1769}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1646}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1646}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1646}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1646}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1646}}@{}}
+\caption{Official Results and Task Differences: Settings and Results}\label{tab:s12-7}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Baseline methods
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+pair count
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Increase success
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Lost success
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Nominal exact McNemar p
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Average step difference at joint success
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Baseline methods
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+pair count
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Increase success
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Lost success
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Nominal exact McNemar p
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Average step difference at joint success
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Freeze old image & 30 & 0 & 0 & 1.000 & +0.1 \\
+Predefined Time & 30 & 0 & 0 & 1.000 & -3.2 \\
+V2 Inspection Scheme & 30 & 0 & 0 & 1.000 & -1.2 \\
+keep first instruction & 30 & 0 & 0 & 1.000 & -0.0 \\
+\end{longtable}\endgroup
+
+The p-value only describes paired inconsistencies; each task has only 3 initial states, which are task-internal correlated, and multiple methods are compared simultaneously, so one cannot claim general equivalence or significant superiority based on this. The step difference is the control method minus normal vision, comparing only rounds where both methods succeed, not wall-clock time. The same number of successes may correspond to different rounds or different action trajectories.
+
+Pairing conditions for different outcomes (step counts refer only to the current round and should not use premature failure to simulate speedup):
+
+Among the 30 paired conditions in this stage, the success/failure outcomes of the five methods are consistently aligned item by item.
+
+\subsubsection{Judgment, Switching, and Low-Level Behavior}\label{s12-detail-11}
+
+\paragraph{Do not treat budget advancement as visual confirmation}\label{s12-detail-12}
+
+Incorrect switches are judged based on the official intermediate task relations at the time of switching; errors caused by budget expiration are counted separately. The first step of Task 5 is to independently pick up the book, and the final task predicate cannot directly evaluate ``picked up'', so it is marked as unscorable, and is not forced to be counted as correct or incorrect.
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1698}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1660}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1660}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1660}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1660}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1660}}@{}}
+\caption{Not treating budget advancement as visual confirmation: Settings and Results}\label{tab:s12-8}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Method
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Error switch triggered by completion ticket
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Budget advancement not completed
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Cannot switch scoring
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Correct switch average delay (steps)
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Average model checking time (s)
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Method
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Error switch triggered by completion ticket
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Budget advancement not completed
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Cannot switch scoring
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Correct switch average delay (steps)
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Average model checking time (s)
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Normal Vision & 0 & 2 & 1 & 45.7 & 0.521 \\
+Freeze old image & 0 & 2 & 0 & - & 0.364 \\
+Predefined Time & 0 & 2 & 0 & 52.6 & - \\
+V2 Inspection Plan & 0 & 2 & 1 & 33.7 & 0.227 \\
+keep the first instruction & 0 & 0 & 0 & - & - \\
+\end{longtable}\endgroup
+
+The correct switch delay is calculated from the most recent start point where the condition has continuously held true prior to the switch. States that were previously achieved but then lost are not counted as correct switches; the average only covers actual correct switches, and unconfirmed states are recorded separately and cannot be used to "prove better" due to lower latency caused by fewer confirmations. Completion tickets for timing groups are determined by rules, not visual judgment.
+
+The two tickets refer to two consecutive passes through the gating checks, not adjacent video frames. For example, at t2 initial state 1, Qwen judged the furnace as open at step 40, while the official relation remained false; the next gating check occurred at step 120, when the furnace was indeed open, triggering the second ticket. There were no new checks in the intervening 80 steps, and the old rule did not include a ticket expiration time. This phase retains this rule, so the two tickets cannot be interpreted as two independent judgments.
+
+\stagefigure{figures/ch04/s12_decisions_cost_76ce9d0d.png}{Switching errors and actual Qwen invocation costs.}{fig:s12-detail-3}
+
+\paragraph{Checking for no contribution and the policy ignoring vision are two different things}\label{s12-detail-13}
+
+The frozen group only takes away Qwen's current inspection frame, while \(\pi\)0.5 still closes the loop to predict actions using the current RGB, wrist images, and robot state. Therefore, the success of the frozen group cannot be explained as not using vision at the low level, nor does it mean that VLA is action replay.
+
+The 28/30 success rate of the first instruction group indicates: at least in these initial states, progressing to the second instruction is not a necessary condition to achieve the official long-term task goal. Possible reasons include low-level task priors for known scenarios or the subgoal instructions themselves covering longer behaviors; this stage cannot be solely determined by success rate to infer internal model causes.
+
+In contrast, for certain rounds that require switching to succeed, each item should be localized individually and not obscured by overall counts. Full per-round results, actions, and check events are retained to facilitate analysis of different tasks.
+
+Compare each element of the action dimension across the entire policy output, and below count the episodes that are completely identical to the normal vision group:
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3393}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3303}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3303}}@{}}
+\caption{Checking for no contribution and the policy ignoring vision are two different things: setup versus results}\label{tab:s12-9}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Baseline
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+The entire action sequence is executed identically.
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Total number of pairs
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Baseline
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+The entire action sequence is executed identically.
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Total number of pairs
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Freeze old map & 10 & 30 \\
+Predefined Time & 11 & 30 \\
+V2 Inspection Plan & 19 & 30 \\
+keep the first instruction & 9 & 30 \\
+\end{longtable}\endgroup
+
+This separates "official results are the same" from "actual behavior is the same." If actions differ yet both succeed, it indicates that switching affected the behavior but did not increase success under these conditions; if the entire action sequence is identical, then no execution-level difference was produced by this pair in that phase.
+
+\subsubsection{Data at the Actual Decision Time}\label{s12-detail-14}
+
+Organized 728 actual inspection opportunities; after deduplication based on reference RGB, current RGB, and instruction, there are 162 pairs: official relationship true 86, false 67, unscorable 9, with 0 pairs conflicting pixel labels.
+
+This differs from the original sampling from any moment or the final successful frame, covering states where the system is prepared to make a judgment after the real release gate has been activated. However, visibility verification has not yet been completed, so it cannot automatically interpret the simulation relationship as true as being visible to the human eye, nor can it be treated as a strict support or non-grasping physical label.
+
+Indices retain the original reference/current image, the actual image fed into the checker, the method, the time step, and the source of the output and label. Frozen or timed groups do not observe the real current image; their predictions cannot be directly treated as normal visual misclassifications to mine training samples. Task 5 remains unscorable; strict physical support labels are empty, and determinability is pending review.
+
+All collected data still originates from the existing initial states 0--2, categorized as development data, and has not been randomly split into a new "independent test set." During this phase, it was not used to select thresholds, train weights, or report new offline model improvements.
+
+The relevant code is in \path|collect_queries.py|, and the data index is in \path|decision_data/cases.json|.
+
+\subsubsection{Independent Verification and Constraints}\label{s12-detail-15}
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5823}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.4177}}@{}}
+\caption{Independent Verification and Constraints: Settings and Results}\label{tab:s12-10}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Verification Items
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Results
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Verification Items
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Results
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Complete Round & 150 \\
+Complete video frame decoding & 39452 \\
+Policy Input / Noise / Action Block Query & 7912 \\
+Opportunity Check & 728 \\
+Cross-method pairing before switching & 120 \\
+Maximum action difference before switch & 0.0 \\
+Frozen group actually replaced different current frames & 157 \\
+Protocol, shared source code, and adapters & Hash unchanged \\
+CPU Unit Check & 10 Passed \\
+\end{longtable}\endgroup
+
+Verify each query by checking RGB, wrist images, states, and noise. Each actual executed action matches the first 5 steps of the saved model action block; for the same task/initial state, inputs and actions are identical before the earliest switch. The frozen group also verifies that the two image pixel hashes processed by the model are identical, and the timing/holding group has actual model calls equal to 0.
+
+Intermediate predicates in simulation are used only for logging and offline evaluation and are not sent to the checker or policy to decide phases. Final success stopping follows the official LIBERO rules, so we do not generally claim that ``no termination decision requires ground truth''.
+
+The video is a 20fps simulation replay of an actual episode, excluding wall-clock waiting time during model computation. After the completion of any one of the five trajectory pairs, its true final frame is retained and marked as stopped, without generating further actions. The complete video decoding has been verified.
+
+The main limitations are small sample size, the task and initial states having been studied before, low-level checkpoints being familiar with the benchmark, and releasing gating mechanisms altering the checkpoint state distribution. Here, we diagnose the role of the existing fixed hierarchical scheme, which cannot be generalized as ``VLM at the high level is not useful.''
+
+
+\subsection{Closed-loop Verification Entry}\label{s12-detail-16}
+
+\subsubsection{Code and Verification}\label{s12-detail-17}
+
+\noindent See \hyperlink{s12-command-3}{the corresponding entry in Appendix D} for run commands and directory examples.\par
+
+The relevant execution code is in \path|scripts/evaluate_loop.py|; the relevant metrics code is in \path|scripts/summarize_loop.py|; the checker runs are encapsulated in \path|experiments/vla_libero/scripts/completion_checker_v2.py|. Complete results of the 60 episodes, videos, and model inputs are saved locally; the delivery directory includes representative videos, and the source code package does not include the base model and training images.
+
+\begin{Verbatim}[breaklines=true,breakanywhere=true,fontsize=\footnotesize]
+Existing results will be reused for resuming interrupted runs; original rounds will not be overwritten.
+experiments/vla_libero/scripts/python_shared experiments/vla_libero/checker_v2/scripts/evaluate_loop.py --exploratory
+.venvs/openpi-libero/bin/python experiments/vla_libero/checker_v2/scripts/summarize_loop.py
+.venvs/openpi-libero/bin/python -m unittest discover -s experiments/vla_libero/checker_v2/scripts -p 'test_*.py'
+\end{Verbatim}
+
+
+\stagefigure{figures/ch04/s12_outcomes.png}{Visual intervention control under fixed low-level conditions, for evaluating the actual role of the stage checker.}{fig:s12-retained}
+
+\paragraph{Stage Conclusion} Five main interventions totaling 150 rounds; normal vision, frozen image, and holding the first instruction were all 28/30. The current task cannot sufficiently demonstrate the additional benefit of the visual checker. It is necessary to distinguish the role of the low-level policy itself covering the entire task from that of the high-level stage switching. Two consecutive confirmations may also repeat the same misjudgment.
+
+\stagecode{s12}
+
+\FloatBarrier

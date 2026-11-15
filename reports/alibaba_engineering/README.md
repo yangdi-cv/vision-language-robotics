@@ -47,3 +47,7 @@ python3 tools/audit_saved_results.py
 视频均复制到`videos/chXX/`，文件名为英文；PDF给出相对路径，未嵌入视频。以后英文版可以复用同一素材。当前未生成英文版或上传GitHub。
 
 代码索引给出现有实现位置；模型权重、数据、环境、上游库与原始输出不应全部混入普通Git历史。未来整理私有仓库时保留共享实现和版本来源，按章节提供入口，不复制多套同名模型或控制代码。
+
+## English edition
+
+[Complete English PDF — 161 pages](english/build/main_en.pdf) · [LaTeX sources and build instructions](english/README.md). The English edition covers all 24 stages, 103 tables, captions for 60 figure assets, and 7 video references. It uses Times New Roman and shares the original experiment images and videos with the Chinese edition.

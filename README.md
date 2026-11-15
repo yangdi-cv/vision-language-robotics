@@ -1,5 +1,7 @@
 # Vision-Language Robotics
 
+[English engineering report (161 pages)](reports/alibaba_engineering/english/build/main_en.pdf) · [中文版报告](reports/alibaba_engineering/build/main_zh.pdf)
+
 <!-- BEGIN INLINE DEMOS -->
 
 ### Qwen分层与π0.5执行

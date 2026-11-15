@@ -1,0 +1,87 @@
+{
+  "edition": "Complete English v0.2",
+  "translated_files": 14,
+  "files": [
+    {
+      "source": "chapters/00_abstract.tex",
+      "source_sha256": "003fe3a5fb11d5979e253ed7bcc60ce8af780ca465215179d7e38536b8653968",
+      "english_sha256": "ebc4d1b624082dbfd875ac3c4a874dee1bda925bd6292c28a01fa39cf2db9287"
+    },
+    {
+      "source": "chapters/01_overview.tex",
+      "source_sha256": "3d2bd56e110138ba9dee085fe4d59ec4d7f4ff786b2c035986c8c5ae897c4e91",
+      "english_sha256": "b60cd1c659c276355415a4a57757b7cc54da7826f028c9255aad6e71b03afec0"
+    },
+    {
+      "source": "chapters/02_platform.tex",
+      "source_sha256": "f3b1d08c1bc485e59a11495345d00e1df58c324a6a356044f1709928530a59aa",
+      "english_sha256": "eca462ee73e6033893b07bcd875daa47d0948cca0857fc396830a4e6e1b826e0"
+    },
+    {
+      "source": "chapters/03_autonomy.tex",
+      "source_sha256": "6029318ded69cffaa6300e8bc8e2605942038b9ee26e09725016ffb3aa954dbb",
+      "english_sha256": "bb71ba90f7e25aa72bc13b270da5bf4e3ed443e8636973898812c120a1b40022"
+    },
+    {
+      "source": "chapters/04_hierarchy.tex",
+      "source_sha256": "87078ec7bb899fd49bbbe19e291133af1c253d9a278243a7c1a446ea92dbf461",
+      "english_sha256": "8588d5ab252baef09850f7812bcdfa1ab6228aeb7d3c6b0c540c963e6bfca3c0"
+    },
+    {
+      "source": "chapters/05_mobile.tex",
+      "source_sha256": "1e6d2aa88225142ccf03e0656450e5748ae4f82ffb91acebc84e37b8164328e4",
+      "english_sha256": "ef77fcc6bac6fe1a7361abb9ae8d88842d4cba6a22a1c5bea581fb95fdd57380"
+    },
+    {
+      "source": "chapters/06_affordance.tex",
+      "source_sha256": "92ce49d628706d71e924149e91ed4d08ae157012ae55bd017862aa0201203c50",
+      "english_sha256": "3dbc270d4fe33e840d4cb44f80d8703bb9d44e36797f16ee83ecdce7ce241d87"
+    },
+    {
+      "source": "chapters/07_edge.tex",
+      "source_sha256": "585792f435afc49e2368a1770164f642fbcdaadb35755ab3f97a57bcd6460601",
+      "english_sha256": "ee680ed04e35ebf2871fe56d868d107b89f89f129a7c48f4fa67182b8c11dffa"
+    },
+    {
+      "source": "chapters/08_conclusions.tex",
+      "source_sha256": "b83731df77b84054769016dd8c03d2ef00ac05365178186bf26d6b03d2c342c1",
+      "english_sha256": "b5885afcab2e7e81ad383f04cb799952da3c5cbba0d2ee85bfc8937407091a4b"
+    },
+    {
+      "source": "appendices/code_map.tex",
+      "source_sha256": "cd9aac22b6fbb2e183c2ae707294bd188637e2e9f79c3b54d46c2f82cb7aaa54",
+      "english_sha256": "72584489827ba53dacc37cd1803c9af7023319e82a588351bd4bcee5a93cbb77"
+    },
+    {
+      "source": "appendices/glossary.tex",
+      "source_sha256": "0752e63554f5e3346bf79c298eb387932a1c375695a2da64f02a9bf1662e3526",
+      "english_sha256": "b779e3fc7357cfc46c4dff3fda558dc62446da3b714eda5e78b02a150b98f5ac"
+    },
+    {
+      "source": "appendices/media_index.tex",
+      "source_sha256": "3ba4cb8146dda6c8282b43c54aabdace9a2d9d0f00bf169b090c47789ac03ec6",
+      "english_sha256": "8d298bbd3a5783884a654bd87158ddd70f26b094e4c851781aedad33bb64f443"
+    },
+    {
+      "source": "appendices/reproduction.tex",
+      "source_sha256": "a94268953fef29c89682d7ad199aa4f08aa59b35f65cc7b616a414874015c0b1",
+      "english_sha256": "9189c32eb9ea5322abbdbae242f4b5a33035da8a0bba3a46c002aee9a044058e"
+    },
+    {
+      "source": "references.tex",
+      "source_sha256": "c1ecf48253c89835c323bb6e7b6b460cfb47242e086f2c1a3b582c47d6e49853",
+      "english_sha256": "cd7043752a00885f70e9dc848ab89e0849c68bb046732c2966e22a7e66f78215"
+    }
+  ],
+  "chapters": 8,
+  "appendices": 4,
+  "stages": 24,
+  "longtables": 103,
+  "unique_figure_assets": 60,
+  "video_references": 7,
+  "english_pdf_pages": 161,
+  "english_pdf_sha256": "86aa932168949165c7bef273d5130ad7086e6002c04b1571b5b27e8d6b82e552",
+  "chinese_pdf_sha256": "775f35db6af1020be3e9d380cad5547ca1d77d5fa3f9ae2d27424bbaeb187b05",
+  "original_embedded_screenshot_text_retained": true,
+  "checks": "All source files, section counts, table cells, figure/video paths, citations, labels and font glyphs passed."
+}

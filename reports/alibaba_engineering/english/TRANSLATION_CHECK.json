@@ -1,0 +1,12 @@
+{
+  "source_records": 2014,
+  "translated_records": 2014,
+  "remaining": 0,
+  "unresolved_issues": 0,
+  "scope": "Complete Chinese v0.2 text, tables, captions, references and appendices; historical filenames and original screenshots retained.",
+  "invariant_checks": [
+    "Numeric values, with month-name and ten-thousand/million normalization",
+    "LaTeX commands and syntax",
+    "Labels, citations, URLs and paths"
+  ]
+}
