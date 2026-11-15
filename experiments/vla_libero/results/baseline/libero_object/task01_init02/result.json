@@ -1,0 +1,36 @@
+{
+  "runner_sha256": "e5d28552be82d553e09b3fcfe45aa95bbc6d38b0338899c2536ed1407935bb9d",
+  "suite": "libero_object",
+  "task_id": 1,
+  "initial_state_id": 2,
+  "mode": "baseline",
+  "environment_seed": 7,
+  "noise_seed": 710102,
+  "initial_state_sha256": "4b18eff5a14fb9e6226ce096c48dfe4a4b55009958fdd4826dfed6b9a500568b",
+  "original_prompt": "pick up the cream cheese and place it in the basket",
+  "input_prompt": "pick up the cream cheese and place it in the basket",
+  "replan_steps": 5,
+  "denoising_steps": 10,
+  "max_steps": 280,
+  "status": "success",
+  "success": true,
+  "steps": 129,
+  "alternate_goal_evaluable": false,
+  "alternate_goal_ever_satisfied": null,
+  "initial_eef": [
+    -0.15689233782234493,
+    0.0022971322915806133,
+    0.2604186197973948
+  ],
+  "final_eef": [
+    0.010818294628697423,
+    0.2519122884319021,
+    0.20403785335368213
+  ],
+  "qpos_displacement_norm": 1.3792434343184803,
+  "simulation_elapsed_s": 6.45,
+  "wall_s": 4.788177157999598,
+  "query_count": 26,
+  "warmup_query_wall_s": 0.07456282499970257,
+  "query_median_excluding_first_s": 0.07488855500014324
+}

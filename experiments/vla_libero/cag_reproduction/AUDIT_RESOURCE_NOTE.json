@@ -1,0 +1,14 @@
+{
+  "reason": "Audit live RSS about2.4GiB exceeded self-imposed MemoryHigh2GiB, causing reclaim throttling; no OOM",
+  "before": {
+    "MemoryHigh": "2G",
+    "MemoryMax": "3G"
+  },
+  "after": {
+    "MemoryHigh": "4G",
+    "MemoryMax": "6G"
+  },
+  "scope": "only independent physics rescore service, model evaluation already complete",
+  "oom": 0,
+  "oom_kill": 0
+}

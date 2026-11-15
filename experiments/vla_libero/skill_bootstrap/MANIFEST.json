@@ -1,0 +1,322 @@
+[
+  {
+    "split": "train",
+    "task": 0,
+    "initial": 20,
+    "target": 0,
+    "accepted": false,
+    "source": "experiments/vla_libero/skill_bootstrap/episodes/train/task00_target0_init20/result.json",
+    "trajectory": "experiments/vla_libero/skill_bootstrap/episodes/train/task00_target0_init20/trajectory.npz",
+    "steps": 318
+  },
+  {
+    "split": "train",
+    "task": 0,
+    "initial": 20,
+    "target": 1,
+    "accepted": true,
+    "source": "experiments/vla_libero/skill_bootstrap/episodes/train/task00_target1_init20/result.json",
+    "trajectory": "experiments/vla_libero/skill_bootstrap/episodes/train/task00_target1_init20/trajectory.npz",
+    "steps": 282
+  },
+  {
+    "split": "train",
+    "task": 0,
+    "initial": 21,
+    "target": 0,
+    "accepted": false,
+    "source": "experiments/vla_libero/skill_bootstrap/episodes/train/task00_target0_init21/result.json",
+    "trajectory": "experiments/vla_libero/skill_bootstrap/episodes/train/task00_target0_init21/trajectory.npz",
+    "steps": 315
+  },
+  {
+    "split": "train",
+    "task": 0,
+    "initial": 21,
+    "target": 1,
+    "accepted": true,
+    "source": "experiments/vla_libero/skill_bootstrap/episodes/train/task00_target1_init21/result.json",
+    "trajectory": "experiments/vla_libero/skill_bootstrap/episodes/train/task00_target1_init21/trajectory.npz",
+    "steps": 278
+  },
+  {
+    "split": "train",
+    "task": 0,
+    "initial": 22,
+    "target": 0,
+    "accepted": false,
+    "source": "experiments/vla_libero/skill_bootstrap/episodes/train/task00_target0_init22/result.json",
+    "trajectory": "experiments/vla_libero/skill_bootstrap/episodes/train/task00_target0_init22/trajectory.npz",
+    "steps": 319
+  },
+  {
+    "split": "train",
+    "task": 0,
+    "initial": 22,
+    "target": 1,
+    "accepted": true,
+    "source": "experiments/vla_libero/skill_bootstrap/episodes/train/task00_target1_init22/result.json",
+    "trajectory": "experiments/vla_libero/skill_bootstrap/episodes/train/task00_target1_init22/trajectory.npz",
+    "steps": 281
+  },
+  {
+    "split": "train",
+    "task": 0,
+    "initial": 23,
+    "target": 0,
+    "accepted": true,
+    "source": "experiments/vla_libero/skill_bootstrap/episodes/train/task00_target0_init23/result.json",
+    "trajectory": "experiments/vla_libero/skill_bootstrap/episodes/train/task00_target0_init23/trajectory.npz",
+    "steps": 315
+  },
+  {
+    "split": "train",
+    "task": 0,
+    "initial": 23,
+    "target": 1,
+    "accepted": true,
+    "source": "experiments/vla_libero/skill_bootstrap/episodes/train/task00_target1_init23/result.json",
+    "trajectory": "experiments/vla_libero/skill_bootstrap/episodes/train/task00_target1_init23/trajectory.npz",
+    "steps": 281
+  },
+  {
+    "split": "train",
+    "task": 0,
+    "initial": 24,
+    "target": 0,
+    "accepted": true,
+    "source": "experiments/vla_libero/skill_bootstrap/episodes/train/task00_target0_init24/result.json",
+    "trajectory": "experiments/vla_libero/skill_bootstrap/episodes/train/task00_target0_init24/trajectory.npz",
+    "steps": 316
+  },
+  {
+    "split": "train",
+    "task": 0,
+    "initial": 24,
+    "target": 1,
+    "accepted": true,
+    "source": "experiments/vla_libero/skill_bootstrap/episodes/train/task00_target1_init24/result.json",
+    "trajectory": "experiments/vla_libero/skill_bootstrap/episodes/train/task00_target1_init24/trajectory.npz",
+    "steps": 279
+  },
+  {
+    "split": "train",
+    "task": 0,
+    "initial": 25,
+    "target": 0,
+    "accepted": true,
+    "source": "experiments/vla_libero/skill_bootstrap/episodes/train/task00_target0_init25/result.json",
+    "trajectory": "experiments/vla_libero/skill_bootstrap/episodes/train/task00_target0_init25/trajectory.npz",
+    "steps": 313
+  },
+  {
+    "split": "train",
+    "task": 0,
+    "initial": 25,
+    "target": 1,
+    "accepted": true,
+    "source": "experiments/vla_libero/skill_bootstrap/episodes/train/task00_target1_init25/result.json",
+    "trajectory": "experiments/vla_libero/skill_bootstrap/episodes/train/task00_target1_init25/trajectory.npz",
+    "steps": 282
+  },
+  {
+    "split": "train",
+    "task": 1,
+    "initial": 20,
+    "target": 0,
+    "accepted": true,
+    "source": "experiments/vla_libero/skill_bootstrap/episodes/train/task01_target0_init20/result.json",
+    "trajectory": "experiments/vla_libero/skill_bootstrap/episodes/train/task01_target0_init20/trajectory.npz",
+    "steps": 330
+  },
+  {
+    "split": "train",
+    "task": 1,
+    "initial": 20,
+    "target": 1,
+    "accepted": true,
+    "source": "experiments/vla_libero/skill_bootstrap/episodes/train/task01_target1_init20/result.json",
+    "trajectory": "experiments/vla_libero/skill_bootstrap/episodes/train/task01_target1_init20/trajectory.npz",
+    "steps": 298
+  },
+  {
+    "split": "train",
+    "task": 1,
+    "initial": 21,
+    "target": 0,
+    "accepted": true,
+    "source": "experiments/vla_libero/skill_bootstrap/episodes/train/task01_target0_init21/result.json",
+    "trajectory": "experiments/vla_libero/skill_bootstrap/episodes/train/task01_target0_init21/trajectory.npz",
+    "steps": 332
+  },
+  {
+    "split": "train",
+    "task": 1,
+    "initial": 21,
+    "target": 1,
+    "accepted": true,
+    "source": "experiments/vla_libero/skill_bootstrap/episodes/train/task01_target1_init21/result.json",
+    "trajectory": "experiments/vla_libero/skill_bootstrap/episodes/train/task01_target1_init21/trajectory.npz",
+    "steps": 294
+  },
+  {
+    "split": "train",
+    "task": 1,
+    "initial": 22,
+    "target": 0,
+    "accepted": true,
+    "source": "experiments/vla_libero/skill_bootstrap/episodes/train/task01_target0_init22/result.json",
+    "trajectory": "experiments/vla_libero/skill_bootstrap/episodes/train/task01_target0_init22/trajectory.npz",
+    "steps": 333
+  },
+  {
+    "split": "train",
+    "task": 1,
+    "initial": 22,
+    "target": 1,
+    "accepted": true,
+    "source": "experiments/vla_libero/skill_bootstrap/episodes/train/task01_target1_init22/result.json",
+    "trajectory": "experiments/vla_libero/skill_bootstrap/episodes/train/task01_target1_init22/trajectory.npz",
+    "steps": 294
+  },
+  {
+    "split": "train",
+    "task": 1,
+    "initial": 23,
+    "target": 0,
+    "accepted": true,
+    "source": "experiments/vla_libero/skill_bootstrap/episodes/train/task01_target0_init23/result.json",
+    "trajectory": "experiments/vla_libero/skill_bootstrap/episodes/train/task01_target0_init23/trajectory.npz",
+    "steps": 335
+  },
+  {
+    "split": "train",
+    "task": 1,
+    "initial": 23,
+    "target": 1,
+    "accepted": true,
+    "source": "experiments/vla_libero/skill_bootstrap/episodes/train/task01_target1_init23/result.json",
+    "trajectory": "experiments/vla_libero/skill_bootstrap/episodes/train/task01_target1_init23/trajectory.npz",
+    "steps": 293
+  },
+  {
+    "split": "train",
+    "task": 1,
+    "initial": 24,
+    "target": 0,
+    "accepted": true,
+    "source": "experiments/vla_libero/skill_bootstrap/episodes/train/task01_target0_init24/result.json",
+    "trajectory": "experiments/vla_libero/skill_bootstrap/episodes/train/task01_target0_init24/trajectory.npz",
+    "steps": 328
+  },
+  {
+    "split": "train",
+    "task": 1,
+    "initial": 24,
+    "target": 1,
+    "accepted": true,
+    "source": "experiments/vla_libero/skill_bootstrap/episodes/train/task01_target1_init24/result.json",
+    "trajectory": "experiments/vla_libero/skill_bootstrap/episodes/train/task01_target1_init24/trajectory.npz",
+    "steps": 304
+  },
+  {
+    "split": "train",
+    "task": 1,
+    "initial": 25,
+    "target": 0,
+    "accepted": true,
+    "source": "experiments/vla_libero/skill_bootstrap/episodes/train/task01_target0_init25/result.json",
+    "trajectory": "experiments/vla_libero/skill_bootstrap/episodes/train/task01_target0_init25/trajectory.npz",
+    "steps": 330
+  },
+  {
+    "split": "train",
+    "task": 1,
+    "initial": 25,
+    "target": 1,
+    "accepted": true,
+    "source": "experiments/vla_libero/skill_bootstrap/episodes/train/task01_target1_init25/result.json",
+    "trajectory": "experiments/vla_libero/skill_bootstrap/episodes/train/task01_target1_init25/trajectory.npz",
+    "steps": 293
+  },
+  {
+    "split": "validation",
+    "task": 0,
+    "initial": 26,
+    "target": 0,
+    "accepted": true,
+    "source": "experiments/vla_libero/skill_bootstrap/episodes/validation/task00_target0_init26/result.json",
+    "trajectory": "experiments/vla_libero/skill_bootstrap/episodes/validation/task00_target0_init26/trajectory.npz",
+    "steps": 314
+  },
+  {
+    "split": "validation",
+    "task": 0,
+    "initial": 26,
+    "target": 1,
+    "accepted": true,
+    "source": "experiments/vla_libero/skill_bootstrap/episodes/validation/task00_target1_init26/result.json",
+    "trajectory": "experiments/vla_libero/skill_bootstrap/episodes/validation/task00_target1_init26/trajectory.npz",
+    "steps": 282
+  },
+  {
+    "split": "validation",
+    "task": 0,
+    "initial": 27,
+    "target": 0,
+    "accepted": true,
+    "source": "experiments/vla_libero/skill_bootstrap/episodes/validation/task00_target0_init27/result.json",
+    "trajectory": "experiments/vla_libero/skill_bootstrap/episodes/validation/task00_target0_init27/trajectory.npz",
+    "steps": 315
+  },
+  {
+    "split": "validation",
+    "task": 0,
+    "initial": 27,
+    "target": 1,
+    "accepted": true,
+    "source": "experiments/vla_libero/skill_bootstrap/episodes/validation/task00_target1_init27/result.json",
+    "trajectory": "experiments/vla_libero/skill_bootstrap/episodes/validation/task00_target1_init27/trajectory.npz",
+    "steps": 286
+  },
+  {
+    "split": "validation",
+    "task": 1,
+    "initial": 26,
+    "target": 0,
+    "accepted": true,
+    "source": "experiments/vla_libero/skill_bootstrap/episodes/validation/task01_target0_init26/result.json",
+    "trajectory": "experiments/vla_libero/skill_bootstrap/episodes/validation/task01_target0_init26/trajectory.npz",
+    "steps": 333
+  },
+  {
+    "split": "validation",
+    "task": 1,
+    "initial": 26,
+    "target": 1,
+    "accepted": true,
+    "source": "experiments/vla_libero/skill_bootstrap/episodes/validation/task01_target1_init26/result.json",
+    "trajectory": "experiments/vla_libero/skill_bootstrap/episodes/validation/task01_target1_init26/trajectory.npz",
+    "steps": 294
+  },
+  {
+    "split": "validation",
+    "task": 1,
+    "initial": 27,
+    "target": 0,
+    "accepted": true,
+    "source": "experiments/vla_libero/skill_bootstrap/episodes/validation/task01_target0_init27/result.json",
+    "trajectory": "experiments/vla_libero/skill_bootstrap/episodes/validation/task01_target0_init27/trajectory.npz",
+    "steps": 330
+  },
+  {
+    "split": "validation",
+    "task": 1,
+    "initial": 27,
+    "target": 1,
+    "accepted": true,
+    "source": "experiments/vla_libero/skill_bootstrap/episodes/validation/task01_target1_init27/result.json",
+    "trajectory": "experiments/vla_libero/skill_bootstrap/episodes/validation/task01_target1_init27/trajectory.npz",
+    "steps": 298
+  }
+]

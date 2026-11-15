@@ -1,0 +1,802 @@
+[
+  {
+    "id": "400_red_left",
+    "image": "400.png",
+    "instruction": "把红色方块放进左边盒子。",
+    "target_color": "red",
+    "destination": "left",
+    "should_execute": true
+  },
+  {
+    "id": "400_red_right",
+    "image": "400.png",
+    "instruction": "把红色方块放进右边盒子。",
+    "target_color": "red",
+    "destination": "right",
+    "should_execute": true
+  },
+  {
+    "id": "400_blue_left",
+    "image": "400.png",
+    "instruction": "把蓝色方块放进左边盒子。",
+    "target_color": "blue",
+    "destination": "left",
+    "should_execute": true
+  },
+  {
+    "id": "400_blue_right",
+    "image": "400.png",
+    "instruction": "把蓝色方块放进右边盒子。",
+    "target_color": "blue",
+    "destination": "right",
+    "should_execute": true
+  },
+  {
+    "id": "400_green_left",
+    "image": "400.png",
+    "instruction": "把绿色方块放进左边盒子。",
+    "target_color": "green",
+    "destination": "left",
+    "should_execute": true
+  },
+  {
+    "id": "400_green_right",
+    "image": "400.png",
+    "instruction": "把绿色方块放进右边盒子。",
+    "target_color": "green",
+    "destination": "right",
+    "should_execute": true
+  },
+  {
+    "id": "400_missing",
+    "image": "400.png",
+    "instruction": "把黄色方块放进左边盒子。",
+    "target_color": null,
+    "destination": null,
+    "should_execute": false
+  },
+  {
+    "id": "400_ambiguous",
+    "image": "400.png",
+    "instruction": "把那个方块放进盒子。",
+    "target_color": null,
+    "destination": null,
+    "should_execute": false
+  },
+  {
+    "id": "400_negation",
+    "image": "400.png",
+    "instruction": "不要抓取蓝色方块。",
+    "target_color": null,
+    "destination": null,
+    "should_execute": false
+  },
+  {
+    "id": "400_no_red",
+    "image": "400_no_red.png",
+    "instruction": "把红色方块放进右边盒子。",
+    "target_color": null,
+    "destination": null,
+    "should_execute": false
+  },
+  {
+    "id": "401_red_left",
+    "image": "401.png",
+    "instruction": "把红色方块放进左边盒子。",
+    "target_color": "red",
+    "destination": "left",
+    "should_execute": true
+  },
+  {
+    "id": "401_red_right",
+    "image": "401.png",
+    "instruction": "把红色方块放进右边盒子。",
+    "target_color": "red",
+    "destination": "right",
+    "should_execute": true
+  },
+  {
+    "id": "401_blue_left",
+    "image": "401.png",
+    "instruction": "把蓝色方块放进左边盒子。",
+    "target_color": "blue",
+    "destination": "left",
+    "should_execute": true
+  },
+  {
+    "id": "401_blue_right",
+    "image": "401.png",
+    "instruction": "把蓝色方块放进右边盒子。",
+    "target_color": "blue",
+    "destination": "right",
+    "should_execute": true
+  },
+  {
+    "id": "401_green_left",
+    "image": "401.png",
+    "instruction": "把绿色方块放进左边盒子。",
+    "target_color": "green",
+    "destination": "left",
+    "should_execute": true
+  },
+  {
+    "id": "401_green_right",
+    "image": "401.png",
+    "instruction": "把绿色方块放进右边盒子。",
+    "target_color": "green",
+    "destination": "right",
+    "should_execute": true
+  },
+  {
+    "id": "401_missing",
+    "image": "401.png",
+    "instruction": "把黄色方块放进左边盒子。",
+    "target_color": null,
+    "destination": null,
+    "should_execute": false
+  },
+  {
+    "id": "401_ambiguous",
+    "image": "401.png",
+    "instruction": "把那个方块放进盒子。",
+    "target_color": null,
+    "destination": null,
+    "should_execute": false
+  },
+  {
+    "id": "401_negation",
+    "image": "401.png",
+    "instruction": "不要抓取蓝色方块。",
+    "target_color": null,
+    "destination": null,
+    "should_execute": false
+  },
+  {
+    "id": "401_no_red",
+    "image": "401_no_red.png",
+    "instruction": "把红色方块放进右边盒子。",
+    "target_color": null,
+    "destination": null,
+    "should_execute": false
+  },
+  {
+    "id": "402_red_left",
+    "image": "402.png",
+    "instruction": "把红色方块放进左边盒子。",
+    "target_color": "red",
+    "destination": "left",
+    "should_execute": true
+  },
+  {
+    "id": "402_red_right",
+    "image": "402.png",
+    "instruction": "把红色方块放进右边盒子。",
+    "target_color": "red",
+    "destination": "right",
+    "should_execute": true
+  },
+  {
+    "id": "402_blue_left",
+    "image": "402.png",
+    "instruction": "把蓝色方块放进左边盒子。",
+    "target_color": "blue",
+    "destination": "left",
+    "should_execute": true
+  },
+  {
+    "id": "402_blue_right",
+    "image": "402.png",
+    "instruction": "把蓝色方块放进右边盒子。",
+    "target_color": "blue",
+    "destination": "right",
+    "should_execute": true
+  },
+  {
+    "id": "402_green_left",
+    "image": "402.png",
+    "instruction": "把绿色方块放进左边盒子。",
+    "target_color": "green",
+    "destination": "left",
+    "should_execute": true
+  },
+  {
+    "id": "402_green_right",
+    "image": "402.png",
+    "instruction": "把绿色方块放进右边盒子。",
+    "target_color": "green",
+    "destination": "right",
+    "should_execute": true
+  },
+  {
+    "id": "402_missing",
+    "image": "402.png",
+    "instruction": "把黄色方块放进左边盒子。",
+    "target_color": null,
+    "destination": null,
+    "should_execute": false
+  },
+  {
+    "id": "402_ambiguous",
+    "image": "402.png",
+    "instruction": "把那个方块放进盒子。",
+    "target_color": null,
+    "destination": null,
+    "should_execute": false
+  },
+  {
+    "id": "402_negation",
+    "image": "402.png",
+    "instruction": "不要抓取蓝色方块。",
+    "target_color": null,
+    "destination": null,
+    "should_execute": false
+  },
+  {
+    "id": "402_no_red",
+    "image": "402_no_red.png",
+    "instruction": "把红色方块放进右边盒子。",
+    "target_color": null,
+    "destination": null,
+    "should_execute": false
+  },
+  {
+    "id": "403_red_left",
+    "image": "403.png",
+    "instruction": "把红色方块放进左边盒子。",
+    "target_color": "red",
+    "destination": "left",
+    "should_execute": true
+  },
+  {
+    "id": "403_red_right",
+    "image": "403.png",
+    "instruction": "把红色方块放进右边盒子。",
+    "target_color": "red",
+    "destination": "right",
+    "should_execute": true
+  },
+  {
+    "id": "403_blue_left",
+    "image": "403.png",
+    "instruction": "把蓝色方块放进左边盒子。",
+    "target_color": "blue",
+    "destination": "left",
+    "should_execute": true
+  },
+  {
+    "id": "403_blue_right",
+    "image": "403.png",
+    "instruction": "把蓝色方块放进右边盒子。",
+    "target_color": "blue",
+    "destination": "right",
+    "should_execute": true
+  },
+  {
+    "id": "403_green_left",
+    "image": "403.png",
+    "instruction": "把绿色方块放进左边盒子。",
+    "target_color": "green",
+    "destination": "left",
+    "should_execute": true
+  },
+  {
+    "id": "403_green_right",
+    "image": "403.png",
+    "instruction": "把绿色方块放进右边盒子。",
+    "target_color": "green",
+    "destination": "right",
+    "should_execute": true
+  },
+  {
+    "id": "403_missing",
+    "image": "403.png",
+    "instruction": "把黄色方块放进左边盒子。",
+    "target_color": null,
+    "destination": null,
+    "should_execute": false
+  },
+  {
+    "id": "403_ambiguous",
+    "image": "403.png",
+    "instruction": "把那个方块放进盒子。",
+    "target_color": null,
+    "destination": null,
+    "should_execute": false
+  },
+  {
+    "id": "403_negation",
+    "image": "403.png",
+    "instruction": "不要抓取蓝色方块。",
+    "target_color": null,
+    "destination": null,
+    "should_execute": false
+  },
+  {
+    "id": "403_no_red",
+    "image": "403_no_red.png",
+    "instruction": "把红色方块放进右边盒子。",
+    "target_color": null,
+    "destination": null,
+    "should_execute": false
+  },
+  {
+    "id": "404_red_left",
+    "image": "404.png",
+    "instruction": "把红色方块放进左边盒子。",
+    "target_color": "red",
+    "destination": "left",
+    "should_execute": true
+  },
+  {
+    "id": "404_red_right",
+    "image": "404.png",
+    "instruction": "把红色方块放进右边盒子。",
+    "target_color": "red",
+    "destination": "right",
+    "should_execute": true
+  },
+  {
+    "id": "404_blue_left",
+    "image": "404.png",
+    "instruction": "把蓝色方块放进左边盒子。",
+    "target_color": "blue",
+    "destination": "left",
+    "should_execute": true
+  },
+  {
+    "id": "404_blue_right",
+    "image": "404.png",
+    "instruction": "把蓝色方块放进右边盒子。",
+    "target_color": "blue",
+    "destination": "right",
+    "should_execute": true
+  },
+  {
+    "id": "404_green_left",
+    "image": "404.png",
+    "instruction": "把绿色方块放进左边盒子。",
+    "target_color": "green",
+    "destination": "left",
+    "should_execute": true
+  },
+  {
+    "id": "404_green_right",
+    "image": "404.png",
+    "instruction": "把绿色方块放进右边盒子。",
+    "target_color": "green",
+    "destination": "right",
+    "should_execute": true
+  },
+  {
+    "id": "404_missing",
+    "image": "404.png",
+    "instruction": "把黄色方块放进左边盒子。",
+    "target_color": null,
+    "destination": null,
+    "should_execute": false
+  },
+  {
+    "id": "404_ambiguous",
+    "image": "404.png",
+    "instruction": "把那个方块放进盒子。",
+    "target_color": null,
+    "destination": null,
+    "should_execute": false
+  },
+  {
+    "id": "404_negation",
+    "image": "404.png",
+    "instruction": "不要抓取蓝色方块。",
+    "target_color": null,
+    "destination": null,
+    "should_execute": false
+  },
+  {
+    "id": "404_no_red",
+    "image": "404_no_red.png",
+    "instruction": "把红色方块放进右边盒子。",
+    "target_color": null,
+    "destination": null,
+    "should_execute": false
+  },
+  {
+    "id": "405_red_left",
+    "image": "405.png",
+    "instruction": "把红色方块放进左边盒子。",
+    "target_color": "red",
+    "destination": "left",
+    "should_execute": true
+  },
+  {
+    "id": "405_red_right",
+    "image": "405.png",
+    "instruction": "把红色方块放进右边盒子。",
+    "target_color": "red",
+    "destination": "right",
+    "should_execute": true
+  },
+  {
+    "id": "405_blue_left",
+    "image": "405.png",
+    "instruction": "把蓝色方块放进左边盒子。",
+    "target_color": "blue",
+    "destination": "left",
+    "should_execute": true
+  },
+  {
+    "id": "405_blue_right",
+    "image": "405.png",
+    "instruction": "把蓝色方块放进右边盒子。",
+    "target_color": "blue",
+    "destination": "right",
+    "should_execute": true
+  },
+  {
+    "id": "405_green_left",
+    "image": "405.png",
+    "instruction": "把绿色方块放进左边盒子。",
+    "target_color": "green",
+    "destination": "left",
+    "should_execute": true
+  },
+  {
+    "id": "405_green_right",
+    "image": "405.png",
+    "instruction": "把绿色方块放进右边盒子。",
+    "target_color": "green",
+    "destination": "right",
+    "should_execute": true
+  },
+  {
+    "id": "405_missing",
+    "image": "405.png",
+    "instruction": "把黄色方块放进左边盒子。",
+    "target_color": null,
+    "destination": null,
+    "should_execute": false
+  },
+  {
+    "id": "405_ambiguous",
+    "image": "405.png",
+    "instruction": "把那个方块放进盒子。",
+    "target_color": null,
+    "destination": null,
+    "should_execute": false
+  },
+  {
+    "id": "405_negation",
+    "image": "405.png",
+    "instruction": "不要抓取蓝色方块。",
+    "target_color": null,
+    "destination": null,
+    "should_execute": false
+  },
+  {
+    "id": "405_no_red",
+    "image": "405_no_red.png",
+    "instruction": "把红色方块放进右边盒子。",
+    "target_color": null,
+    "destination": null,
+    "should_execute": false
+  },
+  {
+    "id": "406_red_left",
+    "image": "406.png",
+    "instruction": "把红色方块放进左边盒子。",
+    "target_color": "red",
+    "destination": "left",
+    "should_execute": true
+  },
+  {
+    "id": "406_red_right",
+    "image": "406.png",
+    "instruction": "把红色方块放进右边盒子。",
+    "target_color": "red",
+    "destination": "right",
+    "should_execute": true
+  },
+  {
+    "id": "406_blue_left",
+    "image": "406.png",
+    "instruction": "把蓝色方块放进左边盒子。",
+    "target_color": "blue",
+    "destination": "left",
+    "should_execute": true
+  },
+  {
+    "id": "406_blue_right",
+    "image": "406.png",
+    "instruction": "把蓝色方块放进右边盒子。",
+    "target_color": "blue",
+    "destination": "right",
+    "should_execute": true
+  },
+  {
+    "id": "406_green_left",
+    "image": "406.png",
+    "instruction": "把绿色方块放进左边盒子。",
+    "target_color": "green",
+    "destination": "left",
+    "should_execute": true
+  },
+  {
+    "id": "406_green_right",
+    "image": "406.png",
+    "instruction": "把绿色方块放进右边盒子。",
+    "target_color": "green",
+    "destination": "right",
+    "should_execute": true
+  },
+  {
+    "id": "406_missing",
+    "image": "406.png",
+    "instruction": "把黄色方块放进左边盒子。",
+    "target_color": null,
+    "destination": null,
+    "should_execute": false
+  },
+  {
+    "id": "406_ambiguous",
+    "image": "406.png",
+    "instruction": "把那个方块放进盒子。",
+    "target_color": null,
+    "destination": null,
+    "should_execute": false
+  },
+  {
+    "id": "406_negation",
+    "image": "406.png",
+    "instruction": "不要抓取蓝色方块。",
+    "target_color": null,
+    "destination": null,
+    "should_execute": false
+  },
+  {
+    "id": "406_no_red",
+    "image": "406_no_red.png",
+    "instruction": "把红色方块放进右边盒子。",
+    "target_color": null,
+    "destination": null,
+    "should_execute": false
+  },
+  {
+    "id": "407_red_left",
+    "image": "407.png",
+    "instruction": "把红色方块放进左边盒子。",
+    "target_color": "red",
+    "destination": "left",
+    "should_execute": true
+  },
+  {
+    "id": "407_red_right",
+    "image": "407.png",
+    "instruction": "把红色方块放进右边盒子。",
+    "target_color": "red",
+    "destination": "right",
+    "should_execute": true
+  },
+  {
+    "id": "407_blue_left",
+    "image": "407.png",
+    "instruction": "把蓝色方块放进左边盒子。",
+    "target_color": "blue",
+    "destination": "left",
+    "should_execute": true
+  },
+  {
+    "id": "407_blue_right",
+    "image": "407.png",
+    "instruction": "把蓝色方块放进右边盒子。",
+    "target_color": "blue",
+    "destination": "right",
+    "should_execute": true
+  },
+  {
+    "id": "407_green_left",
+    "image": "407.png",
+    "instruction": "把绿色方块放进左边盒子。",
+    "target_color": "green",
+    "destination": "left",
+    "should_execute": true
+  },
+  {
+    "id": "407_green_right",
+    "image": "407.png",
+    "instruction": "把绿色方块放进右边盒子。",
+    "target_color": "green",
+    "destination": "right",
+    "should_execute": true
+  },
+  {
+    "id": "407_missing",
+    "image": "407.png",
+    "instruction": "把黄色方块放进左边盒子。",
+    "target_color": null,
+    "destination": null,
+    "should_execute": false
+  },
+  {
+    "id": "407_ambiguous",
+    "image": "407.png",
+    "instruction": "把那个方块放进盒子。",
+    "target_color": null,
+    "destination": null,
+    "should_execute": false
+  },
+  {
+    "id": "407_negation",
+    "image": "407.png",
+    "instruction": "不要抓取蓝色方块。",
+    "target_color": null,
+    "destination": null,
+    "should_execute": false
+  },
+  {
+    "id": "407_no_red",
+    "image": "407_no_red.png",
+    "instruction": "把红色方块放进右边盒子。",
+    "target_color": null,
+    "destination": null,
+    "should_execute": false
+  },
+  {
+    "id": "408_red_left",
+    "image": "408.png",
+    "instruction": "把红色方块放进左边盒子。",
+    "target_color": "red",
+    "destination": "left",
+    "should_execute": true
+  },
+  {
+    "id": "408_red_right",
+    "image": "408.png",
+    "instruction": "把红色方块放进右边盒子。",
+    "target_color": "red",
+    "destination": "right",
+    "should_execute": true
+  },
+  {
+    "id": "408_blue_left",
+    "image": "408.png",
+    "instruction": "把蓝色方块放进左边盒子。",
+    "target_color": "blue",
+    "destination": "left",
+    "should_execute": true
+  },
+  {
+    "id": "408_blue_right",
+    "image": "408.png",
+    "instruction": "把蓝色方块放进右边盒子。",
+    "target_color": "blue",
+    "destination": "right",
+    "should_execute": true
+  },
+  {
+    "id": "408_green_left",
+    "image": "408.png",
+    "instruction": "把绿色方块放进左边盒子。",
+    "target_color": "green",
+    "destination": "left",
+    "should_execute": true
+  },
+  {
+    "id": "408_green_right",
+    "image": "408.png",
+    "instruction": "把绿色方块放进右边盒子。",
+    "target_color": "green",
+    "destination": "right",
+    "should_execute": true
+  },
+  {
+    "id": "408_missing",
+    "image": "408.png",
+    "instruction": "把黄色方块放进左边盒子。",
+    "target_color": null,
+    "destination": null,
+    "should_execute": false
+  },
+  {
+    "id": "408_ambiguous",
+    "image": "408.png",
+    "instruction": "把那个方块放进盒子。",
+    "target_color": null,
+    "destination": null,
+    "should_execute": false
+  },
+  {
+    "id": "408_negation",
+    "image": "408.png",
+    "instruction": "不要抓取蓝色方块。",
+    "target_color": null,
+    "destination": null,
+    "should_execute": false
+  },
+  {
+    "id": "408_no_red",
+    "image": "408_no_red.png",
+    "instruction": "把红色方块放进右边盒子。",
+    "target_color": null,
+    "destination": null,
+    "should_execute": false
+  },
+  {
+    "id": "409_red_left",
+    "image": "409.png",
+    "instruction": "把红色方块放进左边盒子。",
+    "target_color": "red",
+    "destination": "left",
+    "should_execute": true
+  },
+  {
+    "id": "409_red_right",
+    "image": "409.png",
+    "instruction": "把红色方块放进右边盒子。",
+    "target_color": "red",
+    "destination": "right",
+    "should_execute": true
+  },
+  {
+    "id": "409_blue_left",
+    "image": "409.png",
+    "instruction": "把蓝色方块放进左边盒子。",
+    "target_color": "blue",
+    "destination": "left",
+    "should_execute": true
+  },
+  {
+    "id": "409_blue_right",
+    "image": "409.png",
+    "instruction": "把蓝色方块放进右边盒子。",
+    "target_color": "blue",
+    "destination": "right",
+    "should_execute": true
+  },
+  {
+    "id": "409_green_left",
+    "image": "409.png",
+    "instruction": "把绿色方块放进左边盒子。",
+    "target_color": "green",
+    "destination": "left",
+    "should_execute": true
+  },
+  {
+    "id": "409_green_right",
+    "image": "409.png",
+    "instruction": "把绿色方块放进右边盒子。",
+    "target_color": "green",
+    "destination": "right",
+    "should_execute": true
+  },
+  {
+    "id": "409_missing",
+    "image": "409.png",
+    "instruction": "把黄色方块放进左边盒子。",
+    "target_color": null,
+    "destination": null,
+    "should_execute": false
+  },
+  {
+    "id": "409_ambiguous",
+    "image": "409.png",
+    "instruction": "把那个方块放进盒子。",
+    "target_color": null,
+    "destination": null,
+    "should_execute": false
+  },
+  {
+    "id": "409_negation",
+    "image": "409.png",
+    "instruction": "不要抓取蓝色方块。",
+    "target_color": null,
+    "destination": null,
+    "should_execute": false
+  },
+  {
+    "id": "409_no_red",
+    "image": "409_no_red.png",
+    "instruction": "把红色方块放进右边盒子。",
+    "target_color": null,
+    "destination": null,
+    "should_execute": false
+  }
+]

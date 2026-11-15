@@ -1,0 +1,8 @@
+{
+  "seconds": 16.11127182099881,
+  "worker_ready": {
+    "ready": true,
+    "device": "cuda:0",
+    "load_seconds": 3.6160571519976656
+  }
+}

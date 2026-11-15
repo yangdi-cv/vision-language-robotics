@@ -1,0 +1,19 @@
+{
+  "suite": "libero_spatial",
+  "task_id": 2,
+  "initial_state_id": 1,
+  "initial_state_sha256": "05962fe9baf173d80806225d32a331fa8eedcdb5c14a085ee5354715380c0f8f",
+  "replay_max_qpos_error": 0.0,
+  "probe": "1s zero Cartesian increment and gripper open; last 0.5s predicate sustained",
+  "official_success": true,
+  "final_goal": true,
+  "last_half_second_goal_maintained": false,
+  "gripper_qpos_after": [
+    0.0389981285249161,
+    -0.03916373750697431
+  ],
+  "finger_joint_open_threshold_m": 0.03,
+  "gripper_open_confirmed": true,
+  "open_and_stable": false,
+  "source_sha256": "43fd5a3203b13a56babd85ba784003a93d321a395668931927cac6a4f791657b"
+}

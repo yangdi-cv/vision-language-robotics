@@ -1,0 +1,589 @@
+[
+  {
+    "kind": "figure",
+    "stage": "s02",
+    "source": "records/scene_understanding/web_workbench_preview.png",
+    "local": "figures/ch02/s02_web_workbench_preview.png",
+    "sha256": "74634f0bc0b5f5dc6d684efac683675fd6c52d53128df0613bb69f77af2fb6d7",
+    "caption": "早期网页工作台。图中保留当时界面，用于说明观察功能的组成。"
+  },
+  {
+    "kind": "figure",
+    "stage": "s03",
+    "source": "experiments/alibaba_baseline/figures/act_rollout_comparison.png",
+    "local": "figures/ch02/s03_act_rollout_comparison.png",
+    "sha256": "16d068984e178c89fa047708f86a0e96c48cedc03e56904101529a8113049077",
+    "caption": "早期ACT自训练与公开策略的仿真对照。"
+  },
+  {
+    "kind": "figure",
+    "stage": "s04",
+    "source": "experiments/alibaba_extension/figures/act_test30.png",
+    "local": "figures/ch02/s04_act_test30.png",
+    "sha256": "494f298450eb2e4a3bb58a6ca6c3d753755ef54c9c28e98530d6131c3ff48607",
+    "caption": "ACT追加训练后在相同测试条件下的对照，详细选择规则沿用原报告。"
+  },
+  {
+    "kind": "figure",
+    "stage": "s05",
+    "source": "experiments/desktop_pickplace/figures/pickplace_sequence.jpg",
+    "local": "figures/ch03/s05_pickplace_sequence.jpg",
+    "sha256": "e06fcd7de7c4884317db517ecf63e519f445f425d56ac948f18c362a8a59e4d4",
+    "caption": "早期桌面抓放过程。该实验使用理想化末端位置控制。"
+  },
+  {
+    "kind": "video",
+    "stage": "s05",
+    "source": "experiments/desktop_pickplace/runs/policy_test60_rgb/801_red_left/rollout.mp4",
+    "local": "videos/ch03/desktop_pickplace_example.mp4",
+    "sha256": "cc297cc7e16849c212037a85b651ffc569595059204515e140f421a731d61041",
+    "note": "示例片段，不能由单段视频推断总体成功率。"
+  },
+  {
+    "kind": "figure",
+    "stage": "s06",
+    "source": "experiments/alibaba_jetson_revision/figures/scene_cases.jpg",
+    "local": "figures/ch03/s06_scene_cases.jpg",
+    "sha256": "e838dc789d688a1eb50532d73a4ad8fbc6bbd8fef1d4a5c6c47020b11cb89683",
+    "caption": "早期真实相机场景样例，完整输入与对照见原阶段报告。"
+  },
+  {
+    "kind": "figure",
+    "stage": "s07",
+    "source": "experiments/smolvla_pc/mousepad_report/holdout_mae.png",
+    "local": "figures/ch03/s07_holdout_mae.png",
+    "sha256": "925b658bcd70daf42c5737a111650bcadf4d0dabbec30a438f9e8c9a2510119f",
+    "caption": "真实示教留出轨迹上的动作误差。静止基线是该阶段的重要对照。"
+  },
+  {
+    "kind": "figure",
+    "stage": "s08",
+    "source": "experiments/vla_libero/figures/success_summary.png",
+    "local": "figures/ch03/s08_success_summary.png",
+    "sha256": "b417086722ad7787fe2f58a314a4397c2d800e85410e2777ccbb7739912d027f",
+    "caption": "π0.5公开任务基线与干预结果；不同分组的分母分别保留。"
+  },
+  {
+    "kind": "figure",
+    "stage": "s09",
+    "source": "experiments/vla_libero/records/qwen_handoff/long0_initial.png",
+    "local": "figures/ch04/s09_long0_initial.png",
+    "sha256": "3601a010f8930c3b3b9e3c35322385cb436a640a3d84df31e73364bfc31f3766",
+    "caption": "LIBERO长任务的观察画面，作为高层分解与检查的输入背景。"
+  },
+  {
+    "kind": "video",
+    "stage": "s09",
+    "source": "experiments/vla_libero/hierarchical/zh_eval_hier_v3/libero_10/task00_init00/rollout.mp4",
+    "local": "videos/ch04/hierarchical_long_example.mp4",
+    "sha256": "541a325bade39e9cffcce334dd8b09fe97ff799051473a53e6113aebbf3c17e8",
+    "note": "示例片段，不能由单段视频推断总体成功率。"
+  },
+  {
+    "kind": "figure",
+    "stage": "s10",
+    "source": "experiments/vla_libero/recovery_study/figures/plate_boundary.png",
+    "local": "figures/ch04/s10_plate_boundary.png",
+    "sha256": "643d542e5ebfc0b7c839912b836f1e2d8198fc0e22971c856fde29af4a71f94d",
+    "caption": "物体已接触盘子与满足官方中心距离条件之间的区别。"
+  },
+  {
+    "kind": "figure",
+    "stage": "s11",
+    "source": "experiments/vla_libero/checker_v2/figures/validation_false_positives.png",
+    "local": "figures/ch04/s11_validation_false_positives.png",
+    "sha256": "e61b73de3b227b9ad1697f99e1481e95bbff620f25ffa9994041901a1170737f",
+    "caption": "检查器的误确认样例。最终版需逐项解释物理状态与视觉可辨性。"
+  },
+  {
+    "kind": "figure",
+    "stage": "s12",
+    "source": "experiments/vla_libero/monitor_causality/figures/outcomes.png",
+    "local": "figures/ch04/s12_outcomes.png",
+    "sha256": "e0ffce5626615444ef1de0e25848704d5f5b8904248627bf4697727c8347fb3b",
+    "caption": "固定低层条件后的视觉干预对照，用于检验阶段检查的实际作用。"
+  },
+  {
+    "kind": "figure",
+    "stage": "s13",
+    "source": "experiments/vla_libero/selective_execution/figures/outcomes.png",
+    "local": "figures/ch05/s13_outcomes.png",
+    "sha256": "f30e954b883444586229708fff04485a82194f4273f4c918c4a7d9ff5087d05b",
+    "caption": "选择性搬运中的不同执行和停止方式。"
+  },
+  {
+    "kind": "figure",
+    "stage": "s14",
+    "source": "experiments/vla_libero/point_target/figures/goal_interface.png",
+    "local": "figures/ch05/s14_goal_interface.png",
+    "sha256": "3ddf37f0e610bf00613da1758d0696567b6f4ed5799962c7f22883441ecdd5d1",
+    "caption": "显式目标参考图接口。该适配尚未达到可用目标选择能力。"
+  },
+  {
+    "kind": "video",
+    "stage": "s16",
+    "source": "experiments/mobile_qwen/results/ms2_zh_i08/rollout.mp4",
+    "local": "videos/ch05/milestone_monitor_example.mp4",
+    "sha256": "df7c2e9bb717f7bc83270e838215636ea526e3d0730b17a543b6d2ef98f31a27",
+    "note": "示例片段，不能由单段视频推断总体成功率。"
+  },
+  {
+    "kind": "figure",
+    "stage": "s19",
+    "source": "experiments/mobile_qwen/closed_loop_20261115/grounding_comparison.png",
+    "local": "figures/ch06/s19_grounding_comparison.png",
+    "sha256": "ab4cc0a739666185811675ad47b8935ea350ebaa47a3911d5d962ab23ee0b237",
+    "caption": "相同配对条件下的把手点定位。绿色为参考位置，红色为模型预测。"
+  },
+  {
+    "kind": "video",
+    "stage": "s20",
+    "source": "experiments/mobile_qwen/closed_loop_20261115/results/combined_probe1_nominal_i00_lora/rollout.mp4",
+    "local": "videos/ch06/policy_handover_success.mp4",
+    "sha256": "488bde174c3da79e65fae2d6b28dccb9179799f5564b206071d3bfea852a750d",
+    "note": "示例片段，不能由单段视频推断总体成功率。"
+  },
+  {
+    "kind": "figure",
+    "stage": "s22",
+    "source": "experiments/mobile_qwen/jetson/stage2_20261114/precision_comparison.png",
+    "local": "figures/ch07/s22_precision_comparison.png",
+    "sha256": "4fcd3512de4caa8c955813d67c05176d2fde77875a9cd690ce7dc839fb0bb566",
+    "caption": "相同350帧中的模型、精度格式和设备对照。"
+  },
+  {
+    "kind": "video",
+    "stage": "s23",
+    "source": "experiments/mobile_qwen/closed_loop_20261115/results/jetson_joint_v1_nominal_i02_lora/rollout.mp4",
+    "local": "videos/ch07/jetson_vision_pc_execution.mp4",
+    "sha256": "6f7311d173cc624267c1c995ec80c0c29fa249f04eed8665e77f8fd6fb3d997a",
+    "note": "示例片段，不能由单段视频推断总体成功率。"
+  },
+  {
+    "kind": "video",
+    "stage": "s15",
+    "source": "experiments/mobile_vla/results/nav05/rollout.mp4",
+    "local": "videos/ch05/mobile_navigation_operation.mp4",
+    "sha256": "f136d2398375689adf950e5e558aed1aa16bef9b6478645ff3ef9c35b3b93826",
+    "note": "开发回合nav05，同场景导航与操作示例。"
+  },
+  {
+    "kind": "figure",
+    "stage": "s17",
+    "source": "generated from saved affordance predictions; see tools/plot_affordance.py",
+    "local": "figures/ch06/s17_affordance_example.png",
+    "caption": "首个配对测试样例。白色十字为把手标注，圆圈为模型预测；整体命中率另由完整测试统计。",
+    "sha256": "790d6128dda828a1f1c2122c34dad1a7fa3b7c34b8669d2449927d5b5d3c6b19",
+    "derived_from": [
+      "experiments/mobile_qwen/affordance/eval_base_v2.json",
+      "experiments/mobile_qwen/affordance/eval_lora_v1_test.json",
+      "experiments/mobile_qwen/affordance/data_v1/labels.jsonl",
+      "experiments/mobile_qwen/affordance/data_v1/rgb/en_para_i00_s0020.png"
+    ],
+    "selection": "First saved matched handle test record, not selected by score",
+    "generation_script": "tools/plot_affordance.py"
+  },
+  {
+    "kind": "figure",
+    "stage": "s15",
+    "source": "experiments/mobile_vla/results/nav05/overview.jpg",
+    "local": "figures/ch05/s15_mobile_scene.jpg",
+    "caption": "同一MuJoCo世界中的移动机械臂与厨房工作台。该图来自开发回合nav05。",
+    "sha256": "9702ad19dc9760c9df4846d784d69485078f5956b89340e1bd238a1f01895cd1"
+  },
+  {
+    "kind": "figure",
+    "stage": "s03",
+    "source": "experiments/alibaba_baseline/figures/qwen_instruction.png",
+    "local": "figures/ch02/s03_qwen_instruction_08ff905c.png",
+    "sha256": "08ff905cc04fafa4f1ac714e742c0dcfe8a21a0a3e7103bf1c52d78b138ce645",
+    "caption": "Qwen 评测",
+    "note": "从已有运行材料迁入，未重新运行模型。"
+  },
+  {
+    "kind": "figure",
+    "stage": "s03",
+    "source": "experiments/alibaba_baseline/figures/qwen_lora_comparison.png",
+    "local": "figures/ch02/s03_qwen_lora_comparison_3da6789e.png",
+    "sha256": "3da6789e243fb0ba5881f3ba1e32662d81286827620dbae5406d767aaf126bf9",
+    "caption": "LoRA 对比",
+    "note": "从已有运行材料迁入，未重新运行模型。"
+  },
+  {
+    "kind": "figure",
+    "stage": "s03",
+    "source": "experiments/alibaba_baseline/figures/act_learning.png",
+    "local": "figures/ch02/s03_act_learning_604e4f8c.png",
+    "sha256": "604e4f8c3e2895fb05c6e9ceed3c4d160bbeaf00f857ba015d428ef257e61e07",
+    "caption": "ACT 曲线",
+    "note": "从已有运行材料迁入，未重新运行模型。"
+  },
+  {
+    "kind": "figure",
+    "stage": "s04",
+    "source": "experiments/alibaba_extension/figures/act_continuation.png",
+    "local": "figures/ch02/s04_act_continuation_53e2c29e.png",
+    "sha256": "53e2c29e4712d1aaf1f1e6de3185d065e4e792b4dab241e3fbd2074be1627c0e",
+    "caption": "继续训练的验证曲线",
+    "note": "从已有运行材料迁入，未重新运行模型。"
+  },
+  {
+    "kind": "figure",
+    "stage": "s04",
+    "source": "experiments/alibaba_extension/data/rgbd_cases/contact_sheet.jpg",
+    "local": "figures/ch02/s04_contact_sheet_b6636723.jpg",
+    "sha256": "b6636723062a81e3fcbc5b4f3ea9fbbd41a26ef6d32191062e50ae3bba7e3b7d",
+    "caption": "数据示例",
+    "note": "从已有运行材料迁入，未重新运行模型。"
+  },
+  {
+    "kind": "figure",
+    "stage": "s04",
+    "source": "experiments/alibaba_extension/figures/lora_localization.png",
+    "local": "figures/ch02/s04_lora_localization_5a072d09.png",
+    "sha256": "5a072d09861b5b3b7c5157ea3450b35e9ddac85436807fb7fb7a453268625cbb",
+    "caption": "定位适配对照",
+    "note": "从已有运行材料迁入，未重新运行模型。"
+  },
+  {
+    "kind": "figure",
+    "stage": "s04",
+    "source": "experiments/alibaba_extension/figures/quantization_cache.png",
+    "local": "figures/ch02/s04_quantization_cache_a85968c4.png",
+    "sha256": "a85968c4710342a262b33ceebccc7e1891f89e45b819144ca118031cdef73921",
+    "caption": "量化及缓存",
+    "note": "从已有运行材料迁入，未重新运行模型。"
+  },
+  {
+    "kind": "figure",
+    "stage": "s04",
+    "source": "experiments/alibaba_extension/figures/navigation_trace.png",
+    "local": "figures/ch02/s04_navigation_trace_2f625cf4.png",
+    "sha256": "2f625cf4af9be1057266e1c3ba3313b502a708c0f5ffd3bd92e518a78ce17711",
+    "caption": "实际导航里程计",
+    "note": "从已有运行材料迁入，未重新运行模型。"
+  },
+  {
+    "kind": "figure",
+    "stage": "s05",
+    "source": "experiments/desktop_pickplace/figures/physical_baseline.png",
+    "local": "figures/ch03/s05_physical_baseline_7e5b7090.png",
+    "sha256": "7e5b7090475ac5c39e1d4b31dc144d97525b66b6201e2d78b73833ff2e318809",
+    "caption": "抓取姿态对照",
+    "note": "从已有运行材料迁入，未重新运行模型。"
+  },
+  {
+    "kind": "figure",
+    "stage": "s05",
+    "source": "experiments/desktop_pickplace/figures/goal_comparison.png",
+    "local": "figures/ch03/s05_goal_comparison_2c140d24.png",
+    "sha256": "2c140d247f5d825f00438e28eb49e7e5a386dc9544b0059ae4a220796d7647e2",
+    "caption": "目标选择对照",
+    "note": "从已有运行材料迁入，未重新运行模型。"
+  },
+  {
+    "kind": "figure",
+    "stage": "s05",
+    "source": "experiments/desktop_pickplace/figures/policy_features.png",
+    "local": "figures/ch03/s05_policy_features_c302bf84.png",
+    "sha256": "c302bf8466701012d81d5b5558b28c54338297b3d216654745ddac6dcd1ddc99",
+    "caption": "ACT输入条件对照",
+    "note": "从已有运行材料迁入，未重新运行模型。"
+  },
+  {
+    "kind": "figure",
+    "stage": "s05",
+    "source": "experiments/desktop_pickplace/figures/coordinate_noise.png",
+    "local": "figures/ch03/s05_coordinate_noise_76bee20a.png",
+    "sha256": "76bee20a194873b65fab9c20d911aca6053d956959708eba4a8a3846c865e625",
+    "caption": "坐标扰动对照",
+    "note": "从已有运行材料迁入，未重新运行模型。"
+  },
+  {
+    "kind": "figure",
+    "stage": "s05",
+    "source": "experiments/desktop_pickplace/figures/placement_checks.png",
+    "local": "figures/ch03/s05_placement_checks_c371e542.png",
+    "sha256": "c371e5425b8e4fb92aeb4a8e3da63bf8c78f2a86fecbf40200f33ecef63c9282",
+    "caption": "视觉完成检查",
+    "note": "从已有运行材料迁入，未重新运行模型。"
+  },
+  {
+    "kind": "figure",
+    "stage": "s05",
+    "source": "experiments/alibaba_pc_revision/figures/lora_validation.png",
+    "local": "figures/ch03/s05_lora_validation_e0b755e0.png",
+    "sha256": "e0b755e07d304b473b663f5aac74235c4f8068c07f5a0fa10477dec35862adb3",
+    "caption": "LoRA验证过程",
+    "note": "从已有运行材料迁入，未重新运行模型。"
+  },
+  {
+    "kind": "figure",
+    "stage": "s05",
+    "source": "experiments/alibaba_pc_revision/figures/act_selection.png",
+    "local": "figures/ch03/s05_act_selection_b816338f.png",
+    "sha256": "b816338f108afa68572e992289155b1a27adbbf56dff164651f7d323a69f630c",
+    "caption": "离线误差与仿真验证",
+    "note": "从已有运行材料迁入，未重新运行模型。"
+  },
+  {
+    "kind": "figure",
+    "stage": "s05",
+    "source": "experiments/alibaba_jetson_revision/figures/expanded_validation.png",
+    "local": "figures/ch03/s05_expanded_validation_a8d80218.png",
+    "sha256": "a8d802189e83a95adbe791f2cf8c68924fa3b95923f18cae096855d92e0bb681",
+    "caption": "扩大验证",
+    "note": "从已有运行材料迁入，未重新运行模型。"
+  },
+  {
+    "kind": "figure",
+    "stage": "s06",
+    "source": "experiments/alibaba_jetson_revision/figures/jetson_latency.png",
+    "local": "figures/ch03/s06_jetson_latency_834f2111.png",
+    "sha256": "834f2111c422277df77c6988621188c0efd8644b49253719076fb5be6e035580",
+    "caption": "端侧耗时",
+    "note": "从已有运行材料迁入，未重新运行模型。"
+  },
+  {
+    "kind": "figure",
+    "stage": "s07",
+    "source": "experiments/smolvla_pc/mousepad_report/training_loss.png",
+    "local": "figures/ch03/s07_training_loss_70023fc4.png",
+    "sha256": "70023fc423c5966763659624a10f5236a63b59ba17e2ace5267461d8b1a12eb1",
+    "caption": "训练损失",
+    "note": "从已有运行材料迁入，未重新运行模型。"
+  },
+  {
+    "kind": "figure",
+    "stage": "s07",
+    "source": "experiments/smolvla_pc/approach_report/first_step_mae.png",
+    "local": "figures/ch03/s07_first_step_mae_c613ad75.png",
+    "sha256": "c613ad75dcf0e2e961afd4df9a98538f0882ca5c39ad44f82ca04b6d8c222f4e",
+    "caption": "首步误差变化",
+    "note": "从已有运行材料迁入，未重新运行模型。"
+  },
+  {
+    "kind": "figure",
+    "stage": "s08",
+    "source": "experiments/vla_libero/figures/observation_views.png",
+    "local": "figures/ch03/s08_observation_views_bc76090f.png",
+    "sha256": "bc76090f70235418e628e50e932ec41add08a160dbd76b4db5b971ce630179fd",
+    "caption": "模型的两路RGB观察：外部相机与腕部相机。",
+    "note": "从已有运行材料迁入，未重新运行模型。"
+  },
+  {
+    "kind": "figure",
+    "stage": "s08",
+    "source": "experiments/vla_libero/figures/release_check.png",
+    "local": "figures/ch03/s08_release_check_afa70239.png",
+    "sha256": "afa7023988d8b990b78e6d7a928be40440d0042d6444569a331c43ae0206db9f",
+    "caption": "追加检查：官方停止时与固定松爪保持后；后续指令不是模型生成的动作。",
+    "note": "从已有运行材料迁入，未重新运行模型。"
+  },
+  {
+    "kind": "figure",
+    "stage": "s08",
+    "source": "experiments/vla_libero/figures/visual_intervention.png",
+    "local": "figures/ch03/s08_visual_intervention_61edf4a4.png",
+    "sha256": "61edf4a40fad01b2ce7e03a9520cd57e433f018fcfe095754c3ef852d14d3afd",
+    "caption": "同一初态的实时、置零、冻结视觉对照；下方展示实际提交给模型的图像。",
+    "note": "从已有运行材料迁入，未重新运行模型。"
+  },
+  {
+    "kind": "figure",
+    "stage": "s10",
+    "source": "experiments/vla_libero/recovery_study/figures/recovery_outcomes.png",
+    "local": "figures/ch04/s10_recovery_outcomes_dea9060e.png",
+    "sha256": "dea9060ed85d9692167b6322e3654a74a08d6c8f0818491ed1cdf8460b5112d8",
+    "caption": "三个恢复起点及不同方式的结束画面",
+    "note": "从已有运行材料迁入，未重新运行模型。"
+  },
+  {
+    "kind": "figure",
+    "stage": "s10",
+    "source": "experiments/vla_libero/closed_loop_iteration/figures/recovery_pair.png",
+    "local": "figures/ch04/s10_recovery_pair_ae5ee43c.png",
+    "sha256": "ae5ee43c10af53c196f91ef7e232476d5135c58c4d00868aae9c0ab53804837f",
+    "caption": "同一扰动状态下的恢复结果",
+    "note": "从已有运行材料迁入，未重新运行模型。"
+  },
+  {
+    "kind": "figure",
+    "stage": "s11",
+    "source": "experiments/vla_libero/closed_loop_iteration/figures/checker_core.png",
+    "local": "figures/ch04/s11_checker_core_3bdc7ffb.png",
+    "sha256": "3bdc7ffb90d683757924a6231379ceeaeb046869e9668abb089810ea9a237f01",
+    "caption": "常规160例的混淆矩阵",
+    "note": "从已有运行材料迁入，未重新运行模型。"
+  },
+  {
+    "kind": "figure",
+    "stage": "s12",
+    "source": "experiments/vla_libero/checker_v2/figures/exploratory_success.png",
+    "local": "figures/ch04/s12_exploratory_success_bc9ca426.png",
+    "sha256": "bc9ca4260433908937215b4e74531ce80fd4c9a381b7897262e3da9502f50624",
+    "caption": "各任务配对成功回合数",
+    "note": "从已有运行材料迁入，未重新运行模型。"
+  },
+  {
+    "kind": "figure",
+    "stage": "s12",
+    "source": "experiments/vla_libero/monitor_causality/figures/image_intervention.png",
+    "local": "figures/ch04/s12_image_intervention_0989cbe3.png",
+    "sha256": "0989cbe39026387f8cc321b41ed6d609b97cf3f8c534c160f1121049e1b03279",
+    "caption": "冻结干预只改变检查输入。低层仍读取真实当前画面。",
+    "note": "从已有运行材料迁入，未重新运行模型。"
+  },
+  {
+    "kind": "figure",
+    "stage": "s12",
+    "source": "experiments/vla_libero/monitor_causality/figures/decisions_cost.png",
+    "local": "figures/ch04/s12_decisions_cost_76ce9d0d.png",
+    "sha256": "76ce9d0d0acaf575d8b3d2562f34bb049e04ecbdb2f7678dfa6b4b6b5de72849",
+    "caption": "切换错误与实际Qwen调用成本。",
+    "note": "从已有运行材料迁入，未重新运行模型。"
+  },
+  {
+    "kind": "figure",
+    "stage": "s13",
+    "source": "experiments/vla_libero/selective_execution/figures/directions.png",
+    "local": "figures/ch05/s13_directions_ec69e6e8.png",
+    "sha256": "ec69e6e8e8117226360942f316bc204e18844faa84a2973b339555deb87da44e",
+    "caption": "开发可行方向与反向方向",
+    "note": "从已有运行材料迁入，未重新运行模型。"
+  },
+  {
+    "kind": "figure",
+    "stage": "s13",
+    "source": "experiments/vla_libero/selective_execution/figures/development_errors.png",
+    "local": "figures/ch05/s13_development_errors_8543e730.png",
+    "sha256": "8543e73036ddb9709423cda2d13876d5fa36eeb8230b472a5304f082d5cf436f",
+    "caption": "开发小试的两个检查错误",
+    "note": "从已有运行材料迁入，未重新运行模型。"
+  },
+  {
+    "kind": "figure",
+    "stage": "s13",
+    "source": "experiments/vla_libero/selective_execution/figures/video_keyframe.png",
+    "local": "figures/ch05/s13_video_keyframe_82fe181b.png",
+    "sha256": "82fe181bad569b92265c91e6fcc02b7741446a8f43e3335fc9ef7586d3616bfc",
+    "caption": "实际七组回合截图",
+    "note": "从已有运行材料迁入，未重新运行模型。"
+  },
+  {
+    "kind": "figure",
+    "stage": "s13",
+    "source": "experiments/vla_libero/constraint_retention/figures/camera_pair.png",
+    "local": "figures/ch05/s13_camera_pair_f44ba92e.png",
+    "sha256": "f44ba92efc899e3b6c83784b1b5128cec491d94d3f90c4640b1094f3bf246787",
+    "caption": "同一状态的相机比较",
+    "note": "从已有运行材料迁入，未重新运行模型。"
+  },
+  {
+    "kind": "figure",
+    "stage": "s14",
+    "source": "experiments/vla_libero/skill_bootstrap/figures/paired_observation.png",
+    "local": "figures/ch05/s14_paired_observation_68b37fe2.png",
+    "sha256": "68b37fe28103296417449aa905c73dec29012c1900a1a628dc5db15e1fa4a928",
+    "caption": "相同观察与不同目标动作",
+    "note": "从已有运行材料迁入，未重新运行模型。"
+  },
+  {
+    "kind": "figure",
+    "stage": "s14",
+    "source": "experiments/vla_libero/skill_bootstrap/figures/loss.png",
+    "local": "figures/ch05/s14_loss_b4439336.png",
+    "sha256": "b4439336a07356c8bc8d744d0570aa54267351984a7d08ade20ba2365588d120",
+    "caption": "两轮验证损失",
+    "note": "从已有运行材料迁入，未重新运行模型。"
+  },
+  {
+    "kind": "figure",
+    "stage": "s14",
+    "source": "experiments/vla_libero/skill_bootstrap/figures/results.png",
+    "local": "figures/ch05/s14_results_03eb45a0.png",
+    "sha256": "03eb45a0d69d3299a0edd76147ee27321f04b3dbe8eae07de7578c7eb5f04229",
+    "caption": "两轮闭环结果",
+    "note": "从已有运行材料迁入，未重新运行模型。"
+  },
+  {
+    "kind": "figure",
+    "stage": "s14",
+    "source": "experiments/vla_libero/cag_reproduction/figures/results.png",
+    "local": "figures/ch05/s14_results_599aec80.png",
+    "sha256": "599aec8098f60ff6b588a71d3c4ce5186c5ffe4f32581ae8973c07ce4d7d88e7",
+    "caption": "回合结果",
+    "note": "从已有运行材料迁入，未重新运行模型。"
+  },
+  {
+    "kind": "figure",
+    "stage": "s14",
+    "source": "experiments/vla_libero/cag_reproduction/figures/video_frame.png",
+    "local": "figures/ch05/s14_video_frame_eb7295e2.png",
+    "sha256": "eb7295e2abe715259fbc3df6ce54d1d62ce5c95bc11e9086205fa492e2fdbd1c",
+    "caption": "固定条件回放截图",
+    "note": "从已有运行材料迁入，未重新运行模型。"
+  },
+  {
+    "kind": "figure",
+    "stage": "s14",
+    "source": "experiments/vla_libero/point_target/figures/official_instances.png",
+    "local": "figures/ch05/s14_official_instances_d32be2d2.png",
+    "sha256": "d32be2d22e3c0e2706ad7368535b10000402c4e7fda45c3ac0ad0e492bb63648",
+    "caption": "该次三类自主任务",
+    "note": "从已有运行材料迁入，未重新运行模型。"
+  },
+  {
+    "kind": "figure",
+    "stage": "s14",
+    "source": "experiments/vla_libero/point_target/figures/validation.png",
+    "local": "figures/ch05/s14_validation_03dca31b.png",
+    "sha256": "03dca31baef61947415e92f4ced7ca568f5103278a8cdc6d6ca3d1a48fb1bc33",
+    "caption": "固定验证损失",
+    "note": "从已有运行材料迁入，未重新运行模型。"
+  },
+  {
+    "kind": "figure",
+    "stage": "s14",
+    "source": "experiments/vla_libero/point_target/figures/results.png",
+    "local": "figures/ch05/s14_results_8f7ac150.png",
+    "sha256": "8f7ac1509e0a7d8506ce54228126d98656b9451cb1235b1f89bd2c00afca628f",
+    "caption": "闭环结果",
+    "note": "从已有运行材料迁入，未重新运行模型。"
+  },
+  {
+    "kind": "figure",
+    "stage": "s18",
+    "source": "experiments/alibaba_pc_revision/figures/pc_latency.png",
+    "local": "figures/ch06/s18_pc_latency_b204fdc9.png",
+    "sha256": "b204fdc9b001e0576ef49a8843dcf18194508313b354513f2b9eff03e97aade6",
+    "caption": "图像交换与目标推理耗时",
+    "note": "从已有运行材料迁入，未重新运行模型。"
+  },
+  {
+    "kind": "figure",
+    "stage": "s03",
+    "source": "experiments/alibaba_baseline/figures/rollout_contact_sheet.jpg",
+    "local": "figures/ch02/s03_rollout_contact_sheet_f2db237e.jpg",
+    "sha256": "f2db237e722904cfdb6b8c163021e76d8537c5c8bf8317e864dbefc6bed8f7ae",
+    "caption": "实际仿真关键帧",
+    "note": "从已有运行材料迁入，未重新运行模型。"
+  },
+  {
+    "kind": "figure",
+    "stage": "s08",
+    "source": "experiments/vla_libero/figures/rollout_examples.png",
+    "local": "figures/ch03/s08_rollout_examples_33770969.png",
+    "sha256": "3377096901a36dd982b57d6abbd89c344ea6476a78bd724eb21332a3685e07e3",
+    "caption": "实际运行关键帧；标题注明任务和结果。",
+    "note": "从已有运行材料迁入，未重新运行模型。"
+  },
+  {
+    "kind": "video",
+    "stage": "s08",
+    "source": "experiments/vla_libero/results/baseline/libero_10/task00_init00/rollout.mp4",
+    "local": "videos/ch03/pi05_official_long_task00.mp4",
+    "sha256": "764737ab594719191d756e0a7b0001d25276a971b4275308946069957f06bcec",
+    "caption": "官方动作策略在Long任务0上的回合"
+  }
+]

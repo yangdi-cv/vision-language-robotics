@@ -1,0 +1,70 @@
+{
+  "status": "complete",
+  "task": 1,
+  "initial": 31,
+  "mode": "target0",
+  "prompt": "pick up the cream cheese box and place it in the basket",
+  "all_prompts": {
+    "target0": "pick up the cream cheese box and place it in the basket",
+    "target1": "pick up the butter and place it in the basket",
+    "original": "put both the cream cheese box and the butter in the basket"
+  },
+  "protocol_sha256": "cd5877d5d16d1ccd6461e52bfb6b0e720c705b8e6e571c929b2c3ea0c0e1b7e2",
+  "noise_seed": 930131,
+  "original_done_used_for_stopping": false,
+  "steps": 325,
+  "initial_sha256": "56d362be598aba5a53ee21dd8503973944e78122057eefe1fcedfa3e9b3c70d4",
+  "settled_sha256": "1e976c880b90b55d92f1c55257b3c0c58be063db1feb4742912ca0cd2364de40",
+  "origins": [
+    [
+      0.09086877482763739,
+      -0.17926424686408288,
+      0.44569592152000004
+    ],
+    [
+      0.043487537034073424,
+      0.04122963245101088,
+      0.44546992152000003
+    ]
+  ],
+  "goal_atoms": [
+    [
+      "in",
+      "cream_cheese_1",
+      "basket_1_contain_region"
+    ],
+    [
+      "in",
+      "butter_1",
+      "basket_1_contain_region"
+    ]
+  ],
+  "scores": {
+    "target0": {
+      "selective_success": false,
+      "target_final_stable": true,
+      "final_released": true,
+      "target_ever_reached": true,
+      "protected_untouched": false,
+      "max_protected_displacement_m": 0.2776762718201723,
+      "first_valid_step": 141,
+      "first_violation_step": 193,
+      "self_stop_success": false,
+      "premature_stop": false
+    },
+    "target1": {
+      "selective_success": false,
+      "target_final_stable": true,
+      "final_released": true,
+      "target_ever_reached": true,
+      "protected_untouched": false,
+      "max_protected_displacement_m": 0.4644949895706727,
+      "first_valid_step": null,
+      "first_violation_step": 67,
+      "self_stop_success": false,
+      "premature_stop": false
+    }
+  },
+  "original_success_observed": true,
+  "wall_seconds": 16.501134529999945
+}

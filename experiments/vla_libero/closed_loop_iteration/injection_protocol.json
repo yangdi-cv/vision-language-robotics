@@ -1,0 +1,106 @@
+{
+  "cases": [
+    {
+      "task": 0,
+      "init": 0,
+      "source": "hierarchical/zh_eval_hier_v3/libero_10/task00_init00",
+      "prefix": 160,
+      "mutation": "return alphabet soup to its original tabletop pose",
+      "nominal_remaining": [
+        "pick up the tomato sauce can and place it in the basket"
+      ]
+    },
+    {
+      "task": 0,
+      "init": 1,
+      "source": "hierarchical/zh_eval_hier_v3/libero_10/task00_init01",
+      "prefix": 160,
+      "mutation": "return alphabet soup to its original tabletop pose",
+      "nominal_remaining": [
+        "pick up the tomato sauce bottle and place it in the basket"
+      ]
+    },
+    {
+      "task": 0,
+      "init": 2,
+      "source": "hierarchical/zh_eval_hier_v3/libero_10/task00_init02",
+      "prefix": 160,
+      "mutation": "return alphabet soup to its original tabletop pose",
+      "nominal_remaining": [
+        "pick up the tomato sauce bottle and place it in the basket"
+      ]
+    },
+    {
+      "task": 3,
+      "init": 0,
+      "source": "hierarchical/zh_eval_hier_v3/libero_10/task03_init00",
+      "prefix": 0,
+      "mutation": "close initially open bottom drawer before bowl placement",
+      "nominal_remaining": [
+        "put the black bowl in the bottom drawer of the cabinet",
+        "close the bottom drawer of the cabinet"
+      ]
+    },
+    {
+      "task": 3,
+      "init": 1,
+      "source": "hierarchical/zh_eval_hier_v3/libero_10/task03_init01",
+      "prefix": 0,
+      "mutation": "close initially open bottom drawer before bowl placement",
+      "nominal_remaining": [
+        "put the black bowl in the bottom drawer of the cabinet",
+        "close the bottom drawer of the cabinet"
+      ]
+    },
+    {
+      "task": 3,
+      "init": 2,
+      "source": "hierarchical/zh_eval_hier_v3/libero_10/task03_init02",
+      "prefix": 0,
+      "mutation": "close initially open bottom drawer before bowl placement",
+      "nominal_remaining": [
+        "put the black bowl in the bottom drawer of the cabinet",
+        "close the bottom drawer of the cabinet"
+      ]
+    },
+    {
+      "task": 4,
+      "init": 0,
+      "source": "hierarchical/zh_eval_hier_v3/libero_10/task04_init00",
+      "prefix": 160,
+      "mutation": "return white mug to its original tabletop pose",
+      "nominal_remaining": [
+        "put the yellow and white mug on the right plate"
+      ]
+    },
+    {
+      "task": 4,
+      "init": 1,
+      "source": "hierarchical/zh_eval_hier_v3/libero_10/task04_init01",
+      "prefix": null,
+      "mutation": "return white mug to its original tabletop pose",
+      "nominal_remaining": [
+        "put the yellow and white mug on the right plate"
+      ]
+    },
+    {
+      "task": 4,
+      "init": 2,
+      "source": "hierarchical/zh_eval_hier_v3/libero_10/task04_init02",
+      "prefix": null,
+      "mutation": "return white mug to its original tabletop pose",
+      "nominal_remaining": [
+        "put the yellow and white mug on the right plate"
+      ]
+    }
+  ],
+  "modes": [
+    "continue",
+    "full",
+    "qwen"
+  ],
+  "recovery_budget": 420,
+  "count": 27,
+  "known_intervention_time": true,
+  "scope": "Recovery conditional on an announced external disturbance; not autonomous fault detection. Harness uses simulator state to construct/verify faults, never as controller input. All branches share the same perturbed state and action-noise seed."
+}

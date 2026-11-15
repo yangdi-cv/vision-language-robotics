@@ -1,0 +1,296 @@
+{
+  "case": {
+    "task": 1,
+    "target_index": 0,
+    "initial": 3,
+    "target": "cream_cheese_1",
+    "protected": "butter_1",
+    "objects": [
+      [
+        "cream_cheese_1",
+        "cream cheese box",
+        "奶油奶酪盒"
+      ],
+      [
+        "butter_1",
+        "butter",
+        "黄油"
+      ]
+    ],
+    "instruction": "只把奶油奶酪盒放进篮子里，黄油保持原位。放好后停止，不要继续搬其他物体。",
+    "reference_skill": "pick up the cream cheese box and place it in the basket",
+    "key": "task01_target0_init03"
+  },
+  "mode": "timer_calibrated",
+  "phase": "eval",
+  "protocol_sha256": "8adfcad65b11d5f41605fc6991299541709915f97d7262df48b8f406f9e719ef",
+  "noise_seed": 920103,
+  "status": "complete",
+  "steps": 195,
+  "events": [
+    {
+      "kind": "check",
+      "step": 10,
+      "decision": {
+        "done": false,
+        "streak": 0,
+        "stop": false
+      },
+      "images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/eval/task01_target0_init03/timer_calibrated/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/eval/task01_target0_init03/timer_calibrated/images/current_0010.png"
+      ],
+      "sent_images": [],
+      "reply": null,
+      "seconds": 9.348004823550582e-06
+    },
+    {
+      "kind": "check",
+      "step": 20,
+      "decision": {
+        "done": false,
+        "streak": 0,
+        "stop": false
+      },
+      "images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/eval/task01_target0_init03/timer_calibrated/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/eval/task01_target0_init03/timer_calibrated/images/current_0020.png"
+      ],
+      "sent_images": [],
+      "reply": null,
+      "seconds": 4.067995178047568e-06
+    },
+    {
+      "kind": "check",
+      "step": 30,
+      "decision": {
+        "done": false,
+        "streak": 0,
+        "stop": false
+      },
+      "images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/eval/task01_target0_init03/timer_calibrated/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/eval/task01_target0_init03/timer_calibrated/images/current_0030.png"
+      ],
+      "sent_images": [],
+      "reply": null,
+      "seconds": 4.658999387174845e-06
+    },
+    {
+      "kind": "check",
+      "step": 40,
+      "decision": {
+        "done": false,
+        "streak": 0,
+        "stop": false
+      },
+      "images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/eval/task01_target0_init03/timer_calibrated/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/eval/task01_target0_init03/timer_calibrated/images/current_0040.png"
+      ],
+      "sent_images": [],
+      "reply": null,
+      "seconds": 4.3389954953454435e-06
+    },
+    {
+      "kind": "check",
+      "step": 50,
+      "decision": {
+        "done": false,
+        "streak": 0,
+        "stop": false
+      },
+      "images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/eval/task01_target0_init03/timer_calibrated/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/eval/task01_target0_init03/timer_calibrated/images/current_0050.png"
+      ],
+      "sent_images": [],
+      "reply": null,
+      "seconds": 4.3480031308718026e-06
+    },
+    {
+      "kind": "check",
+      "step": 150,
+      "decision": {
+        "done": false,
+        "streak": 0,
+        "stop": false
+      },
+      "images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/eval/task01_target0_init03/timer_calibrated/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/eval/task01_target0_init03/timer_calibrated/images/current_0150.png"
+      ],
+      "sent_images": [],
+      "reply": null,
+      "seconds": 4.929999704472721e-06
+    },
+    {
+      "kind": "check",
+      "step": 160,
+      "decision": {
+        "done": true,
+        "streak": 1,
+        "stop": false
+      },
+      "images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/eval/task01_target0_init03/timer_calibrated/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/eval/task01_target0_init03/timer_calibrated/images/current_0160.png"
+      ],
+      "sent_images": [],
+      "reply": null,
+      "seconds": 4.188004822935909e-06
+    },
+    {
+      "kind": "check",
+      "step": 170,
+      "decision": {
+        "done": true,
+        "streak": 2,
+        "stop": true
+      },
+      "images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/eval/task01_target0_init03/timer_calibrated/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/eval/task01_target0_init03/timer_calibrated/images/current_0170.png"
+      ],
+      "sent_images": [],
+      "reply": null,
+      "seconds": 4.969995643477887e-06
+    },
+    {
+      "kind": "stop",
+      "step": 170,
+      "reason": "timer_calibrated"
+    }
+  ],
+  "policy_queries": 34,
+  "model_checks": 0,
+  "control_truth_inputs": false,
+  "original_done_used_for_stopping": false,
+  "initial_state_sha256": "3e0d23df2cf22ae6e897e15a1739d5bf25474b4e33196644890b8485f0e880f5",
+  "settled_state_sha256": "f74f20b2a070fb00d31e7a575513e6934b2e7f11f79f525b330af71711e8dc8f",
+  "goal_atoms": [
+    [
+      "in",
+      "cream_cheese_1",
+      "basket_1_contain_region"
+    ],
+    [
+      "in",
+      "butter_1",
+      "basket_1_contain_region"
+    ]
+  ],
+  "initial_object_positions": [
+    [
+      0.11665880015906205,
+      -0.2071110222800468,
+      0.44569592152000004
+    ],
+    [
+      0.0715773796680597,
+      0.04788022845008967,
+      0.44546992152000003
+    ]
+  ],
+  "plan": "plans/eval/task01_target0_init03.json",
+  "plan_sha256": "9de0d369ffc6be89a8215212fc67e104ce58c6712aca20add453b1db320e3caf",
+  "selector_correct": true,
+  "selection": {
+    "raw": "{\"target\":\"cream_cheese_1\", \"protected\":\"butter_1\"}",
+    "seconds": 0.29902171499998076,
+    "inference": {
+      "model": "Qwen/Qwen3-VL-4B-Instruct",
+      "revision": "ebb281ec70b05090aa6165b016eac8ec08e71b17",
+      "prompt": "Inspect the image and the instruction. Select exactly one object to move into the basket, and the one explicitly required to remain untouched.\nKnown object IDs and English/Chinese names: [[\"cream_cheese_1\", \"cream cheese box\", \"奶油奶酪盒\"], [\"butter_1\", \"butter\", \"黄油\"]]\nInstruction: 只把奶油奶酪盒放进篮子里，黄油保持原位。放好后停止，不要继续搬其他物体。\nReturn only JSON: {\"target\":\"one known ID\", \"protected\":\"the other known ID\"}. Do not output coordinates or add another action.",
+      "prompt_sha256": "a07459c90dd80267d4c3040cf80c57761d16afd4eb1c231e2cb8d54ab388d6ad",
+      "engine_sha256": "6c14802fbe468fa57e2ad48b25fc02c9a100d82d9aafdbf8d11224e969b699fb",
+      "generation": {
+        "max_new_tokens": 96,
+        "do_sample": false
+      },
+      "images": [
+        {
+          "size": [
+            512,
+            512
+          ],
+          "mode": "RGB",
+          "pixel_sha256": "fc2e1ddb8096fe7e7592568975dbfd02f013d5e4c9486331cf3329c093067932"
+        }
+      ],
+      "libraries": {
+        "torch": "2.7.1",
+        "transformers": "4.57.6"
+      },
+      "planner_sha256": "87ea0a00e0a662d034cfc200b326cd569ecd2f32f57fe6681851fefdd47aabc7"
+    },
+    "device": "cuda:0",
+    "allocated_mib": 8478.61669921875,
+    "reserved_mib": 8748.0,
+    "tokens": 18,
+    "ok": true,
+    "target": "cream_cheese_1",
+    "protected": "butter_1",
+    "worker_sha256": "eabf321de58b827bd022188cc7c8aba5596e77f0488acbadec7d1988af789f78"
+  },
+  "translation": {
+    "raw": "{\"instruction\": \"Put the cream cheese box in the basket and leave the butter in place.\"}",
+    "seconds": 0.3362609309988329,
+    "inference": {
+      "model": "Qwen/Qwen3-VL-4B-Instruct",
+      "revision": "ebb281ec70b05090aa6165b016eac8ec08e71b17",
+      "prompt": "Translate this robot task instruction into one short English imperative sentence, keeping every object and relation. Use the image only to name the objects correctly. Do not split it into steps.\nInstruction: 只把奶油奶酪盒放进篮子里，黄油保持原位。放好后停止，不要继续搬其他物体。\nReturn only JSON: {\"instruction\": \"English instruction\"}",
+      "prompt_sha256": "f1229777dbe68ef4c0659c222a32bf89a08b3f17062f14c6bbcaeaca48d2da89",
+      "engine_sha256": "6c14802fbe468fa57e2ad48b25fc02c9a100d82d9aafdbf8d11224e969b699fb",
+      "generation": {
+        "max_new_tokens": 64,
+        "do_sample": false
+      },
+      "images": [
+        {
+          "size": [
+            512,
+            512
+          ],
+          "mode": "RGB",
+          "pixel_sha256": "fc2e1ddb8096fe7e7592568975dbfd02f013d5e4c9486331cf3329c093067932"
+        }
+      ],
+      "libraries": {
+        "torch": "2.7.1",
+        "transformers": "4.57.6"
+      },
+      "planner_sha256": "87ea0a00e0a662d034cfc200b326cd569ecd2f32f57fe6681851fefdd47aabc7"
+    },
+    "device": "cuda:0",
+    "allocated_mib": 8478.615234375,
+    "reserved_mib": 8748.0,
+    "tokens": 21,
+    "ok": true,
+    "subgoals": [
+      {
+        "instruction": "Put the cream cheese box in the basket and leave the butter in place.",
+        "completion_hint": ""
+      }
+    ]
+  },
+  "policy_instruction": "pick up the cream cheese box and place it in the basket",
+  "selected_target": "cream_cheese_1",
+  "timer_threshold": 160,
+  "selective_success": true,
+  "target_final_stable": true,
+  "final_released": true,
+  "target_ever_reached": true,
+  "protected_untouched": true,
+  "max_protected_displacement_m": 0.0,
+  "first_valid_step": 152,
+  "first_violation_step": null,
+  "self_stop_success": true,
+  "premature_stop": false,
+  "decision_step": 170,
+  "stop_reason": "timer_calibrated",
+  "wall_seconds": 14.136887777000084,
+  "original_success_observed": false,
+  "policy_steps_after_original_success": 0,
+  "success": true
+}

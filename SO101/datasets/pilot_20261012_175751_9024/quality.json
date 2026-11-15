@@ -1,0 +1,22 @@
+{
+  "frames": 536,
+  "episodes": 1,
+  "task": "Pick up the dark blue silicone case and place it in the marked area.",
+  "nominal_fps": 10,
+  "observed_fps": 9.987560339583267,
+  "cycle_ms_p50": 100.110512,
+  "cycle_ms_p95": 100.2535964,
+  "cycles_above_1_5_nominal": 0,
+  "state_to_image_receipt_ms_p95": 0.13883075,
+  "state_range_by_joint": {
+    "shoulder_pan": 39.64834976196289,
+    "shoulder_lift": 74.02198028564453,
+    "elbow_flex": 129.4945068359375,
+    "wrist_flex": 107.16483306884766,
+    "wrist_roll": 10.10988998413086,
+    "gripper": 46.09053421020508
+  },
+  "max_action_minus_state": 5.000003814697266,
+  "task_success": "unreviewed",
+  "notes": "Receipt timestamps do not establish exposure synchronization or camera drop count. Video plays at nominal FPS. Action/state differences are command steps, not tracking errors."
+}

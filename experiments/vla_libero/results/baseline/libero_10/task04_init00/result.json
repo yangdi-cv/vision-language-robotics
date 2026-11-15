@@ -1,0 +1,36 @@
+{
+  "runner_sha256": "e5d28552be82d553e09b3fcfe45aa95bbc6d38b0338899c2536ed1407935bb9d",
+  "suite": "libero_10",
+  "task_id": 4,
+  "initial_state_id": 0,
+  "mode": "baseline",
+  "environment_seed": 7,
+  "noise_seed": 730400,
+  "initial_state_sha256": "4365b3c5a82da7f8818c11ef5fd494c4890c17c4c3e27948dc290a9ac2f08131",
+  "original_prompt": "put the white mug on the left plate and put the yellow and white mug on the right plate",
+  "input_prompt": "put the white mug on the left plate and put the yellow and white mug on the right plate",
+  "replan_steps": 5,
+  "denoising_steps": 10,
+  "max_steps": 520,
+  "status": "success",
+  "success": true,
+  "steps": 270,
+  "alternate_goal_evaluable": false,
+  "alternate_goal_ever_satisfied": null,
+  "initial_eef": [
+    -0.05271029899553769,
+    -0.011231587945649055,
+    0.6868599888846243
+  ],
+  "final_eef": [
+    0.0004027444144372059,
+    0.3584105449826169,
+    0.5213448488982002
+  ],
+  "qpos_displacement_norm": 1.635379225768406,
+  "simulation_elapsed_s": 13.5,
+  "wall_s": 9.4823433749998,
+  "query_count": 54,
+  "warmup_query_wall_s": 0.08267920700018294,
+  "query_median_excluding_first_s": 0.07197289299983822
+}

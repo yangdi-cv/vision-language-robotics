@@ -1,0 +1,69 @@
+{
+  "purpose": "Same observation/noise target-swap response; then matched closed-loop rollout. No new model or training.",
+  "tasks": [
+    0,
+    1
+  ],
+  "initials": [
+    0,
+    11
+  ],
+  "modes": [
+    "target0",
+    "target1",
+    "original"
+  ],
+  "episodes": 12,
+  "policy_steps": 300,
+  "hold_steps": 25,
+  "execute_first": 5,
+  "horizon": 10,
+  "denoising_steps": 10,
+  "probe_steps": [
+    0,
+    50,
+    100,
+    150,
+    200,
+    250
+  ],
+  "probe_anchor": "target0 rollout only, all four requests use identical observations and explicit noise",
+  "probe_order": [
+    "target0",
+    "target1",
+    "original",
+    "repeat_target0"
+  ],
+  "noise_seed": "930000+task*100+init; no target/method term",
+  "first_move": "first object with center displacement >30mm for five consecutive simulated steps; proxy, not a grasp label",
+  "first_lift": "center rises >20mm, positive gripper command AND gripper contact for three consecutive simulated steps; proxy",
+  "expansion": "No extra episode batch in this diagnostic. Decide interface repair versus skill adaptation from saved inputs and behavior.",
+  "sources": {
+    "experiments/vla_libero/instruction_response/scripts/run.py": "1b7d09c8c4d1d982c784bed00125af742412c21831fad329f914b86da63f693b",
+    "experiments/vla_libero/scripts/evaluate.py": "e5d28552be82d553e09b3fcfe45aa95bbc6d38b0338899c2536ed1407935bb9d",
+    "experiments/vla_libero/scripts/episode_journal.py": "b73d991a76b216a17564febbdf3d4990712786bec06d5af56cbe1cbdcb715f69",
+    "experiments/vla_libero/selective_execution/scripts/protocol.py": "d39e52bfdafca08456d48da87a284649bd9478a2d2934b226576d45538118b67",
+    "experiments/vla_libero/scripts/run_hierarchical.py": "fe190d99b57b276fbe12d3f8e2fd072dd658377f68517ae59c30d12ddda365c3",
+    "experiments/vla_libero/third_party/openpi/src/openpi/policies/policy.py": "a2ac5236e23b11d0f5a840d4a8fef148d89dba921d5452ec5dfcd5a6ffa46f20",
+    "experiments/vla_libero/third_party/openpi/src/openpi/policies/policy_config.py": "aaf42ab04a33b6c91d2447926211646c33ebd8ebfa427f026d7b6c4f7c45ec52",
+    "experiments/vla_libero/third_party/openpi/src/openpi/training/config.py": "c34231f888dba5dc981d808765b3d98775ab845b04313bf53fcecd567c520b0d"
+  },
+  "resource_manifest_sha256": "23acbc7bd05a140b06af096e271af51aef6f3b7d9a9dd10cba66dc38db042ac9",
+  "official_sources": {
+    "openpi": {
+      "repo": "Physical-Intelligence/openpi",
+      "revision": "215abfb217dbac7d5f1273282331b9b1866c0479"
+    },
+    "libero": {
+      "repo": "Lifelong-Robot-Learning/LIBERO",
+      "revision": "f78abd68ee283de9f9be3c8f7e2a9ad60246e95c",
+      "git_blobs_verified": 1116
+    },
+    "lerobot": {
+      "repo": "huggingface/lerobot",
+      "revision": "0cf864870cf29f4738d3ade893e6fd13fbd7cdb5"
+    }
+  },
+  "no_hardware": true,
+  "no_training": true
+}

@@ -1,0 +1,145 @@
+{
+  "suite": "libero_10",
+  "task_id": 1,
+  "initial_state_id": 1,
+  "original_task_language": "put both the cream cheese box and the butter in the basket",
+  "input_instruction": "把奶油奶酪盒和黄油都放进篮子里",
+  "planner": "qwen",
+  "execution_profile": "legacy",
+  "planner_profile": "base",
+  "checker_adapter": "/home/yd/Documents/VLA/experiments/vla_libero/checker_v2/results/model/best_adapter",
+  "monitor": "qwen",
+  "max_steps": 520,
+  "subgoal_step_budget": 300,
+  "monitor_every_queries": 4,
+  "monitor_res": 512,
+  "gripper_gate": true,
+  "confirm": 2,
+  "max_replans": 0,
+  "last_subgoal_runs_to_limit": true,
+  "noise_seed": 730101,
+  "runner_sha256": "5df3e099c80231cf64851590c58b1b63d08bc1a2468cb3f1af5729ea5c9e3901",
+  "events": [
+    {
+      "kind": "plan",
+      "step": 0,
+      "ok": true,
+      "seconds": 1.594999775988981e-05,
+      "raw": "[\"pick up the cream cheese box and place it in the basket\", \"pick up the butter box and place it in the basket\"]",
+      "error": null
+    },
+    {
+      "kind": "subgoal_start",
+      "step": 0,
+      "index": 0,
+      "subgoal": "pick up the cream cheese box and place it in the basket"
+    },
+    {
+      "kind": "check",
+      "step": 20,
+      "index": 0,
+      "done": false,
+      "confirmed": false,
+      "seconds": 0.1275924869987648,
+      "checker": "v2",
+      "status": "no",
+      "scores": {
+        "yes": 0.003128202992890883,
+        "no": 0.9828521638440711,
+        "unknown": 0.01401963316303789,
+        "yes_log_odds": -5.764163456931506
+      },
+      "reason": "V2 no; p_yes=0.0031, threshold=3.2481",
+      "error": null,
+      "shadow_long_task_atoms": [
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 40,
+      "index": 0,
+      "done": false,
+      "confirmed": false,
+      "seconds": 0.1290555730010965,
+      "checker": "v2",
+      "status": "no",
+      "scores": {
+        "yes": 0.00012339457288817739,
+        "no": 0.9998765803202194,
+        "unknown": 2.5106892490322505e-08,
+        "yes_log_odds": -9.00000002510999
+      },
+      "reason": "V2 no; p_yes=0.0001, threshold=3.2481",
+      "error": null,
+      "shadow_long_task_atoms": [
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 160,
+      "index": 0,
+      "done": false,
+      "confirmed": false,
+      "seconds": 0.12438845499855233,
+      "checker": "v2",
+      "status": "no",
+      "scores": {
+        "yes": 0.0023805475440342467,
+        "no": 0.9603814235418298,
+        "unknown": 0.03723802891413595,
+        "yes_log_odds": -6.0380413716877825
+      },
+      "reason": "V2 no; p_yes=0.0024, threshold=3.2481",
+      "error": null,
+      "shadow_long_task_atoms": [
+        true,
+        false
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 180,
+      "index": 0,
+      "done": false,
+      "confirmed": false,
+      "seconds": 0.12649756299651926,
+      "checker": "v2",
+      "status": "no",
+      "scores": {
+        "yes": 0.0007096665538430762,
+        "no": 0.9992849150751544,
+        "unknown": 5.418371002565543e-06,
+        "yes_log_odds": -7.25000542223367
+      },
+      "reason": "V2 no; p_yes=0.0007, threshold=3.2481",
+      "error": null,
+      "shadow_long_task_atoms": [
+        true,
+        false
+      ]
+    }
+  ],
+  "status": "success",
+  "success": true,
+  "subgoals": [
+    "pick up the cream cheese box and place it in the basket",
+    "pick up the butter box and place it in the basket"
+  ],
+  "steps": 245,
+  "policy_queries": 49,
+  "qwen_checks": 4,
+  "replans": 0,
+  "full_task_fallback": false,
+  "final_subgoals": [
+    "pick up the cream cheese box and place it in the basket",
+    "pick up the butter box and place it in the basket"
+  ],
+  "final_atoms": [
+    true,
+    true
+  ]
+}

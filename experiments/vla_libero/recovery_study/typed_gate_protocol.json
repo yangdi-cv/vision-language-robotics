@@ -1,0 +1,15 @@
+{
+  "task": 2,
+  "seeds": [
+    31001,
+    31002
+  ],
+  "prefix_steps": 150,
+  "remaining_steps": 370,
+  "reason": "Contract trials had zero completion queries despite stove-on becoming true while the fingers stayed closed. Change only the release gate for supported state-change imperatives; transport retains its gate. The predicates were diagnostic and never used to switch at runtime.",
+  "sources": {
+    "scripts/subgoal_state.py": "3f237115915ade5a6ecd56ac68eb84ad3ef1f9b3d35fdc263707d4673199afd9",
+    "scripts/run_hierarchical_recovery.py": "4e3d7b9b7f8d415f85f214a19095be9922294d91438402fd32781495fcb01157",
+    "recovery_study/scripts/run_paired.py": "fb5a542cc79d23fc1d6a3f4dde7b9f55965fdc79afaff0ed374862fb884d2caa"
+  }
+}

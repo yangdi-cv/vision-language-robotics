@@ -1,0 +1,22 @@
+{
+  "pc_2b_base_bf16_512": {
+    "input_token_sha256": 1014,
+    "pixel_values_sha256": 1014,
+    "image_grid_thw": 1014
+  },
+  "pc_2b_lora_bf16_512": {
+    "input_token_sha256": 1014,
+    "pixel_values_sha256": 1014,
+    "image_grid_thw": 1014
+  },
+  "pc_2b_lora_nf4_512": {
+    "input_token_sha256": 1014,
+    "pixel_values_sha256": 1014,
+    "image_grid_thw": 1014
+  },
+  "pc_4b_lora_nf4_512": {
+    "input_token_sha256": 1014,
+    "pixel_values_sha256": 1014,
+    "image_grid_thw": 1014
+  }
+}

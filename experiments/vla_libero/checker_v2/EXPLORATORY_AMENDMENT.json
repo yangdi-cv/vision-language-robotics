@@ -1,0 +1,10 @@
+{
+  "reason": "User requested exploratory paired simulation even after offline failure; offline verdict retained.",
+  "acceptance_change": false,
+  "simulation_only": true,
+  "model": "results/model/best_adapter",
+  "threshold_source": "results/model/summary.json thresholds.adapter",
+  "fresh_confirmation_scored": false,
+  "scope": "60 fixed paired episodes; no test-driven weight or threshold changes during batch",
+  "next_decision": "Review actual closed-loop outcomes before expanding data or training again"
+}

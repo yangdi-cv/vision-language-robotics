@@ -1,0 +1,149 @@
+{
+  "suite": "libero_10",
+  "task_id": 2,
+  "initial_state_id": 2,
+  "original_task_language": "turn on the stove and put the moka pot on it",
+  "input_instruction": "打开炉子，然后把摩卡壶放到炉子上",
+  "planner": "qwen",
+  "monitor": "qwen",
+  "max_steps": 520,
+  "subgoal_step_budget": 150,
+  "monitor_every_queries": 4,
+  "monitor_res": 512,
+  "gripper_gate": true,
+  "confirm": 2,
+  "max_replans": 2,
+  "last_subgoal_runs_to_limit": true,
+  "noise_seed": 730202,
+  "runner_sha256": "cca8de1a81907c74f9a52b00e1811fd78430c7fd4ef08dfaf936eab803f3eff0",
+  "events": [
+    {
+      "kind": "plan",
+      "step": 0,
+      "ok": true,
+      "seconds": 1.6869771230012702,
+      "raw": "{\n  \"subgoals\": [\n    {\n      \"instruction\": \"turn on the stove\",\n      \"completion_hint\": \"the stove is now active with a glowing coil\"\n    },\n    {\n      \"instruction\": \"put the moka pot on the stove\",\n      \"completion_hint\": \"the moka pot is now resting on the stove's heating element\"\n    }\n  ]\n}",
+      "error": null
+    },
+    {
+      "kind": "subgoal_start",
+      "step": 0,
+      "index": 0,
+      "subgoal": "turn on the stove"
+    },
+    {
+      "kind": "check",
+      "step": 20,
+      "index": 0,
+      "done": false,
+      "confirmed": false,
+      "seconds": 0.34686182900259155,
+      "reason": "No change detected.",
+      "error": null,
+      "shadow_long_task_atoms": [
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 40,
+      "index": 0,
+      "done": false,
+      "confirmed": false,
+      "seconds": 0.33362812000268605,
+      "reason": "No change detected.",
+      "error": null,
+      "shadow_long_task_atoms": [
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 60,
+      "index": 0,
+      "done": false,
+      "confirmed": false,
+      "seconds": 0.8001110010009143,
+      "reason": "The robot has moved slightly, but no new object has appeared at the stove. The stove remains in the same position with no visible state change (e.g., turned on).",
+      "error": null,
+      "shadow_long_task_atoms": [
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "replan",
+      "step": 150,
+      "index": 0,
+      "ok": true,
+      "seconds": 1.3123606410008506,
+      "raw": "{\n  \"subgoals\": [\n    {\n      \"instruction\": \"turn on the stove\",\n      \"completion_hint\": \"The stove should now be active, indicated by a visible change in its state.\"\n    },\n    {\n      \"instruction\": \"put the moka pot on the stove\",\n      \"completion_hint\": \"The moka pot is now positioned on the stove, completing the task.\"\n    }\n  ]\n}",
+      "error": null,
+      "shadow_long_task_atoms": [
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "subgoal_start",
+      "step": 150,
+      "index": 0,
+      "subgoal": "turn on the stove"
+    },
+    {
+      "kind": "replan",
+      "step": 300,
+      "index": 0,
+      "ok": true,
+      "seconds": 1.1079083019976679,
+      "raw": "{\n  \"subgoals\": [\n    {\n      \"instruction\": \"turn on the stove\",\n      \"completion_hint\": \"the stove is now active\"\n    },\n    {\n      \"instruction\": \"put the moka pot on the stove\",\n      \"completion_hint\": \"the moka pot is now resting on the stove\"\n    }\n  ]\n}",
+      "error": null,
+      "shadow_long_task_atoms": [
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "subgoal_start",
+      "step": 300,
+      "index": 0,
+      "subgoal": "turn on the stove"
+    },
+    {
+      "kind": "subgoal_end",
+      "step": 450,
+      "index": 0,
+      "reason": "budget",
+      "long_task_atoms": [
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "subgoal_start",
+      "step": 450,
+      "index": 1,
+      "subgoal": "put the moka pot on the stove"
+    }
+  ],
+  "status": "timeout",
+  "success": false,
+  "subgoals": [
+    "turn on the stove",
+    "put the moka pot on the stove"
+  ],
+  "steps": 520,
+  "policy_queries": 104,
+  "qwen_checks": 3,
+  "replans": 2,
+  "final_subgoals": [
+    "turn on the stove",
+    "put the moka pot on the stove"
+  ],
+  "final_atoms": [
+    false,
+    false
+  ]
+}

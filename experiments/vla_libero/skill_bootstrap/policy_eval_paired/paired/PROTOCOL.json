@@ -1,0 +1,46 @@
+{
+  "variant": "paired",
+  "initials": [
+    30,
+    31
+  ],
+  "tasks": [
+    0,
+    1
+  ],
+  "modes": [
+    "target0",
+    "target1"
+  ],
+  "episodes": 8,
+  "policy_steps": 300,
+  "hold_steps": 25,
+  "no_oracle_control": true,
+  "no_teacher_pose": true,
+  "engine": "immutable diagnostic rollout; output root redirected",
+  "source_sha256": {
+    "experiments/vla_libero/skill_bootstrap/scripts/evaluate_paired.py": "f4b736877634d9ba27b700c5c777da4d0a9f7d701c9abfc44b93c602ed3a4a62",
+    "experiments/vla_libero/skill_bootstrap/scripts/runtime.py": "15e6f6e2012a5c10287e51c6c2d5e6cd697c1db316edf5d7993e97055e817620",
+    "experiments/vla_libero/skill_bootstrap/scripts/bounded_restore.py": "b906042560726b8f92242fca1ba0b5e2adc12f1b294559a3dbf8550601aa5961",
+    "experiments/vla_libero/skill_bootstrap/scripts/chunk_math.py": "02655758b0ad1abf6196c317c5ec1b32e1cdc14cadbf154adba049bde1126c99",
+    "experiments/vla_libero/instruction_response/scripts/run.py": "1b7d09c8c4d1d982c784bed00125af742412c21831fad329f914b86da63f693b",
+    "experiments/vla_libero/skill_bootstrap/DATA_PROTOCOL.json": "d45b9f3c1e6fbc3d6630b1158f77e0a87c3579695d71be73410f9e17202af55c",
+    "experiments/vla_libero/skill_bootstrap/lora_paired/PROTOCOL.json": "8686ae8cc9b2ecfdb5722fb5e5748720ed89c0c194a77ae83d6a08c692a7243f"
+  },
+  "adapter_sha256": "ca62492f96a294cd622507d31b0dc53b141f44c4af799a04b39148c57c57a47c",
+  "selected": {
+    "step": 400,
+    "phase_loss": 0.009044389209975634,
+    "branch_loss": 0.003000919459736906,
+    "combined": 0.00602265433485627,
+    "initial": {
+      "step": 0,
+      "phase_loss": 0.0133838828678563,
+      "branch_loss": 0.018351536244153976,
+      "combined": 0.01586770955600514
+    },
+    "tensors": 20,
+    "parameters": 49987584,
+    "sha256": "ca62492f96a294cd622507d31b0dc53b141f44c4af799a04b39148c57c57a47c"
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "scope": "Offline completion audit only, not a closed-loop success experiment",
+  "schemes": [
+    "base_pair",
+    "duplicate_control",
+    "wrist"
+  ],
+  "development": "old initial0 positive continuation streams",
+  "test": "fresh initial8,9,10 positive continuation streams",
+  "primary": "duplicate_control vs wrist: SAME three-image prompt and512px dimensions; only third image differs",
+  "reference": "base_pair uses original two-image prompt/boolean schema, reported separately; not a pure wrist-only ablation",
+  "prompt_template": "Check this single robot subgoal: \"{subgoal}\".\nImage 1 is the third-person view when the subgoal started. Image 2 is the current third-person view. Image 3 is a current auxiliary view; it may repeat image 2.\nUse the views together to identify the TARGET and its DESTINATION. A placement is done only when the target is visibly at the destination and released from the gripper. Do not infer completion merely because the target disappeared from its starting position. If destination, identity or release cannot be established from the images, choose unknown. Do not treat another object at the destination as the target.\nReturn only JSON: {\"status\":\"done\" or \"not_done\" or \"unknown\", \"reason\":\"one short sentence\"}.",
+  "generation": {
+    "do_sample": false,
+    "new_schemes_max_tokens": 128
+  },
+  "label": "In basket and no gripper contact, evaluated on same restored state as both current camera renders",
+  "metrics": "done confirmation precision/recall/FPR; unknown and invalid separate; strict classification counts unknown/invalid incorrect",
+  "no_training": true,
+  "no_hardware": true,
+  "no_threshold_tuning": true,
+  "no_truth_input": true,
+  "sources": {
+    "experiments/vla_libero/constraint_retention/scripts/view_run.py": "530e7d46008b2f43fc69b35202957e12ebd31d3665c0b2ee1634b97ac2ff878d",
+    "experiments/vla_libero/constraint_retention/scripts/view_worker.py": "4ebbce95f1ad47cb319caf9ed98eba2ec717ca4b7ddcfe0b9cce81e006398c95",
+    "experiments/vla_libero/constraint_retention/scripts/view_checker.py": "011189efa43d30009abee432d7b1c03206779bbd180ae7cec525718b1affb9fa",
+    "experiments/vla_libero/constraint_retention/scripts/prepare_views.py": "de365d48161f660cda3cea81bea4eeb955a3ab35a887cd23afeb6a16a7abe3bd",
+    "experiments/vla_libero/scripts/qwen_planner.py": "87ea0a00e0a662d034cfc200b326cd569ecd2f32f57fe6681851fefdd47aabc7",
+    "perception/qwen_scene/engine.py": "6c14802fbe468fa57e2ad48b25fc02c9a100d82d9aafdbf8d11224e969b699fb",
+    "perception/qwen_scene/worker_client.py": "3c3a93bd3d5e3f4ad7ea8d64e895244234a093ec779397d0d4f110ef673246b8"
+  }
+}

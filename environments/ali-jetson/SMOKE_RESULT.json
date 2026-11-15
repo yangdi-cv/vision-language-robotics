@@ -1,0 +1,13 @@
+{
+  "python": "3.10.22 | packaged by conda-forge | (main, Oct  6 2026, 22:53:30) [GCC 14.4.0]",
+  "executable": "/home/csip/miniforge3/envs/ali-jetson/bin/python",
+  "prefix": "/home/csip/miniforge3/envs/ali-jetson",
+  "architecture": "aarch64",
+  "numpy": "1.26.4",
+  "opencv": "4.10.0",
+  "scipy": "1.15.2",
+  "serial": "3.5",
+  "available_memory_bytes": 7098372096,
+  "image_roundtrip": true,
+  "gpu_stack_installed": false
+}

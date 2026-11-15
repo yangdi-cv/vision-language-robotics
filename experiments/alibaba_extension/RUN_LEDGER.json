@@ -1,0 +1,19 @@
+{
+  "date": "2026-10-13 Australia/Sydney",
+  "sequence": [
+    "Continue own ACT weights15000updates, retain validation-best and final",
+    "Build30RGB-D scenes; balance size/color combinations before model evaluation",
+    "Base120case eval, new72caseLoRA240updates, fresh48heldout eval",
+    "Nav2 failed initial ordering twice, lifecycle initialpose sequencing fixed",
+    "MoveIt/mock3legal and1invalid goals, retain planned trajectories and feedback",
+    "Sequential40case BF16cache/INT8cache/BF16no-cache after concurrent GPUjobs finished",
+    "Reload savedINT8 model in newprocess",
+    "Tune actioninterval on5seeds, then30testseeds for own20k/own5k/public; add own5kbest fairness check",
+    "Current MuJoCo RGB->Qwen->fulltask authorization->Nav2->publicACT->return, recordactualsimrosbag",
+    "Generateplots/reports/researchdraft and validate media/data/checkpoints"
+  ],
+  "hardware_motion_commands": 0,
+  "external_messages_sent": 0,
+  "timing_note": "Full120case/LoRA and ACT training overlapped; profile40case configurations sequential after these stopped",
+  "scope": "PC+offline+separate simulators, not enterprise hardware or Jetson"
+}

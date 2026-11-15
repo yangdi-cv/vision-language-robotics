@@ -1,0 +1,6 @@
+path: /home/yd/Documents/VLA/datasets/earbud_container/session_20261024_01
+train: /home/yd/Documents/VLA/experiments/earbud_detector/train.txt
+val: /home/yd/Documents/VLA/experiments/earbud_detector/fit_check.txt
+names:
+  0: earbud_case
+  1: container

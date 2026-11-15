@@ -1,0 +1,14 @@
+{
+  "backend": "unmerged",
+  "adapter_sha256": "73f67acdf0330eb806f89b939e2a7dd2c12006c78649da2e21c410fb435bd26d",
+  "cases": [
+    "experiments/vla_libero/point_target/evaluation/goal/normal/episodes/task00_init41/target1/actual_inputs/query000.npz",
+    "experiments/vla_libero/point_target/evaluation/goal/normal/episodes/task00_init41/target1/actual_inputs/query020.npz",
+    "experiments/vla_libero/point_target/evaluation/goal/normal/episodes/task01_init41/target1/actual_inputs/query000.npz",
+    "experiments/vla_libero/point_target/evaluation/goal/normal/episodes/task01_init41/target1/actual_inputs/query020.npz",
+    "experiments/vla_libero/point_target/evaluation/text/normal/episodes/task01_init41/target1/actual_inputs/query000.npz",
+    "experiments/vla_libero/point_target/evaluation/text/normal/episodes/task01_init41/target1/actual_inputs/query020.npz"
+  ],
+  "no_training": true,
+  "no_rollout": true
+}

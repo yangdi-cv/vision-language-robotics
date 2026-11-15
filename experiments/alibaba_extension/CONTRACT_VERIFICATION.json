@@ -1,0 +1,96 @@
+{
+  "cases": [
+    {
+      "case": "supported",
+      "expected_execute": true,
+      "actual": {
+        "execute": true,
+        "reason": "supported_explicit_task_and_visible_target",
+        "station": "grasp_station",
+        "skill": "transfer_red_cube"
+      }
+    },
+    {
+      "case": "blue_target",
+      "expected_execute": false,
+      "actual": {
+        "execute": false,
+        "reason": "unsupported_full_task"
+      }
+    },
+    {
+      "case": "negated",
+      "expected_execute": false,
+      "actual": {
+        "execute": false,
+        "reason": "unsupported_full_task"
+      }
+    },
+    {
+      "case": "extra_task",
+      "expected_execute": false,
+      "actual": {
+        "execute": false,
+        "reason": "unsupported_full_task"
+      }
+    },
+    {
+      "case": "grasp_only",
+      "expected_execute": false,
+      "actual": {
+        "execute": false,
+        "reason": "unsupported_full_task"
+      }
+    },
+    {
+      "case": "not_visible",
+      "expected_execute": false,
+      "actual": {
+        "execute": false,
+        "reason": "invalid_or_nonexecutable_proposal"
+      }
+    },
+    {
+      "case": "malformed",
+      "expected_execute": false,
+      "actual": {
+        "execute": false,
+        "reason": "invalid_or_nonexecutable_proposal"
+      }
+    },
+    {
+      "case": "wrong_skill",
+      "expected_execute": false,
+      "actual": {
+        "execute": false,
+        "reason": "invalid_or_nonexecutable_proposal"
+      }
+    },
+    {
+      "case": "stale",
+      "expected_execute": false,
+      "actual": {
+        "execute": false,
+        "reason": "stale_or_invalid_observation"
+      }
+    },
+    {
+      "case": "cancelled",
+      "expected_execute": false,
+      "actual": {
+        "execute": false,
+        "reason": "cancelled"
+      }
+    },
+    {
+      "case": "nonfinite_age",
+      "expected_execute": false,
+      "actual": {
+        "execute": false,
+        "reason": "stale_or_invalid_observation"
+      }
+    }
+  ],
+  "checks_passed": 15,
+  "notes": "Software failure injection, not empirical robot robustness success rate"
+}

@@ -1,0 +1,21 @@
+{
+  "reason": "Original pilot exposed missing unconfirmed goals, standalone pickup steps incompatible with release gate, and schema errors. Test a constrained repair interface without changing model or replay states.",
+  "cases": [
+    2,
+    4,
+    8
+  ],
+  "seeds": [
+    31001,
+    31002
+  ],
+  "n_recovery": 6,
+  "n_normal_smoke": 2,
+  "no_full_task_fallback": true,
+  "sources": {
+    "scripts/qwen_planner_recovery.py": "1ab1068a0703ac0d9fe91b8787bd45bc55de085f2d4e86ee5deea6a68b3c76b5",
+    "scripts/run_hierarchical_recovery.py": "361c331f6ae1a76486fb4a1ba87d07545a7aec0df2b0965b63bcbdee128fce6b",
+    "scripts/subgoal_state.py": "668efb2bbd871caee0fdbe7cd0e19dcaed0c8ebe20d45505e4c6d062e00fa6fc",
+    "recovery_study/scripts/run_paired.py": "04ab52ae29fed5c4c5947fde06466d435e404cd12dab4c7beacccbd74c720e0d"
+  }
+}

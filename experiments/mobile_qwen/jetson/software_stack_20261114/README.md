@@ -1,0 +1,7 @@
+# 软件栈部署归档位置
+
+原目录包含板端部署快照与安装日志。本源码仓库不复制板端二进制环境或重复部署树。
+
+安装入口在上级目录的install_stack.sh、setup_headless_swap.sh、stack_probe.py和smoke_nf4.py；板端推理及量化验证源码位于stage2_20261114/scripts、stage3_20261115/scripts。
+
+版本与GPU验证结果见上级SOFTWARE_STACK_REPORT.md和工程报告第7章。完整原始部署快照保留在研究工作站。

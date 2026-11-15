@@ -1,0 +1,89 @@
+{
+  "joints": [
+    "robot0_joint1",
+    "robot0_joint2",
+    "robot0_joint3",
+    "robot0_joint4",
+    "robot0_joint5",
+    "robot0_joint6",
+    "robot0_joint7",
+    "gripper0_finger_joint1",
+    "gripper0_finger_joint2",
+    "alphabet_soup_1_joint0",
+    "cream_cheese_1_joint0",
+    "tomato_sauce_1_joint0",
+    "ketchup_1_joint0",
+    "orange_juice_1_joint0",
+    "milk_1_joint0",
+    "butter_1_joint0",
+    "basket_1_joint0"
+  ],
+  "actuators": [
+    "robot0_torq_j1",
+    "robot0_torq_j2",
+    "robot0_torq_j3",
+    "robot0_torq_j4",
+    "robot0_torq_j5",
+    "robot0_torq_j6",
+    "robot0_torq_j7",
+    "gripper0_gripper_finger_joint1",
+    "gripper0_gripper_finger_joint2"
+  ],
+  "robot_root": "robot0_base",
+  "bodies": [
+    {
+      "name": "floor",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "robot0_base",
+      "position": [
+        -0.51,
+        0.0,
+        0.42
+      ]
+    },
+    {
+      "name": "robot0_link0",
+      "position": [
+        -0.51,
+        0.0,
+        0.42
+      ]
+    },
+    {
+      "name": "mount0_base",
+      "position": [
+        -0.51,
+        0.0,
+        0.42
+      ]
+    }
+  ],
+  "cameras": [
+    "frontview",
+    "birdview",
+    "agentview",
+    "sideview",
+    "galleryview",
+    "paperview",
+    "robot0_robotview",
+    "robot0_eye_in_hand"
+  ],
+  "goals": [
+    [
+      "in",
+      "alphabet_soup_1",
+      "basket_1_contain_region"
+    ],
+    [
+      "in",
+      "tomato_sauce_1",
+      "basket_1_contain_region"
+    ]
+  ]
+}

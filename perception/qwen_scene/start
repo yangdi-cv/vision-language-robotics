@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+set -euo pipefail
+PROJECT_ROOT="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/../.." && pwd)"
+unset PYTHONPATH PYTHONHOME
+export TCL_LIBRARY=/home/yd/Documents/VLA-old/.conda/envs/hiwonder-so101/lib/tcl8.6
+export TK_LIBRARY=/home/yd/Documents/VLA-old/.conda/envs/hiwonder-so101/lib/tk8.6
+exec "$PROJECT_ROOT/.venvs/qwen-scene/bin/python" "$PROJECT_ROOT/perception/qwen_scene/app.py" "$@"

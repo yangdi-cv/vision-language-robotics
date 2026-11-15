@@ -1,0 +1,36 @@
+{
+  "runner_sha256": "e5d28552be82d553e09b3fcfe45aa95bbc6d38b0338899c2536ed1407935bb9d",
+  "suite": "libero_10",
+  "task_id": 6,
+  "initial_state_id": 0,
+  "mode": "baseline",
+  "environment_seed": 7,
+  "noise_seed": 730600,
+  "initial_state_sha256": "533340bd717874417ec05cd3d626b05c9464795440da917ce21e8a0a6fc50f72",
+  "original_prompt": "put the white mug on the plate and put the chocolate pudding to the right of the plate",
+  "input_prompt": "put the white mug on the plate and put the chocolate pudding to the right of the plate",
+  "replan_steps": 5,
+  "denoising_steps": 10,
+  "max_steps": 520,
+  "status": "success",
+  "success": true,
+  "steps": 208,
+  "alternate_goal_evaluable": false,
+  "alternate_goal_ever_satisfied": null,
+  "initial_eef": [
+    -0.053896835941528554,
+    -0.007751438647052829,
+    0.6959845859205318
+  ],
+  "final_eef": [
+    0.06813644054643737,
+    0.13519543167344295,
+    0.4818547485546816
+  ],
+  "qpos_displacement_norm": 1.2632070016274766,
+  "simulation_elapsed_s": 10.4,
+  "wall_s": 6.866900352999437,
+  "query_count": 42,
+  "warmup_query_wall_s": 0.0878809519999777,
+  "query_median_excluding_first_s": 0.07422142500035989
+}

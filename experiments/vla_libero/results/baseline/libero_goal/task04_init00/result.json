@@ -1,0 +1,36 @@
+{
+  "runner_sha256": "e5d28552be82d553e09b3fcfe45aa95bbc6d38b0338899c2536ed1407935bb9d",
+  "suite": "libero_goal",
+  "task_id": 4,
+  "initial_state_id": 0,
+  "mode": "baseline",
+  "environment_seed": 7,
+  "noise_seed": 720400,
+  "initial_state_sha256": "ed35dbd746e6efe630908bc93ea0659cc4c4cd10cd9c1c1ccc336fb2012cb5dd",
+  "original_prompt": "put the bowl on top of the cabinet",
+  "input_prompt": "put the bowl on top of the cabinet",
+  "replan_steps": 5,
+  "denoising_steps": 10,
+  "max_steps": 300,
+  "status": "success",
+  "success": true,
+  "steps": 87,
+  "alternate_goal_evaluable": false,
+  "alternate_goal_ever_satisfied": null,
+  "initial_eef": [
+    -0.2086836015473625,
+    -0.015637692884618793,
+    1.1692507325745698
+  ],
+  "final_eef": [
+    -0.010626665376802673,
+    -0.19926499906965728,
+    1.151175037989748
+  ],
+  "qpos_displacement_norm": 1.1273902450109796,
+  "simulation_elapsed_s": 4.35,
+  "wall_s": 4.023926711999593,
+  "query_count": 18,
+  "warmup_query_wall_s": 0.07756152599995403,
+  "query_median_excluding_first_s": 0.0756409129999156
+}

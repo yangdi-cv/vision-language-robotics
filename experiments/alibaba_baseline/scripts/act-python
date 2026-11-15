@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+set -euo pipefail
+PROJECT_ROOT="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/../../.." && pwd)"
+unset PYTHONHOME LD_LIBRARY_PATH
+export PYTHONPATH="$PROJECT_ROOT/SO101/code/lerobot/src"
+export PATH="/home/yd/Documents/VLA-old/.conda/envs/hiwonder-so101/bin:$PATH"
+export MUJOCO_GL=egl
+export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt
+exec "$PROJECT_ROOT/.venvs/act-sim/bin/python" "$@"

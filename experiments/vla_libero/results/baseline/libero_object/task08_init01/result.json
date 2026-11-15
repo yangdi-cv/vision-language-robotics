@@ -1,0 +1,36 @@
+{
+  "runner_sha256": "e5d28552be82d553e09b3fcfe45aa95bbc6d38b0338899c2536ed1407935bb9d",
+  "suite": "libero_object",
+  "task_id": 8,
+  "initial_state_id": 1,
+  "mode": "baseline",
+  "environment_seed": 7,
+  "noise_seed": 710801,
+  "initial_state_sha256": "f59e6162c8966e38f6cbae0ba82aff1e970c277dcd663e4281efbbf2be545807",
+  "original_prompt": "pick up the chocolate pudding and place it in the basket",
+  "input_prompt": "pick up the chocolate pudding and place it in the basket",
+  "replan_steps": 5,
+  "denoising_steps": 10,
+  "max_steps": 280,
+  "status": "success",
+  "success": true,
+  "steps": 195,
+  "alternate_goal_evaluable": false,
+  "alternate_goal_ever_satisfied": null,
+  "initial_eef": [
+    -0.1428425038809166,
+    0.005008930579931891,
+    0.26859252477557066
+  ],
+  "final_eef": [
+    0.010479504302709382,
+    0.26176869532569286,
+    0.2043555505289914
+  ],
+  "qpos_displacement_norm": 1.3697180596481067,
+  "simulation_elapsed_s": 9.75,
+  "wall_s": 6.44425685600072,
+  "query_count": 39,
+  "warmup_query_wall_s": 0.08195356099986384,
+  "query_median_excluding_first_s": 0.07462363600006938
+}

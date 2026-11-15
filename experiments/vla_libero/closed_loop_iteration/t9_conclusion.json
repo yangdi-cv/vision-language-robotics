@@ -1,0 +1,7 @@
+{
+  "initial_image_exact_equal": true,
+  "first_action_divergence_step": 0,
+  "first_action_max_abs_difference": 0.00024709420118645964,
+  "classification": "Prior timeout not reproduced in four controlled frozen-plan runs; no isolated causal attribution established.",
+  "legacy_strict_old_plan_max_action_difference": 0.0
+}

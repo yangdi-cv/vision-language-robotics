@@ -1,0 +1,14 @@
+{
+  "date": "2026-11-14",
+  "pdf_pages": 4,
+  "source_files_verified": 232,
+  "extracted_cpu_tests_passed": 9,
+  "physical_states": 5200,
+  "final_score_disagreements": 0,
+  "all_delivery_hashes_verified": true,
+  "video_frames_decoded": 326,
+  "pdf_visual_checked_pages": [
+    1,
+    3
+  ]
+}

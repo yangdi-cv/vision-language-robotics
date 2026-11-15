@@ -1,0 +1,1050 @@
+{
+  "case": {
+    "task": 1,
+    "target_index": 1,
+    "initial": 4,
+    "target": "butter_1",
+    "protected": "cream_cheese_1",
+    "objects": [
+      [
+        "cream_cheese_1",
+        "cream cheese box",
+        "奶油奶酪盒"
+      ],
+      [
+        "butter_1",
+        "butter",
+        "黄油"
+      ]
+    ],
+    "instruction": "只把黄油放进篮子里，奶油奶酪盒保持原位。放好后停止，不要继续搬其他物体。",
+    "reference_skill": "pick up the butter and place it in the basket",
+    "key": "task01_target1_init04"
+  },
+  "mode": "visual",
+  "phase": "eval",
+  "protocol_sha256": "8adfcad65b11d5f41605fc6991299541709915f97d7262df48b8f406f9e719ef",
+  "noise_seed": 920104,
+  "status": "complete",
+  "steps": 325,
+  "events": [
+    {
+      "kind": "check",
+      "step": 10,
+      "decision": {
+        "done": false,
+        "streak": 0,
+        "stop": false
+      },
+      "images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/eval/task01_target1_init04/visual/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/eval/task01_target1_init04/visual/images/current_0010.png"
+      ],
+      "sent_images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/eval/task01_target1_init04/visual/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/eval/task01_target1_init04/visual/images/current_0010.png"
+      ],
+      "reply": {
+        "raw": "{\n  \"change\": \"No change detected.\",\n  \"done\": false\n}",
+        "seconds": 0.3187796249985695,
+        "inference": {
+          "model": "Qwen/Qwen3-VL-4B-Instruct",
+          "revision": "ebb281ec70b05090aa6165b016eac8ec08e71b17",
+          "prompt": "Image 1 was taken when the robot started this subgoal; image 2 is the scene now.\nSubgoal: \"pick up the butter and place it in the basket\".\nLook at the destination named in the subgoal. Is there a new object at the destination in image 2 that was not there in image 1, and is it the target object? For a state change (open, close, turn on), compare that object between the two images.\nReturn only JSON: {\"change\": \"short description\", \"done\": true or false}",
+          "prompt_sha256": "e9a5188e0243efe38c685144d648c1832085b3bb7cd8d3c76081c27800ff6088",
+          "engine_sha256": "6c14802fbe468fa57e2ad48b25fc02c9a100d82d9aafdbf8d11224e969b699fb",
+          "generation": {
+            "max_new_tokens": 96,
+            "do_sample": false
+          },
+          "images": [
+            {
+              "size": [
+                512,
+                512
+              ],
+              "mode": "RGB",
+              "pixel_sha256": "db56c4a9097e953ade2c976134a0fecc3da35f35451b7ed21d5cbdcb949ba774"
+            },
+            {
+              "size": [
+                512,
+                512
+              ],
+              "mode": "RGB",
+              "pixel_sha256": "fbecb4bb79355a9c035ef00eb47e33dbe880bfc679cd88c479119b64d1634622"
+            }
+          ],
+          "libraries": {
+            "torch": "2.7.1",
+            "transformers": "4.57.6"
+          },
+          "planner_sha256": "87ea0a00e0a662d034cfc200b326cd569ecd2f32f57fe6681851fefdd47aabc7"
+        },
+        "device": "cuda:0",
+        "allocated_mib": 8484.62158203125,
+        "reserved_mib": 8748.0,
+        "tokens": 18,
+        "ok": true,
+        "done": false,
+        "reason": "No change detected."
+      },
+      "seconds": 0.36021657699893694
+    },
+    {
+      "kind": "check",
+      "step": 20,
+      "decision": {
+        "done": false,
+        "streak": 0,
+        "stop": false
+      },
+      "images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/eval/task01_target1_init04/visual/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/eval/task01_target1_init04/visual/images/current_0020.png"
+      ],
+      "sent_images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/eval/task01_target1_init04/visual/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/eval/task01_target1_init04/visual/images/current_0020.png"
+      ],
+      "reply": {
+        "raw": "{\n  \"change\": \"No change detected.\",\n  \"done\": false\n}",
+        "seconds": 0.31842259799304884,
+        "inference": {
+          "model": "Qwen/Qwen3-VL-4B-Instruct",
+          "revision": "ebb281ec70b05090aa6165b016eac8ec08e71b17",
+          "prompt": "Image 1 was taken when the robot started this subgoal; image 2 is the scene now.\nSubgoal: \"pick up the butter and place it in the basket\".\nLook at the destination named in the subgoal. Is there a new object at the destination in image 2 that was not there in image 1, and is it the target object? For a state change (open, close, turn on), compare that object between the two images.\nReturn only JSON: {\"change\": \"short description\", \"done\": true or false}",
+          "prompt_sha256": "e9a5188e0243efe38c685144d648c1832085b3bb7cd8d3c76081c27800ff6088",
+          "engine_sha256": "6c14802fbe468fa57e2ad48b25fc02c9a100d82d9aafdbf8d11224e969b699fb",
+          "generation": {
+            "max_new_tokens": 96,
+            "do_sample": false
+          },
+          "images": [
+            {
+              "size": [
+                512,
+                512
+              ],
+              "mode": "RGB",
+              "pixel_sha256": "db56c4a9097e953ade2c976134a0fecc3da35f35451b7ed21d5cbdcb949ba774"
+            },
+            {
+              "size": [
+                512,
+                512
+              ],
+              "mode": "RGB",
+              "pixel_sha256": "72286ad36c2efd401f9b1a64601919b37a8a83b63019bf88c05e6c14bf4aa29f"
+            }
+          ],
+          "libraries": {
+            "torch": "2.7.1",
+            "transformers": "4.57.6"
+          },
+          "planner_sha256": "87ea0a00e0a662d034cfc200b326cd569ecd2f32f57fe6681851fefdd47aabc7"
+        },
+        "device": "cuda:0",
+        "allocated_mib": 8484.62158203125,
+        "reserved_mib": 8748.0,
+        "tokens": 18,
+        "ok": true,
+        "done": false,
+        "reason": "No change detected."
+      },
+      "seconds": 0.36051344799489016
+    },
+    {
+      "kind": "check",
+      "step": 30,
+      "decision": {
+        "done": false,
+        "streak": 0,
+        "stop": false
+      },
+      "images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/eval/task01_target1_init04/visual/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/eval/task01_target1_init04/visual/images/current_0030.png"
+      ],
+      "sent_images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/eval/task01_target1_init04/visual/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/eval/task01_target1_init04/visual/images/current_0030.png"
+      ],
+      "reply": {
+        "raw": "{\n  \"change\": \"No change detected.\",\n  \"done\": false\n}",
+        "seconds": 0.31694912900275085,
+        "inference": {
+          "model": "Qwen/Qwen3-VL-4B-Instruct",
+          "revision": "ebb281ec70b05090aa6165b016eac8ec08e71b17",
+          "prompt": "Image 1 was taken when the robot started this subgoal; image 2 is the scene now.\nSubgoal: \"pick up the butter and place it in the basket\".\nLook at the destination named in the subgoal. Is there a new object at the destination in image 2 that was not there in image 1, and is it the target object? For a state change (open, close, turn on), compare that object between the two images.\nReturn only JSON: {\"change\": \"short description\", \"done\": true or false}",
+          "prompt_sha256": "e9a5188e0243efe38c685144d648c1832085b3bb7cd8d3c76081c27800ff6088",
+          "engine_sha256": "6c14802fbe468fa57e2ad48b25fc02c9a100d82d9aafdbf8d11224e969b699fb",
+          "generation": {
+            "max_new_tokens": 96,
+            "do_sample": false
+          },
+          "images": [
+            {
+              "size": [
+                512,
+                512
+              ],
+              "mode": "RGB",
+              "pixel_sha256": "db56c4a9097e953ade2c976134a0fecc3da35f35451b7ed21d5cbdcb949ba774"
+            },
+            {
+              "size": [
+                512,
+                512
+              ],
+              "mode": "RGB",
+              "pixel_sha256": "6c0c12040734b6d4f9ef0c9495562d4358903ba6472392a6e91eda1f8036e4dc"
+            }
+          ],
+          "libraries": {
+            "torch": "2.7.1",
+            "transformers": "4.57.6"
+          },
+          "planner_sha256": "87ea0a00e0a662d034cfc200b326cd569ecd2f32f57fe6681851fefdd47aabc7"
+        },
+        "device": "cuda:0",
+        "allocated_mib": 8484.62158203125,
+        "reserved_mib": 8748.0,
+        "tokens": 18,
+        "ok": true,
+        "done": false,
+        "reason": "No change detected."
+      },
+      "seconds": 0.35780628900101874
+    },
+    {
+      "kind": "check",
+      "step": 40,
+      "decision": {
+        "done": false,
+        "streak": 0,
+        "stop": false
+      },
+      "images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/eval/task01_target1_init04/visual/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/eval/task01_target1_init04/visual/images/current_0040.png"
+      ],
+      "sent_images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/eval/task01_target1_init04/visual/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/eval/task01_target1_init04/visual/images/current_0040.png"
+      ],
+      "reply": {
+        "raw": "{\n  \"change\": \"No change detected\",\n  \"done\": false\n}",
+        "seconds": 0.31478036000044085,
+        "inference": {
+          "model": "Qwen/Qwen3-VL-4B-Instruct",
+          "revision": "ebb281ec70b05090aa6165b016eac8ec08e71b17",
+          "prompt": "Image 1 was taken when the robot started this subgoal; image 2 is the scene now.\nSubgoal: \"pick up the butter and place it in the basket\".\nLook at the destination named in the subgoal. Is there a new object at the destination in image 2 that was not there in image 1, and is it the target object? For a state change (open, close, turn on), compare that object between the two images.\nReturn only JSON: {\"change\": \"short description\", \"done\": true or false}",
+          "prompt_sha256": "e9a5188e0243efe38c685144d648c1832085b3bb7cd8d3c76081c27800ff6088",
+          "engine_sha256": "6c14802fbe468fa57e2ad48b25fc02c9a100d82d9aafdbf8d11224e969b699fb",
+          "generation": {
+            "max_new_tokens": 96,
+            "do_sample": false
+          },
+          "images": [
+            {
+              "size": [
+                512,
+                512
+              ],
+              "mode": "RGB",
+              "pixel_sha256": "db56c4a9097e953ade2c976134a0fecc3da35f35451b7ed21d5cbdcb949ba774"
+            },
+            {
+              "size": [
+                512,
+                512
+              ],
+              "mode": "RGB",
+              "pixel_sha256": "d37f049224ea68c4f80085841028b9a9771b40811378d8008ee1401d58d86335"
+            }
+          ],
+          "libraries": {
+            "torch": "2.7.1",
+            "transformers": "4.57.6"
+          },
+          "planner_sha256": "87ea0a00e0a662d034cfc200b326cd569ecd2f32f57fe6681851fefdd47aabc7"
+        },
+        "device": "cuda:0",
+        "allocated_mib": 8484.62158203125,
+        "reserved_mib": 8748.0,
+        "tokens": 18,
+        "ok": true,
+        "done": false,
+        "reason": "No change detected"
+      },
+      "seconds": 0.35517044700100087
+    },
+    {
+      "kind": "check",
+      "step": 50,
+      "decision": {
+        "done": false,
+        "streak": 0,
+        "stop": false
+      },
+      "images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/eval/task01_target1_init04/visual/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/eval/task01_target1_init04/visual/images/current_0050.png"
+      ],
+      "sent_images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/eval/task01_target1_init04/visual/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/eval/task01_target1_init04/visual/images/current_0050.png"
+      ],
+      "reply": {
+        "raw": "{\n  \"change\": \"No change detected at the destination (basket). The butter is still on the table and not in the basket.\",\n  \"done\": false\n}",
+        "seconds": 0.5821340149996104,
+        "inference": {
+          "model": "Qwen/Qwen3-VL-4B-Instruct",
+          "revision": "ebb281ec70b05090aa6165b016eac8ec08e71b17",
+          "prompt": "Image 1 was taken when the robot started this subgoal; image 2 is the scene now.\nSubgoal: \"pick up the butter and place it in the basket\".\nLook at the destination named in the subgoal. Is there a new object at the destination in image 2 that was not there in image 1, and is it the target object? For a state change (open, close, turn on), compare that object between the two images.\nReturn only JSON: {\"change\": \"short description\", \"done\": true or false}",
+          "prompt_sha256": "e9a5188e0243efe38c685144d648c1832085b3bb7cd8d3c76081c27800ff6088",
+          "engine_sha256": "6c14802fbe468fa57e2ad48b25fc02c9a100d82d9aafdbf8d11224e969b699fb",
+          "generation": {
+            "max_new_tokens": 96,
+            "do_sample": false
+          },
+          "images": [
+            {
+              "size": [
+                512,
+                512
+              ],
+              "mode": "RGB",
+              "pixel_sha256": "db56c4a9097e953ade2c976134a0fecc3da35f35451b7ed21d5cbdcb949ba774"
+            },
+            {
+              "size": [
+                512,
+                512
+              ],
+              "mode": "RGB",
+              "pixel_sha256": "19e03c4162aebe98e230f0c98005a9871424f229b1f38def43611a62389f87b7"
+            }
+          ],
+          "libraries": {
+            "torch": "2.7.1",
+            "transformers": "4.57.6"
+          },
+          "planner_sha256": "87ea0a00e0a662d034cfc200b326cd569ecd2f32f57fe6681851fefdd47aabc7"
+        },
+        "device": "cuda:0",
+        "allocated_mib": 8484.62158203125,
+        "reserved_mib": 8748.0,
+        "tokens": 36,
+        "ok": true,
+        "done": false,
+        "reason": "No change detected at the destination (basket). The butter is still on the table and not in the basket."
+      },
+      "seconds": 0.6171472639980493
+    },
+    {
+      "kind": "check",
+      "step": 60,
+      "decision": {
+        "done": false,
+        "streak": 0,
+        "stop": false
+      },
+      "images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/eval/task01_target1_init04/visual/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/eval/task01_target1_init04/visual/images/current_0060.png"
+      ],
+      "sent_images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/eval/task01_target1_init04/visual/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/eval/task01_target1_init04/visual/images/current_0060.png"
+      ],
+      "reply": {
+        "raw": "{\n  \"change\": \"No change detected at the destination (basket). The butter is still on the table and not in the basket.\",\n  \"done\": false\n}",
+        "seconds": 0.5815299489986501,
+        "inference": {
+          "model": "Qwen/Qwen3-VL-4B-Instruct",
+          "revision": "ebb281ec70b05090aa6165b016eac8ec08e71b17",
+          "prompt": "Image 1 was taken when the robot started this subgoal; image 2 is the scene now.\nSubgoal: \"pick up the butter and place it in the basket\".\nLook at the destination named in the subgoal. Is there a new object at the destination in image 2 that was not there in image 1, and is it the target object? For a state change (open, close, turn on), compare that object between the two images.\nReturn only JSON: {\"change\": \"short description\", \"done\": true or false}",
+          "prompt_sha256": "e9a5188e0243efe38c685144d648c1832085b3bb7cd8d3c76081c27800ff6088",
+          "engine_sha256": "6c14802fbe468fa57e2ad48b25fc02c9a100d82d9aafdbf8d11224e969b699fb",
+          "generation": {
+            "max_new_tokens": 96,
+            "do_sample": false
+          },
+          "images": [
+            {
+              "size": [
+                512,
+                512
+              ],
+              "mode": "RGB",
+              "pixel_sha256": "db56c4a9097e953ade2c976134a0fecc3da35f35451b7ed21d5cbdcb949ba774"
+            },
+            {
+              "size": [
+                512,
+                512
+              ],
+              "mode": "RGB",
+              "pixel_sha256": "421822ef1587c21684f0fda2196dd0078f254472c9994ac0f1c3f05cb2de08aa"
+            }
+          ],
+          "libraries": {
+            "torch": "2.7.1",
+            "transformers": "4.57.6"
+          },
+          "planner_sha256": "87ea0a00e0a662d034cfc200b326cd569ecd2f32f57fe6681851fefdd47aabc7"
+        },
+        "device": "cuda:0",
+        "allocated_mib": 8484.62158203125,
+        "reserved_mib": 8748.0,
+        "tokens": 36,
+        "ok": true,
+        "done": false,
+        "reason": "No change detected at the destination (basket). The butter is still on the table and not in the basket."
+      },
+      "seconds": 0.6220532770021237
+    },
+    {
+      "kind": "check",
+      "step": 150,
+      "decision": {
+        "done": false,
+        "streak": 0,
+        "stop": false
+      },
+      "images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/eval/task01_target1_init04/visual/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/eval/task01_target1_init04/visual/images/current_0150.png"
+      ],
+      "sent_images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/eval/task01_target1_init04/visual/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/eval/task01_target1_init04/visual/images/current_0150.png"
+      ],
+      "reply": {
+        "raw": "{\n  \"change\": \"No change detected.\",\n  \"done\": false\n}",
+        "seconds": 0.32392050699854735,
+        "inference": {
+          "model": "Qwen/Qwen3-VL-4B-Instruct",
+          "revision": "ebb281ec70b05090aa6165b016eac8ec08e71b17",
+          "prompt": "Image 1 was taken when the robot started this subgoal; image 2 is the scene now.\nSubgoal: \"pick up the butter and place it in the basket\".\nLook at the destination named in the subgoal. Is there a new object at the destination in image 2 that was not there in image 1, and is it the target object? For a state change (open, close, turn on), compare that object between the two images.\nReturn only JSON: {\"change\": \"short description\", \"done\": true or false}",
+          "prompt_sha256": "e9a5188e0243efe38c685144d648c1832085b3bb7cd8d3c76081c27800ff6088",
+          "engine_sha256": "6c14802fbe468fa57e2ad48b25fc02c9a100d82d9aafdbf8d11224e969b699fb",
+          "generation": {
+            "max_new_tokens": 96,
+            "do_sample": false
+          },
+          "images": [
+            {
+              "size": [
+                512,
+                512
+              ],
+              "mode": "RGB",
+              "pixel_sha256": "db56c4a9097e953ade2c976134a0fecc3da35f35451b7ed21d5cbdcb949ba774"
+            },
+            {
+              "size": [
+                512,
+                512
+              ],
+              "mode": "RGB",
+              "pixel_sha256": "bd44bed8fae591bc948b61c41a94eb04a03168207cb35fdd14d307cf6c111621"
+            }
+          ],
+          "libraries": {
+            "torch": "2.7.1",
+            "transformers": "4.57.6"
+          },
+          "planner_sha256": "87ea0a00e0a662d034cfc200b326cd569ecd2f32f57fe6681851fefdd47aabc7"
+        },
+        "device": "cuda:0",
+        "allocated_mib": 8484.62158203125,
+        "reserved_mib": 8748.0,
+        "tokens": 18,
+        "ok": true,
+        "done": false,
+        "reason": "No change detected."
+      },
+      "seconds": 0.35971940699528204
+    },
+    {
+      "kind": "check",
+      "step": 160,
+      "decision": {
+        "done": false,
+        "streak": 0,
+        "stop": false
+      },
+      "images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/eval/task01_target1_init04/visual/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/eval/task01_target1_init04/visual/images/current_0160.png"
+      ],
+      "sent_images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/eval/task01_target1_init04/visual/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/eval/task01_target1_init04/visual/images/current_0160.png"
+      ],
+      "reply": {
+        "raw": "{\n  \"change\": \"No change detected at the destination (basket). The butter box is still on the table and not in the basket.\",\n  \"done\": false\n}",
+        "seconds": 0.5969497690020944,
+        "inference": {
+          "model": "Qwen/Qwen3-VL-4B-Instruct",
+          "revision": "ebb281ec70b05090aa6165b016eac8ec08e71b17",
+          "prompt": "Image 1 was taken when the robot started this subgoal; image 2 is the scene now.\nSubgoal: \"pick up the butter and place it in the basket\".\nLook at the destination named in the subgoal. Is there a new object at the destination in image 2 that was not there in image 1, and is it the target object? For a state change (open, close, turn on), compare that object between the two images.\nReturn only JSON: {\"change\": \"short description\", \"done\": true or false}",
+          "prompt_sha256": "e9a5188e0243efe38c685144d648c1832085b3bb7cd8d3c76081c27800ff6088",
+          "engine_sha256": "6c14802fbe468fa57e2ad48b25fc02c9a100d82d9aafdbf8d11224e969b699fb",
+          "generation": {
+            "max_new_tokens": 96,
+            "do_sample": false
+          },
+          "images": [
+            {
+              "size": [
+                512,
+                512
+              ],
+              "mode": "RGB",
+              "pixel_sha256": "db56c4a9097e953ade2c976134a0fecc3da35f35451b7ed21d5cbdcb949ba774"
+            },
+            {
+              "size": [
+                512,
+                512
+              ],
+              "mode": "RGB",
+              "pixel_sha256": "c8bd4abca3afad0f119329b8e5f6646a70c74f3266fb8154c34203fa22562281"
+            }
+          ],
+          "libraries": {
+            "torch": "2.7.1",
+            "transformers": "4.57.6"
+          },
+          "planner_sha256": "87ea0a00e0a662d034cfc200b326cd569ecd2f32f57fe6681851fefdd47aabc7"
+        },
+        "device": "cuda:0",
+        "allocated_mib": 8484.62158203125,
+        "reserved_mib": 8748.0,
+        "tokens": 37,
+        "ok": true,
+        "done": false,
+        "reason": "No change detected at the destination (basket). The butter box is still on the table and not in the basket."
+      },
+      "seconds": 0.6388640439981828
+    },
+    {
+      "kind": "check",
+      "step": 170,
+      "decision": {
+        "done": false,
+        "streak": 0,
+        "stop": false
+      },
+      "images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/eval/task01_target1_init04/visual/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/eval/task01_target1_init04/visual/images/current_0170.png"
+      ],
+      "sent_images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/eval/task01_target1_init04/visual/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/eval/task01_target1_init04/visual/images/current_0170.png"
+      ],
+      "reply": {
+        "raw": "{\n  \"change\": \"No change detected at the destination (basket). The butter box is still on the table, not in the basket.\",\n  \"done\": false\n}",
+        "seconds": 0.6031973549979739,
+        "inference": {
+          "model": "Qwen/Qwen3-VL-4B-Instruct",
+          "revision": "ebb281ec70b05090aa6165b016eac8ec08e71b17",
+          "prompt": "Image 1 was taken when the robot started this subgoal; image 2 is the scene now.\nSubgoal: \"pick up the butter and place it in the basket\".\nLook at the destination named in the subgoal. Is there a new object at the destination in image 2 that was not there in image 1, and is it the target object? For a state change (open, close, turn on), compare that object between the two images.\nReturn only JSON: {\"change\": \"short description\", \"done\": true or false}",
+          "prompt_sha256": "e9a5188e0243efe38c685144d648c1832085b3bb7cd8d3c76081c27800ff6088",
+          "engine_sha256": "6c14802fbe468fa57e2ad48b25fc02c9a100d82d9aafdbf8d11224e969b699fb",
+          "generation": {
+            "max_new_tokens": 96,
+            "do_sample": false
+          },
+          "images": [
+            {
+              "size": [
+                512,
+                512
+              ],
+              "mode": "RGB",
+              "pixel_sha256": "db56c4a9097e953ade2c976134a0fecc3da35f35451b7ed21d5cbdcb949ba774"
+            },
+            {
+              "size": [
+                512,
+                512
+              ],
+              "mode": "RGB",
+              "pixel_sha256": "04d932bf6b27a3bd890e249a63326b05965f8e67d7ae37364a0228eedfb12657"
+            }
+          ],
+          "libraries": {
+            "torch": "2.7.1",
+            "transformers": "4.57.6"
+          },
+          "planner_sha256": "87ea0a00e0a662d034cfc200b326cd569ecd2f32f57fe6681851fefdd47aabc7"
+        },
+        "device": "cuda:0",
+        "allocated_mib": 8484.62158203125,
+        "reserved_mib": 8748.0,
+        "tokens": 37,
+        "ok": true,
+        "done": false,
+        "reason": "No change detected at the destination (basket). The butter box is still on the table, not in the basket."
+      },
+      "seconds": 0.6341758810012834
+    },
+    {
+      "kind": "check",
+      "step": 180,
+      "decision": {
+        "done": true,
+        "streak": 1,
+        "stop": false
+      },
+      "images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/eval/task01_target1_init04/visual/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/eval/task01_target1_init04/visual/images/current_0180.png"
+      ],
+      "sent_images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/eval/task01_target1_init04/visual/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/eval/task01_target1_init04/visual/images/current_0180.png"
+      ],
+      "reply": {
+        "raw": "{\n  \"change\": \"The butter box is now in the basket, which was empty in the first image.\",\n  \"done\": true\n}",
+        "seconds": 0.5107829510016018,
+        "inference": {
+          "model": "Qwen/Qwen3-VL-4B-Instruct",
+          "revision": "ebb281ec70b05090aa6165b016eac8ec08e71b17",
+          "prompt": "Image 1 was taken when the robot started this subgoal; image 2 is the scene now.\nSubgoal: \"pick up the butter and place it in the basket\".\nLook at the destination named in the subgoal. Is there a new object at the destination in image 2 that was not there in image 1, and is it the target object? For a state change (open, close, turn on), compare that object between the two images.\nReturn only JSON: {\"change\": \"short description\", \"done\": true or false}",
+          "prompt_sha256": "e9a5188e0243efe38c685144d648c1832085b3bb7cd8d3c76081c27800ff6088",
+          "engine_sha256": "6c14802fbe468fa57e2ad48b25fc02c9a100d82d9aafdbf8d11224e969b699fb",
+          "generation": {
+            "max_new_tokens": 96,
+            "do_sample": false
+          },
+          "images": [
+            {
+              "size": [
+                512,
+                512
+              ],
+              "mode": "RGB",
+              "pixel_sha256": "db56c4a9097e953ade2c976134a0fecc3da35f35451b7ed21d5cbdcb949ba774"
+            },
+            {
+              "size": [
+                512,
+                512
+              ],
+              "mode": "RGB",
+              "pixel_sha256": "2cdf7bfcb2abcede993da79d60e62293b87af5720083e63f2ef35b16c18e239f"
+            }
+          ],
+          "libraries": {
+            "torch": "2.7.1",
+            "transformers": "4.57.6"
+          },
+          "planner_sha256": "87ea0a00e0a662d034cfc200b326cd569ecd2f32f57fe6681851fefdd47aabc7"
+        },
+        "device": "cuda:0",
+        "allocated_mib": 8484.62158203125,
+        "reserved_mib": 8748.0,
+        "tokens": 31,
+        "ok": true,
+        "done": true,
+        "reason": "The butter box is now in the basket, which was empty in the first image."
+      },
+      "seconds": 0.5512506919985753
+    },
+    {
+      "kind": "check",
+      "step": 260,
+      "decision": {
+        "done": false,
+        "streak": 0,
+        "stop": false
+      },
+      "images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/eval/task01_target1_init04/visual/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/eval/task01_target1_init04/visual/images/current_0260.png"
+      ],
+      "sent_images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/eval/task01_target1_init04/visual/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/eval/task01_target1_init04/visual/images/current_0260.png"
+      ],
+      "reply": {
+        "raw": "{\n  \"change\": \"No change detected at the destination (basket). The butter is still on the table and not in the basket.\",\n  \"done\": false\n}",
+        "seconds": 0.5922897179989377,
+        "inference": {
+          "model": "Qwen/Qwen3-VL-4B-Instruct",
+          "revision": "ebb281ec70b05090aa6165b016eac8ec08e71b17",
+          "prompt": "Image 1 was taken when the robot started this subgoal; image 2 is the scene now.\nSubgoal: \"pick up the butter and place it in the basket\".\nLook at the destination named in the subgoal. Is there a new object at the destination in image 2 that was not there in image 1, and is it the target object? For a state change (open, close, turn on), compare that object between the two images.\nReturn only JSON: {\"change\": \"short description\", \"done\": true or false}",
+          "prompt_sha256": "e9a5188e0243efe38c685144d648c1832085b3bb7cd8d3c76081c27800ff6088",
+          "engine_sha256": "6c14802fbe468fa57e2ad48b25fc02c9a100d82d9aafdbf8d11224e969b699fb",
+          "generation": {
+            "max_new_tokens": 96,
+            "do_sample": false
+          },
+          "images": [
+            {
+              "size": [
+                512,
+                512
+              ],
+              "mode": "RGB",
+              "pixel_sha256": "db56c4a9097e953ade2c976134a0fecc3da35f35451b7ed21d5cbdcb949ba774"
+            },
+            {
+              "size": [
+                512,
+                512
+              ],
+              "mode": "RGB",
+              "pixel_sha256": "69b0954e60bc5ecae2c4aa487d667cafd421376a38b35b11d6bbf6906cc42a45"
+            }
+          ],
+          "libraries": {
+            "torch": "2.7.1",
+            "transformers": "4.57.6"
+          },
+          "planner_sha256": "87ea0a00e0a662d034cfc200b326cd569ecd2f32f57fe6681851fefdd47aabc7"
+        },
+        "device": "cuda:0",
+        "allocated_mib": 8484.62158203125,
+        "reserved_mib": 8748.0,
+        "tokens": 36,
+        "ok": true,
+        "done": false,
+        "reason": "No change detected at the destination (basket). The butter is still on the table and not in the basket."
+      },
+      "seconds": 0.6319568749968312
+    },
+    {
+      "kind": "check",
+      "step": 270,
+      "decision": {
+        "done": false,
+        "streak": 0,
+        "stop": false
+      },
+      "images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/eval/task01_target1_init04/visual/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/eval/task01_target1_init04/visual/images/current_0270.png"
+      ],
+      "sent_images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/eval/task01_target1_init04/visual/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/eval/task01_target1_init04/visual/images/current_0270.png"
+      ],
+      "reply": {
+        "raw": "{\n  \"change\": \"No change detected.\",\n  \"done\": false\n}",
+        "seconds": 0.31811639000079595,
+        "inference": {
+          "model": "Qwen/Qwen3-VL-4B-Instruct",
+          "revision": "ebb281ec70b05090aa6165b016eac8ec08e71b17",
+          "prompt": "Image 1 was taken when the robot started this subgoal; image 2 is the scene now.\nSubgoal: \"pick up the butter and place it in the basket\".\nLook at the destination named in the subgoal. Is there a new object at the destination in image 2 that was not there in image 1, and is it the target object? For a state change (open, close, turn on), compare that object between the two images.\nReturn only JSON: {\"change\": \"short description\", \"done\": true or false}",
+          "prompt_sha256": "e9a5188e0243efe38c685144d648c1832085b3bb7cd8d3c76081c27800ff6088",
+          "engine_sha256": "6c14802fbe468fa57e2ad48b25fc02c9a100d82d9aafdbf8d11224e969b699fb",
+          "generation": {
+            "max_new_tokens": 96,
+            "do_sample": false
+          },
+          "images": [
+            {
+              "size": [
+                512,
+                512
+              ],
+              "mode": "RGB",
+              "pixel_sha256": "db56c4a9097e953ade2c976134a0fecc3da35f35451b7ed21d5cbdcb949ba774"
+            },
+            {
+              "size": [
+                512,
+                512
+              ],
+              "mode": "RGB",
+              "pixel_sha256": "92c307ea92a63571a792915d406f9ac2334f6d643b4869aeddc100f68ce885d8"
+            }
+          ],
+          "libraries": {
+            "torch": "2.7.1",
+            "transformers": "4.57.6"
+          },
+          "planner_sha256": "87ea0a00e0a662d034cfc200b326cd569ecd2f32f57fe6681851fefdd47aabc7"
+        },
+        "device": "cuda:0",
+        "allocated_mib": 8484.62158203125,
+        "reserved_mib": 8748.0,
+        "tokens": 18,
+        "ok": true,
+        "done": false,
+        "reason": "No change detected."
+      },
+      "seconds": 0.35798448299465235
+    },
+    {
+      "kind": "check",
+      "step": 280,
+      "decision": {
+        "done": false,
+        "streak": 0,
+        "stop": false
+      },
+      "images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/eval/task01_target1_init04/visual/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/eval/task01_target1_init04/visual/images/current_0280.png"
+      ],
+      "sent_images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/eval/task01_target1_init04/visual/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/eval/task01_target1_init04/visual/images/current_0280.png"
+      ],
+      "reply": {
+        "raw": "{\n  \"change\": \"No change detected at the destination (basket). The butter is still on the table and not in the basket.\",\n  \"done\": false\n}",
+        "seconds": 0.5860515120002674,
+        "inference": {
+          "model": "Qwen/Qwen3-VL-4B-Instruct",
+          "revision": "ebb281ec70b05090aa6165b016eac8ec08e71b17",
+          "prompt": "Image 1 was taken when the robot started this subgoal; image 2 is the scene now.\nSubgoal: \"pick up the butter and place it in the basket\".\nLook at the destination named in the subgoal. Is there a new object at the destination in image 2 that was not there in image 1, and is it the target object? For a state change (open, close, turn on), compare that object between the two images.\nReturn only JSON: {\"change\": \"short description\", \"done\": true or false}",
+          "prompt_sha256": "e9a5188e0243efe38c685144d648c1832085b3bb7cd8d3c76081c27800ff6088",
+          "engine_sha256": "6c14802fbe468fa57e2ad48b25fc02c9a100d82d9aafdbf8d11224e969b699fb",
+          "generation": {
+            "max_new_tokens": 96,
+            "do_sample": false
+          },
+          "images": [
+            {
+              "size": [
+                512,
+                512
+              ],
+              "mode": "RGB",
+              "pixel_sha256": "db56c4a9097e953ade2c976134a0fecc3da35f35451b7ed21d5cbdcb949ba774"
+            },
+            {
+              "size": [
+                512,
+                512
+              ],
+              "mode": "RGB",
+              "pixel_sha256": "c111e9eb1cde38de517b7c803f0a549214824f08fd7699e2e791fc0a784c25aa"
+            }
+          ],
+          "libraries": {
+            "torch": "2.7.1",
+            "transformers": "4.57.6"
+          },
+          "planner_sha256": "87ea0a00e0a662d034cfc200b326cd569ecd2f32f57fe6681851fefdd47aabc7"
+        },
+        "device": "cuda:0",
+        "allocated_mib": 8484.62158203125,
+        "reserved_mib": 8748.0,
+        "tokens": 36,
+        "ok": true,
+        "done": false,
+        "reason": "No change detected at the destination (basket). The butter is still on the table and not in the basket."
+      },
+      "seconds": 0.6267699410018395
+    },
+    {
+      "kind": "check",
+      "step": 290,
+      "decision": {
+        "done": false,
+        "streak": 0,
+        "stop": false
+      },
+      "images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/eval/task01_target1_init04/visual/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/eval/task01_target1_init04/visual/images/current_0290.png"
+      ],
+      "sent_images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/eval/task01_target1_init04/visual/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/eval/task01_target1_init04/visual/images/current_0290.png"
+      ],
+      "reply": {
+        "raw": "{\n  \"change\": \"No change detected at the destination (basket). The butter box is still on the table and not in the basket.\",\n  \"done\": false\n}",
+        "seconds": 0.6004744219972054,
+        "inference": {
+          "model": "Qwen/Qwen3-VL-4B-Instruct",
+          "revision": "ebb281ec70b05090aa6165b016eac8ec08e71b17",
+          "prompt": "Image 1 was taken when the robot started this subgoal; image 2 is the scene now.\nSubgoal: \"pick up the butter and place it in the basket\".\nLook at the destination named in the subgoal. Is there a new object at the destination in image 2 that was not there in image 1, and is it the target object? For a state change (open, close, turn on), compare that object between the two images.\nReturn only JSON: {\"change\": \"short description\", \"done\": true or false}",
+          "prompt_sha256": "e9a5188e0243efe38c685144d648c1832085b3bb7cd8d3c76081c27800ff6088",
+          "engine_sha256": "6c14802fbe468fa57e2ad48b25fc02c9a100d82d9aafdbf8d11224e969b699fb",
+          "generation": {
+            "max_new_tokens": 96,
+            "do_sample": false
+          },
+          "images": [
+            {
+              "size": [
+                512,
+                512
+              ],
+              "mode": "RGB",
+              "pixel_sha256": "db56c4a9097e953ade2c976134a0fecc3da35f35451b7ed21d5cbdcb949ba774"
+            },
+            {
+              "size": [
+                512,
+                512
+              ],
+              "mode": "RGB",
+              "pixel_sha256": "4f9217499a67e9d96da41a9a022940dc3d3f0fe7fe74955821e94b99a362bf79"
+            }
+          ],
+          "libraries": {
+            "torch": "2.7.1",
+            "transformers": "4.57.6"
+          },
+          "planner_sha256": "87ea0a00e0a662d034cfc200b326cd569ecd2f32f57fe6681851fefdd47aabc7"
+        },
+        "device": "cuda:0",
+        "allocated_mib": 8484.62158203125,
+        "reserved_mib": 8748.0,
+        "tokens": 37,
+        "ok": true,
+        "done": false,
+        "reason": "No change detected at the destination (basket). The butter box is still on the table and not in the basket."
+      },
+      "seconds": 0.6403695210028673
+    },
+    {
+      "kind": "stop",
+      "step": 300,
+      "reason": "budget"
+    }
+  ],
+  "policy_queries": 60,
+  "model_checks": 14,
+  "control_truth_inputs": false,
+  "original_done_used_for_stopping": false,
+  "initial_state_sha256": "d2cecde6c34039556fadf729cf7eb15d628b42094f6f0c092d9969c9cf659856",
+  "settled_state_sha256": "90121dbdebaedc65489c73b44b3d172ffd55615b5baa2c742c32093110dade38",
+  "goal_atoms": [
+    [
+      "in",
+      "cream_cheese_1",
+      "basket_1_contain_region"
+    ],
+    [
+      "in",
+      "butter_1",
+      "basket_1_contain_region"
+    ]
+  ],
+  "initial_object_positions": [
+    [
+      0.08601842279756128,
+      -0.1839042338497829,
+      0.44569592152000004
+    ],
+    [
+      0.05150525326982455,
+      0.03442297878858672,
+      0.44546992152000003
+    ]
+  ],
+  "plan": "plans/eval/task01_target1_init04.json",
+  "plan_sha256": "cf86719f24f371f5f95337c1a076f24c30fff9ae37bc4f50a41b2ce9922bf0c1",
+  "selector_correct": true,
+  "selection": {
+    "raw": "{\"target\":\"butter_1\", \"protected\":\"cream_cheese_1\"}",
+    "seconds": 0.302830084998277,
+    "inference": {
+      "model": "Qwen/Qwen3-VL-4B-Instruct",
+      "revision": "ebb281ec70b05090aa6165b016eac8ec08e71b17",
+      "prompt": "Inspect the image and the instruction. Select exactly one object to move into the basket, and the one explicitly required to remain untouched.\nKnown object IDs and English/Chinese names: [[\"cream_cheese_1\", \"cream cheese box\", \"奶油奶酪盒\"], [\"butter_1\", \"butter\", \"黄油\"]]\nInstruction: 只把黄油放进篮子里，奶油奶酪盒保持原位。放好后停止，不要继续搬其他物体。\nReturn only JSON: {\"target\":\"one known ID\", \"protected\":\"the other known ID\"}. Do not output coordinates or add another action.",
+      "prompt_sha256": "6980a5b00fe81df9802f16f10708ece77d7dbe747295c2de30e5ea1b8c26d6b7",
+      "engine_sha256": "6c14802fbe468fa57e2ad48b25fc02c9a100d82d9aafdbf8d11224e969b699fb",
+      "generation": {
+        "max_new_tokens": 96,
+        "do_sample": false
+      },
+      "images": [
+        {
+          "size": [
+            512,
+            512
+          ],
+          "mode": "RGB",
+          "pixel_sha256": "db56c4a9097e953ade2c976134a0fecc3da35f35451b7ed21d5cbdcb949ba774"
+        }
+      ],
+      "libraries": {
+        "torch": "2.7.1",
+        "transformers": "4.57.6"
+      },
+      "planner_sha256": "87ea0a00e0a662d034cfc200b326cd569ecd2f32f57fe6681851fefdd47aabc7"
+    },
+    "device": "cuda:0",
+    "allocated_mib": 8478.61669921875,
+    "reserved_mib": 8748.0,
+    "tokens": 18,
+    "ok": true,
+    "target": "butter_1",
+    "protected": "cream_cheese_1",
+    "worker_sha256": "eabf321de58b827bd022188cc7c8aba5596e77f0488acbadec7d1988af789f78"
+  },
+  "translation": {
+    "raw": "{\"instruction\": \"Put the butter in the basket, leave the cream cheese box in place, and stop.\"}",
+    "seconds": 0.3852794959966559,
+    "inference": {
+      "model": "Qwen/Qwen3-VL-4B-Instruct",
+      "revision": "ebb281ec70b05090aa6165b016eac8ec08e71b17",
+      "prompt": "Translate this robot task instruction into one short English imperative sentence, keeping every object and relation. Use the image only to name the objects correctly. Do not split it into steps.\nInstruction: 只把黄油放进篮子里，奶油奶酪盒保持原位。放好后停止，不要继续搬其他物体。\nReturn only JSON: {\"instruction\": \"English instruction\"}",
+      "prompt_sha256": "8b88e978916902a06e407eb1ded3f0fa0217b845e4b2d29bd121d69b1258102c",
+      "engine_sha256": "6c14802fbe468fa57e2ad48b25fc02c9a100d82d9aafdbf8d11224e969b699fb",
+      "generation": {
+        "max_new_tokens": 64,
+        "do_sample": false
+      },
+      "images": [
+        {
+          "size": [
+            512,
+            512
+          ],
+          "mode": "RGB",
+          "pixel_sha256": "db56c4a9097e953ade2c976134a0fecc3da35f35451b7ed21d5cbdcb949ba774"
+        }
+      ],
+      "libraries": {
+        "torch": "2.7.1",
+        "transformers": "4.57.6"
+      },
+      "planner_sha256": "87ea0a00e0a662d034cfc200b326cd569ecd2f32f57fe6681851fefdd47aabc7"
+    },
+    "device": "cuda:0",
+    "allocated_mib": 8478.615234375,
+    "reserved_mib": 8748.0,
+    "tokens": 24,
+    "ok": true,
+    "subgoals": [
+      {
+        "instruction": "Put the butter in the basket, leave the cream cheese box in place, and stop.",
+        "completion_hint": ""
+      }
+    ]
+  },
+  "policy_instruction": "pick up the butter and place it in the basket",
+  "selected_target": "butter_1",
+  "timer_threshold": 150,
+  "selective_success": false,
+  "target_final_stable": true,
+  "final_released": true,
+  "target_ever_reached": true,
+  "protected_untouched": false,
+  "max_protected_displacement_m": 0.46496794142340325,
+  "first_valid_step": null,
+  "first_violation_step": 70,
+  "self_stop_success": false,
+  "premature_stop": false,
+  "decision_step": 300,
+  "stop_reason": "budget",
+  "wall_seconds": 30.08491545799916,
+  "original_success_observed": true,
+  "policy_steps_after_original_success": 52,
+  "success": false
+}

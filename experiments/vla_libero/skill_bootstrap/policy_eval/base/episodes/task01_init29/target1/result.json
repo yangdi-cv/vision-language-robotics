@@ -1,0 +1,70 @@
+{
+  "status": "complete",
+  "task": 1,
+  "initial": 29,
+  "mode": "target1",
+  "prompt": "pick up the butter and place it in the basket",
+  "all_prompts": {
+    "target0": "pick up the cream cheese box and place it in the basket",
+    "target1": "pick up the butter and place it in the basket",
+    "original": "put both the cream cheese box and the butter in the basket"
+  },
+  "protocol_sha256": "952f8cb2aa1d65f8d5036aab7b381144112fbd79a2df648a8e54f46ba9853aa3",
+  "noise_seed": 930129,
+  "original_done_used_for_stopping": false,
+  "steps": 325,
+  "initial_sha256": "92671e197d63e9a4a167fac77bdd3dfae3c79672f766c3c533ceefa427b4266e",
+  "settled_sha256": "5c63636990cc621434ff829f17ffbb1edb11eb0cb8abfb957f32c0568aa58901",
+  "origins": [
+    [
+      0.07962639380366043,
+      -0.2024214715255235,
+      0.44569592152000004
+    ],
+    [
+      0.027328355542887484,
+      0.05369480412689036,
+      0.44546992152000003
+    ]
+  ],
+  "goal_atoms": [
+    [
+      "in",
+      "cream_cheese_1",
+      "basket_1_contain_region"
+    ],
+    [
+      "in",
+      "butter_1",
+      "basket_1_contain_region"
+    ]
+  ],
+  "scores": {
+    "target0": {
+      "selective_success": false,
+      "target_final_stable": true,
+      "final_released": true,
+      "target_ever_reached": true,
+      "protected_untouched": false,
+      "max_protected_displacement_m": 0.2762101478079975,
+      "first_valid_step": 148,
+      "first_violation_step": 203,
+      "self_stop_success": false,
+      "premature_stop": false
+    },
+    "target1": {
+      "selective_success": false,
+      "target_final_stable": true,
+      "final_released": true,
+      "target_ever_reached": true,
+      "protected_untouched": false,
+      "max_protected_displacement_m": 0.477256752385153,
+      "first_valid_step": null,
+      "first_violation_step": 67,
+      "self_stop_success": false,
+      "premature_stop": false
+    }
+  },
+  "original_success_observed": true,
+  "wall_seconds": 14.64325981300044
+}

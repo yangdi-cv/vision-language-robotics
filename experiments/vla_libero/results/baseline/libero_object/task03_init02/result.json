@@ -1,0 +1,36 @@
+{
+  "runner_sha256": "e5d28552be82d553e09b3fcfe45aa95bbc6d38b0338899c2536ed1407935bb9d",
+  "suite": "libero_object",
+  "task_id": 3,
+  "initial_state_id": 2,
+  "mode": "baseline",
+  "environment_seed": 7,
+  "noise_seed": 710302,
+  "initial_state_sha256": "535fdf87422bbcc1e3820d60230c2282e5bc33e9f5abce92c3c02593c4fc47f0",
+  "original_prompt": "pick up the bbq sauce and place it in the basket",
+  "input_prompt": "pick up the bbq sauce and place it in the basket",
+  "replan_steps": 5,
+  "denoising_steps": 10,
+  "max_steps": 280,
+  "status": "success",
+  "success": true,
+  "steps": 132,
+  "alternate_goal_evaluable": false,
+  "alternate_goal_ever_satisfied": null,
+  "initial_eef": [
+    -0.1498287289904643,
+    0.003532058579819481,
+    0.26640910129098905
+  ],
+  "final_eef": [
+    0.01817966175328834,
+    0.24005946974049064,
+    0.19066049026132043
+  ],
+  "qpos_displacement_norm": 1.2539812553018235,
+  "simulation_elapsed_s": 6.6,
+  "wall_s": 4.925450738000109,
+  "query_count": 27,
+  "warmup_query_wall_s": 0.07736248000037449,
+  "query_median_excluding_first_s": 0.07589599099992483
+}

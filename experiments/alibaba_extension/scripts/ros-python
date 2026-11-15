@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+set -euo pipefail
+unset PYTHONHOME PYTHONPATH LD_LIBRARY_PATH AMENT_PREFIX_PATH CMAKE_PREFIX_PATH COLCON_PREFIX_PATH
+set +u
+source /opt/ros/humble/setup.bash
+set -u
+export ROS_DOMAIN_ID=62 ROS_LOCALHOST_ONLY=1 RMW_IMPLEMENTATION=rmw_fastrtps_cpp
+exec /usr/bin/python3 "$@"

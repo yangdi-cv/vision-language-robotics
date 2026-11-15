@@ -1,0 +1,29 @@
+{
+  "checks": {
+    "scripts": 30,
+    "videos": 418,
+    "demonstrations": 66,
+    "links": 7
+  },
+  "frames": 26466,
+  "seed_sets": {
+    "train": [
+      100,
+      101,
+      102,
+      200
+    ],
+    "validation": [
+      103
+    ],
+    "test": [
+      104
+    ]
+  },
+  "action_dimensions": 8,
+  "state_dimensions": [
+    12,
+    15
+  ],
+  "passed": true
+}

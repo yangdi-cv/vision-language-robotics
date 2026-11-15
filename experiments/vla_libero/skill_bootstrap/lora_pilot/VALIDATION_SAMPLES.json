@@ -1,0 +1,114 @@
+[
+  {
+    "task": 0,
+    "target": 1,
+    "initial": 27,
+    "frame": 136,
+    "phase": "lift"
+  },
+  {
+    "task": 0,
+    "target": 1,
+    "initial": 26,
+    "frame": 159,
+    "phase": "transfer"
+  },
+  {
+    "task": 0,
+    "target": 0,
+    "initial": 26,
+    "frame": 290,
+    "phase": "retreat"
+  },
+  {
+    "task": 0,
+    "target": 1,
+    "initial": 26,
+    "frame": 90,
+    "phase": "close"
+  },
+  {
+    "task": 1,
+    "target": 1,
+    "initial": 27,
+    "frame": 236,
+    "phase": "lower"
+  },
+  {
+    "task": 0,
+    "target": 1,
+    "initial": 26,
+    "frame": 215,
+    "phase": "lower"
+  },
+  {
+    "task": 0,
+    "target": 1,
+    "initial": 26,
+    "frame": 223,
+    "phase": "release"
+  },
+  {
+    "task": 0,
+    "target": 0,
+    "initial": 27,
+    "frame": 1,
+    "phase": "clear"
+  },
+  {
+    "task": 0,
+    "target": 0,
+    "initial": 26,
+    "frame": 322,
+    "phase": "hold"
+  },
+  {
+    "task": 0,
+    "target": 1,
+    "initial": 26,
+    "frame": 105,
+    "phase": "lift"
+  },
+  {
+    "task": 1,
+    "target": 1,
+    "initial": 26,
+    "frame": 85,
+    "phase": "approach"
+  },
+  {
+    "task": 0,
+    "target": 0,
+    "initial": 26,
+    "frame": 187,
+    "phase": "transfer"
+  },
+  {
+    "task": 1,
+    "target": 0,
+    "initial": 26,
+    "frame": 90,
+    "phase": "approach"
+  },
+  {
+    "task": 1,
+    "target": 0,
+    "initial": 26,
+    "frame": 94,
+    "phase": "approach"
+  },
+  {
+    "task": 1,
+    "target": 0,
+    "initial": 26,
+    "frame": 317,
+    "phase": "retreat"
+  },
+  {
+    "task": 0,
+    "target": 1,
+    "initial": 27,
+    "frame": 257,
+    "phase": "release"
+  }
+]

@@ -1,0 +1,690 @@
+\chapter{可供性定位与物理执行接口}
+规划与控制接口参考MoveIt官方配置说明\cite{moveit}。
+
+
+在有限技能基础上，可供性学习将视觉输出变成可执行位置。工程验证依次检查数据、坐标、规划、实际关节反馈和策略交接；定位成功和完整任务成功分开统计。
+
+\section{可供性数据、把手定位与三维反投影}
+
+\label{stage:s17}
+
+可供性在本报告中指适合机器人施加动作的位置，例如抽屉把手的接近点。使用仿真图像、分割和深度自动生成标签，训练Qwen定位适配器。
+
+\subsection{可供性数据与LoRA}\label{s17-detail-1}
+
+生成器从仿真导出RGB、真值深度、分割掩码、抽屉开度、把手/碗/抽屉内部的2D与3D标签。Qwen输入为RGB，输出0--1000相对坐标；随后换算到512像素图。点监督取可见掩码质心，柜体采用二维包围框监督。
+
+数据包含静态帧、既有实际策略仿真回合的开环动作回放，以及迁移到其他初态的动作模板回放。这里``实际仿真回合''指真正运行过策略的仿真回合，不是实体机器人数据。
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2647}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2647}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.4707}}@{}}
+\caption{可供性数据与LoRA：设置与结果}\label{tab:s17-1}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+用途
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+初态
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+说明
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+用途
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+初态
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+说明
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+训练 & 17--49 & 实际训练780帧，含迁移动作回放与静态帧 \\
+验证选点 & 13--16 & 48条可见把手样例用于选检查点 \\
+测试 & 0--12 & 筛选后的350帧，共1014条匹配问答 \\
+\end{longtable}\endgroup
+
+训练/验证数据容器data\_train\_v1共有886帧；全量data\_v1容器802帧并非全都属于测试，其中静态图覆盖0--49。基座评测文件498帧，LoRA文件350帧，本报告只在相同(id, query)的1014条输出上比较。
+
+划分为``初态隔离、动作模板共享''：训练没有使用测试初态，但迁移回放沿用了既有测试回合的动作模板。因此这是同场景、同相机条件下的初态泛化，不是独立轨迹分布测试。350帧有时间相关性，不是350次独立任务；全部50个官方初态均已在开发或数据中使用。
+
+LoRA采用r=8、alpha=16，仅适配语言层q\_proj/v\_proj，约295万可训练参数，梯度累积4，训练600步，学习率1e-4。记录的训练墙钟约413秒，峰值显存约9201MiB；这些是本机单次记录，不是端侧性能。权重位于affordance/lora\_v1/best\_adapter。
+
+\subsection{指标定义、对照与限制}\label{s17-detail-2}
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2785}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2313}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2436}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2465}}@{}}
+\caption{指标定义、对照与限制：设置与结果}\label{tab:s17-2}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+测试指标
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Qwen基座
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+可供性LoRA
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+训练中位固定点
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+测试指标
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Qwen基座
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+可供性LoRA
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+训练中位固定点
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+把手4像素邻域命中 & 62/350，17.7\% & 345/350，98.6\% & 115/350，32.9\% \\
+把手严格像素命中 & 20/350，5.7\% & 323/350，92.3\% & 61/350，17.4\% \\
+把手3D误差中位数 & 7.798cm & 1.368cm & 未计算 \\
+柜体框平均IoU & 0.647 & 0.986 & 不适用 \\
+\end{longtable}\endgroup
+
+邻域命中表示预测像素周围半径4像素的实现窗口与目标掩码相交；严格命中要求预测像素本身落入目标掩码。严格率与固定点对照为该次读取既有预测后的补算，没有重新调用模型。固定点只用训练初态17--49可见把手标签的像素中位数，约(222.62, 327.59)，没有用测试标签选点。
+
+碗的邻域命中为98.8\%\(\rightarrow\)100\%（171条），放置点为99.3\%\(\rightarrow\)99.3\%（143条），说明改进主要集中在小把手，而非所有目标都有同等提升。
+
+3D坐标由预测2D点、仿真真值深度及已知相机内外参反投影得到，采用局部5\(\times\)5深度中位数。约1.4cm的流程误差下限与表面点和几何参考中心的差异有关。因此结果不能写为单目深度网络精度、真实RGB-D精度、末端定位误差或抓取成功率。定位适配器目前未接入Nav2、\(\pi\)0.5动作或里程碑判断。
+
+相关代码在affordance/gen\_dataset.py、add\_camera.py、train\_lora.py、eval\_qwen.py；补算脚本见reports/20261114/recompute\_audit.py。
+
+
+\subsection{像素、深度与世界坐标的对应}\label{s17-detail-3}
+
+网络输出0到1000的相对坐标 \((a,b)\)，先换成512像素坐标 \(u=512a/1000\)、\(v=512b/1000\)。深度取该点周围5\(\times\)5窗口的有效值中位数。渲染图像与标签使用同一翻转函数，不能把其他图像方向下的内参直接套入。
+
+当前实现的配对反投影公式是： \[u_r=W-1-u,\qquad
+ \boldsymbol p_c=\left[\frac{(u_r-W/2)z}{f},-\frac{(v-H/2)z}{f},-z\right]^T,
+ \qquad\boldsymbol p_w=R_{wc}\boldsymbol p_c+\boldsymbol t_{wc}.\]
+
+其中 \(W=H=512\)，\(z\) 为光学深度，\(f=(H/2)/\tan(\mathrm{fovy}/2)\)。负深度轴和横向反向与当前MuJoCo渲染约定对应。投影、深度和分割来自配对实现；图像旋转、裁剪或外参改变后需一同更新，不能只改显示。
+
+约1.4厘米的误差下限部分来自预测到的表面点与几何参考中心之间的差别。因此三维指标是这条反投影流程的定位误差，不是单目深度网络误差，也不是机器人末端控制误差。
+
+
+\stagefigure{figures/ch06/s17_affordance_example.png}{首个配对测试样例。白色十字为把手标注，圆圈为模型预测；整体命中率另由完整测试统计。}{fig:s17-retained}
+
+\paragraph{阶段结论}在350帧测试子集上，4B模型严格把手命中由5.7\%提高到92.3\%，4像素邻域命中由17.7\%提高到98.6\%。固定像素点对照排除了部分仅记住固定位置的解释。 训练与测试初态分开，但动作模板有共享。深度由仿真真值提供，测试仍是同场景，不代表跨场景或真实三维定位能力。
+
+\stagecode{s17}
+
+\FloatBarrier
+
+\section{运行维护与可复现性修正}
+
+\label{stage:s18}
+
+根据实际反馈补齐输入文件、统一推理记录，并增加逐步落盘、异常返回码和内存上限管理，使长回合中断后仍能定位问题。
+
+\subsection{改动范围与代码入口}\label{s18-detail-1}
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.3047}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.6953}}@{}}
+\caption{改动范围与代码入口：设置与结果}\label{tab:s18-1}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+内容
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+该阶段实现
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+内容
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+该阶段实现
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+worker阻塞读取 & 带截止时间的JSON行读取、异常退出和进程回收 \\
+图像交换 & 单份共享内存、锁保护元信息与像素、两个独立读取者 \\
+推理预算 & 短目标JSON的64/128/256上限对照，有限目标集合约束 \\
+检测/深度 & FP32/FP16及768/640深度输入对照，默认配置保留 \\
+LoRA & 每40步验证、保存最佳适配器、早停 \\
+ACT & manifest驱动划分、先抽episode再抽帧、定期仿真验证 \\
+重复代码 & 公开交接任务训练/评测共享实现；语言派发复用同一执行循环 \\
+\end{longtable}\endgroup
+
+主要实验在 \path|experiments/alibaba_pc_revision/|。生产代码改动位于 \path|perception/qwen_scene/| 和 \path|perception/web_workbench/server.py|。历史交接训练和评测入口保留原路径，通过兼容入口调用公共实现。
+
+\subsection{模型进程超时和退出处理}\label{s18-detail-2}
+
+原来的stdout.readline可能一直等不到一整行。新增读取器按截止时间等待，识别EOF、非法JSON和过大响应；失败时结束并回收模型进程。现有两个语言派发入口已接入，默认响应上限90秒。正常关闭先发停止请求，再按超时规则终止进程，避免主流程无限等待。
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3252}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3480}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3268}}@{}}
+\caption{模型进程超时和退出处理：设置与结果}\label{tab:s18-2}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+软件测试
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+结果
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+含回收的总耗时 / s
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+软件测试
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+结果
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+含回收的总耗时 / s
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+silent & TimeoutError & 2.202 \\
+crash & RuntimeError & 0.008 \\
+malformed & RuntimeError & 0.007 \\
+healthy & ok & 0.007 \\
+\end{longtable}\endgroup
+
+测试包含静默、异常退出、非法JSON及正常回复，均使用本机模拟进程。读取超时与进程清理是两个阶段，表中的总时间包含清理等待。没有据此称为机器人硬件鲁棒性测试。
+
+相关代码在 \path|perception/qwen_scene/worker_client.py|、\path|experiments/alibaba_baseline/scripts/integrated_demo.py|、\path|experiments/alibaba_extension/scripts/run_qwen_nav_act.py|。
+
+\subsection{图像内存传递与一致性}\label{s18-detail-3}
+
+原网页每帧保存PNG，两个推理进程分别解码。现在相机线程将RGB和帧号、接收时间、旋转信息写入一份共享内存，写入和读取时加锁。读取者复制完整一帧后立即释放锁，不在推理期间占锁，也不积压中间帧。已有PNG来源仍可作为兼容输入。
+
+用12张已有腕部画面、每张重复三次，对比一次写入和两个独立进程读取。统计排除每组最初两次，包含消息通知和像素校验的开销；文件方案会受系统缓存影响，不是冷磁盘性能测试。
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1909}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1909}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1971}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2190}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2021}}@{}}
+\caption{图像内存传递与一致性：设置与结果}\label{tab:s18-3}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+方式
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+有效测试帧数
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+写入中位 / ms
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+双读取完成中位 / ms
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+双读取P95 / ms
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+方式
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+有效测试帧数
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+写入中位 / ms
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+双读取完成中位 / ms
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+双读取P95 / ms
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+png & 34 & 15.692 & 22.191 & 23.493 \\
+shared & 34 & 0.069 & 0.789 & 1.733 \\
+\end{longtable}\endgroup
+
+共144次读取核对像素哈希与帧号，没有不一致；连续写入100帧后只读取到最新帧。提交给Qwen的分析图像与结果仍可归档，视觉结果也仍有保存开销；这次移除的是实时帧交换中的PNG往返，不是删除全部记录。
+
+\stagefigure{figures/ch06/s18_pc_latency_b204fdc9.png}{图像交换与目标推理耗时}{fig:s18-detail-1}
+
+这个结果确认了图像交换有优化空间，但不能证明它是整个系统的最大瓶颈。目标推理仍约260ms，更长的场景描述耗时还会增加。网页若已在运行，需重启后使用新的传帧方式；该阶段没有启动真实相机和主从控制。
+
+相关代码在 \path|perception/qwen_scene/frame_transport.py|、\path|continuous_worker.py|、\path|vision_worker.py|、\path|perception/web_workbench/server.py|；测试在 \path|scripts/bench_runtime.py|。
+
+\subsection{输出长度与约束解码}\label{s18-detail-4}
+
+在同一Qwen基座、提示词和图像上，交错运行64、128、256生成上限及64加约束四种设置。12个目标用例各重复两次，预热后统计。
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1481}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1420}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1420}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1420}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1420}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1420}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1420}}@{}}
+\caption{输出长度与约束解码：设置与结果}\label{tab:s18-4}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+上限 / 约束
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+中位 / s
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+P95 / s
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+平均生成token
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+格式有效
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+目标完整匹配
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+截断
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+上限 / 约束
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+中位 / s
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+P95 / s
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+平均生成token
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+格式有效
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+目标完整匹配
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+截断
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+64 / 无 & 0.260 & 0.261 & 16.0 & 24/24 & 20/24 & 0 \\
+128 / 无 & 0.260 & 0.261 & 16.0 & 24/24 & 20/24 & 0 \\
+256 / 无 & 0.260 & 0.262 & 16.0 & 24/24 & 20/24 & 0 \\
+64 / 有 & 0.262 & 0.264 & 16.0 & 24/24 & 20/24 & 0 \\
+\end{longtable}\endgroup
+
+这组回答都在16个token正常结束，因此缩小上限没有明显加速；上限大不代表模型一定生成到上限。约束解码将输出限制为当前任务支持的7种JSON目标对象，能限定格式与字段组合，但不是通用JSON语法实现，也没有修复目标选择错误。
+
+保留长场景描述的独立预算，短决策接口收紧至128并允许按任务配置；没有把整个观察窗口一律改为64。不能把语法有效等同于目标存在或指令明确。
+
+相关代码在 \path|scripts/bench_qwen.py|、\path|perception/qwen_scene/engine.py|、\path|experiments/alibaba_baseline/scripts/qwen_goal_worker.py|。
+
+\subsection{检测及深度推理对照}\label{s18-detail-5}
+
+使用8个已有模拟RGB-D场景，各重复两次。检测输入固定640，深度比较768和640，记录串行模型调用耗时。它不包含完整网页渲染或相机采集。FP16映射到当前Ultralytics的quantize=16，额外检查实际网络参数类型为float16。
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2329}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1895}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1895}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1895}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1985}}@{}}
+\caption{检测及深度推理对照：设置与结果}\label{tab:s18-5}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+精度 / 深度尺寸
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+中位 / ms
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+P95 / ms
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+原尺度AbsRel
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+逐图尺度对齐AbsRel
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+精度 / 深度尺寸
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+中位 / ms
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+P95 / ms
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+原尺度AbsRel
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+逐图尺度对齐AbsRel
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+FP32 / 768 & 8.69 & 9.27 & 4.475 & 0.089 \\
+FP16 / 768 & 8.59 & 9.15 & 4.472 & 0.089 \\
+FP16 / 640 & 8.15 & 8.44 & 4.375 & 0.102 \\
+\end{longtable}\endgroup
+
+该阶段FP16收益较小；640略快，但尺度对齐后的相对误差由约0.089增加到0.102。原尺度误差很大，说明这些模拟场景中的预测距离不能直接当作可用于抓取的米制深度。
+
+尺度对齐使用每张图的模拟真值估计比例，只用于诊断相对几何表现，部署时不能依赖这种真值。场景数量少、存在模拟域差异，模型设置按组顺序运行；不据此宣称真实相机精度或稳定生产加速。检测框数量变化仅作记录，没有目标检测人工真值，未报告检测准确率。
+
+推理类已增加精度和深度尺寸配置，并移除重复的设备级显式同步；默认仍保留FP32/768。读取GPU输出到CPU时仍会发生必要同步，未宣称异步推理或双流已完成。
+
+相关代码在 \path|scripts/bench_vision.py|、\path|perception/qwen_scene/vision_engine.py|。
+
+
+\subsection{有界内存加载与故障处理}\label{s18-detail-6}
+
+\subsubsection{内存故障与加载修复}\label{s18-detail-7}
+
+重载校验时同时驻留两个模型，进程RSS一度约20.4GiB。工作站只有约30GiB系统内存且无Swap，systemd-oomd两次终止了包含实验的VSCode进程组。分离Unix会话没有分离systemd资源组，因此原先的后台启动方式不足以保护编辑器。日志没有据此证明显卡或其他硬件损坏。
+
+修复分两步：实验放入独立systemd用户服务，设置14GiB软上限、16GiB硬上限，超限退出实验；模型按TensorStore/Orbax原存储块读取、转换和传入GPU，缓存限制16/32MiB，不再将完整权重多次复制到主机内存。LoRA增量逐块合并回原模型结构，基座与适配推理统一采用相同加载路径。
+
+分块加载的基座进程观测RSS峰约3.81GiB，包含页缓存的进程组约10.67GiB。51数组/408块的基座与真正零增量适配器哈希全部一致，动作最大差0，通过原0.001阈值。历史进程输出仍有0.00146差异，保留记录，不将其算成训练收益。当前数学合并通过四项自包含CPU测试，模拟注意力、KV、前馈布局及零增量比特保持。
+
+没有关闭系统内存保护，没有修改Swap、显卡驱动或升级硬件。相关代码在\path|scripts/bounded_restore.py|、\path|chunk_math.py|、\path|watch_resources.py|，故障与实际资源日志在\path|resource_checks/|。
+
+
+\subsection{提交包与图像、日志语义修订}\label{s18-detail-8}
+
+修复提交包漏掉closed\_loop\_iteration/data/cases.json的问题，同时附720条标签对应120条原始trace.npz。新增CPU统一测试命令和独立依赖清单，在新建Python3.11环境、临时解压目录中44/44项通过（原有36、新增8），首版闭环5项全部通过。
+
+相机与LIBERO规划/检查复用SceneEngine.generate，每次返回固定模型revision、完整prompt与哈希、代码/像素哈希、生成参数及库版本；worker持久记录请求和回复；V2评分补LoRA哈希、实际评分prompt及阈值。明确analyze默认旋转0并实际改变像素，上游实时帧已旋转时显式跳过二次旋转。真实Qwen权重单次规划接口检查成功，未更新已有成功率。
+
+legacy及strict回合均新增原子result.json与逐事件、逐步fsync的JSONL，异常时先存结果与trace.npz再清理渲染器；强制杀进程保留已写完记录，不宣称断点恢复或视频必然完好。故障注入和SIGKILL测试通过。交付：deliverables/20261113\_阿里\_代码修订/阿里\_修订源码.zip；附修订说明、验收结果及测试日志。旧PDF、包、实验不覆盖，无训练/批评测/硬件动作。
+
+
+\subsection{视觉判断局限与增量运行记录}\label{s18-detail-9}
+
+\subsubsection{负结果和工程维护}\label{s18-detail-10}
+
+多图记忆可能混淆当前图与历史图；夹爪可能被当作抽屉；提示词列选项可能诱导照抄。裁剪放大未改善抽屉边界判断，近闭合状态整图0/9正确，裁剪仅1/9，且裁剪可能丢失抽屉突出部分。此结果支持保留失败场景，不能把多次确认等同于独立判断。
+
+该次维护不改变提示词、策略或历史结果，只作用于后续新回合：启动器透传systemd返回码，单回合捕获异常后返回非零，批处理遇到失败停止。Qwen请求和完整响应、视觉事件、已施加动作与关节状态增量写JSONL并fsync；progress.json逐控制步原子替换。完整响应保留模型版本、prompt、生成配置和输入像素哈希。完整视频和旧格式trace仍需正常结束才能生成，日志不支持断点续跑，每步写盘也会增加未重新测量的墙钟开销。
+
+
+\paragraph{阶段结论}代码、结果和输入版本开始分别保存。图像旋转、模型与提示词来源、退出状态等信息纳入工程核对。 这一节按具体故障和修复验证组织。当前仍有MoveIt退出析构异常，不能将动作到位当作软件生命周期全部正常。
+
+\stagecode{s18}
+
+\FloatBarrier
+
+\section{可供性定位驱动MoveIt实际仿真执行}
+
+\label{stage:s19}
+
+让预测把手点经深度反投影、坐标转换和MoveIt规划，驱动MuJoCo中的真实模拟关节。控制器读取实际关节位置与速度，没有用命令值冒充反馈。
+
+\subsection{对照结果}\label{s19-detail-1}
+
+两个已有初态2、3，两个未用于该阶段训练的相机平移条件（相机横轴/竖轴各3cm），每种条件配对oracle、base、lora，共12回合。oracle是真值目标上限；base与lora使用同一个4B BF16模型、相同提示词和控制参数，仅切换适配器。初态都存在历史使用，不能称独立新初态。
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}@{}}
+\caption{对照结果：设置与结果}\label{tab:s19-1}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+定位方式
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+导航到达
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+预接触通过
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+到位误差中位数 mm
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+清理异常回合
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+定位方式
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+导航到达
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+预接触通过
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+到位误差中位数 mm
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+清理异常回合
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+真值定位 & 4/4 & 4/4 & 6.2 & 1 \\
+基座 & 4/4 & 0/4 & 73.3 & 2 \\
+低秩适配 & 4/4 & 4/4 & 10.4 & 2 \\
+\end{longtable}\endgroup
+
+样本很小，仅用于验证``定位输出能否改变实际到位效果''，不能外推跨场景能力。失败与规划拒绝均保留，不重跑覆盖。
+
+\stagefigure{figures/ch06/s19_grounding_comparison.png}{同配对条件初次观察，绿色为参考把手点，红色为模型预测}{fig:s19-detail-1}
+
+\subsection{实现与验收}\label{s19-detail-2}
+
+导航、感知与关节执行共享唯一物理实例。碰撞几何来自当前仿真场景，MoveIt执行接口的反馈读取实际qpos/qvel；控制为限幅力矩PD与重力补偿，原模型惯性与物理子步保留。没有运行时直接赋qpos或用mock关节反馈替代执行。
+
+预接触目标为预测把手点加世界偏移(-0.12,-0.10,+0.10)m，姿态沿用初始TCP。这是固定技能模板，不是学习出的6D抓取。关节PD为400/40，轨迹20Hz，速度/加速度缩放0.12，关节到位容差0.015rad，保持1.5秒。所有定位模式使用同一组参数。
+
+模型到位后再次定位，以TCP与新预测目标间距\(\leq\)25mm作为视觉确认，最多修正一次。真值坐标不参与模型模式的修正与停止，只用于事后误差评分；预接触通过还要求真值误差\(\leq\)30mm、无环境或自碰撞、物理实例未变。oracle单独记录，没有视觉确认。原LIBERO任务状态另存libero\_original\_task\_success。
+
+\subsection{开发中遇到的问题}\label{s19-detail-3}
+
+首版PD140/20未达到关节容差，在真值开发回合上改为400/40并冻结。静态URDF工具坐标用8个姿态与MuJoCo核对；真实导航后仍出现约0.206mm的FK差异，严格检查阻止了执行。原因是积分后的qpos与派生位姿来自不同时刻，读取状态前调用forward同步后，导航开发回合误差降至约5\(\times\)\(10^{-12}\)m并成功执行。未放宽坐标检查阈值。
+
+开发nominal初态0的LoRA预接触误差约9.2mm、视觉重观测残差5.6mm；基座约97.6mm，未通过。导航复测navigation\_dev2也已到位。这些开发结果不混入上表。
+
+MoveIt Humble在部分退出过程中发生轨迹执行管理器析构崩溃，与上游已知问题栈相符。动作结果和cleanup\_ok分别记录；未升级系统ROS或声称已解决该退出问题。控制日志保留真实关节、力矩和接触信息。
+
+\subsection{局限与后续}\label{s19-detail-4}
+
+深度和碰撞地图来自仿真真值；导航使用理想里程计及已知地图，没有SLAM。只测单厨房、单把手、固定预接触姿态；相机扰动不是跨场景。没有把当前到位结果称为自主抓取，也没有替代此前\(\pi\)0.5整任务闭环结论。
+
+MoveIt直接完成把手接触、夹持及拉动仍未验证。本阶段另做预接触后交接\(\pi\)0.5完成原任务的功能测试，见第6节；不能把\(\pi\)0.5的操作归为MoveIt抓取。当前阶段没有连接实体机械臂、没有运行Jetson性能测试、没有新微调权重。
+
+\subsection{逐回合结果与文件}\label{s19-detail-5}
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1357}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1860}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1357}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1357}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1357}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1357}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1357}}@{}}
+\caption{逐回合结果与文件：设置与结果}\label{tab:s19-2}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedleft
+初态
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+视角
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+定位
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+预接触
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+误差 mm
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+规划次数
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+错误
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedleft
+初态
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+视角
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+定位
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+预接触
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+误差 mm
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+规划次数
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+错误
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+2 & \path|camera_right_3cm| & 真值定位 & 通过 & 6.9 & 1 & \\
+2 & \path|camera_right_3cm| & 基座 & 未通过 & 170.5 & 2 & 规划或执行返回码 99999 \\
+2 & \path|camera_right_3cm| & 低秩适配 & 通过 & 11.0 & 1 & \\
+2 & camera\_up\_3cm & 真值定位 & 通过 & 1.8 & 1 & \\
+2 & camera\_up\_3cm & 基座 & 未通过 & 77.7 & 2 & 规划或执行返回码 -2 \\
+2 & camera\_up\_3cm & 低秩适配 & 通过 & 9.9 & 1 & \\
+3 & \path|camera_right_3cm| & 真值定位 & 通过 & 6.9 & 1 & \\
+3 & \path|camera_right_3cm| & 基座 & 未通过 & 69.0 & 1 & \\
+3 & \path|camera_right_3cm| & 低秩适配 & 通过 & 6.2 & 1 & \\
+3 & camera\_up\_3cm & 真值定位 & 通过 & 5.5 & 1 & \\
+3 & camera\_up\_3cm & 基座 & 未通过 & 41.8 & 1 & \\
+3 & camera\_up\_3cm & 低秩适配 & 通过 & 11.3 & 1 & \\
+\end{longtable}\endgroup
+
+相关代码在scripts/。PROTOCOL.md记录冻结设置，research/记录接口选型与坐标核对。结果在results//case\_result.json，视频rollout.mp4，逐步日志events.jsonl，控制器反馈controller\_\emph{.json，规划结果plans/attempt}/moveit\_result.json。SUMMARY.json可逐条追溯本表。README.md提供命令、环境与限制。
+
+
+\subsection{控制量与状态同步}\label{s19-detail-6}
+
+关节驱动使用比例、阻尼和模型偏置补偿，实际实现可写为： \[\boldsymbol\tau=\operatorname{clip}\left(400(\boldsymbol q_d-\boldsymbol q)-40\dot{\boldsymbol q}+\boldsymbol b(\boldsymbol q,\dot{\boldsymbol q}),\boldsymbol\tau_{\min},\boldsymbol\tau_{\max}\right).\] \(\boldsymbol q_d\)是轨迹插值后的关节目标，\(\boldsymbol q\)和速度来自物理仿真，\(\boldsymbol b\)为MuJoCo偏置项，包含重力和速度相关项。上下限采用原执行器范围；400和40是该次开发后冻结的控制参数，不是针对不同模型分别调参。
+
+规划器的工具坐标与仿真工具点先用八个静态姿态核对。真实导航后的坐标检查又暴露积分时序问题：关节位置已更新，但派生位姿仍对应先前时刻。读取前调用forward统一缓存后，两套前向运动学的数值差降到约 \(5\times10^{-12}\) 米。这表示数学模型在同一时刻一致，不是物理定位达到该精度。
+
+执行器发布实际关节反馈，规划成功、轨迹实际完成、视觉重新确认和退出清理分别记录。当前部分MoveIt退出仍有已知析构异常；动作结果不能掩盖进程生命周期问题。
+
+
+\paragraph{阶段结论}两个初态、两种相机平移条件下，LoRA预接触4/4通过，基座0/4，真值定位4/4；到位误差中位数分别10.4、73.3和6.2毫米。 目标是把手斜前上方约18.5厘米的预接近位置，不是接触或抓取。碰撞地图与深度来自仿真已知量，只有四个条件。
+
+\stagecode{s19}
+
+\FloatBarrier
+
+\section{无重置交接\pifive{}与技能兼容性}
+
+\label{stage:s20}
+
+在MoveIt到位后停止关节轨迹驱动，保持关节状态不变，将执行权交给\pifive{}，再由Qwen监视搬碗和关抽屉。
+
+\subsection{无重置交接完整任务}\label{s20-detail-1}
+
+首个开发探针初态0通过后，增加已有初态1、4、5进行重复性检查。本节当前共4回合，完整任务通过2/4。这些初态均有历史使用，不是跨场景测试；没有直接比较``接入预接触''与``原生\(\pi\)0.5''成功率，不能宣称提升整任务表现。
+
+执行顺序为Nav2停靠、LoRA定位、MoveIt预接触、停止MoveIt与关节桥、保留当前qpos交给\(\pi\)0.5 OSC执行放碗并关抽屉。交接记录逐项断言前后关节状态完全相同，没有先展开或重置到熟悉姿态。\(\pi\)0.5为官方权重，没有在该阶段微调。
+
+Qwen以原有文字记忆里程碑顺序检查碗入抽屉、抽屉关闭，每10个策略步查询一次；到达视觉确认才停止，520步上限兜底。官方任务谓词仅作影子记录及最终评分，不驱动策略停止。确认延迟按Qwen停止步减去首次官方成功步计算，未成功则不计；这只是事后诊断。策略时间仍是仿真步数，不能当端侧实时性能。此前提示词中的dark cabinet写法保持不变。
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 14\tabcolsep) * \real{0.1250}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 14\tabcolsep) * \real{0.1250}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 14\tabcolsep) * \real{0.1250}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 14\tabcolsep) * \real{0.1250}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 14\tabcolsep) * \real{0.1250}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 14\tabcolsep) * \real{0.1250}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 14\tabcolsep) * \real{0.1250}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 14\tabcolsep) * \real{0.1250}}@{}}
+\caption{无重置交接完整任务：设置与结果}\label{tab:s20-1}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedleft
+初态
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+预接触通过
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+无重置交接
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+策略步数
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Qwen完成
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+官方整任务成功
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+确认延迟步
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+清理正常
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedleft
+初态
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+预接触通过
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+无重置交接
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+策略步数
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Qwen完成
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+官方整任务成功
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+确认延迟步
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+清理正常
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+0 & 是 & 是 & 290 & 是 & 是 & 37 & 否 \\
+1 & 是 & 是 & 380 & 是 & 是 & 17 & 否 \\
+4 & 是 & 是 & 520 & 否 & 否 & None & 否 \\
+5 & 是 & 是 & 520 & 否 & 否 & None & 是 \\
+\end{longtable}\endgroup
+
+中间里程碑仍有局限：初态4在第390步确认碗入抽屉时，与影子区域标注不一致。区域检查为抽屉site边界加2cm，属于几何诊断而非官方整任务谓词，不能直接当作严格误报率。最终未误停也不能说明中间视觉判断可靠；该阶段没有中途修改提示词或确认规则。
+
+相关代码在scripts/sim\_combined.py、combined\_worker.py、run\_combined.py。COMBINED\_SUMMARY.json及各回合policy\_handover.json、milestone\_checks.json、policy\_inputs/、rollout.mp4保存交接与执行结果。该入口是本阶段探针，尚未整合为通用技能调度器；完整操作仍由\(\pi\)0.5完成，可供性只决定前置预接触位。
+
+\subsection{失败初态的原生技能诊断}\label{s20-detail-2}
+
+在完整交接初态4失败后，仅选择该初态做一次不执行预接触的\(\pi\)0.5诊断，使用相同Nav2、原始技能和Qwen监视器。选择发生在观察失败之后，不是预先冻结的效益试验；Nav2墙钟执行也不保证逐帧状态相同，因此不能作为严格因果或总体成功率比较。
+
+原生初态4：官方成功True，Qwen完成True，策略步320，错误无。
+
+该次原生对照在320步成功，而前置预接触回合在520步失败，提示交接姿态可能影响策略表现；单个事后选取的回合尚不能证明因果。
+
+把手预接触用于验证定位到动作接口，不能默认前置到所有\(\pi\)0.5技能。当前整任务先搬碗、后关抽屉，应由阶段条件决定何时使用把手可供性；额外前置姿态可能造成策略输入分布偏移。该轮仅证明物理接口贯通，不将完整交接版本替换此前原生闭环。
+
+
+\subsection{为什么不默认增加前置动作}\label{s20-detail-3}
+
+完整技能原本先搬碗、后关抽屉；把手预接近只是定位到执行接口的验证，未必是该任务开始时应做的动作。额外改变手臂姿态可能把低层策略带离熟悉状态。因此实际运行保留原生\(\pi\)0.5作为默认，显式规划只在有阶段条件和任务需要时调用。
+
+交接时关节数组不变说明没有重置到位姿态；模型加载期间仿真暂停，所以该检查并未验证真实机器人在等待时的支撑控制、重力下垂和通信延迟。移到真机仍需独立的持续控制与监督试验。
+
+此处的正确下一步是定义技能前提与阶段接口，而不是把所有自主任务都强行接上同一个把手预接近动作。
+
+
+\paragraph{阶段结论}一个开发探针加三个重复性回合，整任务2/4成功；失败初态4的原生对照跳过预接触后在320步成功。 额外前置姿态可能干扰策略，不应默认加入所有技能。单个事后对照不能证明因果；现有原生闭环继续保留。
+
+\stagecode{s20}
+
+\stagevideo{videos/ch06/policy_handover_success.mp4}
+
+\FloatBarrier

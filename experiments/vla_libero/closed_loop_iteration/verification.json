@@ -1,0 +1,9 @@
+{
+  "status": "passed",
+  "t9_cases": 4,
+  "paired_injection_states": 9,
+  "injection_episodes": 27,
+  "videos_decoded": 27,
+  "independent_test_cases_per_model": 240,
+  "lora_weights_reload": true
+}

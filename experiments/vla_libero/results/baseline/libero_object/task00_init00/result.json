@@ -1,0 +1,36 @@
+{
+  "runner_sha256": "e5d28552be82d553e09b3fcfe45aa95bbc6d38b0338899c2536ed1407935bb9d",
+  "suite": "libero_object",
+  "task_id": 0,
+  "initial_state_id": 0,
+  "mode": "baseline",
+  "environment_seed": 7,
+  "noise_seed": 710000,
+  "initial_state_sha256": "6cd4976519943bdc84677396a6e2942e9816ae87e56fc72943914e147f9b6e1e",
+  "original_prompt": "pick up the alphabet soup and place it in the basket",
+  "input_prompt": "pick up the alphabet soup and place it in the basket",
+  "replan_steps": 5,
+  "denoising_steps": 10,
+  "max_steps": 280,
+  "status": "success",
+  "success": true,
+  "steps": 139,
+  "alternate_goal_evaluable": false,
+  "alternate_goal_ever_satisfied": null,
+  "initial_eef": [
+    -0.15255246384174243,
+    -0.006276726480827427,
+    0.248447546081703
+  ],
+  "final_eef": [
+    -0.033131069147830886,
+    0.2513684320681821,
+    0.1794304999550534
+  ],
+  "qpos_displacement_norm": 1.1700870403458503,
+  "simulation_elapsed_s": 6.95,
+  "wall_s": 5.735354094000286,
+  "query_count": 28,
+  "warmup_query_wall_s": 0.07918214199980866,
+  "query_median_excluding_first_s": 0.07505785700050183
+}

@@ -1,0 +1,26 @@
+{
+  "load_seconds": 17.21047236999948,
+  "before_load": {
+    "VmHWM": 532316160,
+    "VmRSS": 532316160,
+    "VmSwap": 0,
+    "pswpin": 227,
+    "pswpout": 4552,
+    "cgroup_memory_current": 347099136,
+    "cgroup_memory_peak": null,
+    "cgroup_swap_current": 0,
+    "cgroup_swap_peak": null
+  },
+  "after_load": {
+    "VmHWM": 1744535552,
+    "VmRSS": 752361472,
+    "VmSwap": 0,
+    "pswpin": 227,
+    "pswpout": 4552,
+    "cgroup_memory_current": 1344913408,
+    "cgroup_memory_peak": null,
+    "cgroup_swap_current": 0,
+    "cgroup_swap_peak": null
+  },
+  "awaiting_swapoff": true
+}

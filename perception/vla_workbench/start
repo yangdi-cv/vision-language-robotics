@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+set -euo pipefail
+VLA_PROJECT_ROOT="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/../.." && pwd)"
+unset PYTHONPATH PYTHONHOME
+exec "$VLA_PROJECT_ROOT/.venvs/qwen-scene/bin/python" "$VLA_PROJECT_ROOT/perception/vla_workbench/server.py"

@@ -1,0 +1,29 @@
+[
+  {
+    "episode": "episode_01",
+    "frames": 1227,
+    "duration_s": 122.77,
+    "missing_images": 0,
+    "finite_six_joint_data": true,
+    "timestamps_increasing": true,
+    "review_required": true
+  },
+  {
+    "episode": "episode_02",
+    "frames": 326,
+    "duration_s": 32.54,
+    "missing_images": 0,
+    "finite_six_joint_data": true,
+    "timestamps_increasing": true,
+    "review_required": true
+  },
+  {
+    "episode": "episode_03",
+    "frames": 355,
+    "duration_s": 35.44,
+    "missing_images": 0,
+    "finite_six_joint_data": true,
+    "timestamps_increasing": true,
+    "review_required": true
+  }
+]

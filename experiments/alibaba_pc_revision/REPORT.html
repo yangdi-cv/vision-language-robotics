@@ -1,0 +1,308 @@
+<!doctype html><html lang="zh"><meta charset="utf-8"><title>阿里_PC反馈改进</title><style>@page{size:A4;margin:18mm 16mm 19mm;@bottom-right{content:counter(page);font-size:9pt;color:#6a7b8f}}body{font-family:"Noto Sans CJK SC","Microsoft YaHei",sans-serif;font-size:10pt;line-height:1.7;color:#233247}h1{font-size:23pt;line-height:1.4}h2{font-size:15pt;margin-top:7mm;break-after:avoid}table{border-collapse:collapse;width:100%;font-size:8.8pt;break-inside:avoid;margin:4mm 0}th,td{border:1px solid #cad5df;padding:5px 7px;text-align:left;overflow-wrap:anywhere}th{background:#eaf0f5}img{max-width:100%;max-height:108mm;object-fit:contain}p:has(img){text-align:center;break-inside:avoid}pre{background:#f2f5f7;padding:10px;white-space:pre-wrap;font-size:8pt;line-height:1.5}code{font-family:"Noto Sans Mono CJK SC",monospace;font-size:8.6pt;overflow-wrap:anywhere}a{color:#2a6089}.refs{font-size:9pt;color:#466173;border-left:3px solid #d1e2ec;padding-left:9px}.toc{break-before:page}p{orphans:3;widows:3}</style><body><h1>PC端推理链路与训练评估改进</h1>
+<p>阿里方向阶段进展　2026年10月20日</p>
+<h2>摘要</h2>
+<p>本轮根据上一份报告的反馈，重点改进模型进程超时处理、图像传递、LoRA训练验证和ACT选模，并在4090工作站进行对照测试。新的代码与报告单独保存，原报告中的实验结果保持不变。</p>
+<p>两读取进程的图像交付中位耗时由22.19ms降至0.79ms，像素与帧序号逐项核对一致。短目标JSON实际仅生成16个token，生成上限从256缩至64没有明显提速。LoRA加入周期验证和早停后，在第200步结束，选中第80步的适配器，测试集20/20完整字段匹配。</p>
+<p>ACT同时比较离线L1和仿真成功率选模。前者选择第10000步模型，新24任务成功24次；后者选择第4000步模型，成功21次。这个结果表明，只有6个验证任务时，即使用成功率选模也可能过早选中模型，下一步需要扩大验证布局。</p>
+<p>本轮仅为PC端。没有开展Jetson部署，也没有用办公室相机或机械臂进行新的联动测试。</p>
+<h2 class="toc">目录</h2>
+<ul>
+<li>
+<ol>
+<li>改动范围与代码入口</li>
+</ol>
+</li>
+<li>
+<ol>
+<li>模型进程超时和退出处理</li>
+</ol>
+</li>
+<li>
+<ol>
+<li>图像内存传递与一致性</li>
+</ol>
+</li>
+<li>
+<ol>
+<li>输出长度与约束解码</li>
+</ol>
+</li>
+<li>
+<ol>
+<li>检测及深度推理对照</li>
+</ol>
+</li>
+<li>
+<ol>
+<li>LoRA周期验证与早停</li>
+</ol>
+</li>
+<li>
+<ol>
+<li>ACT数据划分及选模</li>
+</ol>
+</li>
+<li>
+<ol>
+<li>结论与后续</li>
+</ol>
+</li>
+</ul>
+<h2>1. 改动范围与代码入口</h2>
+<table>
+<thead>
+<tr>
+<th>内容</th>
+<th>本轮实现</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>worker阻塞读取</td>
+<td>带截止时间的JSON行读取、异常退出和进程回收</td>
+</tr>
+<tr>
+<td>图像交换</td>
+<td>单份共享内存、锁保护元信息与像素、两个独立读取者</td>
+</tr>
+<tr>
+<td>推理预算</td>
+<td>短目标JSON的64/128/256上限对照，有限目标集合约束</td>
+</tr>
+<tr>
+<td>检测/深度</td>
+<td>FP32/FP16及768/640深度输入对照，默认配置保留</td>
+</tr>
+<tr>
+<td>LoRA</td>
+<td>每40步验证、保存最佳适配器、早停</td>
+</tr>
+<tr>
+<td>ACT</td>
+<td>manifest驱动划分、先抽episode再抽帧、定期仿真验证</td>
+</tr>
+<tr>
+<td>重复代码</td>
+<td>公开交接任务训练/评测共享实现；语言派发复用同一执行循环</td>
+</tr>
+</tbody>
+</table>
+<p>主要实验在 <code>experiments/alibaba_pc_revision/</code>。生产代码改动位于 <code>perception/qwen_scene/</code> 和 <code>perception/web_workbench/server.py</code>。历史交接训练和评测入口保留原路径，通过兼容入口调用公共实现。</p>
+<h2>2. 模型进程超时和退出处理</h2>
+<p>原来的stdout.readline可能一直等不到一整行。新增读取器按截止时间等待，识别EOF、非法JSON和过大响应；失败时结束并回收模型进程。现有两个语言派发入口已接入，默认响应上限90秒。正常关闭先发停止请求，再按超时规则终止进程，避免主流程无限等待。</p>
+<table>
+<thead>
+<tr>
+<th>软件测试</th>
+<th>结果</th>
+<th>含回收的总耗时 / s</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>silent</td>
+<td>TimeoutError</td>
+<td>2.202</td>
+</tr>
+<tr>
+<td>crash</td>
+<td>RuntimeError</td>
+<td>0.008</td>
+</tr>
+<tr>
+<td>malformed</td>
+<td>RuntimeError</td>
+<td>0.007</td>
+</tr>
+<tr>
+<td>healthy</td>
+<td>ok</td>
+<td>0.007</td>
+</tr>
+</tbody>
+</table>
+<p>测试包含静默、异常退出、非法JSON及正常回复，均使用本机模拟进程。读取超时与进程清理是两个阶段，表中的总时间包含清理等待。没有据此称为机器人硬件鲁棒性测试。</p>
+<p class="refs">相关代码在 <code>perception/qwen_scene/worker_client.py</code>、<code>experiments/alibaba_baseline/scripts/integrated_demo.py</code>、<code>experiments/alibaba_extension/scripts/run_qwen_nav_act.py</code>。</p>
+<h2>3. 图像内存传递与一致性</h2>
+<p>原网页每帧保存PNG，两个推理进程分别解码。现在相机线程将RGB和帧号、接收时间、旋转信息写入一份共享内存，写入和读取时加锁。读取者复制完整一帧后立即释放锁，不在推理期间占锁，也不积压中间帧。已有PNG来源仍可作为兼容输入。</p>
+<p>用12张已有腕部画面、每张重复三次，对比一次写入和两个独立进程读取。统计排除每组最初两次，包含消息通知和像素校验的开销；文件方案会受系统缓存影响，不是冷磁盘性能测试。</p>
+<table>
+<thead>
+<tr>
+<th>方式</th>
+<th>有效测试帧数</th>
+<th>写入中位 / ms</th>
+<th>双读取完成中位 / ms</th>
+<th>双读取P95 / ms</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>png</td>
+<td>34</td>
+<td>15.692</td>
+<td>22.191</td>
+<td>23.493</td>
+</tr>
+<tr>
+<td>shared</td>
+<td>34</td>
+<td>0.069</td>
+<td>0.789</td>
+<td>1.733</td>
+</tr>
+</tbody>
+</table>
+<p>共144次读取核对像素哈希与帧号，没有不一致；连续写入100帧后只读取到最新帧。提交给Qwen的分析图像与结果仍可归档，视觉结果也仍有保存开销；这次移除的是实时帧交换中的PNG往返，不是删除全部记录。</p>
+<p><img alt="图像交换与目标推理耗时" src="figures/pc_latency.png" /></p>
+<p>这个结果确认了图像交换有优化空间，但不能证明它是整个系统的最大瓶颈。目标推理仍约260ms，更长的场景描述耗时还会增加。网页若已在运行，需重启后使用新的传帧方式；本轮没有启动真实相机和主从控制。</p>
+<p class="refs">相关代码在 <code>perception/qwen_scene/frame_transport.py</code>、<code>continuous_worker.py</code>、<code>vision_worker.py</code>、<code>perception/web_workbench/server.py</code>；测试在 <code>scripts/bench_runtime.py</code>。</p>
+<h2>4. 输出长度与约束解码</h2>
+<p>在同一Qwen基座、提示词和图像上，交错运行64、128、256生成上限及64加约束四种设置。12个目标用例各重复两次，预热后统计。</p>
+<table>
+<thead>
+<tr>
+<th>上限 / 约束</th>
+<th>中位 / s</th>
+<th>P95 / s</th>
+<th>平均生成token</th>
+<th>格式有效</th>
+<th>目标完整匹配</th>
+<th>截断</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>64 / 无</td>
+<td>0.260</td>
+<td>0.261</td>
+<td>16.0</td>
+<td>24/24</td>
+<td>20/24</td>
+<td>0</td>
+</tr>
+<tr>
+<td>128 / 无</td>
+<td>0.260</td>
+<td>0.261</td>
+<td>16.0</td>
+<td>24/24</td>
+<td>20/24</td>
+<td>0</td>
+</tr>
+<tr>
+<td>256 / 无</td>
+<td>0.260</td>
+<td>0.262</td>
+<td>16.0</td>
+<td>24/24</td>
+<td>20/24</td>
+<td>0</td>
+</tr>
+<tr>
+<td>64 / 有</td>
+<td>0.262</td>
+<td>0.264</td>
+<td>16.0</td>
+<td>24/24</td>
+<td>20/24</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<p>这组回答都在16个token正常结束，因此缩小上限没有明显加速；上限大不代表模型一定生成到上限。约束解码将输出限制为当前任务支持的7种JSON目标对象，能限定格式与字段组合，但不是通用JSON语法实现，也没有修复目标选择错误。</p>
+<p>保留长场景描述的独立预算，短决策接口收紧至128并允许按任务配置；没有把整个观察窗口一律改为64。不能把语法有效等同于目标存在或指令明确。</p>
+<p class="refs">相关代码在 <code>scripts/bench_qwen.py</code>、<code>perception/qwen_scene/engine.py</code>、<code>experiments/alibaba_baseline/scripts/qwen_goal_worker.py</code>。</p>
+<h2>5. 检测及深度推理对照</h2>
+<p>使用8个已有模拟RGB-D场景，各重复两次。检测输入固定640，深度比较768和640，记录串行模型调用耗时。它不包含完整网页渲染或相机采集。FP16映射到当前Ultralytics的quantize=16，额外检查实际网络参数类型为float16。</p>
+<table>
+<thead>
+<tr>
+<th>精度 / 深度尺寸</th>
+<th>中位 / ms</th>
+<th>P95 / ms</th>
+<th>原尺度AbsRel</th>
+<th>逐图尺度对齐AbsRel</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FP32 / 768</td>
+<td>8.69</td>
+<td>9.27</td>
+<td>4.475</td>
+<td>0.089</td>
+</tr>
+<tr>
+<td>FP16 / 768</td>
+<td>8.59</td>
+<td>9.15</td>
+<td>4.472</td>
+<td>0.089</td>
+</tr>
+<tr>
+<td>FP16 / 640</td>
+<td>8.15</td>
+<td>8.44</td>
+<td>4.375</td>
+<td>0.102</td>
+</tr>
+</tbody>
+</table>
+<p>本轮FP16收益较小；640略快，但尺度对齐后的相对误差由约0.089增加到0.102。原尺度误差很大，说明这些模拟场景中的预测距离不能直接当作可用于抓取的米制深度。</p>
+<p>尺度对齐使用每张图的模拟真值估计比例，只用于诊断相对几何表现，部署时不能依赖这种真值。场景数量少、存在模拟域差异，模型设置按组顺序运行；不据此宣称真实相机精度或稳定生产加速。检测框数量变化仅作记录，没有目标检测人工真值，未报告检测准确率。</p>
+<p>推理类已增加精度和深度尺寸配置，并移除重复的全设备显式同步；默认仍保留FP32/768。读取GPU输出到CPU时仍会发生必要同步，未宣称异步推理或双流已完成。</p>
+<p class="refs">相关代码在 <code>scripts/bench_vision.py</code>、<code>perception/qwen_scene/vision_engine.py</code>。</p>
+<h2>6. LoRA周期验证与早停</h2>
+<p>沿用桌面目标选择的60条训练、20条验证、20条测试，按布局分开，不改标签。训练视觉模块冻结，仅对语言注意力q_proj/v_proj做r8、alpha16、学习率5e-5的LoRA。每40步计算验证损失和完整目标匹配，以匹配数优先、损失至少改善0.001作为同分选择依据；连续三次未改善则早停。</p>
+<p><img alt="LoRA验证过程" src="figures/lora_validation.png" /></p>
+<p>第40步验证12/20，第80步达到20/20；之后匹配数不再增加，损失改善也未达到所设阈值，在第200步结束。选中的第80步与最后第200步模型测试均20/20。</p>
+<p>实际仍训练了200步，并承担周期推理验证的开销，不能把“选中80步”说成“只花80步训练成本”。这次验证的是选模与停止流程；沿用旧数据划分，也不能把20/20当作新的语言泛化突破。</p>
+<p class="refs">相关代码在 <code>scripts/train_lora.py</code>；划分及逐次预测在 <code>runs/lora_validation/</code>。</p>
+<h2>7. ACT数据划分及选模</h2>
+<p>继续使用桌面任务66条脚本示教，54/6/6轨迹按布局划分，归一化只来自训练数据。训练从manifest读取episode列表与边界，先均匀抽episode，再在轨迹内部抽帧，动作块不跨轨迹。当前轨迹均为401帧，理论上两种采样的分布相同；这次重构主要提高可读性和变长数据兼容性，不把收益归因于改变采样。</p>
+<p>ACT输入为RGB、关节/夹爪、任务符号及初始RGB-D坐标，训练10000步。每2000步计算验证L1，并在固定布局1100的六个任务运行物理仿真。分别保存最低L1模型和最高仿真成功数模型；成功数相同时保留较早模型。最终布局1200–1203的24个任务只在选模结束后评测。</p>
+<p><img alt="离线误差与仿真验证" src="figures/act_selection.png" /></p>
+<table>
+<thead>
+<tr>
+<th>选模依据</th>
+<th>选中更新数</th>
+<th>新任务成功</th>
+<th>离线测试归一化L1</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>验证L1</td>
+<td>10000</td>
+<td>24/24</td>
+<td>0.0287</td>
+</tr>
+<tr>
+<td>验证仿真成功数</td>
+<td>4000</td>
+<td>21/24</td>
+<td>0.0452</td>
+</tr>
+</tbody>
+</table>
+<p>验证L1从4000步到6000步下降，但仿真成功数由6降到4，说明两者确实不完全一致。不过仅凭一个布局六个任务选模，也会误选第4000步：它在新任务中只有21/24，而第10000步为24/24。当前结果不支持“换成成功率选模就一定更好”，下一轮应扩大验证布局、重复训练种子，并预先确定同分规则。</p>
+<p>成功判据包含抬升、夹爪接触、指定盒内稳定、释放及盒底接触。执行仍使用原桌面任务的理想末端约束和模拟深度，未迁移SO101，也不是完整移动抓取机器人。只训练一个随机种子，测试仅四种新布局。</p>
+<p>新的训练验证与最终评测复用 <code>scripts/act_runner.py</code>。旧公开交接任务的训练与评测兼容入口已改为公共实现，语言派发也复用同一交接执行/视频循环。公共训练入口做了一步训练、验证和保存检查，公共执行入口在已知布局1003完成一次交接；这些是兼容性检查，不是重新完成原30次成功率评测。</p>
+<p class="refs">相关代码在 <code>scripts/train_act.py</code>、<code>act_runner.py</code>、<code>public_act_trainer.py</code>、<code>public_act_evaluate.py</code>、<code>aloha_runner.py</code>。训练数据目录、输出目录、训练步数、验证间隔和布局种子可通过CLI配置，仍需准备对应环境与数据，不称为跨机器零配置安装。</p>
+<h2>8. 结论与后续</h2>
+<p>本轮落实了反馈中的超时处理、帧交换、训练验证、仿真选模和主要重复代码整理。明显收益来自图像交换；短目标生成上限和FP16未显示同等幅度收益。选模对照还暴露了验证集规模不足的问题。</p>
+<p>下一步先扩大独立验证布局及语言歧义用例，复测真实相机下的帧年龄与整体耗时。Jetson上的模型转换、算子兼容、显存和功耗另做，不用4090结果代替。</p>
+<p>源码目录：</p>
+<pre><code class="language-text">experiments/alibaba_pc_revision/
+├── scripts/                 训练、评测、传输测试与共享执行模块
+├── runs/                    逐次预测、验证结果、轨迹和运行记录
+├── figures/                 本报告图表
+└── REPORT.md、README.md
+perception/qwen_scene/       帧共享、worker客户端、推理类与读取进程
+perception/web_workbench/    网页相机分发入口
+experiments/alibaba_baseline/scripts/   历史兼容入口
+experiments/alibaba_extension/scripts/  历史兼容入口
+</code></pre>
+<p>源码包只包含代码、必要配置和场景资源；权重、缓存、数据和运行结果保留于本地。运行方式与环境要求见README。</p></body></html>

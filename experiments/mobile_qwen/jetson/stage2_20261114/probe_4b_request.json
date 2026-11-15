@@ -1,0 +1,5 @@
+{
+  "id": "transfer_i13_zh_bowl_i01_s0180",
+  "prompt": "Point to the handle of the lowest drawer of the small white cabinet with three drawers standing on the table at the left edge of the image, i.e. where a robot gripper should grasp to pull or push that drawer. Return only JSON: {\"point_2d\": [x, y]}",
+  "purpose": "Validation-only 4B load qualification, not test-set performance"
+}

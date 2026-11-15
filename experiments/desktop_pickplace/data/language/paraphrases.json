@@ -1,0 +1,354 @@
+[
+  {
+    "id": "406_paraphrase_red_left",
+    "image": "406.png",
+    "instruction": "请将红色小方块收进左侧容器。",
+    "target_color": "red",
+    "destination": "left",
+    "should_execute": true
+  },
+  {
+    "id": "406_paraphrase_red_right",
+    "image": "406.png",
+    "instruction": "请将红色小方块收进右侧容器。",
+    "target_color": "red",
+    "destination": "right",
+    "should_execute": true
+  },
+  {
+    "id": "406_paraphrase_blue_left",
+    "image": "406.png",
+    "instruction": "请将蓝色小方块收进左侧容器。",
+    "target_color": "blue",
+    "destination": "left",
+    "should_execute": true
+  },
+  {
+    "id": "406_paraphrase_blue_right",
+    "image": "406.png",
+    "instruction": "请将蓝色小方块收进右侧容器。",
+    "target_color": "blue",
+    "destination": "right",
+    "should_execute": true
+  },
+  {
+    "id": "406_paraphrase_green_left",
+    "image": "406.png",
+    "instruction": "请将绿色小方块收进左侧容器。",
+    "target_color": "green",
+    "destination": "left",
+    "should_execute": true
+  },
+  {
+    "id": "406_paraphrase_green_right",
+    "image": "406.png",
+    "instruction": "请将绿色小方块收进右侧容器。",
+    "target_color": "green",
+    "destination": "right",
+    "should_execute": true
+  },
+  {
+    "id": "406_ambiguous_0",
+    "image": "406.png",
+    "instruction": "请把一个方块收进某个盒子里。",
+    "target_color": null,
+    "destination": null,
+    "should_execute": false
+  },
+  {
+    "id": "406_ambiguous_1",
+    "image": "406.png",
+    "instruction": "把蓝色方块放进盒子里。",
+    "target_color": null,
+    "destination": null,
+    "should_execute": false
+  },
+  {
+    "id": "406_ambiguous_2",
+    "image": "406.png",
+    "instruction": "把方块放进右边盒子。",
+    "target_color": null,
+    "destination": null,
+    "should_execute": false
+  },
+  {
+    "id": "406_ambiguous_3",
+    "image": "406.png",
+    "instruction": "先不要动桌上的绿色方块。",
+    "target_color": null,
+    "destination": null,
+    "should_execute": false
+  },
+  {
+    "id": "406_missing_paraphrase",
+    "image": "406_no_red.png",
+    "instruction": "请将红色方块移入左侧盒子。",
+    "target_color": null,
+    "destination": null,
+    "should_execute": false
+  },
+  {
+    "id": "407_paraphrase_red_left",
+    "image": "407.png",
+    "instruction": "请将红色小方块收进左侧容器。",
+    "target_color": "red",
+    "destination": "left",
+    "should_execute": true
+  },
+  {
+    "id": "407_paraphrase_red_right",
+    "image": "407.png",
+    "instruction": "请将红色小方块收进右侧容器。",
+    "target_color": "red",
+    "destination": "right",
+    "should_execute": true
+  },
+  {
+    "id": "407_paraphrase_blue_left",
+    "image": "407.png",
+    "instruction": "请将蓝色小方块收进左侧容器。",
+    "target_color": "blue",
+    "destination": "left",
+    "should_execute": true
+  },
+  {
+    "id": "407_paraphrase_blue_right",
+    "image": "407.png",
+    "instruction": "请将蓝色小方块收进右侧容器。",
+    "target_color": "blue",
+    "destination": "right",
+    "should_execute": true
+  },
+  {
+    "id": "407_paraphrase_green_left",
+    "image": "407.png",
+    "instruction": "请将绿色小方块收进左侧容器。",
+    "target_color": "green",
+    "destination": "left",
+    "should_execute": true
+  },
+  {
+    "id": "407_paraphrase_green_right",
+    "image": "407.png",
+    "instruction": "请将绿色小方块收进右侧容器。",
+    "target_color": "green",
+    "destination": "right",
+    "should_execute": true
+  },
+  {
+    "id": "407_ambiguous_0",
+    "image": "407.png",
+    "instruction": "请把一个方块收进某个盒子里。",
+    "target_color": null,
+    "destination": null,
+    "should_execute": false
+  },
+  {
+    "id": "407_ambiguous_1",
+    "image": "407.png",
+    "instruction": "把蓝色方块放进盒子里。",
+    "target_color": null,
+    "destination": null,
+    "should_execute": false
+  },
+  {
+    "id": "407_ambiguous_2",
+    "image": "407.png",
+    "instruction": "把方块放进右边盒子。",
+    "target_color": null,
+    "destination": null,
+    "should_execute": false
+  },
+  {
+    "id": "407_ambiguous_3",
+    "image": "407.png",
+    "instruction": "先不要动桌上的绿色方块。",
+    "target_color": null,
+    "destination": null,
+    "should_execute": false
+  },
+  {
+    "id": "407_missing_paraphrase",
+    "image": "407_no_red.png",
+    "instruction": "请将红色方块移入左侧盒子。",
+    "target_color": null,
+    "destination": null,
+    "should_execute": false
+  },
+  {
+    "id": "408_paraphrase_red_left",
+    "image": "408.png",
+    "instruction": "请将红色小方块收进左侧容器。",
+    "target_color": "red",
+    "destination": "left",
+    "should_execute": true
+  },
+  {
+    "id": "408_paraphrase_red_right",
+    "image": "408.png",
+    "instruction": "请将红色小方块收进右侧容器。",
+    "target_color": "red",
+    "destination": "right",
+    "should_execute": true
+  },
+  {
+    "id": "408_paraphrase_blue_left",
+    "image": "408.png",
+    "instruction": "请将蓝色小方块收进左侧容器。",
+    "target_color": "blue",
+    "destination": "left",
+    "should_execute": true
+  },
+  {
+    "id": "408_paraphrase_blue_right",
+    "image": "408.png",
+    "instruction": "请将蓝色小方块收进右侧容器。",
+    "target_color": "blue",
+    "destination": "right",
+    "should_execute": true
+  },
+  {
+    "id": "408_paraphrase_green_left",
+    "image": "408.png",
+    "instruction": "请将绿色小方块收进左侧容器。",
+    "target_color": "green",
+    "destination": "left",
+    "should_execute": true
+  },
+  {
+    "id": "408_paraphrase_green_right",
+    "image": "408.png",
+    "instruction": "请将绿色小方块收进右侧容器。",
+    "target_color": "green",
+    "destination": "right",
+    "should_execute": true
+  },
+  {
+    "id": "408_ambiguous_0",
+    "image": "408.png",
+    "instruction": "请把一个方块收进某个盒子里。",
+    "target_color": null,
+    "destination": null,
+    "should_execute": false
+  },
+  {
+    "id": "408_ambiguous_1",
+    "image": "408.png",
+    "instruction": "把蓝色方块放进盒子里。",
+    "target_color": null,
+    "destination": null,
+    "should_execute": false
+  },
+  {
+    "id": "408_ambiguous_2",
+    "image": "408.png",
+    "instruction": "把方块放进右边盒子。",
+    "target_color": null,
+    "destination": null,
+    "should_execute": false
+  },
+  {
+    "id": "408_ambiguous_3",
+    "image": "408.png",
+    "instruction": "先不要动桌上的绿色方块。",
+    "target_color": null,
+    "destination": null,
+    "should_execute": false
+  },
+  {
+    "id": "408_missing_paraphrase",
+    "image": "408_no_red.png",
+    "instruction": "请将红色方块移入左侧盒子。",
+    "target_color": null,
+    "destination": null,
+    "should_execute": false
+  },
+  {
+    "id": "409_paraphrase_red_left",
+    "image": "409.png",
+    "instruction": "请将红色小方块收进左侧容器。",
+    "target_color": "red",
+    "destination": "left",
+    "should_execute": true
+  },
+  {
+    "id": "409_paraphrase_red_right",
+    "image": "409.png",
+    "instruction": "请将红色小方块收进右侧容器。",
+    "target_color": "red",
+    "destination": "right",
+    "should_execute": true
+  },
+  {
+    "id": "409_paraphrase_blue_left",
+    "image": "409.png",
+    "instruction": "请将蓝色小方块收进左侧容器。",
+    "target_color": "blue",
+    "destination": "left",
+    "should_execute": true
+  },
+  {
+    "id": "409_paraphrase_blue_right",
+    "image": "409.png",
+    "instruction": "请将蓝色小方块收进右侧容器。",
+    "target_color": "blue",
+    "destination": "right",
+    "should_execute": true
+  },
+  {
+    "id": "409_paraphrase_green_left",
+    "image": "409.png",
+    "instruction": "请将绿色小方块收进左侧容器。",
+    "target_color": "green",
+    "destination": "left",
+    "should_execute": true
+  },
+  {
+    "id": "409_paraphrase_green_right",
+    "image": "409.png",
+    "instruction": "请将绿色小方块收进右侧容器。",
+    "target_color": "green",
+    "destination": "right",
+    "should_execute": true
+  },
+  {
+    "id": "409_ambiguous_0",
+    "image": "409.png",
+    "instruction": "请把一个方块收进某个盒子里。",
+    "target_color": null,
+    "destination": null,
+    "should_execute": false
+  },
+  {
+    "id": "409_ambiguous_1",
+    "image": "409.png",
+    "instruction": "把蓝色方块放进盒子里。",
+    "target_color": null,
+    "destination": null,
+    "should_execute": false
+  },
+  {
+    "id": "409_ambiguous_2",
+    "image": "409.png",
+    "instruction": "把方块放进右边盒子。",
+    "target_color": null,
+    "destination": null,
+    "should_execute": false
+  },
+  {
+    "id": "409_ambiguous_3",
+    "image": "409.png",
+    "instruction": "先不要动桌上的绿色方块。",
+    "target_color": null,
+    "destination": null,
+    "should_execute": false
+  },
+  {
+    "id": "409_missing_paraphrase",
+    "image": "409_no_red.png",
+    "instruction": "请将红色方块移入左侧盒子。",
+    "target_color": null,
+    "destination": null,
+    "should_execute": false
+  }
+]

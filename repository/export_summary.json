@@ -1,0 +1,14 @@
+{
+  "files": 3487,
+  "bytes": 82014161,
+  "excluded": {
+    "weights_media_or_raw_arrays": 46714,
+    "large_generated_text": 3,
+    "installation_logs": 38,
+    "symlink": 4,
+    "installed_metadata": 1,
+    "platform_binaries": 127,
+    "deployment_copy": 29,
+    "credentials_or_generated_tokenizer": 8
+  }
+}

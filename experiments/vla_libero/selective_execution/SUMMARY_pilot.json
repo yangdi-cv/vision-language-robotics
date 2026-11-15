@@ -1,0 +1,1576 @@
+{
+  "phase": "pilot",
+  "episodes": 28,
+  "expected": 28,
+  "groups": {
+    "flat_zh": {
+      "n": 4,
+      "success": 0,
+      "target_stable": 2,
+      "protected_ok": 2,
+      "violations": 2,
+      "premature_stop": 0,
+      "self_stops": 0,
+      "correct_self_stops": 0,
+      "model_checks": 0,
+      "decision_steps_mean": 300.0,
+      "original_done_continued": 2,
+      "missed_valid_window": 1,
+      "no_valid_window": 3
+    },
+    "translated_en": {
+      "n": 4,
+      "success": 0,
+      "target_stable": 4,
+      "protected_ok": 0,
+      "violations": 4,
+      "premature_stop": 0,
+      "self_stops": 0,
+      "correct_self_stops": 0,
+      "model_checks": 0,
+      "decision_steps_mean": 300.0,
+      "original_done_continued": 4,
+      "missed_valid_window": 2,
+      "no_valid_window": 2
+    },
+    "skill_continue": {
+      "n": 4,
+      "success": 0,
+      "target_stable": 4,
+      "protected_ok": 0,
+      "violations": 4,
+      "premature_stop": 0,
+      "self_stops": 0,
+      "correct_self_stops": 0,
+      "model_checks": 0,
+      "decision_steps_mean": 300.0,
+      "original_done_continued": 3,
+      "missed_valid_window": 2,
+      "no_valid_window": 2
+    },
+    "timer150": {
+      "n": 4,
+      "success": 2,
+      "target_stable": 2,
+      "protected_ok": 2,
+      "violations": 2,
+      "premature_stop": 2,
+      "self_stops": 4,
+      "correct_self_stops": 2,
+      "model_checks": 0,
+      "decision_steps_mean": 172.5,
+      "original_done_continued": 0,
+      "missed_valid_window": 0,
+      "no_valid_window": 2
+    },
+    "timer_calibrated": {
+      "n": 4,
+      "success": 2,
+      "target_stable": 2,
+      "protected_ok": 2,
+      "violations": 2,
+      "premature_stop": 2,
+      "self_stops": 4,
+      "correct_self_stops": 2,
+      "model_checks": 0,
+      "decision_steps_mean": 177.5,
+      "original_done_continued": 0,
+      "missed_valid_window": 0,
+      "no_valid_window": 2
+    },
+    "visual": {
+      "n": 4,
+      "success": 1,
+      "target_stable": 3,
+      "protected_ok": 1,
+      "violations": 3,
+      "premature_stop": 1,
+      "self_stops": 2,
+      "correct_self_stops": 1,
+      "model_checks": 44,
+      "decision_steps_mean": 242.5,
+      "original_done_continued": 2,
+      "missed_valid_window": 1,
+      "no_valid_window": 2
+    },
+    "frozen": {
+      "n": 4,
+      "success": 0,
+      "target_stable": 4,
+      "protected_ok": 0,
+      "violations": 4,
+      "premature_stop": 0,
+      "self_stops": 0,
+      "correct_self_stops": 0,
+      "model_checks": 50,
+      "decision_steps_mean": 300.0,
+      "original_done_continued": 3,
+      "missed_valid_window": 2,
+      "no_valid_window": 2
+    }
+  },
+  "paired": [
+    {
+      "other": "flat_zh",
+      "n": 4,
+      "visual_gains": 1,
+      "visual_losses": 0,
+      "descriptive_exact_p": 1.0
+    },
+    {
+      "other": "translated_en",
+      "n": 4,
+      "visual_gains": 1,
+      "visual_losses": 0,
+      "descriptive_exact_p": 1.0
+    },
+    {
+      "other": "skill_continue",
+      "n": 4,
+      "visual_gains": 1,
+      "visual_losses": 0,
+      "descriptive_exact_p": 1.0
+    },
+    {
+      "other": "timer150",
+      "n": 4,
+      "visual_gains": 0,
+      "visual_losses": 1,
+      "descriptive_exact_p": 1.0
+    },
+    {
+      "other": "timer_calibrated",
+      "n": 4,
+      "visual_gains": 0,
+      "visual_losses": 1,
+      "descriptive_exact_p": 1.0
+    },
+    {
+      "other": "frozen",
+      "n": 4,
+      "visual_gains": 1,
+      "visual_losses": 0,
+      "descriptive_exact_p": 1.0
+    }
+  ],
+  "prefixes": [
+    {
+      "case": "task00_target0_init00",
+      "left": "skill_continue",
+      "right": "timer150",
+      "steps": 190,
+      "initial_equal": true,
+      "instruction_equal": true,
+      "input_hashes_equal": true,
+      "max_action_difference": 0.0
+    },
+    {
+      "case": "task00_target0_init00",
+      "left": "skill_continue",
+      "right": "timer_calibrated",
+      "steps": 190,
+      "initial_equal": true,
+      "instruction_equal": true,
+      "input_hashes_equal": true,
+      "max_action_difference": 0.0
+    },
+    {
+      "case": "task00_target0_init00",
+      "left": "skill_continue",
+      "right": "visual",
+      "steps": 190,
+      "initial_equal": true,
+      "instruction_equal": true,
+      "input_hashes_equal": true,
+      "max_action_difference": 0.0
+    },
+    {
+      "case": "task00_target0_init00",
+      "left": "skill_continue",
+      "right": "frozen",
+      "steps": 190,
+      "initial_equal": true,
+      "instruction_equal": true,
+      "input_hashes_equal": true,
+      "max_action_difference": 0.0
+    },
+    {
+      "case": "task00_target1_init00",
+      "left": "skill_continue",
+      "right": "timer150",
+      "steps": 170,
+      "initial_equal": true,
+      "instruction_equal": true,
+      "input_hashes_equal": true,
+      "max_action_difference": 0.0
+    },
+    {
+      "case": "task00_target1_init00",
+      "left": "skill_continue",
+      "right": "timer_calibrated",
+      "steps": 170,
+      "initial_equal": true,
+      "instruction_equal": true,
+      "input_hashes_equal": true,
+      "max_action_difference": 0.0
+    },
+    {
+      "case": "task00_target1_init00",
+      "left": "skill_continue",
+      "right": "visual",
+      "steps": 170,
+      "initial_equal": true,
+      "instruction_equal": true,
+      "input_hashes_equal": true,
+      "max_action_difference": 0.0
+    },
+    {
+      "case": "task00_target1_init00",
+      "left": "skill_continue",
+      "right": "frozen",
+      "steps": 170,
+      "initial_equal": true,
+      "instruction_equal": true,
+      "input_hashes_equal": true,
+      "max_action_difference": 0.0
+    },
+    {
+      "case": "task01_target0_init00",
+      "left": "skill_continue",
+      "right": "timer150",
+      "steps": 160,
+      "initial_equal": true,
+      "instruction_equal": true,
+      "input_hashes_equal": true,
+      "max_action_difference": 0.0
+    },
+    {
+      "case": "task01_target0_init00",
+      "left": "skill_continue",
+      "right": "timer_calibrated",
+      "steps": 160,
+      "initial_equal": true,
+      "instruction_equal": true,
+      "input_hashes_equal": true,
+      "max_action_difference": 0.0
+    },
+    {
+      "case": "task01_target0_init00",
+      "left": "skill_continue",
+      "right": "visual",
+      "steps": 160,
+      "initial_equal": true,
+      "instruction_equal": true,
+      "input_hashes_equal": true,
+      "max_action_difference": 0.0
+    },
+    {
+      "case": "task01_target0_init00",
+      "left": "skill_continue",
+      "right": "frozen",
+      "steps": 160,
+      "initial_equal": true,
+      "instruction_equal": true,
+      "input_hashes_equal": true,
+      "max_action_difference": 0.0
+    },
+    {
+      "case": "task01_target1_init00",
+      "left": "skill_continue",
+      "right": "timer150",
+      "steps": 170,
+      "initial_equal": true,
+      "instruction_equal": true,
+      "input_hashes_equal": true,
+      "max_action_difference": 0.0
+    },
+    {
+      "case": "task01_target1_init00",
+      "left": "skill_continue",
+      "right": "timer_calibrated",
+      "steps": 170,
+      "initial_equal": true,
+      "instruction_equal": true,
+      "input_hashes_equal": true,
+      "max_action_difference": 0.0
+    },
+    {
+      "case": "task01_target1_init00",
+      "left": "skill_continue",
+      "right": "visual",
+      "steps": 170,
+      "initial_equal": true,
+      "instruction_equal": true,
+      "input_hashes_equal": true,
+      "max_action_difference": 0.0
+    },
+    {
+      "case": "task01_target1_init00",
+      "left": "skill_continue",
+      "right": "frozen",
+      "steps": 170,
+      "initial_equal": true,
+      "instruction_equal": true,
+      "input_hashes_equal": true,
+      "max_action_difference": 0.0
+    }
+  ],
+  "visual_errors": [
+    {
+      "case": "task00_target1_init00",
+      "decision_step": 180,
+      "first_valid": null,
+      "first_violation": 70,
+      "premature": true,
+      "protected_ok": false
+    },
+    {
+      "case": "task01_target0_init00",
+      "decision_step": 300,
+      "first_valid": 152,
+      "first_violation": 202,
+      "premature": false,
+      "protected_ok": false
+    },
+    {
+      "case": "task01_target1_init00",
+      "decision_step": 300,
+      "first_valid": null,
+      "first_violation": 71,
+      "premature": false,
+      "protected_ok": false
+    }
+  ],
+  "directions": {
+    "task0_target0": {
+      "flat_zh": 0,
+      "translated_en": 0,
+      "skill_continue": 0,
+      "timer150": 1,
+      "timer_calibrated": 1,
+      "visual": 1,
+      "frozen": 0
+    },
+    "task0_target1": {
+      "flat_zh": 0,
+      "translated_en": 0,
+      "skill_continue": 0,
+      "timer150": 0,
+      "timer_calibrated": 0,
+      "visual": 0,
+      "frozen": 0
+    },
+    "task1_target0": {
+      "flat_zh": 0,
+      "translated_en": 0,
+      "skill_continue": 0,
+      "timer150": 1,
+      "timer_calibrated": 1,
+      "visual": 0,
+      "frozen": 0
+    },
+    "task1_target1": {
+      "flat_zh": 0,
+      "translated_en": 0,
+      "skill_continue": 0,
+      "timer150": 0,
+      "timer_calibrated": 0,
+      "visual": 0,
+      "frozen": 0
+    }
+  },
+  "rows": [
+    {
+      "case": {
+        "task": 0,
+        "target_index": 0,
+        "initial": 0,
+        "target": "alphabet_soup_1",
+        "protected": "tomato_sauce_1",
+        "objects": [
+          [
+            "alphabet_soup_1",
+            "alphabet soup can",
+            "字母汤罐头"
+          ],
+          [
+            "tomato_sauce_1",
+            "tomato sauce can",
+            "番茄酱罐头"
+          ]
+        ],
+        "instruction": "只把字母汤罐头放进篮子里，番茄酱罐头保持原位。放好后停止，不要继续搬其他物体。",
+        "reference_skill": "pick up the alphabet soup can and place it in the basket",
+        "key": "task00_target0_init00"
+      },
+      "mode": "flat_zh",
+      "directory": "episodes/pilot/task00_target0_init00/flat_zh",
+      "selective_success": false,
+      "target_final_stable": true,
+      "final_released": true,
+      "protected_untouched": false,
+      "max_protected_displacement_m": 0.27472114526769303,
+      "first_valid_step": 180,
+      "first_violation_step": 241,
+      "decision_step": 300,
+      "stop_reason": "budget",
+      "premature_stop": false,
+      "model_checks": 0,
+      "policy_instruction": "只把字母汤罐头放进篮子里，番茄酱罐头保持原位。放好后停止，不要继续搬其他物体。",
+      "selector_correct": true
+    },
+    {
+      "case": {
+        "task": 0,
+        "target_index": 0,
+        "initial": 0,
+        "target": "alphabet_soup_1",
+        "protected": "tomato_sauce_1",
+        "objects": [
+          [
+            "alphabet_soup_1",
+            "alphabet soup can",
+            "字母汤罐头"
+          ],
+          [
+            "tomato_sauce_1",
+            "tomato sauce can",
+            "番茄酱罐头"
+          ]
+        ],
+        "instruction": "只把字母汤罐头放进篮子里，番茄酱罐头保持原位。放好后停止，不要继续搬其他物体。",
+        "reference_skill": "pick up the alphabet soup can and place it in the basket",
+        "key": "task00_target0_init00"
+      },
+      "mode": "frozen",
+      "directory": "episodes/pilot/task00_target0_init00/frozen",
+      "selective_success": false,
+      "target_final_stable": true,
+      "final_released": true,
+      "protected_untouched": false,
+      "max_protected_displacement_m": 0.2807916464304533,
+      "first_valid_step": 183,
+      "first_violation_step": 230,
+      "decision_step": 300,
+      "stop_reason": "budget",
+      "premature_stop": false,
+      "model_checks": 12,
+      "policy_instruction": "pick up the alphabet soup can and place it in the basket",
+      "selector_correct": true
+    },
+    {
+      "case": {
+        "task": 0,
+        "target_index": 0,
+        "initial": 0,
+        "target": "alphabet_soup_1",
+        "protected": "tomato_sauce_1",
+        "objects": [
+          [
+            "alphabet_soup_1",
+            "alphabet soup can",
+            "字母汤罐头"
+          ],
+          [
+            "tomato_sauce_1",
+            "tomato sauce can",
+            "番茄酱罐头"
+          ]
+        ],
+        "instruction": "只把字母汤罐头放进篮子里，番茄酱罐头保持原位。放好后停止，不要继续搬其他物体。",
+        "reference_skill": "pick up the alphabet soup can and place it in the basket",
+        "key": "task00_target0_init00"
+      },
+      "mode": "skill_continue",
+      "directory": "episodes/pilot/task00_target0_init00/skill_continue",
+      "selective_success": false,
+      "target_final_stable": true,
+      "final_released": true,
+      "protected_untouched": false,
+      "max_protected_displacement_m": 0.2807916464304533,
+      "first_valid_step": 183,
+      "first_violation_step": 230,
+      "decision_step": 300,
+      "stop_reason": "budget",
+      "premature_stop": false,
+      "model_checks": 0,
+      "policy_instruction": "pick up the alphabet soup can and place it in the basket",
+      "selector_correct": true
+    },
+    {
+      "case": {
+        "task": 0,
+        "target_index": 0,
+        "initial": 0,
+        "target": "alphabet_soup_1",
+        "protected": "tomato_sauce_1",
+        "objects": [
+          [
+            "alphabet_soup_1",
+            "alphabet soup can",
+            "字母汤罐头"
+          ],
+          [
+            "tomato_sauce_1",
+            "tomato sauce can",
+            "番茄酱罐头"
+          ]
+        ],
+        "instruction": "只把字母汤罐头放进篮子里，番茄酱罐头保持原位。放好后停止，不要继续搬其他物体。",
+        "reference_skill": "pick up the alphabet soup can and place it in the basket",
+        "key": "task00_target0_init00"
+      },
+      "mode": "timer150",
+      "directory": "episodes/pilot/task00_target0_init00/timer150",
+      "selective_success": true,
+      "target_final_stable": true,
+      "final_released": true,
+      "protected_untouched": true,
+      "max_protected_displacement_m": 3.729655473350135e-14,
+      "first_valid_step": 183,
+      "first_violation_step": null,
+      "decision_step": 190,
+      "stop_reason": "timer150",
+      "premature_stop": false,
+      "model_checks": 0,
+      "policy_instruction": "pick up the alphabet soup can and place it in the basket",
+      "selector_correct": true
+    },
+    {
+      "case": {
+        "task": 0,
+        "target_index": 0,
+        "initial": 0,
+        "target": "alphabet_soup_1",
+        "protected": "tomato_sauce_1",
+        "objects": [
+          [
+            "alphabet_soup_1",
+            "alphabet soup can",
+            "字母汤罐头"
+          ],
+          [
+            "tomato_sauce_1",
+            "tomato sauce can",
+            "番茄酱罐头"
+          ]
+        ],
+        "instruction": "只把字母汤罐头放进篮子里，番茄酱罐头保持原位。放好后停止，不要继续搬其他物体。",
+        "reference_skill": "pick up the alphabet soup can and place it in the basket",
+        "key": "task00_target0_init00"
+      },
+      "mode": "timer_calibrated",
+      "directory": "episodes/pilot/task00_target0_init00/timer_calibrated",
+      "selective_success": true,
+      "target_final_stable": true,
+      "final_released": true,
+      "protected_untouched": true,
+      "max_protected_displacement_m": 3.903127820947816e-14,
+      "first_valid_step": 183,
+      "first_violation_step": null,
+      "decision_step": 200,
+      "stop_reason": "timer_calibrated",
+      "premature_stop": false,
+      "model_checks": 0,
+      "policy_instruction": "pick up the alphabet soup can and place it in the basket",
+      "selector_correct": true
+    },
+    {
+      "case": {
+        "task": 0,
+        "target_index": 0,
+        "initial": 0,
+        "target": "alphabet_soup_1",
+        "protected": "tomato_sauce_1",
+        "objects": [
+          [
+            "alphabet_soup_1",
+            "alphabet soup can",
+            "字母汤罐头"
+          ],
+          [
+            "tomato_sauce_1",
+            "tomato sauce can",
+            "番茄酱罐头"
+          ]
+        ],
+        "instruction": "只把字母汤罐头放进篮子里，番茄酱罐头保持原位。放好后停止，不要继续搬其他物体。",
+        "reference_skill": "pick up the alphabet soup can and place it in the basket",
+        "key": "task00_target0_init00"
+      },
+      "mode": "translated_en",
+      "directory": "episodes/pilot/task00_target0_init00/translated_en",
+      "selective_success": false,
+      "target_final_stable": true,
+      "final_released": true,
+      "protected_untouched": false,
+      "max_protected_displacement_m": 0.2693972472620034,
+      "first_valid_step": 166,
+      "first_violation_step": 225,
+      "decision_step": 300,
+      "stop_reason": "budget",
+      "premature_stop": false,
+      "model_checks": 0,
+      "policy_instruction": "Put only the letter soup can in the basket, leave the ketchup bottle in place.",
+      "selector_correct": true
+    },
+    {
+      "case": {
+        "task": 0,
+        "target_index": 0,
+        "initial": 0,
+        "target": "alphabet_soup_1",
+        "protected": "tomato_sauce_1",
+        "objects": [
+          [
+            "alphabet_soup_1",
+            "alphabet soup can",
+            "字母汤罐头"
+          ],
+          [
+            "tomato_sauce_1",
+            "tomato sauce can",
+            "番茄酱罐头"
+          ]
+        ],
+        "instruction": "只把字母汤罐头放进篮子里，番茄酱罐头保持原位。放好后停止，不要继续搬其他物体。",
+        "reference_skill": "pick up the alphabet soup can and place it in the basket",
+        "key": "task00_target0_init00"
+      },
+      "mode": "visual",
+      "directory": "episodes/pilot/task00_target0_init00/visual",
+      "selective_success": true,
+      "target_final_stable": true,
+      "final_released": true,
+      "protected_untouched": true,
+      "max_protected_displacement_m": 3.729655473350135e-14,
+      "first_valid_step": 183,
+      "first_violation_step": null,
+      "decision_step": 190,
+      "stop_reason": "visual",
+      "premature_stop": false,
+      "model_checks": 8,
+      "policy_instruction": "pick up the alphabet soup can and place it in the basket",
+      "selector_correct": true
+    },
+    {
+      "case": {
+        "task": 0,
+        "target_index": 1,
+        "initial": 0,
+        "target": "tomato_sauce_1",
+        "protected": "alphabet_soup_1",
+        "objects": [
+          [
+            "alphabet_soup_1",
+            "alphabet soup can",
+            "字母汤罐头"
+          ],
+          [
+            "tomato_sauce_1",
+            "tomato sauce can",
+            "番茄酱罐头"
+          ]
+        ],
+        "instruction": "只把番茄酱罐头放进篮子里，字母汤罐头保持原位。放好后停止，不要继续搬其他物体。",
+        "reference_skill": "pick up the tomato sauce can and place it in the basket",
+        "key": "task00_target1_init00"
+      },
+      "mode": "flat_zh",
+      "directory": "episodes/pilot/task00_target1_init00/flat_zh",
+      "selective_success": false,
+      "target_final_stable": true,
+      "final_released": true,
+      "protected_untouched": false,
+      "max_protected_displacement_m": 0.45177743328420805,
+      "first_valid_step": null,
+      "first_violation_step": 94,
+      "decision_step": 300,
+      "stop_reason": "budget",
+      "premature_stop": false,
+      "model_checks": 0,
+      "policy_instruction": "只把番茄酱罐头放进篮子里，字母汤罐头保持原位。放好后停止，不要继续搬其他物体。",
+      "selector_correct": true
+    },
+    {
+      "case": {
+        "task": 0,
+        "target_index": 1,
+        "initial": 0,
+        "target": "tomato_sauce_1",
+        "protected": "alphabet_soup_1",
+        "objects": [
+          [
+            "alphabet_soup_1",
+            "alphabet soup can",
+            "字母汤罐头"
+          ],
+          [
+            "tomato_sauce_1",
+            "tomato sauce can",
+            "番茄酱罐头"
+          ]
+        ],
+        "instruction": "只把番茄酱罐头放进篮子里，字母汤罐头保持原位。放好后停止，不要继续搬其他物体。",
+        "reference_skill": "pick up the tomato sauce can and place it in the basket",
+        "key": "task00_target1_init00"
+      },
+      "mode": "frozen",
+      "directory": "episodes/pilot/task00_target1_init00/frozen",
+      "selective_success": false,
+      "target_final_stable": true,
+      "final_released": true,
+      "protected_untouched": false,
+      "max_protected_displacement_m": 0.4568261914850483,
+      "first_valid_step": null,
+      "first_violation_step": 70,
+      "decision_step": 300,
+      "stop_reason": "budget",
+      "premature_stop": false,
+      "model_checks": 10,
+      "policy_instruction": "pick up the tomato sauce can and place it in the basket",
+      "selector_correct": true
+    },
+    {
+      "case": {
+        "task": 0,
+        "target_index": 1,
+        "initial": 0,
+        "target": "tomato_sauce_1",
+        "protected": "alphabet_soup_1",
+        "objects": [
+          [
+            "alphabet_soup_1",
+            "alphabet soup can",
+            "字母汤罐头"
+          ],
+          [
+            "tomato_sauce_1",
+            "tomato sauce can",
+            "番茄酱罐头"
+          ]
+        ],
+        "instruction": "只把番茄酱罐头放进篮子里，字母汤罐头保持原位。放好后停止，不要继续搬其他物体。",
+        "reference_skill": "pick up the tomato sauce can and place it in the basket",
+        "key": "task00_target1_init00"
+      },
+      "mode": "skill_continue",
+      "directory": "episodes/pilot/task00_target1_init00/skill_continue",
+      "selective_success": false,
+      "target_final_stable": true,
+      "final_released": true,
+      "protected_untouched": false,
+      "max_protected_displacement_m": 0.4568261914850483,
+      "first_valid_step": null,
+      "first_violation_step": 70,
+      "decision_step": 300,
+      "stop_reason": "budget",
+      "premature_stop": false,
+      "model_checks": 0,
+      "policy_instruction": "pick up the tomato sauce can and place it in the basket",
+      "selector_correct": true
+    },
+    {
+      "case": {
+        "task": 0,
+        "target_index": 1,
+        "initial": 0,
+        "target": "tomato_sauce_1",
+        "protected": "alphabet_soup_1",
+        "objects": [
+          [
+            "alphabet_soup_1",
+            "alphabet soup can",
+            "字母汤罐头"
+          ],
+          [
+            "tomato_sauce_1",
+            "tomato sauce can",
+            "番茄酱罐头"
+          ]
+        ],
+        "instruction": "只把番茄酱罐头放进篮子里，字母汤罐头保持原位。放好后停止，不要继续搬其他物体。",
+        "reference_skill": "pick up the tomato sauce can and place it in the basket",
+        "key": "task00_target1_init00"
+      },
+      "mode": "timer150",
+      "directory": "episodes/pilot/task00_target1_init00/timer150",
+      "selective_success": false,
+      "target_final_stable": false,
+      "final_released": true,
+      "protected_untouched": false,
+      "max_protected_displacement_m": 0.4568261914850483,
+      "first_valid_step": null,
+      "first_violation_step": 70,
+      "decision_step": 170,
+      "stop_reason": "timer150",
+      "premature_stop": true,
+      "model_checks": 0,
+      "policy_instruction": "pick up the tomato sauce can and place it in the basket",
+      "selector_correct": true
+    },
+    {
+      "case": {
+        "task": 0,
+        "target_index": 1,
+        "initial": 0,
+        "target": "tomato_sauce_1",
+        "protected": "alphabet_soup_1",
+        "objects": [
+          [
+            "alphabet_soup_1",
+            "alphabet soup can",
+            "字母汤罐头"
+          ],
+          [
+            "tomato_sauce_1",
+            "tomato sauce can",
+            "番茄酱罐头"
+          ]
+        ],
+        "instruction": "只把番茄酱罐头放进篮子里，字母汤罐头保持原位。放好后停止，不要继续搬其他物体。",
+        "reference_skill": "pick up the tomato sauce can and place it in the basket",
+        "key": "task00_target1_init00"
+      },
+      "mode": "timer_calibrated",
+      "directory": "episodes/pilot/task00_target1_init00/timer_calibrated",
+      "selective_success": false,
+      "target_final_stable": false,
+      "final_released": true,
+      "protected_untouched": false,
+      "max_protected_displacement_m": 0.4568261914850483,
+      "first_valid_step": null,
+      "first_violation_step": 70,
+      "decision_step": 170,
+      "stop_reason": "timer_calibrated",
+      "premature_stop": true,
+      "model_checks": 0,
+      "policy_instruction": "pick up the tomato sauce can and place it in the basket",
+      "selector_correct": true
+    },
+    {
+      "case": {
+        "task": 0,
+        "target_index": 1,
+        "initial": 0,
+        "target": "tomato_sauce_1",
+        "protected": "alphabet_soup_1",
+        "objects": [
+          [
+            "alphabet_soup_1",
+            "alphabet soup can",
+            "字母汤罐头"
+          ],
+          [
+            "tomato_sauce_1",
+            "tomato sauce can",
+            "番茄酱罐头"
+          ]
+        ],
+        "instruction": "只把番茄酱罐头放进篮子里，字母汤罐头保持原位。放好后停止，不要继续搬其他物体。",
+        "reference_skill": "pick up the tomato sauce can and place it in the basket",
+        "key": "task00_target1_init00"
+      },
+      "mode": "translated_en",
+      "directory": "episodes/pilot/task00_target1_init00/translated_en",
+      "selective_success": false,
+      "target_final_stable": true,
+      "final_released": true,
+      "protected_untouched": false,
+      "max_protected_displacement_m": 0.45187927855131593,
+      "first_valid_step": null,
+      "first_violation_step": 87,
+      "decision_step": 300,
+      "stop_reason": "budget",
+      "premature_stop": false,
+      "model_checks": 0,
+      "policy_instruction": "Put the ketchup can in the basket and leave the letter soup can where it is.",
+      "selector_correct": true
+    },
+    {
+      "case": {
+        "task": 0,
+        "target_index": 1,
+        "initial": 0,
+        "target": "tomato_sauce_1",
+        "protected": "alphabet_soup_1",
+        "objects": [
+          [
+            "alphabet_soup_1",
+            "alphabet soup can",
+            "字母汤罐头"
+          ],
+          [
+            "tomato_sauce_1",
+            "tomato sauce can",
+            "番茄酱罐头"
+          ]
+        ],
+        "instruction": "只把番茄酱罐头放进篮子里，字母汤罐头保持原位。放好后停止，不要继续搬其他物体。",
+        "reference_skill": "pick up the tomato sauce can and place it in the basket",
+        "key": "task00_target1_init00"
+      },
+      "mode": "visual",
+      "directory": "episodes/pilot/task00_target1_init00/visual",
+      "selective_success": false,
+      "target_final_stable": false,
+      "final_released": true,
+      "protected_untouched": false,
+      "max_protected_displacement_m": 0.4568261914850483,
+      "first_valid_step": null,
+      "first_violation_step": 70,
+      "decision_step": 180,
+      "stop_reason": "visual",
+      "premature_stop": true,
+      "model_checks": 8,
+      "policy_instruction": "pick up the tomato sauce can and place it in the basket",
+      "selector_correct": true
+    },
+    {
+      "case": {
+        "task": 1,
+        "target_index": 0,
+        "initial": 0,
+        "target": "cream_cheese_1",
+        "protected": "butter_1",
+        "objects": [
+          [
+            "cream_cheese_1",
+            "cream cheese box",
+            "奶油奶酪盒"
+          ],
+          [
+            "butter_1",
+            "butter",
+            "黄油"
+          ]
+        ],
+        "instruction": "只把奶油奶酪盒放进篮子里，黄油保持原位。放好后停止，不要继续搬其他物体。",
+        "reference_skill": "pick up the cream cheese box and place it in the basket",
+        "key": "task01_target0_init00"
+      },
+      "mode": "flat_zh",
+      "directory": "episodes/pilot/task01_target0_init00/flat_zh",
+      "selective_success": false,
+      "target_final_stable": false,
+      "final_released": true,
+      "protected_untouched": true,
+      "max_protected_displacement_m": 0.0,
+      "first_valid_step": null,
+      "first_violation_step": null,
+      "decision_step": 300,
+      "stop_reason": "budget",
+      "premature_stop": false,
+      "model_checks": 0,
+      "policy_instruction": "只把奶油奶酪盒放进篮子里，黄油保持原位。放好后停止，不要继续搬其他物体。",
+      "selector_correct": true
+    },
+    {
+      "case": {
+        "task": 1,
+        "target_index": 0,
+        "initial": 0,
+        "target": "cream_cheese_1",
+        "protected": "butter_1",
+        "objects": [
+          [
+            "cream_cheese_1",
+            "cream cheese box",
+            "奶油奶酪盒"
+          ],
+          [
+            "butter_1",
+            "butter",
+            "黄油"
+          ]
+        ],
+        "instruction": "只把奶油奶酪盒放进篮子里，黄油保持原位。放好后停止，不要继续搬其他物体。",
+        "reference_skill": "pick up the cream cheese box and place it in the basket",
+        "key": "task01_target0_init00"
+      },
+      "mode": "frozen",
+      "directory": "episodes/pilot/task01_target0_init00/frozen",
+      "selective_success": false,
+      "target_final_stable": true,
+      "final_released": true,
+      "protected_untouched": false,
+      "max_protected_displacement_m": 0.27925231474778767,
+      "first_valid_step": 152,
+      "first_violation_step": 202,
+      "decision_step": 300,
+      "stop_reason": "budget",
+      "premature_stop": false,
+      "model_checks": 14,
+      "policy_instruction": "pick up the cream cheese box and place it in the basket",
+      "selector_correct": true
+    },
+    {
+      "case": {
+        "task": 1,
+        "target_index": 0,
+        "initial": 0,
+        "target": "cream_cheese_1",
+        "protected": "butter_1",
+        "objects": [
+          [
+            "cream_cheese_1",
+            "cream cheese box",
+            "奶油奶酪盒"
+          ],
+          [
+            "butter_1",
+            "butter",
+            "黄油"
+          ]
+        ],
+        "instruction": "只把奶油奶酪盒放进篮子里，黄油保持原位。放好后停止，不要继续搬其他物体。",
+        "reference_skill": "pick up the cream cheese box and place it in the basket",
+        "key": "task01_target0_init00"
+      },
+      "mode": "skill_continue",
+      "directory": "episodes/pilot/task01_target0_init00/skill_continue",
+      "selective_success": false,
+      "target_final_stable": true,
+      "final_released": true,
+      "protected_untouched": false,
+      "max_protected_displacement_m": 0.27925231474778767,
+      "first_valid_step": 152,
+      "first_violation_step": 202,
+      "decision_step": 300,
+      "stop_reason": "budget",
+      "premature_stop": false,
+      "model_checks": 0,
+      "policy_instruction": "pick up the cream cheese box and place it in the basket",
+      "selector_correct": true
+    },
+    {
+      "case": {
+        "task": 1,
+        "target_index": 0,
+        "initial": 0,
+        "target": "cream_cheese_1",
+        "protected": "butter_1",
+        "objects": [
+          [
+            "cream_cheese_1",
+            "cream cheese box",
+            "奶油奶酪盒"
+          ],
+          [
+            "butter_1",
+            "butter",
+            "黄油"
+          ]
+        ],
+        "instruction": "只把奶油奶酪盒放进篮子里，黄油保持原位。放好后停止，不要继续搬其他物体。",
+        "reference_skill": "pick up the cream cheese box and place it in the basket",
+        "key": "task01_target0_init00"
+      },
+      "mode": "timer150",
+      "directory": "episodes/pilot/task01_target0_init00/timer150",
+      "selective_success": true,
+      "target_final_stable": true,
+      "final_released": true,
+      "protected_untouched": true,
+      "max_protected_displacement_m": 0.0,
+      "first_valid_step": 152,
+      "first_violation_step": null,
+      "decision_step": 160,
+      "stop_reason": "timer150",
+      "premature_stop": false,
+      "model_checks": 0,
+      "policy_instruction": "pick up the cream cheese box and place it in the basket",
+      "selector_correct": true
+    },
+    {
+      "case": {
+        "task": 1,
+        "target_index": 0,
+        "initial": 0,
+        "target": "cream_cheese_1",
+        "protected": "butter_1",
+        "objects": [
+          [
+            "cream_cheese_1",
+            "cream cheese box",
+            "奶油奶酪盒"
+          ],
+          [
+            "butter_1",
+            "butter",
+            "黄油"
+          ]
+        ],
+        "instruction": "只把奶油奶酪盒放进篮子里，黄油保持原位。放好后停止，不要继续搬其他物体。",
+        "reference_skill": "pick up the cream cheese box and place it in the basket",
+        "key": "task01_target0_init00"
+      },
+      "mode": "timer_calibrated",
+      "directory": "episodes/pilot/task01_target0_init00/timer_calibrated",
+      "selective_success": true,
+      "target_final_stable": true,
+      "final_released": true,
+      "protected_untouched": true,
+      "max_protected_displacement_m": 0.0,
+      "first_valid_step": 152,
+      "first_violation_step": null,
+      "decision_step": 170,
+      "stop_reason": "timer_calibrated",
+      "premature_stop": false,
+      "model_checks": 0,
+      "policy_instruction": "pick up the cream cheese box and place it in the basket",
+      "selector_correct": true
+    },
+    {
+      "case": {
+        "task": 1,
+        "target_index": 0,
+        "initial": 0,
+        "target": "cream_cheese_1",
+        "protected": "butter_1",
+        "objects": [
+          [
+            "cream_cheese_1",
+            "cream cheese box",
+            "奶油奶酪盒"
+          ],
+          [
+            "butter_1",
+            "butter",
+            "黄油"
+          ]
+        ],
+        "instruction": "只把奶油奶酪盒放进篮子里，黄油保持原位。放好后停止，不要继续搬其他物体。",
+        "reference_skill": "pick up the cream cheese box and place it in the basket",
+        "key": "task01_target0_init00"
+      },
+      "mode": "translated_en",
+      "directory": "episodes/pilot/task01_target0_init00/translated_en",
+      "selective_success": false,
+      "target_final_stable": true,
+      "final_released": true,
+      "protected_untouched": false,
+      "max_protected_displacement_m": 0.2638788881322448,
+      "first_valid_step": 157,
+      "first_violation_step": 207,
+      "decision_step": 300,
+      "stop_reason": "budget",
+      "premature_stop": false,
+      "model_checks": 0,
+      "policy_instruction": "Put the cream cheese box in the basket, leave the butter in place, and stop.",
+      "selector_correct": true
+    },
+    {
+      "case": {
+        "task": 1,
+        "target_index": 0,
+        "initial": 0,
+        "target": "cream_cheese_1",
+        "protected": "butter_1",
+        "objects": [
+          [
+            "cream_cheese_1",
+            "cream cheese box",
+            "奶油奶酪盒"
+          ],
+          [
+            "butter_1",
+            "butter",
+            "黄油"
+          ]
+        ],
+        "instruction": "只把奶油奶酪盒放进篮子里，黄油保持原位。放好后停止，不要继续搬其他物体。",
+        "reference_skill": "pick up the cream cheese box and place it in the basket",
+        "key": "task01_target0_init00"
+      },
+      "mode": "visual",
+      "directory": "episodes/pilot/task01_target0_init00/visual",
+      "selective_success": false,
+      "target_final_stable": true,
+      "final_released": true,
+      "protected_untouched": false,
+      "max_protected_displacement_m": 0.27925231474778767,
+      "first_valid_step": 152,
+      "first_violation_step": 202,
+      "decision_step": 300,
+      "stop_reason": "budget",
+      "premature_stop": false,
+      "model_checks": 14,
+      "policy_instruction": "pick up the cream cheese box and place it in the basket",
+      "selector_correct": true
+    },
+    {
+      "case": {
+        "task": 1,
+        "target_index": 1,
+        "initial": 0,
+        "target": "butter_1",
+        "protected": "cream_cheese_1",
+        "objects": [
+          [
+            "cream_cheese_1",
+            "cream cheese box",
+            "奶油奶酪盒"
+          ],
+          [
+            "butter_1",
+            "butter",
+            "黄油"
+          ]
+        ],
+        "instruction": "只把黄油放进篮子里，奶油奶酪盒保持原位。放好后停止，不要继续搬其他物体。",
+        "reference_skill": "pick up the butter and place it in the basket",
+        "key": "task01_target1_init00"
+      },
+      "mode": "flat_zh",
+      "directory": "episodes/pilot/task01_target1_init00/flat_zh",
+      "selective_success": false,
+      "target_final_stable": false,
+      "final_released": true,
+      "protected_untouched": true,
+      "max_protected_displacement_m": 0.0,
+      "first_valid_step": null,
+      "first_violation_step": null,
+      "decision_step": 300,
+      "stop_reason": "budget",
+      "premature_stop": false,
+      "model_checks": 0,
+      "policy_instruction": "只把黄油放进篮子里，奶油奶酪盒保持原位。放好后停止，不要继续搬其他物体。",
+      "selector_correct": true
+    },
+    {
+      "case": {
+        "task": 1,
+        "target_index": 1,
+        "initial": 0,
+        "target": "butter_1",
+        "protected": "cream_cheese_1",
+        "objects": [
+          [
+            "cream_cheese_1",
+            "cream cheese box",
+            "奶油奶酪盒"
+          ],
+          [
+            "butter_1",
+            "butter",
+            "黄油"
+          ]
+        ],
+        "instruction": "只把黄油放进篮子里，奶油奶酪盒保持原位。放好后停止，不要继续搬其他物体。",
+        "reference_skill": "pick up the butter and place it in the basket",
+        "key": "task01_target1_init00"
+      },
+      "mode": "frozen",
+      "directory": "episodes/pilot/task01_target1_init00/frozen",
+      "selective_success": false,
+      "target_final_stable": true,
+      "final_released": true,
+      "protected_untouched": false,
+      "max_protected_displacement_m": 0.4666048866499486,
+      "first_valid_step": null,
+      "first_violation_step": 71,
+      "decision_step": 300,
+      "stop_reason": "budget",
+      "premature_stop": false,
+      "model_checks": 14,
+      "policy_instruction": "pick up the butter and place it in the basket",
+      "selector_correct": true
+    },
+    {
+      "case": {
+        "task": 1,
+        "target_index": 1,
+        "initial": 0,
+        "target": "butter_1",
+        "protected": "cream_cheese_1",
+        "objects": [
+          [
+            "cream_cheese_1",
+            "cream cheese box",
+            "奶油奶酪盒"
+          ],
+          [
+            "butter_1",
+            "butter",
+            "黄油"
+          ]
+        ],
+        "instruction": "只把黄油放进篮子里，奶油奶酪盒保持原位。放好后停止，不要继续搬其他物体。",
+        "reference_skill": "pick up the butter and place it in the basket",
+        "key": "task01_target1_init00"
+      },
+      "mode": "skill_continue",
+      "directory": "episodes/pilot/task01_target1_init00/skill_continue",
+      "selective_success": false,
+      "target_final_stable": true,
+      "final_released": true,
+      "protected_untouched": false,
+      "max_protected_displacement_m": 0.4666048866499486,
+      "first_valid_step": null,
+      "first_violation_step": 71,
+      "decision_step": 300,
+      "stop_reason": "budget",
+      "premature_stop": false,
+      "model_checks": 0,
+      "policy_instruction": "pick up the butter and place it in the basket",
+      "selector_correct": true
+    },
+    {
+      "case": {
+        "task": 1,
+        "target_index": 1,
+        "initial": 0,
+        "target": "butter_1",
+        "protected": "cream_cheese_1",
+        "objects": [
+          [
+            "cream_cheese_1",
+            "cream cheese box",
+            "奶油奶酪盒"
+          ],
+          [
+            "butter_1",
+            "butter",
+            "黄油"
+          ]
+        ],
+        "instruction": "只把黄油放进篮子里，奶油奶酪盒保持原位。放好后停止，不要继续搬其他物体。",
+        "reference_skill": "pick up the butter and place it in the basket",
+        "key": "task01_target1_init00"
+      },
+      "mode": "timer150",
+      "directory": "episodes/pilot/task01_target1_init00/timer150",
+      "selective_success": false,
+      "target_final_stable": false,
+      "final_released": true,
+      "protected_untouched": false,
+      "max_protected_displacement_m": 0.4666048866499486,
+      "first_valid_step": null,
+      "first_violation_step": 71,
+      "decision_step": 170,
+      "stop_reason": "timer150",
+      "premature_stop": true,
+      "model_checks": 0,
+      "policy_instruction": "pick up the butter and place it in the basket",
+      "selector_correct": true
+    },
+    {
+      "case": {
+        "task": 1,
+        "target_index": 1,
+        "initial": 0,
+        "target": "butter_1",
+        "protected": "cream_cheese_1",
+        "objects": [
+          [
+            "cream_cheese_1",
+            "cream cheese box",
+            "奶油奶酪盒"
+          ],
+          [
+            "butter_1",
+            "butter",
+            "黄油"
+          ]
+        ],
+        "instruction": "只把黄油放进篮子里，奶油奶酪盒保持原位。放好后停止，不要继续搬其他物体。",
+        "reference_skill": "pick up the butter and place it in the basket",
+        "key": "task01_target1_init00"
+      },
+      "mode": "timer_calibrated",
+      "directory": "episodes/pilot/task01_target1_init00/timer_calibrated",
+      "selective_success": false,
+      "target_final_stable": false,
+      "final_released": true,
+      "protected_untouched": false,
+      "max_protected_displacement_m": 0.4666048866499486,
+      "first_valid_step": null,
+      "first_violation_step": 71,
+      "decision_step": 170,
+      "stop_reason": "timer_calibrated",
+      "premature_stop": true,
+      "model_checks": 0,
+      "policy_instruction": "pick up the butter and place it in the basket",
+      "selector_correct": true
+    },
+    {
+      "case": {
+        "task": 1,
+        "target_index": 1,
+        "initial": 0,
+        "target": "butter_1",
+        "protected": "cream_cheese_1",
+        "objects": [
+          [
+            "cream_cheese_1",
+            "cream cheese box",
+            "奶油奶酪盒"
+          ],
+          [
+            "butter_1",
+            "butter",
+            "黄油"
+          ]
+        ],
+        "instruction": "只把黄油放进篮子里，奶油奶酪盒保持原位。放好后停止，不要继续搬其他物体。",
+        "reference_skill": "pick up the butter and place it in the basket",
+        "key": "task01_target1_init00"
+      },
+      "mode": "translated_en",
+      "directory": "episodes/pilot/task01_target1_init00/translated_en",
+      "selective_success": false,
+      "target_final_stable": true,
+      "final_released": true,
+      "protected_untouched": false,
+      "max_protected_displacement_m": 0.4692584963141386,
+      "first_valid_step": null,
+      "first_violation_step": 78,
+      "decision_step": 300,
+      "stop_reason": "budget",
+      "premature_stop": false,
+      "model_checks": 0,
+      "policy_instruction": "Put the butter in the basket, leave the cream cheese box in place, and stop.",
+      "selector_correct": true
+    },
+    {
+      "case": {
+        "task": 1,
+        "target_index": 1,
+        "initial": 0,
+        "target": "butter_1",
+        "protected": "cream_cheese_1",
+        "objects": [
+          [
+            "cream_cheese_1",
+            "cream cheese box",
+            "奶油奶酪盒"
+          ],
+          [
+            "butter_1",
+            "butter",
+            "黄油"
+          ]
+        ],
+        "instruction": "只把黄油放进篮子里，奶油奶酪盒保持原位。放好后停止，不要继续搬其他物体。",
+        "reference_skill": "pick up the butter and place it in the basket",
+        "key": "task01_target1_init00"
+      },
+      "mode": "visual",
+      "directory": "episodes/pilot/task01_target1_init00/visual",
+      "selective_success": false,
+      "target_final_stable": true,
+      "final_released": true,
+      "protected_untouched": false,
+      "max_protected_displacement_m": 0.4666048866499486,
+      "first_valid_step": null,
+      "first_violation_step": 71,
+      "decision_step": 300,
+      "stop_reason": "budget",
+      "premature_stop": false,
+      "model_checks": 14,
+      "policy_instruction": "pick up the butter and place it in the basket",
+      "selector_correct": true
+    }
+  ],
+  "development_strata": {
+    "validated_direction": {
+      "flat_zh": {
+        "n": 2,
+        "success": 0
+      },
+      "translated_en": {
+        "n": 2,
+        "success": 0
+      },
+      "skill_continue": {
+        "n": 2,
+        "success": 0
+      },
+      "timer150": {
+        "n": 2,
+        "success": 2
+      },
+      "timer_calibrated": {
+        "n": 2,
+        "success": 2
+      },
+      "visual": {
+        "n": 2,
+        "success": 1
+      },
+      "frozen": {
+        "n": 2,
+        "success": 0
+      }
+    },
+    "unvalidated_direction": {
+      "flat_zh": {
+        "n": 2,
+        "success": 0
+      },
+      "translated_en": {
+        "n": 2,
+        "success": 0
+      },
+      "skill_continue": {
+        "n": 2,
+        "success": 0
+      },
+      "timer150": {
+        "n": 2,
+        "success": 0
+      },
+      "timer_calibrated": {
+        "n": 2,
+        "success": 0
+      },
+      "visual": {
+        "n": 2,
+        "success": 0
+      },
+      "frozen": {
+        "n": 2,
+        "success": 0
+      }
+    }
+  },
+  "posthoc_position_tolerance_sensitivity": {
+    "0.01": {
+      "flat_zh": 0,
+      "translated_en": 0,
+      "skill_continue": 0,
+      "timer150": 2,
+      "timer_calibrated": 2,
+      "visual": 1,
+      "frozen": 0
+    },
+    "0.02": {
+      "flat_zh": 0,
+      "translated_en": 0,
+      "skill_continue": 0,
+      "timer150": 2,
+      "timer_calibrated": 2,
+      "visual": 1,
+      "frozen": 0
+    },
+    "0.03": {
+      "flat_zh": 0,
+      "translated_en": 0,
+      "skill_continue": 0,
+      "timer150": 2,
+      "timer_calibrated": 2,
+      "visual": 1,
+      "frozen": 0
+    },
+    "0.05": {
+      "flat_zh": 0,
+      "translated_en": 0,
+      "skill_continue": 0,
+      "timer150": 2,
+      "timer_calibrated": 2,
+      "visual": 1,
+      "frozen": 0
+    }
+  }
+}

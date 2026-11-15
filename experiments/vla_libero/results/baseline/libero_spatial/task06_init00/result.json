@@ -1,0 +1,36 @@
+{
+  "runner_sha256": "e5d28552be82d553e09b3fcfe45aa95bbc6d38b0338899c2536ed1407935bb9d",
+  "suite": "libero_spatial",
+  "task_id": 6,
+  "initial_state_id": 0,
+  "mode": "baseline",
+  "environment_seed": 7,
+  "noise_seed": 700600,
+  "initial_state_sha256": "d81530779b15be6bdfe4935a7a802102e3e3883823b29fefd40a2131e50fd515",
+  "original_prompt": "pick up the black bowl next to the cookie box and place it on the plate",
+  "input_prompt": "pick up the black bowl next to the cookie box and place it on the plate",
+  "replan_steps": 5,
+  "denoising_steps": 10,
+  "max_steps": 220,
+  "status": "success",
+  "success": true,
+  "steps": 108,
+  "alternate_goal_evaluable": false,
+  "alternate_goal_ever_satisfied": null,
+  "initial_eef": [
+    -0.2060284966327901,
+    -0.008319330885620752,
+    1.1800995481953256
+  ],
+  "final_eef": [
+    0.09518016157607498,
+    0.22896583811826904,
+    0.9400938269240942
+  ],
+  "qpos_displacement_norm": 2.294887774151217,
+  "simulation_elapsed_s": 5.4,
+  "wall_s": 4.865149449000455,
+  "query_count": 22,
+  "warmup_query_wall_s": 0.07739028400010284,
+  "query_median_excluding_first_s": 0.07493971199983207
+}

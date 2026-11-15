@@ -1,0 +1,162 @@
+{
+  "suite": "libero_10",
+  "task_id": 8,
+  "initial_state_id": 0,
+  "original_task_language": "put both moka pots on the stove",
+  "input_instruction": "把两个摩卡壶都放到炉子上",
+  "planner": "qwen",
+  "monitor": "qwen",
+  "max_steps": 520,
+  "subgoal_step_budget": 300,
+  "monitor_every_queries": 4,
+  "monitor_res": 512,
+  "gripper_gate": true,
+  "noise_seed": 730800,
+  "runner_sha256": "470de827f0e88145ff2471f24abce6976a623683b9c04d2f0ed61c168e9c647c",
+  "events": [
+    {
+      "kind": "plan",
+      "step": 0,
+      "ok": true,
+      "seconds": 1.8035892780007998,
+      "raw": "{\n  \"subgoals\": [\n    {\n      \"instruction\": \"put the first moka pot on the stove\",\n      \"completion_hint\": \"The first moka pot is now resting on the stove.\"\n    },\n    {\n      \"instruction\": \"put the second moka pot on the stove\",\n      \"completion_hint\": \"The second moka pot is now resting on the stove.\"\n    }\n  ]\n}",
+      "error": null
+    },
+    {
+      "kind": "subgoal_start",
+      "step": 0,
+      "index": 0,
+      "subgoal": "put the first moka pot on the stove"
+    },
+    {
+      "kind": "check",
+      "step": 20,
+      "index": 0,
+      "done": false,
+      "seconds": 0.34616250900035084,
+      "reason": "No change detected.",
+      "error": null,
+      "shadow_long_task_atoms": [
+        false,
+        false,
+        true
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 40,
+      "index": 0,
+      "done": false,
+      "seconds": 0.37770340600036434,
+      "reason": "No change detected at the destination.",
+      "error": null,
+      "shadow_long_task_atoms": [
+        false,
+        false,
+        true
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 60,
+      "index": 0,
+      "done": false,
+      "seconds": 0.3751245679995918,
+      "reason": "No change detected at the destination.",
+      "error": null,
+      "shadow_long_task_atoms": [
+        false,
+        false,
+        true
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 80,
+      "index": 0,
+      "done": false,
+      "seconds": 0.6854828380000981,
+      "reason": "The robot has moved its arm and is now positioned over the first moka pot, indicating it is about to place it on the stove.",
+      "error": null,
+      "shadow_long_task_atoms": [
+        false,
+        false,
+        true
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 200,
+      "index": 0,
+      "done": true,
+      "seconds": 0.44190784500096925,
+      "reason": "The first moka pot has been placed on the stove.",
+      "error": null,
+      "shadow_long_task_atoms": [
+        false,
+        true,
+        true
+      ]
+    },
+    {
+      "kind": "subgoal_end",
+      "step": 200,
+      "index": 0,
+      "reason": "done",
+      "long_task_atoms": [
+        false,
+        true,
+        true
+      ]
+    },
+    {
+      "kind": "subgoal_start",
+      "step": 200,
+      "index": 1,
+      "subgoal": "put the second moka pot on the stove"
+    },
+    {
+      "kind": "check",
+      "step": 220,
+      "index": 1,
+      "done": true,
+      "seconds": 0.5886909269993339,
+      "reason": "The robot has placed the second moka pot on the stove, which was not there in image 1.",
+      "error": null,
+      "shadow_long_task_atoms": [
+        false,
+        true,
+        true
+      ]
+    },
+    {
+      "kind": "subgoal_end",
+      "step": 220,
+      "index": 1,
+      "reason": "done",
+      "long_task_atoms": [
+        false,
+        true,
+        true
+      ]
+    },
+    {
+      "kind": "plan_exhausted",
+      "step": 220
+    }
+  ],
+  "status": "plan_exhausted",
+  "success": false,
+  "subgoals": [
+    "put the first moka pot on the stove",
+    "put the second moka pot on the stove"
+  ],
+  "steps": 220,
+  "policy_queries": 44,
+  "qwen_checks": 6,
+  "final_atoms": [
+    false,
+    true,
+    true
+  ]
+}

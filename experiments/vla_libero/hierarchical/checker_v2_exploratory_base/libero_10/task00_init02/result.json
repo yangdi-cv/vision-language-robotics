@@ -1,0 +1,142 @@
+{
+  "suite": "libero_10",
+  "task_id": 0,
+  "initial_state_id": 2,
+  "original_task_language": "put both the alphabet soup and the tomato sauce in the basket",
+  "input_instruction": "把字母汤罐头和番茄沙司罐头都放进篮子里",
+  "planner": "qwen",
+  "execution_profile": "legacy",
+  "planner_profile": "base",
+  "checker_adapter": "/home/yd/Documents/VLA/experiments/vla_libero/checker_v2/results/model/best_adapter",
+  "monitor": "qwen",
+  "max_steps": 520,
+  "subgoal_step_budget": 300,
+  "monitor_every_queries": 4,
+  "monitor_res": 512,
+  "gripper_gate": true,
+  "confirm": 2,
+  "max_replans": 0,
+  "last_subgoal_runs_to_limit": true,
+  "noise_seed": 730002,
+  "runner_sha256": "5df3e099c80231cf64851590c58b1b63d08bc1a2468cb3f1af5729ea5c9e3901",
+  "events": [
+    {
+      "kind": "plan",
+      "step": 0,
+      "ok": true,
+      "seconds": 1.5518999134656042e-05,
+      "raw": "[\"pick up the alphabet soup can and place it in the basket\", \"pick up the tomato sauce bottle and place it in the basket\"]",
+      "error": null
+    },
+    {
+      "kind": "subgoal_start",
+      "step": 0,
+      "index": 0,
+      "subgoal": "pick up the alphabet soup can and place it in the basket"
+    },
+    {
+      "kind": "check",
+      "step": 20,
+      "index": 0,
+      "done": false,
+      "confirmed": false,
+      "seconds": 0.33864330400683684,
+      "checker": "base",
+      "status": null,
+      "scores": null,
+      "reason": "No change detected.",
+      "error": null,
+      "shadow_long_task_atoms": [
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 40,
+      "index": 0,
+      "done": false,
+      "confirmed": false,
+      "seconds": 0.3359436940008891,
+      "checker": "base",
+      "status": null,
+      "scores": null,
+      "reason": "No change detected",
+      "error": null,
+      "shadow_long_task_atoms": [
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 140,
+      "index": 0,
+      "done": false,
+      "confirmed": false,
+      "seconds": 0.33851718500227435,
+      "checker": "base",
+      "status": null,
+      "scores": null,
+      "reason": "No change detected.",
+      "error": null,
+      "shadow_long_task_atoms": [
+        true,
+        false
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 160,
+      "index": 0,
+      "done": false,
+      "confirmed": false,
+      "seconds": 0.5538051170005929,
+      "checker": "base",
+      "status": null,
+      "scores": null,
+      "reason": "No change detected; the alphabet soup can is still on the table and not in the basket.",
+      "error": null,
+      "shadow_long_task_atoms": [
+        true,
+        false
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 180,
+      "index": 0,
+      "done": false,
+      "confirmed": false,
+      "seconds": 0.655159083995386,
+      "checker": "base",
+      "status": null,
+      "scores": null,
+      "reason": "The alphabet soup can is now being picked up by the robot, indicating a state change from resting on the table to being held.",
+      "error": null,
+      "shadow_long_task_atoms": [
+        true,
+        false
+      ]
+    }
+  ],
+  "status": "success",
+  "success": true,
+  "subgoals": [
+    "pick up the alphabet soup can and place it in the basket",
+    "pick up the tomato sauce bottle and place it in the basket"
+  ],
+  "steps": 254,
+  "policy_queries": 51,
+  "qwen_checks": 5,
+  "replans": 0,
+  "full_task_fallback": false,
+  "final_subgoals": [
+    "pick up the alphabet soup can and place it in the basket",
+    "pick up the tomato sauce bottle and place it in the basket"
+  ],
+  "final_atoms": [
+    true,
+    true
+  ]
+}

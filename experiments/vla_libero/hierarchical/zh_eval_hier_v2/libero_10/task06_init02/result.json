@@ -1,0 +1,105 @@
+{
+  "suite": "libero_10",
+  "task_id": 6,
+  "initial_state_id": 2,
+  "original_task_language": "put the white mug on the plate and put the chocolate pudding to the right of the plate",
+  "input_instruction": "把白色马克杯放到盘子上，再把巧克力布丁放到盘子右边",
+  "planner": "qwen",
+  "monitor": "qwen",
+  "max_steps": 520,
+  "subgoal_step_budget": 300,
+  "monitor_every_queries": 4,
+  "monitor_res": 512,
+  "gripper_gate": true,
+  "confirm": 2,
+  "last_subgoal_runs_to_limit": true,
+  "noise_seed": 730602,
+  "runner_sha256": "05d5d8308e3282e683448fad8ccb2b1bff0dcbb4f27f9d8a497c867e7382ae7e",
+  "events": [
+    {
+      "kind": "plan",
+      "step": 0,
+      "ok": true,
+      "seconds": 1.2884580720001395,
+      "raw": "{\n  \"subgoals\": [\n    {\n      \"instruction\": \"put the white mug on the plate\",\n      \"completion_hint\": \"The white mug is now resting on top of the plate.\"\n    },\n    {\n      \"instruction\": \"put the chocolate pudding to the right of the plate\",\n      \"completion_hint\": \"The chocolate pudding is now positioned to the right of the plate.\"\n    }\n  ]\n}",
+      "error": null
+    },
+    {
+      "kind": "subgoal_start",
+      "step": 0,
+      "index": 0,
+      "subgoal": "put the white mug on the plate"
+    },
+    {
+      "kind": "check",
+      "step": 20,
+      "index": 0,
+      "done": false,
+      "confirmed": false,
+      "seconds": 0.34176161699906515,
+      "reason": "No change detected.",
+      "error": null,
+      "shadow_long_task_atoms": [
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 140,
+      "index": 0,
+      "done": true,
+      "confirmed": false,
+      "seconds": 0.5517407949992048,
+      "reason": "The white mug is now on the plate, which was not the case in image 1.",
+      "error": null,
+      "shadow_long_task_atoms": [
+        true,
+        false
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 160,
+      "index": 0,
+      "done": true,
+      "confirmed": true,
+      "seconds": 0.5512235330006661,
+      "reason": "The white mug is now on the plate, which was not the case in image 1.",
+      "error": null,
+      "shadow_long_task_atoms": [
+        true,
+        false
+      ]
+    },
+    {
+      "kind": "subgoal_end",
+      "step": 160,
+      "index": 0,
+      "reason": "done",
+      "long_task_atoms": [
+        true,
+        false
+      ]
+    },
+    {
+      "kind": "subgoal_start",
+      "step": 160,
+      "index": 1,
+      "subgoal": "put the chocolate pudding to the right of the plate"
+    }
+  ],
+  "status": "success",
+  "success": true,
+  "subgoals": [
+    "put the white mug on the plate",
+    "put the chocolate pudding to the right of the plate"
+  ],
+  "steps": 211,
+  "policy_queries": 43,
+  "qwen_checks": 3,
+  "final_atoms": [
+    true,
+    true
+  ]
+}

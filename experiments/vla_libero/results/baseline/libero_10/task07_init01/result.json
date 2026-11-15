@@ -1,0 +1,36 @@
+{
+  "runner_sha256": "e5d28552be82d553e09b3fcfe45aa95bbc6d38b0338899c2536ed1407935bb9d",
+  "suite": "libero_10",
+  "task_id": 7,
+  "initial_state_id": 1,
+  "mode": "baseline",
+  "environment_seed": 7,
+  "noise_seed": 730701,
+  "initial_state_sha256": "44f0d75550c414e622b03a43e56497e8c9bd0fe4a494c1d2b9c0c9625ed80120",
+  "original_prompt": "put both the alphabet soup and the cream cheese box in the basket",
+  "input_prompt": "put both the alphabet soup and the cream cheese box in the basket",
+  "replan_steps": 5,
+  "denoising_steps": 10,
+  "max_steps": 520,
+  "status": "success",
+  "success": true,
+  "steps": 294,
+  "alternate_goal_evaluable": false,
+  "alternate_goal_ever_satisfied": null,
+  "initial_eef": [
+    -0.057140207057423474,
+    0.00523887112140161,
+    0.6778780663869849
+  ],
+  "final_eef": [
+    -0.011756766301514383,
+    0.2575316564234999,
+    0.6386767273558004
+  ],
+  "qpos_displacement_norm": 1.0371125005208544,
+  "simulation_elapsed_s": 14.7,
+  "wall_s": 8.6311990410004,
+  "query_count": 59,
+  "warmup_query_wall_s": 0.07788131100005558,
+  "query_median_excluding_first_s": 0.07264564300021448
+}

@@ -1,0 +1,103 @@
+{
+  "suite": "libero_10",
+  "task_id": 1,
+  "initial_state_id": 2,
+  "original_task_language": "put both the cream cheese box and the butter in the basket",
+  "input_instruction": "把奶油奶酪盒和黄油都放进篮子里",
+  "planner": "qwen",
+  "monitor": "qwen",
+  "max_steps": 520,
+  "subgoal_step_budget": 300,
+  "monitor_every_queries": 4,
+  "monitor_res": 512,
+  "gripper_gate": true,
+  "confirm": 2,
+  "last_subgoal_runs_to_limit": true,
+  "noise_seed": 730102,
+  "runner_sha256": "05d5d8308e3282e683448fad8ccb2b1bff0dcbb4f27f9d8a497c867e7382ae7e",
+  "events": [
+    {
+      "kind": "plan",
+      "step": 0,
+      "ok": true,
+      "seconds": 1.2401278779998393,
+      "raw": "{\n  \"subgoals\": [\n    {\n      \"instruction\": \"pick up the cream cheese box and place it in the basket\",\n      \"completion_hint\": \"The cream cheese box is now inside the basket.\"\n    },\n    {\n      \"instruction\": \"pick up the butter box and place it in the basket\",\n      \"completion_hint\": \"The butter box is now inside the basket.\"\n    }\n  ]\n}",
+      "error": null
+    },
+    {
+      "kind": "subgoal_start",
+      "step": 0,
+      "index": 0,
+      "subgoal": "pick up the cream cheese box and place it in the basket"
+    },
+    {
+      "kind": "check",
+      "step": 20,
+      "index": 0,
+      "done": false,
+      "confirmed": false,
+      "seconds": 0.6198668420001923,
+      "reason": "No change detected at the destination (basket). The cream cheese box is still on the table and not in the basket.",
+      "error": null,
+      "shadow_long_task_atoms": [
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 40,
+      "index": 0,
+      "done": false,
+      "confirmed": false,
+      "seconds": 0.5946769580004911,
+      "reason": "No change detected at the destination (basket). The cream cheese box is still on the table and not in the basket.",
+      "error": null,
+      "shadow_long_task_atoms": [
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 140,
+      "index": 0,
+      "done": false,
+      "confirmed": false,
+      "seconds": 0.3149423120012216,
+      "reason": "No change detected",
+      "error": null,
+      "shadow_long_task_atoms": [
+        true,
+        false
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 160,
+      "index": 0,
+      "done": false,
+      "confirmed": false,
+      "seconds": 0.5996039100009511,
+      "reason": "No change detected at the destination (basket). The cream cheese box is still on the table and not in the basket.",
+      "error": null,
+      "shadow_long_task_atoms": [
+        true,
+        false
+      ]
+    }
+  ],
+  "status": "success",
+  "success": true,
+  "subgoals": [
+    "pick up the cream cheese box and place it in the basket",
+    "pick up the butter box and place it in the basket"
+  ],
+  "steps": 234,
+  "policy_queries": 47,
+  "qwen_checks": 4,
+  "final_atoms": [
+    true,
+    true
+  ]
+}

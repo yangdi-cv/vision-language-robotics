@@ -1,0 +1,9 @@
+{
+  "classes": [
+    "earbud_case",
+    "container"
+  ],
+  "rotation_clockwise": 0,
+  "split_policy": "Keep each physical layout group in one split.",
+  "created_utc": "2026-10-24T12:00:54.583975+00:00"
+}

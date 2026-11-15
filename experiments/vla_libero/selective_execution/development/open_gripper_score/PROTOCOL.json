@@ -1,0 +1,57 @@
+{
+  "modes": [
+    "flat_zh",
+    "translated_en",
+    "skill_continue",
+    "timer150",
+    "timer_calibrated",
+    "visual",
+    "frozen"
+  ],
+  "tasks": [
+    0,
+    1
+  ],
+  "target_indices": [
+    0,
+    1
+  ],
+  "development_initials": [
+    0
+  ],
+  "evaluation_initials": [
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "max_policy_steps": 300,
+  "settle_steps": 25,
+  "protected_position_limit_m": 0.03,
+  "final_target_stability_steps": 10,
+  "score": "target In basket in final10 settling frames AND released AND protected center never moves more than 30mm",
+  "scoring_scope": "Custom selective tasks; not original LIBERO-Long success rate; ignores original done for ALL controller stopping",
+  "control": "10-action chunks, execute first5; 10-step checks, released gripper gate, two consecutive eligible yes votes; reset on closed gripper or >20-step vote gap",
+  "calibration": "target-specific ceil(first end of10 consecutive valid released/placed/protected-safe steps /10)*10 from initial0 reference skill; 150 fallback when unavailable; fixed before evaluation",
+  "model": "Qwen/Qwen3-VL-4B-Instruct@ebb281ec70b05090aa6165b016eac8ec08e71b17; no adapter",
+  "policy": "official pi05_libero; 10 denoising steps; explicit paired noise",
+  "selector": "Qwen selects one target and protected ID from a supplied two-object vocabulary; deterministic English single-skill template",
+  "monitor": "Existing base before/after Qwen check; frozen substitutes reference for current; no simulator states sent",
+  "environment_seed": 7,
+  "noise_seed": "920000+task*100+initial; same across methods AND target directions",
+  "no_hardware": true,
+  "no_training": true,
+  "sources": {
+    "experiments/vla_libero/selective_execution/scripts/control.py": "38e750bdd0580a2cb7cd24f31c9212d78277fe42c5bf77ab7dfa9c793d705875",
+    "experiments/vla_libero/selective_execution/scripts/protocol.py": "0098f6945f622c8d14c0abd1e4fafda69ef7bfa7919056825f8e958a99e8cc94",
+    "experiments/vla_libero/selective_execution/scripts/run.py": "9bcee64cca56f8c2a81ce8242f2482abc75eb5a532e2dfad665b2b30fe6f5f5a",
+    "experiments/vla_libero/selective_execution/scripts/worker.py": "eabf321de58b827bd022188cc7c8aba5596e77f0488acbadec7d1988af789f78",
+    "experiments/vla_libero/scripts/evaluate.py": "e5d28552be82d553e09b3fcfe45aa95bbc6d38b0338899c2536ed1407935bb9d",
+    "experiments/vla_libero/scripts/run_hierarchical.py": "fe190d99b57b276fbe12d3f8e2fd072dd658377f68517ae59c30d12ddda365c3",
+    "experiments/vla_libero/scripts/qwen_planner.py": "87ea0a00e0a662d034cfc200b326cd569ecd2f32f57fe6681851fefdd47aabc7",
+    "experiments/vla_libero/scripts/episode_journal.py": "b73d991a76b216a17564febbdf3d4990712786bec06d5af56cbe1cbdcb715f69",
+    "perception/qwen_scene/engine.py": "6c14802fbe468fa57e2ad48b25fc02c9a100d82d9aafdbf8d11224e969b699fb",
+    "perception/qwen_scene/worker_client.py": "3c3a93bd3d5e3f4ad7ea8d64e895244234a093ec779397d0d4f110ef673246b8"
+  }
+}

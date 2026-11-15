@@ -1,0 +1,8 @@
+{
+  "source": "Actual MuJoCo renders, independent reset seeds4000-4029; color/size/camera perturbation for perception only",
+  "labels": "Matched material-difference mask between white and black target renders; RGB-D optical depth via dm_control; no evaluated-model labels",
+  "scene_count": 30,
+  "cases": 120,
+  "limitations": "One simulator and single visible cube per scene; not real multiobject or sensor-depth evaluation",
+  "modifications": "Perception-only geom size/color and camera changes; no ACT success evaluation on these modified scenes"
+}

@@ -1,0 +1,25 @@
+[
+  {
+    "group": "synth_t05_i11_g0",
+    "reason": "no supported released positive anchor"
+  },
+  {
+    "group": "synth_t05_i12_g0",
+    "reason": "no supported released positive anchor"
+  },
+  {
+    "group": "synth_t07_i12_g1",
+    "kind": "center_jitter",
+    "reason": "desired label not established"
+  },
+  {
+    "group": "synth_t09_i11_g0",
+    "kind": "floating",
+    "reason": "desired label not established"
+  },
+  {
+    "group": "synth_t09_i12_g0",
+    "kind": "floating",
+    "reason": "desired label not established"
+  }
+]

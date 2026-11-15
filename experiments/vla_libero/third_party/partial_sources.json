@@ -1,0 +1,7 @@
+{
+  "openpi": {
+    "LICENSE": "43070e2d4e532684de521b885f385d0841030efa2b1a20bafb76133a5e1379c1",
+    "packages/openpi-client/src/openpi_client/image_tools.py": "d48b4bd7f44e79fe6db8a8e07c9161144fa250be686e1245014a8b47e6171977",
+    "packages/openpi-client/src/openpi_client/__init__.py": "91447944015cec709e8aa7655f7e9d64e1e4508e7023a57fe3746911c0fc6fed"
+  }
+}

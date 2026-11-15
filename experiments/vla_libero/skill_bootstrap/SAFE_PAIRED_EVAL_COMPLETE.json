@@ -1,0 +1,8 @@
+{
+  "complete": true,
+  "variants": [
+    "base",
+    "paired"
+  ],
+  "episodes_each": 8
+}

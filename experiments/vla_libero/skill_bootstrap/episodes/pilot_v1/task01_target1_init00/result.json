@@ -1,0 +1,137 @@
+{
+  "status": "complete",
+  "task": 1,
+  "initial": 0,
+  "target": 1,
+  "tag": "pilot_v1",
+  "privileged_teacher": true,
+  "uses_object_positions": true,
+  "policy_inference": false,
+  "reference": {
+    "source": "experiments/vla_libero/instruction_response/episodes/task01_init00/target0",
+    "frame": 70,
+    "offset": [
+      -0.0024199391012211108,
+      -0.00041391840796004,
+      0.0035452225374748014
+    ],
+    "orientation": [
+      -3.0183706751908157,
+      0.5777413238068697,
+      0.199173991397241
+    ]
+  },
+  "grasp_adjust_m": 0.0,
+  "steps": 319,
+  "phases": [
+    {
+      "name": "clear",
+      "start": 0,
+      "end": 19,
+      "reached": true,
+      "final_error_m": 0.0003631702791877652
+    },
+    {
+      "name": "hover",
+      "start": 19,
+      "end": 51,
+      "reached": true,
+      "final_error_m": 0.0031954909352605427
+    },
+    {
+      "name": "approach",
+      "start": 51,
+      "end": 85,
+      "reached": true,
+      "final_error_m": 0.0033409098125020582
+    },
+    {
+      "name": "close",
+      "start": 85,
+      "end": 115,
+      "reached": true,
+      "final_error_m": 0.0034516137563983446
+    },
+    {
+      "name": "lift",
+      "start": 115,
+      "end": 161,
+      "reached": true,
+      "final_error_m": 0.003499664761590456
+    },
+    {
+      "name": "transfer",
+      "start": 161,
+      "end": 208,
+      "reached": true,
+      "final_error_m": 0.0031460737694876295
+    },
+    {
+      "name": "lower",
+      "start": 208,
+      "end": 233,
+      "reached": true,
+      "final_error_m": 0.0033286644600720276
+    },
+    {
+      "name": "release",
+      "start": 233,
+      "end": 268,
+      "reached": true,
+      "final_error_m": 0.0003996690524875428
+    },
+    {
+      "name": "retreat",
+      "start": 268,
+      "end": 294,
+      "reached": true,
+      "final_error_m": 0.0031799105076477188
+    }
+  ],
+  "origins": [
+    [
+      0.09910931425692633,
+      -0.18146601062546336,
+      0.44569592152000004
+    ],
+    [
+      0.0489602377124352,
+      0.05760379687259051,
+      0.44546992152000003
+    ]
+  ],
+  "basket": [
+    0.007047696719216703,
+    0.2646539007899064,
+    0.4321920266500276
+  ],
+  "grasp": [
+    0.04654029861121409,
+    0.05718987846463047,
+    0.44901514405747484
+  ],
+  "release": [
+    0.004627757617995592,
+    0.26423998238194635,
+    0.5857372491875024
+  ],
+  "controller_output_max": [
+    0.05,
+    0.05,
+    0.05,
+    0.5,
+    0.5,
+    0.5
+  ],
+  "selective_success": true,
+  "target_final_stable": true,
+  "final_released": true,
+  "target_ever_reached": true,
+  "protected_untouched": true,
+  "max_protected_displacement_m": 0.0,
+  "first_valid_step": 248,
+  "first_violation_step": null,
+  "self_stop_success": true,
+  "premature_stop": false,
+  "teacher_steps": 294
+}

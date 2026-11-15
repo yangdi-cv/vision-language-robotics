@@ -1,0 +1,11 @@
+{
+  "task": 4,
+  "seeds": [
+    31001,
+    31002
+  ],
+  "prefix_steps": 150,
+  "remaining_steps": 370,
+  "reason": "Contact audit found 38.5mm offset against 30mm threshold. Test whether an explicit language request to re-center permits the policy to correct it; no numeric location or predicate is sent to the policy. This instruction is chosen by the experimenter, not Qwen.",
+  "instruction": "pick up the white mug again and place it at the center of the left plate, then put the yellow and white mug at the center of the right plate"
+}

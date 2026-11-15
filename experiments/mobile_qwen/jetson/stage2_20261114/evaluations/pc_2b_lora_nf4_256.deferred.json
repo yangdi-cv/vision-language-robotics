@@ -1,0 +1,5 @@
+{
+  "deferred": true,
+  "resolution": 256,
+  "reason": "Phase 2 fixed-512 single-factor comparison; remeasure accuracy with latency sweep in next phase"
+}

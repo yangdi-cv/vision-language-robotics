@@ -1,0 +1,26 @@
+{
+  "steps": 600,
+  "batch_size": 2,
+  "start_adapter_sha256": "e1ed96473fa254e19bfab85383decd5d1da96fce7e8437cfa84eb3b00fd9e130",
+  "sampling": "50% paired shared-observation opposite-goal batches; 50% phase-balanced original batches",
+  "teacher_data_unchanged": true,
+  "seed": 20261115,
+  "validation": "same16 phase samples plus all8 held-out exact branch-goal samples; selection0.5phase+0.5branch loss",
+  "new_policy_test_initials": [
+    30,
+    31
+  ],
+  "old_v1_test_initials": [
+    28,
+    29
+  ],
+  "not_a_sampling_only_ablation": "also more updates and optimizer restart",
+  "source_sha256": {
+    "experiments/vla_libero/skill_bootstrap/scripts/train_pair_lora.py": "06a6685e354744e2847515b3e779531510fc29d3801b9a9682ae016dd8025c45",
+    "experiments/vla_libero/skill_bootstrap/scripts/train_lora.py": "151020be16d2deef138a7850dd79a63cd7f32a244a6bb0acabe7da5a92794faa",
+    "experiments/vla_libero/skill_bootstrap/scripts/bounded_restore.py": "b906042560726b8f92242fca1ba0b5e2adc12f1b294559a3dbf8550601aa5961",
+    "experiments/vla_libero/skill_bootstrap/scripts/chunk_math.py": "02655758b0ad1abf6196c317c5ec1b32e1cdc14cadbf154adba049bde1126c99",
+    "experiments/vla_libero/skill_bootstrap/PAIRED_BRANCH_AUDIT.json": "54dbb7c459390dc3109b9afaf1aaa00d16ea57c37bbb984249334c263aedad77",
+    "experiments/vla_libero/skill_bootstrap/MANIFEST.json": "bbca4b3134de2d4f43b1e785b79ea66acb7bda23371a1b54b05157e2c1fb4448"
+  }
+}

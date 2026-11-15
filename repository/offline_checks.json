@@ -1,0 +1,74 @@
+[
+  {
+    "group": "libero_interfaces",
+    "returncode": 0,
+    "stdout": "",
+    "stderr": "......\n----------------------------------------------------------------------\nRan 6 tests in 0.019s\n\nOK\n"
+  },
+  {
+    "group": "recovery",
+    "returncode": 0,
+    "stdout": "",
+    "stderr": "................\n----------------------------------------------------------------------\nRan 16 tests in 0.001s\n\nOK\n"
+  },
+  {
+    "group": "iteration_inputs",
+    "returncode": 0,
+    "stdout": "",
+    "stderr": ".....\n----------------------------------------------------------------------\nRan 5 tests in 0.115s\n\nOK\n"
+  },
+  {
+    "group": "checker",
+    "returncode": 0,
+    "stdout": "",
+    "stderr": ".........\n----------------------------------------------------------------------\nRan 9 tests in 0.009s\n\nOK\n"
+  },
+  {
+    "group": "delivery",
+    "returncode": 0,
+    "stdout": "{\"kind\": \"subgoal_start\", \"step\": 0, \"index\": 0, \"subgoal\": \"test\"}\nTraceback (most recent call last):\n  File \"/home/yd/Documents/GitHub/vision-language-robotics/experiments/vla_libero/scripts/run_hierarchical.py\", line 404, in run\n    obs, _, done, _ = env.step(applied.tolist())\n                      ^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/yd/Documents/GitHub/vision-language-robotics/experiments/vla_libero/tests/test_delivery_fixes.py\", line 186, in step\n    raise RuntimeError(\"injected step failure\")\nRuntimeError: injected step failure\n\n{\"kind\": \"subgoal_start\", \"step\": 0, \"index\": 0, \"subgoal\": \"test\"}\nTraceback (most recent call last):\n  File \"/home/yd/Documents/GitHub/vision-language-robotics/experiments/vla_libero/scripts/run_hierarchical_recovery.py\", line 320, in run\n    obs, _, done, _ = env.step(applied.tolist())\n                      ^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/yd/Documents/GitHub/vision-language-robotics/experiments/vla_libero/tests/test_delivery_fixes.py\", line 186, in step\n    raise RuntimeError(\"injected step failure\")\nRuntimeError: injected step failure\n\n",
+    "stderr": "........\n----------------------------------------------------------------------\nRan 8 tests in 0.298s\n\nOK\n"
+  },
+  {
+    "group": "runtime_logging",
+    "returncode": 0,
+    "stdout": "{\"tag\": \"failuretest\", \"request\": \"test\", \"initial\": 0, \"monitor\": \"milestone\", \"check_every\": 10, \"error\": \"RuntimeError('Simulator startup failed')\"}\n",
+    "stderr": "......\n----------------------------------------------------------------------\nRan 6 tests in 0.100s\n\nOK\n"
+  },
+  {
+    "group": "selective_execution",
+    "returncode": 0,
+    "stdout": "",
+    "stderr": "............\n----------------------------------------------------------------------\nRan 12 tests in 0.000s\n\nOK\n"
+  },
+  {
+    "group": "visual_interventions",
+    "returncode": 0,
+    "stdout": "",
+    "stderr": "..........\n----------------------------------------------------------------------\nRan 10 tests in 0.053s\n\nOK\n"
+  },
+  {
+    "group": "constraint_interfaces",
+    "returncode": 0,
+    "stdout": "",
+    "stderr": "........\n----------------------------------------------------------------------\nRan 8 tests in 0.000s\n\nOK\n"
+  },
+  {
+    "group": "action_guidance",
+    "returncode": 0,
+    "stdout": "",
+    "stderr": ".....\n----------------------------------------------------------------------\nRan 5 tests in 0.010s\n\nOK\n"
+  },
+  {
+    "group": "chunk_math",
+    "returncode": 0,
+    "stdout": "",
+    "stderr": "....\n----------------------------------------------------------------------\nRan 4 tests in 0.011s\n\nOK\n"
+  },
+  {
+    "group": "visual_target",
+    "returncode": 0,
+    "stdout": "",
+    "stderr": "...\n----------------------------------------------------------------------\nRan 3 tests in 0.002s\n\nOK\n"
+  }
+]

@@ -1,0 +1,40 @@
+{
+  "moveit_ros_move_group": {
+    "version": "2.5.10",
+    "license": [
+      "BSD"
+    ]
+  },
+  "moveit_simple_controller_manager": {
+    "version": "2.5.10",
+    "license": [
+      "BSD"
+    ]
+  },
+  "moveit_resources_panda_description": {
+    "version": "2.0.7",
+    "license": [
+      "BSD"
+    ]
+  },
+  "moveit_kinematics": {
+    "version": "2.5.10",
+    "license": [
+      "BSD"
+    ]
+  },
+  "nav2_controller": {
+    "version": "1.1.20",
+    "license": [
+      "Apache-2.0"
+    ]
+  },
+  "rclpy": {
+    "version": "3.3.22",
+    "license": [
+      "Apache License 2.0"
+    ]
+  },
+  "host_os": "PRETTY_NAME=\"Ubuntu 22.04.5 LTS\"\nNAME=\"Ubuntu\"\nVERSION_ID=\"22.04\"\nVERSION=\"22.04.5 LTS (Jammy Jellyfish)\"\nVERSION_CODENAME=jammy\nID=ubuntu\nID_LIKE=debian\nHOME_URL=\"https://www.ubuntu.com/\"\nSUPPORT_URL=\"https://help.ubuntu.com/\"\nBUG_REPORT_URL=\"https://bugs.launchpad.net/ubuntu/\"\nPRIVACY_POLICY_URL=\"https://www.ubuntu.com/legal/terms-and-policies/privacy-policy\"\nUBUNTU_CODENAME=jammy\n",
+  "gpu": "NVIDIA GeForce RTX 4090, 24564 MiB, 580.178.04"
+}

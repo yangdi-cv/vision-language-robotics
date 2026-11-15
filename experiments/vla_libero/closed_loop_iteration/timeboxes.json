@@ -1,0 +1,21 @@
+{
+  "started_unix": 1794474033.8824666,
+  "limits_hours": {
+    "report": 0.5,
+    "t9": 2,
+    "entrypoint": 1,
+    "controlled_recovery": 24,
+    "data_audit": 12,
+    "lora_train_test": 24
+  },
+  "scope": "simulation only; no hardware or new base-model download",
+  "finished_unix": 1794476053.6112928,
+  "elapsed_minutes": 33.66214710474014,
+  "outcomes": {
+    "report": "one-page summary completed first",
+    "entrypoint": "configuration-based single CLI completed",
+    "t9": "4/4 success; previous failure not reproduced, cause unlocated; stopped",
+    "controlled_recovery": "27 trials complete; stopped without expansion",
+    "lora": "180 updates, validation selection, 240 held-out examples per model, independent adapter reload; not deployed"
+  }
+}

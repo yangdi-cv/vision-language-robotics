@@ -1,0 +1,42 @@
+{
+  "n": 1040,
+  "splits": {
+    "train": {
+      "n": 468,
+      "groups": 77,
+      "labels": {
+        "yes": 112,
+        "unknown": 188,
+        "no": 168
+      },
+      "done_positive": 180
+    },
+    "validation": {
+      "n": 288,
+      "groups": 54,
+      "labels": {
+        "yes": 72,
+        "unknown": 102,
+        "no": 114
+      },
+      "done_positive": 108
+    },
+    "test": {
+      "n": 284,
+      "groups": 53,
+      "labels": {
+        "yes": 72,
+        "unknown": 96,
+        "no": 116
+      },
+      "done_positive": 105
+    }
+  },
+  "moka_reference_count_instruction_adjustments": 112,
+  "data_sha256": "442eafd5268e9ba7b88d1a2fc382a1c50e6150a0cbebe77293e3c4e9e8f881ce",
+  "group_overlap": false,
+  "exact_pair_overlap": false,
+  "pixel_truth_conflict_groups": 18,
+  "support_release_checked": true,
+  "images_512": true
+}

@@ -1,0 +1,177 @@
+{
+  "study_mode": "live_lora",
+  "stage_budget_enabled": true,
+  "initial_state_sha256": "5abdf8f466f490901dee9f931b32eb181b2928eaa17bb6379742f988581d564a",
+  "suite": "libero_10",
+  "task_id": 1,
+  "initial_state_id": 0,
+  "original_task_language": "put both the cream cheese box and the butter in the basket",
+  "input_instruction": "把奶油奶酪盒和黄油都放进篮子里",
+  "planner": "qwen",
+  "execution_profile": "legacy",
+  "planner_profile": "base",
+  "checker_adapter": "experiments/vla_libero/checker_v2/results/model/best_adapter",
+  "monitor": "qwen",
+  "max_steps": 520,
+  "subgoal_step_budget": 300,
+  "monitor_every_queries": 4,
+  "monitor_res": 512,
+  "gripper_gate": true,
+  "confirm": 2,
+  "max_replans": 0,
+  "last_subgoal_runs_to_limit": true,
+  "noise_seed": 730100,
+  "runner_sha256": "3bfa20bd9f7c320cf83dabe80e3c59a72fb5bd053837b65cd3bb6376c3459f61",
+  "events": [
+    {
+      "kind": "plan",
+      "step": 0,
+      "ok": true,
+      "seconds": 1.5198998880805448e-05,
+      "raw": "[\"pick up the cream cheese box and place it in the basket\", \"pick up the butter and place it in the basket\"]",
+      "error": null
+    },
+    {
+      "kind": "subgoal_start",
+      "step": 0,
+      "index": 0,
+      "subgoal": "pick up the cream cheese box and place it in the basket"
+    },
+    {
+      "kind": "check",
+      "step": 20,
+      "index": 0,
+      "done": false,
+      "confirmed": false,
+      "seconds": 0.15040961200065794,
+      "checker": "v2",
+      "status": "no",
+      "scores": {
+        "yes": 0.0011694572338723684,
+        "no": 0.9987851979882911,
+        "unknown": 4.5344777836477945e-05,
+        "yes_log_odds": -6.750045398899218
+      },
+      "reason": "V2 no; p_yes=0.0012, threshold=3.2481",
+      "error": null,
+      "shadow_long_task_atoms": [
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 40,
+      "index": 0,
+      "done": false,
+      "confirmed": false,
+      "seconds": 0.1447558170002594,
+      "checker": "v2",
+      "status": "no",
+      "scores": {
+        "yes": 7.484622709129445e-05,
+        "no": 0.9999251481705317,
+        "unknown": 5.602377057973779e-09,
+        "yes_log_odds": -9.500000005602793
+      },
+      "reason": "V2 no; p_yes=0.0001, threshold=3.2481",
+      "error": null,
+      "shadow_long_task_atoms": [
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 140,
+      "index": 0,
+      "done": false,
+      "confirmed": false,
+      "seconds": 0.1499583110016829,
+      "checker": "v2",
+      "status": "no",
+      "scores": {
+        "yes": 0.008328154090070705,
+        "no": 0.962603731932994,
+        "unknown": 0.029068113976935313,
+        "yes_log_odds": -4.77975041827262
+      },
+      "reason": "V2 no; p_yes=0.0083, threshold=3.2481",
+      "error": null,
+      "shadow_long_task_atoms": [
+        true,
+        false
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 160,
+      "index": 0,
+      "done": false,
+      "confirmed": false,
+      "seconds": 0.14503560099910828,
+      "checker": "v2",
+      "status": "no",
+      "scores": {
+        "yes": 0.0003353445315206881,
+        "no": 0.9996479596473616,
+        "unknown": 1.66958211176098e-05,
+        "yes_log_odds": -8.000016701561321
+      },
+      "reason": "V2 no; p_yes=0.0003, threshold=3.2481",
+      "error": null,
+      "shadow_long_task_atoms": [
+        true,
+        false
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 180,
+      "index": 0,
+      "done": false,
+      "confirmed": false,
+      "seconds": 0.1546197729985579,
+      "checker": "v2",
+      "status": "no",
+      "scores": {
+        "yes": 5.829126496977926e-05,
+        "no": 0.9999416968746017,
+        "unknown": 1.1860428610968282e-08,
+        "yes_log_odds": -9.750000011861118
+      },
+      "reason": "V2 no; p_yes=0.0001, threshold=3.2481",
+      "error": null,
+      "shadow_long_task_atoms": [
+        true,
+        false
+      ]
+    }
+  ],
+  "status": "success",
+  "success": true,
+  "settled_state_sha256": "b11f72fac2b3e871efe3317925d09e9d5261be1d4a6edf7e2f40ea9f9bf8463f",
+  "subgoals": [
+    "pick up the cream cheese box and place it in the basket",
+    "pick up the butter and place it in the basket"
+  ],
+  "policy_queries": 50,
+  "qwen_checks": 5,
+  "replans": 0,
+  "active_subgoal_index": 0,
+  "active_subgoal": "pick up the cream cheese box and place it in the basket",
+  "steps": 249,
+  "full_task_fallback": false,
+  "final_subgoals": [
+    "pick up the cream cheese box and place it in the basket",
+    "pick up the butter and place it in the basket"
+  ],
+  "final_atoms": [
+    true,
+    true
+  ],
+  "protocol_sha256": "43102c29b30de89a834dd03413d9b5010377410236d6addcffc618c76a8ff03c",
+  "monitor_model_calls": 5,
+  "monitor_opportunities": 5,
+  "wall_seconds": 18.603068593998614
+}

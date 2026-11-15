@@ -1,0 +1,36 @@
+{
+  "runner_sha256": "e5d28552be82d553e09b3fcfe45aa95bbc6d38b0338899c2536ed1407935bb9d",
+  "suite": "libero_10",
+  "task_id": 9,
+  "initial_state_id": 1,
+  "mode": "baseline",
+  "environment_seed": 7,
+  "noise_seed": 730901,
+  "initial_state_sha256": "8a1664e433521b5f995c9840cd9d41bf796b38742e57ad57786d67076de8b0cd",
+  "original_prompt": "put the yellow and white mug in the microwave and close it",
+  "input_prompt": "put the yellow and white mug in the microwave and close it",
+  "replan_steps": 5,
+  "denoising_steps": 10,
+  "max_steps": 520,
+  "status": "success",
+  "success": true,
+  "steps": 245,
+  "alternate_goal_evaluable": false,
+  "alternate_goal_ever_satisfied": null,
+  "initial_eef": [
+    -0.21460940653993088,
+    -0.005467609658268748,
+    1.164821379872533
+  ],
+  "final_eef": [
+    -0.055575019452114044,
+    0.19298241717974207,
+    1.0625870821713665
+  ],
+  "qpos_displacement_norm": 2.2156285349957425,
+  "simulation_elapsed_s": 12.25,
+  "wall_s": 7.119559818999733,
+  "query_count": 49,
+  "warmup_query_wall_s": 0.07537663099992642,
+  "query_median_excluding_first_s": 0.07201474849989609
+}

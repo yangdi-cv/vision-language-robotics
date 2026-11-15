@@ -1,0 +1,36 @@
+{
+  "runner_sha256": "e5d28552be82d553e09b3fcfe45aa95bbc6d38b0338899c2536ed1407935bb9d",
+  "suite": "libero_object",
+  "task_id": 2,
+  "initial_state_id": 2,
+  "mode": "baseline",
+  "environment_seed": 7,
+  "noise_seed": 710202,
+  "initial_state_sha256": "c4facf0ecf55df947c6299884b6549c12bcaa2fde689e0a5621a4f9f89ae9992",
+  "original_prompt": "pick up the salad dressing and place it in the basket",
+  "input_prompt": "pick up the salad dressing and place it in the basket",
+  "replan_steps": 5,
+  "denoising_steps": 10,
+  "max_steps": 280,
+  "status": "success",
+  "success": true,
+  "steps": 114,
+  "alternate_goal_evaluable": false,
+  "alternate_goal_ever_satisfied": null,
+  "initial_eef": [
+    -0.14612396618898188,
+    -0.01270293410618947,
+    0.25070334039864783
+  ],
+  "final_eef": [
+    0.013926848182551733,
+    0.2401060984665656,
+    0.17810007512409004
+  ],
+  "qpos_displacement_norm": 1.276409953965566,
+  "simulation_elapsed_s": 5.7,
+  "wall_s": 4.595126895999783,
+  "query_count": 23,
+  "warmup_query_wall_s": 0.08330528599981335,
+  "query_median_excluding_first_s": 0.07434148350012038
+}

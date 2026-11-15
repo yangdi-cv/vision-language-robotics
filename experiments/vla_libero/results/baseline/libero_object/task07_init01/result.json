@@ -1,0 +1,36 @@
+{
+  "runner_sha256": "e5d28552be82d553e09b3fcfe45aa95bbc6d38b0338899c2536ed1407935bb9d",
+  "suite": "libero_object",
+  "task_id": 7,
+  "initial_state_id": 1,
+  "mode": "baseline",
+  "environment_seed": 7,
+  "noise_seed": 710701,
+  "initial_state_sha256": "0d8646c3a118eb8d7800f6e46da313f878869576770acb0ee6642367eb44c46f",
+  "original_prompt": "pick up the milk and place it in the basket",
+  "input_prompt": "pick up the milk and place it in the basket",
+  "replan_steps": 5,
+  "denoising_steps": 10,
+  "max_steps": 280,
+  "status": "success",
+  "success": true,
+  "steps": 214,
+  "alternate_goal_evaluable": false,
+  "alternate_goal_ever_satisfied": null,
+  "initial_eef": [
+    -0.14835357781439112,
+    0.0052446835504503225,
+    0.2548273028682049
+  ],
+  "final_eef": [
+    0.00029260202485161674,
+    0.27784893515117526,
+    0.18810011719523467
+  ],
+  "qpos_displacement_norm": 2.1476757062952703,
+  "simulation_elapsed_s": 10.7,
+  "wall_s": 6.978087426999991,
+  "query_count": 43,
+  "warmup_query_wall_s": 0.07966555999973934,
+  "query_median_excluding_first_s": 0.07479938299957212
+}

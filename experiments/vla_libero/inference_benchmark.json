@@ -1,0 +1,606 @@
+{
+  "contexts": 12,
+  "repeats": 3,
+  "warmup": [
+    {
+      "steps": 10,
+      "wall_s": 8.969618192999405
+    },
+    {
+      "steps": 5,
+      "wall_s": 0.06456322400026693
+    }
+  ],
+  "timings": {
+    "10": {
+      "n": 36,
+      "median_s": 0.07206840150001881,
+      "p95_s": 0.07566022125047311
+    },
+    "5": {
+      "n": 36,
+      "median_s": 0.06206773549956779,
+      "p95_s": 0.06593290699970566
+    }
+  },
+  "records": [
+    {
+      "suite": "libero_spatial",
+      "task_id": 0,
+      "initial_state_id": 0,
+      "repeat": 0,
+      "denoising_steps": 10,
+      "wall_s": 0.07421424300082435
+    },
+    {
+      "suite": "libero_spatial",
+      "task_id": 0,
+      "initial_state_id": 0,
+      "repeat": 0,
+      "denoising_steps": 5,
+      "wall_s": 0.06392328500078293
+    },
+    {
+      "suite": "libero_spatial",
+      "task_id": 0,
+      "initial_state_id": 0,
+      "repeat": 1,
+      "denoising_steps": 5,
+      "wall_s": 0.06164293300025747
+    },
+    {
+      "suite": "libero_spatial",
+      "task_id": 0,
+      "initial_state_id": 0,
+      "repeat": 1,
+      "denoising_steps": 10,
+      "wall_s": 0.07166755299931538
+    },
+    {
+      "suite": "libero_spatial",
+      "task_id": 0,
+      "initial_state_id": 0,
+      "repeat": 2,
+      "denoising_steps": 10,
+      "wall_s": 0.07174042199949326
+    },
+    {
+      "suite": "libero_spatial",
+      "task_id": 0,
+      "initial_state_id": 0,
+      "repeat": 2,
+      "denoising_steps": 5,
+      "wall_s": 0.06154949400024634
+    },
+    {
+      "suite": "libero_spatial",
+      "task_id": 0,
+      "initial_state_id": 1,
+      "repeat": 0,
+      "denoising_steps": 5,
+      "wall_s": 0.06281699900046078
+    },
+    {
+      "suite": "libero_spatial",
+      "task_id": 0,
+      "initial_state_id": 1,
+      "repeat": 0,
+      "denoising_steps": 10,
+      "wall_s": 0.07211072799964313
+    },
+    {
+      "suite": "libero_spatial",
+      "task_id": 0,
+      "initial_state_id": 1,
+      "repeat": 1,
+      "denoising_steps": 10,
+      "wall_s": 0.07171761899917328
+    },
+    {
+      "suite": "libero_spatial",
+      "task_id": 0,
+      "initial_state_id": 1,
+      "repeat": 1,
+      "denoising_steps": 5,
+      "wall_s": 0.061682147000283294
+    },
+    {
+      "suite": "libero_spatial",
+      "task_id": 0,
+      "initial_state_id": 1,
+      "repeat": 2,
+      "denoising_steps": 5,
+      "wall_s": 0.06173729300007835
+    },
+    {
+      "suite": "libero_spatial",
+      "task_id": 0,
+      "initial_state_id": 1,
+      "repeat": 2,
+      "denoising_steps": 10,
+      "wall_s": 0.07176283499939018
+    },
+    {
+      "suite": "libero_spatial",
+      "task_id": 3,
+      "initial_state_id": 0,
+      "repeat": 0,
+      "denoising_steps": 10,
+      "wall_s": 0.07170150899946748
+    },
+    {
+      "suite": "libero_spatial",
+      "task_id": 3,
+      "initial_state_id": 0,
+      "repeat": 0,
+      "denoising_steps": 5,
+      "wall_s": 0.06163221199949476
+    },
+    {
+      "suite": "libero_spatial",
+      "task_id": 3,
+      "initial_state_id": 0,
+      "repeat": 1,
+      "denoising_steps": 5,
+      "wall_s": 0.06161006999991514
+    },
+    {
+      "suite": "libero_spatial",
+      "task_id": 3,
+      "initial_state_id": 0,
+      "repeat": 1,
+      "denoising_steps": 10,
+      "wall_s": 0.072610920000443
+    },
+    {
+      "suite": "libero_spatial",
+      "task_id": 3,
+      "initial_state_id": 0,
+      "repeat": 2,
+      "denoising_steps": 10,
+      "wall_s": 0.0716694370003097
+    },
+    {
+      "suite": "libero_spatial",
+      "task_id": 3,
+      "initial_state_id": 0,
+      "repeat": 2,
+      "denoising_steps": 5,
+      "wall_s": 0.06169171500005177
+    },
+    {
+      "suite": "libero_spatial",
+      "task_id": 3,
+      "initial_state_id": 1,
+      "repeat": 0,
+      "denoising_steps": 5,
+      "wall_s": 0.06190455999967526
+    },
+    {
+      "suite": "libero_spatial",
+      "task_id": 3,
+      "initial_state_id": 1,
+      "repeat": 0,
+      "denoising_steps": 10,
+      "wall_s": 0.07159686900013185
+    },
+    {
+      "suite": "libero_spatial",
+      "task_id": 3,
+      "initial_state_id": 1,
+      "repeat": 1,
+      "denoising_steps": 10,
+      "wall_s": 0.07162113499998668
+    },
+    {
+      "suite": "libero_spatial",
+      "task_id": 3,
+      "initial_state_id": 1,
+      "repeat": 1,
+      "denoising_steps": 5,
+      "wall_s": 0.0617925179994927
+    },
+    {
+      "suite": "libero_spatial",
+      "task_id": 3,
+      "initial_state_id": 1,
+      "repeat": 2,
+      "denoising_steps": 5,
+      "wall_s": 0.062014138999984425
+    },
+    {
+      "suite": "libero_spatial",
+      "task_id": 3,
+      "initial_state_id": 1,
+      "repeat": 2,
+      "denoising_steps": 10,
+      "wall_s": 0.07183273800001189
+    },
+    {
+      "suite": "libero_spatial",
+      "task_id": 6,
+      "initial_state_id": 0,
+      "repeat": 0,
+      "denoising_steps": 10,
+      "wall_s": 0.07280340699981025
+    },
+    {
+      "suite": "libero_spatial",
+      "task_id": 6,
+      "initial_state_id": 0,
+      "repeat": 0,
+      "denoising_steps": 5,
+      "wall_s": 0.06419175599967275
+    },
+    {
+      "suite": "libero_spatial",
+      "task_id": 6,
+      "initial_state_id": 0,
+      "repeat": 1,
+      "denoising_steps": 5,
+      "wall_s": 0.06539271400015423
+    },
+    {
+      "suite": "libero_spatial",
+      "task_id": 6,
+      "initial_state_id": 0,
+      "repeat": 1,
+      "denoising_steps": 10,
+      "wall_s": 0.07537446200058184
+    },
+    {
+      "suite": "libero_spatial",
+      "task_id": 6,
+      "initial_state_id": 0,
+      "repeat": 2,
+      "denoising_steps": 10,
+      "wall_s": 0.07457152400002087
+    },
+    {
+      "suite": "libero_spatial",
+      "task_id": 6,
+      "initial_state_id": 0,
+      "repeat": 2,
+      "denoising_steps": 5,
+      "wall_s": 0.06370141200022772
+    },
+    {
+      "suite": "libero_spatial",
+      "task_id": 6,
+      "initial_state_id": 1,
+      "repeat": 0,
+      "denoising_steps": 5,
+      "wall_s": 0.06372878500042134
+    },
+    {
+      "suite": "libero_spatial",
+      "task_id": 6,
+      "initial_state_id": 1,
+      "repeat": 0,
+      "denoising_steps": 10,
+      "wall_s": 0.0741960180002934
+    },
+    {
+      "suite": "libero_spatial",
+      "task_id": 6,
+      "initial_state_id": 1,
+      "repeat": 1,
+      "denoising_steps": 10,
+      "wall_s": 0.07182367099994735
+    },
+    {
+      "suite": "libero_spatial",
+      "task_id": 6,
+      "initial_state_id": 1,
+      "repeat": 1,
+      "denoising_steps": 5,
+      "wall_s": 0.0631581580000784
+    },
+    {
+      "suite": "libero_spatial",
+      "task_id": 6,
+      "initial_state_id": 1,
+      "repeat": 2,
+      "denoising_steps": 5,
+      "wall_s": 0.06220061400017585
+    },
+    {
+      "suite": "libero_spatial",
+      "task_id": 6,
+      "initial_state_id": 1,
+      "repeat": 2,
+      "denoising_steps": 10,
+      "wall_s": 0.0719001469997238
+    },
+    {
+      "suite": "libero_goal",
+      "task_id": 0,
+      "initial_state_id": 0,
+      "repeat": 0,
+      "denoising_steps": 10,
+      "wall_s": 0.0732690230006483
+    },
+    {
+      "suite": "libero_goal",
+      "task_id": 0,
+      "initial_state_id": 0,
+      "repeat": 0,
+      "denoising_steps": 5,
+      "wall_s": 0.06613604899939673
+    },
+    {
+      "suite": "libero_goal",
+      "task_id": 0,
+      "initial_state_id": 0,
+      "repeat": 1,
+      "denoising_steps": 5,
+      "wall_s": 0.06581944599929557
+    },
+    {
+      "suite": "libero_goal",
+      "task_id": 0,
+      "initial_state_id": 0,
+      "repeat": 1,
+      "denoising_steps": 10,
+      "wall_s": 0.07655213499947422
+    },
+    {
+      "suite": "libero_goal",
+      "task_id": 0,
+      "initial_state_id": 0,
+      "repeat": 2,
+      "denoising_steps": 10,
+      "wall_s": 0.07651749900014693
+    },
+    {
+      "suite": "libero_goal",
+      "task_id": 0,
+      "initial_state_id": 0,
+      "repeat": 2,
+      "denoising_steps": 5,
+      "wall_s": 0.06638213800033554
+    },
+    {
+      "suite": "libero_goal",
+      "task_id": 0,
+      "initial_state_id": 1,
+      "repeat": 0,
+      "denoising_steps": 5,
+      "wall_s": 0.06586519299980864
+    },
+    {
+      "suite": "libero_goal",
+      "task_id": 0,
+      "initial_state_id": 1,
+      "repeat": 0,
+      "denoising_steps": 10,
+      "wall_s": 0.07337573600034375
+    },
+    {
+      "suite": "libero_goal",
+      "task_id": 0,
+      "initial_state_id": 1,
+      "repeat": 1,
+      "denoising_steps": 10,
+      "wall_s": 0.07208005899974523
+    },
+    {
+      "suite": "libero_goal",
+      "task_id": 0,
+      "initial_state_id": 1,
+      "repeat": 1,
+      "denoising_steps": 5,
+      "wall_s": 0.06198235900046711
+    },
+    {
+      "suite": "libero_goal",
+      "task_id": 0,
+      "initial_state_id": 1,
+      "repeat": 2,
+      "denoising_steps": 5,
+      "wall_s": 0.06203492799977539
+    },
+    {
+      "suite": "libero_goal",
+      "task_id": 0,
+      "initial_state_id": 1,
+      "repeat": 2,
+      "denoising_steps": 10,
+      "wall_s": 0.07205674400029238
+    },
+    {
+      "suite": "libero_goal",
+      "task_id": 3,
+      "initial_state_id": 0,
+      "repeat": 0,
+      "denoising_steps": 10,
+      "wall_s": 0.07175104199995985
+    },
+    {
+      "suite": "libero_goal",
+      "task_id": 3,
+      "initial_state_id": 0,
+      "repeat": 0,
+      "denoising_steps": 5,
+      "wall_s": 0.06202264500007004
+    },
+    {
+      "suite": "libero_goal",
+      "task_id": 3,
+      "initial_state_id": 0,
+      "repeat": 1,
+      "denoising_steps": 5,
+      "wall_s": 0.062498541999957524
+    },
+    {
+      "suite": "libero_goal",
+      "task_id": 3,
+      "initial_state_id": 0,
+      "repeat": 1,
+      "denoising_steps": 10,
+      "wall_s": 0.07203286799995112
+    },
+    {
+      "suite": "libero_goal",
+      "task_id": 3,
+      "initial_state_id": 0,
+      "repeat": 2,
+      "denoising_steps": 10,
+      "wall_s": 0.07192334000046685
+    },
+    {
+      "suite": "libero_goal",
+      "task_id": 3,
+      "initial_state_id": 0,
+      "repeat": 2,
+      "denoising_steps": 5,
+      "wall_s": 0.06177108700012468
+    },
+    {
+      "suite": "libero_goal",
+      "task_id": 3,
+      "initial_state_id": 1,
+      "repeat": 0,
+      "denoising_steps": 5,
+      "wall_s": 0.061697565999565995
+    },
+    {
+      "suite": "libero_goal",
+      "task_id": 3,
+      "initial_state_id": 1,
+      "repeat": 0,
+      "denoising_steps": 10,
+      "wall_s": 0.07160546500017517
+    },
+    {
+      "suite": "libero_goal",
+      "task_id": 3,
+      "initial_state_id": 1,
+      "repeat": 1,
+      "denoising_steps": 10,
+      "wall_s": 0.07165389700003288
+    },
+    {
+      "suite": "libero_goal",
+      "task_id": 3,
+      "initial_state_id": 1,
+      "repeat": 1,
+      "denoising_steps": 5,
+      "wall_s": 0.061650716999793076
+    },
+    {
+      "suite": "libero_goal",
+      "task_id": 3,
+      "initial_state_id": 1,
+      "repeat": 2,
+      "denoising_steps": 5,
+      "wall_s": 0.06166182800006936
+    },
+    {
+      "suite": "libero_goal",
+      "task_id": 3,
+      "initial_state_id": 1,
+      "repeat": 2,
+      "denoising_steps": 10,
+      "wall_s": 0.07294389399976353
+    },
+    {
+      "suite": "libero_goal",
+      "task_id": 6,
+      "initial_state_id": 0,
+      "repeat": 0,
+      "denoising_steps": 10,
+      "wall_s": 0.07435486999929708
+    },
+    {
+      "suite": "libero_goal",
+      "task_id": 6,
+      "initial_state_id": 0,
+      "repeat": 0,
+      "denoising_steps": 5,
+      "wall_s": 0.06282664699938323
+    },
+    {
+      "suite": "libero_goal",
+      "task_id": 6,
+      "initial_state_id": 0,
+      "repeat": 1,
+      "denoising_steps": 5,
+      "wall_s": 0.06220478199975332
+    },
+    {
+      "suite": "libero_goal",
+      "task_id": 6,
+      "initial_state_id": 0,
+      "repeat": 1,
+      "denoising_steps": 10,
+      "wall_s": 0.0722283109998898
+    },
+    {
+      "suite": "libero_goal",
+      "task_id": 6,
+      "initial_state_id": 0,
+      "repeat": 2,
+      "denoising_steps": 10,
+      "wall_s": 0.07229516799998237
+    },
+    {
+      "suite": "libero_goal",
+      "task_id": 6,
+      "initial_state_id": 0,
+      "repeat": 2,
+      "denoising_steps": 5,
+      "wall_s": 0.062141031000464864
+    },
+    {
+      "suite": "libero_goal",
+      "task_id": 6,
+      "initial_state_id": 1,
+      "repeat": 0,
+      "denoising_steps": 5,
+      "wall_s": 0.061961199000506895
+    },
+    {
+      "suite": "libero_goal",
+      "task_id": 6,
+      "initial_state_id": 1,
+      "repeat": 0,
+      "denoising_steps": 10,
+      "wall_s": 0.07180915200024174
+    },
+    {
+      "suite": "libero_goal",
+      "task_id": 6,
+      "initial_state_id": 1,
+      "repeat": 1,
+      "denoising_steps": 10,
+      "wall_s": 0.07331282599989208
+    },
+    {
+      "suite": "libero_goal",
+      "task_id": 6,
+      "initial_state_id": 1,
+      "repeat": 1,
+      "denoising_steps": 5,
+      "wall_s": 0.06353753999974288
+    },
+    {
+      "suite": "libero_goal",
+      "task_id": 6,
+      "initial_state_id": 1,
+      "repeat": 2,
+      "denoising_steps": 5,
+      "wall_s": 0.062100542999360187
+    },
+    {
+      "suite": "libero_goal",
+      "task_id": 6,
+      "initial_state_id": 1,
+      "repeat": 2,
+      "denoising_steps": 10,
+      "wall_s": 0.0722493109997231
+    }
+  ],
+  "note": "Same observations and explicit action noise; interleaved order, no simulator or other policy process. Does not measure real-time robot control.",
+  "median_speedup_5_vs_10": 1.1611250341253494
+}

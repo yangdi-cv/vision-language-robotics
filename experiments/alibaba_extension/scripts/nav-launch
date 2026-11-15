@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+set -euo pipefail
+unset PYTHONHOME PYTHONPATH LD_LIBRARY_PATH AMENT_PREFIX_PATH CMAKE_PREFIX_PATH COLCON_PREFIX_PATH
+set +u
+source /usr/share/gazebo/setup.sh
+source /opt/ros/humble/setup.bash
+set -u
+export ROS_DOMAIN_ID=62 ROS_LOCALHOST_ONLY=1 RMW_IMPLEMENTATION=rmw_fastrtps_cpp
+export GAZEBO_MASTER_URI=http://127.0.0.1:11362 GAZEBO_MODEL_DATABASE_URI=""
+export GAZEBO_MODEL_PATH="/usr/share/gazebo-11/models:/opt/ros/humble/share/turtlebot3_gazebo/models"
+exec ros2 launch nav2_bringup tb3_simulation_launch.py use_rviz:=False headless:=True use_composition:=False

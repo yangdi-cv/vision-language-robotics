@@ -1,0 +1,94 @@
+{
+  "tags": {
+    "zh_eval_flat": {
+      "n": 30,
+      "success": 22,
+      "errors": 0,
+      "budget_switches": 0,
+      "episodes_budget_switch": 0,
+      "checks": 0,
+      "replans": 0,
+      "full_fallback": 0,
+      "median_steps": 264.5
+    },
+    "zh_eval_hier": {
+      "n": 30,
+      "success": 16,
+      "errors": 2,
+      "budget_switches": 2,
+      "episodes_budget_switch": 2,
+      "checks": 137,
+      "replans": 0,
+      "full_fallback": 0,
+      "median_steps": 220.0
+    },
+    "zh_eval_hier_v2": {
+      "n": 30,
+      "success": 27,
+      "errors": 0,
+      "budget_switches": 3,
+      "episodes_budget_switch": 3,
+      "checks": 133,
+      "replans": 0,
+      "full_fallback": 0,
+      "median_steps": 248.0
+    },
+    "zh_eval_hier_v3": {
+      "n": 30,
+      "success": 28,
+      "errors": 0,
+      "budget_switches": 2,
+      "episodes_budget_switch": 2,
+      "checks": 131,
+      "replans": 0,
+      "full_fallback": 0,
+      "median_steps": 239.0
+    },
+    "zh_eval_translate": {
+      "n": 30,
+      "success": 29,
+      "errors": 0,
+      "budget_switches": 0,
+      "episodes_budget_switch": 0,
+      "checks": 0,
+      "replans": 0,
+      "full_fallback": 0,
+      "median_steps": 246.5
+    },
+    "replan_probe2": {
+      "n": 3,
+      "success": 1,
+      "errors": 0,
+      "budget_switches": 1,
+      "episodes_budget_switch": 1,
+      "checks": 12,
+      "replans": 5,
+      "full_fallback": 3,
+      "median_steps": 520
+    },
+    "replan_probe3": {
+      "n": 2,
+      "success": 0,
+      "errors": 0,
+      "budget_switches": 0,
+      "episodes_budget_switch": 0,
+      "checks": 8,
+      "replans": 3,
+      "full_fallback": 2,
+      "median_steps": 520.0
+    }
+  },
+  "paired_outcomes": {
+    "zh_eval_flat__zh_eval_translate": {
+      "1->1": 22,
+      "0->1": 7,
+      "0->0": 1
+    },
+    "zh_eval_translate__zh_eval_hier_v3": {
+      "1->1": 28,
+      "1->0": 1,
+      "0->0": 1
+    }
+  },
+  "n_indexed": 155
+}

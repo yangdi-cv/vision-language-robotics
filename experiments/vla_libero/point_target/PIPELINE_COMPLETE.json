@@ -1,0 +1,9 @@
+{
+  "complete": true,
+  "variants": [
+    "base",
+    "text",
+    "goal"
+  ],
+  "episodes": 24
+}

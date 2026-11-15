@@ -1,0 +1,543 @@
+{
+  "scope": "Only tasks2/4 first subgoal; corresponding final atom0 manually checked against BDDL and plan text. Queries are correlated, not independent samples.",
+  "counts": {
+    "zh_eval_hier_v2": {
+      "tp": 6,
+      "tn": 17,
+      "fp": 2,
+      "fn": 2,
+      "confirmed_false": 0,
+      "n": 27
+    },
+    "zh_eval_hier_v3": {
+      "tp": 8,
+      "tn": 13,
+      "fp": 1,
+      "fn": 3,
+      "confirmed_false": 0,
+      "n": 25
+    }
+  },
+  "records": [
+    {
+      "tag": "zh_eval_hier_v2",
+      "task": 2,
+      "init": 0,
+      "step": 20,
+      "expected": false,
+      "observed": false,
+      "confirmed": false,
+      "reason": "No change detected."
+    },
+    {
+      "tag": "zh_eval_hier_v2",
+      "task": 2,
+      "init": 0,
+      "step": 40,
+      "expected": false,
+      "observed": false,
+      "confirmed": false,
+      "reason": "The robot has moved its arm to position the stove knob, indicating the action of turning on the stove has been initiated."
+    },
+    {
+      "tag": "zh_eval_hier_v2",
+      "task": 2,
+      "init": 0,
+      "step": 100,
+      "expected": true,
+      "observed": true,
+      "confirmed": false,
+      "reason": "The stove has been turned on, indicated by the red glowing coil."
+    },
+    {
+      "tag": "zh_eval_hier_v2",
+      "task": 2,
+      "init": 0,
+      "step": 120,
+      "expected": true,
+      "observed": true,
+      "confirmed": true,
+      "reason": "The stove has been turned on, indicated by the red glowing coil."
+    },
+    {
+      "tag": "zh_eval_hier_v2",
+      "task": 2,
+      "init": 1,
+      "step": 20,
+      "expected": false,
+      "observed": false,
+      "confirmed": false,
+      "reason": "No change detected."
+    },
+    {
+      "tag": "zh_eval_hier_v2",
+      "task": 2,
+      "init": 1,
+      "step": 40,
+      "expected": false,
+      "observed": true,
+      "confirmed": false,
+      "reason": "The robot has moved away from the stove, indicating the action of turning it on has been completed."
+    },
+    {
+      "tag": "zh_eval_hier_v2",
+      "task": 2,
+      "init": 1,
+      "step": 120,
+      "expected": true,
+      "observed": true,
+      "confirmed": true,
+      "reason": "The stove has been turned on, indicated by the red glowing heating element."
+    },
+    {
+      "tag": "zh_eval_hier_v2",
+      "task": 2,
+      "init": 2,
+      "step": 20,
+      "expected": false,
+      "observed": false,
+      "confirmed": false,
+      "reason": "No change detected."
+    },
+    {
+      "tag": "zh_eval_hier_v2",
+      "task": 2,
+      "init": 2,
+      "step": 40,
+      "expected": false,
+      "observed": false,
+      "confirmed": false,
+      "reason": "No new object at the stove; the stove is still off."
+    },
+    {
+      "tag": "zh_eval_hier_v2",
+      "task": 2,
+      "init": 2,
+      "step": 60,
+      "expected": false,
+      "observed": false,
+      "confirmed": false,
+      "reason": "The robot has moved to the stove, indicating it is preparing to turn it on."
+    },
+    {
+      "tag": "zh_eval_hier_v2",
+      "task": 4,
+      "init": 0,
+      "step": 20,
+      "expected": false,
+      "observed": false,
+      "confirmed": false,
+      "reason": "No change detected"
+    },
+    {
+      "tag": "zh_eval_hier_v2",
+      "task": 4,
+      "init": 0,
+      "step": 140,
+      "expected": true,
+      "observed": true,
+      "confirmed": false,
+      "reason": "The white textured mug has been moved from the table to the right plate."
+    },
+    {
+      "tag": "zh_eval_hier_v2",
+      "task": 4,
+      "init": 0,
+      "step": 160,
+      "expected": true,
+      "observed": true,
+      "confirmed": true,
+      "reason": "The white textured mug has been moved from the table to the right plate."
+    },
+    {
+      "tag": "zh_eval_hier_v2",
+      "task": 4,
+      "init": 1,
+      "step": 20,
+      "expected": false,
+      "observed": false,
+      "confirmed": false,
+      "reason": "No change detected."
+    },
+    {
+      "tag": "zh_eval_hier_v2",
+      "task": 4,
+      "init": 1,
+      "step": 40,
+      "expected": false,
+      "observed": false,
+      "confirmed": false,
+      "reason": "The white mug is now on the right plate, which was not the case in image 1."
+    },
+    {
+      "tag": "zh_eval_hier_v2",
+      "task": 4,
+      "init": 1,
+      "step": 120,
+      "expected": true,
+      "observed": false,
+      "confirmed": false,
+      "reason": "The white mug is now on the right plate, which was not the case in image 1."
+    },
+    {
+      "tag": "zh_eval_hier_v2",
+      "task": 4,
+      "init": 1,
+      "step": 140,
+      "expected": true,
+      "observed": false,
+      "confirmed": false,
+      "reason": "The white mug is now on the right plate, which was not the case in image 1."
+    },
+    {
+      "tag": "zh_eval_hier_v2",
+      "task": 4,
+      "init": 1,
+      "step": 160,
+      "expected": true,
+      "observed": true,
+      "confirmed": false,
+      "reason": "The white mug is now on the left plate, which was empty in image 1."
+    },
+    {
+      "tag": "zh_eval_hier_v2",
+      "task": 4,
+      "init": 2,
+      "step": 20,
+      "expected": false,
+      "observed": false,
+      "confirmed": false,
+      "reason": "No change detected."
+    },
+    {
+      "tag": "zh_eval_hier_v2",
+      "task": 4,
+      "init": 2,
+      "step": 100,
+      "expected": false,
+      "observed": false,
+      "confirmed": false,
+      "reason": "The white mug is now on the right plate, which was not the case in image 1."
+    },
+    {
+      "tag": "zh_eval_hier_v2",
+      "task": 4,
+      "init": 2,
+      "step": 120,
+      "expected": false,
+      "observed": false,
+      "confirmed": false,
+      "reason": "The white mug is now on the right plate, which was not the case in image 1."
+    },
+    {
+      "tag": "zh_eval_hier_v2",
+      "task": 4,
+      "init": 2,
+      "step": 140,
+      "expected": false,
+      "observed": false,
+      "confirmed": false,
+      "reason": "The white mug is now on the right plate, which was not the case in image 1."
+    },
+    {
+      "tag": "zh_eval_hier_v2",
+      "task": 4,
+      "init": 2,
+      "step": 160,
+      "expected": false,
+      "observed": true,
+      "confirmed": false,
+      "reason": "The white mug is now on the left plate, which was empty in image 1."
+    },
+    {
+      "tag": "zh_eval_hier_v2",
+      "task": 4,
+      "init": 2,
+      "step": 180,
+      "expected": false,
+      "observed": false,
+      "confirmed": false,
+      "reason": "The white mug is now on the right plate, which was not the case in image 1."
+    },
+    {
+      "tag": "zh_eval_hier_v2",
+      "task": 4,
+      "init": 2,
+      "step": 260,
+      "expected": false,
+      "observed": false,
+      "confirmed": false,
+      "reason": "The white mug is now on the right plate, which was not the case in image 1."
+    },
+    {
+      "tag": "zh_eval_hier_v2",
+      "task": 4,
+      "init": 2,
+      "step": 280,
+      "expected": false,
+      "observed": false,
+      "confirmed": false,
+      "reason": "The white mug is now on the right plate, which was not the case in image 1."
+    },
+    {
+      "tag": "zh_eval_hier_v2",
+      "task": 4,
+      "init": 2,
+      "step": 300,
+      "expected": false,
+      "observed": false,
+      "confirmed": false,
+      "reason": "The white mug is now on the right plate, which was not the case in image 1."
+    },
+    {
+      "tag": "zh_eval_hier_v3",
+      "task": 2,
+      "init": 0,
+      "step": 20,
+      "expected": false,
+      "observed": false,
+      "confirmed": false,
+      "reason": "No change detected."
+    },
+    {
+      "tag": "zh_eval_hier_v3",
+      "task": 2,
+      "init": 0,
+      "step": 40,
+      "expected": false,
+      "observed": false,
+      "confirmed": false,
+      "reason": "The robot has moved its arm to position the stove knob, indicating the action of turning on the stove has been initiated."
+    },
+    {
+      "tag": "zh_eval_hier_v3",
+      "task": 2,
+      "init": 0,
+      "step": 100,
+      "expected": true,
+      "observed": true,
+      "confirmed": false,
+      "reason": "The stove has been turned on, indicated by the red glowing coil."
+    },
+    {
+      "tag": "zh_eval_hier_v3",
+      "task": 2,
+      "init": 0,
+      "step": 120,
+      "expected": true,
+      "observed": true,
+      "confirmed": true,
+      "reason": "The stove has been turned on, indicated by the red glow on its surface."
+    },
+    {
+      "tag": "zh_eval_hier_v3",
+      "task": 2,
+      "init": 1,
+      "step": 20,
+      "expected": false,
+      "observed": false,
+      "confirmed": false,
+      "reason": "No change detected."
+    },
+    {
+      "tag": "zh_eval_hier_v3",
+      "task": 2,
+      "init": 1,
+      "step": 40,
+      "expected": false,
+      "observed": true,
+      "confirmed": false,
+      "reason": "The robot has moved away from the stove, indicating the action of turning it on has been completed."
+    },
+    {
+      "tag": "zh_eval_hier_v3",
+      "task": 2,
+      "init": 1,
+      "step": 120,
+      "expected": true,
+      "observed": true,
+      "confirmed": true,
+      "reason": "The stove has been turned on, indicated by the red glowing heating element."
+    },
+    {
+      "tag": "zh_eval_hier_v3",
+      "task": 2,
+      "init": 2,
+      "step": 20,
+      "expected": false,
+      "observed": false,
+      "confirmed": false,
+      "reason": "No change detected."
+    },
+    {
+      "tag": "zh_eval_hier_v3",
+      "task": 2,
+      "init": 2,
+      "step": 40,
+      "expected": false,
+      "observed": false,
+      "confirmed": false,
+      "reason": "No new object at the stove; the stove is still off."
+    },
+    {
+      "tag": "zh_eval_hier_v3",
+      "task": 2,
+      "init": 2,
+      "step": 60,
+      "expected": false,
+      "observed": false,
+      "confirmed": false,
+      "reason": "The robot has moved slightly, but no new object has appeared at the stove. The stove remains in the same position with no visible state change (e.g., turned on)."
+    },
+    {
+      "tag": "zh_eval_hier_v3",
+      "task": 2,
+      "init": 2,
+      "step": 240,
+      "expected": false,
+      "observed": false,
+      "confirmed": false,
+      "reason": "The robot's arm has moved slightly, indicating it may be preparing to interact with the stove, but no object has been placed on the stove yet."
+    },
+    {
+      "tag": "zh_eval_hier_v3",
+      "task": 2,
+      "init": 2,
+      "step": 260,
+      "expected": false,
+      "observed": false,
+      "confirmed": false,
+      "reason": "The robot's arm has moved towards the stove, indicating it is preparing to turn it on."
+    },
+    {
+      "tag": "zh_eval_hier_v3",
+      "task": 2,
+      "init": 2,
+      "step": 280,
+      "expected": false,
+      "observed": false,
+      "confirmed": false,
+      "reason": "The robot's arm has moved towards the stove, indicating it is about to turn it on."
+    },
+    {
+      "tag": "zh_eval_hier_v3",
+      "task": 4,
+      "init": 0,
+      "step": 20,
+      "expected": false,
+      "observed": false,
+      "confirmed": false,
+      "reason": "No change detected"
+    },
+    {
+      "tag": "zh_eval_hier_v3",
+      "task": 4,
+      "init": 0,
+      "step": 140,
+      "expected": true,
+      "observed": true,
+      "confirmed": false,
+      "reason": "The white textured mug has been moved from the table to the right plate."
+    },
+    {
+      "tag": "zh_eval_hier_v3",
+      "task": 4,
+      "init": 0,
+      "step": 160,
+      "expected": true,
+      "observed": true,
+      "confirmed": true,
+      "reason": "The white textured mug has been moved from the table to the right plate."
+    },
+    {
+      "tag": "zh_eval_hier_v3",
+      "task": 4,
+      "init": 1,
+      "step": 20,
+      "expected": false,
+      "observed": false,
+      "confirmed": false,
+      "reason": "No change detected."
+    },
+    {
+      "tag": "zh_eval_hier_v3",
+      "task": 4,
+      "init": 1,
+      "step": 40,
+      "expected": false,
+      "observed": false,
+      "confirmed": false,
+      "reason": "The white mug is now on the right plate, which was not the case in image 1."
+    },
+    {
+      "tag": "zh_eval_hier_v3",
+      "task": 4,
+      "init": 1,
+      "step": 120,
+      "expected": true,
+      "observed": true,
+      "confirmed": false,
+      "reason": "The white mug is now on the left plate, which was not the case in image 1."
+    },
+    {
+      "tag": "zh_eval_hier_v3",
+      "task": 4,
+      "init": 1,
+      "step": 140,
+      "expected": true,
+      "observed": false,
+      "confirmed": false,
+      "reason": "The white mug has been moved from the table to the right plate."
+    },
+    {
+      "tag": "zh_eval_hier_v3",
+      "task": 4,
+      "init": 1,
+      "step": 160,
+      "expected": true,
+      "observed": true,
+      "confirmed": false,
+      "reason": "The white mug is now on the left plate, which was empty in image 1."
+    },
+    {
+      "tag": "zh_eval_hier_v3",
+      "task": 4,
+      "init": 2,
+      "step": 20,
+      "expected": false,
+      "observed": false,
+      "confirmed": false,
+      "reason": "No change detected."
+    },
+    {
+      "tag": "zh_eval_hier_v3",
+      "task": 4,
+      "init": 2,
+      "step": 120,
+      "expected": true,
+      "observed": false,
+      "confirmed": false,
+      "reason": "The white mug is now on the right plate, which was not the case in image 1."
+    },
+    {
+      "tag": "zh_eval_hier_v3",
+      "task": 4,
+      "init": 2,
+      "step": 140,
+      "expected": true,
+      "observed": false,
+      "confirmed": false,
+      "reason": "The white mug is now on the right plate, which was not the case in image 1."
+    },
+    {
+      "tag": "zh_eval_hier_v3",
+      "task": 4,
+      "init": 2,
+      "step": 160,
+      "expected": true,
+      "observed": true,
+      "confirmed": false,
+      "reason": "The white mug is now on the left plate, which was not the case in image 1."
+    }
+  ]
+}

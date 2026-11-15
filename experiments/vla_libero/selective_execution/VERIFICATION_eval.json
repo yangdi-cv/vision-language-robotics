@@ -1,0 +1,17 @@
+{
+  "episodes": 140,
+  "policy_queries": 7268,
+  "decisions": 1657,
+  "video_frames": 39980,
+  "physics_states": 39840,
+  "original_success_continued": 69,
+  "phase": "eval",
+  "expected": 140,
+  "max_restored_object_position_error_m": 0.003001496237166945,
+  "restored_predicate_disagreements": 2,
+  "restored_contact_disagreements": 94,
+  "restored_final_score_disagreements": [],
+  "vlm_requests_audited_all_phases": 649,
+  "physics_checked": true,
+  "execution_sources_unchanged": true
+}

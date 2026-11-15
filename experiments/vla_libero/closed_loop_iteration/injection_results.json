@@ -1,0 +1,2518 @@
+[
+  {
+    "task": 0,
+    "init": 0,
+    "mode": "continue",
+    "success": false,
+    "status": "timeout",
+    "events": [],
+    "budget": 420,
+    "prefix_steps": 160,
+    "nominal_remaining": [
+      "pick up the tomato sauce can and place it in the basket"
+    ],
+    "before_fault_atoms": [
+      true,
+      false
+    ],
+    "after_fault_atoms": [
+      false,
+      false
+    ],
+    "perturbed_state_sha256": "7b595c918d4615288d9aa382a81f1b3f39e18e7cca142b7908383b53e510d91c",
+    "instructions": [
+      "pick up the tomato sauce can and place it in the basket"
+    ],
+    "steps": 420,
+    "queries": 84,
+    "final_atoms": [
+      false,
+      true
+    ],
+    "wall_seconds": 23.775002766000398
+  },
+  {
+    "task": 0,
+    "init": 0,
+    "mode": "full",
+    "success": false,
+    "status": "timeout",
+    "events": [],
+    "budget": 420,
+    "prefix_steps": 160,
+    "nominal_remaining": [
+      "pick up the tomato sauce can and place it in the basket"
+    ],
+    "before_fault_atoms": [
+      true,
+      false
+    ],
+    "after_fault_atoms": [
+      false,
+      false
+    ],
+    "perturbed_state_sha256": "7b595c918d4615288d9aa382a81f1b3f39e18e7cca142b7908383b53e510d91c",
+    "instructions": [
+      "put both the alphabet soup and the tomato sauce in the basket"
+    ],
+    "steps": 420,
+    "queries": 84,
+    "final_atoms": [
+      false,
+      true
+    ],
+    "wall_seconds": 13.822087690001354
+  },
+  {
+    "task": 0,
+    "init": 0,
+    "mode": "qwen",
+    "success": false,
+    "status": "timeout",
+    "events": [
+      {
+        "kind": "replan",
+        "step": 0,
+        "response": {
+          "ok": true,
+          "raw": "{\n  \"subgoals\": [\n    {\n      \"instruction\": \"open the tomato sauce bottle\",\n      \"completion_hint\": \"the bottle cap is removed\"\n    },\n    {\n      \"instruction\": \"pick up the tomato sauce bottle and place it in the basket\",\n      \"completion_hint\": \"the bottle is inside the basket\"\n    },\n    {\n      \"instruction\": \"open the alphabet soup can\",\n      \"completion_hint\": \"the can lid is removed\"\n    },\n    {\n      \"instruction\": \"pick up the alphabet soup can and place it in the basket\",\n      \"completion_hint\": \"the can is inside the basket\"\n    }\n  ]\n}",
+          "seconds": 2.3740079759954824,
+          "device": "cuda:0",
+          "allocated_mib": 8478.619140625,
+          "reserved_mib": 8664.0,
+          "tokens": 135,
+          "subgoals": [
+            {
+              "instruction": "open the tomato sauce bottle",
+              "completion_hint": "the bottle cap is removed"
+            },
+            {
+              "instruction": "pick up the tomato sauce bottle and place it in the basket",
+              "completion_hint": "the bottle is inside the basket"
+            },
+            {
+              "instruction": "open the alphabet soup can",
+              "completion_hint": "the can lid is removed"
+            },
+            {
+              "instruction": "pick up the alphabet soup can and place it in the basket",
+              "completion_hint": "the can is inside the basket"
+            }
+          ]
+        }
+      },
+      {
+        "kind": "check",
+        "step": 20,
+        "index": 0,
+        "confirmed": false,
+        "response": {
+          "ok": true,
+          "raw": "{\n  \"change\": \"No change detected.\",\n  \"done\": false\n}",
+          "seconds": 0.3042457909978111,
+          "device": "cuda:0",
+          "allocated_mib": 8484.62158203125,
+          "reserved_mib": 8756.0,
+          "tokens": 18,
+          "done": false,
+          "reason": "No change detected."
+        }
+      },
+      {
+        "kind": "check",
+        "step": 40,
+        "index": 0,
+        "confirmed": false,
+        "response": {
+          "ok": true,
+          "raw": "{\n  \"change\": \"No change detected.\",\n  \"done\": false\n}",
+          "seconds": 0.3035352549995878,
+          "device": "cuda:0",
+          "allocated_mib": 8484.62158203125,
+          "reserved_mib": 8756.0,
+          "tokens": 18,
+          "done": false,
+          "reason": "No change detected."
+        }
+      },
+      {
+        "kind": "check",
+        "step": 60,
+        "index": 0,
+        "confirmed": false,
+        "response": {
+          "ok": true,
+          "raw": "{\n  \"change\": \"The tomato sauce bottle is still in the same position, and there is no new object at the destination.\",\n  \"done\": false\n}",
+          "seconds": 0.5436022030044114,
+          "device": "cuda:0",
+          "allocated_mib": 8484.62158203125,
+          "reserved_mib": 8756.0,
+          "tokens": 35,
+          "done": false,
+          "reason": "The tomato sauce bottle is still in the same position, and there is no new object at the destination."
+        }
+      },
+      {
+        "kind": "check",
+        "step": 80,
+        "index": 0,
+        "confirmed": false,
+        "response": {
+          "ok": true,
+          "raw": "{\n  \"change\": \"No change detected.\",\n  \"done\": false\n}",
+          "seconds": 0.30243594000057783,
+          "device": "cuda:0",
+          "allocated_mib": 8484.62158203125,
+          "reserved_mib": 8756.0,
+          "tokens": 18,
+          "done": false,
+          "reason": "No change detected."
+        }
+      },
+      {
+        "kind": "check",
+        "step": 100,
+        "index": 0,
+        "confirmed": false,
+        "response": {
+          "ok": true,
+          "raw": "{\n  \"change\": \"No change detected.\",\n  \"done\": false\n}",
+          "seconds": 0.30342501500126673,
+          "device": "cuda:0",
+          "allocated_mib": 8484.62158203125,
+          "reserved_mib": 8756.0,
+          "tokens": 18,
+          "done": false,
+          "reason": "No change detected."
+        }
+      },
+      {
+        "kind": "check",
+        "step": 120,
+        "index": 0,
+        "confirmed": false,
+        "response": {
+          "ok": true,
+          "raw": "{\n  \"change\": \"No change detected.\",\n  \"done\": false\n}",
+          "seconds": 0.3035779550045845,
+          "device": "cuda:0",
+          "allocated_mib": 8484.62158203125,
+          "reserved_mib": 8756.0,
+          "tokens": 18,
+          "done": false,
+          "reason": "No change detected."
+        }
+      },
+      {
+        "kind": "check",
+        "step": 140,
+        "index": 0,
+        "confirmed": false,
+        "response": {
+          "ok": true,
+          "raw": "{\n  \"change\": \"No change detected.\",\n  \"done\": false\n}",
+          "seconds": 0.3021567550022155,
+          "device": "cuda:0",
+          "allocated_mib": 8484.62158203125,
+          "reserved_mib": 8756.0,
+          "tokens": 18,
+          "done": false,
+          "reason": "No change detected."
+        }
+      },
+      {
+        "kind": "check",
+        "step": 160,
+        "index": 0,
+        "confirmed": false,
+        "response": {
+          "ok": true,
+          "raw": "{\n  \"change\": \"No change detected.\",\n  \"done\": false\n}",
+          "seconds": 0.30878419899818255,
+          "device": "cuda:0",
+          "allocated_mib": 8484.62158203125,
+          "reserved_mib": 8756.0,
+          "tokens": 18,
+          "done": false,
+          "reason": "No change detected."
+        }
+      },
+      {
+        "kind": "check",
+        "step": 180,
+        "index": 0,
+        "confirmed": false,
+        "response": {
+          "ok": true,
+          "raw": "{\n  \"change\": \"No change detected.\",\n  \"done\": false\n}",
+          "seconds": 0.303371160000097,
+          "device": "cuda:0",
+          "allocated_mib": 8484.62158203125,
+          "reserved_mib": 8756.0,
+          "tokens": 18,
+          "done": false,
+          "reason": "No change detected."
+        }
+      },
+      {
+        "kind": "check",
+        "step": 200,
+        "index": 0,
+        "confirmed": false,
+        "response": {
+          "ok": true,
+          "raw": "{\n  \"change\": \"No change detected.\",\n  \"done\": false\n}",
+          "seconds": 0.3018758479956887,
+          "device": "cuda:0",
+          "allocated_mib": 8484.62158203125,
+          "reserved_mib": 8756.0,
+          "tokens": 18,
+          "done": false,
+          "reason": "No change detected."
+        }
+      },
+      {
+        "kind": "check",
+        "step": 220,
+        "index": 0,
+        "confirmed": false,
+        "response": {
+          "ok": true,
+          "raw": "{\n  \"change\": \"No change detected.\",\n  \"done\": false\n}",
+          "seconds": 0.3026723849980044,
+          "device": "cuda:0",
+          "allocated_mib": 8484.62158203125,
+          "reserved_mib": 8756.0,
+          "tokens": 18,
+          "done": false,
+          "reason": "No change detected."
+        }
+      },
+      {
+        "kind": "check",
+        "step": 240,
+        "index": 0,
+        "confirmed": false,
+        "response": {
+          "ok": true,
+          "raw": "{\n  \"change\": \"No change detected.\",\n  \"done\": false\n}",
+          "seconds": 0.3043855900032213,
+          "device": "cuda:0",
+          "allocated_mib": 8484.62158203125,
+          "reserved_mib": 8756.0,
+          "tokens": 18,
+          "done": false,
+          "reason": "No change detected."
+        }
+      },
+      {
+        "kind": "check",
+        "step": 260,
+        "index": 0,
+        "confirmed": false,
+        "response": {
+          "ok": true,
+          "raw": "{\n  \"change\": \"No change detected.\",\n  \"done\": false\n}",
+          "seconds": 0.3038812599988887,
+          "device": "cuda:0",
+          "allocated_mib": 8484.62158203125,
+          "reserved_mib": 8756.0,
+          "tokens": 18,
+          "done": false,
+          "reason": "No change detected."
+        }
+      },
+      {
+        "kind": "check",
+        "step": 280,
+        "index": 0,
+        "confirmed": false,
+        "response": {
+          "ok": true,
+          "raw": "{\n  \"change\": \"No change detected.\",\n  \"done\": false\n}",
+          "seconds": 0.303013070995803,
+          "device": "cuda:0",
+          "allocated_mib": 8484.62158203125,
+          "reserved_mib": 8756.0,
+          "tokens": 18,
+          "done": false,
+          "reason": "No change detected."
+        }
+      },
+      {
+        "kind": "check",
+        "step": 300,
+        "index": 0,
+        "confirmed": false,
+        "response": {
+          "ok": true,
+          "raw": "{\n  \"change\": \"No change detected.\",\n  \"done\": false\n}",
+          "seconds": 0.30233835299441125,
+          "device": "cuda:0",
+          "allocated_mib": 8484.62158203125,
+          "reserved_mib": 8756.0,
+          "tokens": 18,
+          "done": false,
+          "reason": "No change detected."
+        }
+      },
+      {
+        "kind": "check",
+        "step": 320,
+        "index": 0,
+        "confirmed": false,
+        "response": {
+          "ok": true,
+          "raw": "{\n  \"change\": \"No change detected.\",\n  \"done\": false\n}",
+          "seconds": 0.3043406220022007,
+          "device": "cuda:0",
+          "allocated_mib": 8484.62158203125,
+          "reserved_mib": 8756.0,
+          "tokens": 18,
+          "done": false,
+          "reason": "No change detected."
+        }
+      },
+      {
+        "kind": "check",
+        "step": 340,
+        "index": 0,
+        "confirmed": false,
+        "response": {
+          "ok": true,
+          "raw": "{\n  \"change\": \"No change detected.\",\n  \"done\": false\n}",
+          "seconds": 0.3060379859962268,
+          "device": "cuda:0",
+          "allocated_mib": 8484.62158203125,
+          "reserved_mib": 8756.0,
+          "tokens": 18,
+          "done": false,
+          "reason": "No change detected."
+        }
+      },
+      {
+        "kind": "check",
+        "step": 360,
+        "index": 0,
+        "confirmed": false,
+        "response": {
+          "ok": true,
+          "raw": "{\n  \"change\": \"No change detected.\",\n  \"done\": false\n}",
+          "seconds": 0.30468289500277024,
+          "device": "cuda:0",
+          "allocated_mib": 8484.62158203125,
+          "reserved_mib": 8756.0,
+          "tokens": 18,
+          "done": false,
+          "reason": "No change detected."
+        }
+      },
+      {
+        "kind": "check",
+        "step": 380,
+        "index": 0,
+        "confirmed": false,
+        "response": {
+          "ok": true,
+          "raw": "{\n  \"change\": \"No change detected.\",\n  \"done\": false\n}",
+          "seconds": 0.30384590799803846,
+          "device": "cuda:0",
+          "allocated_mib": 8484.62158203125,
+          "reserved_mib": 8756.0,
+          "tokens": 18,
+          "done": false,
+          "reason": "No change detected."
+        }
+      },
+      {
+        "kind": "check",
+        "step": 400,
+        "index": 0,
+        "confirmed": false,
+        "response": {
+          "ok": true,
+          "raw": "{\n  \"change\": \"No change detected.\",\n  \"done\": false\n}",
+          "seconds": 0.3030966470032581,
+          "device": "cuda:0",
+          "allocated_mib": 8484.62158203125,
+          "reserved_mib": 8756.0,
+          "tokens": 18,
+          "done": false,
+          "reason": "No change detected."
+        }
+      }
+    ],
+    "budget": 420,
+    "prefix_steps": 160,
+    "nominal_remaining": [
+      "pick up the tomato sauce can and place it in the basket"
+    ],
+    "before_fault_atoms": [
+      true,
+      false
+    ],
+    "after_fault_atoms": [
+      false,
+      false
+    ],
+    "perturbed_state_sha256": "7b595c918d4615288d9aa382a81f1b3f39e18e7cca142b7908383b53e510d91c",
+    "instructions": [
+      "open the tomato sauce bottle",
+      "pick up the tomato sauce bottle and place it in the basket",
+      "open the alphabet soup can",
+      "pick up the alphabet soup can and place it in the basket"
+    ],
+    "steps": 420,
+    "queries": 84,
+    "final_atoms": [
+      false,
+      true
+    ],
+    "wall_seconds": 24.206813667005918
+  },
+  {
+    "task": 3,
+    "init": 0,
+    "mode": "continue",
+    "success": false,
+    "status": "timeout",
+    "events": [
+      {
+        "kind": "check",
+        "step": 20,
+        "index": 0,
+        "confirmed": false,
+        "response": {
+          "ok": true,
+          "raw": "{\n  \"change\": \"No change detected.\",\n  \"done\": false\n}",
+          "seconds": 0.302992937999079,
+          "device": "cuda:0",
+          "allocated_mib": 8484.62158203125,
+          "reserved_mib": 8756.0,
+          "tokens": 18,
+          "done": false,
+          "reason": "No change detected."
+        }
+      },
+      {
+        "kind": "check",
+        "step": 40,
+        "index": 0,
+        "confirmed": false,
+        "response": {
+          "ok": true,
+          "raw": "{\n  \"change\": \"No change detected\",\n  \"done\": false\n}",
+          "seconds": 0.30296486300358083,
+          "device": "cuda:0",
+          "allocated_mib": 8484.62158203125,
+          "reserved_mib": 8756.0,
+          "tokens": 18,
+          "done": false,
+          "reason": "No change detected"
+        }
+      },
+      {
+        "kind": "check",
+        "step": 60,
+        "index": 0,
+        "confirmed": false,
+        "response": {
+          "ok": true,
+          "raw": "{\n  \"change\": \"The black bowl is now in the bottom drawer of the cabinet, which was not the case in image 1.\",\n  \"done\": true\n}",
+          "seconds": 0.5719326930047828,
+          "device": "cuda:0",
+          "allocated_mib": 8484.62158203125,
+          "reserved_mib": 8756.0,
+          "tokens": 37,
+          "done": true,
+          "reason": "The black bowl is now in the bottom drawer of the cabinet, which was not the case in image 1."
+        }
+      }
+    ],
+    "budget": 420,
+    "prefix_steps": 0,
+    "nominal_remaining": [
+      "put the black bowl in the bottom drawer of the cabinet",
+      "close the bottom drawer of the cabinet"
+    ],
+    "before_fault_atoms": [
+      false,
+      false
+    ],
+    "after_fault_atoms": [
+      true,
+      false
+    ],
+    "perturbed_state_sha256": "f177a008c3bf5434c1a9c82260718e7c8b63dc08c55720862386806974d46380",
+    "instructions": [
+      "put the black bowl in the bottom drawer of the cabinet",
+      "close the bottom drawer of the cabinet"
+    ],
+    "steps": 420,
+    "queries": 84,
+    "final_atoms": [
+      true,
+      false
+    ],
+    "wall_seconds": 13.45615001799888
+  },
+  {
+    "task": 3,
+    "init": 0,
+    "mode": "full",
+    "success": false,
+    "status": "timeout",
+    "events": [],
+    "budget": 420,
+    "prefix_steps": 0,
+    "nominal_remaining": [
+      "put the black bowl in the bottom drawer of the cabinet",
+      "close the bottom drawer of the cabinet"
+    ],
+    "before_fault_atoms": [
+      false,
+      false
+    ],
+    "after_fault_atoms": [
+      true,
+      false
+    ],
+    "perturbed_state_sha256": "f177a008c3bf5434c1a9c82260718e7c8b63dc08c55720862386806974d46380",
+    "instructions": [
+      "put the black bowl in the bottom drawer of the cabinet and close it"
+    ],
+    "steps": 420,
+    "queries": 84,
+    "final_atoms": [
+      true,
+      false
+    ],
+    "wall_seconds": 11.570566720001807
+  },
+  {
+    "task": 3,
+    "init": 0,
+    "mode": "qwen",
+    "success": false,
+    "status": "timeout",
+    "events": [
+      {
+        "kind": "replan",
+        "step": 0,
+        "response": {
+          "ok": true,
+          "raw": "{\n  \"subgoals\": [\n    {\n      \"instruction\": \"pick up the bowl and place it in the bottom drawer of the cabinet\",\n      \"completion_hint\": \"the bowl is now inside the open bottom drawer\"\n    },\n    {\n      \"instruction\": \"close the bottom drawer of the cabinet\",\n      \"completion_hint\": \"the bottom drawer is now shut\"\n    }\n  ]\n}",
+          "seconds": 1.1723917490016902,
+          "device": "cuda:0",
+          "allocated_mib": 8478.61865234375,
+          "reserved_mib": 8756.0,
+          "tokens": 81,
+          "subgoals": [
+            {
+              "instruction": "pick up the bowl and place it in the bottom drawer of the cabinet",
+              "completion_hint": "the bowl is now inside the open bottom drawer"
+            },
+            {
+              "instruction": "close the bottom drawer of the cabinet",
+              "completion_hint": "the bottom drawer is now shut"
+            }
+          ]
+        }
+      },
+      {
+        "kind": "check",
+        "step": 20,
+        "index": 0,
+        "confirmed": false,
+        "response": {
+          "ok": true,
+          "raw": "{\n  \"change\": \"No change detected at the destination.\",\n  \"done\": false\n}",
+          "seconds": 0.3441244999994524,
+          "device": "cuda:0",
+          "allocated_mib": 8484.62158203125,
+          "reserved_mib": 8756.0,
+          "tokens": 21,
+          "done": false,
+          "reason": "No change detected at the destination."
+        }
+      },
+      {
+        "kind": "check",
+        "step": 40,
+        "index": 0,
+        "confirmed": false,
+        "response": {
+          "ok": true,
+          "raw": "{\n  \"change\": \"No change detected at the destination.\",\n  \"done\": false\n}",
+          "seconds": 0.344631390995346,
+          "device": "cuda:0",
+          "allocated_mib": 8484.62158203125,
+          "reserved_mib": 8756.0,
+          "tokens": 21,
+          "done": false,
+          "reason": "No change detected at the destination."
+        }
+      },
+      {
+        "kind": "check",
+        "step": 60,
+        "index": 0,
+        "confirmed": false,
+        "response": {
+          "ok": true,
+          "raw": "{\n  \"change\": \"The bowl has been picked up by the robot and is now positioned above the bottom drawer of the cabinet, ready to be placed inside.\",\n  \"done\": false\n}",
+          "seconds": 0.6276531760013313,
+          "device": "cuda:0",
+          "allocated_mib": 8484.62158203125,
+          "reserved_mib": 8756.0,
+          "tokens": 41,
+          "done": false,
+          "reason": "The bowl has been picked up by the robot and is now positioned above the bottom drawer of the cabinet, ready to be placed inside."
+        }
+      }
+    ],
+    "budget": 420,
+    "prefix_steps": 0,
+    "nominal_remaining": [
+      "put the black bowl in the bottom drawer of the cabinet",
+      "close the bottom drawer of the cabinet"
+    ],
+    "before_fault_atoms": [
+      false,
+      false
+    ],
+    "after_fault_atoms": [
+      true,
+      false
+    ],
+    "perturbed_state_sha256": "f177a008c3bf5434c1a9c82260718e7c8b63dc08c55720862386806974d46380",
+    "instructions": [
+      "pick up the bowl and place it in the bottom drawer of the cabinet",
+      "close the bottom drawer of the cabinet"
+    ],
+    "steps": 420,
+    "queries": 84,
+    "final_atoms": [
+      true,
+      false
+    ],
+    "wall_seconds": 14.829747895004402
+  },
+  {
+    "task": 4,
+    "init": 0,
+    "mode": "continue",
+    "success": false,
+    "status": "timeout",
+    "events": [],
+    "budget": 420,
+    "prefix_steps": 160,
+    "nominal_remaining": [
+      "put the yellow and white mug on the right plate"
+    ],
+    "before_fault_atoms": [
+      true,
+      false
+    ],
+    "after_fault_atoms": [
+      false,
+      false
+    ],
+    "perturbed_state_sha256": "8a900e190c4e56e55d33809f7eb04db04e3479010afe9eb8ab804b329bb92218",
+    "instructions": [
+      "put the yellow and white mug on the right plate"
+    ],
+    "steps": 420,
+    "queries": 84,
+    "final_atoms": [
+      false,
+      true
+    ],
+    "wall_seconds": 15.160461847997794
+  },
+  {
+    "task": 4,
+    "init": 0,
+    "mode": "full",
+    "success": false,
+    "status": "timeout",
+    "events": [],
+    "budget": 420,
+    "prefix_steps": 160,
+    "nominal_remaining": [
+      "put the yellow and white mug on the right plate"
+    ],
+    "before_fault_atoms": [
+      true,
+      false
+    ],
+    "after_fault_atoms": [
+      false,
+      false
+    ],
+    "perturbed_state_sha256": "8a900e190c4e56e55d33809f7eb04db04e3479010afe9eb8ab804b329bb92218",
+    "instructions": [
+      "put the white mug on the left plate and put the yellow and white mug on the right plate"
+    ],
+    "steps": 420,
+    "queries": 84,
+    "final_atoms": [
+      false,
+      true
+    ],
+    "wall_seconds": 14.31407682900317
+  },
+  {
+    "task": 4,
+    "init": 0,
+    "mode": "qwen",
+    "success": false,
+    "status": "timeout",
+    "events": [
+      {
+        "kind": "replan",
+        "step": 0,
+        "response": {
+          "ok": true,
+          "raw": "{\n  \"subgoals\": [\n    {\n      \"instruction\": \"pick up the white mug and place it on the left plate\"\n    },\n    {\n      \"instruction\": \"pick up the yellow and white mug and place it on the right plate\"\n    }\n  ]\n}",
+          "seconds": 0.8582532439977513,
+          "device": "cuda:0",
+          "allocated_mib": 8478.61865234375,
+          "reserved_mib": 8758.0,
+          "tokens": 57,
+          "subgoals": [
+            {
+              "instruction": "pick up the white mug and place it on the left plate",
+              "completion_hint": ""
+            },
+            {
+              "instruction": "pick up the yellow and white mug and place it on the right plate",
+              "completion_hint": ""
+            }
+          ]
+        }
+      },
+      {
+        "kind": "check",
+        "step": 20,
+        "index": 0,
+        "confirmed": false,
+        "response": {
+          "ok": true,
+          "raw": "{\n  \"change\": \"No change detected\",\n  \"done\": false\n}",
+          "seconds": 0.3017394290000084,
+          "device": "cuda:0",
+          "allocated_mib": 8484.62158203125,
+          "reserved_mib": 8758.0,
+          "tokens": 18,
+          "done": false,
+          "reason": "No change detected"
+        }
+      },
+      {
+        "kind": "check",
+        "step": 100,
+        "index": 0,
+        "confirmed": false,
+        "response": {
+          "ok": true,
+          "raw": "{\n  \"change\": \"The white mug is no longer being held by the robot and is now on the table, but it is not on the left plate yet.\",\n  \"done\": false\n}",
+          "seconds": 0.6574340900042444,
+          "device": "cuda:0",
+          "allocated_mib": 8484.62158203125,
+          "reserved_mib": 8758.0,
+          "tokens": 42,
+          "done": false,
+          "reason": "The white mug is no longer being held by the robot and is now on the table, but it is not on the left plate yet."
+        }
+      },
+      {
+        "kind": "check",
+        "step": 120,
+        "index": 0,
+        "confirmed": false,
+        "response": {
+          "ok": true,
+          "raw": "{\n  \"change\": \"The white mug is no longer being held by the robot and is now on the table, but it is not on the left plate yet.\",\n  \"done\": false\n}",
+          "seconds": 0.641039850001107,
+          "device": "cuda:0",
+          "allocated_mib": 8484.62158203125,
+          "reserved_mib": 8758.0,
+          "tokens": 42,
+          "done": false,
+          "reason": "The white mug is no longer being held by the robot and is now on the table, but it is not on the left plate yet."
+        }
+      },
+      {
+        "kind": "check",
+        "step": 140,
+        "index": 0,
+        "confirmed": false,
+        "response": {
+          "ok": true,
+          "raw": "{\n  \"change\": \"The white mug is no longer being held by the robot and is now on the table, but it is not on the left plate yet.\",\n  \"done\": false\n}",
+          "seconds": 0.6406415090023074,
+          "device": "cuda:0",
+          "allocated_mib": 8484.62158203125,
+          "reserved_mib": 8758.0,
+          "tokens": 42,
+          "done": false,
+          "reason": "The white mug is no longer being held by the robot and is now on the table, but it is not on the left plate yet."
+        }
+      },
+      {
+        "kind": "check",
+        "step": 160,
+        "index": 0,
+        "confirmed": false,
+        "response": {
+          "ok": true,
+          "raw": "{\n  \"change\": \"The white mug is no longer being held by the robot and is now on the right plate, which was empty in image 1.\",\n  \"done\": true\n}",
+          "seconds": 0.6465367510027136,
+          "device": "cuda:0",
+          "allocated_mib": 8484.62158203125,
+          "reserved_mib": 8758.0,
+          "tokens": 41,
+          "done": true,
+          "reason": "The white mug is no longer being held by the robot and is now on the right plate, which was empty in image 1."
+        }
+      },
+      {
+        "kind": "check",
+        "step": 180,
+        "index": 0,
+        "confirmed": false,
+        "response": {
+          "ok": true,
+          "raw": "{\n  \"change\": \"The white mug is no longer being held by the robot and is now on the table, but it is not on the left plate yet.\",\n  \"done\": false\n}",
+          "seconds": 0.6423823969962541,
+          "device": "cuda:0",
+          "allocated_mib": 8484.62158203125,
+          "reserved_mib": 8758.0,
+          "tokens": 42,
+          "done": false,
+          "reason": "The white mug is no longer being held by the robot and is now on the table, but it is not on the left plate yet."
+        }
+      },
+      {
+        "kind": "check",
+        "step": 200,
+        "index": 0,
+        "confirmed": false,
+        "response": {
+          "ok": true,
+          "raw": "{\n  \"change\": \"The white mug is no longer being held by the robot and is now on the table, but it is not on the left plate yet.\",\n  \"done\": false\n}",
+          "seconds": 0.641787458996987,
+          "device": "cuda:0",
+          "allocated_mib": 8484.62158203125,
+          "reserved_mib": 8758.0,
+          "tokens": 42,
+          "done": false,
+          "reason": "The white mug is no longer being held by the robot and is now on the table, but it is not on the left plate yet."
+        }
+      },
+      {
+        "kind": "check",
+        "step": 220,
+        "index": 0,
+        "confirmed": false,
+        "response": {
+          "ok": true,
+          "raw": "{\n  \"change\": \"The white mug is no longer being held by the robot and is now on the table, but it is not on the left plate yet.\",\n  \"done\": false\n}",
+          "seconds": 0.6486928760059527,
+          "device": "cuda:0",
+          "allocated_mib": 8484.62158203125,
+          "reserved_mib": 8758.0,
+          "tokens": 42,
+          "done": false,
+          "reason": "The white mug is no longer being held by the robot and is now on the table, but it is not on the left plate yet."
+        }
+      },
+      {
+        "kind": "check",
+        "step": 240,
+        "index": 0,
+        "confirmed": false,
+        "response": {
+          "ok": true,
+          "raw": "{\n  \"change\": \"The white mug is no longer being held by the robot and is now on the table, but it is not on the left plate yet.\",\n  \"done\": false\n}",
+          "seconds": 0.6438120790044195,
+          "device": "cuda:0",
+          "allocated_mib": 8484.62158203125,
+          "reserved_mib": 8758.0,
+          "tokens": 42,
+          "done": false,
+          "reason": "The white mug is no longer being held by the robot and is now on the table, but it is not on the left plate yet."
+        }
+      },
+      {
+        "kind": "check",
+        "step": 260,
+        "index": 0,
+        "confirmed": false,
+        "response": {
+          "ok": true,
+          "raw": "{\n  \"change\": \"The white mug is no longer being held by the robot and is now on the table, but it is not on the left plate yet.\",\n  \"done\": false\n}",
+          "seconds": 0.6413786269986304,
+          "device": "cuda:0",
+          "allocated_mib": 8484.62158203125,
+          "reserved_mib": 8758.0,
+          "tokens": 42,
+          "done": false,
+          "reason": "The white mug is no longer being held by the robot and is now on the table, but it is not on the left plate yet."
+        }
+      },
+      {
+        "kind": "check",
+        "step": 280,
+        "index": 0,
+        "confirmed": false,
+        "response": {
+          "ok": true,
+          "raw": "{\n  \"change\": \"The white mug is no longer being held by the robot and is now on the right plate, which was empty in image 1.\",\n  \"done\": true\n}",
+          "seconds": 0.6274200600018958,
+          "device": "cuda:0",
+          "allocated_mib": 8484.62158203125,
+          "reserved_mib": 8758.0,
+          "tokens": 41,
+          "done": true,
+          "reason": "The white mug is no longer being held by the robot and is now on the right plate, which was empty in image 1."
+        }
+      },
+      {
+        "kind": "check",
+        "step": 300,
+        "index": 0,
+        "confirmed": false,
+        "response": {
+          "ok": true,
+          "raw": "{\n  \"change\": \"The white mug is no longer being held by the robot and is now on the table, but it is not on the left plate yet.\",\n  \"done\": false\n}",
+          "seconds": 0.6531232380002621,
+          "device": "cuda:0",
+          "allocated_mib": 8484.62158203125,
+          "reserved_mib": 8758.0,
+          "tokens": 42,
+          "done": false,
+          "reason": "The white mug is no longer being held by the robot and is now on the table, but it is not on the left plate yet."
+        }
+      },
+      {
+        "kind": "check",
+        "step": 320,
+        "index": 0,
+        "confirmed": false,
+        "response": {
+          "ok": true,
+          "raw": "{\n  \"change\": \"The white mug is no longer in the air and has been placed on the left plate, which was empty in image 1.\",\n  \"done\": true\n}",
+          "seconds": 0.6124218029945041,
+          "device": "cuda:0",
+          "allocated_mib": 8484.62158203125,
+          "reserved_mib": 8758.0,
+          "tokens": 40,
+          "done": true,
+          "reason": "The white mug is no longer in the air and has been placed on the left plate, which was empty in image 1."
+        }
+      },
+      {
+        "kind": "check",
+        "step": 340,
+        "index": 0,
+        "confirmed": false,
+        "response": {
+          "ok": true,
+          "raw": "{\n  \"change\": \"The white mug is no longer on the table; it has been picked up by the robot and is now positioned above the left plate, which is the target location.\",\n  \"done\": false\n}",
+          "seconds": 0.7131352470023558,
+          "device": "cuda:0",
+          "allocated_mib": 8484.62158203125,
+          "reserved_mib": 8758.0,
+          "tokens": 47,
+          "done": false,
+          "reason": "The white mug is no longer on the table; it has been picked up by the robot and is now positioned above the left plate, which is the target location."
+        }
+      },
+      {
+        "kind": "check",
+        "step": 360,
+        "index": 0,
+        "confirmed": false,
+        "response": {
+          "ok": true,
+          "raw": "{\n  \"change\": \"The white mug has been picked up by the robot and is now positioned over the left plate, which was empty in image 1.\",\n  \"done\": false\n}",
+          "seconds": 0.6437071109976387,
+          "device": "cuda:0",
+          "allocated_mib": 8484.62158203125,
+          "reserved_mib": 8758.0,
+          "tokens": 41,
+          "done": false,
+          "reason": "The white mug has been picked up by the robot and is now positioned over the left plate, which was empty in image 1."
+        }
+      },
+      {
+        "kind": "check",
+        "step": 380,
+        "index": 0,
+        "confirmed": false,
+        "response": {
+          "ok": true,
+          "raw": "{\n  \"change\": \"The white mug is now being held by the robot, indicating it has been picked up, and is not on the table as it was in image 1.\",\n  \"done\": false\n}",
+          "seconds": 0.6997385110007599,
+          "device": "cuda:0",
+          "allocated_mib": 8484.62158203125,
+          "reserved_mib": 8758.0,
+          "tokens": 46,
+          "done": false,
+          "reason": "The white mug is now being held by the robot, indicating it has been picked up, and is not on the table as it was in image 1."
+        }
+      },
+      {
+        "kind": "check",
+        "step": 400,
+        "index": 0,
+        "confirmed": false,
+        "response": {
+          "ok": true,
+          "raw": "{\n  \"change\": \"The white mug is now being held by the robot and is positioned above the left plate, which was empty in image 1.\",\n  \"done\": false\n}",
+          "seconds": 0.6117742470014491,
+          "device": "cuda:0",
+          "allocated_mib": 8484.62158203125,
+          "reserved_mib": 8758.0,
+          "tokens": 40,
+          "done": false,
+          "reason": "The white mug is now being held by the robot and is positioned above the left plate, which was empty in image 1."
+        }
+      }
+    ],
+    "budget": 420,
+    "prefix_steps": 160,
+    "nominal_remaining": [
+      "put the yellow and white mug on the right plate"
+    ],
+    "before_fault_atoms": [
+      true,
+      false
+    ],
+    "after_fault_atoms": [
+      false,
+      false
+    ],
+    "perturbed_state_sha256": "8a900e190c4e56e55d33809f7eb04db04e3479010afe9eb8ab804b329bb92218",
+    "instructions": [
+      "pick up the white mug and place it on the left plate",
+      "pick up the yellow and white mug and place it on the right plate"
+    ],
+    "steps": 420,
+    "queries": 84,
+    "final_atoms": [
+      false,
+      true
+    ],
+    "wall_seconds": 27.27513837299921
+  },
+  {
+    "task": 0,
+    "init": 1,
+    "mode": "continue",
+    "success": false,
+    "status": "timeout",
+    "events": [],
+    "budget": 420,
+    "prefix_steps": 160,
+    "nominal_remaining": [
+      "pick up the tomato sauce bottle and place it in the basket"
+    ],
+    "before_fault_atoms": [
+      true,
+      false
+    ],
+    "after_fault_atoms": [
+      false,
+      false
+    ],
+    "perturbed_state_sha256": "4541b37fbb6325fb236e967cbb53220c151bf533b8a2ce183bc467d8823bc025",
+    "instructions": [
+      "pick up the tomato sauce bottle and place it in the basket"
+    ],
+    "steps": 420,
+    "queries": 84,
+    "final_atoms": [
+      false,
+      true
+    ],
+    "wall_seconds": 14.101968882001529
+  },
+  {
+    "task": 0,
+    "init": 1,
+    "mode": "full",
+    "success": true,
+    "status": "success",
+    "events": [],
+    "budget": 420,
+    "prefix_steps": 160,
+    "nominal_remaining": [
+      "pick up the tomato sauce bottle and place it in the basket"
+    ],
+    "before_fault_atoms": [
+      true,
+      false
+    ],
+    "after_fault_atoms": [
+      false,
+      false
+    ],
+    "perturbed_state_sha256": "4541b37fbb6325fb236e967cbb53220c151bf533b8a2ce183bc467d8823bc025",
+    "instructions": [
+      "put both the alphabet soup and the tomato sauce in the basket"
+    ],
+    "steps": 281,
+    "queries": 57,
+    "final_atoms": [
+      true,
+      true
+    ],
+    "wall_seconds": 10.833112980995793
+  },
+  {
+    "task": 0,
+    "init": 1,
+    "mode": "qwen",
+    "success": false,
+    "status": "timeout",
+    "events": [
+      {
+        "kind": "replan",
+        "step": 0,
+        "response": {
+          "ok": true,
+          "raw": "{\n  \"subgoals\": [\n    {\n      \"instruction\": \"pick up the alphabet soup can and place it on/in the basket\",\n      \"completion_hint\": \"alphabet soup can is now in the basket\"\n    },\n    {\n      \"instruction\": \"pick up the tomato sauce bottle and place it on/in the basket\",\n      \"completion_hint\": \"tomato sauce bottle is now in the basket\"\n    }\n  ]\n}",
+          "seconds": 1.2867901739955414,
+          "device": "cuda:0",
+          "allocated_mib": 8478.61865234375,
+          "reserved_mib": 8758.0,
+          "tokens": 88,
+          "subgoals": [
+            {
+              "instruction": "pick up the alphabet soup can and place it on/in the basket",
+              "completion_hint": "alphabet soup can is now in the basket"
+            },
+            {
+              "instruction": "pick up the tomato sauce bottle and place it on/in the basket",
+              "completion_hint": "tomato sauce bottle is now in the basket"
+            }
+          ]
+        }
+      },
+      {
+        "kind": "check",
+        "step": 20,
+        "index": 0,
+        "confirmed": false,
+        "response": {
+          "ok": true,
+          "raw": "{\n  \"change\": \"No change detected\",\n  \"done\": false\n}",
+          "seconds": 0.30302102499990724,
+          "device": "cuda:0",
+          "allocated_mib": 8484.62158203125,
+          "reserved_mib": 8758.0,
+          "tokens": 18,
+          "done": false,
+          "reason": "No change detected"
+        }
+      },
+      {
+        "kind": "check",
+        "step": 100,
+        "index": 0,
+        "confirmed": false,
+        "response": {
+          "ok": true,
+          "raw": "{\n  \"change\": \"The alphabet soup can has been picked up by the robot and placed into the basket.\",\n  \"done\": true\n}",
+          "seconds": 0.4870226749990252,
+          "device": "cuda:0",
+          "allocated_mib": 8484.62158203125,
+          "reserved_mib": 8758.0,
+          "tokens": 31,
+          "done": true,
+          "reason": "The alphabet soup can has been picked up by the robot and placed into the basket."
+        }
+      },
+      {
+        "kind": "check",
+        "step": 120,
+        "index": 0,
+        "confirmed": true,
+        "response": {
+          "ok": true,
+          "raw": "{\n  \"change\": \"The alphabet soup can has been picked up by the robot and placed into the basket.\",\n  \"done\": true\n}",
+          "seconds": 0.48607122699468164,
+          "device": "cuda:0",
+          "allocated_mib": 8484.62158203125,
+          "reserved_mib": 8758.0,
+          "tokens": 31,
+          "done": true,
+          "reason": "The alphabet soup can has been picked up by the robot and placed into the basket."
+        }
+      },
+      {
+        "kind": "switch",
+        "step": 120,
+        "index": 1
+      }
+    ],
+    "budget": 420,
+    "prefix_steps": 160,
+    "nominal_remaining": [
+      "pick up the tomato sauce bottle and place it in the basket"
+    ],
+    "before_fault_atoms": [
+      true,
+      false
+    ],
+    "after_fault_atoms": [
+      false,
+      false
+    ],
+    "perturbed_state_sha256": "4541b37fbb6325fb236e967cbb53220c151bf533b8a2ce183bc467d8823bc025",
+    "instructions": [
+      "pick up the alphabet soup can and place it on/in the basket",
+      "pick up the tomato sauce bottle and place it on/in the basket"
+    ],
+    "steps": 420,
+    "queries": 84,
+    "final_atoms": [
+      false,
+      true
+    ],
+    "wall_seconds": 16.906774653005414
+  },
+  {
+    "task": 3,
+    "init": 1,
+    "mode": "continue",
+    "success": false,
+    "status": "timeout",
+    "events": [
+      {
+        "kind": "check",
+        "step": 20,
+        "index": 0,
+        "confirmed": false,
+        "response": {
+          "ok": true,
+          "raw": "{\n  \"change\": \"No change detected.\",\n  \"done\": false\n}",
+          "seconds": 0.3016407769973739,
+          "device": "cuda:0",
+          "allocated_mib": 8484.62158203125,
+          "reserved_mib": 8758.0,
+          "tokens": 18,
+          "done": false,
+          "reason": "No change detected."
+        }
+      },
+      {
+        "kind": "check",
+        "step": 40,
+        "index": 0,
+        "confirmed": false,
+        "response": {
+          "ok": true,
+          "raw": "{\n  \"change\": \"No change detected at the destination.\",\n  \"done\": false\n}",
+          "seconds": 0.34620924300543265,
+          "device": "cuda:0",
+          "allocated_mib": 8484.62158203125,
+          "reserved_mib": 8758.0,
+          "tokens": 21,
+          "done": false,
+          "reason": "No change detected at the destination."
+        }
+      },
+      {
+        "kind": "check",
+        "step": 60,
+        "index": 0,
+        "confirmed": false,
+        "response": {
+          "ok": true,
+          "raw": "{\n  \"change\": \"The black bowl is now in the bottom drawer of the cabinet, which was not the case in image 1.\",\n  \"done\": true\n}",
+          "seconds": 0.5724504120007623,
+          "device": "cuda:0",
+          "allocated_mib": 8484.62158203125,
+          "reserved_mib": 8758.0,
+          "tokens": 37,
+          "done": true,
+          "reason": "The black bowl is now in the bottom drawer of the cabinet, which was not the case in image 1."
+        }
+      }
+    ],
+    "budget": 420,
+    "prefix_steps": 0,
+    "nominal_remaining": [
+      "put the black bowl in the bottom drawer of the cabinet",
+      "close the bottom drawer of the cabinet"
+    ],
+    "before_fault_atoms": [
+      false,
+      false
+    ],
+    "after_fault_atoms": [
+      true,
+      false
+    ],
+    "perturbed_state_sha256": "0145b713bb603039479244d5caf8dd636c34dde6b5b275b3a476e4b398e33a65",
+    "instructions": [
+      "put the black bowl in the bottom drawer of the cabinet",
+      "close the bottom drawer of the cabinet"
+    ],
+    "steps": 420,
+    "queries": 84,
+    "final_atoms": [
+      true,
+      false
+    ],
+    "wall_seconds": 13.28368929700082
+  },
+  {
+    "task": 3,
+    "init": 1,
+    "mode": "full",
+    "success": false,
+    "status": "timeout",
+    "events": [],
+    "budget": 420,
+    "prefix_steps": 0,
+    "nominal_remaining": [
+      "put the black bowl in the bottom drawer of the cabinet",
+      "close the bottom drawer of the cabinet"
+    ],
+    "before_fault_atoms": [
+      false,
+      false
+    ],
+    "after_fault_atoms": [
+      true,
+      false
+    ],
+    "perturbed_state_sha256": "0145b713bb603039479244d5caf8dd636c34dde6b5b275b3a476e4b398e33a65",
+    "instructions": [
+      "put the black bowl in the bottom drawer of the cabinet and close it"
+    ],
+    "steps": 420,
+    "queries": 84,
+    "final_atoms": [
+      true,
+      false
+    ],
+    "wall_seconds": 11.77603580000141
+  },
+  {
+    "task": 3,
+    "init": 1,
+    "mode": "qwen",
+    "success": false,
+    "status": "timeout",
+    "events": [
+      {
+        "kind": "replan",
+        "step": 0,
+        "response": {
+          "ok": true,
+          "raw": "{\n  \"subgoals\": [\n    {\n      \"instruction\": \"pick up the black bowl and place it in the bottom drawer of the cabinet\",\n      \"completion_hint\": \"the black bowl is now inside the bottom drawer\"\n    },\n    {\n      \"instruction\": \"close the bottom drawer of the cabinet\",\n      \"completion_hint\": \"the bottom drawer is now shut\"\n    }\n  ]\n}",
+          "seconds": 1.1974209929976496,
+          "device": "cuda:0",
+          "allocated_mib": 8478.61865234375,
+          "reserved_mib": 8758.0,
+          "tokens": 82,
+          "subgoals": [
+            {
+              "instruction": "pick up the black bowl and place it in the bottom drawer of the cabinet",
+              "completion_hint": "the black bowl is now inside the bottom drawer"
+            },
+            {
+              "instruction": "close the bottom drawer of the cabinet",
+              "completion_hint": "the bottom drawer is now shut"
+            }
+          ]
+        }
+      },
+      {
+        "kind": "check",
+        "step": 20,
+        "index": 0,
+        "confirmed": false,
+        "response": {
+          "ok": true,
+          "raw": "{\n  \"change\": \"No change detected\",\n  \"done\": false\n}",
+          "seconds": 0.3062968880039989,
+          "device": "cuda:0",
+          "allocated_mib": 8484.62255859375,
+          "reserved_mib": 8758.0,
+          "tokens": 18,
+          "done": false,
+          "reason": "No change detected"
+        }
+      },
+      {
+        "kind": "check",
+        "step": 40,
+        "index": 0,
+        "confirmed": false,
+        "response": {
+          "ok": true,
+          "raw": "{\n  \"change\": \"No change detected at the destination.\",\n  \"done\": false\n}",
+          "seconds": 0.3480895739994594,
+          "device": "cuda:0",
+          "allocated_mib": 8484.62255859375,
+          "reserved_mib": 8758.0,
+          "tokens": 21,
+          "done": false,
+          "reason": "No change detected at the destination."
+        }
+      },
+      {
+        "kind": "check",
+        "step": 60,
+        "index": 0,
+        "confirmed": false,
+        "response": {
+          "ok": true,
+          "raw": "{\n  \"change\": \"The black bowl is now being held by the robot, indicating it has been picked up.\",\n  \"done\": false\n}",
+          "seconds": 0.5154931149954791,
+          "device": "cuda:0",
+          "allocated_mib": 8484.62255859375,
+          "reserved_mib": 8758.0,
+          "tokens": 32,
+          "done": false,
+          "reason": "The black bowl is now being held by the robot, indicating it has been picked up."
+        }
+      }
+    ],
+    "budget": 420,
+    "prefix_steps": 0,
+    "nominal_remaining": [
+      "put the black bowl in the bottom drawer of the cabinet",
+      "close the bottom drawer of the cabinet"
+    ],
+    "before_fault_atoms": [
+      false,
+      false
+    ],
+    "after_fault_atoms": [
+      true,
+      false
+    ],
+    "perturbed_state_sha256": "0145b713bb603039479244d5caf8dd636c34dde6b5b275b3a476e4b398e33a65",
+    "instructions": [
+      "pick up the black bowl and place it in the bottom drawer of the cabinet",
+      "close the bottom drawer of the cabinet"
+    ],
+    "steps": 420,
+    "queries": 84,
+    "final_atoms": [
+      true,
+      false
+    ],
+    "wall_seconds": 14.378757507001865
+  },
+  {
+    "task": 4,
+    "init": 1,
+    "mode": "continue",
+    "success": true,
+    "status": "success",
+    "events": [
+      {
+        "kind": "check",
+        "step": 20,
+        "index": 0,
+        "confirmed": false,
+        "response": {
+          "ok": true,
+          "raw": "{\n  \"change\": \"The white mug is now being held by the robot and is positioned above the left plate, ready to be placed there.\",\n  \"done\": false\n}",
+          "seconds": 0.5857574159963406,
+          "device": "cuda:0",
+          "allocated_mib": 8484.62158203125,
+          "reserved_mib": 8758.0,
+          "tokens": 38,
+          "done": false,
+          "reason": "The white mug is now being held by the robot and is positioned above the left plate, ready to be placed there."
+        }
+      },
+      {
+        "kind": "check",
+        "step": 140,
+        "index": 0,
+        "confirmed": false,
+        "response": {
+          "ok": true,
+          "raw": "{\n  \"change\": \"The white mug is now on the right plate, which was empty in image 1.\",\n  \"done\": true\n}",
+          "seconds": 0.5006903359972057,
+          "device": "cuda:0",
+          "allocated_mib": 8484.62158203125,
+          "reserved_mib": 8758.0,
+          "tokens": 32,
+          "done": true,
+          "reason": "The white mug is now on the right plate, which was empty in image 1."
+        }
+      },
+      {
+        "kind": "check",
+        "step": 160,
+        "index": 0,
+        "confirmed": false,
+        "response": {
+          "ok": true,
+          "raw": "{\n  \"change\": \"The white mug is now on the right plate, which was empty in image 1.\",\n  \"done\": false\n}",
+          "seconds": 0.5015390109983855,
+          "device": "cuda:0",
+          "allocated_mib": 8484.62158203125,
+          "reserved_mib": 8758.0,
+          "tokens": 32,
+          "done": false,
+          "reason": "The white mug is now on the right plate, which was empty in image 1."
+        }
+      },
+      {
+        "kind": "check",
+        "step": 180,
+        "index": 0,
+        "confirmed": false,
+        "response": {
+          "ok": true,
+          "raw": "{\n  \"change\": \"The white mug is now on the right plate, which was not the case in image 1.\",\n  \"done\": false\n}",
+          "seconds": 0.5303449709972483,
+          "device": "cuda:0",
+          "allocated_mib": 8484.62158203125,
+          "reserved_mib": 8758.0,
+          "tokens": 34,
+          "done": false,
+          "reason": "The white mug is now on the right plate, which was not the case in image 1."
+        }
+      }
+    ],
+    "budget": 420,
+    "prefix_steps": 101,
+    "nominal_remaining": [
+      "put the white mug on the left plate",
+      "put the yellow and white mug on the right plate"
+    ],
+    "before_fault_atoms": [
+      true,
+      false
+    ],
+    "after_fault_atoms": [
+      false,
+      false
+    ],
+    "perturbed_state_sha256": "b6429a63baa17541e4d28e5f816447dcd5b260b3f74161531c110581b2336060",
+    "instructions": [
+      "put the white mug on the left plate",
+      "put the yellow and white mug on the right plate"
+    ],
+    "steps": 249,
+    "queries": 50,
+    "final_atoms": [
+      true,
+      true
+    ],
+    "wall_seconds": 12.090368891003891
+  },
+  {
+    "task": 4,
+    "init": 1,
+    "mode": "full",
+    "success": true,
+    "status": "success",
+    "events": [],
+    "budget": 420,
+    "prefix_steps": 101,
+    "nominal_remaining": [
+      "put the white mug on the left plate",
+      "put the yellow and white mug on the right plate"
+    ],
+    "before_fault_atoms": [
+      true,
+      false
+    ],
+    "after_fault_atoms": [
+      false,
+      false
+    ],
+    "perturbed_state_sha256": "b6429a63baa17541e4d28e5f816447dcd5b260b3f74161531c110581b2336060",
+    "instructions": [
+      "put the white mug on the left plate and put the yellow and white mug on the right plate"
+    ],
+    "steps": 265,
+    "queries": 53,
+    "final_atoms": [
+      true,
+      true
+    ],
+    "wall_seconds": 9.888349951004784
+  },
+  {
+    "task": 4,
+    "init": 1,
+    "mode": "qwen",
+    "success": false,
+    "status": "timeout",
+    "events": [
+      {
+        "kind": "replan",
+        "step": 0,
+        "response": {
+          "ok": true,
+          "raw": "{\n  \"subgoals\": [\n    {\n      \"instruction\": \"pick up the white mug and place it on the left plate\"\n    },\n    {\n      \"instruction\": \"pick up the yellow and white mug and place it on the right plate\"\n    }\n  ]\n}",
+          "seconds": 0.8424542549983016,
+          "device": "cuda:0",
+          "allocated_mib": 8478.61865234375,
+          "reserved_mib": 8758.0,
+          "tokens": 57,
+          "subgoals": [
+            {
+              "instruction": "pick up the white mug and place it on the left plate",
+              "completion_hint": ""
+            },
+            {
+              "instruction": "pick up the yellow and white mug and place it on the right plate",
+              "completion_hint": ""
+            }
+          ]
+        }
+      },
+      {
+        "kind": "check",
+        "step": 20,
+        "index": 0,
+        "confirmed": false,
+        "response": {
+          "ok": true,
+          "raw": "{\n  \"change\": \"The white mug is now being held by the robot, indicating it has been picked up.\",\n  \"done\": false\n}",
+          "seconds": 0.5119195110019064,
+          "device": "cuda:0",
+          "allocated_mib": 8484.62158203125,
+          "reserved_mib": 8758.0,
+          "tokens": 32,
+          "done": false,
+          "reason": "The white mug is now being held by the robot, indicating it has been picked up."
+        }
+      },
+      {
+        "kind": "check",
+        "step": 60,
+        "index": 0,
+        "confirmed": false,
+        "response": {
+          "ok": true,
+          "raw": "{\n  \"change\": \"The white mug is now being held by the robot, indicating it has been picked up.\",\n  \"done\": false\n}",
+          "seconds": 0.4988666940043913,
+          "device": "cuda:0",
+          "allocated_mib": 8484.62158203125,
+          "reserved_mib": 8758.0,
+          "tokens": 32,
+          "done": false,
+          "reason": "The white mug is now being held by the robot, indicating it has been picked up."
+        }
+      },
+      {
+        "kind": "check",
+        "step": 160,
+        "index": 0,
+        "confirmed": false,
+        "response": {
+          "ok": true,
+          "raw": "{\n  \"change\": \"The white mug has been placed on the right plate.\",\n  \"done\": true\n}",
+          "seconds": 0.40098272299655946,
+          "device": "cuda:0",
+          "allocated_mib": 8484.62158203125,
+          "reserved_mib": 8758.0,
+          "tokens": 25,
+          "done": true,
+          "reason": "The white mug has been placed on the right plate."
+        }
+      },
+      {
+        "kind": "check",
+        "step": 180,
+        "index": 0,
+        "confirmed": true,
+        "response": {
+          "ok": true,
+          "raw": "{\n  \"change\": \"The white mug has been placed on the right plate, which was empty in image 1.\",\n  \"done\": true\n}",
+          "seconds": 0.5139998399972683,
+          "device": "cuda:0",
+          "allocated_mib": 8484.62158203125,
+          "reserved_mib": 8758.0,
+          "tokens": 33,
+          "done": true,
+          "reason": "The white mug has been placed on the right plate, which was empty in image 1."
+        }
+      },
+      {
+        "kind": "switch",
+        "step": 180,
+        "index": 1
+      }
+    ],
+    "budget": 420,
+    "prefix_steps": 101,
+    "nominal_remaining": [
+      "put the white mug on the left plate",
+      "put the yellow and white mug on the right plate"
+    ],
+    "before_fault_atoms": [
+      true,
+      false
+    ],
+    "after_fault_atoms": [
+      false,
+      false
+    ],
+    "perturbed_state_sha256": "b6429a63baa17541e4d28e5f816447dcd5b260b3f74161531c110581b2336060",
+    "instructions": [
+      "pick up the white mug and place it on the left plate",
+      "pick up the yellow and white mug and place it on the right plate"
+    ],
+    "steps": 420,
+    "queries": 84,
+    "final_atoms": [
+      false,
+      false
+    ],
+    "wall_seconds": 16.97630456800107
+  },
+  {
+    "task": 0,
+    "init": 2,
+    "mode": "continue",
+    "success": false,
+    "status": "timeout",
+    "events": [],
+    "budget": 420,
+    "prefix_steps": 160,
+    "nominal_remaining": [
+      "pick up the tomato sauce bottle and place it in the basket"
+    ],
+    "before_fault_atoms": [
+      true,
+      false
+    ],
+    "after_fault_atoms": [
+      false,
+      false
+    ],
+    "perturbed_state_sha256": "5297334de881317c673c15c995fcaace442b84a0d964939a0012903897f36b81",
+    "instructions": [
+      "pick up the tomato sauce bottle and place it in the basket"
+    ],
+    "steps": 420,
+    "queries": 84,
+    "final_atoms": [
+      false,
+      true
+    ],
+    "wall_seconds": 14.013209198994446
+  },
+  {
+    "task": 0,
+    "init": 2,
+    "mode": "full",
+    "success": true,
+    "status": "success",
+    "events": [],
+    "budget": 420,
+    "prefix_steps": 160,
+    "nominal_remaining": [
+      "pick up the tomato sauce bottle and place it in the basket"
+    ],
+    "before_fault_atoms": [
+      true,
+      false
+    ],
+    "after_fault_atoms": [
+      false,
+      false
+    ],
+    "perturbed_state_sha256": "5297334de881317c673c15c995fcaace442b84a0d964939a0012903897f36b81",
+    "instructions": [
+      "put both the alphabet soup and the tomato sauce in the basket"
+    ],
+    "steps": 280,
+    "queries": 56,
+    "final_atoms": [
+      true,
+      true
+    ],
+    "wall_seconds": 10.709029069999815
+  },
+  {
+    "task": 0,
+    "init": 2,
+    "mode": "qwen",
+    "success": false,
+    "status": "timeout",
+    "events": [
+      {
+        "kind": "replan",
+        "step": 0,
+        "response": {
+          "ok": true,
+          "raw": "{\n  \"subgoals\": [\n    {\n      \"instruction\": \"open the can labeled 'alphabet soup' and place it on/in the basket\",\n      \"completion_hint\": \"can is open and inside the basket\"\n    },\n    {\n      \"instruction\": \"open the bottle labeled 'tomato sauce' and place it on/in the basket\",\n      \"completion_hint\": \"bottle is open and inside the basket\"\n    }\n  ]\n}",
+          "seconds": 1.3501624580021598,
+          "device": "cuda:0",
+          "allocated_mib": 8478.61865234375,
+          "reserved_mib": 8758.0,
+          "tokens": 91,
+          "subgoals": [
+            {
+              "instruction": "open the can labeled 'alphabet soup' and place it on/in the basket",
+              "completion_hint": "can is open and inside the basket"
+            },
+            {
+              "instruction": "open the bottle labeled 'tomato sauce' and place it on/in the basket",
+              "completion_hint": "bottle is open and inside the basket"
+            }
+          ]
+        }
+      },
+      {
+        "kind": "check",
+        "step": 20,
+        "index": 0,
+        "confirmed": false,
+        "response": {
+          "ok": true,
+          "raw": "{\n  \"change\": \"No change detected.\",\n  \"done\": false\n}",
+          "seconds": 0.3083245800007717,
+          "device": "cuda:0",
+          "allocated_mib": 8484.62255859375,
+          "reserved_mib": 8758.0,
+          "tokens": 18,
+          "done": false,
+          "reason": "No change detected."
+        }
+      },
+      {
+        "kind": "check",
+        "step": 40,
+        "index": 0,
+        "confirmed": false,
+        "response": {
+          "ok": true,
+          "raw": "{\n  \"change\": \"The robot has picked up the can labeled 'alphabet soup'.\",\n  \"done\": false\n}",
+          "seconds": 0.4345948850022978,
+          "device": "cuda:0",
+          "allocated_mib": 8484.62255859375,
+          "reserved_mib": 8758.0,
+          "tokens": 27,
+          "done": false,
+          "reason": "The robot has picked up the can labeled 'alphabet soup'."
+        }
+      },
+      {
+        "kind": "check",
+        "step": 60,
+        "index": 0,
+        "confirmed": false,
+        "response": {
+          "ok": true,
+          "raw": "{\n  \"change\": \"The can labeled 'alphabet soup' has been picked up by the robot and is now positioned above the basket, ready to be placed inside.\",\n  \"done\": false\n}",
+          "seconds": 0.6582932419987628,
+          "device": "cuda:0",
+          "allocated_mib": 8484.62255859375,
+          "reserved_mib": 8758.0,
+          "tokens": 42,
+          "done": false,
+          "reason": "The can labeled 'alphabet soup' has been picked up by the robot and is now positioned above the basket, ready to be placed inside."
+        }
+      },
+      {
+        "kind": "check",
+        "step": 80,
+        "index": 0,
+        "confirmed": false,
+        "response": {
+          "ok": true,
+          "raw": "{\n  \"change\": \"The can labeled 'alphabet soup' has been placed in the basket.\",\n  \"done\": true\n}",
+          "seconds": 0.44899458900181344,
+          "device": "cuda:0",
+          "allocated_mib": 8484.62255859375,
+          "reserved_mib": 8758.0,
+          "tokens": 28,
+          "done": true,
+          "reason": "The can labeled 'alphabet soup' has been placed in the basket."
+        }
+      },
+      {
+        "kind": "check",
+        "step": 100,
+        "index": 0,
+        "confirmed": true,
+        "response": {
+          "ok": true,
+          "raw": "{\n  \"change\": \"The can labeled 'alphabet soup' has been opened and placed in the basket.\",\n  \"done\": true\n}",
+          "seconds": 0.47654170600435464,
+          "device": "cuda:0",
+          "allocated_mib": 8484.62255859375,
+          "reserved_mib": 8758.0,
+          "tokens": 30,
+          "done": true,
+          "reason": "The can labeled 'alphabet soup' has been opened and placed in the basket."
+        }
+      },
+      {
+        "kind": "switch",
+        "step": 100,
+        "index": 1
+      }
+    ],
+    "budget": 420,
+    "prefix_steps": 160,
+    "nominal_remaining": [
+      "pick up the tomato sauce bottle and place it in the basket"
+    ],
+    "before_fault_atoms": [
+      true,
+      false
+    ],
+    "after_fault_atoms": [
+      false,
+      false
+    ],
+    "perturbed_state_sha256": "5297334de881317c673c15c995fcaace442b84a0d964939a0012903897f36b81",
+    "instructions": [
+      "open the can labeled 'alphabet soup' and place it on/in the basket",
+      "open the bottle labeled 'tomato sauce' and place it on/in the basket"
+    ],
+    "steps": 420,
+    "queries": 84,
+    "final_atoms": [
+      false,
+      true
+    ],
+    "wall_seconds": 17.981636129996332
+  },
+  {
+    "task": 3,
+    "init": 2,
+    "mode": "continue",
+    "success": false,
+    "status": "timeout",
+    "events": [
+      {
+        "kind": "check",
+        "step": 20,
+        "index": 0,
+        "confirmed": false,
+        "response": {
+          "ok": true,
+          "raw": "{\n  \"change\": \"No change detected\",\n  \"done\": false\n}",
+          "seconds": 0.30810487199778436,
+          "device": "cuda:0",
+          "allocated_mib": 8484.62158203125,
+          "reserved_mib": 8758.0,
+          "tokens": 18,
+          "done": false,
+          "reason": "No change detected"
+        }
+      },
+      {
+        "kind": "check",
+        "step": 40,
+        "index": 0,
+        "confirmed": false,
+        "response": {
+          "ok": true,
+          "raw": "{\n  \"change\": \"No change detected\",\n  \"done\": false\n}",
+          "seconds": 0.3038230840029428,
+          "device": "cuda:0",
+          "allocated_mib": 8484.62158203125,
+          "reserved_mib": 8758.0,
+          "tokens": 18,
+          "done": false,
+          "reason": "No change detected"
+        }
+      },
+      {
+        "kind": "check",
+        "step": 60,
+        "index": 0,
+        "confirmed": false,
+        "response": {
+          "ok": true,
+          "raw": "{\n  \"change\": \"The black bowl is now in the bottom drawer of the cabinet, which was not the case in image 1.\",\n  \"done\": true\n}",
+          "seconds": 0.5717419290012913,
+          "device": "cuda:0",
+          "allocated_mib": 8484.62158203125,
+          "reserved_mib": 8758.0,
+          "tokens": 37,
+          "done": true,
+          "reason": "The black bowl is now in the bottom drawer of the cabinet, which was not the case in image 1."
+        }
+      }
+    ],
+    "budget": 420,
+    "prefix_steps": 0,
+    "nominal_remaining": [
+      "put the black bowl in the bottom drawer of the cabinet",
+      "close the bottom drawer of the cabinet"
+    ],
+    "before_fault_atoms": [
+      false,
+      false
+    ],
+    "after_fault_atoms": [
+      true,
+      false
+    ],
+    "perturbed_state_sha256": "2a67a00bc9d739fd06673250f89b84fd61d03feea49d54dcc71298d10b2e6c4a",
+    "instructions": [
+      "put the black bowl in the bottom drawer of the cabinet",
+      "close the bottom drawer of the cabinet"
+    ],
+    "steps": 420,
+    "queries": 84,
+    "final_atoms": [
+      true,
+      false
+    ],
+    "wall_seconds": 13.214355265001359
+  },
+  {
+    "task": 3,
+    "init": 2,
+    "mode": "full",
+    "success": false,
+    "status": "timeout",
+    "events": [],
+    "budget": 420,
+    "prefix_steps": 0,
+    "nominal_remaining": [
+      "put the black bowl in the bottom drawer of the cabinet",
+      "close the bottom drawer of the cabinet"
+    ],
+    "before_fault_atoms": [
+      false,
+      false
+    ],
+    "after_fault_atoms": [
+      true,
+      false
+    ],
+    "perturbed_state_sha256": "2a67a00bc9d739fd06673250f89b84fd61d03feea49d54dcc71298d10b2e6c4a",
+    "instructions": [
+      "put the black bowl in the bottom drawer of the cabinet and close it"
+    ],
+    "steps": 420,
+    "queries": 84,
+    "final_atoms": [
+      true,
+      false
+    ],
+    "wall_seconds": 11.771247434000543
+  },
+  {
+    "task": 3,
+    "init": 2,
+    "mode": "qwen",
+    "success": false,
+    "status": "timeout",
+    "events": [
+      {
+        "kind": "replan",
+        "step": 0,
+        "response": {
+          "ok": true,
+          "raw": "{\n  \"subgoals\": [\n    {\n      \"instruction\": \"pick up the black bowl and place it in the bottom drawer of the cabinet\",\n      \"completion_hint\": \"the black bowl is now inside the bottom drawer\"\n    },\n    {\n      \"instruction\": \"close the bottom drawer of the cabinet\",\n      \"completion_hint\": \"the bottom drawer is now shut\"\n    }\n  ]\n}",
+          "seconds": 1.1930666690022917,
+          "device": "cuda:0",
+          "allocated_mib": 8478.61865234375,
+          "reserved_mib": 8758.0,
+          "tokens": 82,
+          "subgoals": [
+            {
+              "instruction": "pick up the black bowl and place it in the bottom drawer of the cabinet",
+              "completion_hint": "the black bowl is now inside the bottom drawer"
+            },
+            {
+              "instruction": "close the bottom drawer of the cabinet",
+              "completion_hint": "the bottom drawer is now shut"
+            }
+          ]
+        }
+      },
+      {
+        "kind": "check",
+        "step": 20,
+        "index": 0,
+        "confirmed": false,
+        "response": {
+          "ok": true,
+          "raw": "{\n  \"change\": \"No change detected\",\n  \"done\": false\n}",
+          "seconds": 0.3064693930064095,
+          "device": "cuda:0",
+          "allocated_mib": 8484.62255859375,
+          "reserved_mib": 8758.0,
+          "tokens": 18,
+          "done": false,
+          "reason": "No change detected"
+        }
+      },
+      {
+        "kind": "check",
+        "step": 40,
+        "index": 0,
+        "confirmed": false,
+        "response": {
+          "ok": true,
+          "raw": "{\n  \"change\": \"No change detected\",\n  \"done\": false\n}",
+          "seconds": 0.3156693830023869,
+          "device": "cuda:0",
+          "allocated_mib": 8484.62255859375,
+          "reserved_mib": 8758.0,
+          "tokens": 18,
+          "done": false,
+          "reason": "No change detected"
+        }
+      },
+      {
+        "kind": "check",
+        "step": 60,
+        "index": 0,
+        "confirmed": false,
+        "response": {
+          "ok": true,
+          "raw": "{\n  \"change\": \"The black bowl is now in the bottom drawer of the cabinet, which was not present in image 1.\",\n  \"done\": true\n}",
+          "seconds": 0.5622537820017897,
+          "device": "cuda:0",
+          "allocated_mib": 8484.62255859375,
+          "reserved_mib": 8758.0,
+          "tokens": 36,
+          "done": true,
+          "reason": "The black bowl is now in the bottom drawer of the cabinet, which was not present in image 1."
+        }
+      }
+    ],
+    "budget": 420,
+    "prefix_steps": 0,
+    "nominal_remaining": [
+      "put the black bowl in the bottom drawer of the cabinet",
+      "close the bottom drawer of the cabinet"
+    ],
+    "before_fault_atoms": [
+      false,
+      false
+    ],
+    "after_fault_atoms": [
+      true,
+      false
+    ],
+    "perturbed_state_sha256": "2a67a00bc9d739fd06673250f89b84fd61d03feea49d54dcc71298d10b2e6c4a",
+    "instructions": [
+      "pick up the black bowl and place it in the bottom drawer of the cabinet",
+      "close the bottom drawer of the cabinet"
+    ],
+    "steps": 420,
+    "queries": 84,
+    "final_atoms": [
+      true,
+      false
+    ],
+    "wall_seconds": 14.600591567002994
+  },
+  {
+    "task": 4,
+    "init": 2,
+    "mode": "continue",
+    "success": true,
+    "status": "success",
+    "events": [
+      {
+        "kind": "check",
+        "step": 20,
+        "index": 0,
+        "confirmed": false,
+        "response": {
+          "ok": true,
+          "raw": "{\n  \"change\": \"The white mug is now being held by the robot and is positioned over the left plate, indicating it is about to be placed there.\",\n  \"done\": false\n}",
+          "seconds": 0.6437880060038879,
+          "device": "cuda:0",
+          "allocated_mib": 8484.62158203125,
+          "reserved_mib": 8758.0,
+          "tokens": 41,
+          "done": false,
+          "reason": "The white mug is now being held by the robot and is positioned over the left plate, indicating it is about to be placed there."
+        }
+      },
+      {
+        "kind": "check",
+        "step": 40,
+        "index": 0,
+        "confirmed": false,
+        "response": {
+          "ok": true,
+          "raw": "{\n  \"change\": \"The white mug is now being held by the robot and is positioned above the left plate, indicating it is about to be placed there.\",\n  \"done\": false\n}",
+          "seconds": 0.6288039559949539,
+          "device": "cuda:0",
+          "allocated_mib": 8484.62158203125,
+          "reserved_mib": 8758.0,
+          "tokens": 41,
+          "done": false,
+          "reason": "The white mug is now being held by the robot and is positioned above the left plate, indicating it is about to be placed there."
+        }
+      },
+      {
+        "kind": "check",
+        "step": 80,
+        "index": 0,
+        "confirmed": false,
+        "response": {
+          "ok": true,
+          "raw": "{\n  \"change\": \"No change detected\",\n  \"done\": false\n}",
+          "seconds": 0.30352689499704866,
+          "device": "cuda:0",
+          "allocated_mib": 8484.62158203125,
+          "reserved_mib": 8758.0,
+          "tokens": 18,
+          "done": false,
+          "reason": "No change detected"
+        }
+      },
+      {
+        "kind": "check",
+        "step": 160,
+        "index": 0,
+        "confirmed": false,
+        "response": {
+          "ok": true,
+          "raw": "{\n  \"change\": \"The white mug is now on the right plate, which was empty in image 1.\",\n  \"done\": false\n}",
+          "seconds": 0.5002917120000347,
+          "device": "cuda:0",
+          "allocated_mib": 8484.62158203125,
+          "reserved_mib": 8758.0,
+          "tokens": 32,
+          "done": false,
+          "reason": "The white mug is now on the right plate, which was empty in image 1."
+        }
+      },
+      {
+        "kind": "check",
+        "step": 180,
+        "index": 0,
+        "confirmed": false,
+        "response": {
+          "ok": true,
+          "raw": "{\n  \"change\": \"The white mug is now on the right plate, which was empty in image 1.\",\n  \"done\": false\n}",
+          "seconds": 0.49981082700105617,
+          "device": "cuda:0",
+          "allocated_mib": 8484.62158203125,
+          "reserved_mib": 8758.0,
+          "tokens": 32,
+          "done": false,
+          "reason": "The white mug is now on the right plate, which was empty in image 1."
+        }
+      },
+      {
+        "kind": "check",
+        "step": 200,
+        "index": 0,
+        "confirmed": false,
+        "response": {
+          "ok": true,
+          "raw": "{\n  \"change\": \"The white mug is now on the left plate, which was empty in image 1.\",\n  \"done\": true\n}",
+          "seconds": 0.5007835680007702,
+          "device": "cuda:0",
+          "allocated_mib": 8484.62158203125,
+          "reserved_mib": 8758.0,
+          "tokens": 32,
+          "done": true,
+          "reason": "The white mug is now on the left plate, which was empty in image 1."
+        }
+      },
+      {
+        "kind": "check",
+        "step": 220,
+        "index": 0,
+        "confirmed": false,
+        "response": {
+          "ok": true,
+          "raw": "{\n  \"change\": \"The white mug is now on the right plate, which was empty in image 1.\",\n  \"done\": false\n}",
+          "seconds": 0.5097427850050735,
+          "device": "cuda:0",
+          "allocated_mib": 8484.62158203125,
+          "reserved_mib": 8758.0,
+          "tokens": 32,
+          "done": false,
+          "reason": "The white mug is now on the right plate, which was empty in image 1."
+        }
+      },
+      {
+        "kind": "check",
+        "step": 300,
+        "index": 0,
+        "confirmed": false,
+        "response": {
+          "ok": true,
+          "raw": "{\n  \"change\": \"The white mug is now on the right plate, which was empty in image 1.\",\n  \"done\": false\n}",
+          "seconds": 0.50229034700169,
+          "device": "cuda:0",
+          "allocated_mib": 8484.62158203125,
+          "reserved_mib": 8758.0,
+          "tokens": 32,
+          "done": false,
+          "reason": "The white mug is now on the right plate, which was empty in image 1."
+        }
+      }
+    ],
+    "budget": 420,
+    "prefix_steps": 105,
+    "nominal_remaining": [
+      "put the white mug on the left plate",
+      "put the yellow and white mug on the right plate"
+    ],
+    "before_fault_atoms": [
+      true,
+      false
+    ],
+    "after_fault_atoms": [
+      false,
+      false
+    ],
+    "perturbed_state_sha256": "7f2e48dfa7febb1d5d1e5a7d2c21a659b2c8db8cac90ea1108c9066d904099a5",
+    "instructions": [
+      "put the white mug on the left plate",
+      "put the yellow and white mug on the right plate"
+    ],
+    "steps": 380,
+    "queries": 76,
+    "final_atoms": [
+      true,
+      true
+    ],
+    "wall_seconds": 17.47646924199944
+  },
+  {
+    "task": 4,
+    "init": 2,
+    "mode": "full",
+    "success": false,
+    "status": "timeout",
+    "events": [],
+    "budget": 420,
+    "prefix_steps": 105,
+    "nominal_remaining": [
+      "put the white mug on the left plate",
+      "put the yellow and white mug on the right plate"
+    ],
+    "before_fault_atoms": [
+      true,
+      false
+    ],
+    "after_fault_atoms": [
+      false,
+      false
+    ],
+    "perturbed_state_sha256": "7f2e48dfa7febb1d5d1e5a7d2c21a659b2c8db8cac90ea1108c9066d904099a5",
+    "instructions": [
+      "put the white mug on the left plate and put the yellow and white mug on the right plate"
+    ],
+    "steps": 420,
+    "queries": 84,
+    "final_atoms": [
+      false,
+      true
+    ],
+    "wall_seconds": 13.803197096996882
+  },
+  {
+    "task": 4,
+    "init": 2,
+    "mode": "qwen",
+    "success": false,
+    "status": "timeout",
+    "events": [
+      {
+        "kind": "replan",
+        "step": 0,
+        "response": {
+          "ok": true,
+          "raw": "{\n  \"subgoals\": [\n    {\n      \"instruction\": \"pick up the white mug and place it on the left plate\"\n    },\n    {\n      \"instruction\": \"pick up the yellow and white mug and place it on the right plate\"\n    }\n  ]\n}",
+          "seconds": 0.8671699859987712,
+          "device": "cuda:0",
+          "allocated_mib": 8478.61865234375,
+          "reserved_mib": 8758.0,
+          "tokens": 57,
+          "subgoals": [
+            {
+              "instruction": "pick up the white mug and place it on the left plate",
+              "completion_hint": ""
+            },
+            {
+              "instruction": "pick up the yellow and white mug and place it on the right plate",
+              "completion_hint": ""
+            }
+          ]
+        }
+      },
+      {
+        "kind": "check",
+        "step": 20,
+        "index": 0,
+        "confirmed": false,
+        "response": {
+          "ok": true,
+          "raw": "{\n  \"change\": \"The white mug is now being held by the robot, indicating it has been picked up.\",\n  \"done\": false\n}",
+          "seconds": 0.5012243099990883,
+          "device": "cuda:0",
+          "allocated_mib": 8484.62158203125,
+          "reserved_mib": 8758.0,
+          "tokens": 32,
+          "done": false,
+          "reason": "The white mug is now being held by the robot, indicating it has been picked up."
+        }
+      },
+      {
+        "kind": "check",
+        "step": 40,
+        "index": 0,
+        "confirmed": false,
+        "response": {
+          "ok": true,
+          "raw": "{\n  \"change\": \"The white mug is now being picked up by the robot, indicating a state change from resting on the table to being held.\",\n  \"done\": false\n}",
+          "seconds": 0.6003063249954721,
+          "device": "cuda:0",
+          "allocated_mib": 8484.62158203125,
+          "reserved_mib": 8758.0,
+          "tokens": 39,
+          "done": false,
+          "reason": "The white mug is now being picked up by the robot, indicating a state change from resting on the table to being held."
+        }
+      }
+    ],
+    "budget": 420,
+    "prefix_steps": 105,
+    "nominal_remaining": [
+      "put the white mug on the left plate",
+      "put the yellow and white mug on the right plate"
+    ],
+    "before_fault_atoms": [
+      true,
+      false
+    ],
+    "after_fault_atoms": [
+      false,
+      false
+    ],
+    "perturbed_state_sha256": "7f2e48dfa7febb1d5d1e5a7d2c21a659b2c8db8cac90ea1108c9066d904099a5",
+    "instructions": [
+      "pick up the white mug and place it on the left plate",
+      "pick up the yellow and white mug and place it on the right plate"
+    ],
+    "steps": 420,
+    "queries": 84,
+    "final_atoms": [
+      false,
+      false
+    ],
+    "wall_seconds": 15.962153792999743
+  }
+]

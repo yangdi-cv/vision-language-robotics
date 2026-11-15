@@ -1,0 +1,262 @@
+{
+  "case": {
+    "task": 0,
+    "target_index": 1,
+    "initial": 0,
+    "target": "tomato_sauce_1",
+    "protected": "alphabet_soup_1",
+    "objects": [
+      [
+        "alphabet_soup_1",
+        "alphabet soup can",
+        "字母汤罐头"
+      ],
+      [
+        "tomato_sauce_1",
+        "tomato sauce can",
+        "番茄酱罐头"
+      ]
+    ],
+    "instruction": "只把番茄酱罐头放进篮子里，字母汤罐头保持原位。放好后停止，不要继续搬其他物体。",
+    "reference_skill": "pick up the tomato sauce can and place it in the basket",
+    "key": "task00_target1_init00"
+  },
+  "mode": "reference_skill",
+  "phase": "skills",
+  "protocol_sha256": "698a56935fb2982b4418d52a4753c5c15ce38b804c002cc1746d47cc14818f17",
+  "noise_seed": 920000,
+  "status": "complete",
+  "steps": 325,
+  "events": [
+    {
+      "kind": "check",
+      "step": 10,
+      "decision": {
+        "done": false,
+        "streak": 0,
+        "stop": false
+      },
+      "images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/skills/task00_target1_init00/reference_skill/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/skills/task00_target1_init00/reference_skill/images/current_0010.png"
+      ],
+      "sent_images": [],
+      "reply": null,
+      "seconds": 7.585003913845867e-06
+    },
+    {
+      "kind": "check",
+      "step": 20,
+      "decision": {
+        "done": false,
+        "streak": 0,
+        "stop": false
+      },
+      "images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/skills/task00_target1_init00/reference_skill/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/skills/task00_target1_init00/reference_skill/images/current_0020.png"
+      ],
+      "sent_images": [],
+      "reply": null,
+      "seconds": 2.535001840442419e-06
+    },
+    {
+      "kind": "check",
+      "step": 30,
+      "decision": {
+        "done": false,
+        "streak": 0,
+        "stop": false
+      },
+      "images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/skills/task00_target1_init00/reference_skill/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/skills/task00_target1_init00/reference_skill/images/current_0030.png"
+      ],
+      "sent_images": [],
+      "reply": null,
+      "seconds": 2.806002157740295e-06
+    },
+    {
+      "kind": "check",
+      "step": 40,
+      "decision": {
+        "done": false,
+        "streak": 0,
+        "stop": false
+      },
+      "images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/skills/task00_target1_init00/reference_skill/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/skills/task00_target1_init00/reference_skill/images/current_0040.png"
+      ],
+      "sent_images": [],
+      "reply": null,
+      "seconds": 2.93600169243291e-06
+    },
+    {
+      "kind": "check",
+      "step": 50,
+      "decision": {
+        "done": false,
+        "streak": 0,
+        "stop": false
+      },
+      "images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/skills/task00_target1_init00/reference_skill/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/skills/task00_target1_init00/reference_skill/images/current_0050.png"
+      ],
+      "sent_images": [],
+      "reply": null,
+      "seconds": 3.4360054996795952e-06
+    },
+    {
+      "kind": "check",
+      "step": 160,
+      "decision": {
+        "done": false,
+        "streak": 0,
+        "stop": false
+      },
+      "images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/skills/task00_target1_init00/reference_skill/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/skills/task00_target1_init00/reference_skill/images/current_0160.png"
+      ],
+      "sent_images": [],
+      "reply": null,
+      "seconds": 3.4570039133541286e-06
+    },
+    {
+      "kind": "check",
+      "step": 170,
+      "decision": {
+        "done": false,
+        "streak": 0,
+        "stop": false
+      },
+      "images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/skills/task00_target1_init00/reference_skill/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/skills/task00_target1_init00/reference_skill/images/current_0170.png"
+      ],
+      "sent_images": [],
+      "reply": null,
+      "seconds": 4.037996404804289e-06
+    },
+    {
+      "kind": "check",
+      "step": 180,
+      "decision": {
+        "done": false,
+        "streak": 0,
+        "stop": false
+      },
+      "images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/skills/task00_target1_init00/reference_skill/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/skills/task00_target1_init00/reference_skill/images/current_0180.png"
+      ],
+      "sent_images": [],
+      "reply": null,
+      "seconds": 4.6389977796934545e-06
+    },
+    {
+      "kind": "check",
+      "step": 190,
+      "decision": {
+        "done": false,
+        "streak": 0,
+        "stop": false
+      },
+      "images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/skills/task00_target1_init00/reference_skill/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/skills/task00_target1_init00/reference_skill/images/current_0190.png"
+      ],
+      "sent_images": [],
+      "reply": null,
+      "seconds": 4.268003976903856e-06
+    },
+    {
+      "kind": "check",
+      "step": 200,
+      "decision": {
+        "done": false,
+        "streak": 0,
+        "stop": false
+      },
+      "images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/skills/task00_target1_init00/reference_skill/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/skills/task00_target1_init00/reference_skill/images/current_0200.png"
+      ],
+      "sent_images": [],
+      "reply": null,
+      "seconds": 5.780995707027614e-06
+    },
+    {
+      "kind": "check",
+      "step": 210,
+      "decision": {
+        "done": false,
+        "streak": 0,
+        "stop": false
+      },
+      "images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/skills/task00_target1_init00/reference_skill/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/skills/task00_target1_init00/reference_skill/images/current_0210.png"
+      ],
+      "sent_images": [],
+      "reply": null,
+      "seconds": 4.268003976903856e-06
+    },
+    {
+      "kind": "stop",
+      "step": 300,
+      "reason": "budget"
+    }
+  ],
+  "policy_queries": 60,
+  "model_checks": 0,
+  "control_truth_inputs": false,
+  "original_done_used_for_stopping": false,
+  "initial_state_sha256": "747b653b2ca1feeae8f3bd994880ce743730993ea5ce4bd003623e877f26b3bd",
+  "settled_state_sha256": "358af039709266907fdd0abd2f9b747fbf84abb2814f687b503d32e580d002bd",
+  "goal_atoms": [
+    [
+      "in",
+      "alphabet_soup_1",
+      "basket_1_contain_region"
+    ],
+    [
+      "in",
+      "tomato_sauce_1",
+      "basket_1_contain_region"
+    ]
+  ],
+  "initial_object_positions": [
+    [
+      -0.1001602877640908,
+      -0.1520157700938654,
+      0.4751701239604015
+    ],
+    [
+      -0.11728698342501227,
+      0.055747991004013384,
+      0.47516915037869295
+    ]
+  ],
+  "policy_instruction": "pick up the tomato sauce can and place it in the basket",
+  "selected_target": "tomato_sauce_1",
+  "timer_threshold": 150,
+  "selective_success": false,
+  "target_final_stable": true,
+  "final_released": true,
+  "target_ever_reached": false,
+  "protected_untouched": false,
+  "max_protected_displacement_m": 0.4605730697188241,
+  "first_valid_step": null,
+  "first_violation_step": 71,
+  "self_stop_success": false,
+  "premature_stop": false,
+  "decision_step": 300,
+  "stop_reason": "budget",
+  "wall_seconds": 22.395088682998903,
+  "original_success_observed": true,
+  "policy_steps_after_original_success": 0,
+  "success": false
+}

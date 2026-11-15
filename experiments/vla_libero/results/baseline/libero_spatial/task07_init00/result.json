@@ -1,0 +1,36 @@
+{
+  "runner_sha256": "e5d28552be82d553e09b3fcfe45aa95bbc6d38b0338899c2536ed1407935bb9d",
+  "suite": "libero_spatial",
+  "task_id": 7,
+  "initial_state_id": 0,
+  "mode": "baseline",
+  "environment_seed": 7,
+  "noise_seed": 700700,
+  "initial_state_sha256": "501105aff4e1897d96cac0d0ee69fc702ad209e317511807e27df8b421ae1f2a",
+  "original_prompt": "pick up the black bowl on the stove and place it on the plate",
+  "input_prompt": "pick up the black bowl on the stove and place it on the plate",
+  "replan_steps": 5,
+  "denoising_steps": 10,
+  "max_steps": 220,
+  "status": "success",
+  "success": true,
+  "steps": 119,
+  "alternate_goal_evaluable": false,
+  "alternate_goal_ever_satisfied": null,
+  "initial_eef": [
+    -0.21685505431285804,
+    0.015391179060597282,
+    1.1579039212279285
+  ],
+  "final_eef": [
+    0.07208022644790593,
+    0.2352859104867222,
+    0.9557846294014933
+  ],
+  "qpos_displacement_norm": 2.4766466427120117,
+  "simulation_elapsed_s": 5.95,
+  "wall_s": 5.358498884000255,
+  "query_count": 24,
+  "warmup_query_wall_s": 0.08062847400015016,
+  "query_median_excluding_first_s": 0.07188119300008111
+}

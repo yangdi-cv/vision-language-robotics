@@ -1,0 +1,16 @@
+{
+  "episodes": 4,
+  "policy_queries": 240,
+  "decisions": 50,
+  "video_frames": 1304,
+  "physics_states": 1300,
+  "original_success_continued": 3,
+  "phase": "skills",
+  "expected": 4,
+  "max_restored_object_position_error_m": 0.002916079395435589,
+  "restored_predicate_disagreements": 0,
+  "restored_contact_disagreements": 5,
+  "restored_final_score_disagreements": [],
+  "physics_checked": true,
+  "execution_sources_unchanged": true
+}

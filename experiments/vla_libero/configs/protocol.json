@@ -1,0 +1,104 @@
+{
+  "name": "OpenPI pi05 LIBERO fixed-protocol reproduction and sensitivity study",
+  "scope": "Fixed-base manipulation in one physics environment; no navigation, no physical robot, no claim of own pretrained weights",
+  "policy": {
+    "config": "pi05_libero",
+    "checkpoint": "official gs://openpi-assets/checkpoints/pi05_libero",
+    "denoising_steps": 10,
+    "replan_steps": 5,
+    "explicit_noise_seed": "700000 + suite_index*10000 + task_id*100 + initial_state_id"
+  },
+  "environment": {
+    "controller": "OSC_POSE",
+    "render_resolution": 256,
+    "policy_image_resolution": 224,
+    "image_rotation": "180 degrees for both views, matching upstream",
+    "control_hz": 20,
+    "initial_wait_steps": 10,
+    "environment_seed": 7,
+    "depth_input": false
+  },
+  "baseline": {
+    "suites": [
+      "libero_spatial",
+      "libero_object",
+      "libero_goal",
+      "libero_10"
+    ],
+    "task_ids": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+    ],
+    "initial_state_ids": [
+      0,
+      1,
+      2
+    ],
+    "episodes": 120,
+    "note": "3 initial states per task is a small reproduction, not the official 50-per-task protocol"
+  },
+  "paired_interventions": {
+    "suites": [
+      "libero_spatial",
+      "libero_goal"
+    ],
+    "task_ids": [
+      0,
+      3,
+      6
+    ],
+    "initial_state_ids": [
+      0,
+      1,
+      2
+    ],
+    "modes": [
+      "blank_images",
+      "frozen_images",
+      "wrong_language",
+      "state_noise",
+      "action_delay",
+      "replan_10",
+      "denoising_5"
+    ],
+    "episodes": 126,
+    "note": "Task subset fixed before observing performance. Wrong-language success is scored against original task, not obedience to replacement instruction."
+  },
+  "intervention_details": {
+    "blank_images": "zero both RGB images; state and language unchanged",
+    "frozen_images": "repeat initial post-settling images; current state and language unchanged",
+    "wrong_language": "replace with task_id+1 modulo 10 instruction in same suite",
+    "state_noise": "Gaussian 5mm on measured xyz only, independent per policy query; no true state or object modification",
+    "action_delay": "queue of 2 control actions, 100ms simulated delay; FIFO and initial no-op; no wall-clock delay",
+    "replan_10": "Execute 10 predicted actions per query instead of 5; same model and simulator",
+    "denoising_5": "Use 5 flow-matching integration steps instead of 10; same weights, explicit noise and replan interval"
+  },
+  "success": "official environment task predicate after applying action; timeout is failure; exceptions recorded separately",
+  "records": [
+    "configuration and hashes",
+    "initial state hash",
+    "per-step commanded/applied action",
+    "qpos/qvel/actuator force",
+    "object and eef positions",
+    "per-query full predicted chunks and input metadata",
+    "wall-clock timings",
+    "task predicate and video"
+  ],
+  "analysis": [
+    "counts and Wilson intervals",
+    "paired success changes",
+    "task-level success",
+    "prediction and end-to-end wall times separately",
+    "goal satisfaction versus response to language",
+    "selected failure videos; no synthetic outcomes"
+  ],
+  "training": "First reproduce official checkpoint and evaluate interfaces. Any later adaptation requires separate train/validation/test data and is not inferred from this reproduction."
+}

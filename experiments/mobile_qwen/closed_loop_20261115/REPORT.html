@@ -1,0 +1,256 @@
+<meta charset="utf-8"><style>@page{size:A4;margin:16mm}body{font-family:"Noto Sans CJK SC",sans-serif;font-size:9.5pt;line-height:1.65;color:#263448}h1{font-size:23pt}h2{font-size:15pt;break-after:avoid}table{border-collapse:collapse;width:100%;font-size:8pt}td,th{border:1px solid #bcc8d2;padding:5px;overflow-wrap:anywhere}th{background:#eaf0f5}img{max-width:100%;max-height:85mm}code{overflow-wrap:anywhere}</style><h1>可供性定位接入同场景导航与机械臂执行</h1>
+<p>2026年11月15日 · PC / RTX 4090 仿真阶段报告</p>
+<h2>摘要</h2>
+<p>本阶段将原来离线评测的Qwen可供性定位接入动作执行。Nav2先停靠，再用RGB预测把手点、仿真深度反投影到三维，交由MoveIt的KDL/OMPL规划；轨迹通过FollowJointTrajectory驱动同一MuJoCo世界中的真实模拟关节。到位后重新观察，必要时修正一次。</p>
+<p>这是预接触验证：目标是把手斜前上方约18.5cm处，而非抓取、开抽屉或完成入抽屉任务。表中成功率不等于LIBERO整任务成功率。</p>
+<p>另补做完整任务交接：已完成4回合，其中2回合同时通过Qwen视觉里程碑与官方整任务检查。完整任务与预接触结果分开统计，详见第6节。</p>
+<h2>目录</h2>
+<ol>
+<li>对照结果</li>
+<li>实现与验收</li>
+<li>开发中遇到的问题</li>
+<li>局限与后续</li>
+<li>逐回合结果与文件</li>
+<li>无重置交接完整任务</li>
+</ol>
+<h2>1. 对照结果</h2>
+<p>两个已有初态2、3，两个未用于本轮训练的相机平移条件（相机横轴/竖轴各3cm），每种条件配对oracle、base、lora，共12回合。oracle是真值目标上限；base与lora使用同一个4B BF16模型、相同提示词和控制参数，仅切换适配器。初态都存在历史使用，不能称独立新初态。</p>
+<table>
+<thead>
+<tr>
+<th>定位方式</th>
+<th style="text-align: right;">导航到达</th>
+<th style="text-align: right;">预接触通过</th>
+<th style="text-align: right;">到位误差中位数 mm</th>
+<th style="text-align: right;">清理异常回合</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>oracle</td>
+<td style="text-align: right;">4/4</td>
+<td style="text-align: right;">4/4</td>
+<td style="text-align: right;">6.2</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr>
+<td>base</td>
+<td style="text-align: right;">4/4</td>
+<td style="text-align: right;">0/4</td>
+<td style="text-align: right;">73.3</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr>
+<td>lora</td>
+<td style="text-align: right;">4/4</td>
+<td style="text-align: right;">4/4</td>
+<td style="text-align: right;">10.4</td>
+<td style="text-align: right;">2</td>
+</tr>
+</tbody>
+</table>
+<p>样本很小，仅用于验证“定位输出能否改变实际到位效果”，不能外推跨场景能力。失败与规划拒绝均保留，不重跑覆盖。</p>
+<p><img alt="同配对条件初次观察，绿色为参考把手点，红色为模型预测" src="grounding_comparison.png" /></p>
+<h2>2. 实现与验收</h2>
+<p>导航、感知与关节执行共享唯一物理实例。碰撞几何来自当前仿真场景，MoveIt执行接口的反馈读取实际qpos/qvel；控制为限幅力矩PD与重力补偿，原模型惯性与物理子步保留。没有运行时直接赋qpos或用mock关节反馈替代执行。</p>
+<p>预接触目标为预测把手点加世界偏移(-0.12,-0.10,+0.10)m，姿态沿用初始TCP。这是固定技能模板，不是学习出的6D抓取。关节PD为400/40，轨迹20Hz，速度/加速度缩放0.12，关节到位容差0.015rad，保持1.5秒。所有定位模式使用同一组参数。</p>
+<p>模型到位后再次定位，以TCP与新预测目标间距≤25mm作为视觉确认，最多修正一次。真值坐标不参与模型模式的修正与停止，只用于事后误差评分；预接触通过还要求真值误差≤30mm、无环境或自碰撞、物理实例未变。oracle单独记录，没有视觉确认。原LIBERO任务状态另存libero_original_task_success。</p>
+<h2>3. 开发中遇到的问题</h2>
+<p>首版PD140/20未达到关节容差，在真值开发回合上改为400/40并冻结。静态URDF工具坐标用8个姿态与MuJoCo核对；真实导航后仍出现约0.206mm的FK差异，严格检查阻止了执行。原因是积分后的qpos与派生位姿来自不同时刻，读取状态前调用forward同步后，导航开发回合误差降至约5×10⁻¹²m并成功执行。未放宽坐标检查阈值。</p>
+<p>开发nominal初态0的LoRA预接触误差约9.2mm、视觉重观测残差5.6mm；基座约97.6mm，未通过。导航复测navigation_dev2也已到位。这些开发结果不混入上表。</p>
+<p>MoveIt Humble在部分退出过程中发生轨迹执行管理器析构崩溃，与上游已知问题栈相符。动作结果和cleanup_ok分别记录；未升级系统ROS或声称已解决该退出问题。控制日志保留真实关节、力矩和接触信息。</p>
+<h2>4. 局限与后续</h2>
+<p>深度和碰撞地图来自仿真真值；导航使用理想里程计及已知地图，没有SLAM。只测单厨房、单把手、固定预接触姿态；相机扰动不是跨场景。没有把当前到位结果称为自主抓取，也没有替代此前π0.5整任务闭环结论。</p>
+<p>MoveIt直接完成把手接触、夹持及拉动仍未验证。本阶段另做预接触后交接π0.5完成原任务的功能测试，见第6节；不能把π0.5的操作归为MoveIt抓取。当前阶段没有连接实体机械臂、没有运行Jetson性能测试、没有新微调权重。</p>
+<h2>5. 逐回合结果与文件</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">初态</th>
+<th>视角</th>
+<th>定位</th>
+<th>预接触</th>
+<th style="text-align: right;">误差 mm</th>
+<th style="text-align: right;">规划次数</th>
+<th>错误</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">2</td>
+<td>camera_right_3cm</td>
+<td>oracle</td>
+<td>通过</td>
+<td style="text-align: right;">6.9</td>
+<td style="text-align: right;">1</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align: right;">2</td>
+<td>camera_right_3cm</td>
+<td>base</td>
+<td>未通过</td>
+<td style="text-align: right;">170.5</td>
+<td style="text-align: right;">2</td>
+<td>RuntimeError("RuntimeError('MoveIt execution returned 99999')")</td>
+</tr>
+<tr>
+<td style="text-align: right;">2</td>
+<td>camera_right_3cm</td>
+<td>lora</td>
+<td>通过</td>
+<td style="text-align: right;">11.0</td>
+<td style="text-align: right;">1</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align: right;">2</td>
+<td>camera_up_3cm</td>
+<td>oracle</td>
+<td>通过</td>
+<td style="text-align: right;">1.8</td>
+<td style="text-align: right;">1</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align: right;">2</td>
+<td>camera_up_3cm</td>
+<td>base</td>
+<td>未通过</td>
+<td style="text-align: right;">77.7</td>
+<td style="text-align: right;">2</td>
+<td>RuntimeError("RuntimeError('MoveIt execution returned -2')")</td>
+</tr>
+<tr>
+<td style="text-align: right;">2</td>
+<td>camera_up_3cm</td>
+<td>lora</td>
+<td>通过</td>
+<td style="text-align: right;">9.9</td>
+<td style="text-align: right;">1</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align: right;">3</td>
+<td>camera_right_3cm</td>
+<td>oracle</td>
+<td>通过</td>
+<td style="text-align: right;">6.9</td>
+<td style="text-align: right;">1</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align: right;">3</td>
+<td>camera_right_3cm</td>
+<td>base</td>
+<td>未通过</td>
+<td style="text-align: right;">69.0</td>
+<td style="text-align: right;">1</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align: right;">3</td>
+<td>camera_right_3cm</td>
+<td>lora</td>
+<td>通过</td>
+<td style="text-align: right;">6.2</td>
+<td style="text-align: right;">1</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align: right;">3</td>
+<td>camera_up_3cm</td>
+<td>oracle</td>
+<td>通过</td>
+<td style="text-align: right;">5.5</td>
+<td style="text-align: right;">1</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align: right;">3</td>
+<td>camera_up_3cm</td>
+<td>base</td>
+<td>未通过</td>
+<td style="text-align: right;">41.8</td>
+<td style="text-align: right;">1</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align: right;">3</td>
+<td>camera_up_3cm</td>
+<td>lora</td>
+<td>通过</td>
+<td style="text-align: right;">11.3</td>
+<td style="text-align: right;">1</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>相关代码在scripts/。PROTOCOL.md记录冻结设置，research/记录接口选型与坐标核对。结果在results/<tag>/case_result.json，视频rollout.mp4，逐步日志events.jsonl，控制器反馈controller_<em>.json，规划结果plans/attempt</em>/moveit_result.json。SUMMARY.json可逐条追溯本表。README.md提供命令、环境与限制。</p>
+<h2>6. 无重置交接完整任务</h2>
+<p>首个开发探针初态0通过后，增加已有初态1、4、5进行重复性检查。本节当前共4回合，完整任务通过2/4。这些初态均有历史使用，不是跨场景测试；没有直接比较“接入预接触”与“原生π0.5”成功率，不能宣称提升整任务表现。</p>
+<p>执行顺序为Nav2停靠、LoRA定位、MoveIt预接触、停止MoveIt与关节桥、保留当前qpos交给π0.5 OSC执行放碗并关抽屉。交接记录逐项断言前后关节状态完全相同，没有先展开或重置到熟悉姿态。π0.5为官方权重，没有在本轮微调。</p>
+<p>Qwen以原有文字记忆里程碑顺序检查碗入抽屉、抽屉关闭，每10个策略步查询一次；到达视觉确认才停止，520步上限兜底。官方任务谓词仅作影子记录及最终评分，不驱动策略停止。确认延迟按Qwen停止步减去首次官方成功步计算，未成功则不计；这只是事后诊断。策略时间仍是仿真步数，不能当端侧实时性能。此前提示词中的dark cabinet写法保持不变。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">初态</th>
+<th>预接触通过</th>
+<th>无重置交接</th>
+<th style="text-align: right;">策略步数</th>
+<th>Qwen完成</th>
+<th>官方整任务成功</th>
+<th style="text-align: right;">确认延迟步</th>
+<th>清理正常</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">0</td>
+<td>True</td>
+<td>True</td>
+<td style="text-align: right;">290</td>
+<td>True</td>
+<td>True</td>
+<td style="text-align: right;">37</td>
+<td>False</td>
+</tr>
+<tr>
+<td style="text-align: right;">1</td>
+<td>True</td>
+<td>True</td>
+<td style="text-align: right;">380</td>
+<td>True</td>
+<td>True</td>
+<td style="text-align: right;">17</td>
+<td>False</td>
+</tr>
+<tr>
+<td style="text-align: right;">4</td>
+<td>True</td>
+<td>True</td>
+<td style="text-align: right;">520</td>
+<td>False</td>
+<td>False</td>
+<td style="text-align: right;">None</td>
+<td>False</td>
+</tr>
+<tr>
+<td style="text-align: right;">5</td>
+<td>True</td>
+<td>True</td>
+<td style="text-align: right;">520</td>
+<td>False</td>
+<td>False</td>
+<td style="text-align: right;">None</td>
+<td>True</td>
+</tr>
+</tbody>
+</table>
+<p>中间里程碑仍有局限：初态4在第390步确认碗入抽屉时，与影子区域标注不一致。区域检查为抽屉site边界加2cm，属于几何诊断而非官方整任务谓词，不能直接当作严格误报率。最终未误停也不能说明中间视觉判断可靠；本轮没有中途修改提示词或确认规则。</p>
+<p>相关代码在scripts/sim_combined.py、combined_worker.py、run_combined.py。COMBINED_SUMMARY.json及各回合policy_handover.json、milestone_checks.json、policy_inputs/、rollout.mp4保存交接与执行结果。该入口是本阶段探针，尚未整合为通用技能调度器；完整操作仍由π0.5完成，可供性只决定前置预接触位。</p>
+<h2>7. 失败初态的原生技能诊断</h2>
+<p>在完整交接初态4失败后，仅选择该初态做一次不执行预接触的π0.5诊断，使用相同Nav2、原始技能和Qwen监视器。选择发生在观察失败之后，不是预先冻结的效益试验；Nav2墙钟执行也不保证逐帧状态相同，因此不能作为严格因果或总体成功率比较。</p>
+<p>原生初态4：官方成功True，Qwen完成True，策略步320，错误无。</p>
+<p>本次原生对照在320步成功，而前置预接触回合在520步失败，提示交接姿态可能影响策略表现；单个事后选取的回合尚不能证明因果。</p>
+<p>把手预接触用于验证定位到动作接口，不能默认前置到所有π0.5技能。当前整任务先搬碗、后关抽屉，应由阶段条件决定何时使用把手可供性；额外前置姿态可能造成策略输入分布偏移。该轮仅证明物理接口贯通，不将完整交接版本替换此前原生闭环。</p>

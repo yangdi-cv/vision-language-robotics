@@ -1,0 +1,22 @@
+{
+  "duplicate_control": {
+    "n": 50,
+    "tp": 3,
+    "fp": 1,
+    "positive": 18,
+    "negative": 32,
+    "recall": 0.16666666666666666,
+    "fpr": 0.03125,
+    "invalid": 0
+  },
+  "wrist": {
+    "n": 50,
+    "tp": 5,
+    "fp": 2,
+    "positive": 18,
+    "negative": 32,
+    "recall": 0.2777777777777778,
+    "fpr": 0.0625,
+    "invalid": 0
+  }
+}

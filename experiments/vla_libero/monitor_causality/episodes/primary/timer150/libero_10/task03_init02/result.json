@@ -1,0 +1,168 @@
+{
+  "study_mode": "timer150",
+  "stage_budget_enabled": true,
+  "initial_state_sha256": "d4452cb6d293450305537a0160f36840b3351a6b381b8e487f3bf2db1b30399b",
+  "suite": "libero_10",
+  "task_id": 3,
+  "initial_state_id": 2,
+  "original_task_language": "put the black bowl in the bottom drawer of the cabinet and close it",
+  "input_instruction": "把黑色的碗放进柜子最下面的抽屉，然后关上抽屉",
+  "planner": "qwen",
+  "execution_profile": "legacy",
+  "planner_profile": "base",
+  "checker_adapter": "experiments/vla_libero/checker_v2/results/model/best_adapter",
+  "monitor": "qwen",
+  "max_steps": 520,
+  "subgoal_step_budget": 300,
+  "monitor_every_queries": 4,
+  "monitor_res": 512,
+  "gripper_gate": true,
+  "confirm": 2,
+  "max_replans": 0,
+  "last_subgoal_runs_to_limit": true,
+  "noise_seed": 730302,
+  "runner_sha256": "3bfa20bd9f7c320cf83dabe80e3c59a72fb5bd053837b65cd3bb6376c3459f61",
+  "events": [
+    {
+      "kind": "plan",
+      "step": 0,
+      "ok": true,
+      "seconds": 1.4197001291904598e-05,
+      "raw": "[\"put the black bowl in the bottom drawer of the cabinet\", \"close the bottom drawer of the cabinet\"]",
+      "error": null
+    },
+    {
+      "kind": "subgoal_start",
+      "step": 0,
+      "index": 0,
+      "subgoal": "put the black bowl in the bottom drawer of the cabinet"
+    },
+    {
+      "kind": "check",
+      "step": 20,
+      "index": 0,
+      "done": false,
+      "confirmed": false,
+      "seconds": 0.006348440001602285,
+      "checker": "timer150",
+      "status": null,
+      "scores": null,
+      "reason": "predeclared step threshold",
+      "error": null,
+      "shadow_long_task_atoms": [
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 40,
+      "index": 0,
+      "done": false,
+      "confirmed": false,
+      "seconds": 0.010599568999168696,
+      "checker": "timer150",
+      "status": null,
+      "scores": null,
+      "reason": "predeclared step threshold",
+      "error": null,
+      "shadow_long_task_atoms": [
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 60,
+      "index": 0,
+      "done": false,
+      "confirmed": false,
+      "seconds": 0.011439601999882143,
+      "checker": "timer150",
+      "status": null,
+      "scores": null,
+      "reason": "predeclared step threshold",
+      "error": null,
+      "shadow_long_task_atoms": [
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 220,
+      "index": 0,
+      "done": true,
+      "confirmed": false,
+      "seconds": 0.006575153001904255,
+      "checker": "timer150",
+      "status": null,
+      "scores": null,
+      "reason": "predeclared step threshold",
+      "error": null,
+      "shadow_long_task_atoms": [
+        false,
+        true
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 240,
+      "index": 0,
+      "done": true,
+      "confirmed": true,
+      "seconds": 0.013313065002876101,
+      "checker": "timer150",
+      "status": null,
+      "scores": null,
+      "reason": "predeclared step threshold",
+      "error": null,
+      "shadow_long_task_atoms": [
+        false,
+        true
+      ]
+    },
+    {
+      "kind": "subgoal_end",
+      "step": 240,
+      "index": 0,
+      "reason": "done",
+      "long_task_atoms": [
+        false,
+        true
+      ]
+    },
+    {
+      "kind": "subgoal_start",
+      "step": 240,
+      "index": 1,
+      "subgoal": "close the bottom drawer of the cabinet"
+    }
+  ],
+  "status": "success",
+  "success": true,
+  "settled_state_sha256": "ddc12c3025bac4ab4ead14c64e2d4f25e62a47746cf640e033bfa5635aa63a91",
+  "subgoals": [
+    "put the black bowl in the bottom drawer of the cabinet",
+    "close the bottom drawer of the cabinet"
+  ],
+  "policy_queries": 54,
+  "qwen_checks": 5,
+  "replans": 0,
+  "active_subgoal_index": 1,
+  "active_subgoal": "close the bottom drawer of the cabinet",
+  "steps": 267,
+  "full_task_fallback": false,
+  "final_subgoals": [
+    "put the black bowl in the bottom drawer of the cabinet",
+    "close the bottom drawer of the cabinet"
+  ],
+  "final_atoms": [
+    true,
+    true
+  ],
+  "protocol_sha256": "43102c29b30de89a834dd03413d9b5010377410236d6addcffc618c76a8ff03c",
+  "monitor_model_calls": 0,
+  "monitor_opportunities": 5,
+  "wall_seconds": 18.30275661899941
+}

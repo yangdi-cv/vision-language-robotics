@@ -1,0 +1,14 @@
+{
+  "qwen_python": "/home/yd/Documents/VLA/.venvs/qwen-scene/bin/python",
+  "python": "3.10.18",
+  "torch": "2.7.1+cu126",
+  "transformers": "4.57.6",
+  "peft": "0.18.1",
+  "numpy": "2.2.6",
+  "Pillow": "12.3.0",
+  "cuda": "12.6",
+  "base": "Qwen/Qwen3-VL-4B-Instruct",
+  "revision": "ebb281ec70b05090aa6165b016eac8ec08e71b17",
+  "openpi_python": "/home/yd/Documents/VLA/.venvs/openpi-libero/bin/python",
+  "new_packages_installed": false
+}

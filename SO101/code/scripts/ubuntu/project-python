@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+set -euo pipefail
+SO101_ROOT="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/../../.." && pwd)"
+PROJECT_ENV=/home/yd/Documents/VLA-old/.conda/envs/hiwonder-so101
+unset PYTHONHOME
+export PYTHONPATH="$SO101_ROOT/code/lerobot/src"
+export PATH="$PROJECT_ENV/bin:$PATH"
+exec "$PROJECT_ENV/bin/python" "$@"

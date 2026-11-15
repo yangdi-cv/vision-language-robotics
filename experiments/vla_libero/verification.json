@@ -1,0 +1,11 @@
+{
+  "checked_episodes": 246,
+  "control_samples": 41677,
+  "error_directories": [],
+  "control_timing_checked": true,
+  "chunk_execution_checked": true,
+  "paired_initial_states_checked": true,
+  "official_predicate_checked": true,
+  "mocap_absent": true,
+  "note": "Checks numerical records and interfaces, not real robot safety or benchmark equivalence."
+}

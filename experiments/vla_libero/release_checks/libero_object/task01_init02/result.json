@@ -1,0 +1,19 @@
+{
+  "suite": "libero_object",
+  "task_id": 1,
+  "initial_state_id": 2,
+  "initial_state_sha256": "4b18eff5a14fb9e6226ce096c48dfe4a4b55009958fdd4826dfed6b9a500568b",
+  "replay_max_qpos_error": 0.0,
+  "probe": "1s zero Cartesian increment and gripper open; last 0.5s predicate sustained",
+  "official_success": true,
+  "final_goal": true,
+  "last_half_second_goal_maintained": true,
+  "gripper_qpos_after": [
+    0.0393633124507827,
+    -0.039355146004077926
+  ],
+  "finger_joint_open_threshold_m": 0.03,
+  "gripper_open_confirmed": true,
+  "open_and_stable": true,
+  "source_sha256": "43fd5a3203b13a56babd85ba784003a93d321a395668931927cac6a4f791657b"
+}

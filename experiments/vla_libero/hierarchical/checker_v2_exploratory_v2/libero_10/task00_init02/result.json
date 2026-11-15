@@ -1,0 +1,167 @@
+{
+  "suite": "libero_10",
+  "task_id": 0,
+  "initial_state_id": 2,
+  "original_task_language": "put both the alphabet soup and the tomato sauce in the basket",
+  "input_instruction": "把字母汤罐头和番茄沙司罐头都放进篮子里",
+  "planner": "qwen",
+  "execution_profile": "legacy",
+  "planner_profile": "base",
+  "checker_adapter": "/home/yd/Documents/VLA/experiments/vla_libero/checker_v2/results/model/best_adapter",
+  "monitor": "qwen",
+  "max_steps": 520,
+  "subgoal_step_budget": 300,
+  "monitor_every_queries": 4,
+  "monitor_res": 512,
+  "gripper_gate": true,
+  "confirm": 2,
+  "max_replans": 0,
+  "last_subgoal_runs_to_limit": true,
+  "noise_seed": 730002,
+  "runner_sha256": "5df3e099c80231cf64851590c58b1b63d08bc1a2468cb3f1af5729ea5c9e3901",
+  "events": [
+    {
+      "kind": "plan",
+      "step": 0,
+      "ok": true,
+      "seconds": 1.597100344952196e-05,
+      "raw": "[\"pick up the alphabet soup can and place it in the basket\", \"pick up the tomato sauce bottle and place it in the basket\"]",
+      "error": null
+    },
+    {
+      "kind": "subgoal_start",
+      "step": 0,
+      "index": 0,
+      "subgoal": "pick up the alphabet soup can and place it in the basket"
+    },
+    {
+      "kind": "check",
+      "step": 20,
+      "index": 0,
+      "done": false,
+      "confirmed": false,
+      "seconds": 0.13153761599824065,
+      "checker": "v2",
+      "status": "no",
+      "scores": {
+        "yes": 0.002415946040185623,
+        "no": 0.9746621961356368,
+        "unknown": 0.02292185782417761,
+        "yes_log_odds": -6.0232454643724225
+      },
+      "reason": "V2 no; p_yes=0.0024, threshold=3.2481",
+      "error": null,
+      "shadow_long_task_atoms": [
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 40,
+      "index": 0,
+      "done": false,
+      "confirmed": false,
+      "seconds": 0.12584933500329498,
+      "checker": "v2",
+      "status": "no",
+      "scores": {
+        "yes": 0.0004305569651424268,
+        "no": 0.9995691731933124,
+        "unknown": 2.6984154525770075e-07,
+        "yes_log_odds": -7.750000269957816
+      },
+      "reason": "V2 no; p_yes=0.0004, threshold=3.2481",
+      "error": null,
+      "shadow_long_task_atoms": [
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 140,
+      "index": 0,
+      "done": true,
+      "confirmed": false,
+      "seconds": 0.12554590700165136,
+      "checker": "v2",
+      "status": "yes",
+      "scores": {
+        "yes": 0.9994424415573028,
+        "no": 4.782449409527731e-06,
+        "unknown": 0.0005527759932877339,
+        "yes_log_odds": 7.491385516237827
+      },
+      "reason": "V2 yes; p_yes=0.9994, threshold=3.2481",
+      "error": null,
+      "shadow_long_task_atoms": [
+        true,
+        false
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 160,
+      "index": 0,
+      "done": false,
+      "confirmed": false,
+      "seconds": 0.12856720100535313,
+      "checker": "v2",
+      "status": "unknown",
+      "scores": {
+        "yes": 0.9398779559885033,
+        "no": 3.765648981975836e-05,
+        "unknown": 0.060084387521677045,
+        "yes_log_odds": 2.7493734696127134
+      },
+      "reason": "V2 unknown; p_yes=0.9399, threshold=3.2481",
+      "error": null,
+      "shadow_long_task_atoms": [
+        true,
+        false
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 180,
+      "index": 0,
+      "done": false,
+      "confirmed": false,
+      "seconds": 0.12561313500191318,
+      "checker": "v2",
+      "status": "no",
+      "scores": {
+        "yes": 7.484622735635321e-05,
+        "no": 0.9999251517116443,
+        "unknown": 2.06099934861788e-09,
+        "yes_log_odds": -9.500000002061157
+      },
+      "reason": "V2 no; p_yes=0.0001, threshold=3.2481",
+      "error": null,
+      "shadow_long_task_atoms": [
+        true,
+        false
+      ]
+    }
+  ],
+  "status": "success",
+  "success": true,
+  "subgoals": [
+    "pick up the alphabet soup can and place it in the basket",
+    "pick up the tomato sauce bottle and place it in the basket"
+  ],
+  "steps": 254,
+  "policy_queries": 51,
+  "qwen_checks": 5,
+  "replans": 0,
+  "full_task_fallback": false,
+  "final_subgoals": [
+    "pick up the alphabet soup can and place it in the basket",
+    "pick up the tomato sauce bottle and place it in the basket"
+  ],
+  "final_atoms": [
+    true,
+    true
+  ]
+}

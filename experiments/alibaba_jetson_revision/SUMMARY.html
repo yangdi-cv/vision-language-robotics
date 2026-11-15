@@ -1,0 +1,66 @@
+<!doctype html><meta charset="utf-8"><title>阶段进展摘要与目录</title><style>@page{size:A4;margin:18mm 16mm 19mm;@bottom-right{content:counter(page);font-size:9pt;color:#6a7b8f}}body{font-family:"Noto Sans CJK SC","Microsoft YaHei",sans-serif;font-size:10pt;line-height:1.7;color:#233247}h1{font-size:23pt;line-height:1.4}h2{font-size:15pt;margin-top:7mm;break-after:avoid}table{border-collapse:collapse;width:100%;font-size:8.8pt;break-inside:avoid;margin:4mm 0}th,td{border:1px solid #cad5df;padding:5px 7px;text-align:left;overflow-wrap:anywhere}th{background:#eaf0f5}img{max-width:100%;max-height:108mm;object-fit:contain}p:has(img){text-align:center;break-inside:avoid}pre{background:#f2f5f7;padding:10px;white-space:pre-wrap;font-size:8pt;line-height:1.5}code{font-family:"Noto Sans Mono CJK SC",monospace;font-size:8.6pt;overflow-wrap:anywhere}a{color:#2a6089}.refs{font-size:9pt;color:#466173;border-left:3px solid #d1e2ec;padding-left:9px}.toc{break-before:page}p{orphans:3;widows:3}pre{break-inside:avoid}</style><h1>具身视觉与策略算法阶段进展</h1>
+<p>阿里方向 · 2026年10月24日</p>
+<h2>摘要</h2>
+<p>本次把上一阶段PC端改进与本轮Jetson实测合在一起。10月20日的PC部分处理进程超时、图像传输、LoRA验证与ACT选模；10月24日的端侧部分接入真实腕部相机，完成检测和深度的TensorRT部署、Qwen连续观察以及4B目标指令适配器的端侧迁移，并扩大ACT验证布局与训练种子。</p>
+<p>固定输入下，TensorRT检测＋深度处理的中位速度约为同一Jetson上的PyTorch FP32后端的1.76倍。这里比较的是Jetson上的两种后端，不是工作站与Jetson的速度。Qwen、目标指令和策略仿真的结果分别列出，真实场景判断仍有失败用例。</p>
+<p>本次真机提供真实相机图像，没有启用机械臂电机。视觉部署、语言目标与ACT仿真是三个已经测试的模块，还没有组成真实机械臂自主抓取闭环。</p>
+<h2>目录</h2>
+<table>
+<thead>
+<tr>
+<th>部分</th>
+<th>内容</th>
+<th>汇总PDF页序</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>阅读说明</td>
+<td>摘要、目录及源码索引</td>
+<td>1–2</td>
+</tr>
+<tr>
+<td>第一部分</td>
+<td>PC端推理链路与训练评估改进</td>
+<td>3–9</td>
+</tr>
+<tr>
+<td>第二部分</td>
+<td>端侧视觉部署与策略验证扩展</td>
+<td>10–15</td>
+</tr>
+</tbody>
+</table>
+<p>原阶段报告正文保留，页脚沿用原编号；上表按PDF阅读器显示的连续页序查阅。</p>
+<div style="break-before:page"></div>
+
+<h2>源码目录与报告对应关系</h2>
+<pre><code class="language-text">README.md
+experiments/
+  alibaba_pc_revision/
+    scripts/                 LoRA训练验证、ACT选模及公共执行模块
+    README.md
+  alibaba_jetson_revision/
+    scripts/
+      jetson_vision.py        相机、视觉推理及引擎导出
+      paired_vision.py        同图像同尺寸后端对照
+      jetson_qwen.py          最新帧读取与连续视觉观察
+      quantize_qwen.py        独立NF4模型转换
+      jetson_adapter_eval.py  原4B适配器的端侧测试
+      bridge_eval.py         端侧输出到同场景仿真策略
+      bench_journal.py       日志编码开销对照
+      train_act_expanded.py   扩大布局及重复训练
+      run_act_expanded.sh
+    README.md
+    requirements-jetson-reference.txt
+  desktop_pickplace/          训练评测使用的仿真与任务代码
+  alibaba_baseline/           历史兼容入口
+  alibaba_extension/          历史兼容入口
+perception/
+  qwen_scene/                worker客户端、共享帧与视觉模块
+  web_workbench/             既有工作台
+SO101/code/lerobot/           原版本依赖及许可
+sensors/imu/                 既有传感器读取模块
+</code></pre>
+<p>相关代码在上述同名目录。报告正文各节另列具体入口；执行环境与模型路径见对应README。</p>
+<p>源码包包含程序、配置、必要仿真资产及上游许可，不包含环境、权重、TensorRT引擎、训练数据、输入照片或逐步结果。PC、Jetson、ROS与仿真环境分开使用；现有Jetson的an-project环境未修改。模型权重和完整实验结果保留在本地，不把参考版本表称为跨平台一键部署。</p>

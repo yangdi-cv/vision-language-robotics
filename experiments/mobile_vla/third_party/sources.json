@@ -1,0 +1,22 @@
+{
+  "robosuite": {
+    "repo": "ARISE-Initiative/robosuite",
+    "revision": "5ce6643f3092639d08f7b0f90ed1c6a84f50552c",
+    "date": "2026-07-11T23:45:44Z",
+    "license": "MIT with upstream Apache notice",
+    "files": {
+      "omron_mobile_base.xml": {
+        "upstream_path": "robosuite/models/assets/bases/omron_mobile_base.xml",
+        "sha256": "703d342e1959e20da635a0983055fe876f1b47951923b279d40a86943a386288"
+      },
+      "omron_mobile_base.py": {
+        "upstream_path": "robosuite/models/bases/omron_mobile_base.py",
+        "sha256": "8ac905f41b7c0cc1b8085ae7dd6910503ddf41ceec77aec6ec44b53ab81e152c"
+      },
+      "LICENSE.robosuite": {
+        "upstream_path": "LICENSE",
+        "sha256": "177978cbece0a4c454c2aaec5b3f145b39270814874c43109da9e829c39d9cba"
+      }
+    }
+  }
+}

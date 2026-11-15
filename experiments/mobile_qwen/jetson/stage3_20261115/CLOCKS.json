@@ -1,0 +1,8 @@
+{
+  "pc_send_unix": 1794671870.2632558,
+  "pc_receive_unix": 1794671870.858454,
+  "board_unix": 1794671870.8950496,
+  "board_minus_pc_midpoint_seconds": 0.3341946601867676,
+  "roundtrip_seconds": 0.5951981544494629,
+  "note": "All latency uses local perf_counter; no cross-device wall-clock subtraction."
+}

@@ -1,0 +1,175 @@
+{
+  "study_mode": "frozen_base",
+  "stage_budget_enabled": true,
+  "initial_state_sha256": "9f3bbe14f940c66de58d1dbecf0b5a2af12b48cbb93deec15c094fe4a9f5323a",
+  "suite": "libero_10",
+  "task_id": 8,
+  "initial_state_id": 2,
+  "original_task_language": "put both moka pots on the stove",
+  "input_instruction": "把两个摩卡壶都放到炉子上",
+  "planner": "qwen",
+  "execution_profile": "legacy",
+  "planner_profile": "base",
+  "checker_adapter": "experiments/vla_libero/checker_v2/results/model/best_adapter",
+  "monitor": "qwen",
+  "max_steps": 520,
+  "subgoal_step_budget": 300,
+  "monitor_every_queries": 4,
+  "monitor_res": 512,
+  "gripper_gate": true,
+  "confirm": 2,
+  "max_replans": 0,
+  "last_subgoal_runs_to_limit": true,
+  "noise_seed": 730802,
+  "runner_sha256": "3bfa20bd9f7c320cf83dabe80e3c59a72fb5bd053837b65cd3bb6376c3459f61",
+  "events": [
+    {
+      "kind": "plan",
+      "step": 0,
+      "ok": true,
+      "seconds": 1.469699782319367e-05,
+      "raw": "[\"put the first moka pot on the stove\", \"put the second moka pot on the stove\"]",
+      "error": null
+    },
+    {
+      "kind": "subgoal_start",
+      "step": 0,
+      "index": 0,
+      "subgoal": "put the first moka pot on the stove"
+    },
+    {
+      "kind": "check",
+      "step": 20,
+      "index": 0,
+      "done": false,
+      "confirmed": false,
+      "seconds": 0.3795350009968388,
+      "checker": "base",
+      "status": null,
+      "scores": null,
+      "reason": "No change detected.",
+      "error": null,
+      "shadow_long_task_atoms": [
+        false,
+        false,
+        true
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 40,
+      "index": 0,
+      "done": false,
+      "confirmed": false,
+      "seconds": 0.36586082999565406,
+      "checker": "base",
+      "status": null,
+      "scores": null,
+      "reason": "No change detected.",
+      "error": null,
+      "shadow_long_task_atoms": [
+        false,
+        false,
+        true
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 60,
+      "index": 0,
+      "done": false,
+      "confirmed": false,
+      "seconds": 0.35791884799982654,
+      "checker": "base",
+      "status": null,
+      "scores": null,
+      "reason": "No change detected.",
+      "error": null,
+      "shadow_long_task_atoms": [
+        false,
+        false,
+        true
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 80,
+      "index": 0,
+      "done": false,
+      "confirmed": false,
+      "seconds": 0.36452155699953437,
+      "checker": "base",
+      "status": null,
+      "scores": null,
+      "reason": "No change detected.",
+      "error": null,
+      "shadow_long_task_atoms": [
+        false,
+        false,
+        true
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 100,
+      "index": 0,
+      "done": false,
+      "confirmed": false,
+      "seconds": 0.3699658969999291,
+      "checker": "base",
+      "status": null,
+      "scores": null,
+      "reason": "No change detected.",
+      "error": null,
+      "shadow_long_task_atoms": [
+        false,
+        false,
+        true
+      ]
+    },
+    {
+      "kind": "subgoal_end",
+      "step": 300,
+      "index": 0,
+      "reason": "budget",
+      "long_task_atoms": [
+        false,
+        false,
+        true
+      ]
+    },
+    {
+      "kind": "subgoal_start",
+      "step": 300,
+      "index": 1,
+      "subgoal": "put the second moka pot on the stove"
+    }
+  ],
+  "status": "timeout",
+  "success": false,
+  "settled_state_sha256": "2e67241e53a969bb2623179b124161f55db36c7547e6375e09d6caa0c6cfc302",
+  "subgoals": [
+    "put the first moka pot on the stove",
+    "put the second moka pot on the stove"
+  ],
+  "policy_queries": 104,
+  "qwen_checks": 5,
+  "replans": 0,
+  "active_subgoal_index": 1,
+  "active_subgoal": "put the second moka pot on the stove",
+  "steps": 520,
+  "full_task_fallback": false,
+  "final_subgoals": [
+    "put the first moka pot on the stove",
+    "put the second moka pot on the stove"
+  ],
+  "final_atoms": [
+    false,
+    true,
+    true
+  ],
+  "protocol_sha256": "43102c29b30de89a834dd03413d9b5010377410236d6addcffc618c76a8ff03c",
+  "monitor_model_calls": 5,
+  "monitor_opportunities": 5,
+  "wall_seconds": 35.11308272900351
+}

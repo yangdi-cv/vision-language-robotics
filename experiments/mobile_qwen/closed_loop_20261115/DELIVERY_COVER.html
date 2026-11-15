@@ -1,0 +1,48 @@
+<meta charset="utf-8"><style>@page{size:A4;margin:17mm}body{font-family:"Noto Sans CJK SC",sans-serif;font-size:10pt;line-height:1.65;color:#253448}h1{font-size:24pt}h2{font-size:16pt}table{width:100%;border-collapse:collapse;font-size:9pt}td,th{border:1px solid #bbc7d4;padding:7px}th{background:#eaf0f5}</style><h1>阿里具身项目：本次阶段更新</h1>
+<p>2026年11月15日</p>
+<h2>摘要</h2>
+<p>本次把Qwen可供性定位从离线评测接入同场景动作执行：Nav2停靠、图像定位、深度反投影、MoveIt规划和MuJoCo实际关节反馈已经贯通。随后测试无重置交接π0.5完成整任务，并部署Jetson视觉服务，与PC仿真联调。</p>
+<table>
+<thead>
+<tr>
+<th>内容</th>
+<th>结果</th>
+<th>范围</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>可供性驱动预接触</td>
+<td>LoRA 4/4，基座0/4，真值定位4/4</td>
+<td>2个已有初态×2种相机平移；单厨房</td>
+</tr>
+<tr>
+<td>预接触后交接π0.5</td>
+<td>整任务2/4</td>
+<td>含1个开发探针、3个重复性回合</td>
+</tr>
+<tr>
+<td>失败初态原生对照</td>
+<td>1/1通过，320步</td>
+<td>事后单例诊断，未证明因果</td>
+</tr>
+<tr>
+<td>Jetson视觉→PC物理执行</td>
+<td>预接触3/3</td>
+<td>2B NF4 LoRA，512像素</td>
+</tr>
+<tr>
+<td>15W端侧时延筛查</td>
+<td>三种尺寸均未达≤3秒目标</td>
+<td>验证集5帧，每尺寸20次；非精度评测</td>
+</tr>
+</tbody>
+</table>
+<p>LoRA到位误差中位10.4mm，基座73.3mm。把手预接触接口可用，但不适合默认前置到所有π0.5任务，现有原生闭环继续保留。Qwen仍出现中间里程碑与几何区域标注不一致，不能因最终未误停就认为判断可靠。</p>
+<p>端侧缩图收益有限。一次独立剖析显示大量小内核调度与量化解码开销，下一轮应先验证部署运行时兼容性，再投入全量精度/速度回归。本次没有连接实体机械臂，没有修改已有正式结果或安装新的板端依赖。</p>
+<h2>目录</h2>
+<ol>
+<li>可供性定位接入同场景导航与机械臂执行 …… 第2页起，共4页</li>
+<li>Jetson可供性服务：时延与PC仿真联调 …… 第6页起，共3页</li>
+</ol>
+<p>后续两部分保留本次详细阶段报告正文。源码包保留项目目录层级，不含模型、环境及全量数据；依赖和运行方式见各目录README。videos/另放完整操作成功示例和Jetson联合预接触示例。</p>

@@ -1,0 +1,9 @@
+{
+  "clean_extracted_tests": true,
+  "manifest_files_verified": 249,
+  "protocol_sources_verified": 10,
+  "decision_index_present": true,
+  "cpu_python": "/tmp/vla_monitor_cpu_20261113/bin/python",
+  "test_output": "..........\n----------------------------------------------------------------------\nRan 10 tests in 0.054s\n\nOK\n",
+  "scope": "Source ZIP and its self-contained CPU tests; full GPU simulation requires separately documented assets and weights"
+}

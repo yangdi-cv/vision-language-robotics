@@ -1,0 +1,35 @@
+{
+  "suite": "libero_10",
+  "task_id": 5,
+  "initial_state_id": 1,
+  "original_task_language": "pick up the book and place it in the back compartment of the caddy",
+  "input_instruction": "拿起那本书，放进桌面收纳盒靠后的格子里",
+  "planner": "none",
+  "monitor": "qwen",
+  "max_steps": 520,
+  "subgoal_step_budget": 300,
+  "monitor_every_queries": 4,
+  "monitor_res": 512,
+  "gripper_gate": true,
+  "noise_seed": 730501,
+  "runner_sha256": "470de827f0e88145ff2471f24abce6976a623683b9c04d2f0ed61c168e9c647c",
+  "events": [
+    {
+      "kind": "subgoal_start",
+      "step": 0,
+      "index": 0,
+      "subgoal": "拿起那本书，放进桌面收纳盒靠后的格子里"
+    }
+  ],
+  "status": "success",
+  "success": true,
+  "subgoals": [
+    "拿起那本书，放进桌面收纳盒靠后的格子里"
+  ],
+  "steps": 178,
+  "policy_queries": 36,
+  "qwen_checks": 0,
+  "final_atoms": [
+    true
+  ]
+}

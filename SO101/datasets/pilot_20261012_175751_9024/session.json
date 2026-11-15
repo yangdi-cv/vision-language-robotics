@@ -1,0 +1,33 @@
+{
+  "task": "Pick up the dark blue silicone case and place it in the marked area.",
+  "status": "review_required",
+  "fps_nominal": 10,
+  "camera": "/dev/v4l/by-id/usb-icSpring_icspring_camera-video-index0",
+  "image_shape": [
+    640,
+    480,
+    3
+  ],
+  "rotation_clockwise_degrees": 270,
+  "camera_mount": "arm-mounted; viewpoint changes with arm pose",
+  "ports": {
+    "leader": "/dev/serial/by-id/usb-1a86_USB_Single_Serial_5CE5121669-if00",
+    "follower": "/dev/serial/by-id/usb-1a86_USB_Single_Serial_5CE5122996-if00"
+  },
+  "joint_order": [
+    "shoulder_pan",
+    "shoulder_lift",
+    "elbow_flex",
+    "wrist_flex",
+    "wrist_roll",
+    "gripper"
+  ],
+  "units": "degrees for five joints; percent for gripper",
+  "action_semantics": "absolute follower goals actually sent after 5-unit clipping",
+  "timing": "dataset uses nominal frame_index/fps; timing.csv uses host monotonic receipt times, not camera exposure timestamps",
+  "calibration_sha256": {
+    "robots/so_follower/my_awesome_follower_arm.json": "c352fccc213c2a60ffbc4b100e4adc9653e9eccba35def479524e37e7d713f47",
+    "teleoperators/so_leader/my_awesome_leader_arm.json": "11db1db03d592a40a510c92ce834bda16a9699735ac645853b8b037236858fd4"
+  },
+  "frames": 536
+}

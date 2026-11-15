@@ -1,0 +1,152 @@
+{
+  "study_mode": "hold_first",
+  "stage_budget_enabled": false,
+  "initial_state_sha256": "ea2ad0a67ceabe915bc4744e8231bf7fe71bddb74ff8c67eae6c821ff82078a4",
+  "suite": "libero_10",
+  "task_id": 3,
+  "initial_state_id": 0,
+  "original_task_language": "put the black bowl in the bottom drawer of the cabinet and close it",
+  "input_instruction": "把黑色的碗放进柜子最下面的抽屉，然后关上抽屉",
+  "planner": "qwen",
+  "execution_profile": "legacy",
+  "planner_profile": "base",
+  "checker_adapter": "experiments/vla_libero/checker_v2/results/model/best_adapter",
+  "monitor": "qwen",
+  "max_steps": 520,
+  "subgoal_step_budget": 300,
+  "monitor_every_queries": 4,
+  "monitor_res": 512,
+  "gripper_gate": true,
+  "confirm": 2,
+  "max_replans": 0,
+  "last_subgoal_runs_to_limit": true,
+  "noise_seed": 730300,
+  "runner_sha256": "3bfa20bd9f7c320cf83dabe80e3c59a72fb5bd053837b65cd3bb6376c3459f61",
+  "events": [
+    {
+      "kind": "plan",
+      "step": 0,
+      "ok": true,
+      "seconds": 1.5158999303821474e-05,
+      "raw": "[\"put the black bowl in the bottom drawer of the cabinet\", \"close the bottom drawer of the cabinet\"]",
+      "error": null
+    },
+    {
+      "kind": "subgoal_start",
+      "step": 0,
+      "index": 0,
+      "subgoal": "put the black bowl in the bottom drawer of the cabinet"
+    },
+    {
+      "kind": "check",
+      "step": 20,
+      "index": 0,
+      "done": false,
+      "confirmed": false,
+      "seconds": 0.012297539000428515,
+      "checker": "hold_first",
+      "status": null,
+      "scores": null,
+      "reason": "no high-level transition",
+      "error": null,
+      "shadow_long_task_atoms": [
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 40,
+      "index": 0,
+      "done": false,
+      "confirmed": false,
+      "seconds": 0.006975676998990821,
+      "checker": "hold_first",
+      "status": null,
+      "scores": null,
+      "reason": "no high-level transition",
+      "error": null,
+      "shadow_long_task_atoms": [
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 60,
+      "index": 0,
+      "done": false,
+      "confirmed": false,
+      "seconds": 0.006429114000638947,
+      "checker": "hold_first",
+      "status": null,
+      "scores": null,
+      "reason": "no high-level transition",
+      "error": null,
+      "shadow_long_task_atoms": [
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 180,
+      "index": 0,
+      "done": false,
+      "confirmed": false,
+      "seconds": 0.008084361001237994,
+      "checker": "hold_first",
+      "status": null,
+      "scores": null,
+      "reason": "no high-level transition",
+      "error": null,
+      "shadow_long_task_atoms": [
+        false,
+        true
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 200,
+      "index": 0,
+      "done": false,
+      "confirmed": false,
+      "seconds": 0.006824488002166618,
+      "checker": "hold_first",
+      "status": null,
+      "scores": null,
+      "reason": "no high-level transition",
+      "error": null,
+      "shadow_long_task_atoms": [
+        false,
+        true
+      ]
+    }
+  ],
+  "status": "success",
+  "success": true,
+  "settled_state_sha256": "308f0c8f6fdbbca0186df60c0e4c48377f6606a9468ef895eed1cd29985adfa7",
+  "subgoals": [
+    "put the black bowl in the bottom drawer of the cabinet",
+    "close the bottom drawer of the cabinet"
+  ],
+  "policy_queries": 44,
+  "qwen_checks": 5,
+  "replans": 0,
+  "active_subgoal_index": 0,
+  "active_subgoal": "put the black bowl in the bottom drawer of the cabinet",
+  "steps": 218,
+  "full_task_fallback": false,
+  "final_subgoals": [
+    "put the black bowl in the bottom drawer of the cabinet",
+    "close the bottom drawer of the cabinet"
+  ],
+  "final_atoms": [
+    true,
+    true
+  ],
+  "protocol_sha256": "43102c29b30de89a834dd03413d9b5010377410236d6addcffc618c76a8ff03c",
+  "monitor_model_calls": 0,
+  "monitor_opportunities": 5,
+  "wall_seconds": 15.449124823000602
+}

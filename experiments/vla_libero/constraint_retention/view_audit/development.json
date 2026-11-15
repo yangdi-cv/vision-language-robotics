@@ -1,0 +1,1602 @@
+[
+  {
+    "id": "development_task00_target0_init00_0010",
+    "split": "development",
+    "case": "task00_target0_init00",
+    "task": 0,
+    "target_index": 0,
+    "step": 10,
+    "subgoal": "pick up the alphabet soup can and place it in the basket",
+    "images": {
+      "reference": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task00_target0_init00/reference.png",
+        "pixel_sha256": "7c8349a65a2cdfac67e64f861bf00b162b8e5af63eea6b1f0386444765340b44"
+      },
+      "agent": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task00_target0_init00/agent_0010.png",
+        "pixel_sha256": "d04c94be010a5c13a0083d5e111ae865b8ddabebe7e4bcc3fd238963782c4ea9"
+      },
+      "wrist": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task00_target0_init00/wrist_0010.png",
+        "pixel_sha256": "ee226a963453ba1374c2e52ccdb2a24a4f3b345c6fb4caa368e933f9ae0ca436"
+      }
+    },
+    "goal_done": false,
+    "inside": false,
+    "gripper_contact": false,
+    "selected_target": "alphabet_soup_1",
+    "requested_target": "alphabet_soup_1",
+    "observability": "not_reviewed",
+    "source": "experiments/vla_libero/selective_execution/episodes/pilot/task00_target0_init00/skill_continue/result.json",
+    "source_sha256": "544d618a3c5269eaa854779bbbebd9839b2bd3aa82142796cd371f285e3681d1",
+    "label_source": "In + no gripper contact after restoring and forwarding the SAME state used to render BOTH candidate views"
+  },
+  {
+    "id": "development_task00_target0_init00_0020",
+    "split": "development",
+    "case": "task00_target0_init00",
+    "task": 0,
+    "target_index": 0,
+    "step": 20,
+    "subgoal": "pick up the alphabet soup can and place it in the basket",
+    "images": {
+      "reference": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task00_target0_init00/reference.png",
+        "pixel_sha256": "7c8349a65a2cdfac67e64f861bf00b162b8e5af63eea6b1f0386444765340b44"
+      },
+      "agent": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task00_target0_init00/agent_0020.png",
+        "pixel_sha256": "95489fa3a41acac16e677c6f21bafd680dc0dba3f377d4279a08bbcc0c63a2a2"
+      },
+      "wrist": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task00_target0_init00/wrist_0020.png",
+        "pixel_sha256": "19bfbc0da8d200ea9d6ff8782809f40985ad900f1b8ff3777a607b957308e6bd"
+      }
+    },
+    "goal_done": false,
+    "inside": false,
+    "gripper_contact": false,
+    "selected_target": "alphabet_soup_1",
+    "requested_target": "alphabet_soup_1",
+    "observability": "not_reviewed",
+    "source": "experiments/vla_libero/selective_execution/episodes/pilot/task00_target0_init00/skill_continue/result.json",
+    "source_sha256": "544d618a3c5269eaa854779bbbebd9839b2bd3aa82142796cd371f285e3681d1",
+    "label_source": "In + no gripper contact after restoring and forwarding the SAME state used to render BOTH candidate views"
+  },
+  {
+    "id": "development_task00_target0_init00_0030",
+    "split": "development",
+    "case": "task00_target0_init00",
+    "task": 0,
+    "target_index": 0,
+    "step": 30,
+    "subgoal": "pick up the alphabet soup can and place it in the basket",
+    "images": {
+      "reference": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task00_target0_init00/reference.png",
+        "pixel_sha256": "7c8349a65a2cdfac67e64f861bf00b162b8e5af63eea6b1f0386444765340b44"
+      },
+      "agent": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task00_target0_init00/agent_0030.png",
+        "pixel_sha256": "e602124771fb9b9ddd7e43ad498100bf5e0dc7e67ea01f05494a509a717975d3"
+      },
+      "wrist": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task00_target0_init00/wrist_0030.png",
+        "pixel_sha256": "dd018cdd27fa002600fee97b8c8d309d5cb46d1775840b73653640c8e88615e2"
+      }
+    },
+    "goal_done": false,
+    "inside": false,
+    "gripper_contact": false,
+    "selected_target": "alphabet_soup_1",
+    "requested_target": "alphabet_soup_1",
+    "observability": "not_reviewed",
+    "source": "experiments/vla_libero/selective_execution/episodes/pilot/task00_target0_init00/skill_continue/result.json",
+    "source_sha256": "544d618a3c5269eaa854779bbbebd9839b2bd3aa82142796cd371f285e3681d1",
+    "label_source": "In + no gripper contact after restoring and forwarding the SAME state used to render BOTH candidate views"
+  },
+  {
+    "id": "development_task00_target0_init00_0040",
+    "split": "development",
+    "case": "task00_target0_init00",
+    "task": 0,
+    "target_index": 0,
+    "step": 40,
+    "subgoal": "pick up the alphabet soup can and place it in the basket",
+    "images": {
+      "reference": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task00_target0_init00/reference.png",
+        "pixel_sha256": "7c8349a65a2cdfac67e64f861bf00b162b8e5af63eea6b1f0386444765340b44"
+      },
+      "agent": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task00_target0_init00/agent_0040.png",
+        "pixel_sha256": "cd2606886ea5c2f129b15657988b2c3b0d8d660129041912b294fefff4155102"
+      },
+      "wrist": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task00_target0_init00/wrist_0040.png",
+        "pixel_sha256": "a021ad4c69c3c2c3d304e1b972578f558c7837ac547cff1da40d14cb1e6861c0"
+      }
+    },
+    "goal_done": false,
+    "inside": false,
+    "gripper_contact": false,
+    "selected_target": "alphabet_soup_1",
+    "requested_target": "alphabet_soup_1",
+    "observability": "not_reviewed",
+    "source": "experiments/vla_libero/selective_execution/episodes/pilot/task00_target0_init00/skill_continue/result.json",
+    "source_sha256": "544d618a3c5269eaa854779bbbebd9839b2bd3aa82142796cd371f285e3681d1",
+    "label_source": "In + no gripper contact after restoring and forwarding the SAME state used to render BOTH candidate views"
+  },
+  {
+    "id": "development_task00_target0_init00_0050",
+    "split": "development",
+    "case": "task00_target0_init00",
+    "task": 0,
+    "target_index": 0,
+    "step": 50,
+    "subgoal": "pick up the alphabet soup can and place it in the basket",
+    "images": {
+      "reference": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task00_target0_init00/reference.png",
+        "pixel_sha256": "7c8349a65a2cdfac67e64f861bf00b162b8e5af63eea6b1f0386444765340b44"
+      },
+      "agent": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task00_target0_init00/agent_0050.png",
+        "pixel_sha256": "42252dbe7c236b13d25b7b0b975f63a817ac46a9533ef2b411562b727a0de03b"
+      },
+      "wrist": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task00_target0_init00/wrist_0050.png",
+        "pixel_sha256": "cef9dc5dbe6d2fb0b39198158a53d7e3120cc431651113e1e1c977e0887aca33"
+      }
+    },
+    "goal_done": false,
+    "inside": false,
+    "gripper_contact": false,
+    "selected_target": "alphabet_soup_1",
+    "requested_target": "alphabet_soup_1",
+    "observability": "not_reviewed",
+    "source": "experiments/vla_libero/selective_execution/episodes/pilot/task00_target0_init00/skill_continue/result.json",
+    "source_sha256": "544d618a3c5269eaa854779bbbebd9839b2bd3aa82142796cd371f285e3681d1",
+    "label_source": "In + no gripper contact after restoring and forwarding the SAME state used to render BOTH candidate views"
+  },
+  {
+    "id": "development_task00_target0_init00_0090",
+    "split": "development",
+    "case": "task00_target0_init00",
+    "task": 0,
+    "target_index": 0,
+    "step": 90,
+    "subgoal": "pick up the alphabet soup can and place it in the basket",
+    "images": {
+      "reference": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task00_target0_init00/reference.png",
+        "pixel_sha256": "7c8349a65a2cdfac67e64f861bf00b162b8e5af63eea6b1f0386444765340b44"
+      },
+      "agent": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task00_target0_init00/agent_0090.png",
+        "pixel_sha256": "4bd5f2bf120b0a08b6256eda0037966ae7d196f21d137ca9a15c7e36438d9379"
+      },
+      "wrist": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task00_target0_init00/wrist_0090.png",
+        "pixel_sha256": "6221942dd96ccbd3370d2d43fda45bd41520bcece879a669ed62a7ef7455010d"
+      }
+    },
+    "goal_done": false,
+    "inside": false,
+    "gripper_contact": false,
+    "selected_target": "alphabet_soup_1",
+    "requested_target": "alphabet_soup_1",
+    "observability": "not_reviewed",
+    "source": "experiments/vla_libero/selective_execution/episodes/pilot/task00_target0_init00/skill_continue/result.json",
+    "source_sha256": "544d618a3c5269eaa854779bbbebd9839b2bd3aa82142796cd371f285e3681d1",
+    "label_source": "In + no gripper contact after restoring and forwarding the SAME state used to render BOTH candidate views"
+  },
+  {
+    "id": "development_task00_target0_init00_0180",
+    "split": "development",
+    "case": "task00_target0_init00",
+    "task": 0,
+    "target_index": 0,
+    "step": 180,
+    "subgoal": "pick up the alphabet soup can and place it in the basket",
+    "images": {
+      "reference": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task00_target0_init00/reference.png",
+        "pixel_sha256": "7c8349a65a2cdfac67e64f861bf00b162b8e5af63eea6b1f0386444765340b44"
+      },
+      "agent": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task00_target0_init00/agent_0180.png",
+        "pixel_sha256": "6bdf79daec94a61c8e4b7a8ac63d11f110f85c32663630388b472c1343cb2b33"
+      },
+      "wrist": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task00_target0_init00/wrist_0180.png",
+        "pixel_sha256": "f5be34508cbe42d25e5e241805dc49622e24ccbd0eef0219663cbe5fe5e65ed7"
+      }
+    },
+    "goal_done": true,
+    "inside": true,
+    "gripper_contact": false,
+    "selected_target": "alphabet_soup_1",
+    "requested_target": "alphabet_soup_1",
+    "observability": "not_reviewed",
+    "source": "experiments/vla_libero/selective_execution/episodes/pilot/task00_target0_init00/skill_continue/result.json",
+    "source_sha256": "544d618a3c5269eaa854779bbbebd9839b2bd3aa82142796cd371f285e3681d1",
+    "label_source": "In + no gripper contact after restoring and forwarding the SAME state used to render BOTH candidate views"
+  },
+  {
+    "id": "development_task00_target0_init00_0190",
+    "split": "development",
+    "case": "task00_target0_init00",
+    "task": 0,
+    "target_index": 0,
+    "step": 190,
+    "subgoal": "pick up the alphabet soup can and place it in the basket",
+    "images": {
+      "reference": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task00_target0_init00/reference.png",
+        "pixel_sha256": "7c8349a65a2cdfac67e64f861bf00b162b8e5af63eea6b1f0386444765340b44"
+      },
+      "agent": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task00_target0_init00/agent_0190.png",
+        "pixel_sha256": "2c12849106d6f9f74325c4a79aabd3d50a6588f832adbf0edc94d0da8160f7ab"
+      },
+      "wrist": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task00_target0_init00/wrist_0190.png",
+        "pixel_sha256": "cb1aeae4c5de877e87a2555b93eecc107d5b7c21152e07c14a47b46f31d2ed57"
+      }
+    },
+    "goal_done": true,
+    "inside": true,
+    "gripper_contact": false,
+    "selected_target": "alphabet_soup_1",
+    "requested_target": "alphabet_soup_1",
+    "observability": "not_reviewed",
+    "source": "experiments/vla_libero/selective_execution/episodes/pilot/task00_target0_init00/skill_continue/result.json",
+    "source_sha256": "544d618a3c5269eaa854779bbbebd9839b2bd3aa82142796cd371f285e3681d1",
+    "label_source": "In + no gripper contact after restoring and forwarding the SAME state used to render BOTH candidate views"
+  },
+  {
+    "id": "development_task00_target0_init00_0200",
+    "split": "development",
+    "case": "task00_target0_init00",
+    "task": 0,
+    "target_index": 0,
+    "step": 200,
+    "subgoal": "pick up the alphabet soup can and place it in the basket",
+    "images": {
+      "reference": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task00_target0_init00/reference.png",
+        "pixel_sha256": "7c8349a65a2cdfac67e64f861bf00b162b8e5af63eea6b1f0386444765340b44"
+      },
+      "agent": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task00_target0_init00/agent_0200.png",
+        "pixel_sha256": "b1d33b22a256e45572ecda440f39c33b5400884a6ada7ff5788ffa745d5f88f6"
+      },
+      "wrist": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task00_target0_init00/wrist_0200.png",
+        "pixel_sha256": "ebdb23d6dc65295b3426195e896db13bde0394202666109a7e009dc1c9f6c5a8"
+      }
+    },
+    "goal_done": true,
+    "inside": true,
+    "gripper_contact": false,
+    "selected_target": "alphabet_soup_1",
+    "requested_target": "alphabet_soup_1",
+    "observability": "not_reviewed",
+    "source": "experiments/vla_libero/selective_execution/episodes/pilot/task00_target0_init00/skill_continue/result.json",
+    "source_sha256": "544d618a3c5269eaa854779bbbebd9839b2bd3aa82142796cd371f285e3681d1",
+    "label_source": "In + no gripper contact after restoring and forwarding the SAME state used to render BOTH candidate views"
+  },
+  {
+    "id": "development_task00_target0_init00_0210",
+    "split": "development",
+    "case": "task00_target0_init00",
+    "task": 0,
+    "target_index": 0,
+    "step": 210,
+    "subgoal": "pick up the alphabet soup can and place it in the basket",
+    "images": {
+      "reference": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task00_target0_init00/reference.png",
+        "pixel_sha256": "7c8349a65a2cdfac67e64f861bf00b162b8e5af63eea6b1f0386444765340b44"
+      },
+      "agent": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task00_target0_init00/agent_0210.png",
+        "pixel_sha256": "8bdef7b0fc27837c3eb35e52a3b386dbc7a1c73c6cc7f7c6a022d9c5cc5ece64"
+      },
+      "wrist": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task00_target0_init00/wrist_0210.png",
+        "pixel_sha256": "2081ab306e50f3b14e8b6a39a8bd26c40b8cf02bf8cc7e174e54a791a487dfd8"
+      }
+    },
+    "goal_done": true,
+    "inside": true,
+    "gripper_contact": false,
+    "selected_target": "alphabet_soup_1",
+    "requested_target": "alphabet_soup_1",
+    "observability": "not_reviewed",
+    "source": "experiments/vla_libero/selective_execution/episodes/pilot/task00_target0_init00/skill_continue/result.json",
+    "source_sha256": "544d618a3c5269eaa854779bbbebd9839b2bd3aa82142796cd371f285e3681d1",
+    "label_source": "In + no gripper contact after restoring and forwarding the SAME state used to render BOTH candidate views"
+  },
+  {
+    "id": "development_task00_target0_init00_0220",
+    "split": "development",
+    "case": "task00_target0_init00",
+    "task": 0,
+    "target_index": 0,
+    "step": 220,
+    "subgoal": "pick up the alphabet soup can and place it in the basket",
+    "images": {
+      "reference": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task00_target0_init00/reference.png",
+        "pixel_sha256": "7c8349a65a2cdfac67e64f861bf00b162b8e5af63eea6b1f0386444765340b44"
+      },
+      "agent": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task00_target0_init00/agent_0220.png",
+        "pixel_sha256": "c482f062c8f5ab42638bd2ea12b3b3b5809648ac3429919deb8e98b89ca4b5ec"
+      },
+      "wrist": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task00_target0_init00/wrist_0220.png",
+        "pixel_sha256": "0cc5a9f3a783a0398f3d50435cf79e0f0a7cc6af753d9b92e9a60a36519b4100"
+      }
+    },
+    "goal_done": true,
+    "inside": true,
+    "gripper_contact": false,
+    "selected_target": "alphabet_soup_1",
+    "requested_target": "alphabet_soup_1",
+    "observability": "not_reviewed",
+    "source": "experiments/vla_libero/selective_execution/episodes/pilot/task00_target0_init00/skill_continue/result.json",
+    "source_sha256": "544d618a3c5269eaa854779bbbebd9839b2bd3aa82142796cd371f285e3681d1",
+    "label_source": "In + no gripper contact after restoring and forwarding the SAME state used to render BOTH candidate views"
+  },
+  {
+    "id": "development_task00_target0_init00_0290",
+    "split": "development",
+    "case": "task00_target0_init00",
+    "task": 0,
+    "target_index": 0,
+    "step": 290,
+    "subgoal": "pick up the alphabet soup can and place it in the basket",
+    "images": {
+      "reference": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task00_target0_init00/reference.png",
+        "pixel_sha256": "7c8349a65a2cdfac67e64f861bf00b162b8e5af63eea6b1f0386444765340b44"
+      },
+      "agent": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task00_target0_init00/agent_0290.png",
+        "pixel_sha256": "0e8c4774113fa266281ceedae7326f6730db59d539039b3eb97e13722104fb80"
+      },
+      "wrist": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task00_target0_init00/wrist_0290.png",
+        "pixel_sha256": "ca644aae0c2403fcc2f0a479abed7d1e9680a3f5cad96db18af29134ba69c294"
+      }
+    },
+    "goal_done": true,
+    "inside": true,
+    "gripper_contact": false,
+    "selected_target": "alphabet_soup_1",
+    "requested_target": "alphabet_soup_1",
+    "observability": "not_reviewed",
+    "source": "experiments/vla_libero/selective_execution/episodes/pilot/task00_target0_init00/skill_continue/result.json",
+    "source_sha256": "544d618a3c5269eaa854779bbbebd9839b2bd3aa82142796cd371f285e3681d1",
+    "label_source": "In + no gripper contact after restoring and forwarding the SAME state used to render BOTH candidate views"
+  },
+  {
+    "id": "development_task00_target1_init00_0010",
+    "split": "development",
+    "case": "task00_target1_init00",
+    "task": 0,
+    "target_index": 1,
+    "step": 10,
+    "subgoal": "pick up the tomato sauce can and place it in the basket",
+    "images": {
+      "reference": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task00_target1_init00/reference.png",
+        "pixel_sha256": "7c8349a65a2cdfac67e64f861bf00b162b8e5af63eea6b1f0386444765340b44"
+      },
+      "agent": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task00_target1_init00/agent_0010.png",
+        "pixel_sha256": "147a108bca3cb9c63ebdd86d1befd21a57b490c6269f4c92bd5f374d645661a7"
+      },
+      "wrist": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task00_target1_init00/wrist_0010.png",
+        "pixel_sha256": "fb9cfb7bd09032e8e69468c21aee59f8dc15a70bbeeedf143c3de8a20e6581dc"
+      }
+    },
+    "goal_done": false,
+    "inside": false,
+    "gripper_contact": false,
+    "selected_target": "tomato_sauce_1",
+    "requested_target": "tomato_sauce_1",
+    "observability": "not_reviewed",
+    "source": "experiments/vla_libero/selective_execution/episodes/pilot/task00_target1_init00/skill_continue/result.json",
+    "source_sha256": "55dd24929069f1556fadfc35457dcf747a6c3fa4810b4962d62d9af3a568ba11",
+    "label_source": "In + no gripper contact after restoring and forwarding the SAME state used to render BOTH candidate views"
+  },
+  {
+    "id": "development_task00_target1_init00_0020",
+    "split": "development",
+    "case": "task00_target1_init00",
+    "task": 0,
+    "target_index": 1,
+    "step": 20,
+    "subgoal": "pick up the tomato sauce can and place it in the basket",
+    "images": {
+      "reference": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task00_target1_init00/reference.png",
+        "pixel_sha256": "7c8349a65a2cdfac67e64f861bf00b162b8e5af63eea6b1f0386444765340b44"
+      },
+      "agent": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task00_target1_init00/agent_0020.png",
+        "pixel_sha256": "0164c8409194c8a411f9f8a744896f5b49d68928b14cab2d3229046caebb8405"
+      },
+      "wrist": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task00_target1_init00/wrist_0020.png",
+        "pixel_sha256": "473cb33a7326f144682c19398732cce848d817c466dabd5ab36fba6707277d14"
+      }
+    },
+    "goal_done": false,
+    "inside": false,
+    "gripper_contact": false,
+    "selected_target": "tomato_sauce_1",
+    "requested_target": "tomato_sauce_1",
+    "observability": "not_reviewed",
+    "source": "experiments/vla_libero/selective_execution/episodes/pilot/task00_target1_init00/skill_continue/result.json",
+    "source_sha256": "55dd24929069f1556fadfc35457dcf747a6c3fa4810b4962d62d9af3a568ba11",
+    "label_source": "In + no gripper contact after restoring and forwarding the SAME state used to render BOTH candidate views"
+  },
+  {
+    "id": "development_task00_target1_init00_0030",
+    "split": "development",
+    "case": "task00_target1_init00",
+    "task": 0,
+    "target_index": 1,
+    "step": 30,
+    "subgoal": "pick up the tomato sauce can and place it in the basket",
+    "images": {
+      "reference": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task00_target1_init00/reference.png",
+        "pixel_sha256": "7c8349a65a2cdfac67e64f861bf00b162b8e5af63eea6b1f0386444765340b44"
+      },
+      "agent": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task00_target1_init00/agent_0030.png",
+        "pixel_sha256": "d031c7d6b4f045f3cd9da8b48b6580c71de19475d5c99a0c98449566c081c724"
+      },
+      "wrist": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task00_target1_init00/wrist_0030.png",
+        "pixel_sha256": "cf43c243417936f8f06f2adcce104b22dd568488225ed22620ef35d39b92956e"
+      }
+    },
+    "goal_done": false,
+    "inside": false,
+    "gripper_contact": false,
+    "selected_target": "tomato_sauce_1",
+    "requested_target": "tomato_sauce_1",
+    "observability": "not_reviewed",
+    "source": "experiments/vla_libero/selective_execution/episodes/pilot/task00_target1_init00/skill_continue/result.json",
+    "source_sha256": "55dd24929069f1556fadfc35457dcf747a6c3fa4810b4962d62d9af3a568ba11",
+    "label_source": "In + no gripper contact after restoring and forwarding the SAME state used to render BOTH candidate views"
+  },
+  {
+    "id": "development_task00_target1_init00_0040",
+    "split": "development",
+    "case": "task00_target1_init00",
+    "task": 0,
+    "target_index": 1,
+    "step": 40,
+    "subgoal": "pick up the tomato sauce can and place it in the basket",
+    "images": {
+      "reference": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task00_target1_init00/reference.png",
+        "pixel_sha256": "7c8349a65a2cdfac67e64f861bf00b162b8e5af63eea6b1f0386444765340b44"
+      },
+      "agent": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task00_target1_init00/agent_0040.png",
+        "pixel_sha256": "8c403cc5dac1e71a895756a626215a7ddcf112747a83737b229088a2e70cb036"
+      },
+      "wrist": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task00_target1_init00/wrist_0040.png",
+        "pixel_sha256": "8cc09b559a78944d0006df7a15d567b1fbd4cbbf68f38f833fb5ff27bfe2899d"
+      }
+    },
+    "goal_done": false,
+    "inside": false,
+    "gripper_contact": false,
+    "selected_target": "tomato_sauce_1",
+    "requested_target": "tomato_sauce_1",
+    "observability": "not_reviewed",
+    "source": "experiments/vla_libero/selective_execution/episodes/pilot/task00_target1_init00/skill_continue/result.json",
+    "source_sha256": "55dd24929069f1556fadfc35457dcf747a6c3fa4810b4962d62d9af3a568ba11",
+    "label_source": "In + no gripper contact after restoring and forwarding the SAME state used to render BOTH candidate views"
+  },
+  {
+    "id": "development_task00_target1_init00_0050",
+    "split": "development",
+    "case": "task00_target1_init00",
+    "task": 0,
+    "target_index": 1,
+    "step": 50,
+    "subgoal": "pick up the tomato sauce can and place it in the basket",
+    "images": {
+      "reference": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task00_target1_init00/reference.png",
+        "pixel_sha256": "7c8349a65a2cdfac67e64f861bf00b162b8e5af63eea6b1f0386444765340b44"
+      },
+      "agent": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task00_target1_init00/agent_0050.png",
+        "pixel_sha256": "f3f675d513d47eb812ab829115ce293e20201ee57ddd65cebb67f76c03427d5e"
+      },
+      "wrist": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task00_target1_init00/wrist_0050.png",
+        "pixel_sha256": "43ac0b30d6d0cc1d190f09710dcba55f04416d63eb5e511a9974b2e5ea14ef40"
+      }
+    },
+    "goal_done": false,
+    "inside": false,
+    "gripper_contact": false,
+    "selected_target": "tomato_sauce_1",
+    "requested_target": "tomato_sauce_1",
+    "observability": "not_reviewed",
+    "source": "experiments/vla_libero/selective_execution/episodes/pilot/task00_target1_init00/skill_continue/result.json",
+    "source_sha256": "55dd24929069f1556fadfc35457dcf747a6c3fa4810b4962d62d9af3a568ba11",
+    "label_source": "In + no gripper contact after restoring and forwarding the SAME state used to render BOTH candidate views"
+  },
+  {
+    "id": "development_task00_target1_init00_0160",
+    "split": "development",
+    "case": "task00_target1_init00",
+    "task": 0,
+    "target_index": 1,
+    "step": 160,
+    "subgoal": "pick up the tomato sauce can and place it in the basket",
+    "images": {
+      "reference": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task00_target1_init00/reference.png",
+        "pixel_sha256": "7c8349a65a2cdfac67e64f861bf00b162b8e5af63eea6b1f0386444765340b44"
+      },
+      "agent": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task00_target1_init00/agent_0160.png",
+        "pixel_sha256": "a384cfd3838f04acc75e4dc94824fdebdb9a27cb0608a419518f17b443cb48e6"
+      },
+      "wrist": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task00_target1_init00/wrist_0160.png",
+        "pixel_sha256": "2a399b768c9edf784dbfcd87fb973b1969f66b04e9582bbc807711a181e3b704"
+      }
+    },
+    "goal_done": false,
+    "inside": false,
+    "gripper_contact": false,
+    "selected_target": "tomato_sauce_1",
+    "requested_target": "tomato_sauce_1",
+    "observability": "not_reviewed",
+    "source": "experiments/vla_libero/selective_execution/episodes/pilot/task00_target1_init00/skill_continue/result.json",
+    "source_sha256": "55dd24929069f1556fadfc35457dcf747a6c3fa4810b4962d62d9af3a568ba11",
+    "label_source": "In + no gripper contact after restoring and forwarding the SAME state used to render BOTH candidate views"
+  },
+  {
+    "id": "development_task00_target1_init00_0170",
+    "split": "development",
+    "case": "task00_target1_init00",
+    "task": 0,
+    "target_index": 1,
+    "step": 170,
+    "subgoal": "pick up the tomato sauce can and place it in the basket",
+    "images": {
+      "reference": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task00_target1_init00/reference.png",
+        "pixel_sha256": "7c8349a65a2cdfac67e64f861bf00b162b8e5af63eea6b1f0386444765340b44"
+      },
+      "agent": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task00_target1_init00/agent_0170.png",
+        "pixel_sha256": "fbe7afb34fde50b00939befb977a1fbcf6aff482782d9b9454588a89eae22295"
+      },
+      "wrist": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task00_target1_init00/wrist_0170.png",
+        "pixel_sha256": "c4fbbe5f5c5ad8b283b533d62b2839625462d6b7b7b5fce128491e38f45d5cab"
+      }
+    },
+    "goal_done": false,
+    "inside": false,
+    "gripper_contact": false,
+    "selected_target": "tomato_sauce_1",
+    "requested_target": "tomato_sauce_1",
+    "observability": "not_reviewed",
+    "source": "experiments/vla_libero/selective_execution/episodes/pilot/task00_target1_init00/skill_continue/result.json",
+    "source_sha256": "55dd24929069f1556fadfc35457dcf747a6c3fa4810b4962d62d9af3a568ba11",
+    "label_source": "In + no gripper contact after restoring and forwarding the SAME state used to render BOTH candidate views"
+  },
+  {
+    "id": "development_task00_target1_init00_0180",
+    "split": "development",
+    "case": "task00_target1_init00",
+    "task": 0,
+    "target_index": 1,
+    "step": 180,
+    "subgoal": "pick up the tomato sauce can and place it in the basket",
+    "images": {
+      "reference": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task00_target1_init00/reference.png",
+        "pixel_sha256": "7c8349a65a2cdfac67e64f861bf00b162b8e5af63eea6b1f0386444765340b44"
+      },
+      "agent": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task00_target1_init00/agent_0180.png",
+        "pixel_sha256": "277659f5db06d0363b03c3c89c177a1baaeee66b94ac53c48c107a690c4a48d9"
+      },
+      "wrist": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task00_target1_init00/wrist_0180.png",
+        "pixel_sha256": "b9edbd19f3e890a60a8f509ba07a90b5fb1a12f502b56d73a7dea0e43cd1f33c"
+      }
+    },
+    "goal_done": false,
+    "inside": false,
+    "gripper_contact": false,
+    "selected_target": "tomato_sauce_1",
+    "requested_target": "tomato_sauce_1",
+    "observability": "not_reviewed",
+    "source": "experiments/vla_libero/selective_execution/episodes/pilot/task00_target1_init00/skill_continue/result.json",
+    "source_sha256": "55dd24929069f1556fadfc35457dcf747a6c3fa4810b4962d62d9af3a568ba11",
+    "label_source": "In + no gripper contact after restoring and forwarding the SAME state used to render BOTH candidate views"
+  },
+  {
+    "id": "development_task00_target1_init00_0190",
+    "split": "development",
+    "case": "task00_target1_init00",
+    "task": 0,
+    "target_index": 1,
+    "step": 190,
+    "subgoal": "pick up the tomato sauce can and place it in the basket",
+    "images": {
+      "reference": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task00_target1_init00/reference.png",
+        "pixel_sha256": "7c8349a65a2cdfac67e64f861bf00b162b8e5af63eea6b1f0386444765340b44"
+      },
+      "agent": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task00_target1_init00/agent_0190.png",
+        "pixel_sha256": "10df147139b1eea1c1e665a4164f36dc0b704cce8dae7933048729aea107da56"
+      },
+      "wrist": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task00_target1_init00/wrist_0190.png",
+        "pixel_sha256": "6b55153484b5780a2a4631d025c5562af6e642801a3837dce1341953093e1492"
+      }
+    },
+    "goal_done": false,
+    "inside": false,
+    "gripper_contact": false,
+    "selected_target": "tomato_sauce_1",
+    "requested_target": "tomato_sauce_1",
+    "observability": "not_reviewed",
+    "source": "experiments/vla_libero/selective_execution/episodes/pilot/task00_target1_init00/skill_continue/result.json",
+    "source_sha256": "55dd24929069f1556fadfc35457dcf747a6c3fa4810b4962d62d9af3a568ba11",
+    "label_source": "In + no gripper contact after restoring and forwarding the SAME state used to render BOTH candidate views"
+  },
+  {
+    "id": "development_task00_target1_init00_0200",
+    "split": "development",
+    "case": "task00_target1_init00",
+    "task": 0,
+    "target_index": 1,
+    "step": 200,
+    "subgoal": "pick up the tomato sauce can and place it in the basket",
+    "images": {
+      "reference": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task00_target1_init00/reference.png",
+        "pixel_sha256": "7c8349a65a2cdfac67e64f861bf00b162b8e5af63eea6b1f0386444765340b44"
+      },
+      "agent": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task00_target1_init00/agent_0200.png",
+        "pixel_sha256": "841882aaee2616b5eef22fb1e0492c8b9cad9bfb3ddd385adcde822504f84241"
+      },
+      "wrist": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task00_target1_init00/wrist_0200.png",
+        "pixel_sha256": "79fc74d7148439a3c9d1797fceab74b765e9a7d218f39cb961b18483d878b5ef"
+      }
+    },
+    "goal_done": false,
+    "inside": false,
+    "gripper_contact": false,
+    "selected_target": "tomato_sauce_1",
+    "requested_target": "tomato_sauce_1",
+    "observability": "not_reviewed",
+    "source": "experiments/vla_libero/selective_execution/episodes/pilot/task00_target1_init00/skill_continue/result.json",
+    "source_sha256": "55dd24929069f1556fadfc35457dcf747a6c3fa4810b4962d62d9af3a568ba11",
+    "label_source": "In + no gripper contact after restoring and forwarding the SAME state used to render BOTH candidate views"
+  },
+  {
+    "id": "development_task01_target0_init00_0010",
+    "split": "development",
+    "case": "task01_target0_init00",
+    "task": 1,
+    "target_index": 0,
+    "step": 10,
+    "subgoal": "pick up the cream cheese box and place it in the basket",
+    "images": {
+      "reference": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task01_target0_init00/reference.png",
+        "pixel_sha256": "cedb1fa62dafec3f0e29f7a0fd59aa26a91828f15ba822305d20c0d582451384"
+      },
+      "agent": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task01_target0_init00/agent_0010.png",
+        "pixel_sha256": "d61742fbeb5c4c162845095aae5c0c0ec95826c1ebd83884f4af39416615cf37"
+      },
+      "wrist": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task01_target0_init00/wrist_0010.png",
+        "pixel_sha256": "0d42d71a967b50b31e09592a641b4b0b9ac82282e71721aad6110cc664050d5e"
+      }
+    },
+    "goal_done": false,
+    "inside": false,
+    "gripper_contact": false,
+    "selected_target": "cream_cheese_1",
+    "requested_target": "cream_cheese_1",
+    "observability": "not_reviewed",
+    "source": "experiments/vla_libero/selective_execution/episodes/pilot/task01_target0_init00/skill_continue/result.json",
+    "source_sha256": "ae577d7e057cb1609194c3ce631799b7d8c29aee1de3a01a97faf72630e57d8f",
+    "label_source": "In + no gripper contact after restoring and forwarding the SAME state used to render BOTH candidate views"
+  },
+  {
+    "id": "development_task01_target0_init00_0020",
+    "split": "development",
+    "case": "task01_target0_init00",
+    "task": 1,
+    "target_index": 0,
+    "step": 20,
+    "subgoal": "pick up the cream cheese box and place it in the basket",
+    "images": {
+      "reference": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task01_target0_init00/reference.png",
+        "pixel_sha256": "cedb1fa62dafec3f0e29f7a0fd59aa26a91828f15ba822305d20c0d582451384"
+      },
+      "agent": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task01_target0_init00/agent_0020.png",
+        "pixel_sha256": "24620e61f1fb63d8d4ec76a2be0ddda6b35c1bf71443e5bedec142f98012c770"
+      },
+      "wrist": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task01_target0_init00/wrist_0020.png",
+        "pixel_sha256": "8e58e42211a20e0b7ccc42d5ff5daa14e5cbbbf4d5b8a361b8eb1c9c95660a0c"
+      }
+    },
+    "goal_done": false,
+    "inside": false,
+    "gripper_contact": false,
+    "selected_target": "cream_cheese_1",
+    "requested_target": "cream_cheese_1",
+    "observability": "not_reviewed",
+    "source": "experiments/vla_libero/selective_execution/episodes/pilot/task01_target0_init00/skill_continue/result.json",
+    "source_sha256": "ae577d7e057cb1609194c3ce631799b7d8c29aee1de3a01a97faf72630e57d8f",
+    "label_source": "In + no gripper contact after restoring and forwarding the SAME state used to render BOTH candidate views"
+  },
+  {
+    "id": "development_task01_target0_init00_0030",
+    "split": "development",
+    "case": "task01_target0_init00",
+    "task": 1,
+    "target_index": 0,
+    "step": 30,
+    "subgoal": "pick up the cream cheese box and place it in the basket",
+    "images": {
+      "reference": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task01_target0_init00/reference.png",
+        "pixel_sha256": "cedb1fa62dafec3f0e29f7a0fd59aa26a91828f15ba822305d20c0d582451384"
+      },
+      "agent": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task01_target0_init00/agent_0030.png",
+        "pixel_sha256": "b56b6f6ced34ff35f119e5c0a2110f2dbe3327a33ecc716d52f431e5ca4dbc31"
+      },
+      "wrist": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task01_target0_init00/wrist_0030.png",
+        "pixel_sha256": "ea38f2da9b76a4008f1619b88724a0ebf0d9a765c13d1b03492940a8807c56a7"
+      }
+    },
+    "goal_done": false,
+    "inside": false,
+    "gripper_contact": false,
+    "selected_target": "cream_cheese_1",
+    "requested_target": "cream_cheese_1",
+    "observability": "not_reviewed",
+    "source": "experiments/vla_libero/selective_execution/episodes/pilot/task01_target0_init00/skill_continue/result.json",
+    "source_sha256": "ae577d7e057cb1609194c3ce631799b7d8c29aee1de3a01a97faf72630e57d8f",
+    "label_source": "In + no gripper contact after restoring and forwarding the SAME state used to render BOTH candidate views"
+  },
+  {
+    "id": "development_task01_target0_init00_0040",
+    "split": "development",
+    "case": "task01_target0_init00",
+    "task": 1,
+    "target_index": 0,
+    "step": 40,
+    "subgoal": "pick up the cream cheese box and place it in the basket",
+    "images": {
+      "reference": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task01_target0_init00/reference.png",
+        "pixel_sha256": "cedb1fa62dafec3f0e29f7a0fd59aa26a91828f15ba822305d20c0d582451384"
+      },
+      "agent": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task01_target0_init00/agent_0040.png",
+        "pixel_sha256": "4d666ef97f79cbc35839c3b97bec981756ae8fae9d3acdcb4f0a3add54c24b2e"
+      },
+      "wrist": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task01_target0_init00/wrist_0040.png",
+        "pixel_sha256": "97643189414af55ceb47edfd444c106de6fcbefe0d11a5ae2b4b7d79a9bc627d"
+      }
+    },
+    "goal_done": false,
+    "inside": false,
+    "gripper_contact": false,
+    "selected_target": "cream_cheese_1",
+    "requested_target": "cream_cheese_1",
+    "observability": "not_reviewed",
+    "source": "experiments/vla_libero/selective_execution/episodes/pilot/task01_target0_init00/skill_continue/result.json",
+    "source_sha256": "ae577d7e057cb1609194c3ce631799b7d8c29aee1de3a01a97faf72630e57d8f",
+    "label_source": "In + no gripper contact after restoring and forwarding the SAME state used to render BOTH candidate views"
+  },
+  {
+    "id": "development_task01_target0_init00_0050",
+    "split": "development",
+    "case": "task01_target0_init00",
+    "task": 1,
+    "target_index": 0,
+    "step": 50,
+    "subgoal": "pick up the cream cheese box and place it in the basket",
+    "images": {
+      "reference": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task01_target0_init00/reference.png",
+        "pixel_sha256": "cedb1fa62dafec3f0e29f7a0fd59aa26a91828f15ba822305d20c0d582451384"
+      },
+      "agent": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task01_target0_init00/agent_0050.png",
+        "pixel_sha256": "334053584632c8a49955e956fdf9b968fa7431db0a1c7cb66d6fee2606be0b97"
+      },
+      "wrist": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task01_target0_init00/wrist_0050.png",
+        "pixel_sha256": "b7f9c9c66fcd96157eb5a71b1f54cde57105d2921c6ef2b4d98014bcacb0a3cd"
+      }
+    },
+    "goal_done": false,
+    "inside": false,
+    "gripper_contact": false,
+    "selected_target": "cream_cheese_1",
+    "requested_target": "cream_cheese_1",
+    "observability": "not_reviewed",
+    "source": "experiments/vla_libero/selective_execution/episodes/pilot/task01_target0_init00/skill_continue/result.json",
+    "source_sha256": "ae577d7e057cb1609194c3ce631799b7d8c29aee1de3a01a97faf72630e57d8f",
+    "label_source": "In + no gripper contact after restoring and forwarding the SAME state used to render BOTH candidate views"
+  },
+  {
+    "id": "development_task01_target0_init00_0060",
+    "split": "development",
+    "case": "task01_target0_init00",
+    "task": 1,
+    "target_index": 0,
+    "step": 60,
+    "subgoal": "pick up the cream cheese box and place it in the basket",
+    "images": {
+      "reference": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task01_target0_init00/reference.png",
+        "pixel_sha256": "cedb1fa62dafec3f0e29f7a0fd59aa26a91828f15ba822305d20c0d582451384"
+      },
+      "agent": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task01_target0_init00/agent_0060.png",
+        "pixel_sha256": "a99aefe5466831408fe058d600e867de44fc53dcb074de976829767b2f0d5035"
+      },
+      "wrist": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task01_target0_init00/wrist_0060.png",
+        "pixel_sha256": "15ce446c06f40438c03b1ae3cd674e2b50966de79b8e3946e7657a7fcd67e679"
+      }
+    },
+    "goal_done": false,
+    "inside": false,
+    "gripper_contact": false,
+    "selected_target": "cream_cheese_1",
+    "requested_target": "cream_cheese_1",
+    "observability": "not_reviewed",
+    "source": "experiments/vla_libero/selective_execution/episodes/pilot/task01_target0_init00/skill_continue/result.json",
+    "source_sha256": "ae577d7e057cb1609194c3ce631799b7d8c29aee1de3a01a97faf72630e57d8f",
+    "label_source": "In + no gripper contact after restoring and forwarding the SAME state used to render BOTH candidate views"
+  },
+  {
+    "id": "development_task01_target0_init00_0150",
+    "split": "development",
+    "case": "task01_target0_init00",
+    "task": 1,
+    "target_index": 0,
+    "step": 150,
+    "subgoal": "pick up the cream cheese box and place it in the basket",
+    "images": {
+      "reference": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task01_target0_init00/reference.png",
+        "pixel_sha256": "cedb1fa62dafec3f0e29f7a0fd59aa26a91828f15ba822305d20c0d582451384"
+      },
+      "agent": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task01_target0_init00/agent_0150.png",
+        "pixel_sha256": "0beac323e43faa107ef467f923766cfe5b4fc57d3c8b53c3add5e693e4ef8e6c"
+      },
+      "wrist": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task01_target0_init00/wrist_0150.png",
+        "pixel_sha256": "67221b2d3f7e1a1c4599aba0a5f6374cf22ce0be513ee7f9ee492d1ae52773e5"
+      }
+    },
+    "goal_done": true,
+    "inside": true,
+    "gripper_contact": false,
+    "selected_target": "cream_cheese_1",
+    "requested_target": "cream_cheese_1",
+    "observability": "not_reviewed",
+    "source": "experiments/vla_libero/selective_execution/episodes/pilot/task01_target0_init00/skill_continue/result.json",
+    "source_sha256": "ae577d7e057cb1609194c3ce631799b7d8c29aee1de3a01a97faf72630e57d8f",
+    "label_source": "In + no gripper contact after restoring and forwarding the SAME state used to render BOTH candidate views"
+  },
+  {
+    "id": "development_task01_target0_init00_0160",
+    "split": "development",
+    "case": "task01_target0_init00",
+    "task": 1,
+    "target_index": 0,
+    "step": 160,
+    "subgoal": "pick up the cream cheese box and place it in the basket",
+    "images": {
+      "reference": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task01_target0_init00/reference.png",
+        "pixel_sha256": "cedb1fa62dafec3f0e29f7a0fd59aa26a91828f15ba822305d20c0d582451384"
+      },
+      "agent": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task01_target0_init00/agent_0160.png",
+        "pixel_sha256": "d83809356a6072ec7191dcedc9cf6e95a7cff71d086e6f410acf4de0b0fdec9b"
+      },
+      "wrist": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task01_target0_init00/wrist_0160.png",
+        "pixel_sha256": "9aca5099851c7c1ef4a935a1a20ef6e31fd135fa514b712bc34874de45a5d9b2"
+      }
+    },
+    "goal_done": true,
+    "inside": true,
+    "gripper_contact": false,
+    "selected_target": "cream_cheese_1",
+    "requested_target": "cream_cheese_1",
+    "observability": "not_reviewed",
+    "source": "experiments/vla_libero/selective_execution/episodes/pilot/task01_target0_init00/skill_continue/result.json",
+    "source_sha256": "ae577d7e057cb1609194c3ce631799b7d8c29aee1de3a01a97faf72630e57d8f",
+    "label_source": "In + no gripper contact after restoring and forwarding the SAME state used to render BOTH candidate views"
+  },
+  {
+    "id": "development_task01_target0_init00_0170",
+    "split": "development",
+    "case": "task01_target0_init00",
+    "task": 1,
+    "target_index": 0,
+    "step": 170,
+    "subgoal": "pick up the cream cheese box and place it in the basket",
+    "images": {
+      "reference": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task01_target0_init00/reference.png",
+        "pixel_sha256": "cedb1fa62dafec3f0e29f7a0fd59aa26a91828f15ba822305d20c0d582451384"
+      },
+      "agent": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task01_target0_init00/agent_0170.png",
+        "pixel_sha256": "d0d0afcc30a66bb4efdb61616d8cab0f2dc9f28d3ba9671417cfed0d90dad379"
+      },
+      "wrist": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task01_target0_init00/wrist_0170.png",
+        "pixel_sha256": "4805ae2d7b30fde46b928ec67b36170d956791aa560599c032ead6d7f17ad63f"
+      }
+    },
+    "goal_done": true,
+    "inside": true,
+    "gripper_contact": false,
+    "selected_target": "cream_cheese_1",
+    "requested_target": "cream_cheese_1",
+    "observability": "not_reviewed",
+    "source": "experiments/vla_libero/selective_execution/episodes/pilot/task01_target0_init00/skill_continue/result.json",
+    "source_sha256": "ae577d7e057cb1609194c3ce631799b7d8c29aee1de3a01a97faf72630e57d8f",
+    "label_source": "In + no gripper contact after restoring and forwarding the SAME state used to render BOTH candidate views"
+  },
+  {
+    "id": "development_task01_target0_init00_0180",
+    "split": "development",
+    "case": "task01_target0_init00",
+    "task": 1,
+    "target_index": 0,
+    "step": 180,
+    "subgoal": "pick up the cream cheese box and place it in the basket",
+    "images": {
+      "reference": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task01_target0_init00/reference.png",
+        "pixel_sha256": "cedb1fa62dafec3f0e29f7a0fd59aa26a91828f15ba822305d20c0d582451384"
+      },
+      "agent": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task01_target0_init00/agent_0180.png",
+        "pixel_sha256": "fe3a19b0c5c42856a99ef0eec38c46682cbb798260e758aa1f1d594c04542e49"
+      },
+      "wrist": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task01_target0_init00/wrist_0180.png",
+        "pixel_sha256": "befde9ce8402ab3a916bf8925e3f1af22e4cef8adb02901c365854b4f1c84576"
+      }
+    },
+    "goal_done": true,
+    "inside": true,
+    "gripper_contact": false,
+    "selected_target": "cream_cheese_1",
+    "requested_target": "cream_cheese_1",
+    "observability": "not_reviewed",
+    "source": "experiments/vla_libero/selective_execution/episodes/pilot/task01_target0_init00/skill_continue/result.json",
+    "source_sha256": "ae577d7e057cb1609194c3ce631799b7d8c29aee1de3a01a97faf72630e57d8f",
+    "label_source": "In + no gripper contact after restoring and forwarding the SAME state used to render BOTH candidate views"
+  },
+  {
+    "id": "development_task01_target0_init00_0260",
+    "split": "development",
+    "case": "task01_target0_init00",
+    "task": 1,
+    "target_index": 0,
+    "step": 260,
+    "subgoal": "pick up the cream cheese box and place it in the basket",
+    "images": {
+      "reference": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task01_target0_init00/reference.png",
+        "pixel_sha256": "cedb1fa62dafec3f0e29f7a0fd59aa26a91828f15ba822305d20c0d582451384"
+      },
+      "agent": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task01_target0_init00/agent_0260.png",
+        "pixel_sha256": "1d3ae66e73894091c3f53917264641d8899239e5dfd6f321777f5c20e2676d3e"
+      },
+      "wrist": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task01_target0_init00/wrist_0260.png",
+        "pixel_sha256": "cd11a91417015626095601ebaaf05d74951ed6fce53b294f98099b4cb9d425b4"
+      }
+    },
+    "goal_done": true,
+    "inside": true,
+    "gripper_contact": false,
+    "selected_target": "cream_cheese_1",
+    "requested_target": "cream_cheese_1",
+    "observability": "not_reviewed",
+    "source": "experiments/vla_libero/selective_execution/episodes/pilot/task01_target0_init00/skill_continue/result.json",
+    "source_sha256": "ae577d7e057cb1609194c3ce631799b7d8c29aee1de3a01a97faf72630e57d8f",
+    "label_source": "In + no gripper contact after restoring and forwarding the SAME state used to render BOTH candidate views"
+  },
+  {
+    "id": "development_task01_target0_init00_0270",
+    "split": "development",
+    "case": "task01_target0_init00",
+    "task": 1,
+    "target_index": 0,
+    "step": 270,
+    "subgoal": "pick up the cream cheese box and place it in the basket",
+    "images": {
+      "reference": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task01_target0_init00/reference.png",
+        "pixel_sha256": "cedb1fa62dafec3f0e29f7a0fd59aa26a91828f15ba822305d20c0d582451384"
+      },
+      "agent": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task01_target0_init00/agent_0270.png",
+        "pixel_sha256": "bae136659171532677b891baf82cd56ba92cb71db0b0e228ee562cc7632ba9d9"
+      },
+      "wrist": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task01_target0_init00/wrist_0270.png",
+        "pixel_sha256": "8f3c1521b172d71f13655f0b247fe3c3592cbd3b044254cc19954324575fb2a6"
+      }
+    },
+    "goal_done": true,
+    "inside": true,
+    "gripper_contact": false,
+    "selected_target": "cream_cheese_1",
+    "requested_target": "cream_cheese_1",
+    "observability": "not_reviewed",
+    "source": "experiments/vla_libero/selective_execution/episodes/pilot/task01_target0_init00/skill_continue/result.json",
+    "source_sha256": "ae577d7e057cb1609194c3ce631799b7d8c29aee1de3a01a97faf72630e57d8f",
+    "label_source": "In + no gripper contact after restoring and forwarding the SAME state used to render BOTH candidate views"
+  },
+  {
+    "id": "development_task01_target0_init00_0280",
+    "split": "development",
+    "case": "task01_target0_init00",
+    "task": 1,
+    "target_index": 0,
+    "step": 280,
+    "subgoal": "pick up the cream cheese box and place it in the basket",
+    "images": {
+      "reference": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task01_target0_init00/reference.png",
+        "pixel_sha256": "cedb1fa62dafec3f0e29f7a0fd59aa26a91828f15ba822305d20c0d582451384"
+      },
+      "agent": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task01_target0_init00/agent_0280.png",
+        "pixel_sha256": "af572b1f59a56a0badb434bd430d7e25e6d73c1537f84ca9773f3e918334c3ba"
+      },
+      "wrist": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task01_target0_init00/wrist_0280.png",
+        "pixel_sha256": "8e7f415bf44b000a3287131a98beb426b87bb595591826987bff48cc6bfa8778"
+      }
+    },
+    "goal_done": true,
+    "inside": true,
+    "gripper_contact": false,
+    "selected_target": "cream_cheese_1",
+    "requested_target": "cream_cheese_1",
+    "observability": "not_reviewed",
+    "source": "experiments/vla_libero/selective_execution/episodes/pilot/task01_target0_init00/skill_continue/result.json",
+    "source_sha256": "ae577d7e057cb1609194c3ce631799b7d8c29aee1de3a01a97faf72630e57d8f",
+    "label_source": "In + no gripper contact after restoring and forwarding the SAME state used to render BOTH candidate views"
+  },
+  {
+    "id": "development_task01_target0_init00_0290",
+    "split": "development",
+    "case": "task01_target0_init00",
+    "task": 1,
+    "target_index": 0,
+    "step": 290,
+    "subgoal": "pick up the cream cheese box and place it in the basket",
+    "images": {
+      "reference": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task01_target0_init00/reference.png",
+        "pixel_sha256": "cedb1fa62dafec3f0e29f7a0fd59aa26a91828f15ba822305d20c0d582451384"
+      },
+      "agent": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task01_target0_init00/agent_0290.png",
+        "pixel_sha256": "cf4790a07ba42f478fbccc9a6e1b46979207afa7bffe274263a44f4fa226de59"
+      },
+      "wrist": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task01_target0_init00/wrist_0290.png",
+        "pixel_sha256": "0bd8c60ac619463c3097ded0ac9f84fb250a9c3dac0d87df4b2ede891b71dacb"
+      }
+    },
+    "goal_done": true,
+    "inside": true,
+    "gripper_contact": false,
+    "selected_target": "cream_cheese_1",
+    "requested_target": "cream_cheese_1",
+    "observability": "not_reviewed",
+    "source": "experiments/vla_libero/selective_execution/episodes/pilot/task01_target0_init00/skill_continue/result.json",
+    "source_sha256": "ae577d7e057cb1609194c3ce631799b7d8c29aee1de3a01a97faf72630e57d8f",
+    "label_source": "In + no gripper contact after restoring and forwarding the SAME state used to render BOTH candidate views"
+  },
+  {
+    "id": "development_task01_target1_init00_0010",
+    "split": "development",
+    "case": "task01_target1_init00",
+    "task": 1,
+    "target_index": 1,
+    "step": 10,
+    "subgoal": "pick up the butter and place it in the basket",
+    "images": {
+      "reference": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task01_target1_init00/reference.png",
+        "pixel_sha256": "cedb1fa62dafec3f0e29f7a0fd59aa26a91828f15ba822305d20c0d582451384"
+      },
+      "agent": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task01_target1_init00/agent_0010.png",
+        "pixel_sha256": "b726c359acb9b8b3912652cdc7e51f8c31b6be90f5483c773e30418401889bc6"
+      },
+      "wrist": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task01_target1_init00/wrist_0010.png",
+        "pixel_sha256": "8456e0b771b33afadb174898b8d2a2ba6f5080d72bf1ace3ab6ebf047f8f11a5"
+      }
+    },
+    "goal_done": false,
+    "inside": false,
+    "gripper_contact": false,
+    "selected_target": "butter_1",
+    "requested_target": "butter_1",
+    "observability": "not_reviewed",
+    "source": "experiments/vla_libero/selective_execution/episodes/pilot/task01_target1_init00/skill_continue/result.json",
+    "source_sha256": "5fa3005c180df98c56a07e27dd6de7d0651a3c53542e5634e7faaa10b185f6dd",
+    "label_source": "In + no gripper contact after restoring and forwarding the SAME state used to render BOTH candidate views"
+  },
+  {
+    "id": "development_task01_target1_init00_0020",
+    "split": "development",
+    "case": "task01_target1_init00",
+    "task": 1,
+    "target_index": 1,
+    "step": 20,
+    "subgoal": "pick up the butter and place it in the basket",
+    "images": {
+      "reference": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task01_target1_init00/reference.png",
+        "pixel_sha256": "cedb1fa62dafec3f0e29f7a0fd59aa26a91828f15ba822305d20c0d582451384"
+      },
+      "agent": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task01_target1_init00/agent_0020.png",
+        "pixel_sha256": "3cc8b3f2aef19c297003ae492d8f2a978462b06a360ccf92f63b9caf6281625f"
+      },
+      "wrist": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task01_target1_init00/wrist_0020.png",
+        "pixel_sha256": "74c742e1763907a6576bbb79170c3de9a1e9fd6e9336637378d12d8a47d20264"
+      }
+    },
+    "goal_done": false,
+    "inside": false,
+    "gripper_contact": false,
+    "selected_target": "butter_1",
+    "requested_target": "butter_1",
+    "observability": "not_reviewed",
+    "source": "experiments/vla_libero/selective_execution/episodes/pilot/task01_target1_init00/skill_continue/result.json",
+    "source_sha256": "5fa3005c180df98c56a07e27dd6de7d0651a3c53542e5634e7faaa10b185f6dd",
+    "label_source": "In + no gripper contact after restoring and forwarding the SAME state used to render BOTH candidate views"
+  },
+  {
+    "id": "development_task01_target1_init00_0030",
+    "split": "development",
+    "case": "task01_target1_init00",
+    "task": 1,
+    "target_index": 1,
+    "step": 30,
+    "subgoal": "pick up the butter and place it in the basket",
+    "images": {
+      "reference": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task01_target1_init00/reference.png",
+        "pixel_sha256": "cedb1fa62dafec3f0e29f7a0fd59aa26a91828f15ba822305d20c0d582451384"
+      },
+      "agent": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task01_target1_init00/agent_0030.png",
+        "pixel_sha256": "d7525ee666879693a17fc22dd7868e7df94cf0a7e41ab54d394e2c364f57afef"
+      },
+      "wrist": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task01_target1_init00/wrist_0030.png",
+        "pixel_sha256": "1ce30e49d8bf13d96d07f9c0a52a37cc4ca3b6e8890a96252c1b3cd9327367a3"
+      }
+    },
+    "goal_done": false,
+    "inside": false,
+    "gripper_contact": false,
+    "selected_target": "butter_1",
+    "requested_target": "butter_1",
+    "observability": "not_reviewed",
+    "source": "experiments/vla_libero/selective_execution/episodes/pilot/task01_target1_init00/skill_continue/result.json",
+    "source_sha256": "5fa3005c180df98c56a07e27dd6de7d0651a3c53542e5634e7faaa10b185f6dd",
+    "label_source": "In + no gripper contact after restoring and forwarding the SAME state used to render BOTH candidate views"
+  },
+  {
+    "id": "development_task01_target1_init00_0040",
+    "split": "development",
+    "case": "task01_target1_init00",
+    "task": 1,
+    "target_index": 1,
+    "step": 40,
+    "subgoal": "pick up the butter and place it in the basket",
+    "images": {
+      "reference": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task01_target1_init00/reference.png",
+        "pixel_sha256": "cedb1fa62dafec3f0e29f7a0fd59aa26a91828f15ba822305d20c0d582451384"
+      },
+      "agent": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task01_target1_init00/agent_0040.png",
+        "pixel_sha256": "b196cb4db1f64a48e7102699c5f0fbb582925064c8b2ff95fff6fda19f62ed2b"
+      },
+      "wrist": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task01_target1_init00/wrist_0040.png",
+        "pixel_sha256": "59d68910e347437bd42aafae2cdbcda3ec6a83d6e9aeb7c7991c9e106c30df1b"
+      }
+    },
+    "goal_done": false,
+    "inside": false,
+    "gripper_contact": false,
+    "selected_target": "butter_1",
+    "requested_target": "butter_1",
+    "observability": "not_reviewed",
+    "source": "experiments/vla_libero/selective_execution/episodes/pilot/task01_target1_init00/skill_continue/result.json",
+    "source_sha256": "5fa3005c180df98c56a07e27dd6de7d0651a3c53542e5634e7faaa10b185f6dd",
+    "label_source": "In + no gripper contact after restoring and forwarding the SAME state used to render BOTH candidate views"
+  },
+  {
+    "id": "development_task01_target1_init00_0050",
+    "split": "development",
+    "case": "task01_target1_init00",
+    "task": 1,
+    "target_index": 1,
+    "step": 50,
+    "subgoal": "pick up the butter and place it in the basket",
+    "images": {
+      "reference": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task01_target1_init00/reference.png",
+        "pixel_sha256": "cedb1fa62dafec3f0e29f7a0fd59aa26a91828f15ba822305d20c0d582451384"
+      },
+      "agent": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task01_target1_init00/agent_0050.png",
+        "pixel_sha256": "af29a99800169ac91cf6f81fd3fa54940c275d7cdb9b42fc1bb62c3010b42490"
+      },
+      "wrist": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task01_target1_init00/wrist_0050.png",
+        "pixel_sha256": "e08aa8ed0fcf348b3bd7aa4b8469deaf9a9ac132e1a26dddd1cdcad88ffd10d9"
+      }
+    },
+    "goal_done": false,
+    "inside": false,
+    "gripper_contact": false,
+    "selected_target": "butter_1",
+    "requested_target": "butter_1",
+    "observability": "not_reviewed",
+    "source": "experiments/vla_libero/selective_execution/episodes/pilot/task01_target1_init00/skill_continue/result.json",
+    "source_sha256": "5fa3005c180df98c56a07e27dd6de7d0651a3c53542e5634e7faaa10b185f6dd",
+    "label_source": "In + no gripper contact after restoring and forwarding the SAME state used to render BOTH candidate views"
+  },
+  {
+    "id": "development_task01_target1_init00_0060",
+    "split": "development",
+    "case": "task01_target1_init00",
+    "task": 1,
+    "target_index": 1,
+    "step": 60,
+    "subgoal": "pick up the butter and place it in the basket",
+    "images": {
+      "reference": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task01_target1_init00/reference.png",
+        "pixel_sha256": "cedb1fa62dafec3f0e29f7a0fd59aa26a91828f15ba822305d20c0d582451384"
+      },
+      "agent": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task01_target1_init00/agent_0060.png",
+        "pixel_sha256": "94734015236bcec60de7354a9ebea896c44b75221be195772331f9c9cacf4865"
+      },
+      "wrist": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task01_target1_init00/wrist_0060.png",
+        "pixel_sha256": "6629abb5a578a3d9c2228aa0f8c8d7d63849dcb013834f6063ad503237f7e032"
+      }
+    },
+    "goal_done": false,
+    "inside": false,
+    "gripper_contact": false,
+    "selected_target": "butter_1",
+    "requested_target": "butter_1",
+    "observability": "not_reviewed",
+    "source": "experiments/vla_libero/selective_execution/episodes/pilot/task01_target1_init00/skill_continue/result.json",
+    "source_sha256": "5fa3005c180df98c56a07e27dd6de7d0651a3c53542e5634e7faaa10b185f6dd",
+    "label_source": "In + no gripper contact after restoring and forwarding the SAME state used to render BOTH candidate views"
+  },
+  {
+    "id": "development_task01_target1_init00_0160",
+    "split": "development",
+    "case": "task01_target1_init00",
+    "task": 1,
+    "target_index": 1,
+    "step": 160,
+    "subgoal": "pick up the butter and place it in the basket",
+    "images": {
+      "reference": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task01_target1_init00/reference.png",
+        "pixel_sha256": "cedb1fa62dafec3f0e29f7a0fd59aa26a91828f15ba822305d20c0d582451384"
+      },
+      "agent": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task01_target1_init00/agent_0160.png",
+        "pixel_sha256": "cc22d6d3d435d375d606acba4305d270384f42bb102ebafead37957f1dec0b8f"
+      },
+      "wrist": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task01_target1_init00/wrist_0160.png",
+        "pixel_sha256": "dd649fcf620b586132c0b06f65688564642edbab68daf3c78b635ad1345da7b3"
+      }
+    },
+    "goal_done": false,
+    "inside": false,
+    "gripper_contact": false,
+    "selected_target": "butter_1",
+    "requested_target": "butter_1",
+    "observability": "not_reviewed",
+    "source": "experiments/vla_libero/selective_execution/episodes/pilot/task01_target1_init00/skill_continue/result.json",
+    "source_sha256": "5fa3005c180df98c56a07e27dd6de7d0651a3c53542e5634e7faaa10b185f6dd",
+    "label_source": "In + no gripper contact after restoring and forwarding the SAME state used to render BOTH candidate views"
+  },
+  {
+    "id": "development_task01_target1_init00_0170",
+    "split": "development",
+    "case": "task01_target1_init00",
+    "task": 1,
+    "target_index": 1,
+    "step": 170,
+    "subgoal": "pick up the butter and place it in the basket",
+    "images": {
+      "reference": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task01_target1_init00/reference.png",
+        "pixel_sha256": "cedb1fa62dafec3f0e29f7a0fd59aa26a91828f15ba822305d20c0d582451384"
+      },
+      "agent": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task01_target1_init00/agent_0170.png",
+        "pixel_sha256": "71dead5c4b692a164ffc9f431a8282d03ecd66a6a4654bf2677752445eeaaa20"
+      },
+      "wrist": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task01_target1_init00/wrist_0170.png",
+        "pixel_sha256": "f4a5bf8c3c432272b7c08e6f1289a65eb620e6478cbb8c8c99c03aa5942be356"
+      }
+    },
+    "goal_done": false,
+    "inside": false,
+    "gripper_contact": false,
+    "selected_target": "butter_1",
+    "requested_target": "butter_1",
+    "observability": "not_reviewed",
+    "source": "experiments/vla_libero/selective_execution/episodes/pilot/task01_target1_init00/skill_continue/result.json",
+    "source_sha256": "5fa3005c180df98c56a07e27dd6de7d0651a3c53542e5634e7faaa10b185f6dd",
+    "label_source": "In + no gripper contact after restoring and forwarding the SAME state used to render BOTH candidate views"
+  },
+  {
+    "id": "development_task01_target1_init00_0180",
+    "split": "development",
+    "case": "task01_target1_init00",
+    "task": 1,
+    "target_index": 1,
+    "step": 180,
+    "subgoal": "pick up the butter and place it in the basket",
+    "images": {
+      "reference": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task01_target1_init00/reference.png",
+        "pixel_sha256": "cedb1fa62dafec3f0e29f7a0fd59aa26a91828f15ba822305d20c0d582451384"
+      },
+      "agent": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task01_target1_init00/agent_0180.png",
+        "pixel_sha256": "eed9af49962168c933144afb972bc228dfabdbda2a3abb22812beac997dd6103"
+      },
+      "wrist": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task01_target1_init00/wrist_0180.png",
+        "pixel_sha256": "502496aea9e48edd76555e67e01750e61e2abded2ce8d9b1e11c6c2d051d3416"
+      }
+    },
+    "goal_done": false,
+    "inside": false,
+    "gripper_contact": false,
+    "selected_target": "butter_1",
+    "requested_target": "butter_1",
+    "observability": "not_reviewed",
+    "source": "experiments/vla_libero/selective_execution/episodes/pilot/task01_target1_init00/skill_continue/result.json",
+    "source_sha256": "5fa3005c180df98c56a07e27dd6de7d0651a3c53542e5634e7faaa10b185f6dd",
+    "label_source": "In + no gripper contact after restoring and forwarding the SAME state used to render BOTH candidate views"
+  },
+  {
+    "id": "development_task01_target1_init00_0190",
+    "split": "development",
+    "case": "task01_target1_init00",
+    "task": 1,
+    "target_index": 1,
+    "step": 190,
+    "subgoal": "pick up the butter and place it in the basket",
+    "images": {
+      "reference": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task01_target1_init00/reference.png",
+        "pixel_sha256": "cedb1fa62dafec3f0e29f7a0fd59aa26a91828f15ba822305d20c0d582451384"
+      },
+      "agent": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task01_target1_init00/agent_0190.png",
+        "pixel_sha256": "73d35527aa9583083d1ff1862c805855960c1143eae7c1e6f816e5a577e68ba2"
+      },
+      "wrist": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task01_target1_init00/wrist_0190.png",
+        "pixel_sha256": "50223bdb128007ffc2d0b50641a7d433db4e946e07c5b36c108fce58549a4c07"
+      }
+    },
+    "goal_done": false,
+    "inside": false,
+    "gripper_contact": false,
+    "selected_target": "butter_1",
+    "requested_target": "butter_1",
+    "observability": "not_reviewed",
+    "source": "experiments/vla_libero/selective_execution/episodes/pilot/task01_target1_init00/skill_continue/result.json",
+    "source_sha256": "5fa3005c180df98c56a07e27dd6de7d0651a3c53542e5634e7faaa10b185f6dd",
+    "label_source": "In + no gripper contact after restoring and forwarding the SAME state used to render BOTH candidate views"
+  },
+  {
+    "id": "development_task01_target1_init00_0260",
+    "split": "development",
+    "case": "task01_target1_init00",
+    "task": 1,
+    "target_index": 1,
+    "step": 260,
+    "subgoal": "pick up the butter and place it in the basket",
+    "images": {
+      "reference": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task01_target1_init00/reference.png",
+        "pixel_sha256": "cedb1fa62dafec3f0e29f7a0fd59aa26a91828f15ba822305d20c0d582451384"
+      },
+      "agent": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task01_target1_init00/agent_0260.png",
+        "pixel_sha256": "ec0c4a7af346b157eb5c20a0a939dc021fcee3654fcb25e68ccdc950d5dbea35"
+      },
+      "wrist": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task01_target1_init00/wrist_0260.png",
+        "pixel_sha256": "7773211c9b52edc59b291933db53c1b86fa97f165c2005da248e84d7c8092f8b"
+      }
+    },
+    "goal_done": true,
+    "inside": true,
+    "gripper_contact": false,
+    "selected_target": "butter_1",
+    "requested_target": "butter_1",
+    "observability": "not_reviewed",
+    "source": "experiments/vla_libero/selective_execution/episodes/pilot/task01_target1_init00/skill_continue/result.json",
+    "source_sha256": "5fa3005c180df98c56a07e27dd6de7d0651a3c53542e5634e7faaa10b185f6dd",
+    "label_source": "In + no gripper contact after restoring and forwarding the SAME state used to render BOTH candidate views"
+  },
+  {
+    "id": "development_task01_target1_init00_0270",
+    "split": "development",
+    "case": "task01_target1_init00",
+    "task": 1,
+    "target_index": 1,
+    "step": 270,
+    "subgoal": "pick up the butter and place it in the basket",
+    "images": {
+      "reference": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task01_target1_init00/reference.png",
+        "pixel_sha256": "cedb1fa62dafec3f0e29f7a0fd59aa26a91828f15ba822305d20c0d582451384"
+      },
+      "agent": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task01_target1_init00/agent_0270.png",
+        "pixel_sha256": "9abbcac9e582440286bc27975cb56565166bf796505269c86a09438ea998fb54"
+      },
+      "wrist": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task01_target1_init00/wrist_0270.png",
+        "pixel_sha256": "da2f4741d0a12c5c298b3135a98b541b651423e10aaf93fe3ea24ebdea3e4567"
+      }
+    },
+    "goal_done": true,
+    "inside": true,
+    "gripper_contact": false,
+    "selected_target": "butter_1",
+    "requested_target": "butter_1",
+    "observability": "not_reviewed",
+    "source": "experiments/vla_libero/selective_execution/episodes/pilot/task01_target1_init00/skill_continue/result.json",
+    "source_sha256": "5fa3005c180df98c56a07e27dd6de7d0651a3c53542e5634e7faaa10b185f6dd",
+    "label_source": "In + no gripper contact after restoring and forwarding the SAME state used to render BOTH candidate views"
+  },
+  {
+    "id": "development_task01_target1_init00_0280",
+    "split": "development",
+    "case": "task01_target1_init00",
+    "task": 1,
+    "target_index": 1,
+    "step": 280,
+    "subgoal": "pick up the butter and place it in the basket",
+    "images": {
+      "reference": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task01_target1_init00/reference.png",
+        "pixel_sha256": "cedb1fa62dafec3f0e29f7a0fd59aa26a91828f15ba822305d20c0d582451384"
+      },
+      "agent": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task01_target1_init00/agent_0280.png",
+        "pixel_sha256": "ea44ceaf31e8796afc7750a0ce1fe146c8de3bf8bf12a3db1edd4f31e33a531a"
+      },
+      "wrist": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task01_target1_init00/wrist_0280.png",
+        "pixel_sha256": "1c62f8b116a4631f82af128b6192cefc6b076cfc62a9d61ddc2963b5d8e3c352"
+      }
+    },
+    "goal_done": true,
+    "inside": true,
+    "gripper_contact": false,
+    "selected_target": "butter_1",
+    "requested_target": "butter_1",
+    "observability": "not_reviewed",
+    "source": "experiments/vla_libero/selective_execution/episodes/pilot/task01_target1_init00/skill_continue/result.json",
+    "source_sha256": "5fa3005c180df98c56a07e27dd6de7d0651a3c53542e5634e7faaa10b185f6dd",
+    "label_source": "In + no gripper contact after restoring and forwarding the SAME state used to render BOTH candidate views"
+  },
+  {
+    "id": "development_task01_target1_init00_0290",
+    "split": "development",
+    "case": "task01_target1_init00",
+    "task": 1,
+    "target_index": 1,
+    "step": 290,
+    "subgoal": "pick up the butter and place it in the basket",
+    "images": {
+      "reference": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task01_target1_init00/reference.png",
+        "pixel_sha256": "cedb1fa62dafec3f0e29f7a0fd59aa26a91828f15ba822305d20c0d582451384"
+      },
+      "agent": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task01_target1_init00/agent_0290.png",
+        "pixel_sha256": "482f530b205e9d93b6b82555d97fc4620809ae0636fae4ca1602d3f5b5d041c6"
+      },
+      "wrist": {
+        "path": "experiments/vla_libero/constraint_retention/view_audit/images/development/task01_target1_init00/wrist_0290.png",
+        "pixel_sha256": "8fe8a483cd9a984fa0ac723eba87c8c58a3abf2a5541aec67591d028e03cc860"
+      }
+    },
+    "goal_done": true,
+    "inside": true,
+    "gripper_contact": false,
+    "selected_target": "butter_1",
+    "requested_target": "butter_1",
+    "observability": "not_reviewed",
+    "source": "experiments/vla_libero/selective_execution/episodes/pilot/task01_target1_init00/skill_continue/result.json",
+    "source_sha256": "5fa3005c180df98c56a07e27dd6de7d0651a3c53542e5634e7faaa10b185f6dd",
+    "label_source": "In + no gripper contact after restoring and forwarding the SAME state used to render BOTH candidate views"
+  }
+]

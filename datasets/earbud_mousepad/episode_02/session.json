@@ -1,0 +1,32 @@
+{
+  "format": "so101-rgb-joints-jsonl-v1",
+  "status": "review_required",
+  "task": "Pick up the blue earbud case from the table and place it on the black mouse pad.",
+  "joint_order": [
+    "shoulder_pan",
+    "shoulder_lift",
+    "elbow_flex",
+    "wrist_flex",
+    "wrist_roll",
+    "gripper"
+  ],
+  "fps_nominal": 10,
+  "rotation_clockwise_degrees": 0,
+  "ports": {
+    "leader": "/dev/serial/by-id/usb-1a86_USB_Single_Serial_5CE5121669-if00",
+    "follower": "/dev/serial/by-id/usb-1a86_USB_Single_Serial_5CE5122996-if00"
+  },
+  "units": "degrees for five arm joints; percent for gripper",
+  "action_semantics": "absolute goals actually sent; review actual measured states before replay",
+  "calibration_sha256": {
+    "robots/so_follower/my_awesome_follower_arm.json": "c352fccc213c2a60ffbc4b100e4adc9653e9eccba35def479524e37e7d713f47",
+    "teleoperators/so_leader/my_awesome_leader_arm.json": "11db1db03d592a40a510c92ce834bda16a9699735ac645853b8b037236858fd4"
+  },
+  "timestamp_note": "host monotonic receipt timestamps, not camera exposure times",
+  "wrist_roll_offset_degrees": -90.0,
+  "max_step_per_cycle": 5.0,
+  "gripper_locked": false,
+  "action_offset_already_applied": true,
+  "replay_note": "Recorded absolute follower goals already include wrist offset; do not add it again.",
+  "frames": 326
+}

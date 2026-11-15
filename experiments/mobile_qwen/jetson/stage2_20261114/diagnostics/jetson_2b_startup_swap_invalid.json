@@ -1,0 +1,28 @@
+{
+  "valid": false,
+  "reason": "Global swap IO during the inference-start interval; no full 350-frame evaluation completed",
+  "queries": 31,
+  "model_swap_max": 0,
+  "first_memory": {
+    "VmHWM": 1693470720,
+    "VmRSS": 1405734912,
+    "VmSwap": 0,
+    "pswpin": 225,
+    "pswpout": 4345,
+    "cgroup_memory_current": 2058944512,
+    "cgroup_memory_peak": null,
+    "cgroup_swap_current": 0,
+    "cgroup_swap_peak": null
+  },
+  "last_memory": {
+    "VmHWM": 1693470720,
+    "VmRSS": 1441755136,
+    "VmSwap": 0,
+    "pswpin": 226,
+    "pswpout": 4552,
+    "cgroup_memory_current": 2075082752,
+    "cgroup_memory_peak": null,
+    "cgroup_swap_current": 0,
+    "cgroup_swap_peak": null
+  }
+}

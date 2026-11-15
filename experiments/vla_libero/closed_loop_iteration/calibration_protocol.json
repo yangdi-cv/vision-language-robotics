@@ -1,0 +1,9 @@
+{
+  "purpose": "Completion switches prioritize avoiding false confirmation; calibrate a usable operating point rather than optimize overall accuracy alone.",
+  "method": "Restricted true/false next-token probability after a shared JSON prefix; no second model or simulator inputs.",
+  "selection_data": "Full validation initial-state-1 episodes only; no test scores or labels select thresholds.",
+  "false_positive_rate_limit_validation": 0.05,
+  "selection_rule": "Maximize validation true-positive rate under the limit; ties prefer lower false-positive rate then higher threshold.",
+  "comparison": "Calibrate base and selected LoRA identically; retain original greedy results separately.",
+  "test": "All 240 initial-state-2 cases, including boundary challenge; no weight or threshold changes after test scoring."
+}

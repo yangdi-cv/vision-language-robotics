@@ -1,0 +1,9 @@
+{
+  "clean_extracted_cpu_tests": true,
+  "manifest_files": 265,
+  "frozen_sources": 10,
+  "cpu_python": "/tmp/vla_selective_cpu_20261113/bin/python",
+  "test_output": "............\n----------------------------------------------------------------------\nRan 12 tests in 0.001s\n\nOK\n",
+  "launcher_permissions_and_bash_syntax": true,
+  "scope": "CPU self-contained checks, not full GPU assets or model execution"
+}

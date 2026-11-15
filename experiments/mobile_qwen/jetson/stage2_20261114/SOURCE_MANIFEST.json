@@ -1,0 +1,18 @@
+{
+  "experiments/mobile_qwen/affordance/train_lora.py": "621d5a17932f1367eb6c32df90941ebb827b47defb00597f6749303faebaa723",
+  "experiments/mobile_qwen/affordance/eval_qwen.py": "3f83ca31161d24f7155db69bb8b5c97bf3349ecbce5bc540fb6675b944bd2416",
+  "experiments/mobile_qwen/affordance/lora_v1/protocol.json": "1ea5af74795a3386be69d5fda2814ee590301a06504b3125e9c5803e07ca1c18",
+  "experiments/mobile_qwen/jetson/stage2_20261114/PROTOCOL.md": "c2f9355ba3395b9091c7926e0d9d39bc130a64240ea8eaab9a29b0036338e0ab",
+  "experiments/mobile_qwen/jetson/stage2_20261114/scripts/verify_manifest.py": "d8bb646b869f65e15f5bd7809f40f8f60ee20a826e2c86197167036cc661ab07",
+  "experiments/mobile_qwen/jetson/stage2_20261114/scripts/evaluate_once.py": "91a0064d164d7e27b95afaf419098c141f59a3da0861fb219b196955fd37afdf",
+  "experiments/mobile_qwen/jetson/stage2_20261114/scripts/runtime.py": "fbe6a4f487b0f3642111adb7b459fb478cfceed522496d14012836ac74bd98fc",
+  "experiments/mobile_qwen/jetson/stage2_20261114/scripts/quantize.py": "adcf3ebb8ebeedc6dce485e6271878c020dddea1bac2372b4c054ee2ddd5a58e",
+  "experiments/mobile_qwen/jetson/stage2_20261114/scripts/prepare_test_bundle.py": "c63875afc300bdf9511af8b529984da882f46c0f937a1bd262a82403ff2e3062",
+  "experiments/mobile_qwen/jetson/stage2_20261114/scripts/test_protocol.py": "1bf2c01c353676c55096953ca3f1b495e3fdb5e9ec330e2e3420a8249e106f05",
+  "experiments/mobile_qwen/jetson/stage2_20261114/scripts/download_2b.py": "47307fb949de7633015d9f4322403c9b1f687fb549da7c59044ada735a3aa804",
+  "experiments/mobile_qwen/jetson/stage2_20261114/scripts/deploy_files.py": "00fcd121eb8113cd5cadc7d7ecd1983db432af772dd4bdcfa736aa24bfd57767",
+  "experiments/mobile_qwen/jetson/stage2_20261114/scripts/train_2b.py": "84c0c4aed5268531b06ef5ab713d4aab4bf14aec2161406a6b112bc546afadff",
+  "experiments/mobile_qwen/jetson/stage2_20261114/scripts/summarize.py": "17e759a252f7bd8b83a0916b9afe848182172d1bb9e92cdf412a1099386a7ef1",
+  "experiments/mobile_qwen/jetson/stage2_20261114/scripts/pc_pipeline.sh": "63ae555fad0804ce424f25c7594aec138902c6abd106c22b23e8e64aae8f4caf",
+  "experiments/mobile_qwen/jetson/stage2_20261114/scripts/jetson_evaluate.sh": "b99dd880e77cc58647379d08af5347f017ae964223c07f672c2b5aa8bc3c7886"
+}

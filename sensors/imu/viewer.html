@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta charset="UTF-8"><title>IMU 板卡姿态 · 4:5</title>
+<style>
+html,body{margin:0;width:100%;height:100%;background:#111827;overflow:hidden;font:16px 'Noto Sans CJK SC',sans-serif;color:#e5e7eb}canvas{width:100%;height:100%}#panel{position:absolute;left:20px;top:20px;z-index:2;background:#172033ee;padding:20px;border-radius:12px;max-width:440px;line-height:1.7}h2{margin:0 0 10px;font-size:22px}button{font:inherit;color:white;background:#2563eb;border:0;padding:9px 14px;border-radius:7px;margin:8px 6px 8px 0;cursor:pointer}#message{color:#93c5fd}small{display:block;color:#aebbd0}
+select{font:inherit;background:#243447;color:white;padding:8px;border-radius:6px;margin:8px 0;width:100%}body.compact{background:#cbd1d8}body.compact #panel{display:none}#compactInfo{display:none}body.compact #compactInfo{display:block;position:absolute;bottom:10px;left:12px;right:12px;z-index:3;text-align:center;color:#243447;font-size:12px;background:#cbd1d8dd;padding:5px;border-radius:6px}</style></head>
+<body><div id="panel"><h2>IMU 板卡 · 宽 4 : 长 5</h2><div id="status">正在连接…</div><div id="angles"></div><label for="axis">代表前方的板卡轴</label><select id="axis"><option value="+Z">+Z · 板面法线（竖装先试）</option><option value="-Z">−Z · 相反板面法线</option><option value="+X">+X</option><option value="-X">−X</option><option value="+Y">+Y</option><option value="-Y">−Y</option></select><label for="upAxis">LED 端方向（板卡长边轴）</label><select id="upAxis"><option value="+Y">+Y</option><option value="-Y">−Y</option><option value="+X" selected>+X</option><option value="-X">−X</option><option value="+Z">+Z</option><option value="-Z">−Z</option></select><div id="mode">等待朝向</div><button id="reference">以当前朝向为零</button><button id="clear">清除方向偏置</button><div id="message"></div><small>四元数驱动完整三维姿态。前向轴与 LED 长边轴必须垂直。<br>朝向归零只调整水平偏置，保留俯仰与侧倾；不修改硬件校准。</small></div><div id="compactInfo"></div><canvas id="renderCanvas"></canvas>
+<script src="/assets/babylon.js"></script>
+<script src="/assets/heading.js"></script>
+<script src="/assets/pose.js"></script>
+<script>
+const params=new URLSearchParams(location.search);
+const compact=params.get('compact')==='1';
+let uiLanguage=params.get('lang')==='en'?'en':'zh';
+if(compact)document.body.classList.add('compact');
+const canvas=document.getElementById('renderCanvas');
+const engine=new BABYLON.Engine(canvas,true);
+const scene=new BABYLON.Scene(engine);scene.useRightHandedSystem=true;
+scene.clearColor=compact?new BABYLON.Color4(.796,.820,.847,1):new BABYLON.Color4(.055,.08,.13,1);
+const camera=new BABYLON.ArcRotateCamera('camera',Math.PI/2,Math.PI/2.5,13,BABYLON.Vector3.Zero(),scene);if(compact){camera.beta=Math.PI/2;camera.radius=10;}camera.attachControl(canvas,true);
+new BABYLON.HemisphericLight('light',new BABYLON.Vector3(0,1,1),scene);
+const board=BABYLON.MeshBuilder.CreateBox('board',{width:4,height:5,depth:.18},scene);
+const material=new BABYLON.StandardMaterial('pcb',scene);material.diffuseColor=new BABYLON.Color3(.035,.10,.28);board.material=material;
+const usb=BABYLON.MeshBuilder.CreateBox('usb',{width:1.2,height:.55,depth:.35},scene);usb.parent=board;usb.position=new BABYLON.Vector3(0,-2.5,.12);
+const usbMat=new BABYLON.StandardMaterial('usbMat',scene);usbMat.diffuseColor=new BABYLON.Color3(.7,.73,.78);usb.material=usbMat;
+const led=BABYLON.MeshBuilder.CreateSphere('led',{diameter:.22},scene);led.parent=board;led.position=new BABYLON.Vector3(0,2.1,.16);
+const ledMat=new BABYLON.StandardMaterial('ledMat',scene);ledMat.emissiveColor=new BABYLON.Color3(1,.1,.05);led.material=ledMat;
+function boardLabel(label,y){const plane=BABYLON.MeshBuilder.CreatePlane(label,{width:1.5,height:.4,sideOrientation:BABYLON.Mesh.DOUBLESIDE},scene);plane.parent=board;plane.position=new BABYLON.Vector3(0,y,.105);const texture=new BABYLON.DynamicTexture(label+'Text',{width:512,height:128},scene);texture.hasAlpha=true;texture.drawText(label,null,90,'bold 80px sans-serif','white','transparent',true);const mat=new BABYLON.StandardMaterial(label+'Mat',scene);mat.diffuseTexture=texture;mat.emissiveColor=new BABYLON.Color3(1,1,1);plane.material=mat;}
+boardLabel('LED',1.65);boardLabel('USB',-1.95);
+let valid=false;
+let initialDisplayPose=null;
+let relativeAngles=null;
+let latest=null;
+let rawHeading=null;
+let offset=0;
+const selector=document.getElementById('axis');
+const upSelector=document.getElementById('upAxis');
+const presetVersion='forward-Z-led-X-v1';
+if(localStorage.getItem('imuPresetVersion')!==presetVersion){
+ localStorage.setItem('imuForwardAxis','+Z');
+ localStorage.setItem('imuUpAxis','+X');
+ localStorage.setItem('imuPresetVersion',presetVersion);
+}
+const stored=localStorage.getItem('imuForwardAxis');
+if(ImuHeading.axes[stored])selector.value=stored;
+const storedUp=localStorage.getItem('imuUpAxis');
+if(ImuHeading.axes[storedUp])upSelector.value=storedUp;
+if(compact){selector.value='+Z';upSelector.value='+X';}
+function checkAxes(){
+ const forward=ImuHeading.axes[selector.value];
+ for(const option of upSelector.options)option.disabled=Math.abs(forward.reduce((sum,v,i)=>sum+v*ImuHeading.axes[option.value][i],0))>.001;
+ if(upSelector.selectedOptions[0].disabled)upSelector.value=Array.from(upSelector.options).find(o=>!o.disabled).value;
+}
+checkAxes();
+function updateCompact(){
+ if(!compact)return;
+ const status=valid?(uiLanguage==='en'?'Relative orientation':'相对姿态'):(uiLanguage==='en'?'Waiting for IMU':'等待IMU');
+ const angles=valid&&relativeAngles?` · Roll ${relativeAngles.roll.toFixed(1)}° · Pitch ${relativeAngles.pitch.toFixed(1)}° · Yaw ${relativeAngles.yaw.toFixed(1)}°`:'';
+ document.getElementById('compactInfo').textContent=status+angles;
+}
+window.addEventListener('message',event=>{if(!['http://127.0.0.1:8080','http://localhost:8080'].includes(event.origin))return;if(event.data?.type==='workbench-language'){uiLanguage=event.data.language==='en'?'en':'zh';updateCompact();}});
+function updateHeading(){
+ updateCompact();
+ rawHeading=valid&&latest?ImuHeading.bearing(latest.quaternion_wxyz,selector.value):null;
+ const available=rawHeading!==null;
+ document.getElementById('reference').disabled=!available;
+ let pose=valid&&latest?ImuPose.orientation(latest.quaternion_wxyz,ImuHeading.axes[selector.value],ImuHeading.axes[upSelector.value],offset):null;
+ if(!pose){board.setEnabled(false);document.getElementById('mode').textContent='等待有效姿态与垂直安装轴…';return;}
+ board.setEnabled(true);
+ if(compact){
+  if(initialDisplayPose===null)initialDisplayPose=pose.slice();
+  const [w,x,y,z]=initialDisplayPose;
+  pose=ImuPose.unit(ImuPose.multiply([w,-x,-y,-z],pose));
+ }
+ board.rotationQuaternion=new BABYLON.Quaternion(pose[1],pose[2],pose[3],pose[0]);
+ if(compact){
+  const e=board.rotationQuaternion.toEulerAngles();
+  relativeAngles={pitch:e.x*180/Math.PI,yaw:e.y*180/Math.PI,roll:e.z*180/Math.PI};
+  updateCompact();
+ }
+ document.getElementById('mode').textContent=available?`完整三维姿态 · 前向 ${selector.value} / LED端 ${upSelector.value} · 朝向 ${ImuHeading.normalize(rawHeading+offset).toFixed(1)}°`:'完整三维姿态 · 前向轴接近竖直，水平朝向不可用（姿态仍有效）';
+}
+selector.onchange=()=>{
+ checkAxes();
+ localStorage.setItem('imuForwardAxis',selector.value);
+ localStorage.setItem('imuUpAxis',upSelector.value);
+ offset=0;
+ document.getElementById('message').textContent='已切换前向轴，方向偏置已清除。';
+ updateHeading();
+};
+upSelector.onchange=()=>{localStorage.setItem('imuUpAxis',upSelector.value);offset=0;document.getElementById('message').textContent='LED 端轴已切换，方向偏置已清除。';updateHeading();};
+const ws=new WebSocket(`ws://${location.host}/ws`);
+ws.onmessage=event=>{
+ latest=JSON.parse(event.data);valid=latest.valid;
+ document.getElementById('status').textContent=valid?'实时姿态 · 已连接':'等待有效姿态数据…';
+ if(valid)document.getElementById('angles').textContent=`原始 Roll ${latest.roll.toFixed(1)}° · Pitch ${latest.pitch.toFixed(1)}° · Yaw ${latest.yaw.toFixed(1)}°`;
+ updateHeading();
+};
+ws.onclose=()=>{valid=false;document.getElementById('status').textContent='连接已断开，请刷新页面或检查服务';updateHeading();};
+document.getElementById('reference').onclick=()=>{
+ if(rawHeading===null)return;
+ offset=-rawHeading;
+ document.getElementById('message').textContent='当前朝向已设为显示零点；不是北向标定。';
+ updateHeading();
+};
+document.getElementById('clear').onclick=()=>{offset=0;document.getElementById('message').textContent='方向偏置已清除。';updateHeading();};
+engine.runRenderLoop(()=>scene.render());window.addEventListener('resize',()=>engine.resize());
+</script></body></html>

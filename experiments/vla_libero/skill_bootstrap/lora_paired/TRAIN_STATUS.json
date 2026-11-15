@@ -1,0 +1,13 @@
+{
+  "state": "complete",
+  "steps": 600,
+  "best_step": 400,
+  "best_combined_loss": 0.00602265433485627,
+  "initial": {
+    "step": 0,
+    "phase_loss": 0.0133838828678563,
+    "branch_loss": 0.018351536244153976,
+    "combined": 0.01586770955600514
+  },
+  "seconds": 259.17574804299966
+}

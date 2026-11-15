@@ -1,0 +1,10 @@
+{
+  "purpose": "Feasibility of obtaining target1-first single-object training demonstrations in the SAME Long scenes",
+  "pilot": {"tasks":[0,1],"initial":0,"target":1,"episodes":2},
+  "maximum_development_retries":2,
+  "teacher":"privileged object positions plus grasp-relative pose from successful target0 policy trajectory; bounded Cartesian OSC actions through original robot dynamics",
+  "not_used":"No mocap/body teleportation, no new policy success claim, no hardware",
+  "acceptance":"requested object stably In basket, no gripper contact, specified protected object never moves over30mm",
+  "data_rule":"Only physically accepted demonstrations can enter a future training manifest; no training or held-out success claim in this pilot",
+  "references":["https://github.com/NVlabs/mimicgen","https://github.com/ARISE-Initiative/robosuite"]
+}

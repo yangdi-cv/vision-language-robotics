@@ -1,0 +1,36 @@
+{
+  "runner_sha256": "e5d28552be82d553e09b3fcfe45aa95bbc6d38b0338899c2536ed1407935bb9d",
+  "suite": "libero_object",
+  "task_id": 5,
+  "initial_state_id": 1,
+  "mode": "baseline",
+  "environment_seed": 7,
+  "noise_seed": 710501,
+  "initial_state_sha256": "ce18466b08cc9ed61a3a64e9f8a363617e8242fcb2975e9e0bac1a3845e41a83",
+  "original_prompt": "pick up the tomato sauce and place it in the basket",
+  "input_prompt": "pick up the tomato sauce and place it in the basket",
+  "replan_steps": 5,
+  "denoising_steps": 10,
+  "max_steps": 280,
+  "status": "success",
+  "success": true,
+  "steps": 124,
+  "alternate_goal_evaluable": false,
+  "alternate_goal_ever_satisfied": null,
+  "initial_eef": [
+    -0.14424736947284872,
+    -0.0008552410677652533,
+    0.2502752064535355
+  ],
+  "final_eef": [
+    -0.0246335715516067,
+    0.26547426484166964,
+    0.19300062001420237
+  ],
+  "qpos_displacement_norm": 1.697148806437333,
+  "simulation_elapsed_s": 6.2,
+  "wall_s": 4.721065996000107,
+  "query_count": 25,
+  "warmup_query_wall_s": 0.08083638900006918,
+  "query_median_excluding_first_s": 0.07389547250022588
+}

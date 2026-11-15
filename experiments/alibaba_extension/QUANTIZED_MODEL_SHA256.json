@@ -1,0 +1,10 @@
+{
+  "runs/profile_int8_cache/quantized_checkpoint/model-00002-of-00002.safetensors": {
+    "bytes": 251997232,
+    "sha256": "77beedbd19f3867acbd49432aa87b84ec0323ea1e23a1fc1f45174efa413f9e1"
+  },
+  "runs/profile_int8_cache/quantized_checkpoint/model-00001-of-00002.safetensors": {
+    "bytes": 4994890348,
+    "sha256": "703cb2b732ad0d361c0dff631f2526b5413733c494faa3a46763ec075acd87d9"
+  }
+}

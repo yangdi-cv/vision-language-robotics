@@ -1,0 +1,36 @@
+{
+  "runner_sha256": "e5d28552be82d553e09b3fcfe45aa95bbc6d38b0338899c2536ed1407935bb9d",
+  "suite": "libero_10",
+  "task_id": 1,
+  "initial_state_id": 1,
+  "mode": "baseline",
+  "environment_seed": 7,
+  "noise_seed": 730101,
+  "initial_state_sha256": "cd3e7f86ef217ee7b7d26cc505b3f56ea8f49664ef10f6749270dfcd39dd17a6",
+  "original_prompt": "put both the cream cheese box and the butter in the basket",
+  "input_prompt": "put both the cream cheese box and the butter in the basket",
+  "replan_steps": 5,
+  "denoising_steps": 10,
+  "max_steps": 520,
+  "status": "success",
+  "success": true,
+  "steps": 261,
+  "alternate_goal_evaluable": false,
+  "alternate_goal_ever_satisfied": null,
+  "initial_eef": [
+    -0.0474902892270269,
+    0.00892953815536515,
+    0.6899930335248495
+  ],
+  "final_eef": [
+    -0.024734219777098332,
+    0.27448882670676433,
+    0.6205630335025454
+  ],
+  "qpos_displacement_norm": 0.9386232091264252,
+  "simulation_elapsed_s": 13.05,
+  "wall_s": 8.535906276000787,
+  "query_count": 53,
+  "warmup_query_wall_s": 0.07951935800065257,
+  "query_median_excluding_first_s": 0.07422849499971562
+}

@@ -1,0 +1,19 @@
+{
+  "suite": "libero_goal",
+  "task_id": 3,
+  "initial_state_id": 0,
+  "initial_state_sha256": "cbedd58789f8211e0c0435637d9c71750d5aa2ae3216b354ec03b6630c8caa78",
+  "replay_max_qpos_error": 0.0,
+  "probe": "1s zero Cartesian increment and gripper open; last 0.5s predicate sustained",
+  "official_success": true,
+  "final_goal": true,
+  "last_half_second_goal_maintained": true,
+  "gripper_qpos_after": [
+    0.038904884206354164,
+    -0.039153446752462795
+  ],
+  "finger_joint_open_threshold_m": 0.03,
+  "gripper_open_confirmed": true,
+  "open_and_stable": true,
+  "source_sha256": "43fd5a3203b13a56babd85ba784003a93d321a395668931927cac6a4f791657b"
+}

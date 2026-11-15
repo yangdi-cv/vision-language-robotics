@@ -1,0 +1,215 @@
+{
+  "pilot": {
+    "groups": {
+      "duplicate_control": {
+        "n": 4,
+        "success": 0,
+        "protected_ok": 0,
+        "target_stable": 3,
+        "premature": 0,
+        "reused": 0
+      },
+      "wrist": {
+        "n": 4,
+        "success": 0,
+        "protected_ok": 0,
+        "target_stable": 3,
+        "premature": 0,
+        "reused": 0
+      },
+      "timer": {
+        "n": 4,
+        "success": 2,
+        "protected_ok": 2,
+        "target_stable": 2,
+        "premature": 2,
+        "reused": 4
+      }
+    },
+    "paired": {
+      "n": 4,
+      "gains": 0,
+      "losses": 0
+    },
+    "prefixes": [
+      {
+        "case": "task00_target0_init00",
+        "left": "duplicate_control",
+        "right": "wrist",
+        "steps": 260,
+        "inputs_equal": true,
+        "max_action_difference": 0.0
+      },
+      {
+        "case": "task00_target1_init00",
+        "left": "duplicate_control",
+        "right": "wrist",
+        "steps": 300,
+        "inputs_equal": true,
+        "max_action_difference": 0.0
+      },
+      {
+        "case": "task01_target0_init00",
+        "left": "duplicate_control",
+        "right": "wrist",
+        "steps": 300,
+        "inputs_equal": true,
+        "max_action_difference": 0.0
+      },
+      {
+        "case": "task01_target1_init00",
+        "left": "duplicate_control",
+        "right": "wrist",
+        "steps": 300,
+        "inputs_equal": true,
+        "max_action_difference": 0.0
+      }
+    ],
+    "rows": [
+      {
+        "case": "task00_target0_init00",
+        "method": "duplicate_control",
+        "source": "experiments/vla_libero/constraint_retention/episodes/live_pilot_duplicate_control/task00_target0_init00/positive_visual/result.json",
+        "source_sha256": "0654153dc7fd4397c81419f9fa1dd2d6a0fb5fdfe2dd96753cabe054030b4954",
+        "reused": false,
+        "success": false,
+        "target_stable": true,
+        "protected_ok": false,
+        "premature": false,
+        "step": 260
+      },
+      {
+        "case": "task00_target0_init00",
+        "method": "wrist",
+        "source": "experiments/vla_libero/constraint_retention/episodes/live_pilot_wrist/task00_target0_init00/positive_visual/result.json",
+        "source_sha256": "0665b8c1a10fb99c320999e69789e119f3240a6922985bf8ff53385285dada7e",
+        "reused": false,
+        "success": false,
+        "target_stable": true,
+        "protected_ok": false,
+        "premature": false,
+        "step": 260
+      },
+      {
+        "case": "task00_target0_init00",
+        "method": "timer",
+        "source": "experiments/vla_libero/selective_execution/episodes/pilot/task00_target0_init00/timer150/result.json",
+        "source_sha256": "8ef4a2af7de05b75c691f0bfe13fb2158c0901697eceee0358c6686efc8e0ed2",
+        "reused": true,
+        "success": true,
+        "target_stable": true,
+        "protected_ok": true,
+        "premature": false,
+        "step": 190
+      },
+      {
+        "case": "task00_target1_init00",
+        "method": "wrist",
+        "source": "experiments/vla_libero/constraint_retention/episodes/live_pilot_wrist/task00_target1_init00/positive_visual/result.json",
+        "source_sha256": "1c85826c04c4adae74cac2e416bbe4e68753ca76695fbe006631302418f47d7b",
+        "reused": false,
+        "success": false,
+        "target_stable": false,
+        "protected_ok": false,
+        "premature": false,
+        "step": 300
+      },
+      {
+        "case": "task00_target1_init00",
+        "method": "timer",
+        "source": "experiments/vla_libero/selective_execution/episodes/pilot/task00_target1_init00/timer150/result.json",
+        "source_sha256": "03595bb7862b385b21e8a6673f98cbaa961d84fb9e0ef19b7079e362957c2a40",
+        "reused": true,
+        "success": false,
+        "target_stable": false,
+        "protected_ok": false,
+        "premature": true,
+        "step": 170
+      },
+      {
+        "case": "task00_target1_init00",
+        "method": "duplicate_control",
+        "source": "experiments/vla_libero/constraint_retention/episodes/live_pilot_duplicate_control/task00_target1_init00/positive_visual/result.json",
+        "source_sha256": "c1f81f909b39b52791fdd3267ae63c88a00e1c87a2d8b0485e6fe0657d2dabc2",
+        "reused": false,
+        "success": false,
+        "target_stable": false,
+        "protected_ok": false,
+        "premature": false,
+        "step": 300
+      },
+      {
+        "case": "task01_target0_init00",
+        "method": "duplicate_control",
+        "source": "experiments/vla_libero/constraint_retention/episodes/live_pilot_duplicate_control/task01_target0_init00/positive_visual/result.json",
+        "source_sha256": "4dbf02b480f0d8d6587f7709f2ffe47b614e48ffa0b4aa0ab9944c411e9373df",
+        "reused": false,
+        "success": false,
+        "target_stable": true,
+        "protected_ok": false,
+        "premature": false,
+        "step": 300
+      },
+      {
+        "case": "task01_target0_init00",
+        "method": "wrist",
+        "source": "experiments/vla_libero/constraint_retention/episodes/live_pilot_wrist/task01_target0_init00/positive_visual/result.json",
+        "source_sha256": "c43104f80cc322d295f5a1b75291925b58ed80872673054a040e9490cf5dbf32",
+        "reused": false,
+        "success": false,
+        "target_stable": true,
+        "protected_ok": false,
+        "premature": false,
+        "step": 300
+      },
+      {
+        "case": "task01_target0_init00",
+        "method": "timer",
+        "source": "experiments/vla_libero/selective_execution/episodes/pilot/task01_target0_init00/timer150/result.json",
+        "source_sha256": "743b1e1702050644cae7e52a12b144fd6e5f2237aeec615de0b992cac025b0f3",
+        "reused": true,
+        "success": true,
+        "target_stable": true,
+        "protected_ok": true,
+        "premature": false,
+        "step": 160
+      },
+      {
+        "case": "task01_target1_init00",
+        "method": "wrist",
+        "source": "experiments/vla_libero/constraint_retention/episodes/live_pilot_wrist/task01_target1_init00/positive_visual/result.json",
+        "source_sha256": "446a6b7dda065eae60b3b025d6a242ce14b51818dc52c4858fa2e8533a69b3f0",
+        "reused": false,
+        "success": false,
+        "target_stable": true,
+        "protected_ok": false,
+        "premature": false,
+        "step": 300
+      },
+      {
+        "case": "task01_target1_init00",
+        "method": "timer",
+        "source": "experiments/vla_libero/selective_execution/episodes/pilot/task01_target1_init00/timer150/result.json",
+        "source_sha256": "82cfa0b62e84682292f5938e9f56778c13818599670fe9e894897a08846bfad4",
+        "reused": true,
+        "success": false,
+        "target_stable": false,
+        "protected_ok": false,
+        "premature": true,
+        "step": 170
+      },
+      {
+        "case": "task01_target1_init00",
+        "method": "duplicate_control",
+        "source": "experiments/vla_libero/constraint_retention/episodes/live_pilot_duplicate_control/task01_target1_init00/positive_visual/result.json",
+        "source_sha256": "bfd53e5b96e7ccd83070ba52fce8b6eb4b48a46eceb6cfca8b9dac5b4b3a5740",
+        "reused": false,
+        "success": false,
+        "target_stable": true,
+        "protected_ok": false,
+        "premature": false,
+        "step": 300
+      }
+    ]
+  }
+}

@@ -1,0 +1,165 @@
+{
+  "suite": "libero_10",
+  "task_id": 8,
+  "initial_state_id": 2,
+  "original_task_language": "put both moka pots on the stove",
+  "input_instruction": "把两个摩卡壶都放到炉子上",
+  "planner": "qwen",
+  "execution_profile": "legacy",
+  "planner_profile": "base",
+  "checker_adapter": "/home/yd/Documents/VLA/experiments/vla_libero/checker_v2/results/model/best_adapter",
+  "monitor": "qwen",
+  "max_steps": 520,
+  "subgoal_step_budget": 300,
+  "monitor_every_queries": 4,
+  "monitor_res": 512,
+  "gripper_gate": true,
+  "confirm": 2,
+  "max_replans": 0,
+  "last_subgoal_runs_to_limit": true,
+  "noise_seed": 730802,
+  "runner_sha256": "5df3e099c80231cf64851590c58b1b63d08bc1a2468cb3f1af5729ea5c9e3901",
+  "events": [
+    {
+      "kind": "plan",
+      "step": 0,
+      "ok": true,
+      "seconds": 1.4568002370651811e-05,
+      "raw": "[\"put the first moka pot on the stove\", \"put the second moka pot on the stove\"]",
+      "error": null
+    },
+    {
+      "kind": "subgoal_start",
+      "step": 0,
+      "index": 0,
+      "subgoal": "put the first moka pot on the stove"
+    },
+    {
+      "kind": "check",
+      "step": 20,
+      "index": 0,
+      "done": false,
+      "confirmed": false,
+      "seconds": 0.33777526499761734,
+      "checker": "base_unsupported",
+      "status": null,
+      "scores": null,
+      "reason": "No change detected.",
+      "error": null,
+      "shadow_long_task_atoms": [
+        false,
+        false,
+        true
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 40,
+      "index": 0,
+      "done": false,
+      "confirmed": false,
+      "seconds": 0.33873407100327313,
+      "checker": "base_unsupported",
+      "status": null,
+      "scores": null,
+      "reason": "No change detected.",
+      "error": null,
+      "shadow_long_task_atoms": [
+        false,
+        false,
+        true
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 60,
+      "index": 0,
+      "done": false,
+      "confirmed": false,
+      "seconds": 0.3826842049966217,
+      "checker": "base_unsupported",
+      "status": null,
+      "scores": null,
+      "reason": "No change detected at the destination.",
+      "error": null,
+      "shadow_long_task_atoms": [
+        false,
+        false,
+        true
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 80,
+      "index": 0,
+      "done": false,
+      "confirmed": false,
+      "seconds": 0.6450150769960601,
+      "checker": "base_unsupported",
+      "status": null,
+      "scores": null,
+      "reason": "The robot's arm has moved to be positioned over the stove, indicating it is preparing to place the moka pot there.",
+      "error": null,
+      "shadow_long_task_atoms": [
+        false,
+        false,
+        true
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 100,
+      "index": 0,
+      "done": false,
+      "confirmed": false,
+      "seconds": 1.1731628779962193,
+      "checker": "base_unsupported",
+      "status": null,
+      "scores": null,
+      "reason": "The robot has moved its arm and is now positioned over the stove, with the first moka pot (the one on the left) being lifted and prepared to be placed on the stove. The moka pot is not yet on the stove, but the robot is in the process of moving it there.",
+      "error": null,
+      "shadow_long_task_atoms": [
+        false,
+        false,
+        true
+      ]
+    },
+    {
+      "kind": "subgoal_end",
+      "step": 300,
+      "index": 0,
+      "reason": "budget",
+      "long_task_atoms": [
+        false,
+        false,
+        true
+      ]
+    },
+    {
+      "kind": "subgoal_start",
+      "step": 300,
+      "index": 1,
+      "subgoal": "put the second moka pot on the stove"
+    }
+  ],
+  "status": "timeout",
+  "success": false,
+  "subgoals": [
+    "put the first moka pot on the stove",
+    "put the second moka pot on the stove"
+  ],
+  "steps": 520,
+  "policy_queries": 104,
+  "qwen_checks": 5,
+  "replans": 0,
+  "full_task_fallback": false,
+  "final_subgoals": [
+    "put the first moka pot on the stove",
+    "put the second moka pot on the stove"
+  ],
+  "final_atoms": [
+    false,
+    true,
+    true
+  ]
+}

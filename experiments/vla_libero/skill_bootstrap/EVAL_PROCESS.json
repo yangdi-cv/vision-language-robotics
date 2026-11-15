@@ -1,0 +1,6 @@
+{
+  "pid": 23603,
+  "started_epoch": 1794627635.2370694,
+  "stage": "zero-check then base/lora paired evaluation",
+  "detached": true
+}

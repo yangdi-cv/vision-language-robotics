@@ -1,0 +1,16 @@
+numpy==2.2.6
+torch==2.7.1
+torchvision==0.22.1
+gym-aloha==0.1.1
+dm-control==1.0.14
+mujoco==2.3.7
+av==17.1.0
+opencv-python-headless>=4.11
+Pillow>=10
+matplotlib>=3.5
+transformers==4.57.6
+peft==0.18.1
+accelerate==1.15.0
+huggingface-hub==0.36.2
+safetensors>=0.4
+draccus>=0.10

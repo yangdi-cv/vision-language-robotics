@@ -1,0 +1,326 @@
+{
+  "case": {
+    "task": 1,
+    "target_index": 0,
+    "initial": 0,
+    "target": "cream_cheese_1",
+    "protected": "butter_1",
+    "objects": [
+      [
+        "cream_cheese_1",
+        "cream cheese box",
+        "奶油奶酪盒"
+      ],
+      [
+        "butter_1",
+        "butter",
+        "黄油"
+      ]
+    ],
+    "instruction": "只把奶油奶酪盒放进篮子里，黄油保持原位。放好后停止，不要继续搬其他物体。",
+    "reference_skill": "pick up the cream cheese box and place it in the basket",
+    "key": "task01_target0_init00"
+  },
+  "mode": "reference_skill",
+  "phase": "skills",
+  "protocol_sha256": "698a56935fb2982b4418d52a4753c5c15ce38b804c002cc1746d47cc14818f17",
+  "noise_seed": 920100,
+  "status": "complete",
+  "steps": 325,
+  "events": [
+    {
+      "kind": "check",
+      "step": 10,
+      "decision": {
+        "done": false,
+        "streak": 0,
+        "stop": false
+      },
+      "images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/skills/task01_target0_init00/reference_skill/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/skills/task01_target0_init00/reference_skill/images/current_0010.png"
+      ],
+      "sent_images": [],
+      "reply": null,
+      "seconds": 8.41599830891937e-06
+    },
+    {
+      "kind": "check",
+      "step": 20,
+      "decision": {
+        "done": false,
+        "streak": 0,
+        "stop": false
+      },
+      "images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/skills/task01_target0_init00/reference_skill/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/skills/task01_target0_init00/reference_skill/images/current_0020.png"
+      ],
+      "sent_images": [],
+      "reply": null,
+      "seconds": 4.018002073280513e-06
+    },
+    {
+      "kind": "check",
+      "step": 30,
+      "decision": {
+        "done": false,
+        "streak": 0,
+        "stop": false
+      },
+      "images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/skills/task01_target0_init00/reference_skill/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/skills/task01_target0_init00/reference_skill/images/current_0030.png"
+      ],
+      "sent_images": [],
+      "reply": null,
+      "seconds": 3.5569973988458514e-06
+    },
+    {
+      "kind": "check",
+      "step": 40,
+      "decision": {
+        "done": false,
+        "streak": 0,
+        "stop": false
+      },
+      "images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/skills/task01_target0_init00/reference_skill/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/skills/task01_target0_init00/reference_skill/images/current_0040.png"
+      ],
+      "sent_images": [],
+      "reply": null,
+      "seconds": 4.007000825367868e-06
+    },
+    {
+      "kind": "check",
+      "step": 50,
+      "decision": {
+        "done": false,
+        "streak": 0,
+        "stop": false
+      },
+      "images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/skills/task01_target0_init00/reference_skill/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/skills/task01_target0_init00/reference_skill/images/current_0050.png"
+      ],
+      "sent_images": [],
+      "reply": null,
+      "seconds": 4.347995854914188e-06
+    },
+    {
+      "kind": "check",
+      "step": 60,
+      "decision": {
+        "done": false,
+        "streak": 0,
+        "stop": false
+      },
+      "images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/skills/task01_target0_init00/reference_skill/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/skills/task01_target0_init00/reference_skill/images/current_0060.png"
+      ],
+      "sent_images": [],
+      "reply": null,
+      "seconds": 3.697001375257969e-06
+    },
+    {
+      "kind": "check",
+      "step": 150,
+      "decision": {
+        "done": false,
+        "streak": 0,
+        "stop": false
+      },
+      "images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/skills/task01_target0_init00/reference_skill/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/skills/task01_target0_init00/reference_skill/images/current_0150.png"
+      ],
+      "sent_images": [],
+      "reply": null,
+      "seconds": 4.0480008465237916e-06
+    },
+    {
+      "kind": "check",
+      "step": 160,
+      "decision": {
+        "done": false,
+        "streak": 0,
+        "stop": false
+      },
+      "images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/skills/task01_target0_init00/reference_skill/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/skills/task01_target0_init00/reference_skill/images/current_0160.png"
+      ],
+      "sent_images": [],
+      "reply": null,
+      "seconds": 3.487002686597407e-06
+    },
+    {
+      "kind": "check",
+      "step": 170,
+      "decision": {
+        "done": false,
+        "streak": 0,
+        "stop": false
+      },
+      "images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/skills/task01_target0_init00/reference_skill/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/skills/task01_target0_init00/reference_skill/images/current_0170.png"
+      ],
+      "sent_images": [],
+      "reply": null,
+      "seconds": 4.849003744311631e-06
+    },
+    {
+      "kind": "check",
+      "step": 180,
+      "decision": {
+        "done": false,
+        "streak": 0,
+        "stop": false
+      },
+      "images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/skills/task01_target0_init00/reference_skill/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/skills/task01_target0_init00/reference_skill/images/current_0180.png"
+      ],
+      "sent_images": [],
+      "reply": null,
+      "seconds": 4.467998223844916e-06
+    },
+    {
+      "kind": "check",
+      "step": 190,
+      "decision": {
+        "done": false,
+        "streak": 0,
+        "stop": false
+      },
+      "images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/skills/task01_target0_init00/reference_skill/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/skills/task01_target0_init00/reference_skill/images/current_0190.png"
+      ],
+      "sent_images": [],
+      "reply": null,
+      "seconds": 4.76899731438607e-06
+    },
+    {
+      "kind": "check",
+      "step": 260,
+      "decision": {
+        "done": false,
+        "streak": 0,
+        "stop": false
+      },
+      "images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/skills/task01_target0_init00/reference_skill/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/skills/task01_target0_init00/reference_skill/images/current_0260.png"
+      ],
+      "sent_images": [],
+      "reply": null,
+      "seconds": 3.717002982739359e-06
+    },
+    {
+      "kind": "check",
+      "step": 270,
+      "decision": {
+        "done": false,
+        "streak": 0,
+        "stop": false
+      },
+      "images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/skills/task01_target0_init00/reference_skill/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/skills/task01_target0_init00/reference_skill/images/current_0270.png"
+      ],
+      "sent_images": [],
+      "reply": null,
+      "seconds": 4.117995558772236e-06
+    },
+    {
+      "kind": "check",
+      "step": 280,
+      "decision": {
+        "done": false,
+        "streak": 0,
+        "stop": false
+      },
+      "images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/skills/task01_target0_init00/reference_skill/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/skills/task01_target0_init00/reference_skill/images/current_0280.png"
+      ],
+      "sent_images": [],
+      "reply": null,
+      "seconds": 4.4389962567947805e-06
+    },
+    {
+      "kind": "check",
+      "step": 290,
+      "decision": {
+        "done": false,
+        "streak": 0,
+        "stop": false
+      },
+      "images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/skills/task01_target0_init00/reference_skill/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/skills/task01_target0_init00/reference_skill/images/current_0290.png"
+      ],
+      "sent_images": [],
+      "reply": null,
+      "seconds": 4.178000381216407e-06
+    },
+    {
+      "kind": "stop",
+      "step": 300,
+      "reason": "budget"
+    }
+  ],
+  "policy_queries": 60,
+  "model_checks": 0,
+  "control_truth_inputs": false,
+  "original_done_used_for_stopping": false,
+  "initial_state_sha256": "5abdf8f466f490901dee9f931b32eb181b2928eaa17bb6379742f988581d564a",
+  "settled_state_sha256": "b11f72fac2b3e871efe3317925d09e9d5261be1d4a6edf7e2f40ea9f9bf8463f",
+  "goal_atoms": [
+    [
+      "in",
+      "cream_cheese_1",
+      "basket_1_contain_region"
+    ],
+    [
+      "in",
+      "butter_1",
+      "basket_1_contain_region"
+    ]
+  ],
+  "initial_object_positions": [
+    [
+      0.09910931425692633,
+      -0.18146601062546336,
+      0.44569592152000004
+    ],
+    [
+      0.0489602377124352,
+      0.05760379687259051,
+      0.44546992152000003
+    ]
+  ],
+  "policy_instruction": "pick up the cream cheese box and place it in the basket",
+  "selected_target": "cream_cheese_1",
+  "timer_threshold": 150,
+  "selective_success": false,
+  "target_final_stable": true,
+  "final_released": true,
+  "target_ever_reached": true,
+  "protected_untouched": false,
+  "max_protected_displacement_m": 0.2865446909174409,
+  "first_valid_step": 155,
+  "first_violation_step": 202,
+  "self_stop_success": false,
+  "premature_stop": false,
+  "decision_step": 300,
+  "stop_reason": "budget",
+  "wall_seconds": 22.220095433993265,
+  "original_success_observed": true,
+  "policy_steps_after_original_success": 45,
+  "success": false
+}

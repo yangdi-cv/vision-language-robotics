@@ -1,0 +1,8 @@
+{
+  "transformers": "4.57.6",
+  "torch": "2.8.0",
+  "triton_available": false,
+  "base_compile_guard_source": "def is_compileable(self) -> bool:\n        \"\"\"Flag indicating whether the quantized model can be compiled\"\"\"\n        return False\n\n    def get_state_dict_and_metadata(self, mod",
+  "bnb4_overrides_guard": false,
+  "base_source_sha256": "ac72ba5cff1890648a1ed064842540813e70acdbbb417e12b0cda2a7781af117"
+}

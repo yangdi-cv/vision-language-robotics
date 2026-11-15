@@ -1,0 +1,362 @@
+{
+  "case": {
+    "task": 1,
+    "target_index": 1,
+    "initial": 8,
+    "target": "butter_1",
+    "protected": "cream_cheese_1",
+    "objects": [
+      [
+        "cream_cheese_1",
+        "cream cheese box",
+        "奶油奶酪盒"
+      ],
+      [
+        "butter_1",
+        "butter",
+        "黄油"
+      ]
+    ],
+    "instruction": "只把黄油放进篮子里，奶油奶酪盒保持原位。放好后停止，不要继续搬其他物体。",
+    "reference_skill": "pick up the butter and place it in the basket",
+    "key": "task01_target1_init08"
+  },
+  "mode": "positive_continue",
+  "phase": "camera_eval",
+  "protocol_sha256": "b96a1a448543cec17d055032b620e45a3f967d63f5a54468c30c6ab853f7f4ee",
+  "noise_seed": 920108,
+  "status": "complete",
+  "steps": 325,
+  "events": [
+    {
+      "kind": "check",
+      "step": 10,
+      "decision": {
+        "done": false,
+        "streak": 0,
+        "stop": false
+      },
+      "images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/camera_eval/task01_target1_init08/positive_continue/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/camera_eval/task01_target1_init08/positive_continue/images/current_0010.png"
+      ],
+      "sent_images": [],
+      "reply": null,
+      "seconds": 9.957999282050878e-06
+    },
+    {
+      "kind": "check",
+      "step": 20,
+      "decision": {
+        "done": false,
+        "streak": 0,
+        "stop": false
+      },
+      "images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/camera_eval/task01_target1_init08/positive_continue/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/camera_eval/task01_target1_init08/positive_continue/images/current_0020.png"
+      ],
+      "sent_images": [],
+      "reply": null,
+      "seconds": 4.077002813573927e-06
+    },
+    {
+      "kind": "check",
+      "step": 30,
+      "decision": {
+        "done": false,
+        "streak": 0,
+        "stop": false
+      },
+      "images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/camera_eval/task01_target1_init08/positive_continue/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/camera_eval/task01_target1_init08/positive_continue/images/current_0030.png"
+      ],
+      "sent_images": [],
+      "reply": null,
+      "seconds": 4.246998287271708e-06
+    },
+    {
+      "kind": "check",
+      "step": 40,
+      "decision": {
+        "done": false,
+        "streak": 0,
+        "stop": false
+      },
+      "images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/camera_eval/task01_target1_init08/positive_continue/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/camera_eval/task01_target1_init08/positive_continue/images/current_0040.png"
+      ],
+      "sent_images": [],
+      "reply": null,
+      "seconds": 3.5769990063272417e-06
+    },
+    {
+      "kind": "check",
+      "step": 140,
+      "decision": {
+        "done": false,
+        "streak": 0,
+        "stop": false
+      },
+      "images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/camera_eval/task01_target1_init08/positive_continue/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/camera_eval/task01_target1_init08/positive_continue/images/current_0140.png"
+      ],
+      "sent_images": [],
+      "reply": null,
+      "seconds": 4.036999598611146e-06
+    },
+    {
+      "kind": "check",
+      "step": 150,
+      "decision": {
+        "done": false,
+        "streak": 0,
+        "stop": false
+      },
+      "images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/camera_eval/task01_target1_init08/positive_continue/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/camera_eval/task01_target1_init08/positive_continue/images/current_0150.png"
+      ],
+      "sent_images": [],
+      "reply": null,
+      "seconds": 3.687004209496081e-06
+    },
+    {
+      "kind": "check",
+      "step": 160,
+      "decision": {
+        "done": false,
+        "streak": 0,
+        "stop": false
+      },
+      "images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/camera_eval/task01_target1_init08/positive_continue/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/camera_eval/task01_target1_init08/positive_continue/images/current_0160.png"
+      ],
+      "sent_images": [],
+      "reply": null,
+      "seconds": 3.867004124913365e-06
+    },
+    {
+      "kind": "check",
+      "step": 170,
+      "decision": {
+        "done": false,
+        "streak": 0,
+        "stop": false
+      },
+      "images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/camera_eval/task01_target1_init08/positive_continue/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/camera_eval/task01_target1_init08/positive_continue/images/current_0170.png"
+      ],
+      "sent_images": [],
+      "reply": null,
+      "seconds": 4.617999366018921e-06
+    },
+    {
+      "kind": "check",
+      "step": 180,
+      "decision": {
+        "done": false,
+        "streak": 0,
+        "stop": false
+      },
+      "images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/camera_eval/task01_target1_init08/positive_continue/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/camera_eval/task01_target1_init08/positive_continue/images/current_0180.png"
+      ],
+      "sent_images": [],
+      "reply": null,
+      "seconds": 3.8669968489557505e-06
+    },
+    {
+      "kind": "check",
+      "step": 270,
+      "decision": {
+        "done": false,
+        "streak": 0,
+        "stop": false
+      },
+      "images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/camera_eval/task01_target1_init08/positive_continue/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/camera_eval/task01_target1_init08/positive_continue/images/current_0270.png"
+      ],
+      "sent_images": [],
+      "reply": null,
+      "seconds": 3.6869969335384667e-06
+    },
+    {
+      "kind": "check",
+      "step": 280,
+      "decision": {
+        "done": false,
+        "streak": 0,
+        "stop": false
+      },
+      "images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/camera_eval/task01_target1_init08/positive_continue/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/camera_eval/task01_target1_init08/positive_continue/images/current_0280.png"
+      ],
+      "sent_images": [],
+      "reply": null,
+      "seconds": 6.622001819778234e-06
+    },
+    {
+      "kind": "check",
+      "step": 290,
+      "decision": {
+        "done": false,
+        "streak": 0,
+        "stop": false
+      },
+      "images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/camera_eval/task01_target1_init08/positive_continue/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/camera_eval/task01_target1_init08/positive_continue/images/current_0290.png"
+      ],
+      "sent_images": [],
+      "reply": null,
+      "seconds": 4.036999598611146e-06
+    },
+    {
+      "kind": "stop",
+      "step": 300,
+      "reason": "budget"
+    }
+  ],
+  "policy_queries": 60,
+  "model_checks": 0,
+  "control_truth_inputs": false,
+  "original_done_used_for_stopping": false,
+  "initial_state_sha256": "a050294b0ce5aa4a4c97f2be1b3b9156d37c0d7ba90128e8f1f7b24de759e1ad",
+  "settled_state_sha256": "f8e78ff35897c72345020aaebd727de29af7432cd6e6bd6429636251f69a15e5",
+  "goal_atoms": [
+    [
+      "in",
+      "cream_cheese_1",
+      "basket_1_contain_region"
+    ],
+    [
+      "in",
+      "butter_1",
+      "basket_1_contain_region"
+    ]
+  ],
+  "initial_object_positions": [
+    [
+      0.09848807208816208,
+      -0.2197535039525013,
+      0.44569592152000004
+    ],
+    [
+      0.036756529051968696,
+      0.05044983113521427,
+      0.44546992152000003
+    ]
+  ],
+  "plan": "plans/camera_eval/task01_target1_init08.json",
+  "plan_sha256": "eb0d8ca8dbb0a8e16c770be096488d0a3f90140ca831cb0f03b5e1b28dff78f5",
+  "selector_correct": true,
+  "selection": {
+    "raw": "{\"target\":\"butter_1\", \"protected\":\"cream_cheese_1\"}",
+    "seconds": 0.309930921997875,
+    "inference": {
+      "model": "Qwen/Qwen3-VL-4B-Instruct",
+      "revision": "ebb281ec70b05090aa6165b016eac8ec08e71b17",
+      "prompt": "Inspect the image and the instruction. Select exactly one object to move into the basket, and the one explicitly required to remain untouched.\nKnown object IDs and English/Chinese names: [[\"cream_cheese_1\", \"cream cheese box\", \"奶油奶酪盒\"], [\"butter_1\", \"butter\", \"黄油\"]]\nInstruction: 只把黄油放进篮子里，奶油奶酪盒保持原位。放好后停止，不要继续搬其他物体。\nReturn only JSON: {\"target\":\"one known ID\", \"protected\":\"the other known ID\"}. Do not output coordinates or add another action.",
+      "prompt_sha256": "6980a5b00fe81df9802f16f10708ece77d7dbe747295c2de30e5ea1b8c26d6b7",
+      "engine_sha256": "6c14802fbe468fa57e2ad48b25fc02c9a100d82d9aafdbf8d11224e969b699fb",
+      "generation": {
+        "max_new_tokens": 96,
+        "do_sample": false
+      },
+      "images": [
+        {
+          "size": [
+            512,
+            512
+          ],
+          "mode": "RGB",
+          "pixel_sha256": "349d29ae6a6f1063714e80d53d5a5e61dccd713b53871d649e6a8bfbb87ada90"
+        }
+      ],
+      "libraries": {
+        "torch": "2.7.1",
+        "transformers": "4.57.6"
+      },
+      "planner_sha256": "87ea0a00e0a662d034cfc200b326cd569ecd2f32f57fe6681851fefdd47aabc7"
+    },
+    "device": "cuda:0",
+    "allocated_mib": 8478.61669921875,
+    "reserved_mib": 8624.0,
+    "tokens": 18,
+    "ok": true,
+    "target": "butter_1",
+    "protected": "cream_cheese_1",
+    "worker_sha256": "eabf321de58b827bd022188cc7c8aba5596e77f0488acbadec7d1988af789f78"
+  },
+  "translation": {
+    "raw": "{\"instruction\": \"Place only the butter into the basket, leaving the cream cheese box in place, then stop and do not move any other objects.\"}",
+    "seconds": 0.5065889159959625,
+    "inference": {
+      "model": "Qwen/Qwen3-VL-4B-Instruct",
+      "revision": "ebb281ec70b05090aa6165b016eac8ec08e71b17",
+      "prompt": "Translate this robot task instruction into one short English imperative sentence, keeping every object and relation. Use the image only to name the objects correctly. Do not split it into steps.\nInstruction: 只把黄油放进篮子里，奶油奶酪盒保持原位。放好后停止，不要继续搬其他物体。\nReturn only JSON: {\"instruction\": \"English instruction\"}",
+      "prompt_sha256": "8b88e978916902a06e407eb1ded3f0fa0217b845e4b2d29bd121d69b1258102c",
+      "engine_sha256": "6c14802fbe468fa57e2ad48b25fc02c9a100d82d9aafdbf8d11224e969b699fb",
+      "generation": {
+        "max_new_tokens": 64,
+        "do_sample": false
+      },
+      "images": [
+        {
+          "size": [
+            512,
+            512
+          ],
+          "mode": "RGB",
+          "pixel_sha256": "349d29ae6a6f1063714e80d53d5a5e61dccd713b53871d649e6a8bfbb87ada90"
+        }
+      ],
+      "libraries": {
+        "torch": "2.7.1",
+        "transformers": "4.57.6"
+      },
+      "planner_sha256": "87ea0a00e0a662d034cfc200b326cd569ecd2f32f57fe6681851fefdd47aabc7"
+    },
+    "device": "cuda:0",
+    "allocated_mib": 8478.615234375,
+    "reserved_mib": 8624.0,
+    "tokens": 32,
+    "ok": true,
+    "subgoals": [
+      {
+        "instruction": "Place only the butter into the basket, leaving the cream cheese box in place, then stop and do not move any other objects.",
+        "completion_hint": ""
+      }
+    ]
+  },
+  "policy_instruction": "pick up the butter and place it in the basket",
+  "selected_target": "butter_1",
+  "timer_threshold": 150,
+  "prompt_family": "positive",
+  "stop_family": "skill_continue",
+  "selective_success": false,
+  "target_final_stable": true,
+  "final_released": true,
+  "target_ever_reached": true,
+  "protected_untouched": false,
+  "max_protected_displacement_m": 0.5037595992593135,
+  "first_valid_step": null,
+  "first_violation_step": 58,
+  "self_stop_success": false,
+  "premature_stop": false,
+  "decision_step": 300,
+  "stop_reason": "budget",
+  "wall_seconds": 23.038793744999566,
+  "original_success_observed": true,
+  "policy_steps_after_original_success": 40,
+  "success": false
+}

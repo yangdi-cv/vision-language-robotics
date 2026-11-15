@@ -1,0 +1,115 @@
+<!doctype html><meta charset="utf-8"><style>@page{size:A4;margin:17mm}body{font-family:"Noto Sans CJK SC",sans-serif;font-size:9.5pt;line-height:1.65;color:#263448}h1{font-size:23pt;line-height:1.4}h2{font-size:15pt;break-after:avoid;margin-top:7mm}table{border-collapse:collapse;width:100%;font-size:8pt;break-inside:avoid}th,td{border:1px solid #bfcbd8;padding:5px}th{background:#e9eff5}p{orphans:3;widows:3}code{overflow-wrap:anywhere}img{max-width:100%;max-height:90mm}</style><h1>2B可供性LoRA与Jetson部署：阶段报告</h1>
+<p>2026年11月14日启动的实验。PC为RTX4090，端侧为8GB级Orin Nano、JetPack6.2.1/CUDA12.6、15W模式0；本阶段不接机械臂、里程碑检查或π0.5执行。</p>
+<h2>摘要</h2>
+<p>使用与既有4B实验完全相同的训练/验证划分和超参完成2B可供性LoRA，随后按PC BF16、PC NF4、Jetson NF4分步比较。测试固定512像素、350帧/1014问答，检查点只由验证集选择。2B模型已通过板端完整评测，输入一致率和输出一致率分别核对，而不是只比较总分。</p>
+<p>稳定评测前停用了swap，本次2B正式板端结果满足无swap条件。首次启动时发生过系统交换读写的31条不完整尝试单独保留为无效记录，没有混入正式分数。384/256、MAXN SUPER、P50/P95时延对照和联合机器人闭环留到下一阶段。</p>
+<h2>目录</h2>
+<ol>
+<li>实验设置与训练</li>
+<li>精度对照</li>
+<li>输出协议与诊断</li>
+<li>PC/Jetson逐条一致性</li>
+<li>加载与内存</li>
+<li>工程问题与处理</li>
+<li>代码、复现与后续</li>
+</ol>
+<h2>1. 实验设置与训练</h2>
+<p>2B基座为Qwen/Qwen3-VL-2B-Instruct，revision 89644892e4d85e24eaac8bacfd4f463576704203；权重SHA256与官方文件元数据一致。直接调用既有affordance/train_lora.py，仅替换模型源。</p>
+<p>训练初态17–49、验证13–16的同48条样例、测试0–12的同350帧。780训练帧、600优化步、梯度累积4、学习率1e-4、r8/alpha16/dropout0.05、同任务采样权重和种子20261114，每150步验证。验证把手像素误差中位数选点；两份protocol.json逐字段相等。两者都是初态隔离、动作模板共享，不是跨场景或独立动作分布泛化。</p>
+<p>2B选中第600步，验证误差中位数1.026像素，可训练参数1,605,632，训练记录墙钟334.7秒、峰值CUDA分配4748.9MiB。训练未读取测试集选点。</p>
+<p>正式评测调用原eval_qwen.py的单次main流程，沿用原适用性、提示词、解析和评分；每个完成的配置只做一遍完整测试。所有生成均为贪心、最多40新token、BF16计算和SDPA。NF4仅量化语言线性层，视觉塔和共享词嵌入的输出头保持BF16，PEFT直接加载、不合并。</p>
+<p>4B BF16沿用已经保存的同350帧结果，并未重新挑选。NF4导出后在PC重载评测，再将同一文件和适配器送到Jetson并校验SHA256。</p>
+<h2>2. 精度对照</h2>
+<table>
+<thead>
+<tr>
+<th>配置（均512像素）</th>
+<th style="text-align: right;">把手严格命中</th>
+<th style="text-align: right;">4像素邻域命中</th>
+<th style="text-align: right;">把手3D中位误差/cm</th>
+<th style="text-align: right;">柜体框IoU</th>
+<th style="text-align: right;">有效3D样本</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>pc / 2b / base / bf16</td>
+<td style="text-align: right;">0.0%</td>
+<td style="text-align: right;">0.0%</td>
+<td style="text-align: right;">—</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0/350</td>
+</tr>
+<tr>
+<td>pc / 2b / lora / bf16</td>
+<td style="text-align: right;">93.7%</td>
+<td style="text-align: right;">98.6%</td>
+<td style="text-align: right;">1.515</td>
+<td style="text-align: right;">0.987</td>
+<td style="text-align: right;">350/350</td>
+</tr>
+<tr>
+<td>pc / 4b / base / bf16</td>
+<td style="text-align: right;">5.7%</td>
+<td style="text-align: right;">17.7%</td>
+<td style="text-align: right;">7.798</td>
+<td style="text-align: right;">0.647</td>
+<td style="text-align: right;">350/350</td>
+</tr>
+<tr>
+<td>pc / 4b / lora / bf16</td>
+<td style="text-align: right;">92.3%</td>
+<td style="text-align: right;">98.6%</td>
+<td style="text-align: right;">1.368</td>
+<td style="text-align: right;">0.986</td>
+<td style="text-align: right;">350/350</td>
+</tr>
+<tr>
+<td>pc / 2b / lora / nf4</td>
+<td style="text-align: right;">91.1%</td>
+<td style="text-align: right;">95.7%</td>
+<td style="text-align: right;">1.551</td>
+<td style="text-align: right;">0.976</td>
+<td style="text-align: right;">350/350</td>
+</tr>
+<tr>
+<td>pc / 4b / lora / nf4</td>
+<td style="text-align: right;">92.3%</td>
+<td style="text-align: right;">99.1%</td>
+<td style="text-align: right;">1.340</td>
+<td style="text-align: right;">0.981</td>
+<td style="text-align: right;">350/350</td>
+</tr>
+<tr>
+<td>jetson / 2b / lora / nf4</td>
+<td style="text-align: right;">91.1%</td>
+<td style="text-align: right;">95.7%</td>
+<td style="text-align: right;">1.548</td>
+<td style="text-align: right;">0.975</td>
+<td style="text-align: right;">350/350</td>
+</tr>
+</tbody>
+</table>
+<p><img alt="可供性定位精度对照" src="precision_comparison.png" /></p>
+<p>严格命中要求预测像素本身落入目标掩码；邻域命中为半径4像素的方形窗口与掩码相交。解析失败按失败计数，不从命中率分母剔除；表中3D只在可投影输出上计算，同时列出覆盖数。</p>
+<p>3D来自仿真真值深度与相机参数反投影，仍有约1.4cm表面点/几何中心误差下限，不能解释为真实测距或抓取精度。完整碗/放置点指标见SUMMARY.json；350帧包含同回合相关画面，不能当作350次独立机器人任务。</p>
+<h2>3. 输出协议与诊断</h2>
+<p>2B基座在长定位提示词下常输出额外label说明，在40-token上限内截断：把手350条、放置点143条、柜体框350条均解析失败，碗171条能正常解析。因此基座正式表中零命中是当前接口不合格，不能直接解释为完全没有视觉定位能力。</p>
+<p>为了区分格式与定位，另在CPU读取保存的原始文本，提取其中已经完整输出的坐标数组，没有重调模型。这个非正式诊断得到：基座把手严格命中1.7%、邻域命中6.3%、3D中位误差16.11cm，柜体IoU0.594。诊断不替代生产解析，也没有参与检查点选择。LoRA收益同时包含输出格式对齐和定位改善，不能将全部收益归于视觉能力。</p>
+<h2>4. PC/Jetson逐条一致性</h2>
+<p>2B NF4对照共1014条：原始文本完全相同774条（76.33%），解析后的坐标/框完全相同774条（76.33%）。实际输入token、图像张量和网格哈希的匹配数量为{'input_token_sha256': 1014, 'pixel_values_sha256': 1014, 'image_grid_thw': 1014, 'output_token_ids': 774}。</p>
+<p>相同输入不意味着不同GPU内核必须逐bit相同；若有不同，保留逐条输出。PC与板端Transformers/PEFT版本相同，Torch、torchvision和bitsandbytes使用各自兼容构建，故平台对照也包含软件栈差异，不能把所有差异只归因于GPU硬件。量化前后与设备变化分步比较，不混为一个变化。本轮四个PC配置的1014条实际输入token、图像张量和网格均逐条相同，记录在PC_INPUT_CHECK.json；历史4B BF16未保存同样的逐条输入元数据，只能核对原始协议、图片与提示词，不能补造历史哈希。</p>
+<h2>5. 加载与内存</h2>
+<p>2B板端本次进程首次加载（处理器、模型、适配器及GPU同步）17.21秒。操作系统文件缓存未清空，不是冷盘启动基准。</p>
+<p>进程VmHWM峰值1.625GiB，稳定期cgroup采样最高1.854GiB，CUDA分配峰值2.111GiB，CUDA保留峰值2.168GiB；tegrastats全阶段整机RAM最高4089MB。以上统计口径不能相加；整机RAM包含系统和缓存，CUDA内存也可能与共享物理内存重叠。</p>
+<p>板端内核不提供cgroup memory.peak，故该字段为null，没有拿稳定期采样最大值冒充完整加载峰值。保留VmHWM、CUDA峰值和从加载前开始的tegrastats原始记录。</p>
+<p>正式评测模型cgroup最大swap为0字节，稳定段系统交换I/O页变化为{'pswpin': 0, 'pswpout': 0}；结束时/proc/swaps没有活动设备。加载时保留交换空间，正式评测前swapoff，结束后恢复原zram及8GiB SD swap。安装与推理均有systemd内存上限，板端MemoryMax=6G，15W且未锁jetson_clocks。</p>
+<p>4B板端全量350帧未执行；本阶段的完整板端精度与逐条一致率结论仅属于2B。 可选加载探针已通过，加载39.52秒，并在验证集图片上完成一次查询；这不是4B准确率或延迟评测。</p>
+<h2>6. 工程问题与处理</h2>
+<p>PC第一次NF4导出出现CPU内存膨胀并触发systemd保护，训练和两份BF16完整评测未丢失、未重跑。之后改用独立受限单元，并显式保留共享输出头，成功保存NF4文件；后续限制编译线程并逐配置运行，不提高内存上限。PC驱动脚本因运行中编辑发生收尾解析错误，但四份本轮PC评测均已保存1014条唯一问答和完整资源记录；驱动错误单列留档，没有重跑测试或补造输出。</p>
+<p>板端第一次启动推理虽然模型自身swap为0，系统仍有交换I/O。31条未完成尝试标为无效。正式新tag增加加载/无swap门控，swapoff确认后才开始350帧单遍评测。原始失败文件仍保留，不以成功结果覆盖。</p>
+<p>保存后的tokenizer曾给出通用正则告警。本轮没有根据告警擅自改tokenizer；实际输入token和图像哈希用于核实对照输入。正式结论只限当前图像、提示词、单场景和检查点。</p>
+<h2>7. 代码、复现与后续</h2>
+<p>相关代码在jetson/stage2_20261114/scripts：train_2b.py调用原训练配方；runtime.py固定加载和量化口径；evaluate_once.py调用原评测；quantize.py导出；summarize.py复算严格命中与逐条一致率；run_jetson_noswap.sh管理加载期与正式期的swap；test_protocol.py检查划分。</p>
+<p>权重：lora_2b/best_adapter；预量化模型：nf4_2b、nf4_4b。原始测试结果和逐条输入/输出在evaluations/，资源在<em>.resources.json与</em>.tegrastats.log；无效启动和内存保护记录在diagnostics/及对应日志。SUMMARY.json为完整指标汇总。</p>
+<p>本阶段尚未测正式端到端P50/P95，没有进入MAXN SUPER或里程碑问法对照，也没有机械臂动作或联合闭环。下一阶段才比较512/384/256的精度与延迟，每个新尺寸单独复测精度。保留既定≤3秒可供性目标，不能用本阶段“可以运行”替代达标。旧π0.5 LoRA闭环复测仍最后单列。</p>

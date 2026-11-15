@@ -1,0 +1,70 @@
+{
+  "status": "complete",
+  "task": 1,
+  "initial": 0,
+  "mode": "target1",
+  "prompt": "pick up the butter and place it in the basket",
+  "all_prompts": {
+    "target0": "pick up the cream cheese box and place it in the basket",
+    "target1": "pick up the butter and place it in the basket",
+    "original": "put both the cream cheese box and the butter in the basket"
+  },
+  "protocol_sha256": "f2b257cae679152347622cae37746908c34cadb7ad14b7aa9396aae4e403e485",
+  "noise_seed": 930100,
+  "original_done_used_for_stopping": false,
+  "steps": 325,
+  "initial_sha256": "5abdf8f466f490901dee9f931b32eb181b2928eaa17bb6379742f988581d564a",
+  "settled_sha256": "b11f72fac2b3e871efe3317925d09e9d5261be1d4a6edf7e2f40ea9f9bf8463f",
+  "origins": [
+    [
+      0.09910931425692633,
+      -0.18146601062546336,
+      0.44569592152000004
+    ],
+    [
+      0.0489602377124352,
+      0.05760379687259051,
+      0.44546992152000003
+    ]
+  ],
+  "goal_atoms": [
+    [
+      "in",
+      "cream_cheese_1",
+      "basket_1_contain_region"
+    ],
+    [
+      "in",
+      "butter_1",
+      "basket_1_contain_region"
+    ]
+  ],
+  "scores": {
+    "target0": {
+      "selective_success": false,
+      "target_final_stable": true,
+      "final_released": true,
+      "target_ever_reached": true,
+      "protected_untouched": false,
+      "max_protected_displacement_m": 0.2679681256008621,
+      "first_valid_step": 177,
+      "first_violation_step": 231,
+      "self_stop_success": false,
+      "premature_stop": false
+    },
+    "target1": {
+      "selective_success": false,
+      "target_final_stable": true,
+      "final_released": true,
+      "target_ever_reached": true,
+      "protected_untouched": false,
+      "max_protected_displacement_m": 0.47765449031026724,
+      "first_valid_step": null,
+      "first_violation_step": 71,
+      "self_stop_success": false,
+      "premature_stop": false
+    }
+  },
+  "original_success_observed": true,
+  "wall_seconds": 14.824168346000079
+}

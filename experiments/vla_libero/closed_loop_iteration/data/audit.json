@@ -1,0 +1,31 @@
+{
+  "cases": 720,
+  "splits": {
+    "train": {
+      "cases": 240,
+      "positive": 39,
+      "episodes": 40
+    },
+    "validation": {
+      "cases": 240,
+      "positive": 39,
+      "episodes": 40
+    },
+    "test": {
+      "cases": 240,
+      "positive": 39,
+      "episodes": 40
+    }
+  },
+  "labels": "official full-task predicate after the exact control step, aligned with frame index; never Qwen answers",
+  "image_size": [
+    256,
+    256
+  ],
+  "frame_source": "existing baseline videos, same resolution and compression for both labels",
+  "limitation": "Retrospective initial-state holdout, tasks and scenes shared; near-threshold truth may not be visually identifiable. This is full-task/goal completion, not arbitrary subgoal labels.",
+  "exact_pair_overlap_train_validation": 0,
+  "exact_pair_overlap_train_test": 0,
+  "identical_pair_conflicting_labels": 0,
+  "cases_sha256": "80d5d3367ea1952ae9d219afb82aa32f69796fb43218bb0602dd120b8e68be44"
+}

@@ -1,0 +1,9 @@
+{
+  "task": 0,
+  "initial": 30,
+  "target": 1,
+  "frames": 326,
+  "fps": 20,
+  "decoded": true,
+  "selection": "fixed task0/init30/target1, independent of result"
+}

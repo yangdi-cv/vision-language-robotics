@@ -1,0 +1,11 @@
+{
+  "task": "Pick up the blue earbud case from the table and place it on the black mouse pad.",
+  "episodes_planned": 3,
+  "fps_nominal": 10,
+  "camera_rotation_clockwise_degrees": 0,
+  "wrist_roll_offset_degrees": -90,
+  "episode_variation": ["Small, easy transfer", "Change the starting position slightly", "Change the landing position on the mouse pad slightly"],
+  "success_criteria": ["Case lifted clear of table", "Case remains held during transfer", "Released onto black mouse pad", "Gripper retreats without table contact"],
+  "review_required": true,
+  "independent_evaluation_set": false
+}

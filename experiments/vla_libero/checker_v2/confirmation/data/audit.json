@@ -1,0 +1,20 @@
+{
+  "n": 205,
+  "splits": {
+    "confirmation": {
+      "n": 205,
+      "groups": 26,
+      "classes": {
+        "yes": 45,
+        "no": 67,
+        "unknown": 93
+      }
+    }
+  },
+  "source_counts": {
+    "synthetic": 205,
+    "natural": 0
+  },
+  "rejected": 5,
+  "protocol_sha256": "987227e789431fa5bbb4f83fff6a5f6eb60ce26045fca198cb35e45635bbf0e8"
+}

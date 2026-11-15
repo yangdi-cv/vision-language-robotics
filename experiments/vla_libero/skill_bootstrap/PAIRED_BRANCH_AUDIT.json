@@ -1,0 +1,106 @@
+[
+  {
+    "split": "train",
+    "task": 0,
+    "initial": 23,
+    "branch_frame": 9,
+    "exact_shared_observation": true,
+    "first_action_max_difference": 0.9
+  },
+  {
+    "split": "train",
+    "task": 0,
+    "initial": 24,
+    "branch_frame": 9,
+    "exact_shared_observation": true,
+    "first_action_max_difference": 0.593941560612437
+  },
+  {
+    "split": "train",
+    "task": 0,
+    "initial": 25,
+    "branch_frame": 9,
+    "exact_shared_observation": true,
+    "first_action_max_difference": 0.7636382150240746
+  },
+  {
+    "split": "train",
+    "task": 1,
+    "initial": 20,
+    "branch_frame": 20,
+    "exact_shared_observation": true,
+    "first_action_max_difference": 0.7767956334224236
+  },
+  {
+    "split": "train",
+    "task": 1,
+    "initial": 21,
+    "branch_frame": 20,
+    "exact_shared_observation": true,
+    "first_action_max_difference": 0.8427759122052925
+  },
+  {
+    "split": "train",
+    "task": 1,
+    "initial": 22,
+    "branch_frame": 20,
+    "exact_shared_observation": true,
+    "first_action_max_difference": 0.7537564501497958
+  },
+  {
+    "split": "train",
+    "task": 1,
+    "initial": 23,
+    "branch_frame": 20,
+    "exact_shared_observation": true,
+    "first_action_max_difference": 0.9
+  },
+  {
+    "split": "train",
+    "task": 1,
+    "initial": 24,
+    "branch_frame": 20,
+    "exact_shared_observation": true,
+    "first_action_max_difference": 0.7769197001167285
+  },
+  {
+    "split": "train",
+    "task": 1,
+    "initial": 25,
+    "branch_frame": 20,
+    "exact_shared_observation": true,
+    "first_action_max_difference": 0.9
+  },
+  {
+    "split": "validation",
+    "task": 0,
+    "initial": 26,
+    "branch_frame": 9,
+    "exact_shared_observation": true,
+    "first_action_max_difference": 0.7849957365267038
+  },
+  {
+    "split": "validation",
+    "task": 0,
+    "initial": 27,
+    "branch_frame": 9,
+    "exact_shared_observation": true,
+    "first_action_max_difference": 0.7553721569590222
+  },
+  {
+    "split": "validation",
+    "task": 1,
+    "initial": 26,
+    "branch_frame": 20,
+    "exact_shared_observation": true,
+    "first_action_max_difference": 0.9
+  },
+  {
+    "split": "validation",
+    "task": 1,
+    "initial": 27,
+    "branch_frame": 20,
+    "exact_shared_observation": true,
+    "first_action_max_difference": 0.9
+  }
+]

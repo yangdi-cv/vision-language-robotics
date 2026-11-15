@@ -1,0 +1,36 @@
+{
+  "runner_sha256": "e5d28552be82d553e09b3fcfe45aa95bbc6d38b0338899c2536ed1407935bb9d",
+  "suite": "libero_goal",
+  "task_id": 0,
+  "initial_state_id": 1,
+  "mode": "baseline",
+  "environment_seed": 7,
+  "noise_seed": 720001,
+  "initial_state_sha256": "7e37e0c67213d1237e09e0e5e381cd9bfd4b0bfc2013807549c0436c0e84e655",
+  "original_prompt": "open the middle drawer of the cabinet",
+  "input_prompt": "open the middle drawer of the cabinet",
+  "replan_steps": 5,
+  "denoising_steps": 10,
+  "max_steps": 300,
+  "status": "timeout",
+  "success": false,
+  "steps": 300,
+  "alternate_goal_evaluable": false,
+  "alternate_goal_ever_satisfied": null,
+  "initial_eef": [
+    -0.21686522091810922,
+    -0.007768638775625625,
+    1.162415362120906
+  ],
+  "final_eef": [
+    -0.006207110903359264,
+    0.013311821911952404,
+    1.0546469790990154
+  ],
+  "qpos_displacement_norm": 2.794109178106274,
+  "simulation_elapsed_s": 15.0,
+  "wall_s": 9.083862182000303,
+  "query_count": 60,
+  "warmup_query_wall_s": 0.08090335999986564,
+  "query_median_excluding_first_s": 0.07230680800057598
+}

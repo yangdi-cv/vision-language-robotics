@@ -1,0 +1,2261 @@
+{
+  "checked": 117,
+  "official_successes_replayed": 117,
+  "replay_max_qpos_error": 0.0,
+  "stable_last_half_second": 113,
+  "final_goal_true": 114,
+  "open_confirmed": 116,
+  "open_and_stable": 112,
+  "by_suite": {
+    "libero_10": {
+      "n": 29,
+      "stable": 26,
+      "final_goal": 26,
+      "open_and_stable": 26
+    },
+    "libero_goal": {
+      "n": 29,
+      "stable": 29,
+      "final_goal": 29,
+      "open_and_stable": 28
+    },
+    "libero_object": {
+      "n": 29,
+      "stable": 29,
+      "final_goal": 29,
+      "open_and_stable": 29
+    },
+    "libero_spatial": {
+      "n": 30,
+      "stable": 29,
+      "final_goal": 30,
+      "open_and_stable": 29
+    }
+  },
+  "rows": [
+    {
+      "suite": "libero_10",
+      "task_id": 0,
+      "initial_state_id": 0,
+      "initial_state_sha256": "747b653b2ca1feeae8f3bd994880ce743730993ea5ce4bd003623e877f26b3bd",
+      "replay_max_qpos_error": 0.0,
+      "probe": "1s zero Cartesian increment and gripper open; last 0.5s predicate sustained",
+      "official_success": true,
+      "final_goal": true,
+      "last_half_second_goal_maintained": true,
+      "gripper_qpos_after": [
+        0.03933573126095804,
+        -0.039551077796533676
+      ],
+      "finger_joint_open_threshold_m": 0.03,
+      "gripper_open_confirmed": true,
+      "open_and_stable": true,
+      "source_sha256": "43fd5a3203b13a56babd85ba784003a93d321a395668931927cac6a4f791657b"
+    },
+    {
+      "suite": "libero_10",
+      "task_id": 0,
+      "initial_state_id": 1,
+      "initial_state_sha256": "cf85ed132ae09bfad8798a3126b14879071228e0e2e7bd17c3e9d20e519cdb5a",
+      "replay_max_qpos_error": 0.0,
+      "probe": "1s zero Cartesian increment and gripper open; last 0.5s predicate sustained",
+      "official_success": true,
+      "final_goal": true,
+      "last_half_second_goal_maintained": true,
+      "gripper_qpos_after": [
+        0.03936677438983044,
+        -0.03944470062113567
+      ],
+      "finger_joint_open_threshold_m": 0.03,
+      "gripper_open_confirmed": true,
+      "open_and_stable": true,
+      "source_sha256": "43fd5a3203b13a56babd85ba784003a93d321a395668931927cac6a4f791657b"
+    },
+    {
+      "suite": "libero_10",
+      "task_id": 0,
+      "initial_state_id": 2,
+      "initial_state_sha256": "be0c23f82748baf99eea1ecc4ff28eb82163945bc0bfffb509eeef0decced138",
+      "replay_max_qpos_error": 0.0,
+      "probe": "1s zero Cartesian increment and gripper open; last 0.5s predicate sustained",
+      "official_success": true,
+      "final_goal": true,
+      "last_half_second_goal_maintained": true,
+      "gripper_qpos_after": [
+        0.039414703166100414,
+        -0.03933375621861167
+      ],
+      "finger_joint_open_threshold_m": 0.03,
+      "gripper_open_confirmed": true,
+      "open_and_stable": true,
+      "source_sha256": "43fd5a3203b13a56babd85ba784003a93d321a395668931927cac6a4f791657b"
+    },
+    {
+      "suite": "libero_10",
+      "task_id": 1,
+      "initial_state_id": 0,
+      "initial_state_sha256": "5abdf8f466f490901dee9f931b32eb181b2928eaa17bb6379742f988581d564a",
+      "replay_max_qpos_error": 0.0,
+      "probe": "1s zero Cartesian increment and gripper open; last 0.5s predicate sustained",
+      "official_success": true,
+      "final_goal": true,
+      "last_half_second_goal_maintained": true,
+      "gripper_qpos_after": [
+        0.03932037423475252,
+        -0.03933793780294477
+      ],
+      "finger_joint_open_threshold_m": 0.03,
+      "gripper_open_confirmed": true,
+      "open_and_stable": true,
+      "source_sha256": "43fd5a3203b13a56babd85ba784003a93d321a395668931927cac6a4f791657b"
+    },
+    {
+      "suite": "libero_10",
+      "task_id": 1,
+      "initial_state_id": 1,
+      "initial_state_sha256": "cd3e7f86ef217ee7b7d26cc505b3f56ea8f49664ef10f6749270dfcd39dd17a6",
+      "replay_max_qpos_error": 0.0,
+      "probe": "1s zero Cartesian increment and gripper open; last 0.5s predicate sustained",
+      "official_success": true,
+      "final_goal": true,
+      "last_half_second_goal_maintained": true,
+      "gripper_qpos_after": [
+        0.03944930504314319,
+        -0.039266580361951346
+      ],
+      "finger_joint_open_threshold_m": 0.03,
+      "gripper_open_confirmed": true,
+      "open_and_stable": true,
+      "source_sha256": "43fd5a3203b13a56babd85ba784003a93d321a395668931927cac6a4f791657b"
+    },
+    {
+      "suite": "libero_10",
+      "task_id": 1,
+      "initial_state_id": 2,
+      "initial_state_sha256": "ab6bf2ca98e96f1692d8ec7a5b7ec25eee1ea61c57d45c2816ac3dcc938ea3ee",
+      "replay_max_qpos_error": 0.0,
+      "probe": "1s zero Cartesian increment and gripper open; last 0.5s predicate sustained",
+      "official_success": true,
+      "final_goal": true,
+      "last_half_second_goal_maintained": true,
+      "gripper_qpos_after": [
+        0.03939058957218243,
+        -0.03926780261742653
+      ],
+      "finger_joint_open_threshold_m": 0.03,
+      "gripper_open_confirmed": true,
+      "open_and_stable": true,
+      "source_sha256": "43fd5a3203b13a56babd85ba784003a93d321a395668931927cac6a4f791657b"
+    },
+    {
+      "suite": "libero_10",
+      "task_id": 2,
+      "initial_state_id": 0,
+      "initial_state_sha256": "9ae67aa7e7dd9987ecd1f2930e2b061fb66a414dd94e4b575417356a556cbd90",
+      "replay_max_qpos_error": 0.0,
+      "probe": "1s zero Cartesian increment and gripper open; last 0.5s predicate sustained",
+      "official_success": true,
+      "final_goal": true,
+      "last_half_second_goal_maintained": true,
+      "gripper_qpos_after": [
+        0.03907897527928243,
+        -0.03908602901306571
+      ],
+      "finger_joint_open_threshold_m": 0.03,
+      "gripper_open_confirmed": true,
+      "open_and_stable": true,
+      "source_sha256": "43fd5a3203b13a56babd85ba784003a93d321a395668931927cac6a4f791657b"
+    },
+    {
+      "suite": "libero_10",
+      "task_id": 2,
+      "initial_state_id": 1,
+      "initial_state_sha256": "453d74e45f2f7141904a047d4237db1ee0b5576fe7a3f6c2cb4801e83bacb88a",
+      "replay_max_qpos_error": 0.0,
+      "probe": "1s zero Cartesian increment and gripper open; last 0.5s predicate sustained",
+      "official_success": true,
+      "final_goal": true,
+      "last_half_second_goal_maintained": true,
+      "gripper_qpos_after": [
+        0.03912630850403111,
+        -0.03916299187649967
+      ],
+      "finger_joint_open_threshold_m": 0.03,
+      "gripper_open_confirmed": true,
+      "open_and_stable": true,
+      "source_sha256": "43fd5a3203b13a56babd85ba784003a93d321a395668931927cac6a4f791657b"
+    },
+    {
+      "suite": "libero_10",
+      "task_id": 2,
+      "initial_state_id": 2,
+      "initial_state_sha256": "8227fd36ba47ae92020986ff9b090acd500ddadcc057c66b04f8afe6fb4de2bb",
+      "replay_max_qpos_error": 0.0,
+      "probe": "1s zero Cartesian increment and gripper open; last 0.5s predicate sustained",
+      "official_success": true,
+      "final_goal": true,
+      "last_half_second_goal_maintained": true,
+      "gripper_qpos_after": [
+        0.03906471808919707,
+        -0.03917915992002332
+      ],
+      "finger_joint_open_threshold_m": 0.03,
+      "gripper_open_confirmed": true,
+      "open_and_stable": true,
+      "source_sha256": "43fd5a3203b13a56babd85ba784003a93d321a395668931927cac6a4f791657b"
+    },
+    {
+      "suite": "libero_10",
+      "task_id": 3,
+      "initial_state_id": 0,
+      "initial_state_sha256": "ea2ad0a67ceabe915bc4744e8231bf7fe71bddb74ff8c67eae6c821ff82078a4",
+      "replay_max_qpos_error": 0.0,
+      "probe": "1s zero Cartesian increment and gripper open; last 0.5s predicate sustained",
+      "official_success": true,
+      "final_goal": true,
+      "last_half_second_goal_maintained": true,
+      "gripper_qpos_after": [
+        0.03971521284291776,
+        -0.040008477764214574
+      ],
+      "finger_joint_open_threshold_m": 0.03,
+      "gripper_open_confirmed": true,
+      "open_and_stable": true,
+      "source_sha256": "43fd5a3203b13a56babd85ba784003a93d321a395668931927cac6a4f791657b"
+    },
+    {
+      "suite": "libero_10",
+      "task_id": 3,
+      "initial_state_id": 1,
+      "initial_state_sha256": "4163733ff3615b450aeebdbe916059b6c8b8f899330378fde0f00efc2f795efe",
+      "replay_max_qpos_error": 0.0,
+      "probe": "1s zero Cartesian increment and gripper open; last 0.5s predicate sustained",
+      "official_success": true,
+      "final_goal": true,
+      "last_half_second_goal_maintained": true,
+      "gripper_qpos_after": [
+        0.03951743286511001,
+        -0.03991752624918465
+      ],
+      "finger_joint_open_threshold_m": 0.03,
+      "gripper_open_confirmed": true,
+      "open_and_stable": true,
+      "source_sha256": "43fd5a3203b13a56babd85ba784003a93d321a395668931927cac6a4f791657b"
+    },
+    {
+      "suite": "libero_10",
+      "task_id": 3,
+      "initial_state_id": 2,
+      "initial_state_sha256": "d4452cb6d293450305537a0160f36840b3351a6b381b8e487f3bf2db1b30399b",
+      "replay_max_qpos_error": 0.0,
+      "probe": "1s zero Cartesian increment and gripper open; last 0.5s predicate sustained",
+      "official_success": true,
+      "final_goal": true,
+      "last_half_second_goal_maintained": true,
+      "gripper_qpos_after": [
+        0.0398937606026981,
+        -0.039724501947394464
+      ],
+      "finger_joint_open_threshold_m": 0.03,
+      "gripper_open_confirmed": true,
+      "open_and_stable": true,
+      "source_sha256": "43fd5a3203b13a56babd85ba784003a93d321a395668931927cac6a4f791657b"
+    },
+    {
+      "suite": "libero_10",
+      "task_id": 4,
+      "initial_state_id": 0,
+      "initial_state_sha256": "4365b3c5a82da7f8818c11ef5fd494c4890c17c4c3e27948dc290a9ac2f08131",
+      "replay_max_qpos_error": 0.0,
+      "probe": "1s zero Cartesian increment and gripper open; last 0.5s predicate sustained",
+      "official_success": true,
+      "final_goal": true,
+      "last_half_second_goal_maintained": true,
+      "gripper_qpos_after": [
+        0.03900296936280816,
+        -0.03915956086557509
+      ],
+      "finger_joint_open_threshold_m": 0.03,
+      "gripper_open_confirmed": true,
+      "open_and_stable": true,
+      "source_sha256": "43fd5a3203b13a56babd85ba784003a93d321a395668931927cac6a4f791657b"
+    },
+    {
+      "suite": "libero_10",
+      "task_id": 4,
+      "initial_state_id": 1,
+      "initial_state_sha256": "b55dd89278457f3c00d7b4d871dc8d64e84534e5a119dd35a53e5a152c831d6a",
+      "replay_max_qpos_error": 0.0,
+      "probe": "1s zero Cartesian increment and gripper open; last 0.5s predicate sustained",
+      "official_success": true,
+      "final_goal": true,
+      "last_half_second_goal_maintained": true,
+      "gripper_qpos_after": [
+        0.03906455384925901,
+        -0.039097929509639306
+      ],
+      "finger_joint_open_threshold_m": 0.03,
+      "gripper_open_confirmed": true,
+      "open_and_stable": true,
+      "source_sha256": "43fd5a3203b13a56babd85ba784003a93d321a395668931927cac6a4f791657b"
+    },
+    {
+      "suite": "libero_10",
+      "task_id": 4,
+      "initial_state_id": 2,
+      "initial_state_sha256": "1d2fdd615bb32a097ad2781dd5e9203104555e54521dd9bce6eacbb5bf718e33",
+      "replay_max_qpos_error": 0.0,
+      "probe": "1s zero Cartesian increment and gripper open; last 0.5s predicate sustained",
+      "official_success": true,
+      "final_goal": true,
+      "last_half_second_goal_maintained": true,
+      "gripper_qpos_after": [
+        0.03901817242079992,
+        -0.03914437936602758
+      ],
+      "finger_joint_open_threshold_m": 0.03,
+      "gripper_open_confirmed": true,
+      "open_and_stable": true,
+      "source_sha256": "43fd5a3203b13a56babd85ba784003a93d321a395668931927cac6a4f791657b"
+    },
+    {
+      "suite": "libero_10",
+      "task_id": 5,
+      "initial_state_id": 0,
+      "initial_state_sha256": "407c3d5eb11fd5b33bd2a6dea73a37415a99d7e72f0cc291074de29b1c63c37c",
+      "replay_max_qpos_error": 0.0,
+      "probe": "1s zero Cartesian increment and gripper open; last 0.5s predicate sustained",
+      "official_success": true,
+      "final_goal": false,
+      "last_half_second_goal_maintained": false,
+      "gripper_qpos_after": [
+        0.03883034543656394,
+        -0.03938629973191744
+      ],
+      "finger_joint_open_threshold_m": 0.03,
+      "gripper_open_confirmed": true,
+      "open_and_stable": false,
+      "source_sha256": "43fd5a3203b13a56babd85ba784003a93d321a395668931927cac6a4f791657b"
+    },
+    {
+      "suite": "libero_10",
+      "task_id": 5,
+      "initial_state_id": 1,
+      "initial_state_sha256": "fbf82707bd0a7721f0e118ac32aad30182e487e7a940bec7128ad6f18457e139",
+      "replay_max_qpos_error": 0.0,
+      "probe": "1s zero Cartesian increment and gripper open; last 0.5s predicate sustained",
+      "official_success": true,
+      "final_goal": false,
+      "last_half_second_goal_maintained": false,
+      "gripper_qpos_after": [
+        0.03894972660663427,
+        -0.039219392611344606
+      ],
+      "finger_joint_open_threshold_m": 0.03,
+      "gripper_open_confirmed": true,
+      "open_and_stable": false,
+      "source_sha256": "43fd5a3203b13a56babd85ba784003a93d321a395668931927cac6a4f791657b"
+    },
+    {
+      "suite": "libero_10",
+      "task_id": 5,
+      "initial_state_id": 2,
+      "initial_state_sha256": "83ff554be370e25fb3b049d5c3db3f2cf4f20524a0eab8beeda093c6a81bad66",
+      "replay_max_qpos_error": 0.0,
+      "probe": "1s zero Cartesian increment and gripper open; last 0.5s predicate sustained",
+      "official_success": true,
+      "final_goal": false,
+      "last_half_second_goal_maintained": false,
+      "gripper_qpos_after": [
+        0.0389632486488255,
+        -0.039205049757626405
+      ],
+      "finger_joint_open_threshold_m": 0.03,
+      "gripper_open_confirmed": true,
+      "open_and_stable": false,
+      "source_sha256": "43fd5a3203b13a56babd85ba784003a93d321a395668931927cac6a4f791657b"
+    },
+    {
+      "suite": "libero_10",
+      "task_id": 6,
+      "initial_state_id": 0,
+      "initial_state_sha256": "533340bd717874417ec05cd3d626b05c9464795440da917ce21e8a0a6fc50f72",
+      "replay_max_qpos_error": 0.0,
+      "probe": "1s zero Cartesian increment and gripper open; last 0.5s predicate sustained",
+      "official_success": true,
+      "final_goal": true,
+      "last_half_second_goal_maintained": true,
+      "gripper_qpos_after": [
+        0.039021116147517326,
+        -0.03916887826420809
+      ],
+      "finger_joint_open_threshold_m": 0.03,
+      "gripper_open_confirmed": true,
+      "open_and_stable": true,
+      "source_sha256": "43fd5a3203b13a56babd85ba784003a93d321a395668931927cac6a4f791657b"
+    },
+    {
+      "suite": "libero_10",
+      "task_id": 6,
+      "initial_state_id": 1,
+      "initial_state_sha256": "606fa88e4dcd86bf0c84c6c2954eb002166e93037b39e7ed893f0c41e7a15577",
+      "replay_max_qpos_error": 0.0,
+      "probe": "1s zero Cartesian increment and gripper open; last 0.5s predicate sustained",
+      "official_success": true,
+      "final_goal": true,
+      "last_half_second_goal_maintained": true,
+      "gripper_qpos_after": [
+        0.03899788407308826,
+        -0.03918828476691639
+      ],
+      "finger_joint_open_threshold_m": 0.03,
+      "gripper_open_confirmed": true,
+      "open_and_stable": true,
+      "source_sha256": "43fd5a3203b13a56babd85ba784003a93d321a395668931927cac6a4f791657b"
+    },
+    {
+      "suite": "libero_10",
+      "task_id": 6,
+      "initial_state_id": 2,
+      "initial_state_sha256": "872632a4cac778497e06fa377164090997928a7b5bfb7783d112807e03c5fa99",
+      "replay_max_qpos_error": 0.0,
+      "probe": "1s zero Cartesian increment and gripper open; last 0.5s predicate sustained",
+      "official_success": true,
+      "final_goal": true,
+      "last_half_second_goal_maintained": true,
+      "gripper_qpos_after": [
+        0.03903725603125758,
+        -0.039148448156278104
+      ],
+      "finger_joint_open_threshold_m": 0.03,
+      "gripper_open_confirmed": true,
+      "open_and_stable": true,
+      "source_sha256": "43fd5a3203b13a56babd85ba784003a93d321a395668931927cac6a4f791657b"
+    },
+    {
+      "suite": "libero_10",
+      "task_id": 7,
+      "initial_state_id": 0,
+      "initial_state_sha256": "d02d4d5533fbcab414bfc49e4896182cd40e173dfa6316e39a2b418e902ae826",
+      "replay_max_qpos_error": 0.0,
+      "probe": "1s zero Cartesian increment and gripper open; last 0.5s predicate sustained",
+      "official_success": true,
+      "final_goal": true,
+      "last_half_second_goal_maintained": true,
+      "gripper_qpos_after": [
+        0.03926689278591062,
+        -0.039451644358708626
+      ],
+      "finger_joint_open_threshold_m": 0.03,
+      "gripper_open_confirmed": true,
+      "open_and_stable": true,
+      "source_sha256": "43fd5a3203b13a56babd85ba784003a93d321a395668931927cac6a4f791657b"
+    },
+    {
+      "suite": "libero_10",
+      "task_id": 7,
+      "initial_state_id": 1,
+      "initial_state_sha256": "44f0d75550c414e622b03a43e56497e8c9bd0fe4a494c1d2b9c0c9625ed80120",
+      "replay_max_qpos_error": 0.0,
+      "probe": "1s zero Cartesian increment and gripper open; last 0.5s predicate sustained",
+      "official_success": true,
+      "final_goal": true,
+      "last_half_second_goal_maintained": true,
+      "gripper_qpos_after": [
+        0.03932066112903156,
+        -0.039397668237299815
+      ],
+      "finger_joint_open_threshold_m": 0.03,
+      "gripper_open_confirmed": true,
+      "open_and_stable": true,
+      "source_sha256": "43fd5a3203b13a56babd85ba784003a93d321a395668931927cac6a4f791657b"
+    },
+    {
+      "suite": "libero_10",
+      "task_id": 7,
+      "initial_state_id": 2,
+      "initial_state_sha256": "9e8c129dc9a5047a34f8772063534c9948acdba167fee37ece92b48f33ea4b34",
+      "replay_max_qpos_error": 0.0,
+      "probe": "1s zero Cartesian increment and gripper open; last 0.5s predicate sustained",
+      "official_success": true,
+      "final_goal": true,
+      "last_half_second_goal_maintained": true,
+      "gripper_qpos_after": [
+        0.039400237217484396,
+        -0.03926072434465777
+      ],
+      "finger_joint_open_threshold_m": 0.03,
+      "gripper_open_confirmed": true,
+      "open_and_stable": true,
+      "source_sha256": "43fd5a3203b13a56babd85ba784003a93d321a395668931927cac6a4f791657b"
+    },
+    {
+      "suite": "libero_10",
+      "task_id": 8,
+      "initial_state_id": 1,
+      "initial_state_sha256": "cf1b859b0688c3c3ea64fba0ab5bd29b88ff7f28dc5893df4cb7564ac4db8cce",
+      "replay_max_qpos_error": 0.0,
+      "probe": "1s zero Cartesian increment and gripper open; last 0.5s predicate sustained",
+      "official_success": true,
+      "final_goal": true,
+      "last_half_second_goal_maintained": true,
+      "gripper_qpos_after": [
+        0.039013540644470615,
+        -0.039089783761716325
+      ],
+      "finger_joint_open_threshold_m": 0.03,
+      "gripper_open_confirmed": true,
+      "open_and_stable": true,
+      "source_sha256": "43fd5a3203b13a56babd85ba784003a93d321a395668931927cac6a4f791657b"
+    },
+    {
+      "suite": "libero_10",
+      "task_id": 8,
+      "initial_state_id": 2,
+      "initial_state_sha256": "9f3bbe14f940c66de58d1dbecf0b5a2af12b48cbb93deec15c094fe4a9f5323a",
+      "replay_max_qpos_error": 0.0,
+      "probe": "1s zero Cartesian increment and gripper open; last 0.5s predicate sustained",
+      "official_success": true,
+      "final_goal": true,
+      "last_half_second_goal_maintained": true,
+      "gripper_qpos_after": [
+        0.03929323794233515,
+        -0.03886987973683691
+      ],
+      "finger_joint_open_threshold_m": 0.03,
+      "gripper_open_confirmed": true,
+      "open_and_stable": true,
+      "source_sha256": "43fd5a3203b13a56babd85ba784003a93d321a395668931927cac6a4f791657b"
+    },
+    {
+      "suite": "libero_10",
+      "task_id": 9,
+      "initial_state_id": 0,
+      "initial_state_sha256": "ea7db2b727794199cfa1e42f8d924c5841e4af18716a392adf30d5517114c87f",
+      "replay_max_qpos_error": 0.0,
+      "probe": "1s zero Cartesian increment and gripper open; last 0.5s predicate sustained",
+      "official_success": true,
+      "final_goal": true,
+      "last_half_second_goal_maintained": true,
+      "gripper_qpos_after": [
+        0.040007779370446785,
+        -0.0398464907878702
+      ],
+      "finger_joint_open_threshold_m": 0.03,
+      "gripper_open_confirmed": true,
+      "open_and_stable": true,
+      "source_sha256": "43fd5a3203b13a56babd85ba784003a93d321a395668931927cac6a4f791657b"
+    },
+    {
+      "suite": "libero_10",
+      "task_id": 9,
+      "initial_state_id": 1,
+      "initial_state_sha256": "8a1664e433521b5f995c9840cd9d41bf796b38742e57ad57786d67076de8b0cd",
+      "replay_max_qpos_error": 0.0,
+      "probe": "1s zero Cartesian increment and gripper open; last 0.5s predicate sustained",
+      "official_success": true,
+      "final_goal": true,
+      "last_half_second_goal_maintained": true,
+      "gripper_qpos_after": [
+        0.04001232373743758,
+        -0.03861334389844906
+      ],
+      "finger_joint_open_threshold_m": 0.03,
+      "gripper_open_confirmed": true,
+      "open_and_stable": true,
+      "source_sha256": "43fd5a3203b13a56babd85ba784003a93d321a395668931927cac6a4f791657b"
+    },
+    {
+      "suite": "libero_10",
+      "task_id": 9,
+      "initial_state_id": 2,
+      "initial_state_sha256": "1cc5eefc998751de4d0e86462742176ed71a470e4846013c1a92ac47cefb9b67",
+      "replay_max_qpos_error": 0.0,
+      "probe": "1s zero Cartesian increment and gripper open; last 0.5s predicate sustained",
+      "official_success": true,
+      "final_goal": true,
+      "last_half_second_goal_maintained": true,
+      "gripper_qpos_after": [
+        0.03983723723116685,
+        -0.03914934094559025
+      ],
+      "finger_joint_open_threshold_m": 0.03,
+      "gripper_open_confirmed": true,
+      "open_and_stable": true,
+      "source_sha256": "43fd5a3203b13a56babd85ba784003a93d321a395668931927cac6a4f791657b"
+    },
+    {
+      "suite": "libero_goal",
+      "task_id": 0,
+      "initial_state_id": 0,
+      "initial_state_sha256": "5a8f40221c0b59dfaa1061b36a49d4b10b0b47ffb82a1ac0b10080a2aa466ec4",
+      "replay_max_qpos_error": 0.0,
+      "probe": "1s zero Cartesian increment and gripper open; last 0.5s predicate sustained",
+      "official_success": true,
+      "final_goal": true,
+      "last_half_second_goal_maintained": true,
+      "gripper_qpos_after": [
+        0.03999052774852106,
+        -0.039412660293484704
+      ],
+      "finger_joint_open_threshold_m": 0.03,
+      "gripper_open_confirmed": true,
+      "open_and_stable": true,
+      "source_sha256": "43fd5a3203b13a56babd85ba784003a93d321a395668931927cac6a4f791657b"
+    },
+    {
+      "suite": "libero_goal",
+      "task_id": 0,
+      "initial_state_id": 2,
+      "initial_state_sha256": "221658d3c5c68a7d9d4606eee6e2dedfc8a847525fd96da47b17615374007fe9",
+      "replay_max_qpos_error": 0.0,
+      "probe": "1s zero Cartesian increment and gripper open; last 0.5s predicate sustained",
+      "official_success": true,
+      "final_goal": true,
+      "last_half_second_goal_maintained": true,
+      "gripper_qpos_after": [
+        0.039297328201573646,
+        -0.04000156513352961
+      ],
+      "finger_joint_open_threshold_m": 0.03,
+      "gripper_open_confirmed": true,
+      "open_and_stable": true,
+      "source_sha256": "43fd5a3203b13a56babd85ba784003a93d321a395668931927cac6a4f791657b"
+    },
+    {
+      "suite": "libero_goal",
+      "task_id": 1,
+      "initial_state_id": 0,
+      "initial_state_sha256": "5b071f3bb26bf0ce3b866621d8c9037d793aae5d25f9ae686a1d9048c4e56b88",
+      "replay_max_qpos_error": 0.0,
+      "probe": "1s zero Cartesian increment and gripper open; last 0.5s predicate sustained",
+      "official_success": true,
+      "final_goal": true,
+      "last_half_second_goal_maintained": true,
+      "gripper_qpos_after": [
+        0.03894063219434333,
+        -0.03922085871283615
+      ],
+      "finger_joint_open_threshold_m": 0.03,
+      "gripper_open_confirmed": true,
+      "open_and_stable": true,
+      "source_sha256": "43fd5a3203b13a56babd85ba784003a93d321a395668931927cac6a4f791657b"
+    },
+    {
+      "suite": "libero_goal",
+      "task_id": 1,
+      "initial_state_id": 1,
+      "initial_state_sha256": "47e9640340fe238deaea2e8cd7141ddbbea5ff9c12c6d6fe4fb3bd85548ae8f4",
+      "replay_max_qpos_error": 0.0,
+      "probe": "1s zero Cartesian increment and gripper open; last 0.5s predicate sustained",
+      "official_success": true,
+      "final_goal": true,
+      "last_half_second_goal_maintained": true,
+      "gripper_qpos_after": [
+        0.03903639055853397,
+        -0.03912604630183637
+      ],
+      "finger_joint_open_threshold_m": 0.03,
+      "gripper_open_confirmed": true,
+      "open_and_stable": true,
+      "source_sha256": "43fd5a3203b13a56babd85ba784003a93d321a395668931927cac6a4f791657b"
+    },
+    {
+      "suite": "libero_goal",
+      "task_id": 1,
+      "initial_state_id": 2,
+      "initial_state_sha256": "29144cbfef1149ae98f80bb0a34fe8b19f845f7f42e67242968cdd2fcd93fac4",
+      "replay_max_qpos_error": 0.0,
+      "probe": "1s zero Cartesian increment and gripper open; last 0.5s predicate sustained",
+      "official_success": true,
+      "final_goal": true,
+      "last_half_second_goal_maintained": true,
+      "gripper_qpos_after": [
+        0.03894813648055667,
+        -0.039213421089921464
+      ],
+      "finger_joint_open_threshold_m": 0.03,
+      "gripper_open_confirmed": true,
+      "open_and_stable": true,
+      "source_sha256": "43fd5a3203b13a56babd85ba784003a93d321a395668931927cac6a4f791657b"
+    },
+    {
+      "suite": "libero_goal",
+      "task_id": 2,
+      "initial_state_id": 0,
+      "initial_state_sha256": "c42c3f992ef65b98b14e2f505837a6a31516c00a1afabd0607aa6d70362ca6fd",
+      "replay_max_qpos_error": 0.0,
+      "probe": "1s zero Cartesian increment and gripper open; last 0.5s predicate sustained",
+      "official_success": true,
+      "final_goal": true,
+      "last_half_second_goal_maintained": true,
+      "gripper_qpos_after": [
+        0.0392518997583575,
+        -0.03891146514001021
+      ],
+      "finger_joint_open_threshold_m": 0.03,
+      "gripper_open_confirmed": true,
+      "open_and_stable": true,
+      "source_sha256": "43fd5a3203b13a56babd85ba784003a93d321a395668931927cac6a4f791657b"
+    },
+    {
+      "suite": "libero_goal",
+      "task_id": 2,
+      "initial_state_id": 1,
+      "initial_state_sha256": "308379f3c9ef898967cc893ecaad04955b92fb6d89fe719d899d570a551d984a",
+      "replay_max_qpos_error": 0.0,
+      "probe": "1s zero Cartesian increment and gripper open; last 0.5s predicate sustained",
+      "official_success": true,
+      "final_goal": true,
+      "last_half_second_goal_maintained": true,
+      "gripper_qpos_after": [
+        0.03926960936375435,
+        -0.038893793677438934
+      ],
+      "finger_joint_open_threshold_m": 0.03,
+      "gripper_open_confirmed": true,
+      "open_and_stable": true,
+      "source_sha256": "43fd5a3203b13a56babd85ba784003a93d321a395668931927cac6a4f791657b"
+    },
+    {
+      "suite": "libero_goal",
+      "task_id": 2,
+      "initial_state_id": 2,
+      "initial_state_sha256": "6ddde9726e27c4056cb694383550e8d8ec146a763be870e5b2f90283fc9c85ab",
+      "replay_max_qpos_error": 0.0,
+      "probe": "1s zero Cartesian increment and gripper open; last 0.5s predicate sustained",
+      "official_success": true,
+      "final_goal": true,
+      "last_half_second_goal_maintained": true,
+      "gripper_qpos_after": [
+        0.039081025900771095,
+        -0.03908215849133814
+      ],
+      "finger_joint_open_threshold_m": 0.03,
+      "gripper_open_confirmed": true,
+      "open_and_stable": true,
+      "source_sha256": "43fd5a3203b13a56babd85ba784003a93d321a395668931927cac6a4f791657b"
+    },
+    {
+      "suite": "libero_goal",
+      "task_id": 3,
+      "initial_state_id": 0,
+      "initial_state_sha256": "cbedd58789f8211e0c0435637d9c71750d5aa2ae3216b354ec03b6630c8caa78",
+      "replay_max_qpos_error": 0.0,
+      "probe": "1s zero Cartesian increment and gripper open; last 0.5s predicate sustained",
+      "official_success": true,
+      "final_goal": true,
+      "last_half_second_goal_maintained": true,
+      "gripper_qpos_after": [
+        0.038904884206354164,
+        -0.039153446752462795
+      ],
+      "finger_joint_open_threshold_m": 0.03,
+      "gripper_open_confirmed": true,
+      "open_and_stable": true,
+      "source_sha256": "43fd5a3203b13a56babd85ba784003a93d321a395668931927cac6a4f791657b"
+    },
+    {
+      "suite": "libero_goal",
+      "task_id": 3,
+      "initial_state_id": 1,
+      "initial_state_sha256": "acd41999401211210e0f72397b0675d42bf32cd44f1a92fe0ca1a187d034b1e4",
+      "replay_max_qpos_error": 0.0,
+      "probe": "1s zero Cartesian increment and gripper open; last 0.5s predicate sustained",
+      "official_success": true,
+      "final_goal": true,
+      "last_half_second_goal_maintained": true,
+      "gripper_qpos_after": [
+        0.03929475802984273,
+        -0.03909393849883172
+      ],
+      "finger_joint_open_threshold_m": 0.03,
+      "gripper_open_confirmed": true,
+      "open_and_stable": true,
+      "source_sha256": "43fd5a3203b13a56babd85ba784003a93d321a395668931927cac6a4f791657b"
+    },
+    {
+      "suite": "libero_goal",
+      "task_id": 3,
+      "initial_state_id": 2,
+      "initial_state_sha256": "afaf84a681a98d73f9e7c38ad570b8264e40f0cefb2f8a8cd263790e183bdddb",
+      "replay_max_qpos_error": 0.0,
+      "probe": "1s zero Cartesian increment and gripper open; last 0.5s predicate sustained",
+      "official_success": true,
+      "final_goal": true,
+      "last_half_second_goal_maintained": true,
+      "gripper_qpos_after": [
+        0.039033174954463845,
+        -0.03935482245847585
+      ],
+      "finger_joint_open_threshold_m": 0.03,
+      "gripper_open_confirmed": true,
+      "open_and_stable": true,
+      "source_sha256": "43fd5a3203b13a56babd85ba784003a93d321a395668931927cac6a4f791657b"
+    },
+    {
+      "suite": "libero_goal",
+      "task_id": 4,
+      "initial_state_id": 0,
+      "initial_state_sha256": "ed35dbd746e6efe630908bc93ea0659cc4c4cd10cd9c1c1ccc336fb2012cb5dd",
+      "replay_max_qpos_error": 0.0,
+      "probe": "1s zero Cartesian increment and gripper open; last 0.5s predicate sustained",
+      "official_success": true,
+      "final_goal": true,
+      "last_half_second_goal_maintained": true,
+      "gripper_qpos_after": [
+        0.03900340133693117,
+        -0.039159062197374056
+      ],
+      "finger_joint_open_threshold_m": 0.03,
+      "gripper_open_confirmed": true,
+      "open_and_stable": true,
+      "source_sha256": "43fd5a3203b13a56babd85ba784003a93d321a395668931927cac6a4f791657b"
+    },
+    {
+      "suite": "libero_goal",
+      "task_id": 4,
+      "initial_state_id": 1,
+      "initial_state_sha256": "a24dd942d9f6deb711a6954ba2dbccbfc86fa8b5b573ae8a376087b051fe62a0",
+      "replay_max_qpos_error": 0.0,
+      "probe": "1s zero Cartesian increment and gripper open; last 0.5s predicate sustained",
+      "official_success": true,
+      "final_goal": true,
+      "last_half_second_goal_maintained": true,
+      "gripper_qpos_after": [
+        0.03907725349842471,
+        -0.039084791775723715
+      ],
+      "finger_joint_open_threshold_m": 0.03,
+      "gripper_open_confirmed": true,
+      "open_and_stable": true,
+      "source_sha256": "43fd5a3203b13a56babd85ba784003a93d321a395668931927cac6a4f791657b"
+    },
+    {
+      "suite": "libero_goal",
+      "task_id": 4,
+      "initial_state_id": 2,
+      "initial_state_sha256": "c8e451ca23a16e21ded4cc462a3d2f820bf591a69454ad67e5d325a4cbc5e4b1",
+      "replay_max_qpos_error": 0.0,
+      "probe": "1s zero Cartesian increment and gripper open; last 0.5s predicate sustained",
+      "official_success": true,
+      "final_goal": true,
+      "last_half_second_goal_maintained": true,
+      "gripper_qpos_after": [
+        0.03895281697201883,
+        -0.03920927933971615
+      ],
+      "finger_joint_open_threshold_m": 0.03,
+      "gripper_open_confirmed": true,
+      "open_and_stable": true,
+      "source_sha256": "43fd5a3203b13a56babd85ba784003a93d321a395668931927cac6a4f791657b"
+    },
+    {
+      "suite": "libero_goal",
+      "task_id": 5,
+      "initial_state_id": 0,
+      "initial_state_sha256": "cea30572c1ece1c5d5a53c64fef51544c3a02dbb6bf6bc06d02d3a03ea719aa7",
+      "replay_max_qpos_error": 0.0,
+      "probe": "1s zero Cartesian increment and gripper open; last 0.5s predicate sustained",
+      "official_success": true,
+      "final_goal": true,
+      "last_half_second_goal_maintained": true,
+      "gripper_qpos_after": [
+        0.03963889621466018,
+        -0.039598943918280845
+      ],
+      "finger_joint_open_threshold_m": 0.03,
+      "gripper_open_confirmed": true,
+      "open_and_stable": true,
+      "source_sha256": "43fd5a3203b13a56babd85ba784003a93d321a395668931927cac6a4f791657b"
+    },
+    {
+      "suite": "libero_goal",
+      "task_id": 5,
+      "initial_state_id": 1,
+      "initial_state_sha256": "5ce7bdf94e5030da4f2cdaecaf680d5607faec8614ca63773f1b67ef045d78bf",
+      "replay_max_qpos_error": 0.0,
+      "probe": "1s zero Cartesian increment and gripper open; last 0.5s predicate sustained",
+      "official_success": true,
+      "final_goal": true,
+      "last_half_second_goal_maintained": true,
+      "gripper_qpos_after": [
+        0.03958105684022867,
+        -0.0395825082980261
+      ],
+      "finger_joint_open_threshold_m": 0.03,
+      "gripper_open_confirmed": true,
+      "open_and_stable": true,
+      "source_sha256": "43fd5a3203b13a56babd85ba784003a93d321a395668931927cac6a4f791657b"
+    },
+    {
+      "suite": "libero_goal",
+      "task_id": 5,
+      "initial_state_id": 2,
+      "initial_state_sha256": "4c06373a64e22c7180a440eece4fa0d7ca88f8e4bf1b8614c618f9a98abc6cf9",
+      "replay_max_qpos_error": 0.0,
+      "probe": "1s zero Cartesian increment and gripper open; last 0.5s predicate sustained",
+      "official_success": true,
+      "final_goal": true,
+      "last_half_second_goal_maintained": true,
+      "gripper_qpos_after": [
+        0.0388186583348395,
+        -0.03883678046562225
+      ],
+      "finger_joint_open_threshold_m": 0.03,
+      "gripper_open_confirmed": true,
+      "open_and_stable": true,
+      "source_sha256": "43fd5a3203b13a56babd85ba784003a93d321a395668931927cac6a4f791657b"
+    },
+    {
+      "suite": "libero_goal",
+      "task_id": 6,
+      "initial_state_id": 0,
+      "initial_state_sha256": "485e7e27990ed3190e7ef7d9cf4bf2a79fb673410033ced06a99f184b74e9c95",
+      "replay_max_qpos_error": 0.0,
+      "probe": "1s zero Cartesian increment and gripper open; last 0.5s predicate sustained",
+      "official_success": true,
+      "final_goal": true,
+      "last_half_second_goal_maintained": true,
+      "gripper_qpos_after": [
+        0.03935279001001616,
+        -0.039248260911332655
+      ],
+      "finger_joint_open_threshold_m": 0.03,
+      "gripper_open_confirmed": true,
+      "open_and_stable": true,
+      "source_sha256": "43fd5a3203b13a56babd85ba784003a93d321a395668931927cac6a4f791657b"
+    },
+    {
+      "suite": "libero_goal",
+      "task_id": 6,
+      "initial_state_id": 1,
+      "initial_state_sha256": "966aeb21a670231379b9f10d6cbfc0eb03741996551ca163b501e5552fab08ac",
+      "replay_max_qpos_error": 0.0,
+      "probe": "1s zero Cartesian increment and gripper open; last 0.5s predicate sustained",
+      "official_success": true,
+      "final_goal": true,
+      "last_half_second_goal_maintained": true,
+      "gripper_qpos_after": [
+        0.03933956724605031,
+        -0.03932139775233782
+      ],
+      "finger_joint_open_threshold_m": 0.03,
+      "gripper_open_confirmed": true,
+      "open_and_stable": true,
+      "source_sha256": "43fd5a3203b13a56babd85ba784003a93d321a395668931927cac6a4f791657b"
+    },
+    {
+      "suite": "libero_goal",
+      "task_id": 6,
+      "initial_state_id": 2,
+      "initial_state_sha256": "01db4991cc2282e06676fe00d328d3ca3b714eb51f979031af8f05d18dc62468",
+      "replay_max_qpos_error": 0.0,
+      "probe": "1s zero Cartesian increment and gripper open; last 0.5s predicate sustained",
+      "official_success": true,
+      "final_goal": true,
+      "last_half_second_goal_maintained": true,
+      "gripper_qpos_after": [
+        0.039349031451165785,
+        -0.03931193257282793
+      ],
+      "finger_joint_open_threshold_m": 0.03,
+      "gripper_open_confirmed": true,
+      "open_and_stable": true,
+      "source_sha256": "43fd5a3203b13a56babd85ba784003a93d321a395668931927cac6a4f791657b"
+    },
+    {
+      "suite": "libero_goal",
+      "task_id": 7,
+      "initial_state_id": 0,
+      "initial_state_sha256": "7c961c34d695eb9099bdabaf55dfe7c856665830c84ca2555affd2788d70a8a3",
+      "replay_max_qpos_error": 0.0,
+      "probe": "1s zero Cartesian increment and gripper open; last 0.5s predicate sustained",
+      "official_success": true,
+      "final_goal": true,
+      "last_half_second_goal_maintained": true,
+      "gripper_qpos_after": [
+        0.03865702875478019,
+        -0.03900501321404674
+      ],
+      "finger_joint_open_threshold_m": 0.03,
+      "gripper_open_confirmed": true,
+      "open_and_stable": true,
+      "source_sha256": "43fd5a3203b13a56babd85ba784003a93d321a395668931927cac6a4f791657b"
+    },
+    {
+      "suite": "libero_goal",
+      "task_id": 7,
+      "initial_state_id": 1,
+      "initial_state_sha256": "6ed4fb1cdb6d5927c9218cefcee028079c38692f569c46fb11e9e83d0b26b01a",
+      "replay_max_qpos_error": 0.0,
+      "probe": "1s zero Cartesian increment and gripper open; last 0.5s predicate sustained",
+      "official_success": true,
+      "final_goal": true,
+      "last_half_second_goal_maintained": true,
+      "gripper_qpos_after": [
+        0.029048109290230936,
+        -0.038930721620103435
+      ],
+      "finger_joint_open_threshold_m": 0.03,
+      "gripper_open_confirmed": false,
+      "open_and_stable": false,
+      "source_sha256": "43fd5a3203b13a56babd85ba784003a93d321a395668931927cac6a4f791657b"
+    },
+    {
+      "suite": "libero_goal",
+      "task_id": 7,
+      "initial_state_id": 2,
+      "initial_state_sha256": "178344b07b2669d92ab02ea97992756d8df1ae410227474836defedef009ab64",
+      "replay_max_qpos_error": 0.0,
+      "probe": "1s zero Cartesian increment and gripper open; last 0.5s predicate sustained",
+      "official_success": true,
+      "final_goal": true,
+      "last_half_second_goal_maintained": true,
+      "gripper_qpos_after": [
+        0.03460353321776555,
+        -0.03898888980935394
+      ],
+      "finger_joint_open_threshold_m": 0.03,
+      "gripper_open_confirmed": true,
+      "open_and_stable": true,
+      "source_sha256": "43fd5a3203b13a56babd85ba784003a93d321a395668931927cac6a4f791657b"
+    },
+    {
+      "suite": "libero_goal",
+      "task_id": 8,
+      "initial_state_id": 0,
+      "initial_state_sha256": "66b1883f351c4c374c742516714921b55bd5eca7fd6f0fa8e2e0a86abff19ccd",
+      "replay_max_qpos_error": 0.0,
+      "probe": "1s zero Cartesian increment and gripper open; last 0.5s predicate sustained",
+      "official_success": true,
+      "final_goal": true,
+      "last_half_second_goal_maintained": true,
+      "gripper_qpos_after": [
+        0.03898899350018435,
+        -0.03917274211029014
+      ],
+      "finger_joint_open_threshold_m": 0.03,
+      "gripper_open_confirmed": true,
+      "open_and_stable": true,
+      "source_sha256": "43fd5a3203b13a56babd85ba784003a93d321a395668931927cac6a4f791657b"
+    },
+    {
+      "suite": "libero_goal",
+      "task_id": 8,
+      "initial_state_id": 1,
+      "initial_state_sha256": "458b021de5c47d7b23306d6e7f714ef3c2c55174aa4b2281816d6c3792f408cb",
+      "replay_max_qpos_error": 0.0,
+      "probe": "1s zero Cartesian increment and gripper open; last 0.5s predicate sustained",
+      "official_success": true,
+      "final_goal": true,
+      "last_half_second_goal_maintained": true,
+      "gripper_qpos_after": [
+        0.03898050242602547,
+        -0.03918152408511502
+      ],
+      "finger_joint_open_threshold_m": 0.03,
+      "gripper_open_confirmed": true,
+      "open_and_stable": true,
+      "source_sha256": "43fd5a3203b13a56babd85ba784003a93d321a395668931927cac6a4f791657b"
+    },
+    {
+      "suite": "libero_goal",
+      "task_id": 8,
+      "initial_state_id": 2,
+      "initial_state_sha256": "e92c3b68aa6af756d9ae0fbee9eefd5c04fb9d5739453b832e9707c8fe290096",
+      "replay_max_qpos_error": 0.0,
+      "probe": "1s zero Cartesian increment and gripper open; last 0.5s predicate sustained",
+      "official_success": true,
+      "final_goal": true,
+      "last_half_second_goal_maintained": true,
+      "gripper_qpos_after": [
+        0.03897266862283193,
+        -0.039189450799897205
+      ],
+      "finger_joint_open_threshold_m": 0.03,
+      "gripper_open_confirmed": true,
+      "open_and_stable": true,
+      "source_sha256": "43fd5a3203b13a56babd85ba784003a93d321a395668931927cac6a4f791657b"
+    },
+    {
+      "suite": "libero_goal",
+      "task_id": 9,
+      "initial_state_id": 0,
+      "initial_state_sha256": "c12cdf642eb5c7b4fd04e4d3b55870f592770742ee5434ad8f80eda6168c9654",
+      "replay_max_qpos_error": 0.0,
+      "probe": "1s zero Cartesian increment and gripper open; last 0.5s predicate sustained",
+      "official_success": true,
+      "final_goal": true,
+      "last_half_second_goal_maintained": true,
+      "gripper_qpos_after": [
+        0.038948032175620206,
+        -0.03922108362897913
+      ],
+      "finger_joint_open_threshold_m": 0.03,
+      "gripper_open_confirmed": true,
+      "open_and_stable": true,
+      "source_sha256": "43fd5a3203b13a56babd85ba784003a93d321a395668931927cac6a4f791657b"
+    },
+    {
+      "suite": "libero_goal",
+      "task_id": 9,
+      "initial_state_id": 1,
+      "initial_state_sha256": "f1c7fced4b7c530aed064a27d8714e966e8a2a9c12a4abf8ba2bbb56b9d2a483",
+      "replay_max_qpos_error": 0.0,
+      "probe": "1s zero Cartesian increment and gripper open; last 0.5s predicate sustained",
+      "official_success": true,
+      "final_goal": true,
+      "last_half_second_goal_maintained": true,
+      "gripper_qpos_after": [
+        0.03909490143507465,
+        -0.0390742808088144
+      ],
+      "finger_joint_open_threshold_m": 0.03,
+      "gripper_open_confirmed": true,
+      "open_and_stable": true,
+      "source_sha256": "43fd5a3203b13a56babd85ba784003a93d321a395668931927cac6a4f791657b"
+    },
+    {
+      "suite": "libero_goal",
+      "task_id": 9,
+      "initial_state_id": 2,
+      "initial_state_sha256": "dda954afd150660760d0fb98ac9ba4a26f0cbc8b96385242673145d8aef60a35",
+      "replay_max_qpos_error": 0.0,
+      "probe": "1s zero Cartesian increment and gripper open; last 0.5s predicate sustained",
+      "official_success": true,
+      "final_goal": true,
+      "last_half_second_goal_maintained": true,
+      "gripper_qpos_after": [
+        0.03930003040837719,
+        -0.039249067221113605
+      ],
+      "finger_joint_open_threshold_m": 0.03,
+      "gripper_open_confirmed": true,
+      "open_and_stable": true,
+      "source_sha256": "43fd5a3203b13a56babd85ba784003a93d321a395668931927cac6a4f791657b"
+    },
+    {
+      "suite": "libero_object",
+      "task_id": 0,
+      "initial_state_id": 0,
+      "initial_state_sha256": "6cd4976519943bdc84677396a6e2942e9816ae87e56fc72943914e147f9b6e1e",
+      "replay_max_qpos_error": 0.0,
+      "probe": "1s zero Cartesian increment and gripper open; last 0.5s predicate sustained",
+      "official_success": true,
+      "final_goal": true,
+      "last_half_second_goal_maintained": true,
+      "gripper_qpos_after": [
+        0.03940151154514257,
+        -0.03940785874324056
+      ],
+      "finger_joint_open_threshold_m": 0.03,
+      "gripper_open_confirmed": true,
+      "open_and_stable": true,
+      "source_sha256": "43fd5a3203b13a56babd85ba784003a93d321a395668931927cac6a4f791657b"
+    },
+    {
+      "suite": "libero_object",
+      "task_id": 0,
+      "initial_state_id": 1,
+      "initial_state_sha256": "2fe669827623c130cb212d851d2ac5189aa22d888856b2c056ee744b2b698bcc",
+      "replay_max_qpos_error": 0.0,
+      "probe": "1s zero Cartesian increment and gripper open; last 0.5s predicate sustained",
+      "official_success": true,
+      "final_goal": true,
+      "last_half_second_goal_maintained": true,
+      "gripper_qpos_after": [
+        0.0393981687178258,
+        -0.03932830346700662
+      ],
+      "finger_joint_open_threshold_m": 0.03,
+      "gripper_open_confirmed": true,
+      "open_and_stable": true,
+      "source_sha256": "43fd5a3203b13a56babd85ba784003a93d321a395668931927cac6a4f791657b"
+    },
+    {
+      "suite": "libero_object",
+      "task_id": 1,
+      "initial_state_id": 0,
+      "initial_state_sha256": "4404ff0ecec75d07dbe02cdb0a6284fb3b24c79f2c164987433f00d3b885948c",
+      "replay_max_qpos_error": 0.0,
+      "probe": "1s zero Cartesian increment and gripper open; last 0.5s predicate sustained",
+      "official_success": true,
+      "final_goal": true,
+      "last_half_second_goal_maintained": true,
+      "gripper_qpos_after": [
+        0.039280514706011536,
+        -0.03943784812086026
+      ],
+      "finger_joint_open_threshold_m": 0.03,
+      "gripper_open_confirmed": true,
+      "open_and_stable": true,
+      "source_sha256": "43fd5a3203b13a56babd85ba784003a93d321a395668931927cac6a4f791657b"
+    },
+    {
+      "suite": "libero_object",
+      "task_id": 1,
+      "initial_state_id": 1,
+      "initial_state_sha256": "33644d67933758f98da6287e62ed0fa79250d398107872e297d7db728895fdbe",
+      "replay_max_qpos_error": 0.0,
+      "probe": "1s zero Cartesian increment and gripper open; last 0.5s predicate sustained",
+      "official_success": true,
+      "final_goal": true,
+      "last_half_second_goal_maintained": true,
+      "gripper_qpos_after": [
+        0.039318243920840025,
+        -0.03940024623230946
+      ],
+      "finger_joint_open_threshold_m": 0.03,
+      "gripper_open_confirmed": true,
+      "open_and_stable": true,
+      "source_sha256": "43fd5a3203b13a56babd85ba784003a93d321a395668931927cac6a4f791657b"
+    },
+    {
+      "suite": "libero_object",
+      "task_id": 1,
+      "initial_state_id": 2,
+      "initial_state_sha256": "4b18eff5a14fb9e6226ce096c48dfe4a4b55009958fdd4826dfed6b9a500568b",
+      "replay_max_qpos_error": 0.0,
+      "probe": "1s zero Cartesian increment and gripper open; last 0.5s predicate sustained",
+      "official_success": true,
+      "final_goal": true,
+      "last_half_second_goal_maintained": true,
+      "gripper_qpos_after": [
+        0.0393633124507827,
+        -0.039355146004077926
+      ],
+      "finger_joint_open_threshold_m": 0.03,
+      "gripper_open_confirmed": true,
+      "open_and_stable": true,
+      "source_sha256": "43fd5a3203b13a56babd85ba784003a93d321a395668931927cac6a4f791657b"
+    },
+    {
+      "suite": "libero_object",
+      "task_id": 2,
+      "initial_state_id": 0,
+      "initial_state_sha256": "02feb7104ff3af12f1247c461997f1113686f704fb702cd3280d6bfba56e6f71",
+      "replay_max_qpos_error": 0.0,
+      "probe": "1s zero Cartesian increment and gripper open; last 0.5s predicate sustained",
+      "official_success": true,
+      "final_goal": true,
+      "last_half_second_goal_maintained": true,
+      "gripper_qpos_after": [
+        0.039544410793265865,
+        -0.03975993074251064
+      ],
+      "finger_joint_open_threshold_m": 0.03,
+      "gripper_open_confirmed": true,
+      "open_and_stable": true,
+      "source_sha256": "43fd5a3203b13a56babd85ba784003a93d321a395668931927cac6a4f791657b"
+    },
+    {
+      "suite": "libero_object",
+      "task_id": 2,
+      "initial_state_id": 1,
+      "initial_state_sha256": "add76fa3d08f814a7d0386ffc26809a576a23aa066136e5b2401e8a3d0cb2cb6",
+      "replay_max_qpos_error": 0.0,
+      "probe": "1s zero Cartesian increment and gripper open; last 0.5s predicate sustained",
+      "official_success": true,
+      "final_goal": true,
+      "last_half_second_goal_maintained": true,
+      "gripper_qpos_after": [
+        0.03932513585537187,
+        -0.03927045660863579
+      ],
+      "finger_joint_open_threshold_m": 0.03,
+      "gripper_open_confirmed": true,
+      "open_and_stable": true,
+      "source_sha256": "43fd5a3203b13a56babd85ba784003a93d321a395668931927cac6a4f791657b"
+    },
+    {
+      "suite": "libero_object",
+      "task_id": 2,
+      "initial_state_id": 2,
+      "initial_state_sha256": "c4facf0ecf55df947c6299884b6549c12bcaa2fde689e0a5621a4f9f89ae9992",
+      "replay_max_qpos_error": 0.0,
+      "probe": "1s zero Cartesian increment and gripper open; last 0.5s predicate sustained",
+      "official_success": true,
+      "final_goal": true,
+      "last_half_second_goal_maintained": true,
+      "gripper_qpos_after": [
+        0.03923643779876301,
+        -0.03901538274431798
+      ],
+      "finger_joint_open_threshold_m": 0.03,
+      "gripper_open_confirmed": true,
+      "open_and_stable": true,
+      "source_sha256": "43fd5a3203b13a56babd85ba784003a93d321a395668931927cac6a4f791657b"
+    },
+    {
+      "suite": "libero_object",
+      "task_id": 3,
+      "initial_state_id": 0,
+      "initial_state_sha256": "65b4e812d49c1bc043dd16e4226442779ebaaf106dca39030d9a8576460bc091",
+      "replay_max_qpos_error": 0.0,
+      "probe": "1s zero Cartesian increment and gripper open; last 0.5s predicate sustained",
+      "official_success": true,
+      "final_goal": true,
+      "last_half_second_goal_maintained": true,
+      "gripper_qpos_after": [
+        0.039261698218090786,
+        -0.03933285166786539
+      ],
+      "finger_joint_open_threshold_m": 0.03,
+      "gripper_open_confirmed": true,
+      "open_and_stable": true,
+      "source_sha256": "43fd5a3203b13a56babd85ba784003a93d321a395668931927cac6a4f791657b"
+    },
+    {
+      "suite": "libero_object",
+      "task_id": 3,
+      "initial_state_id": 1,
+      "initial_state_sha256": "ad690ab94fbf2f764585e70aec14965559b24969f648d166ecd77cf891ce2d1e",
+      "replay_max_qpos_error": 0.0,
+      "probe": "1s zero Cartesian increment and gripper open; last 0.5s predicate sustained",
+      "official_success": true,
+      "final_goal": true,
+      "last_half_second_goal_maintained": true,
+      "gripper_qpos_after": [
+        0.03916442795759528,
+        -0.03936864531032173
+      ],
+      "finger_joint_open_threshold_m": 0.03,
+      "gripper_open_confirmed": true,
+      "open_and_stable": true,
+      "source_sha256": "43fd5a3203b13a56babd85ba784003a93d321a395668931927cac6a4f791657b"
+    },
+    {
+      "suite": "libero_object",
+      "task_id": 3,
+      "initial_state_id": 2,
+      "initial_state_sha256": "535fdf87422bbcc1e3820d60230c2282e5bc33e9f5abce92c3c02593c4fc47f0",
+      "replay_max_qpos_error": 0.0,
+      "probe": "1s zero Cartesian increment and gripper open; last 0.5s predicate sustained",
+      "official_success": true,
+      "final_goal": true,
+      "last_half_second_goal_maintained": true,
+      "gripper_qpos_after": [
+        0.03925889935898956,
+        -0.03926888958927635
+      ],
+      "finger_joint_open_threshold_m": 0.03,
+      "gripper_open_confirmed": true,
+      "open_and_stable": true,
+      "source_sha256": "43fd5a3203b13a56babd85ba784003a93d321a395668931927cac6a4f791657b"
+    },
+    {
+      "suite": "libero_object",
+      "task_id": 4,
+      "initial_state_id": 0,
+      "initial_state_sha256": "18c4d582007cfa2a76303af28f67aeab015a8f95fac59ea882ec786c120b8919",
+      "replay_max_qpos_error": 0.0,
+      "probe": "1s zero Cartesian increment and gripper open; last 0.5s predicate sustained",
+      "official_success": true,
+      "final_goal": true,
+      "last_half_second_goal_maintained": true,
+      "gripper_qpos_after": [
+        0.03936628091168409,
+        -0.039164630885179894
+      ],
+      "finger_joint_open_threshold_m": 0.03,
+      "gripper_open_confirmed": true,
+      "open_and_stable": true,
+      "source_sha256": "43fd5a3203b13a56babd85ba784003a93d321a395668931927cac6a4f791657b"
+    },
+    {
+      "suite": "libero_object",
+      "task_id": 4,
+      "initial_state_id": 1,
+      "initial_state_sha256": "57923257e1d175487c4f0e7c807e9bbfa3dbbc380c02dfe93a980d1653466ca0",
+      "replay_max_qpos_error": 0.0,
+      "probe": "1s zero Cartesian increment and gripper open; last 0.5s predicate sustained",
+      "official_success": true,
+      "final_goal": true,
+      "last_half_second_goal_maintained": true,
+      "gripper_qpos_after": [
+        0.039301093042089445,
+        -0.039291836611360466
+      ],
+      "finger_joint_open_threshold_m": 0.03,
+      "gripper_open_confirmed": true,
+      "open_and_stable": true,
+      "source_sha256": "43fd5a3203b13a56babd85ba784003a93d321a395668931927cac6a4f791657b"
+    },
+    {
+      "suite": "libero_object",
+      "task_id": 4,
+      "initial_state_id": 2,
+      "initial_state_sha256": "6d2f5d40a246f962ec0017e81ec84d603d4a3e7cdfd19afef86810174a23630b",
+      "replay_max_qpos_error": 0.0,
+      "probe": "1s zero Cartesian increment and gripper open; last 0.5s predicate sustained",
+      "official_success": true,
+      "final_goal": true,
+      "last_half_second_goal_maintained": true,
+      "gripper_qpos_after": [
+        0.03933784417664257,
+        -0.03925629667865289
+      ],
+      "finger_joint_open_threshold_m": 0.03,
+      "gripper_open_confirmed": true,
+      "open_and_stable": true,
+      "source_sha256": "43fd5a3203b13a56babd85ba784003a93d321a395668931927cac6a4f791657b"
+    },
+    {
+      "suite": "libero_object",
+      "task_id": 5,
+      "initial_state_id": 0,
+      "initial_state_sha256": "000a33b33f0beeee61ad6bc3f11f362fd5d9c6d8ecf7a7627575d9ebc775e121",
+      "replay_max_qpos_error": 0.0,
+      "probe": "1s zero Cartesian increment and gripper open; last 0.5s predicate sustained",
+      "official_success": true,
+      "final_goal": true,
+      "last_half_second_goal_maintained": true,
+      "gripper_qpos_after": [
+        0.03951860212675827,
+        -0.039857662726971235
+      ],
+      "finger_joint_open_threshold_m": 0.03,
+      "gripper_open_confirmed": true,
+      "open_and_stable": true,
+      "source_sha256": "43fd5a3203b13a56babd85ba784003a93d321a395668931927cac6a4f791657b"
+    },
+    {
+      "suite": "libero_object",
+      "task_id": 5,
+      "initial_state_id": 1,
+      "initial_state_sha256": "ce18466b08cc9ed61a3a64e9f8a363617e8242fcb2975e9e0bac1a3845e41a83",
+      "replay_max_qpos_error": 0.0,
+      "probe": "1s zero Cartesian increment and gripper open; last 0.5s predicate sustained",
+      "official_success": true,
+      "final_goal": true,
+      "last_half_second_goal_maintained": true,
+      "gripper_qpos_after": [
+        0.039227272766271984,
+        -0.039587020384718036
+      ],
+      "finger_joint_open_threshold_m": 0.03,
+      "gripper_open_confirmed": true,
+      "open_and_stable": true,
+      "source_sha256": "43fd5a3203b13a56babd85ba784003a93d321a395668931927cac6a4f791657b"
+    },
+    {
+      "suite": "libero_object",
+      "task_id": 5,
+      "initial_state_id": 2,
+      "initial_state_sha256": "bb16f12f5213b093258f3318b209132d9a69cedaf6eed9cd3a58e4b8f95c69ac",
+      "replay_max_qpos_error": 0.0,
+      "probe": "1s zero Cartesian increment and gripper open; last 0.5s predicate sustained",
+      "official_success": true,
+      "final_goal": true,
+      "last_half_second_goal_maintained": true,
+      "gripper_qpos_after": [
+        0.039053274495880995,
+        -0.03914260665919743
+      ],
+      "finger_joint_open_threshold_m": 0.03,
+      "gripper_open_confirmed": true,
+      "open_and_stable": true,
+      "source_sha256": "43fd5a3203b13a56babd85ba784003a93d321a395668931927cac6a4f791657b"
+    },
+    {
+      "suite": "libero_object",
+      "task_id": 6,
+      "initial_state_id": 0,
+      "initial_state_sha256": "bad9bba0fbdf574e67aa4f37c8ec45b157b0f587a4f1c255fef5f0c2c146998d",
+      "replay_max_qpos_error": 0.0,
+      "probe": "1s zero Cartesian increment and gripper open; last 0.5s predicate sustained",
+      "official_success": true,
+      "final_goal": true,
+      "last_half_second_goal_maintained": true,
+      "gripper_qpos_after": [
+        0.03934844857640059,
+        -0.03930982388988708
+      ],
+      "finger_joint_open_threshold_m": 0.03,
+      "gripper_open_confirmed": true,
+      "open_and_stable": true,
+      "source_sha256": "43fd5a3203b13a56babd85ba784003a93d321a395668931927cac6a4f791657b"
+    },
+    {
+      "suite": "libero_object",
+      "task_id": 6,
+      "initial_state_id": 1,
+      "initial_state_sha256": "213f81733d30323e27ea912a5a9736830957529d3201943a1ada7f5590f8a4f5",
+      "replay_max_qpos_error": 0.0,
+      "probe": "1s zero Cartesian increment and gripper open; last 0.5s predicate sustained",
+      "official_success": true,
+      "final_goal": true,
+      "last_half_second_goal_maintained": true,
+      "gripper_qpos_after": [
+        0.039414196167219855,
+        -0.03924410680907185
+      ],
+      "finger_joint_open_threshold_m": 0.03,
+      "gripper_open_confirmed": true,
+      "open_and_stable": true,
+      "source_sha256": "43fd5a3203b13a56babd85ba784003a93d321a395668931927cac6a4f791657b"
+    },
+    {
+      "suite": "libero_object",
+      "task_id": 6,
+      "initial_state_id": 2,
+      "initial_state_sha256": "c21cc2b537e2701898d990680eaa7565df3530e8ed95ae858310c013f3cc09dc",
+      "replay_max_qpos_error": 0.0,
+      "probe": "1s zero Cartesian increment and gripper open; last 0.5s predicate sustained",
+      "official_success": true,
+      "final_goal": true,
+      "last_half_second_goal_maintained": true,
+      "gripper_qpos_after": [
+        0.039333869228133325,
+        -0.0393822041671817
+      ],
+      "finger_joint_open_threshold_m": 0.03,
+      "gripper_open_confirmed": true,
+      "open_and_stable": true,
+      "source_sha256": "43fd5a3203b13a56babd85ba784003a93d321a395668931927cac6a4f791657b"
+    },
+    {
+      "suite": "libero_object",
+      "task_id": 7,
+      "initial_state_id": 0,
+      "initial_state_sha256": "f0161129a0b12199cbd541c0b406015976bbf13af728ecb767c63c5ca8c8b34b",
+      "replay_max_qpos_error": 0.0,
+      "probe": "1s zero Cartesian increment and gripper open; last 0.5s predicate sustained",
+      "official_success": true,
+      "final_goal": true,
+      "last_half_second_goal_maintained": true,
+      "gripper_qpos_after": [
+        0.03912961857035519,
+        -0.039072671283726976
+      ],
+      "finger_joint_open_threshold_m": 0.03,
+      "gripper_open_confirmed": true,
+      "open_and_stable": true,
+      "source_sha256": "43fd5a3203b13a56babd85ba784003a93d321a395668931927cac6a4f791657b"
+    },
+    {
+      "suite": "libero_object",
+      "task_id": 7,
+      "initial_state_id": 1,
+      "initial_state_sha256": "0d8646c3a118eb8d7800f6e46da313f878869576770acb0ee6642367eb44c46f",
+      "replay_max_qpos_error": 0.0,
+      "probe": "1s zero Cartesian increment and gripper open; last 0.5s predicate sustained",
+      "official_success": true,
+      "final_goal": true,
+      "last_half_second_goal_maintained": true,
+      "gripper_qpos_after": [
+        0.039336464120814124,
+        -0.03955339016538942
+      ],
+      "finger_joint_open_threshold_m": 0.03,
+      "gripper_open_confirmed": true,
+      "open_and_stable": true,
+      "source_sha256": "43fd5a3203b13a56babd85ba784003a93d321a395668931927cac6a4f791657b"
+    },
+    {
+      "suite": "libero_object",
+      "task_id": 7,
+      "initial_state_id": 2,
+      "initial_state_sha256": "484194ce1865cb08e97bcdaf90a24af99a80ef972ab8598f2707104ead74cf90",
+      "replay_max_qpos_error": 0.0,
+      "probe": "1s zero Cartesian increment and gripper open; last 0.5s predicate sustained",
+      "official_success": true,
+      "final_goal": true,
+      "last_half_second_goal_maintained": true,
+      "gripper_qpos_after": [
+        0.039333539722979795,
+        -0.03934149569900347
+      ],
+      "finger_joint_open_threshold_m": 0.03,
+      "gripper_open_confirmed": true,
+      "open_and_stable": true,
+      "source_sha256": "43fd5a3203b13a56babd85ba784003a93d321a395668931927cac6a4f791657b"
+    },
+    {
+      "suite": "libero_object",
+      "task_id": 8,
+      "initial_state_id": 0,
+      "initial_state_sha256": "b50e9e8d6831fdd4481179c1ce2f962065ef508c5d358045cfe9d26cc3547dad",
+      "replay_max_qpos_error": 0.0,
+      "probe": "1s zero Cartesian increment and gripper open; last 0.5s predicate sustained",
+      "official_success": true,
+      "final_goal": true,
+      "last_half_second_goal_maintained": true,
+      "gripper_qpos_after": [
+        0.03935133587761535,
+        -0.0393710396690939
+      ],
+      "finger_joint_open_threshold_m": 0.03,
+      "gripper_open_confirmed": true,
+      "open_and_stable": true,
+      "source_sha256": "43fd5a3203b13a56babd85ba784003a93d321a395668931927cac6a4f791657b"
+    },
+    {
+      "suite": "libero_object",
+      "task_id": 8,
+      "initial_state_id": 1,
+      "initial_state_sha256": "f59e6162c8966e38f6cbae0ba82aff1e970c277dcd663e4281efbbf2be545807",
+      "replay_max_qpos_error": 0.0,
+      "probe": "1s zero Cartesian increment and gripper open; last 0.5s predicate sustained",
+      "official_success": true,
+      "final_goal": true,
+      "last_half_second_goal_maintained": true,
+      "gripper_qpos_after": [
+        0.03932858329077202,
+        -0.03939347745206688
+      ],
+      "finger_joint_open_threshold_m": 0.03,
+      "gripper_open_confirmed": true,
+      "open_and_stable": true,
+      "source_sha256": "43fd5a3203b13a56babd85ba784003a93d321a395668931927cac6a4f791657b"
+    },
+    {
+      "suite": "libero_object",
+      "task_id": 8,
+      "initial_state_id": 2,
+      "initial_state_sha256": "107c71f9ec319ccd2d3a2c3c913c42f496296fcaca3704e6591731234027c71c",
+      "replay_max_qpos_error": 0.0,
+      "probe": "1s zero Cartesian increment and gripper open; last 0.5s predicate sustained",
+      "official_success": true,
+      "final_goal": true,
+      "last_half_second_goal_maintained": true,
+      "gripper_qpos_after": [
+        0.039403911191944106,
+        -0.03931816932649091
+      ],
+      "finger_joint_open_threshold_m": 0.03,
+      "gripper_open_confirmed": true,
+      "open_and_stable": true,
+      "source_sha256": "43fd5a3203b13a56babd85ba784003a93d321a395668931927cac6a4f791657b"
+    },
+    {
+      "suite": "libero_object",
+      "task_id": 9,
+      "initial_state_id": 0,
+      "initial_state_sha256": "c838e04306b82002976ee1b73da8a9d0f2d09cd7e51442e899862c51e19b0da9",
+      "replay_max_qpos_error": 0.0,
+      "probe": "1s zero Cartesian increment and gripper open; last 0.5s predicate sustained",
+      "official_success": true,
+      "final_goal": true,
+      "last_half_second_goal_maintained": true,
+      "gripper_qpos_after": [
+        0.039123914301841346,
+        -0.039075769029555764
+      ],
+      "finger_joint_open_threshold_m": 0.03,
+      "gripper_open_confirmed": true,
+      "open_and_stable": true,
+      "source_sha256": "43fd5a3203b13a56babd85ba784003a93d321a395668931927cac6a4f791657b"
+    },
+    {
+      "suite": "libero_object",
+      "task_id": 9,
+      "initial_state_id": 1,
+      "initial_state_sha256": "1ce8b67bedcf53a4e0d7aa0cb8a7e22103512377a098ef7b5a22e4f8a5053f95",
+      "replay_max_qpos_error": 0.0,
+      "probe": "1s zero Cartesian increment and gripper open; last 0.5s predicate sustained",
+      "official_success": true,
+      "final_goal": true,
+      "last_half_second_goal_maintained": true,
+      "gripper_qpos_after": [
+        0.0391753019476793,
+        -0.03917609348248133
+      ],
+      "finger_joint_open_threshold_m": 0.03,
+      "gripper_open_confirmed": true,
+      "open_and_stable": true,
+      "source_sha256": "43fd5a3203b13a56babd85ba784003a93d321a395668931927cac6a4f791657b"
+    },
+    {
+      "suite": "libero_object",
+      "task_id": 9,
+      "initial_state_id": 2,
+      "initial_state_sha256": "00837abe1ab8920dce823bcedccdf3a781bf367b44ce3a0e795507f47d1f210f",
+      "replay_max_qpos_error": 0.0,
+      "probe": "1s zero Cartesian increment and gripper open; last 0.5s predicate sustained",
+      "official_success": true,
+      "final_goal": true,
+      "last_half_second_goal_maintained": true,
+      "gripper_qpos_after": [
+        0.03904087103215929,
+        -0.039162706443608725
+      ],
+      "finger_joint_open_threshold_m": 0.03,
+      "gripper_open_confirmed": true,
+      "open_and_stable": true,
+      "source_sha256": "43fd5a3203b13a56babd85ba784003a93d321a395668931927cac6a4f791657b"
+    },
+    {
+      "suite": "libero_spatial",
+      "task_id": 0,
+      "initial_state_id": 0,
+      "initial_state_sha256": "4e3eaf7a315bc3bafb6db4837c8eef0e5f8aea717782a2a3ea33139392d966ed",
+      "replay_max_qpos_error": 0.0,
+      "probe": "1s zero Cartesian increment and gripper open; last 0.5s predicate sustained",
+      "official_success": true,
+      "final_goal": true,
+      "last_half_second_goal_maintained": true,
+      "gripper_qpos_after": [
+        0.039139318947500494,
+        -0.0390224225243027
+      ],
+      "finger_joint_open_threshold_m": 0.03,
+      "gripper_open_confirmed": true,
+      "open_and_stable": true,
+      "source_sha256": "43fd5a3203b13a56babd85ba784003a93d321a395668931927cac6a4f791657b"
+    },
+    {
+      "suite": "libero_spatial",
+      "task_id": 0,
+      "initial_state_id": 1,
+      "initial_state_sha256": "6c2936dc25a97728b811f9db579687d011cbd231d5472e985775a67ca9892cf8",
+      "replay_max_qpos_error": 0.0,
+      "probe": "1s zero Cartesian increment and gripper open; last 0.5s predicate sustained",
+      "official_success": true,
+      "final_goal": true,
+      "last_half_second_goal_maintained": true,
+      "gripper_qpos_after": [
+        0.03922143455250785,
+        -0.03894058159319695
+      ],
+      "finger_joint_open_threshold_m": 0.03,
+      "gripper_open_confirmed": true,
+      "open_and_stable": true,
+      "source_sha256": "43fd5a3203b13a56babd85ba784003a93d321a395668931927cac6a4f791657b"
+    },
+    {
+      "suite": "libero_spatial",
+      "task_id": 0,
+      "initial_state_id": 2,
+      "initial_state_sha256": "a5d4b6d871eb48c276a3fc8499e1429ec1c59df278466aa82de44a93260087a0",
+      "replay_max_qpos_error": 0.0,
+      "probe": "1s zero Cartesian increment and gripper open; last 0.5s predicate sustained",
+      "official_success": true,
+      "final_goal": true,
+      "last_half_second_goal_maintained": true,
+      "gripper_qpos_after": [
+        0.03920024302610257,
+        -0.038961278379704645
+      ],
+      "finger_joint_open_threshold_m": 0.03,
+      "gripper_open_confirmed": true,
+      "open_and_stable": true,
+      "source_sha256": "43fd5a3203b13a56babd85ba784003a93d321a395668931927cac6a4f791657b"
+    },
+    {
+      "suite": "libero_spatial",
+      "task_id": 1,
+      "initial_state_id": 0,
+      "initial_state_sha256": "d116842e01703fbea595511db813a3816c8d9f2302b4e979ebec4f15b7a750a2",
+      "replay_max_qpos_error": 0.0,
+      "probe": "1s zero Cartesian increment and gripper open; last 0.5s predicate sustained",
+      "official_success": true,
+      "final_goal": true,
+      "last_half_second_goal_maintained": true,
+      "gripper_qpos_after": [
+        0.03899093256790935,
+        -0.03916662995225
+      ],
+      "finger_joint_open_threshold_m": 0.03,
+      "gripper_open_confirmed": true,
+      "open_and_stable": true,
+      "source_sha256": "43fd5a3203b13a56babd85ba784003a93d321a395668931927cac6a4f791657b"
+    },
+    {
+      "suite": "libero_spatial",
+      "task_id": 1,
+      "initial_state_id": 1,
+      "initial_state_sha256": "b8757ca36fc25bb010af8934ff98b8d3a221cbd3a5e38e7b07cc8055c3108a0b",
+      "replay_max_qpos_error": 0.0,
+      "probe": "1s zero Cartesian increment and gripper open; last 0.5s predicate sustained",
+      "official_success": true,
+      "final_goal": true,
+      "last_half_second_goal_maintained": true,
+      "gripper_qpos_after": [
+        0.03899717359432426,
+        -0.03916232132497655
+      ],
+      "finger_joint_open_threshold_m": 0.03,
+      "gripper_open_confirmed": true,
+      "open_and_stable": true,
+      "source_sha256": "43fd5a3203b13a56babd85ba784003a93d321a395668931927cac6a4f791657b"
+    },
+    {
+      "suite": "libero_spatial",
+      "task_id": 1,
+      "initial_state_id": 2,
+      "initial_state_sha256": "d45a8bb759e662331e34b0ade8f7a4ca847993b682d3299aaa4894b340c845a0",
+      "replay_max_qpos_error": 0.0,
+      "probe": "1s zero Cartesian increment and gripper open; last 0.5s predicate sustained",
+      "official_success": true,
+      "final_goal": true,
+      "last_half_second_goal_maintained": true,
+      "gripper_qpos_after": [
+        0.03898443917377457,
+        -0.03917772845235557
+      ],
+      "finger_joint_open_threshold_m": 0.03,
+      "gripper_open_confirmed": true,
+      "open_and_stable": true,
+      "source_sha256": "43fd5a3203b13a56babd85ba784003a93d321a395668931927cac6a4f791657b"
+    },
+    {
+      "suite": "libero_spatial",
+      "task_id": 2,
+      "initial_state_id": 0,
+      "initial_state_sha256": "408c455fb617e5320060d643ef80ec2035d4e98600659cc3deb5a1e85482bf76",
+      "replay_max_qpos_error": 0.0,
+      "probe": "1s zero Cartesian increment and gripper open; last 0.5s predicate sustained",
+      "official_success": true,
+      "final_goal": true,
+      "last_half_second_goal_maintained": true,
+      "gripper_qpos_after": [
+        0.03902445345829006,
+        -0.03913717685916185
+      ],
+      "finger_joint_open_threshold_m": 0.03,
+      "gripper_open_confirmed": true,
+      "open_and_stable": true,
+      "source_sha256": "43fd5a3203b13a56babd85ba784003a93d321a395668931927cac6a4f791657b"
+    },
+    {
+      "suite": "libero_spatial",
+      "task_id": 2,
+      "initial_state_id": 1,
+      "initial_state_sha256": "05962fe9baf173d80806225d32a331fa8eedcdb5c14a085ee5354715380c0f8f",
+      "replay_max_qpos_error": 0.0,
+      "probe": "1s zero Cartesian increment and gripper open; last 0.5s predicate sustained",
+      "official_success": true,
+      "final_goal": true,
+      "last_half_second_goal_maintained": false,
+      "gripper_qpos_after": [
+        0.0389981285249161,
+        -0.03916373750697431
+      ],
+      "finger_joint_open_threshold_m": 0.03,
+      "gripper_open_confirmed": true,
+      "open_and_stable": false,
+      "source_sha256": "43fd5a3203b13a56babd85ba784003a93d321a395668931927cac6a4f791657b"
+    },
+    {
+      "suite": "libero_spatial",
+      "task_id": 2,
+      "initial_state_id": 2,
+      "initial_state_sha256": "111971abb8f2e699872e68aa0ed445287da5c2ed642a5da083a9c9d4d90a6d12",
+      "replay_max_qpos_error": 0.0,
+      "probe": "1s zero Cartesian increment and gripper open; last 0.5s predicate sustained",
+      "official_success": true,
+      "final_goal": true,
+      "last_half_second_goal_maintained": true,
+      "gripper_qpos_after": [
+        0.03894812409293849,
+        -0.03921328746811697
+      ],
+      "finger_joint_open_threshold_m": 0.03,
+      "gripper_open_confirmed": true,
+      "open_and_stable": true,
+      "source_sha256": "43fd5a3203b13a56babd85ba784003a93d321a395668931927cac6a4f791657b"
+    },
+    {
+      "suite": "libero_spatial",
+      "task_id": 3,
+      "initial_state_id": 0,
+      "initial_state_sha256": "36424fa758f0e72399a35cefa285d0658e4b5bd17bfb3e2127f85aa2e0944517",
+      "replay_max_qpos_error": 0.0,
+      "probe": "1s zero Cartesian increment and gripper open; last 0.5s predicate sustained",
+      "official_success": true,
+      "final_goal": true,
+      "last_half_second_goal_maintained": true,
+      "gripper_qpos_after": [
+        0.03885259911218105,
+        -0.039308940237784244
+      ],
+      "finger_joint_open_threshold_m": 0.03,
+      "gripper_open_confirmed": true,
+      "open_and_stable": true,
+      "source_sha256": "43fd5a3203b13a56babd85ba784003a93d321a395668931927cac6a4f791657b"
+    },
+    {
+      "suite": "libero_spatial",
+      "task_id": 3,
+      "initial_state_id": 1,
+      "initial_state_sha256": "3a92ca9cb754b9daca5db603179f05e323c01209edfaf5d287655d5998252f9f",
+      "replay_max_qpos_error": 0.0,
+      "probe": "1s zero Cartesian increment and gripper open; last 0.5s predicate sustained",
+      "official_success": true,
+      "final_goal": true,
+      "last_half_second_goal_maintained": true,
+      "gripper_qpos_after": [
+        0.03885516158593094,
+        -0.03930645199220396
+      ],
+      "finger_joint_open_threshold_m": 0.03,
+      "gripper_open_confirmed": true,
+      "open_and_stable": true,
+      "source_sha256": "43fd5a3203b13a56babd85ba784003a93d321a395668931927cac6a4f791657b"
+    },
+    {
+      "suite": "libero_spatial",
+      "task_id": 3,
+      "initial_state_id": 2,
+      "initial_state_sha256": "1b7b03eb038b60bd3d265226a1f5832c44ebb968731ac264f8983ceebb1774e5",
+      "replay_max_qpos_error": 0.0,
+      "probe": "1s zero Cartesian increment and gripper open; last 0.5s predicate sustained",
+      "official_success": true,
+      "final_goal": true,
+      "last_half_second_goal_maintained": true,
+      "gripper_qpos_after": [
+        0.038932343242196146,
+        -0.03922953016460002
+      ],
+      "finger_joint_open_threshold_m": 0.03,
+      "gripper_open_confirmed": true,
+      "open_and_stable": true,
+      "source_sha256": "43fd5a3203b13a56babd85ba784003a93d321a395668931927cac6a4f791657b"
+    },
+    {
+      "suite": "libero_spatial",
+      "task_id": 4,
+      "initial_state_id": 0,
+      "initial_state_sha256": "2e3f91b350eaef1b23c2d4ee14c513b2158a106bff7ed6c249b58e2cf89367f4",
+      "replay_max_qpos_error": 0.0,
+      "probe": "1s zero Cartesian increment and gripper open; last 0.5s predicate sustained",
+      "official_success": true,
+      "final_goal": true,
+      "last_half_second_goal_maintained": true,
+      "gripper_qpos_after": [
+        0.039030714358370536,
+        -0.039130996092585454
+      ],
+      "finger_joint_open_threshold_m": 0.03,
+      "gripper_open_confirmed": true,
+      "open_and_stable": true,
+      "source_sha256": "43fd5a3203b13a56babd85ba784003a93d321a395668931927cac6a4f791657b"
+    },
+    {
+      "suite": "libero_spatial",
+      "task_id": 4,
+      "initial_state_id": 1,
+      "initial_state_sha256": "d1f552d41794709fdcdccf886e4be6384f15a50c1d0e6227a99e08d86e19e23e",
+      "replay_max_qpos_error": 0.0,
+      "probe": "1s zero Cartesian increment and gripper open; last 0.5s predicate sustained",
+      "official_success": true,
+      "final_goal": true,
+      "last_half_second_goal_maintained": true,
+      "gripper_qpos_after": [
+        0.03903822334531924,
+        -0.03912339918326976
+      ],
+      "finger_joint_open_threshold_m": 0.03,
+      "gripper_open_confirmed": true,
+      "open_and_stable": true,
+      "source_sha256": "43fd5a3203b13a56babd85ba784003a93d321a395668931927cac6a4f791657b"
+    },
+    {
+      "suite": "libero_spatial",
+      "task_id": 4,
+      "initial_state_id": 2,
+      "initial_state_sha256": "d5a2a728be37ce588fd1326df08b48cb9e1913b333c6719bb7059308783d4731",
+      "replay_max_qpos_error": 0.0,
+      "probe": "1s zero Cartesian increment and gripper open; last 0.5s predicate sustained",
+      "official_success": true,
+      "final_goal": true,
+      "last_half_second_goal_maintained": true,
+      "gripper_qpos_after": [
+        0.038944801891953575,
+        -0.03921681273389666
+      ],
+      "finger_joint_open_threshold_m": 0.03,
+      "gripper_open_confirmed": true,
+      "open_and_stable": true,
+      "source_sha256": "43fd5a3203b13a56babd85ba784003a93d321a395668931927cac6a4f791657b"
+    },
+    {
+      "suite": "libero_spatial",
+      "task_id": 5,
+      "initial_state_id": 0,
+      "initial_state_sha256": "63f019944e240d60a5770936f1eaa3853e38bbfeb1c26c987826fb004ed4346c",
+      "replay_max_qpos_error": 0.0,
+      "probe": "1s zero Cartesian increment and gripper open; last 0.5s predicate sustained",
+      "official_success": true,
+      "final_goal": true,
+      "last_half_second_goal_maintained": true,
+      "gripper_qpos_after": [
+        0.039304545026748315,
+        -0.03885708970869113
+      ],
+      "finger_joint_open_threshold_m": 0.03,
+      "gripper_open_confirmed": true,
+      "open_and_stable": true,
+      "source_sha256": "43fd5a3203b13a56babd85ba784003a93d321a395668931927cac6a4f791657b"
+    },
+    {
+      "suite": "libero_spatial",
+      "task_id": 5,
+      "initial_state_id": 1,
+      "initial_state_sha256": "7e74f7975ea3899ecb94c8bee1f302127d74c600d13393826d7537db89bf9cc1",
+      "replay_max_qpos_error": 0.0,
+      "probe": "1s zero Cartesian increment and gripper open; last 0.5s predicate sustained",
+      "official_success": true,
+      "final_goal": true,
+      "last_half_second_goal_maintained": true,
+      "gripper_qpos_after": [
+        0.03921979793414352,
+        -0.038827111701167115
+      ],
+      "finger_joint_open_threshold_m": 0.03,
+      "gripper_open_confirmed": true,
+      "open_and_stable": true,
+      "source_sha256": "43fd5a3203b13a56babd85ba784003a93d321a395668931927cac6a4f791657b"
+    },
+    {
+      "suite": "libero_spatial",
+      "task_id": 5,
+      "initial_state_id": 2,
+      "initial_state_sha256": "56ae454858e60cf316c3e75237109ba85d8808ab2ef57108c3f9b96c1e839ff3",
+      "replay_max_qpos_error": 0.0,
+      "probe": "1s zero Cartesian increment and gripper open; last 0.5s predicate sustained",
+      "official_success": true,
+      "final_goal": true,
+      "last_half_second_goal_maintained": true,
+      "gripper_qpos_after": [
+        0.03908450295181935,
+        -0.03907782818278636
+      ],
+      "finger_joint_open_threshold_m": 0.03,
+      "gripper_open_confirmed": true,
+      "open_and_stable": true,
+      "source_sha256": "43fd5a3203b13a56babd85ba784003a93d321a395668931927cac6a4f791657b"
+    },
+    {
+      "suite": "libero_spatial",
+      "task_id": 6,
+      "initial_state_id": 0,
+      "initial_state_sha256": "d81530779b15be6bdfe4935a7a802102e3e3883823b29fefd40a2131e50fd515",
+      "replay_max_qpos_error": 0.0,
+      "probe": "1s zero Cartesian increment and gripper open; last 0.5s predicate sustained",
+      "official_success": true,
+      "final_goal": true,
+      "last_half_second_goal_maintained": true,
+      "gripper_qpos_after": [
+        0.03882003011774094,
+        -0.03934169745700136
+      ],
+      "finger_joint_open_threshold_m": 0.03,
+      "gripper_open_confirmed": true,
+      "open_and_stable": true,
+      "source_sha256": "43fd5a3203b13a56babd85ba784003a93d321a395668931927cac6a4f791657b"
+    },
+    {
+      "suite": "libero_spatial",
+      "task_id": 6,
+      "initial_state_id": 1,
+      "initial_state_sha256": "1f2318d9cbd670217d18ba98020fb95f9969550b5cb30709224eb6f2d08319cf",
+      "replay_max_qpos_error": 0.0,
+      "probe": "1s zero Cartesian increment and gripper open; last 0.5s predicate sustained",
+      "official_success": true,
+      "final_goal": true,
+      "last_half_second_goal_maintained": true,
+      "gripper_qpos_after": [
+        0.038966012051566724,
+        -0.03919555425211766
+      ],
+      "finger_joint_open_threshold_m": 0.03,
+      "gripper_open_confirmed": true,
+      "open_and_stable": true,
+      "source_sha256": "43fd5a3203b13a56babd85ba784003a93d321a395668931927cac6a4f791657b"
+    },
+    {
+      "suite": "libero_spatial",
+      "task_id": 6,
+      "initial_state_id": 2,
+      "initial_state_sha256": "f6387456ce397a4ffbd6700d00f37cf068df8df4c085350ecd576be0c06fe838",
+      "replay_max_qpos_error": 0.0,
+      "probe": "1s zero Cartesian increment and gripper open; last 0.5s predicate sustained",
+      "official_success": true,
+      "final_goal": true,
+      "last_half_second_goal_maintained": true,
+      "gripper_qpos_after": [
+        0.03890896821446889,
+        -0.03925292348103278
+      ],
+      "finger_joint_open_threshold_m": 0.03,
+      "gripper_open_confirmed": true,
+      "open_and_stable": true,
+      "source_sha256": "43fd5a3203b13a56babd85ba784003a93d321a395668931927cac6a4f791657b"
+    },
+    {
+      "suite": "libero_spatial",
+      "task_id": 7,
+      "initial_state_id": 0,
+      "initial_state_sha256": "501105aff4e1897d96cac0d0ee69fc702ad209e317511807e27df8b421ae1f2a",
+      "replay_max_qpos_error": 0.0,
+      "probe": "1s zero Cartesian increment and gripper open; last 0.5s predicate sustained",
+      "official_success": true,
+      "final_goal": true,
+      "last_half_second_goal_maintained": true,
+      "gripper_qpos_after": [
+        0.03909519008131752,
+        -0.03906652966897689
+      ],
+      "finger_joint_open_threshold_m": 0.03,
+      "gripper_open_confirmed": true,
+      "open_and_stable": true,
+      "source_sha256": "43fd5a3203b13a56babd85ba784003a93d321a395668931927cac6a4f791657b"
+    },
+    {
+      "suite": "libero_spatial",
+      "task_id": 7,
+      "initial_state_id": 1,
+      "initial_state_sha256": "9fb3287b9233e63f3c25de74a5c1697d6c3e3ce33d71da6cb975e98884df7b65",
+      "replay_max_qpos_error": 0.0,
+      "probe": "1s zero Cartesian increment and gripper open; last 0.5s predicate sustained",
+      "official_success": true,
+      "final_goal": true,
+      "last_half_second_goal_maintained": true,
+      "gripper_qpos_after": [
+        0.03913934150202833,
+        -0.03902249768593993
+      ],
+      "finger_joint_open_threshold_m": 0.03,
+      "gripper_open_confirmed": true,
+      "open_and_stable": true,
+      "source_sha256": "43fd5a3203b13a56babd85ba784003a93d321a395668931927cac6a4f791657b"
+    },
+    {
+      "suite": "libero_spatial",
+      "task_id": 7,
+      "initial_state_id": 2,
+      "initial_state_sha256": "055ebb922514bbc2796db6201c2eb1f36c0f2dc6d3e906bdfed720d9d67f25e1",
+      "replay_max_qpos_error": 0.0,
+      "probe": "1s zero Cartesian increment and gripper open; last 0.5s predicate sustained",
+      "official_success": true,
+      "final_goal": true,
+      "last_half_second_goal_maintained": true,
+      "gripper_qpos_after": [
+        0.03912377869119264,
+        -0.03903773095290563
+      ],
+      "finger_joint_open_threshold_m": 0.03,
+      "gripper_open_confirmed": true,
+      "open_and_stable": true,
+      "source_sha256": "43fd5a3203b13a56babd85ba784003a93d321a395668931927cac6a4f791657b"
+    },
+    {
+      "suite": "libero_spatial",
+      "task_id": 8,
+      "initial_state_id": 0,
+      "initial_state_sha256": "aef30979e2ee8c9893c9161c881264362f750a34df952f381e3969a567688451",
+      "replay_max_qpos_error": 0.0,
+      "probe": "1s zero Cartesian increment and gripper open; last 0.5s predicate sustained",
+      "official_success": true,
+      "final_goal": true,
+      "last_half_second_goal_maintained": true,
+      "gripper_qpos_after": [
+        0.039259843581698275,
+        -0.0391982793136216
+      ],
+      "finger_joint_open_threshold_m": 0.03,
+      "gripper_open_confirmed": true,
+      "open_and_stable": true,
+      "source_sha256": "43fd5a3203b13a56babd85ba784003a93d321a395668931927cac6a4f791657b"
+    },
+    {
+      "suite": "libero_spatial",
+      "task_id": 8,
+      "initial_state_id": 1,
+      "initial_state_sha256": "50873b51eb943c92ce71438551a26675e253fe37622918167c060a16477577f7",
+      "replay_max_qpos_error": 0.0,
+      "probe": "1s zero Cartesian increment and gripper open; last 0.5s predicate sustained",
+      "official_success": true,
+      "final_goal": true,
+      "last_half_second_goal_maintained": true,
+      "gripper_qpos_after": [
+        0.039158830894346325,
+        -0.03900242080154224
+      ],
+      "finger_joint_open_threshold_m": 0.03,
+      "gripper_open_confirmed": true,
+      "open_and_stable": true,
+      "source_sha256": "43fd5a3203b13a56babd85ba784003a93d321a395668931927cac6a4f791657b"
+    },
+    {
+      "suite": "libero_spatial",
+      "task_id": 8,
+      "initial_state_id": 2,
+      "initial_state_sha256": "4463e2e153ce61661d48384171f0532d4eb4c45158ab9c0325012e26c0a9d830",
+      "replay_max_qpos_error": 0.0,
+      "probe": "1s zero Cartesian increment and gripper open; last 0.5s predicate sustained",
+      "official_success": true,
+      "final_goal": true,
+      "last_half_second_goal_maintained": true,
+      "gripper_qpos_after": [
+        0.03917801873767447,
+        -0.03898378747818655
+      ],
+      "finger_joint_open_threshold_m": 0.03,
+      "gripper_open_confirmed": true,
+      "open_and_stable": true,
+      "source_sha256": "43fd5a3203b13a56babd85ba784003a93d321a395668931927cac6a4f791657b"
+    },
+    {
+      "suite": "libero_spatial",
+      "task_id": 9,
+      "initial_state_id": 0,
+      "initial_state_sha256": "885cdd89e3d71824f79e4f0ae4711f9ca04367c0011147cb657ecc32be3f375b",
+      "replay_max_qpos_error": 0.0,
+      "probe": "1s zero Cartesian increment and gripper open; last 0.5s predicate sustained",
+      "official_success": true,
+      "final_goal": true,
+      "last_half_second_goal_maintained": true,
+      "gripper_qpos_after": [
+        0.038870281160996605,
+        -0.039445540561462766
+      ],
+      "finger_joint_open_threshold_m": 0.03,
+      "gripper_open_confirmed": true,
+      "open_and_stable": true,
+      "source_sha256": "43fd5a3203b13a56babd85ba784003a93d321a395668931927cac6a4f791657b"
+    },
+    {
+      "suite": "libero_spatial",
+      "task_id": 9,
+      "initial_state_id": 1,
+      "initial_state_sha256": "9f7e0be6c15a36f64dae1f64c4e89799ab70078be2b9977ab38bce16aee041cf",
+      "replay_max_qpos_error": 0.0,
+      "probe": "1s zero Cartesian increment and gripper open; last 0.5s predicate sustained",
+      "official_success": true,
+      "final_goal": true,
+      "last_half_second_goal_maintained": true,
+      "gripper_qpos_after": [
+        0.039041771993419926,
+        -0.03911985047571698
+      ],
+      "finger_joint_open_threshold_m": 0.03,
+      "gripper_open_confirmed": true,
+      "open_and_stable": true,
+      "source_sha256": "43fd5a3203b13a56babd85ba784003a93d321a395668931927cac6a4f791657b"
+    },
+    {
+      "suite": "libero_spatial",
+      "task_id": 9,
+      "initial_state_id": 2,
+      "initial_state_sha256": "6e3698ba2ffc6e03326d30f3fd411f63e4d5304a967abf515195cbbcc61f512b",
+      "replay_max_qpos_error": 0.0,
+      "probe": "1s zero Cartesian increment and gripper open; last 0.5s predicate sustained",
+      "official_success": true,
+      "final_goal": true,
+      "last_half_second_goal_maintained": true,
+      "gripper_qpos_after": [
+        0.039021428932812796,
+        -0.03921880735004816
+      ],
+      "finger_joint_open_threshold_m": 0.03,
+      "gripper_open_confirmed": true,
+      "open_and_stable": true,
+      "source_sha256": "43fd5a3203b13a56babd85ba784003a93d321a395668931927cac6a4f791657b"
+    }
+  ],
+  "note": "Supplementary replay with explicit release/hold, not additional VLA trials and not the official benchmark definition."
+}

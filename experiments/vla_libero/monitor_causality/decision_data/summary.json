@@ -1,0 +1,9 @@
+{
+  "calls": 728,
+  "label_conflicts": 0,
+  "unique_pairs": 162,
+  "positive": 86,
+  "negative": 67,
+  "unscorable": 9,
+  "independent_test": false
+}

@@ -1,0 +1,248 @@
+{
+  "study_mode": "hold_first",
+  "stage_budget_enabled": false,
+  "initial_state_sha256": "9f3bbe14f940c66de58d1dbecf0b5a2af12b48cbb93deec15c094fe4a9f5323a",
+  "suite": "libero_10",
+  "task_id": 8,
+  "initial_state_id": 2,
+  "original_task_language": "put both moka pots on the stove",
+  "input_instruction": "把两个摩卡壶都放到炉子上",
+  "planner": "qwen",
+  "execution_profile": "legacy",
+  "planner_profile": "base",
+  "checker_adapter": "experiments/vla_libero/checker_v2/results/model/best_adapter",
+  "monitor": "qwen",
+  "max_steps": 520,
+  "subgoal_step_budget": 300,
+  "monitor_every_queries": 4,
+  "monitor_res": 512,
+  "gripper_gate": true,
+  "confirm": 2,
+  "max_replans": 0,
+  "last_subgoal_runs_to_limit": true,
+  "noise_seed": 730802,
+  "runner_sha256": "3bfa20bd9f7c320cf83dabe80e3c59a72fb5bd053837b65cd3bb6376c3459f61",
+  "events": [
+    {
+      "kind": "plan",
+      "step": 0,
+      "ok": true,
+      "seconds": 1.386700023431331e-05,
+      "raw": "[\"put the first moka pot on the stove\", \"put the second moka pot on the stove\"]",
+      "error": null
+    },
+    {
+      "kind": "subgoal_start",
+      "step": 0,
+      "index": 0,
+      "subgoal": "put the first moka pot on the stove"
+    },
+    {
+      "kind": "check",
+      "step": 20,
+      "index": 0,
+      "done": false,
+      "confirmed": false,
+      "seconds": 0.006399714002327528,
+      "checker": "hold_first",
+      "status": null,
+      "scores": null,
+      "reason": "no high-level transition",
+      "error": null,
+      "shadow_long_task_atoms": [
+        false,
+        false,
+        true
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 40,
+      "index": 0,
+      "done": false,
+      "confirmed": false,
+      "seconds": 0.0064065480037243105,
+      "checker": "hold_first",
+      "status": null,
+      "scores": null,
+      "reason": "no high-level transition",
+      "error": null,
+      "shadow_long_task_atoms": [
+        false,
+        false,
+        true
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 60,
+      "index": 0,
+      "done": false,
+      "confirmed": false,
+      "seconds": 0.006387672998243943,
+      "checker": "hold_first",
+      "status": null,
+      "scores": null,
+      "reason": "no high-level transition",
+      "error": null,
+      "shadow_long_task_atoms": [
+        false,
+        false,
+        true
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 80,
+      "index": 0,
+      "done": false,
+      "confirmed": false,
+      "seconds": 0.006421936996048316,
+      "checker": "hold_first",
+      "status": null,
+      "scores": null,
+      "reason": "no high-level transition",
+      "error": null,
+      "shadow_long_task_atoms": [
+        false,
+        false,
+        true
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 100,
+      "index": 0,
+      "done": false,
+      "confirmed": false,
+      "seconds": 0.006337559003441129,
+      "checker": "hold_first",
+      "status": null,
+      "scores": null,
+      "reason": "no high-level transition",
+      "error": null,
+      "shadow_long_task_atoms": [
+        false,
+        false,
+        true
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 420,
+      "index": 0,
+      "done": false,
+      "confirmed": false,
+      "seconds": 0.006414476003556047,
+      "checker": "hold_first",
+      "status": null,
+      "scores": null,
+      "reason": "no high-level transition",
+      "error": null,
+      "shadow_long_task_atoms": [
+        false,
+        true,
+        true
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 440,
+      "index": 0,
+      "done": false,
+      "confirmed": false,
+      "seconds": 0.006441627003368922,
+      "checker": "hold_first",
+      "status": null,
+      "scores": null,
+      "reason": "no high-level transition",
+      "error": null,
+      "shadow_long_task_atoms": [
+        false,
+        true,
+        true
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 460,
+      "index": 0,
+      "done": false,
+      "confirmed": false,
+      "seconds": 0.006644088003668003,
+      "checker": "hold_first",
+      "status": null,
+      "scores": null,
+      "reason": "no high-level transition",
+      "error": null,
+      "shadow_long_task_atoms": [
+        false,
+        true,
+        true
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 480,
+      "index": 0,
+      "done": false,
+      "confirmed": false,
+      "seconds": 0.010406264002085663,
+      "checker": "hold_first",
+      "status": null,
+      "scores": null,
+      "reason": "no high-level transition",
+      "error": null,
+      "shadow_long_task_atoms": [
+        false,
+        true,
+        true
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 500,
+      "index": 0,
+      "done": false,
+      "confirmed": false,
+      "seconds": 0.0064065219994517975,
+      "checker": "hold_first",
+      "status": null,
+      "scores": null,
+      "reason": "no high-level transition",
+      "error": null,
+      "shadow_long_task_atoms": [
+        false,
+        true,
+        true
+      ]
+    }
+  ],
+  "status": "timeout",
+  "success": false,
+  "settled_state_sha256": "2e67241e53a969bb2623179b124161f55db36c7547e6375e09d6caa0c6cfc302",
+  "subgoals": [
+    "put the first moka pot on the stove",
+    "put the second moka pot on the stove"
+  ],
+  "policy_queries": 104,
+  "qwen_checks": 10,
+  "replans": 0,
+  "active_subgoal_index": 0,
+  "active_subgoal": "put the first moka pot on the stove",
+  "steps": 520,
+  "full_task_fallback": false,
+  "final_subgoals": [
+    "put the first moka pot on the stove",
+    "put the second moka pot on the stove"
+  ],
+  "final_atoms": [
+    false,
+    true,
+    true
+  ],
+  "protocol_sha256": "43102c29b30de89a834dd03413d9b5010377410236d6addcffc618c76a8ff03c",
+  "monitor_model_calls": 0,
+  "monitor_opportunities": 10,
+  "wall_seconds": 33.32772018900141
+}

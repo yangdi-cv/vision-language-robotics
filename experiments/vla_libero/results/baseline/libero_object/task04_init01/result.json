@@ -1,0 +1,36 @@
+{
+  "runner_sha256": "e5d28552be82d553e09b3fcfe45aa95bbc6d38b0338899c2536ed1407935bb9d",
+  "suite": "libero_object",
+  "task_id": 4,
+  "initial_state_id": 1,
+  "mode": "baseline",
+  "environment_seed": 7,
+  "noise_seed": 710401,
+  "initial_state_sha256": "57923257e1d175487c4f0e7c807e9bbfa3dbbc380c02dfe93a980d1653466ca0",
+  "original_prompt": "pick up the ketchup and place it in the basket",
+  "input_prompt": "pick up the ketchup and place it in the basket",
+  "replan_steps": 5,
+  "denoising_steps": 10,
+  "max_steps": 280,
+  "status": "success",
+  "success": true,
+  "steps": 142,
+  "alternate_goal_evaluable": false,
+  "alternate_goal_ever_satisfied": null,
+  "initial_eef": [
+    -0.15720208631188903,
+    0.003534081410823521,
+    0.2506277294419731
+  ],
+  "final_eef": [
+    -0.035293352845038796,
+    0.2744253476033355,
+    0.21639681421142565
+  ],
+  "qpos_displacement_norm": 1.2861784952613422,
+  "simulation_elapsed_s": 7.1,
+  "wall_s": 5.117222214999856,
+  "query_count": 29,
+  "warmup_query_wall_s": 0.07959112099979393,
+  "query_median_excluding_first_s": 0.07225536500027374
+}

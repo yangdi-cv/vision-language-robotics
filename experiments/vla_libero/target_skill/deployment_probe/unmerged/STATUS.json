@@ -1,0 +1,36 @@
+{
+  "state": "complete",
+  "complete": 6,
+  "rows": [
+    {
+      "source": "experiments/vla_libero/point_target/evaluation/goal/normal/episodes/task00_init41/target1/actual_inputs/query000.npz",
+      "seconds": 9.574006659000588,
+      "max_old_difference": 0.03208381683349604
+    },
+    {
+      "source": "experiments/vla_libero/point_target/evaluation/goal/normal/episodes/task00_init41/target1/actual_inputs/query020.npz",
+      "seconds": 0.08536304300105257,
+      "max_old_difference": 0.6054999878180622
+    },
+    {
+      "source": "experiments/vla_libero/point_target/evaluation/goal/normal/episodes/task01_init41/target1/actual_inputs/query000.npz",
+      "seconds": 0.08248890899994876,
+      "max_old_difference": 0.5811466024420857
+    },
+    {
+      "source": "experiments/vla_libero/point_target/evaluation/goal/normal/episodes/task01_init41/target1/actual_inputs/query020.npz",
+      "seconds": 0.08337114299865789,
+      "max_old_difference": 0.3742943544921873
+    },
+    {
+      "source": "experiments/vla_libero/point_target/evaluation/text/normal/episodes/task01_init41/target1/actual_inputs/query000.npz",
+      "seconds": 0.08210408800005098,
+      "max_old_difference": 0.4265758675635456
+    },
+    {
+      "source": "experiments/vla_libero/point_target/evaluation/text/normal/episodes/task01_init41/target1/actual_inputs/query020.npz",
+      "seconds": 0.08272554200084414,
+      "max_old_difference": 0.19806072753906245
+    }
+  ]
+}

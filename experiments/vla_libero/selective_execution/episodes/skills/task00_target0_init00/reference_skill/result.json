@@ -1,0 +1,278 @@
+{
+  "case": {
+    "task": 0,
+    "target_index": 0,
+    "initial": 0,
+    "target": "alphabet_soup_1",
+    "protected": "tomato_sauce_1",
+    "objects": [
+      [
+        "alphabet_soup_1",
+        "alphabet soup can",
+        "字母汤罐头"
+      ],
+      [
+        "tomato_sauce_1",
+        "tomato sauce can",
+        "番茄酱罐头"
+      ]
+    ],
+    "instruction": "只把字母汤罐头放进篮子里，番茄酱罐头保持原位。放好后停止，不要继续搬其他物体。",
+    "reference_skill": "pick up the alphabet soup can and place it in the basket",
+    "key": "task00_target0_init00"
+  },
+  "mode": "reference_skill",
+  "phase": "skills",
+  "protocol_sha256": "8adfcad65b11d5f41605fc6991299541709915f97d7262df48b8f406f9e719ef",
+  "noise_seed": 920000,
+  "status": "complete",
+  "steps": 325,
+  "events": [
+    {
+      "kind": "check",
+      "step": 10,
+      "decision": {
+        "done": false,
+        "streak": 0,
+        "stop": false
+      },
+      "images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/skills/task00_target0_init00/reference_skill/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/skills/task00_target0_init00/reference_skill/images/current_0010.png"
+      ],
+      "sent_images": [],
+      "reply": null,
+      "seconds": 1.1502001143526286e-05
+    },
+    {
+      "kind": "check",
+      "step": 20,
+      "decision": {
+        "done": false,
+        "streak": 0,
+        "stop": false
+      },
+      "images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/skills/task00_target0_init00/reference_skill/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/skills/task00_target0_init00/reference_skill/images/current_0020.png"
+      ],
+      "sent_images": [],
+      "reply": null,
+      "seconds": 4.898996849078685e-06
+    },
+    {
+      "kind": "check",
+      "step": 30,
+      "decision": {
+        "done": false,
+        "streak": 0,
+        "stop": false
+      },
+      "images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/skills/task00_target0_init00/reference_skill/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/skills/task00_target0_init00/reference_skill/images/current_0030.png"
+      ],
+      "sent_images": [],
+      "reply": null,
+      "seconds": 4.76899731438607e-06
+    },
+    {
+      "kind": "check",
+      "step": 40,
+      "decision": {
+        "done": false,
+        "streak": 0,
+        "stop": false
+      },
+      "images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/skills/task00_target0_init00/reference_skill/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/skills/task00_target0_init00/reference_skill/images/current_0040.png"
+      ],
+      "sent_images": [],
+      "reply": null,
+      "seconds": 5.431000317912549e-06
+    },
+    {
+      "kind": "check",
+      "step": 50,
+      "decision": {
+        "done": false,
+        "streak": 0,
+        "stop": false
+      },
+      "images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/skills/task00_target0_init00/reference_skill/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/skills/task00_target0_init00/reference_skill/images/current_0050.png"
+      ],
+      "sent_images": [],
+      "reply": null,
+      "seconds": 5.250003596302122e-06
+    },
+    {
+      "kind": "check",
+      "step": 90,
+      "decision": {
+        "done": false,
+        "streak": 0,
+        "stop": false
+      },
+      "images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/skills/task00_target0_init00/reference_skill/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/skills/task00_target0_init00/reference_skill/images/current_0090.png"
+      ],
+      "sent_images": [],
+      "reply": null,
+      "seconds": 5.410001904238015e-06
+    },
+    {
+      "kind": "check",
+      "step": 180,
+      "decision": {
+        "done": false,
+        "streak": 0,
+        "stop": false
+      },
+      "images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/skills/task00_target0_init00/reference_skill/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/skills/task00_target0_init00/reference_skill/images/current_0180.png"
+      ],
+      "sent_images": [],
+      "reply": null,
+      "seconds": 5.8919977163895965e-06
+    },
+    {
+      "kind": "check",
+      "step": 190,
+      "decision": {
+        "done": false,
+        "streak": 0,
+        "stop": false
+      },
+      "images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/skills/task00_target0_init00/reference_skill/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/skills/task00_target0_init00/reference_skill/images/current_0190.png"
+      ],
+      "sent_images": [],
+      "reply": null,
+      "seconds": 7.044000085443258e-06
+    },
+    {
+      "kind": "check",
+      "step": 200,
+      "decision": {
+        "done": false,
+        "streak": 0,
+        "stop": false
+      },
+      "images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/skills/task00_target0_init00/reference_skill/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/skills/task00_target0_init00/reference_skill/images/current_0200.png"
+      ],
+      "sent_images": [],
+      "reply": null,
+      "seconds": 3.5570046748034656e-06
+    },
+    {
+      "kind": "check",
+      "step": 210,
+      "decision": {
+        "done": false,
+        "streak": 0,
+        "stop": false
+      },
+      "images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/skills/task00_target0_init00/reference_skill/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/skills/task00_target0_init00/reference_skill/images/current_0210.png"
+      ],
+      "sent_images": [],
+      "reply": null,
+      "seconds": 3.82699363399297e-06
+    },
+    {
+      "kind": "check",
+      "step": 220,
+      "decision": {
+        "done": false,
+        "streak": 0,
+        "stop": false
+      },
+      "images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/skills/task00_target0_init00/reference_skill/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/skills/task00_target0_init00/reference_skill/images/current_0220.png"
+      ],
+      "sent_images": [],
+      "reply": null,
+      "seconds": 3.8080033846199512e-06
+    },
+    {
+      "kind": "check",
+      "step": 290,
+      "decision": {
+        "done": false,
+        "streak": 0,
+        "stop": false
+      },
+      "images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/skills/task00_target0_init00/reference_skill/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/skills/task00_target0_init00/reference_skill/images/current_0290.png"
+      ],
+      "sent_images": [],
+      "reply": null,
+      "seconds": 4.058005288243294e-06
+    },
+    {
+      "kind": "stop",
+      "step": 300,
+      "reason": "budget"
+    }
+  ],
+  "policy_queries": 60,
+  "model_checks": 0,
+  "control_truth_inputs": false,
+  "original_done_used_for_stopping": false,
+  "initial_state_sha256": "747b653b2ca1feeae8f3bd994880ce743730993ea5ce4bd003623e877f26b3bd",
+  "settled_state_sha256": "358af039709266907fdd0abd2f9b747fbf84abb2814f687b503d32e580d002bd",
+  "goal_atoms": [
+    [
+      "in",
+      "alphabet_soup_1",
+      "basket_1_contain_region"
+    ],
+    [
+      "in",
+      "tomato_sauce_1",
+      "basket_1_contain_region"
+    ]
+  ],
+  "initial_object_positions": [
+    [
+      -0.1001602877640908,
+      -0.1520157700938654,
+      0.4751701239604015
+    ],
+    [
+      -0.11728698342501227,
+      0.055747991004013384,
+      0.47516915037869295
+    ]
+  ],
+  "policy_instruction": "pick up the alphabet soup can and place it in the basket",
+  "selected_target": "alphabet_soup_1",
+  "timer_threshold": 150,
+  "selective_success": false,
+  "target_final_stable": true,
+  "final_released": true,
+  "target_ever_reached": true,
+  "protected_untouched": false,
+  "max_protected_displacement_m": 0.2807916464304533,
+  "first_valid_step": 183,
+  "first_violation_step": 230,
+  "self_stop_success": false,
+  "premature_stop": false,
+  "decision_step": 300,
+  "stop_reason": "budget",
+  "wall_seconds": 23.142906944005517,
+  "original_success_observed": true,
+  "policy_steps_after_original_success": 13,
+  "success": false
+}

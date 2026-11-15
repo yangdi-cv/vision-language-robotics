@@ -1,0 +1,454 @@
+[
+  {
+    "task_id": 0,
+    "instruction": "put both the alphabet soup and the tomato sauce in the basket",
+    "bddl_language": [
+      "put",
+      "both",
+      "the",
+      "alphabet",
+      "soup",
+      "and",
+      "the",
+      "tomato",
+      "sauce",
+      "in",
+      "the",
+      "basket"
+    ],
+    "bddl": "experiments/vla_libero/third_party/libero/libero/libero/bddl_files/libero_10/LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket.bddl",
+    "goal_predicates": [
+      [
+        "in",
+        "alphabet_soup_1",
+        "basket_1_contain_region"
+      ],
+      [
+        "in",
+        "tomato_sauce_1",
+        "basket_1_contain_region"
+      ]
+    ],
+    "suggested_intermediate_predicates": [
+      [
+        "in",
+        "alphabet_soup_1",
+        "basket_1_contain_region"
+      ],
+      [
+        "in",
+        "tomato_sauce_1",
+        "basket_1_contain_region"
+      ]
+    ],
+    "intermediate_validation": "Source-derived candidates; no extra rollout or runtime predicate test in this handoff."
+  },
+  {
+    "task_id": 1,
+    "instruction": "put both the cream cheese box and the butter in the basket",
+    "bddl_language": [
+      "put",
+      "both",
+      "the",
+      "cream",
+      "cheese",
+      "box",
+      "and",
+      "the",
+      "butter",
+      "in",
+      "the",
+      "basket"
+    ],
+    "bddl": "experiments/vla_libero/third_party/libero/libero/libero/bddl_files/libero_10/LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket.bddl",
+    "goal_predicates": [
+      [
+        "in",
+        "cream_cheese_1",
+        "basket_1_contain_region"
+      ],
+      [
+        "in",
+        "butter_1",
+        "basket_1_contain_region"
+      ]
+    ],
+    "suggested_intermediate_predicates": [
+      [
+        "in",
+        "cream_cheese_1",
+        "basket_1_contain_region"
+      ],
+      [
+        "in",
+        "butter_1",
+        "basket_1_contain_region"
+      ]
+    ],
+    "intermediate_validation": "Source-derived candidates; no extra rollout or runtime predicate test in this handoff."
+  },
+  {
+    "task_id": 2,
+    "instruction": "turn on the stove and put the moka pot on it",
+    "bddl_language": [
+      "turn",
+      "on",
+      "the",
+      "stove",
+      "and",
+      "put",
+      "the",
+      "moka",
+      "pot",
+      "on",
+      "it"
+    ],
+    "bddl": "experiments/vla_libero/third_party/libero/libero/libero/bddl_files/libero_10/KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it.bddl",
+    "goal_predicates": [
+      [
+        "turnon",
+        "flat_stove_1"
+      ],
+      [
+        "on",
+        "moka_pot_1",
+        "flat_stove_1_cook_region"
+      ]
+    ],
+    "suggested_intermediate_predicates": [
+      [
+        "turnon",
+        "flat_stove_1"
+      ],
+      [
+        "on",
+        "moka_pot_1",
+        "flat_stove_1_cook_region"
+      ]
+    ],
+    "intermediate_validation": "Source-derived candidates; no extra rollout or runtime predicate test in this handoff."
+  },
+  {
+    "task_id": 3,
+    "instruction": "put the black bowl in the bottom drawer of the cabinet and close it",
+    "bddl_language": [
+      "put",
+      "the",
+      "black",
+      "bowl",
+      "in",
+      "the",
+      "bottom",
+      "drawer",
+      "of",
+      "the",
+      "cabinet",
+      "and",
+      "close",
+      "it"
+    ],
+    "bddl": "experiments/vla_libero/third_party/libero/libero/libero/bddl_files/libero_10/KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it.bddl",
+    "goal_predicates": [
+      [
+        "close",
+        "white_cabinet_1_bottom_region"
+      ],
+      [
+        "in",
+        "akita_black_bowl_1",
+        "white_cabinet_1_bottom_region"
+      ]
+    ],
+    "suggested_intermediate_predicates": [
+      [
+        "open",
+        "white_cabinet_1_bottom_region"
+      ],
+      [
+        "in",
+        "akita_black_bowl_1",
+        "white_cabinet_1_bottom_region"
+      ],
+      [
+        "close",
+        "white_cabinet_1_bottom_region"
+      ]
+    ],
+    "intermediate_validation": "Source-derived candidates; no extra rollout or runtime predicate test in this handoff."
+  },
+  {
+    "task_id": 4,
+    "instruction": "put the white mug on the left plate and put the yellow and white mug on the right plate",
+    "bddl_language": [
+      "put",
+      "the",
+      "white",
+      "mug",
+      "on",
+      "the",
+      "left",
+      "plate",
+      "and",
+      "put",
+      "the",
+      "yellow",
+      "and",
+      "white",
+      "mug",
+      "on",
+      "the",
+      "right",
+      "plate"
+    ],
+    "bddl": "experiments/vla_libero/third_party/libero/libero/libero/bddl_files/libero_10/LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate.bddl",
+    "goal_predicates": [
+      [
+        "on",
+        "porcelain_mug_1",
+        "plate_1"
+      ],
+      [
+        "on",
+        "white_yellow_mug_1",
+        "plate_2"
+      ]
+    ],
+    "suggested_intermediate_predicates": [
+      [
+        "on",
+        "porcelain_mug_1",
+        "plate_1"
+      ],
+      [
+        "on",
+        "white_yellow_mug_1",
+        "plate_2"
+      ]
+    ],
+    "intermediate_validation": "Source-derived candidates; no extra rollout or runtime predicate test in this handoff."
+  },
+  {
+    "task_id": 5,
+    "instruction": "pick up the book and place it in the back compartment of the caddy",
+    "bddl_language": [
+      "pick",
+      "up",
+      "the",
+      "book",
+      "and",
+      "place",
+      "it",
+      "in",
+      "the",
+      "back",
+      "compartment",
+      "of",
+      "the",
+      "caddy"
+    ],
+    "bddl": "experiments/vla_libero/third_party/libero/libero/libero/bddl_files/libero_10/STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy.bddl",
+    "goal_predicates": [
+      [
+        "in",
+        "black_book_1",
+        "desk_caddy_1_back_contain_region"
+      ]
+    ],
+    "suggested_intermediate_predicates": [
+      [
+        "in",
+        "black_book_1",
+        "desk_caddy_1_back_contain_region"
+      ]
+    ],
+    "intermediate_validation": "Source-derived candidates; no extra rollout or runtime predicate test in this handoff."
+  },
+  {
+    "task_id": 6,
+    "instruction": "put the white mug on the plate and put the chocolate pudding to the right of the plate",
+    "bddl_language": [
+      "put",
+      "the",
+      "white",
+      "mug",
+      "on",
+      "the",
+      "plate",
+      "and",
+      "put",
+      "the",
+      "chocolate",
+      "pudding",
+      "to",
+      "the",
+      "right",
+      "of",
+      "the",
+      "plate"
+    ],
+    "bddl": "experiments/vla_libero/third_party/libero/libero/libero/bddl_files/libero_10/LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate.bddl",
+    "goal_predicates": [
+      [
+        "on",
+        "porcelain_mug_1",
+        "plate_1"
+      ],
+      [
+        "on",
+        "chocolate_pudding_1",
+        "living_room_table_plate_right_region"
+      ]
+    ],
+    "suggested_intermediate_predicates": [
+      [
+        "on",
+        "porcelain_mug_1",
+        "plate_1"
+      ],
+      [
+        "on",
+        "chocolate_pudding_1",
+        "living_room_table_plate_right_region"
+      ]
+    ],
+    "intermediate_validation": "Source-derived candidates; no extra rollout or runtime predicate test in this handoff."
+  },
+  {
+    "task_id": 7,
+    "instruction": "put both the alphabet soup and the cream cheese box in the basket",
+    "bddl_language": [
+      "put",
+      "both",
+      "the",
+      "alphabet",
+      "soup",
+      "and",
+      "the",
+      "cream",
+      "cheese",
+      "box",
+      "in",
+      "the",
+      "basket"
+    ],
+    "bddl": "experiments/vla_libero/third_party/libero/libero/libero/bddl_files/libero_10/LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket.bddl",
+    "goal_predicates": [
+      [
+        "in",
+        "alphabet_soup_1",
+        "basket_1_contain_region"
+      ],
+      [
+        "in",
+        "cream_cheese_1",
+        "basket_1_contain_region"
+      ]
+    ],
+    "suggested_intermediate_predicates": [
+      [
+        "in",
+        "alphabet_soup_1",
+        "basket_1_contain_region"
+      ],
+      [
+        "in",
+        "cream_cheese_1",
+        "basket_1_contain_region"
+      ]
+    ],
+    "intermediate_validation": "Source-derived candidates; no extra rollout or runtime predicate test in this handoff."
+  },
+  {
+    "task_id": 8,
+    "instruction": "put both moka pots on the stove",
+    "bddl_language": [
+      "put",
+      "both",
+      "moka",
+      "pots",
+      "on",
+      "the",
+      "stove"
+    ],
+    "bddl": "experiments/vla_libero/third_party/libero/libero/libero/bddl_files/libero_10/KITCHEN_SCENE8_put_both_moka_pots_on_the_stove.bddl",
+    "goal_predicates": [
+      [
+        "on",
+        "moka_pot_1",
+        "flat_stove_1_cook_region"
+      ],
+      [
+        "on",
+        "moka_pot_2",
+        "flat_stove_1_cook_region"
+      ],
+      [
+        "turnon",
+        "flat_stove_1"
+      ]
+    ],
+    "suggested_intermediate_predicates": [
+      [
+        "on",
+        "moka_pot_1",
+        "flat_stove_1_cook_region"
+      ],
+      [
+        "on",
+        "moka_pot_2",
+        "flat_stove_1_cook_region"
+      ],
+      [
+        "turnon",
+        "flat_stove_1"
+      ]
+    ],
+    "intermediate_validation": "Source-derived candidates; no extra rollout or runtime predicate test in this handoff."
+  },
+  {
+    "task_id": 9,
+    "instruction": "put the yellow and white mug in the microwave and close it",
+    "bddl_language": [
+      "put",
+      "the",
+      "yellow",
+      "and",
+      "white",
+      "mug",
+      "in",
+      "the",
+      "microwave",
+      "and",
+      "close",
+      "it"
+    ],
+    "bddl": "experiments/vla_libero/third_party/libero/libero/libero/bddl_files/libero_10/KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it.bddl",
+    "goal_predicates": [
+      [
+        "in",
+        "white_yellow_mug_1",
+        "microwave_1_heating_region"
+      ],
+      [
+        "close",
+        "microwave_1"
+      ]
+    ],
+    "suggested_intermediate_predicates": [
+      [
+        "open",
+        "microwave_1"
+      ],
+      [
+        "in",
+        "white_yellow_mug_1",
+        "microwave_1_heating_region"
+      ],
+      [
+        "close",
+        "microwave_1"
+      ]
+    ],
+    "intermediate_validation": "Source-derived candidates; no extra rollout or runtime predicate test in this handoff."
+  }
+]

@@ -1,0 +1,20 @@
+backports.zstd @ file:///home/conda/feedstock_root/build_artifacts/bld/rattler-build_backports.zstd_1786861414/work
+Brotli @ file:///home/conda/feedstock_root/build_artifacts/brotli-split_1786622590988/work
+certifi @ file:///home/conda/feedstock_root/build_artifacts/certifi_1793720052803/work/certifi
+charset-normalizer @ file:///home/conda/feedstock_root/build_artifacts/charset-normalizer_1786835581063/work
+h2 @ file:///home/conda/feedstock_root/build_artifacts/bld/rattler-build_h2_1785796355/work
+hpack @ file:///home/conda/feedstock_root/build_artifacts/hpack_1782283902770/work
+hyperframe @ file:///home/conda/feedstock_root/build_artifacts/hyperframe_1737618333194/work
+idna @ file:///home/conda/feedstock_root/build_artifacts/bld/rattler-build_idna_1787059857/work
+numpy @ file:///home/conda/feedstock_root/build_artifacts/numpy_1707225364977/work/dist/numpy-1.26.4-cp310-cp310-linux_aarch64.whl#sha256=2137539cb8e0abaf819c6876f5e419a10246c454cd4d16803dc0012c92dcf974
+opencv-python-headless==4.10.0.84
+packaging @ file:///home/conda/feedstock_root/build_artifacts/bld/rattler-build_packaging_1785888127/work
+pillow @ file:///home/conda/feedstock_root/build_artifacts/bld/rattler-build_pillow_1782912107/work
+psutil @ file:///home/conda/feedstock_root/build_artifacts/bld/rattler-build_psutil_1788189982/work
+pyserial==3.5
+PySocks @ file:///home/conda/feedstock_root/build_artifacts/pysocks_1733217236728/work
+PyYAML @ file:///home/conda/feedstock_root/build_artifacts/pyyaml_1770223237275/work
+requests @ file:///home/conda/feedstock_root/build_artifacts/bld/rattler-build_requests_1778851103/work
+scipy @ file:///home/conda/feedstock_root/build_artifacts/scipy-split_1739790654670/work/dist/scipy-1.15.2-cp310-cp310-linux_aarch64.whl#sha256=b24843904c3e97381dd8cc65a3fccd452d555627c4f049562fa8900f22cafa94
+tqdm @ file:///home/conda/feedstock_root/build_artifacts/bld/rattler-build_tqdm_1785172528/work
+urllib3 @ file:///home/conda/feedstock_root/build_artifacts/urllib3_1778188571305/work

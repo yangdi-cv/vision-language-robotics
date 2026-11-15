@@ -1,0 +1,36 @@
+{
+  "runner_sha256": "e5d28552be82d553e09b3fcfe45aa95bbc6d38b0338899c2536ed1407935bb9d",
+  "suite": "libero_spatial",
+  "task_id": 0,
+  "initial_state_id": 0,
+  "mode": "baseline",
+  "environment_seed": 7,
+  "noise_seed": 700000,
+  "initial_state_sha256": "4e3eaf7a315bc3bafb6db4837c8eef0e5f8aea717782a2a3ea33139392d966ed",
+  "original_prompt": "pick up the black bowl between the plate and the ramekin and place it on the plate",
+  "input_prompt": "pick up the black bowl between the plate and the ramekin and place it on the plate",
+  "replan_steps": 5,
+  "denoising_steps": 10,
+  "max_steps": 220,
+  "status": "success",
+  "success": true,
+  "steps": 79,
+  "alternate_goal_evaluable": false,
+  "alternate_goal_ever_satisfied": null,
+  "initial_eef": [
+    -0.21124162683394807,
+    -0.011090601889321502,
+    1.1742495176982402
+  ],
+  "final_eef": [
+    0.04198806705328783,
+    0.17365244446709427,
+    0.9436752368679411
+  ],
+  "qpos_displacement_norm": 1.6170391960912438,
+  "simulation_elapsed_s": 3.95,
+  "wall_s": 14.194610503000149,
+  "query_count": 16,
+  "warmup_query_wall_s": 9.327419381999789,
+  "query_median_excluding_first_s": 0.07411148600021988
+}

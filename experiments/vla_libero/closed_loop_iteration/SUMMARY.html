@@ -1,0 +1,50 @@
+<meta charset="utf-8"><title>Qwen分层闭环与完成检查器</title><style>@page{size:A4;margin:15mm}body{font-family:"Noto Sans CJK SC",sans-serif;font-size:10pt;line-height:1.55;color:#243448}h1{font-size:21pt;line-height:1.35}h2{font-size:14pt;margin-top:6mm;break-after:avoid}h3{font-size:11pt;break-after:avoid}table{width:100%;border-collapse:collapse;font-size:9pt;margin:3mm 0}td,th{border:1px solid #cbd5df;padding:4px 6px}th{background:#edf2f7}tr{break-inside:avoid}p{orphans:3;widows:3}img{max-width:100%;max-height:95mm}p:has(img){break-inside:avoid;text-align:center}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#f3f5f8;padding:8px;font-size:8pt;line-height:1.4}code{font-family:"Noto Sans Mono CJK SC",monospace;font-size:8pt;overflow-wrap:anywhere}li{margin:1.5mm 0}a{color:#275d8d;text-decoration:none}</style><h1>Qwen 分层闭环与完成检查器适配</h1>
+<p>阶段摘要｜2026年11月12日</p>
+<p><strong>已形成的系统：</strong> Qwen3-VL-4B分解语言任务并检查场景变化，π0.5根据图像与本体状态执行。冻结代码的Long中文对照为：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:right">直接中文π0.5</th>
+<th style="text-align:right">Qwen分层</th>
+<th style="text-align:right">Qwen仅翻译后执行</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">22/30</td>
+<td style="text-align:right">28/30</td>
+<td style="text-align:right">29/30</td>
+</tr>
+</tbody>
+</table>
+<p><strong>本轮新增交付：检查器LoRA权重、独立推理脚本、数据划分与测试结果。</strong> 使用已有120个基线回合提取720组前后帧，按初态隔离训练、验证、测试；完成180次更新，训练参数295万。权重在新进程重新加载验证通过。</p>
+<table>
+<thead>
+<tr>
+<th>独立测试指标</th>
+<th style="text-align:right">Qwen基座</th>
+<th style="text-align:right">LoRA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>常规160例准确率</td>
+<td style="text-align:right">76.9%</td>
+<td style="text-align:right">86.3%</td>
+</tr>
+<tr>
+<td>完成样本召回率（39例）</td>
+<td style="text-align:right">5.1%</td>
+<td style="text-align:right">87.2%</td>
+</tr>
+<tr>
+<td>临界边界80例误报率，贪心输出</td>
+<td style="text-align:right">5.0%</td>
+<td style="text-align:right">82.5%</td>
+</tr>
+</tbody>
+</table>
+<p><strong>结论：</strong> LoRA改善了常规完成识别，但边界误报严重；按验证集校准阈值后，边界测试误报仍为16.3%。权重作为首轮适配成果交付，尚未用于自动切换动作。</p>
+<p><strong>另外两个验收点已收尾：</strong> t9四组固定计划对照均成功，旧超时未稳定复现，原因记录为未定位；执行与规划已统一为单一入口、配置选择。三类扰动共27次恢复测试，继续原计划2/9、整句重试3/9、Qwen重规划0/9，暂不扩大恢复实验。</p>
+<p><strong>三个明确问题：</strong> 阶段超时与完成曾混用；两票仍会重复视觉误判；已接触目标的38.5mm偏心仍超出30mm几何判据。代码已加状态与目标覆盖保护，视觉边界和精细纠偏尚需改进。</p>
+<p><strong>展示与后续：</strong> 先看<code>01</code>分层入篮成功、<code>02</code>受控扰动后整句重试成功视频。下一轮优先补充与成功末帧相似的失败负例、校准检查器，不继续堆恢复次数。RGB-D定位/可供性、导航和Jetson工作本轮未新增；该LoRA属于任务书感知适配的完成检查分支。</p>

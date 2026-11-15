@@ -1,0 +1,298 @@
+{
+  "state": "complete",
+  "episodes": 32,
+  "frames": 10595,
+  "paired_initial_inputs": 16,
+  "max_restored_position_error_m": 0.0025866348691022667,
+  "all_final_labels_agree": true,
+  "rows": [
+    {
+      "task": 0,
+      "initial": 20,
+      "target": 0,
+      "accepted": false,
+      "rescore": false,
+      "frames": 343,
+      "sha256": "b989466a83457661e2650df501569b5354bbcbbace73edefd63e7371b793c032"
+    },
+    {
+      "task": 0,
+      "initial": 20,
+      "target": 1,
+      "accepted": true,
+      "rescore": true,
+      "frames": 307,
+      "sha256": "a31fb883cf0c0c77523f9fd7947baa047d88d72e04cb6517bf1b492a57eb7d3d"
+    },
+    {
+      "task": 0,
+      "initial": 21,
+      "target": 0,
+      "accepted": false,
+      "rescore": false,
+      "frames": 340,
+      "sha256": "e9eaaf7edb6546284a37de302eb241b71f58e1c5c0c8ca189e4402bc73380593"
+    },
+    {
+      "task": 0,
+      "initial": 21,
+      "target": 1,
+      "accepted": true,
+      "rescore": true,
+      "frames": 303,
+      "sha256": "546626388d95dd8458b236ead01bcf01dbdb3d6f6c3db3d4f9510137d994586a"
+    },
+    {
+      "task": 0,
+      "initial": 22,
+      "target": 0,
+      "accepted": false,
+      "rescore": false,
+      "frames": 344,
+      "sha256": "efea18b8f8f444b66b6668b25b865237c8eef99e939039437f116fe93a68c1fc"
+    },
+    {
+      "task": 0,
+      "initial": 22,
+      "target": 1,
+      "accepted": true,
+      "rescore": true,
+      "frames": 306,
+      "sha256": "4e0405f2f9484344962dc9baa1faa40ec5ec00dd2e373e0dc5271e1ced41bced"
+    },
+    {
+      "task": 0,
+      "initial": 23,
+      "target": 0,
+      "accepted": true,
+      "rescore": true,
+      "frames": 340,
+      "sha256": "0b8fd2ae901ec20d596706e07b10f55cf7f61d7da0748e198c96bdc7050d8c1d"
+    },
+    {
+      "task": 0,
+      "initial": 23,
+      "target": 1,
+      "accepted": true,
+      "rescore": true,
+      "frames": 306,
+      "sha256": "60e267a7d96dca9989a86f2e92f275b0da8d4bfcc356753319966372dc025d44"
+    },
+    {
+      "task": 0,
+      "initial": 24,
+      "target": 0,
+      "accepted": true,
+      "rescore": true,
+      "frames": 341,
+      "sha256": "ab3849f4d25fe7739e6e274a696733484b6738d99a5cbed708b5d15c956ed563"
+    },
+    {
+      "task": 0,
+      "initial": 24,
+      "target": 1,
+      "accepted": true,
+      "rescore": true,
+      "frames": 304,
+      "sha256": "01ff6c4b038c197341f89ee1e365bfbb7c7acbd002c65fc8e0d2c40bf78ed0c5"
+    },
+    {
+      "task": 0,
+      "initial": 25,
+      "target": 0,
+      "accepted": true,
+      "rescore": true,
+      "frames": 338,
+      "sha256": "640c13d87881f1eb246aa71c1c056468e2264df95f8cf363c9b7e06e2d9afb65"
+    },
+    {
+      "task": 0,
+      "initial": 25,
+      "target": 1,
+      "accepted": true,
+      "rescore": true,
+      "frames": 307,
+      "sha256": "48bfaa0ea5cd76cba2fae725e1f5bda7ccec1c796dda45cd6ae521b215906df7"
+    },
+    {
+      "task": 0,
+      "initial": 26,
+      "target": 0,
+      "accepted": true,
+      "rescore": true,
+      "frames": 339,
+      "sha256": "7cc3b45492747f7d9195fd80955ba2d7ba46cec5c11e31f5b5091d8a38e9f61a"
+    },
+    {
+      "task": 0,
+      "initial": 26,
+      "target": 1,
+      "accepted": true,
+      "rescore": true,
+      "frames": 307,
+      "sha256": "2bb1757a287869a68785edbf789dffad36624c87c6e4f810470908c4f606e786"
+    },
+    {
+      "task": 0,
+      "initial": 27,
+      "target": 0,
+      "accepted": true,
+      "rescore": true,
+      "frames": 340,
+      "sha256": "781a83bdd73bca9fd1c67ccc68919663ea732124c291fe1da97f18bc17bebe12"
+    },
+    {
+      "task": 0,
+      "initial": 27,
+      "target": 1,
+      "accepted": true,
+      "rescore": true,
+      "frames": 311,
+      "sha256": "af3398e1a63a04d267b8fb7566a90a9c67637e7725be005e006ff1fe36ea045c"
+    },
+    {
+      "task": 1,
+      "initial": 20,
+      "target": 0,
+      "accepted": true,
+      "rescore": true,
+      "frames": 355,
+      "sha256": "7c6c4c4be37e3d7e0e6f6ca1c36a2eab20a8f0efa009da3c589aca8eb654532a"
+    },
+    {
+      "task": 1,
+      "initial": 20,
+      "target": 1,
+      "accepted": true,
+      "rescore": true,
+      "frames": 323,
+      "sha256": "12e24e7dd13e8efe100778397b1425a210d558d0013fa3e8fc31a8102f28e2d0"
+    },
+    {
+      "task": 1,
+      "initial": 21,
+      "target": 0,
+      "accepted": true,
+      "rescore": true,
+      "frames": 357,
+      "sha256": "dddc435301385ae2d8df9472544b51607f1a6b0feb3e8ad84de34ca3670b98ed"
+    },
+    {
+      "task": 1,
+      "initial": 21,
+      "target": 1,
+      "accepted": true,
+      "rescore": true,
+      "frames": 319,
+      "sha256": "a72f4b0fef7a49b22da011c2185d8b4d7eaa5c990cb37bbce41a3aa0a9a89919"
+    },
+    {
+      "task": 1,
+      "initial": 22,
+      "target": 0,
+      "accepted": true,
+      "rescore": true,
+      "frames": 358,
+      "sha256": "c82d6852708642e5aa0f84a66ea052e94917c1f6e2c13b0ea67752ce5ccb9b44"
+    },
+    {
+      "task": 1,
+      "initial": 22,
+      "target": 1,
+      "accepted": true,
+      "rescore": true,
+      "frames": 319,
+      "sha256": "3c257426c313166fb8726ccae440953c3eab66c62463eb6940c7f7adfac3c4de"
+    },
+    {
+      "task": 1,
+      "initial": 23,
+      "target": 0,
+      "accepted": true,
+      "rescore": true,
+      "frames": 360,
+      "sha256": "56355503ed41f6a1973d2ecade562c83436a3bd0f3e206f7cf15eed0f3c05b3f"
+    },
+    {
+      "task": 1,
+      "initial": 23,
+      "target": 1,
+      "accepted": true,
+      "rescore": true,
+      "frames": 318,
+      "sha256": "d182afb693768e6b0767eaea7e266f1b205b61fcdb807afeb45b961c841e60ce"
+    },
+    {
+      "task": 1,
+      "initial": 24,
+      "target": 0,
+      "accepted": true,
+      "rescore": true,
+      "frames": 353,
+      "sha256": "bc343167d03975fd4d95a536ff8533bf77ecbf8845349eb92edb5c57b49e0016"
+    },
+    {
+      "task": 1,
+      "initial": 24,
+      "target": 1,
+      "accepted": true,
+      "rescore": true,
+      "frames": 329,
+      "sha256": "e56630a2d633f977ed63c43d47eeec23154732d6cd1ec4c7f87b648ecee39e81"
+    },
+    {
+      "task": 1,
+      "initial": 25,
+      "target": 0,
+      "accepted": true,
+      "rescore": true,
+      "frames": 355,
+      "sha256": "81da12607b6c3c3ce0a5cd0415e54abb61c3258a02e2de5a3a35d24f783d04a7"
+    },
+    {
+      "task": 1,
+      "initial": 25,
+      "target": 1,
+      "accepted": true,
+      "rescore": true,
+      "frames": 318,
+      "sha256": "ad552e3a70c5aba1c544f714e0394000f99bd63994bb7a2cd88389e5e85a7d7b"
+    },
+    {
+      "task": 1,
+      "initial": 26,
+      "target": 0,
+      "accepted": true,
+      "rescore": true,
+      "frames": 358,
+      "sha256": "9f586717251ab42bcb52517f2e766a4acc9d31d5fb821abb9d7331da5492b326"
+    },
+    {
+      "task": 1,
+      "initial": 26,
+      "target": 1,
+      "accepted": true,
+      "rescore": true,
+      "frames": 319,
+      "sha256": "139b9f4642e4580b4ba83a614d19e96a8e68d587df6830a17ccfd58570604f8a"
+    },
+    {
+      "task": 1,
+      "initial": 27,
+      "target": 0,
+      "accepted": true,
+      "rescore": true,
+      "frames": 355,
+      "sha256": "6f70dee70c1a77a825fb2e17d4d53042a745deb7dbfb203c6360407626110e94"
+    },
+    {
+      "task": 1,
+      "initial": 27,
+      "target": 1,
+      "accepted": true,
+      "rescore": true,
+      "frames": 323,
+      "sha256": "a4ea9f93483224a1ca30a6d74fb76cc8b753100e620686fe00ea1023f200146f"
+    }
+  ]
+}

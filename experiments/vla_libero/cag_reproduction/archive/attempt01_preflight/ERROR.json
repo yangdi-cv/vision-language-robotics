@@ -1,0 +1,4 @@
+{
+  "error": "AssertionError()",
+  "traceback": "Traceback (most recent call last):\n  File \"/home/yd/Documents/VLA/experiments/vla_libero/cag_reproduction/scripts/run.py\", line 42, in <module>\n    try:main()\n        ^^^^^^\n  File \"/home/yd/Documents/VLA/experiments/vla_libero/cag_reproduction/scripts/run.py\", line 22, in main\n    wrapper=CAGPolicy(policy,1.5);c,u,meta=wrapper.branches(obs,noise)\n                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/yd/Documents/VLA/experiments/vla_libero/cag_reproduction/scripts/cag_policy.py\", line 24, in branches\n    assert not np.array_equal(ta,tb) and len(tb)>5\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n"
+}

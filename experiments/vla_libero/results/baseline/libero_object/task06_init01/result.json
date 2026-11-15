@@ -1,0 +1,36 @@
+{
+  "runner_sha256": "e5d28552be82d553e09b3fcfe45aa95bbc6d38b0338899c2536ed1407935bb9d",
+  "suite": "libero_object",
+  "task_id": 6,
+  "initial_state_id": 1,
+  "mode": "baseline",
+  "environment_seed": 7,
+  "noise_seed": 710601,
+  "initial_state_sha256": "213f81733d30323e27ea912a5a9736830957529d3201943a1ada7f5590f8a4f5",
+  "original_prompt": "pick up the butter and place it in the basket",
+  "input_prompt": "pick up the butter and place it in the basket",
+  "replan_steps": 5,
+  "denoising_steps": 10,
+  "max_steps": 280,
+  "status": "success",
+  "success": true,
+  "steps": 145,
+  "alternate_goal_evaluable": false,
+  "alternate_goal_ever_satisfied": null,
+  "initial_eef": [
+    -0.14024806680175056,
+    0.005115776971083559,
+    0.276470659976483
+  ],
+  "final_eef": [
+    -0.012295844953779743,
+    0.2771695958581109,
+    0.17512186971400845
+  ],
+  "qpos_displacement_norm": 1.2412009634261623,
+  "simulation_elapsed_s": 7.25,
+  "wall_s": 5.331671568999809,
+  "query_count": 29,
+  "warmup_query_wall_s": 0.08382642499964277,
+  "query_median_excluding_first_s": 0.07667601499997545
+}

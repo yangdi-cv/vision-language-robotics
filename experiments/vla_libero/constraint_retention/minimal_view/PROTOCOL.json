@@ -1,0 +1,9 @@
+{
+  "scope": "development only; no new independent test",
+  "rows": 50,
+  "calls": 100,
+  "prompt": "Image 1 was taken when the robot started this subgoal; image 2 is the scene now.\nImage 3 is an auxiliary current view of the same scene; it may repeat image 2.\nSubgoal: \"{subgoal}\".\nLook at the destination named in the subgoal. Is there a new object at the destination in image 2 or image 3 that was not there in image 1, and is it the target object? For a state change (open, close, turn on), compare that object between the images.\nReturn only JSON: {\"change\": \"short description\", \"done\": true or false}",
+  "max_new_tokens": 96,
+  "source_sha256": "85dc20b36fe5500dcfee31cfa3f795205f87d7f2534a73b81840a202f501f0ec",
+  "data_sha256": "ead48d26d834d80b01e4387046831ec0cbdc4f42f612154c954445cc3e929115"
+}

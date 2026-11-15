@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# Same as scripts/python, but leaves GPU memory for a co-resident Qwen worker process.
+set -euo pipefail
+TASK_ROOT="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)"
+WORKSPACE_ROOT="$(cd -- "$TASK_ROOT/../.." && pwd)"
+unset PYTHONHOME PYTHONPATH
+export PYTHONPATH="$TASK_ROOT/third_party/libero"
+export MUJOCO_GL=egl PYOPENGL_PLATFORM=egl
+export OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1
+export XLA_PYTHON_CLIENT_MEM_FRACTION=0.40 XLA_PYTHON_CLIENT_PREALLOCATE=false
+export LIBERO_CONFIG_PATH="$TASK_ROOT/configs/libero"
+export OPENPI_DATA_HOME="$TASK_ROOT/cache"
+export WANDB_MODE=disabled
+exec "${VLA_PYTHON:-$WORKSPACE_ROOT/.venvs/openpi-libero/bin/python}" "$@"

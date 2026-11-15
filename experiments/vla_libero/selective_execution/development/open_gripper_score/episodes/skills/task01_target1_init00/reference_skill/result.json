@@ -1,0 +1,227 @@
+{
+  "case": {
+    "task": 1,
+    "target_index": 1,
+    "initial": 0,
+    "target": "butter_1",
+    "protected": "cream_cheese_1",
+    "objects": [
+      [
+        "cream_cheese_1",
+        "cream cheese box",
+        "奶油奶酪盒"
+      ],
+      [
+        "butter_1",
+        "butter",
+        "黄油"
+      ]
+    ],
+    "instruction": "只把黄油放进篮子里，奶油奶酪盒保持原位。放好后停止，不要继续搬其他物体。",
+    "reference_skill": "pick up the butter and place it in the basket",
+    "key": "task01_target1_init00"
+  },
+  "mode": "reference_skill",
+  "phase": "skills",
+  "protocol_sha256": "698a56935fb2982b4418d52a4753c5c15ce38b804c002cc1746d47cc14818f17",
+  "noise_seed": 920100,
+  "status": "error",
+  "steps": 180,
+  "events": [
+    {
+      "kind": "check",
+      "step": 10,
+      "decision": {
+        "done": false,
+        "streak": 0,
+        "stop": false
+      },
+      "images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/skills/task01_target1_init00/reference_skill/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/skills/task01_target1_init00/reference_skill/images/current_0010.png"
+      ],
+      "sent_images": [],
+      "reply": null,
+      "seconds": 8.66700429469347e-06
+    },
+    {
+      "kind": "check",
+      "step": 20,
+      "decision": {
+        "done": false,
+        "streak": 0,
+        "stop": false
+      },
+      "images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/skills/task01_target1_init00/reference_skill/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/skills/task01_target1_init00/reference_skill/images/current_0020.png"
+      ],
+      "sent_images": [],
+      "reply": null,
+      "seconds": 4.698995326180011e-06
+    },
+    {
+      "kind": "check",
+      "step": 30,
+      "decision": {
+        "done": false,
+        "streak": 0,
+        "stop": false
+      },
+      "images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/skills/task01_target1_init00/reference_skill/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/skills/task01_target1_init00/reference_skill/images/current_0030.png"
+      ],
+      "sent_images": [],
+      "reply": null,
+      "seconds": 4.398003511596471e-06
+    },
+    {
+      "kind": "check",
+      "step": 40,
+      "decision": {
+        "done": false,
+        "streak": 0,
+        "stop": false
+      },
+      "images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/skills/task01_target1_init00/reference_skill/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/skills/task01_target1_init00/reference_skill/images/current_0040.png"
+      ],
+      "sent_images": [],
+      "reply": null,
+      "seconds": 5.650996172334999e-06
+    },
+    {
+      "kind": "check",
+      "step": 50,
+      "decision": {
+        "done": false,
+        "streak": 0,
+        "stop": false
+      },
+      "images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/skills/task01_target1_init00/reference_skill/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/skills/task01_target1_init00/reference_skill/images/current_0050.png"
+      ],
+      "sent_images": [],
+      "reply": null,
+      "seconds": 3.936998837161809e-06
+    },
+    {
+      "kind": "check",
+      "step": 60,
+      "decision": {
+        "done": false,
+        "streak": 0,
+        "stop": false
+      },
+      "images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/skills/task01_target1_init00/reference_skill/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/skills/task01_target1_init00/reference_skill/images/current_0060.png"
+      ],
+      "sent_images": [],
+      "reply": null,
+      "seconds": 3.987996024079621e-06
+    },
+    {
+      "kind": "check",
+      "step": 150,
+      "decision": {
+        "done": false,
+        "streak": 0,
+        "stop": false
+      },
+      "images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/skills/task01_target1_init00/reference_skill/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/skills/task01_target1_init00/reference_skill/images/current_0150.png"
+      ],
+      "sent_images": [],
+      "reply": null,
+      "seconds": 4.0380036807619035e-06
+    },
+    {
+      "kind": "check",
+      "step": 160,
+      "decision": {
+        "done": false,
+        "streak": 0,
+        "stop": false
+      },
+      "images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/skills/task01_target1_init00/reference_skill/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/skills/task01_target1_init00/reference_skill/images/current_0160.png"
+      ],
+      "sent_images": [],
+      "reply": null,
+      "seconds": 3.316999936942011e-06
+    },
+    {
+      "kind": "check",
+      "step": 170,
+      "decision": {
+        "done": false,
+        "streak": 0,
+        "stop": false
+      },
+      "images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/skills/task01_target1_init00/reference_skill/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/skills/task01_target1_init00/reference_skill/images/current_0170.png"
+      ],
+      "sent_images": [],
+      "reply": null,
+      "seconds": 3.8569996831938624e-06
+    },
+    {
+      "kind": "check",
+      "step": 180,
+      "decision": {
+        "done": false,
+        "streak": 0,
+        "stop": false
+      },
+      "images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/skills/task01_target1_init00/reference_skill/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/episodes/skills/task01_target1_init00/reference_skill/images/current_0180.png"
+      ],
+      "sent_images": [],
+      "reply": null,
+      "seconds": 4.307999915909022e-06
+    }
+  ],
+  "policy_queries": 36,
+  "model_checks": 0,
+  "control_truth_inputs": false,
+  "original_done_used_for_stopping": false,
+  "initial_state_sha256": "5abdf8f466f490901dee9f931b32eb181b2928eaa17bb6379742f988581d564a",
+  "settled_state_sha256": "b11f72fac2b3e871efe3317925d09e9d5261be1d4a6edf7e2f40ea9f9bf8463f",
+  "goal_atoms": [
+    [
+      "in",
+      "cream_cheese_1",
+      "basket_1_contain_region"
+    ],
+    [
+      "in",
+      "butter_1",
+      "basket_1_contain_region"
+    ]
+  ],
+  "initial_object_positions": [
+    [
+      0.09910931425692633,
+      -0.18146601062546336,
+      0.44569592152000004
+    ],
+    [
+      0.0489602377124352,
+      0.05760379687259051,
+      0.44546992152000003
+    ]
+  ],
+  "policy_instruction": "pick up the butter and place it in the basket",
+  "selected_target": "butter_1",
+  "timer_threshold": 150,
+  "error": "KeyboardInterrupt()",
+  "traceback": "Traceback (most recent call last):\n  File \"/home/yd/Documents/VLA/experiments/vla_libero/selective_execution/scripts/run.py\", line 168, in run_episode\n    actions=np.asarray(policy.infer(element,noise=noise)['actions'],np.float64)\n                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/yd/Documents/VLA/experiments/vla_libero/third_party/openpi/src/openpi/policies/policy.py\", line 94, in infer\n    \"actions\": self._sample_actions(sample_rng_or_pytorch_device, observation, **sample_kwargs),\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/yd/Documents/VLA/experiments/vla_libero/third_party/openpi/src/openpi/shared/nnx_utils.py\", line 41, in wrapper\n    return jitted_fn(state, *args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nKeyboardInterrupt\n"
+}

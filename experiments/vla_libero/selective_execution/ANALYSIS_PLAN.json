@@ -1,0 +1,21 @@
+{
+  "primary_outcome": "selective_success on all20 task/target/initial conditions; all7 methods retained",
+  "primary_comparisons": [
+    "visual vs skill_continue",
+    "visual vs frozen",
+    "visual vs timer_calibrated"
+  ],
+  "secondary_comparisons": [
+    "visual vs timer150",
+    "visual vs translated_en",
+    "visual vs flat_zh"
+  ],
+  "development_skill_strata": {
+    "butter_1": false,
+    "tomato_sauce_1": false,
+    "alphabet_soup_1": true,
+    "cream_cheese_1": true
+  },
+  "strata_note": "Defined from initial0 skills before evaluating initial3-7; report both strata AND overall, never remove reverse-direction failures",
+  "statistics": "Paired descriptive exact counts; two scenes, five held-out-for-this-round initial states, common policy noise; not a broad generalization significance claim"
+}

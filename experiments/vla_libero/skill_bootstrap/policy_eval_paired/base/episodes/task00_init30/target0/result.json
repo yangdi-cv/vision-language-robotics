@@ -1,0 +1,70 @@
+{
+  "status": "complete",
+  "task": 0,
+  "initial": 30,
+  "mode": "target0",
+  "prompt": "pick up the alphabet soup can and place it in the basket",
+  "all_prompts": {
+    "target0": "pick up the alphabet soup can and place it in the basket",
+    "target1": "pick up the tomato sauce can and place it in the basket",
+    "original": "put both the alphabet soup and the tomato sauce in the basket"
+  },
+  "protocol_sha256": "cd5877d5d16d1ccd6461e52bfb6b0e720c705b8e6e571c929b2c3ea0c0e1b7e2",
+  "noise_seed": 930030,
+  "original_done_used_for_stopping": false,
+  "steps": 325,
+  "initial_sha256": "ba205c0f9f1680957015fb37ee00500c3cd03a30540bb83ec8b856efcf5b925e",
+  "settled_sha256": "1b1e224a30fe8c8980d30c8ef2ff24cd3d1a42c8072eb098771c876ab5db3d00",
+  "origins": [
+    [
+      -0.09631302920321048,
+      -0.1256871177336494,
+      0.4751701239604015
+    ],
+    [
+      -0.08981944204463323,
+      0.04610934732317506,
+      0.47516915037869284
+    ]
+  ],
+  "goal_atoms": [
+    [
+      "in",
+      "alphabet_soup_1",
+      "basket_1_contain_region"
+    ],
+    [
+      "in",
+      "tomato_sauce_1",
+      "basket_1_contain_region"
+    ]
+  ],
+  "scores": {
+    "target0": {
+      "selective_success": false,
+      "target_final_stable": true,
+      "final_released": true,
+      "target_ever_reached": true,
+      "protected_untouched": false,
+      "max_protected_displacement_m": 0.27893389125396556,
+      "first_valid_step": 143,
+      "first_violation_step": 195,
+      "self_stop_success": false,
+      "premature_stop": false
+    },
+    "target1": {
+      "selective_success": false,
+      "target_final_stable": true,
+      "final_released": true,
+      "target_ever_reached": true,
+      "protected_untouched": false,
+      "max_protected_displacement_m": 0.42412261688858355,
+      "first_valid_step": null,
+      "first_violation_step": 65,
+      "self_stop_success": false,
+      "premature_stop": false
+    }
+  },
+  "original_success_observed": true,
+  "wall_seconds": 27.12814263099972
+}

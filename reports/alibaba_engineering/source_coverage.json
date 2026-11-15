@@ -1,0 +1,856 @@
+[
+  {
+    "stage": "s01",
+    "source": "SO101/UBUNTU.md",
+    "section": "环境、串口与校准记录",
+    "source_sha256": "4807fcdb95b70dfd6c32e3ae3fd6914fed9d32cd774d574af8d2a931dc116fe7"
+  },
+  {
+    "stage": "s03",
+    "source": "experiments/alibaba_baseline/REPORT.md",
+    "section": "2. Qwen 图像与指令评测",
+    "source_sha256": "013a820d2b68a1d9e5c082b98a5345f2cbcfc0098af671d695bdf9b9eb7933df"
+  },
+  {
+    "stage": "s03",
+    "source": "experiments/alibaba_baseline/REPORT.md",
+    "section": "3. Qwen LoRA 首轮训练",
+    "source_sha256": "013a820d2b68a1d9e5c082b98a5345f2cbcfc0098af671d695bdf9b9eb7933df"
+  },
+  {
+    "stage": "s03",
+    "source": "experiments/alibaba_baseline/REPORT.md",
+    "section": "4. ACT 训练与实际物理仿真评测",
+    "source_sha256": "013a820d2b68a1d9e5c082b98a5345f2cbcfc0098af671d695bdf9b9eb7933df"
+  },
+  {
+    "stage": "s03",
+    "source": "experiments/alibaba_baseline/REPORT.md",
+    "section": "5. 有限分层链路与失败修复",
+    "source_sha256": "013a820d2b68a1d9e5c082b98a5345f2cbcfc0098af671d695bdf9b9eb7933df"
+  },
+  {
+    "stage": "s04",
+    "source": "experiments/alibaba_extension/REPORT.md",
+    "section": "2. ACT追加训练与更可靠的评测",
+    "source_sha256": "17682c3189f68996ee298ba97cb618c53a9190168c91b3ae1e5ab7c2a4434316"
+  },
+  {
+    "stage": "s04",
+    "source": "experiments/alibaba_extension/REPORT.md",
+    "section": "3. 独立于单条真实视频的RGB与深度评测",
+    "source_sha256": "17682c3189f68996ee298ba97cb618c53a9190168c91b3ae1e5ab7c2a4434316"
+  },
+  {
+    "stage": "s04",
+    "source": "experiments/alibaba_extension/REPORT.md",
+    "section": "4. 新LoRA：按场景分组的定位适配",
+    "source_sha256": "17682c3189f68996ee298ba97cb618c53a9190168c91b3ae1e5ab7c2a4434316"
+  },
+  {
+    "stage": "s04",
+    "source": "experiments/alibaba_extension/REPORT.md",
+    "section": "5. 本机INT8与KV Cache实际对照",
+    "source_sha256": "17682c3189f68996ee298ba97cb618c53a9190168c91b3ae1e5ab7c2a4434316"
+  },
+  {
+    "stage": "s04",
+    "source": "experiments/alibaba_extension/REPORT.md",
+    "section": "6. Nav2、MoveIt与Qwen任务流程",
+    "source_sha256": "17682c3189f68996ee298ba97cb618c53a9190168c91b3ae1e5ab7c2a4434316"
+  },
+  {
+    "stage": "s04",
+    "source": "experiments/alibaba_extension/REPORT.md",
+    "section": "7. 可代测接口、失败痕迹及研究草稿",
+    "source_sha256": "17682c3189f68996ee298ba97cb618c53a9190168c91b3ae1e5ab7c2a4434316"
+  },
+  {
+    "stage": "s05",
+    "source": "experiments/desktop_pickplace/REPORT.md",
+    "section": "1. 场景与系统配置",
+    "source_sha256": "e427ec7b6d9248795e4d38ee68318461d03e78122e87a9f5ad5d14b740e63ba1"
+  },
+  {
+    "stage": "s05",
+    "source": "experiments/desktop_pickplace/REPORT.md",
+    "section": "2. 几何抓放基线",
+    "source_sha256": "e427ec7b6d9248795e4d38ee68318461d03e78122e87a9f5ad5d14b740e63ba1"
+  },
+  {
+    "stage": "s05",
+    "source": "experiments/desktop_pickplace/REPORT.md",
+    "section": "3. 语言目标选择与LoRA",
+    "source_sha256": "e427ec7b6d9248795e4d38ee68318461d03e78122e87a9f5ad5d14b740e63ba1"
+  },
+  {
+    "stage": "s05",
+    "source": "experiments/desktop_pickplace/REPORT.md",
+    "section": "4. 当前任务的示教数据与ACT",
+    "source_sha256": "e427ec7b6d9248795e4d38ee68318461d03e78122e87a9f5ad5d14b740e63ba1"
+  },
+  {
+    "stage": "s05",
+    "source": "experiments/desktop_pickplace/REPORT.md",
+    "section": "5. 定位误差敏感性",
+    "source_sha256": "e427ec7b6d9248795e4d38ee68318461d03e78122e87a9f5ad5d14b740e63ba1"
+  },
+  {
+    "stage": "s05",
+    "source": "experiments/desktop_pickplace/REPORT.md",
+    "section": "6. 在线流程与放置检查",
+    "source_sha256": "e427ec7b6d9248795e4d38ee68318461d03e78122e87a9f5ad5d14b740e63ba1"
+  },
+  {
+    "stage": "s05",
+    "source": "experiments/alibaba_pc_revision/REPORT.md",
+    "section": "6. LoRA周期验证与早停",
+    "source_sha256": "207e3cc681c3a1c0fc030bea1dd116d238223f239b8e55a6891a0224a8b7ef6a"
+  },
+  {
+    "stage": "s05",
+    "source": "experiments/alibaba_pc_revision/REPORT.md",
+    "section": "7. ACT数据划分及选模",
+    "source_sha256": "207e3cc681c3a1c0fc030bea1dd116d238223f239b8e55a6891a0224a8b7ef6a"
+  },
+  {
+    "stage": "s05",
+    "source": "experiments/alibaba_jetson_revision/REPORT.md",
+    "section": "6. ACT扩大验证与重复训练",
+    "source_sha256": "d7bac2d4ec0436ad34795680d7f1d535487910e61ac0743e0e2dbce3c92d8e97"
+  },
+  {
+    "stage": "s06",
+    "source": "experiments/alibaba_jetson_revision/REPORT.md",
+    "section": "1. 环境与数据流",
+    "source_sha256": "d7bac2d4ec0436ad34795680d7f1d535487910e61ac0743e0e2dbce3c92d8e97"
+  },
+  {
+    "stage": "s06",
+    "source": "experiments/alibaba_jetson_revision/REPORT.md",
+    "section": "2. 检测与深度的后端对照",
+    "source_sha256": "d7bac2d4ec0436ad34795680d7f1d535487910e61ac0743e0e2dbce3c92d8e97"
+  },
+  {
+    "stage": "s06",
+    "source": "experiments/alibaba_jetson_revision/REPORT.md",
+    "section": "3. 连续运行与最新帧",
+    "source_sha256": "d7bac2d4ec0436ad34795680d7f1d535487910e61ac0743e0e2dbce3c92d8e97"
+  },
+  {
+    "stage": "s06",
+    "source": "experiments/alibaba_jetson_revision/REPORT.md",
+    "section": "4. 真实场景观察的有效范围",
+    "source_sha256": "d7bac2d4ec0436ad34795680d7f1d535487910e61ac0743e0e2dbce3c92d8e97"
+  },
+  {
+    "stage": "s06",
+    "source": "experiments/alibaba_jetson_revision/REPORT.md",
+    "section": "5. 自有4B模型与LoRA的Jetson迁移",
+    "source_sha256": "d7bac2d4ec0436ad34795680d7f1d535487910e61ac0743e0e2dbce3c92d8e97"
+  },
+  {
+    "stage": "s06",
+    "source": "experiments/alibaba_jetson_revision/REPORT.md",
+    "section": "7. 端侧目标到仿真策略的衔接",
+    "source_sha256": "d7bac2d4ec0436ad34795680d7f1d535487910e61ac0743e0e2dbce3c92d8e97"
+  },
+  {
+    "stage": "s06",
+    "source": "experiments/earbud_detector/README.md",
+    "section": "完整短说明",
+    "source_sha256": "8d866f63604ffeeb8fddc6ae43c21100f0218a1f4736fa1ad797fd0156497c5e"
+  },
+  {
+    "stage": "s06",
+    "source": "experiments/earbud_tracking/README.md",
+    "section": "完整短说明",
+    "source_sha256": "9abaaacde9486b3bd59e18b4aab21efb37cc88b693afbfe0b785e3f51e9f0487"
+  },
+  {
+    "stage": "s06",
+    "source": "PROJECT_LOG.md",
+    "section": "10月25日转移与追踪结果修正",
+    "source_sha256": "4986858ee26b0764d5fa9086cf36db0b9ec33ff3246181fa71a9fb988c6f50d9"
+  },
+  {
+    "stage": "s07",
+    "source": "experiments/smolvla_pc/REPORT.md",
+    "section": "已完成",
+    "source_sha256": "9dac2621d59aef5513357c7865d184de0e9499c53e97a61f3e6e077a3544f61a"
+  },
+  {
+    "stage": "s07",
+    "source": "experiments/smolvla_pc/REPORT.md",
+    "section": "条件对照",
+    "source_sha256": "9dac2621d59aef5513357c7865d184de0e9499c53e97a61f3e6e077a3544f61a"
+  },
+  {
+    "stage": "s07",
+    "source": "experiments/smolvla_pc/REPORT.md",
+    "section": "当前限制",
+    "source_sha256": "9dac2621d59aef5513357c7865d184de0e9499c53e97a61f3e6e077a3544f61a"
+  },
+  {
+    "stage": "s07",
+    "source": "experiments/smolvla_pc/mousepad_report/REPORT.md",
+    "section": "本轮完成",
+    "source_sha256": "8e5828e7e05aa0a48755b628b96ac9c341b1150bf38c39b91fb2e5112baf3524"
+  },
+  {
+    "stage": "s07",
+    "source": "experiments/smolvla_pc/mousepad_report/REPORT.md",
+    "section": "训练与留出检查",
+    "source_sha256": "8e5828e7e05aa0a48755b628b96ac9c341b1150bf38c39b91fb2e5112baf3524"
+  },
+  {
+    "stage": "s07",
+    "source": "experiments/smolvla_pc/mousepad_report/REPORT.md",
+    "section": "三条合训版本",
+    "source_sha256": "8e5828e7e05aa0a48755b628b96ac9c341b1150bf38c39b91fb2e5112baf3524"
+  },
+  {
+    "stage": "s07",
+    "source": "experiments/smolvla_pc/approach_report/REPORT.md",
+    "section": "数据与训练",
+    "source_sha256": "d024ef9b4ad4948372a3bd74fe4d0f0ba96eff98bf8c1771582a284e59a5777d"
+  },
+  {
+    "stage": "s07",
+    "source": "experiments/smolvla_pc/approach_report/REPORT.md",
+    "section": "离线检查",
+    "source_sha256": "d024ef9b4ad4948372a3bd74fe4d0f0ba96eff98bf8c1771582a284e59a5777d"
+  },
+  {
+    "stage": "s07",
+    "source": "experiments/smolvla_pc/approach_report/REPORT.md",
+    "section": "执行约束",
+    "source_sha256": "d024ef9b4ad4948372a3bd74fe4d0f0ba96eff98bf8c1771582a284e59a5777d"
+  },
+  {
+    "stage": "s07",
+    "source": "PROJECT_LOG.md",
+    "section": "10月25日SmolVLA微调、限幅与20%实测",
+    "source_sha256": "4986858ee26b0764d5fa9086cf36db0b9ec33ff3246181fa71a9fb988c6f50d9"
+  },
+  {
+    "stage": "s08",
+    "source": "experiments/vla_libero/REPORT.md",
+    "section": "1. 本轮范围与选型",
+    "source_sha256": "9b4a8e49a4f69eb3925d6bd805893d18f226e23691c64e4d80a6fa33cb3e9f6a"
+  },
+  {
+    "stage": "s08",
+    "source": "experiments/vla_libero/REPORT.md",
+    "section": "2. 统一观察与动作接口",
+    "source_sha256": "9b4a8e49a4f69eb3925d6bd805893d18f226e23691c64e4d80a6fa33cb3e9f6a"
+  },
+  {
+    "stage": "s08",
+    "source": "experiments/vla_libero/REPORT.md",
+    "section": "3. 任务与评估协议",
+    "source_sha256": "9b4a8e49a4f69eb3925d6bd805893d18f226e23691c64e4d80a6fa33cb3e9f6a"
+  },
+  {
+    "stage": "s08",
+    "source": "experiments/vla_libero/REPORT.md",
+    "section": "4. 官方检查点闭环结果",
+    "source_sha256": "9b4a8e49a4f69eb3925d6bd805893d18f226e23691c64e4d80a6fa33cb3e9f6a"
+  },
+  {
+    "stage": "s08",
+    "source": "experiments/vla_libero/REPORT.md",
+    "section": "5. 视觉、语言与执行干预",
+    "source_sha256": "9b4a8e49a4f69eb3925d6bd805893d18f226e23691c64e4d80a6fa33cb3e9f6a"
+  },
+  {
+    "stage": "s08",
+    "source": "experiments/vla_libero/REPORT.md",
+    "section": "6. 推理耗时与执行效率",
+    "source_sha256": "9b4a8e49a4f69eb3925d6bd805893d18f226e23691c64e4d80a6fa33cb3e9f6a"
+  },
+  {
+    "stage": "s08",
+    "source": "experiments/vla_libero/REPORT.md",
+    "section": "7. 失败与适用边界",
+    "source_sha256": "9b4a8e49a4f69eb3925d6bd805893d18f226e23691c64e4d80a6fa33cb3e9f6a"
+  },
+  {
+    "stage": "s09",
+    "source": "PROJECT_LOG.md",
+    "section": "11月12日中文分层、公平对照与统一梳理",
+    "source_sha256": "4986858ee26b0764d5fa9086cf36db0b9ec33ff3246181fa71a9fb988c6f50d9"
+  },
+  {
+    "stage": "s09",
+    "source": "experiments/vla_libero/INTEGRATION_PLAN.md",
+    "section": "已有结果与问题归纳",
+    "source_sha256": "a5975d240a5e73eacb7019c8e934393d72f4dc8c16bbec9997f0b33e2d6e0c80"
+  },
+  {
+    "stage": "s09",
+    "source": "experiments/vla_libero/qwen8b_comparison/REPORT.md",
+    "section": "范围与方法",
+    "source_sha256": "df4edf1a09fd38d789d840143df25f122fe16d2a680a5ac97130ad257abd5c42"
+  },
+  {
+    "stage": "s09",
+    "source": "experiments/vla_libero/qwen8b_comparison/REPORT.md",
+    "section": "实测结果",
+    "source_sha256": "df4edf1a09fd38d789d840143df25f122fe16d2a680a5ac97130ad257abd5c42"
+  },
+  {
+    "stage": "s09",
+    "source": "experiments/vla_libero/qwen8b_comparison/REPORT.md",
+    "section": "解释与限制",
+    "source_sha256": "df4edf1a09fd38d789d840143df25f122fe16d2a680a5ac97130ad257abd5c42"
+  },
+  {
+    "stage": "s10",
+    "source": "experiments/vla_libero/recovery_study/REPORT.md",
+    "section": "1. 已有结果与本轮问题",
+    "source_sha256": "49a2ded494891b1bb5521ac1d948f1eff44b4afb0cf44cf1585b1a9378a2e011"
+  },
+  {
+    "stage": "s10",
+    "source": "experiments/vla_libero/recovery_study/REPORT.md",
+    "section": "2. 执行逻辑改进",
+    "source_sha256": "49a2ded494891b1bb5521ac1d948f1eff44b4afb0cf44cf1585b1a9378a2e011"
+  },
+  {
+    "stage": "s10",
+    "source": "experiments/vla_libero/recovery_study/REPORT.md",
+    "section": "3. 配对恢复实验",
+    "source_sha256": "49a2ded494891b1bb5521ac1d948f1eff44b4afb0cf44cf1585b1a9378a2e011"
+  },
+  {
+    "stage": "s10",
+    "source": "experiments/vla_libero/recovery_study/REPORT.md",
+    "section": "4. 具体失败分析",
+    "source_sha256": "49a2ded494891b1bb5521ac1d948f1eff44b4afb0cf44cf1585b1a9378a2e011"
+  },
+  {
+    "stage": "s10",
+    "source": "experiments/vla_libero/recovery_study/REPORT.md",
+    "section": "5. 验证、限制与后续工作",
+    "source_sha256": "49a2ded494891b1bb5521ac1d948f1eff44b4afb0cf44cf1585b1a9378a2e011"
+  },
+  {
+    "stage": "s10",
+    "source": "experiments/vla_libero/closed_loop_iteration/REPORT.md",
+    "section": "2. t9定位与单入口",
+    "source_sha256": "1c5ba9faf7e28a75a182d83d0202a21367a0571185c4780d57ab5834c65a7819"
+  },
+  {
+    "stage": "s10",
+    "source": "experiments/vla_libero/closed_loop_iteration/REPORT.md",
+    "section": "3. 受控扰动实验",
+    "source_sha256": "1c5ba9faf7e28a75a182d83d0202a21367a0571185c4780d57ab5834c65a7819"
+  },
+  {
+    "stage": "s11",
+    "source": "experiments/vla_libero/closed_loop_iteration/REPORT.md",
+    "section": "4. 完成检查器LoRA",
+    "source_sha256": "1c5ba9faf7e28a75a182d83d0202a21367a0571185c4780d57ab5834c65a7819"
+  },
+  {
+    "stage": "s11",
+    "source": "experiments/vla_libero/checker_v2/REPORT.md",
+    "section": "1. 目标与验收",
+    "source_sha256": "72307a51cf3d0498e953d3375b40ce2ae1baacf4729399eb3b0bb82ad64cb6dc"
+  },
+  {
+    "stage": "s11",
+    "source": "experiments/vla_libero/checker_v2/REPORT.md",
+    "section": "2. 数据与标签",
+    "source_sha256": "72307a51cf3d0498e953d3375b40ce2ae1baacf4729399eb3b0bb82ad64cb6dc"
+  },
+  {
+    "stage": "s11",
+    "source": "experiments/vla_libero/checker_v2/REPORT.md",
+    "section": "3. 训练过程",
+    "source_sha256": "72307a51cf3d0498e953d3375b40ce2ae1baacf4729399eb3b0bb82ad64cb6dc"
+  },
+  {
+    "stage": "s11",
+    "source": "experiments/vla_libero/checker_v2/REPORT.md",
+    "section": "4. 独立测试结果",
+    "source_sha256": "72307a51cf3d0498e953d3375b40ce2ae1baacf4729399eb3b0bb82ad64cb6dc"
+  },
+  {
+    "stage": "s12",
+    "source": "experiments/vla_libero/checker_v2/EXPLORATORY_REPORT.md",
+    "section": "1. 为什么继续跑闭环",
+    "source_sha256": "6010d276b1ca7f8f91a0372e01b6690eab2ca537edf1ea9ab9eb180f5e49e17c"
+  },
+  {
+    "stage": "s12",
+    "source": "experiments/vla_libero/checker_v2/EXPLORATORY_REPORT.md",
+    "section": "2. 固定的对照条件",
+    "source_sha256": "6010d276b1ca7f8f91a0372e01b6690eab2ca537edf1ea9ab9eb180f5e49e17c"
+  },
+  {
+    "stage": "s12",
+    "source": "experiments/vla_libero/checker_v2/EXPLORATORY_REPORT.md",
+    "section": "3. 闭环结果",
+    "source_sha256": "6010d276b1ca7f8f91a0372e01b6690eab2ca537edf1ea9ab9eb180f5e49e17c"
+  },
+  {
+    "stage": "s12",
+    "source": "experiments/vla_libero/checker_v2/EXPLORATORY_REPORT.md",
+    "section": "4. 这轮验证了什么",
+    "source_sha256": "6010d276b1ca7f8f91a0372e01b6690eab2ca537edf1ea9ab9eb180f5e49e17c"
+  },
+  {
+    "stage": "s12",
+    "source": "experiments/vla_libero/checker_v2/EXPLORATORY_REPORT.md",
+    "section": "5. 误报标签审核与后续取舍",
+    "source_sha256": "6010d276b1ca7f8f91a0372e01b6690eab2ca537edf1ea9ab9eb180f5e49e17c"
+  },
+  {
+    "stage": "s12",
+    "source": "experiments/vla_libero/monitor_causality/REPORT.md",
+    "section": "1. 问题与已有基础",
+    "source_sha256": "3552421a6f643bbb4df509a378197eca82ceb0c16df08e84527f4c1baa76849e"
+  },
+  {
+    "stage": "s12",
+    "source": "experiments/vla_libero/monitor_causality/REPORT.md",
+    "section": "2. 配对协议与五组干预",
+    "source_sha256": "3552421a6f643bbb4df509a378197eca82ceb0c16df08e84527f4c1baa76849e"
+  },
+  {
+    "stage": "s12",
+    "source": "experiments/vla_libero/monitor_causality/REPORT.md",
+    "section": "3. 官方结果与任务差异",
+    "source_sha256": "3552421a6f643bbb4df509a378197eca82ceb0c16df08e84527f4c1baa76849e"
+  },
+  {
+    "stage": "s12",
+    "source": "experiments/vla_libero/monitor_causality/REPORT.md",
+    "section": "4. 判断、切换与低层行为",
+    "source_sha256": "3552421a6f643bbb4df509a378197eca82ceb0c16df08e84527f4c1baa76849e"
+  },
+  {
+    "stage": "s12",
+    "source": "experiments/vla_libero/monitor_causality/REPORT.md",
+    "section": "5. 实际决策时刻的数据",
+    "source_sha256": "3552421a6f643bbb4df509a378197eca82ceb0c16df08e84527f4c1baa76849e"
+  },
+  {
+    "stage": "s12",
+    "source": "experiments/vla_libero/monitor_causality/REPORT.md",
+    "section": "6. 独立核验与限制",
+    "source_sha256": "3552421a6f643bbb4df509a378197eca82ceb0c16df08e84527f4c1baa76849e"
+  },
+  {
+    "stage": "s13",
+    "source": "experiments/vla_libero/selective_execution/REPORT.md",
+    "section": "1. 任务设计与评分",
+    "source_sha256": "6c5f70b676af8ff8ec552f7ca49f0b7740c62d92f82367136764f3ac997827af"
+  },
+  {
+    "stage": "s13",
+    "source": "experiments/vla_libero/selective_execution/REPORT.md",
+    "section": "2. 开发小试与冻结设置",
+    "source_sha256": "6c5f70b676af8ff8ec552f7ca49f0b7740c62d92f82367136764f3ac997827af"
+  },
+  {
+    "stage": "s13",
+    "source": "experiments/vla_libero/selective_execution/REPORT.md",
+    "section": "3. 配对结果与对照解释",
+    "source_sha256": "6c5f70b676af8ff8ec552f7ca49f0b7740c62d92f82367136764f3ac997827af"
+  },
+  {
+    "stage": "s13",
+    "source": "experiments/vla_libero/selective_execution/REPORT.md",
+    "section": "4. 失败发生在哪一层",
+    "source_sha256": "6c5f70b676af8ff8ec552f7ca49f0b7740c62d92f82367136764f3ac997827af"
+  },
+  {
+    "stage": "s13",
+    "source": "experiments/vla_libero/selective_execution/REPORT.md",
+    "section": "5. 执行与物理状态核验",
+    "source_sha256": "6c5f70b676af8ff8ec552f7ca49f0b7740c62d92f82367136764f3ac997827af"
+  },
+  {
+    "stage": "s13",
+    "source": "experiments/vla_libero/constraint_retention/REPORT.md",
+    "section": "1. 问题与实验范围",
+    "source_sha256": "ac4b9bd101e2a958e6e487eebeb59cee6b36147019b1cbf4c2f7ea767eabe58b"
+  },
+  {
+    "stage": "s13",
+    "source": "experiments/vla_libero/constraint_retention/REPORT.md",
+    "section": "2. 完整约束透传",
+    "source_sha256": "ac4b9bd101e2a958e6e487eebeb59cee6b36147019b1cbf4c2f7ea767eabe58b"
+  },
+  {
+    "stage": "s13",
+    "source": "experiments/vla_libero/constraint_retention/REPORT.md",
+    "section": "3. 多视角离线对照",
+    "source_sha256": "ac4b9bd101e2a958e6e487eebeb59cee6b36147019b1cbf4c2f7ea767eabe58b"
+  },
+  {
+    "stage": "s13",
+    "source": "experiments/vla_libero/constraint_retention/REPORT.md",
+    "section": "4. 多视角在线验证",
+    "source_sha256": "ac4b9bd101e2a958e6e487eebeb59cee6b36147019b1cbf4c2f7ea767eabe58b"
+  },
+  {
+    "stage": "s13",
+    "source": "experiments/vla_libero/constraint_retention/REPORT.md",
+    "section": "5. 提示词复查与解释",
+    "source_sha256": "ac4b9bd101e2a958e6e487eebeb59cee6b36147019b1cbf4c2f7ea767eabe58b"
+  },
+  {
+    "stage": "s14",
+    "source": "experiments/vla_libero/skill_bootstrap/REPORT.md",
+    "section": "1. 指令响应诊断",
+    "source_sha256": "05ba50b791ed74f22c82981edb1e521cd7b530088262cdf6308909630b1f301c"
+  },
+  {
+    "stage": "s14",
+    "source": "experiments/vla_libero/skill_bootstrap/REPORT.md",
+    "section": "2. 单物体示教与物理验收",
+    "source_sha256": "05ba50b791ed74f22c82981edb1e521cd7b530088262cdf6308909630b1f301c"
+  },
+  {
+    "stage": "s14",
+    "source": "experiments/vla_libero/skill_bootstrap/REPORT.md",
+    "section": "3. 第一轮策略适配",
+    "source_sha256": "05ba50b791ed74f22c82981edb1e521cd7b530088262cdf6308909630b1f301c"
+  },
+  {
+    "stage": "s14",
+    "source": "experiments/vla_libero/skill_bootstrap/REPORT.md",
+    "section": "4. 目标分叉配对适配",
+    "source_sha256": "05ba50b791ed74f22c82981edb1e521cd7b530088262cdf6308909630b1f301c"
+  },
+  {
+    "stage": "s14",
+    "source": "experiments/vla_libero/skill_bootstrap/REPORT.md",
+    "section": "5. 新布局闭环结果",
+    "source_sha256": "05ba50b791ed74f22c82981edb1e521cd7b530088262cdf6308909630b1f301c"
+  },
+  {
+    "stage": "s14",
+    "source": "experiments/vla_libero/cag_reproduction/REPORT.md",
+    "section": "1. 参考方法与复现边界",
+    "source_sha256": "e3d44b642bf2991affc0958fde78eb7b8b5c0a57de6f3648a132aabc4682530d"
+  },
+  {
+    "stage": "s14",
+    "source": "experiments/vla_libero/cag_reproduction/REPORT.md",
+    "section": "2. 输入及公式控制检查",
+    "source_sha256": "e3d44b642bf2991affc0958fde78eb7b8b5c0a57de6f3648a132aabc4682530d"
+  },
+  {
+    "stage": "s14",
+    "source": "experiments/vla_libero/cag_reproduction/REPORT.md",
+    "section": "3. 配对闭环结果",
+    "source_sha256": "e3d44b642bf2991affc0958fde78eb7b8b5c0a57de6f3648a132aabc4682530d"
+  },
+  {
+    "stage": "s14",
+    "source": "experiments/vla_libero/cag_reproduction/REPORT.md",
+    "section": "4. 资源、文件与后续判断",
+    "source_sha256": "e3d44b642bf2991affc0958fde78eb7b8b5c0a57de6f3648a132aabc4682530d"
+  },
+  {
+    "stage": "s14",
+    "source": "experiments/vla_libero/point_target/REPORT.md",
+    "section": "1. 官方开源方案的完整运行实例",
+    "source_sha256": "1f4ad1508e6cc954b4ea7f34047106d5249dbaae0af44412ce6dfa6cd9fe4b64"
+  },
+  {
+    "stage": "s14",
+    "source": "experiments/vla_libero/point_target/REPORT.md",
+    "section": "2. 显式目标接口与数据设计",
+    "source_sha256": "1f4ad1508e6cc954b4ea7f34047106d5249dbaae0af44412ce6dfa6cd9fe4b64"
+  },
+  {
+    "stage": "s14",
+    "source": "experiments/vla_libero/point_target/REPORT.md",
+    "section": "3. 有界联合适配与保留初态测试",
+    "source_sha256": "1f4ad1508e6cc954b4ea7f34047106d5249dbaae0af44412ce6dfa6cd9fe4b64"
+  },
+  {
+    "stage": "s14",
+    "source": "experiments/vla_libero/point_target/REPORT.md",
+    "section": "4. 核对、边界与后续安排",
+    "source_sha256": "1f4ad1508e6cc954b4ea7f34047106d5249dbaae0af44412ce6dfa6cd9fe4b64"
+  },
+  {
+    "stage": "s15",
+    "source": "experiments/mobile_vla/README.md",
+    "section": "已实际完成",
+    "source_sha256": "a90efa1ef582402c7325edb7661261402e4219e95e3515e8eb17b49ca627107f"
+  },
+  {
+    "stage": "s15",
+    "source": "experiments/mobile_vla/README.md",
+    "section": "关键修正",
+    "source_sha256": "a90efa1ef582402c7325edb7661261402e4219e95e3515e8eb17b49ca627107f"
+  },
+  {
+    "stage": "s15",
+    "source": "experiments/mobile_vla/PROGRESS.md",
+    "section": "开发回归与局部修复",
+    "source_sha256": "cd23366ad41e27338c2ee70133a618c5091e7976ce7bfbcb4304be70eca7953b"
+  },
+  {
+    "stage": "s16",
+    "source": "experiments/mobile_qwen/reports/20261114/STAGE_REPORT.md",
+    "section": "1. 本阶段范围与系统实现",
+    "source_sha256": "687127ed324bd21c8289974a80bdaedd27d731a3b729e62ec95bb5de483b3e7a"
+  },
+  {
+    "stage": "s16",
+    "source": "experiments/mobile_qwen/reports/20261114/STAGE_REPORT.md",
+    "section": "2. 视觉停止的三版结果",
+    "source_sha256": "687127ed324bd21c8289974a80bdaedd27d731a3b729e62ec95bb5de483b3e7a"
+  },
+  {
+    "stage": "s17",
+    "source": "experiments/mobile_qwen/reports/20261114/STAGE_REPORT.md",
+    "section": "3. 可供性数据与LoRA",
+    "source_sha256": "687127ed324bd21c8289974a80bdaedd27d731a3b729e62ec95bb5de483b3e7a"
+  },
+  {
+    "stage": "s17",
+    "source": "experiments/mobile_qwen/reports/20261114/STAGE_REPORT.md",
+    "section": "4. 指标定义、对照与限制",
+    "source_sha256": "687127ed324bd21c8289974a80bdaedd27d731a3b729e62ec95bb5de483b3e7a"
+  },
+  {
+    "stage": "s18",
+    "source": "experiments/alibaba_pc_revision/REPORT.md",
+    "section": "1. 改动范围与代码入口",
+    "source_sha256": "207e3cc681c3a1c0fc030bea1dd116d238223f239b8e55a6891a0224a8b7ef6a"
+  },
+  {
+    "stage": "s18",
+    "source": "experiments/alibaba_pc_revision/REPORT.md",
+    "section": "2. 模型进程超时和退出处理",
+    "source_sha256": "207e3cc681c3a1c0fc030bea1dd116d238223f239b8e55a6891a0224a8b7ef6a"
+  },
+  {
+    "stage": "s18",
+    "source": "experiments/alibaba_pc_revision/REPORT.md",
+    "section": "3. 图像内存传递与一致性",
+    "source_sha256": "207e3cc681c3a1c0fc030bea1dd116d238223f239b8e55a6891a0224a8b7ef6a"
+  },
+  {
+    "stage": "s18",
+    "source": "experiments/alibaba_pc_revision/REPORT.md",
+    "section": "4. 输出长度与约束解码",
+    "source_sha256": "207e3cc681c3a1c0fc030bea1dd116d238223f239b8e55a6891a0224a8b7ef6a"
+  },
+  {
+    "stage": "s18",
+    "source": "experiments/alibaba_pc_revision/REPORT.md",
+    "section": "5. 检测及深度推理对照",
+    "source_sha256": "207e3cc681c3a1c0fc030bea1dd116d238223f239b8e55a6891a0224a8b7ef6a"
+  },
+  {
+    "stage": "s18",
+    "source": "experiments/vla_libero/skill_bootstrap/REPORT.md",
+    "section": "6. 内存故障与加载修复",
+    "source_sha256": "05ba50b791ed74f22c82981edb1e521cd7b530088262cdf6308909630b1f301c"
+  },
+  {
+    "stage": "s18",
+    "source": "PROJECT_LOG.md",
+    "section": "提交包与图像、日志语义修订",
+    "source_sha256": "4986858ee26b0764d5fa9086cf36db0b9ec33ff3246181fa71a9fb988c6f50d9",
+    "selection_start": "### 2026-11-13 阿里反馈修订",
+    "selection_end": "### 2026-11-13 字节反馈"
+  },
+  {
+    "stage": "s18",
+    "source": "experiments/mobile_qwen/reports/20261114/STAGE_REPORT.md",
+    "section": "5. 负结果和工程维护",
+    "source_sha256": "687127ed324bd21c8289974a80bdaedd27d731a3b729e62ec95bb5de483b3e7a"
+  },
+  {
+    "stage": "s19",
+    "source": "experiments/mobile_qwen/closed_loop_20261115/REPORT.md",
+    "section": "1. 对照结果",
+    "source_sha256": "107497dfe358ae8dbfc45685fd55fabcd9434b02a622f1c7c77453dc55d74974"
+  },
+  {
+    "stage": "s19",
+    "source": "experiments/mobile_qwen/closed_loop_20261115/REPORT.md",
+    "section": "2. 实现与验收",
+    "source_sha256": "107497dfe358ae8dbfc45685fd55fabcd9434b02a622f1c7c77453dc55d74974"
+  },
+  {
+    "stage": "s19",
+    "source": "experiments/mobile_qwen/closed_loop_20261115/REPORT.md",
+    "section": "3. 开发中遇到的问题",
+    "source_sha256": "107497dfe358ae8dbfc45685fd55fabcd9434b02a622f1c7c77453dc55d74974"
+  },
+  {
+    "stage": "s19",
+    "source": "experiments/mobile_qwen/closed_loop_20261115/REPORT.md",
+    "section": "4. 局限与后续",
+    "source_sha256": "107497dfe358ae8dbfc45685fd55fabcd9434b02a622f1c7c77453dc55d74974"
+  },
+  {
+    "stage": "s19",
+    "source": "experiments/mobile_qwen/closed_loop_20261115/REPORT.md",
+    "section": "5. 逐回合结果与文件",
+    "source_sha256": "107497dfe358ae8dbfc45685fd55fabcd9434b02a622f1c7c77453dc55d74974"
+  },
+  {
+    "stage": "s20",
+    "source": "experiments/mobile_qwen/closed_loop_20261115/REPORT.md",
+    "section": "6. 无重置交接完整任务",
+    "source_sha256": "107497dfe358ae8dbfc45685fd55fabcd9434b02a622f1c7c77453dc55d74974"
+  },
+  {
+    "stage": "s20",
+    "source": "experiments/mobile_qwen/closed_loop_20261115/REPORT.md",
+    "section": "7. 失败初态的原生技能诊断",
+    "source_sha256": "107497dfe358ae8dbfc45685fd55fabcd9434b02a622f1c7c77453dc55d74974"
+  },
+  {
+    "stage": "s21",
+    "source": "experiments/mobile_qwen/jetson/SOFTWARE_STACK_REPORT.md",
+    "section": "结论",
+    "source_sha256": "47163d6edd4de137e51dacb4c2f896fc8e3238536dfe7efa670efeb59d760757"
+  },
+  {
+    "stage": "s21",
+    "source": "experiments/mobile_qwen/jetson/SOFTWARE_STACK_REPORT.md",
+    "section": "内存与运行状态",
+    "source_sha256": "47163d6edd4de137e51dacb4c2f896fc8e3238536dfe7efa670efeb59d760757"
+  },
+  {
+    "stage": "s21",
+    "source": "experiments/mobile_qwen/jetson/SOFTWARE_STACK_REPORT.md",
+    "section": "修复的兼容性问题",
+    "source_sha256": "47163d6edd4de137e51dacb4c2f896fc8e3238536dfe7efa670efeb59d760757"
+  },
+  {
+    "stage": "s21",
+    "source": "experiments/mobile_qwen/jetson/SOFTWARE_STACK_REPORT.md",
+    "section": "PC预量化与跨设备核对",
+    "source_sha256": "47163d6edd4de137e51dacb4c2f896fc8e3238536dfe7efa670efeb59d760757"
+  },
+  {
+    "stage": "s21",
+    "source": "experiments/mobile_qwen/jetson/SOFTWARE_STACK_REPORT.md",
+    "section": "本地文件",
+    "source_sha256": "47163d6edd4de137e51dacb4c2f896fc8e3238536dfe7efa670efeb59d760757"
+  },
+  {
+    "stage": "s22",
+    "source": "experiments/mobile_qwen/jetson/stage2_20261114/REPORT.md",
+    "section": "1. 实验设置与训练",
+    "source_sha256": "951eb2f8142e37e66d969d214a232336d60b246d76a77e2b41ac28f32c0095f6"
+  },
+  {
+    "stage": "s22",
+    "source": "experiments/mobile_qwen/jetson/stage2_20261114/REPORT.md",
+    "section": "2. 精度对照",
+    "source_sha256": "951eb2f8142e37e66d969d214a232336d60b246d76a77e2b41ac28f32c0095f6"
+  },
+  {
+    "stage": "s22",
+    "source": "experiments/mobile_qwen/jetson/stage2_20261114/REPORT.md",
+    "section": "3. 输出协议与诊断",
+    "source_sha256": "951eb2f8142e37e66d969d214a232336d60b246d76a77e2b41ac28f32c0095f6"
+  },
+  {
+    "stage": "s22",
+    "source": "experiments/mobile_qwen/jetson/stage2_20261114/REPORT.md",
+    "section": "4. PC/Jetson逐条一致性",
+    "source_sha256": "951eb2f8142e37e66d969d214a232336d60b246d76a77e2b41ac28f32c0095f6"
+  },
+  {
+    "stage": "s22",
+    "source": "experiments/mobile_qwen/jetson/stage2_20261114/REPORT.md",
+    "section": "5. 加载与内存",
+    "source_sha256": "951eb2f8142e37e66d969d214a232336d60b246d76a77e2b41ac28f32c0095f6"
+  },
+  {
+    "stage": "s22",
+    "source": "experiments/mobile_qwen/jetson/stage2_20261114/REPORT.md",
+    "section": "6. 工程问题与处理",
+    "source_sha256": "951eb2f8142e37e66d969d214a232336d60b246d76a77e2b41ac28f32c0095f6"
+  },
+  {
+    "stage": "s23",
+    "source": "experiments/mobile_qwen/jetson/stage3_20261115/REPORT.md",
+    "section": "3. 视觉服务与PC联合仿真（资源表前）",
+    "source_sha256": "36b1b5dfbde701deacbb59bdc5450a9b711fdd8122bbfd2b87ed0c3e298b00ab"
+  },
+  {
+    "stage": "s24",
+    "source": "experiments/mobile_qwen/jetson/stage3_20261115/REPORT.md",
+    "section": "1. 时延设置与结果",
+    "source_sha256": "36b1b5dfbde701deacbb59bdc5450a9b711fdd8122bbfd2b87ed0c3e298b00ab"
+  },
+  {
+    "stage": "s24",
+    "source": "experiments/mobile_qwen/jetson/stage3_20261115/REPORT.md",
+    "section": "2. 功耗、频率与资源",
+    "source_sha256": "36b1b5dfbde701deacbb59bdc5450a9b711fdd8122bbfd2b87ed0c3e298b00ab"
+  },
+  {
+    "stage": "s24",
+    "source": "experiments/mobile_qwen/jetson/stage3_20261115/REPORT.md",
+    "section": "4. 单次算子剖析",
+    "source_sha256": "36b1b5dfbde701deacbb59bdc5450a9b711fdd8122bbfd2b87ed0c3e298b00ab"
+  },
+  {
+    "stage": "s24",
+    "source": "experiments/mobile_qwen/jetson/stage3_20261115/REPORT.md",
+    "section": "3. 联合测试后的资源表",
+    "source_sha256": "36b1b5dfbde701deacbb59bdc5450a9b711fdd8122bbfd2b87ed0c3e298b00ab"
+  },
+  {
+    "stage": "s14",
+    "source": "experiments/vla_libero/target_skill/PLAN.md",
+    "section": "部署语义说明",
+    "source_sha256": "350b1f839a23d5e11e3f1b8e52c848303202c736cc7d4ed5cd4661fd8953f961"
+  },
+  {
+    "stage": "s14",
+    "source": "experiments/vla_libero/target_skill/SEMANTIC_CHECK.json",
+    "section": "浮点算子核对",
+    "source_sha256": "0f341158d36fc47a962f1050e4bdb8f6d6a061735da43716ef3b2c49fc01b00f"
+  },
+  {
+    "stage": "s08",
+    "source": "experiments/vla_libero/REPORT.md",
+    "section": "8. 复现与源码目录",
+    "source_sha256": "9b4a8e49a4f69eb3925d6bd805893d18f226e23691c64e4d80a6fa33cb3e9f6a"
+  },
+  {
+    "stage": "s11",
+    "source": "experiments/vla_libero/checker_v2/REPORT.md",
+    "section": "5. 接口与代码目录",
+    "source_sha256": "72307a51cf3d0498e953d3375b40ce2ae1baacf4729399eb3b0bb82ad64cb6dc"
+  },
+  {
+    "stage": "s12",
+    "source": "experiments/vla_libero/checker_v2/EXPLORATORY_REPORT.md",
+    "section": "6. 代码与复核",
+    "source_sha256": "6010d276b1ca7f8f91a0372e01b6690eab2ca537edf1ea9ab9eb180f5e49e17c"
+  },
+  {
+    "stage": "s13",
+    "source": "experiments/vla_libero/selective_execution/REPORT.md",
+    "section": "7. 代码目录与复现",
+    "source_sha256": "6c5f70b676af8ff8ec552f7ca49f0b7740c62d92f82367136764f3ac997827af"
+  },
+  {
+    "stage": "s14",
+    "source": "experiments/vla_libero/point_target/REPORT.md",
+    "section": "5. 文件目录和启动方式",
+    "source_sha256": "1f4ad1508e6cc954b4ea7f34047106d5249dbaae0af44412ce6dfa6cd9fe4b64"
+  }
+]

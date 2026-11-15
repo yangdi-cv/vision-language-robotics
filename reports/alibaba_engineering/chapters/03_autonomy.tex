@@ -1,0 +1,1323 @@
+\chapter{从演示到自主操作}
+公开策略与基准的运行入口分别来自OpenPI\cite{openpi}和LIBERO\cite{libero}；项目内固定的源版本用于复现。
+
+
+早期桌面实验说明几何条件可以帮助小样本策略，但其控制条件理想。真实相机和SO101试验暴露输入、坐标、归一化及执行限制，于是后续先用公开任务权重建立可重复的动作参照。
+
+\section{桌面自主拾取与放置仿真}
+
+\label{stage:s05}
+
+在同一MuJoCo桌面中放置三种颜色方块和两个盒子，连接语言解析、目标坐标估计、抓放执行和放置检查。对比脚本几何方法与目标条件ACT。
+
+\subsection{场景与系统配置}\label{s05-detail-1}
+
+场景包含红、蓝、绿三个方块和两个固定浅盒。方块颜色与位置随机交换，避免颜色固定对应位置。使用ViperX双臂模型，仅右臂执行抓放，左臂保持初始状态。
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.3468}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.6532}}@{}}
+\caption{场景与系统配置：设置与结果}\label{tab:s05-1}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+项目
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+配置
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+项目
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+配置
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+仿真 & MuJoCo2.3.7，dm-control1.0.14 \\
+物理周期 & 2ms，500Hz \\
+相机 & 固定俯视RGB与模拟深度，640\(\times\)480 \\
+位置估计 & 颜色连通域、深度中位数、相机内外参反投影 \\
+语言模块 & Qwen3-VL-4B-Instruct＋任务选择LoRA \\
+动作模块 & 脚本几何基线、目标条件ACT两种方案 \\
+ACT控制 & 25Hz命令；每25步重新预测动作块 \\
+动作表示 & 8维末端参考：xyz、wxyz四元数、夹爪开合 \\
+\end{longtable}\endgroup
+
+末端参考通过mocap约束驱动机器人，抓取依靠夹爪与物体的物理接触。末端约束相当于理想位置控制基线，未引入真实电机的力矩及速度限制。物体在执行过程中没有绑定到夹爪，也没有直接修改物体位置。这个接口用于当前模拟器，尚未映射到SO101关节驱动。
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  当前图像和指令
+\item
+  Qwen目标解析
+\item
+  目标与目的地检查
+\item
+  RGB-D目标坐标
+\item
+  目标条件ACT
+\item
+  物理抓取和放置
+\item
+  位置及接触检查
+\end{enumerate}
+
+\stagefigure{figures/ch03/s05_pickplace_sequence.jpg}{蓝色方块放入左盒}{fig:s05-detail-1}
+
+\subsection{几何抓放基线}\label{s05-detail-2}
+
+首先使用已知物体位置执行接近、下探、闭合、抬升、平移、释放和撤离，再将已知位置替换为RGB-D估计结果。两种方案使用相同布局和目标组合。
+
+初始斜向抓取在两组常规任务上均成功24/30，失败包括抓空和物体被推出桌面。将末端抓取方向改为垂直后，重新运行相同任务：
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.6186}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.3814}}@{}}
+\caption{几何抓放基线：设置与结果}\label{tab:s05-2}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+条件
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+成功
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+条件
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+成功
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+已知位置，5布局\(\times\)6任务 & 30/30 \\
+RGB-D位置，5布局\(\times\)6任务 & 30/30 \\
+方块半边长16/24/28mm，各6任务 & 18/18 \\
+摩擦系数0.4/0.7/1.3，各6任务 & 18/18 \\
+\end{longtable}\endgroup
+
+共96个任务均完成目标物体放盒。成功要求夹爪接触、物体抬升超过6cm、最终在指定盒子内满足末段1秒的采样稳定检查；另外核对盒底接触和末段夹爪无残留接触。
+
+RGB-D常规组初始位置估计平均误差6.32mm、最大8.80mm。大尺寸组虽然完成放盒，但28mm半边长的6个任务中，4个推动了非目标物体超过10mm，最大位移12.28mm。因此``目标放盒成功''和``不干扰其他物体''需要分别统计。
+
+\stagefigure{figures/ch03/s05_physical_baseline_7e5b7090.png}{抓取姿态对照}{fig:s05-detail-2}
+
+这些任务共享固定相机、盒子位置和少量布局，不是96个独立复杂场景。结果用于确认物理执行链路和基本工作空间，不作为生产成功率。
+
+\subsection{语言目标选择与LoRA}\label{s05-detail-3}
+
+构建10个布局、100条图像指令，包括明确颜色/目的盒子、缺失颜色、含糊指令、否定操作和目标被移除的场景。基座模型的明确指令全部正确，但含糊指令会擅自选择目标和盒子。
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5819}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.4181}}@{}}
+\caption{语言目标选择与LoRA：设置与结果}\label{tab:s05-3}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+基座测试
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+结果
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+基座测试
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+结果
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+明确指令 & 60/60 \\
+所有用例的完整字段匹配 & 87/100 \\
+不应执行的用例中提出执行 & 10/40 \\
+\end{longtable}\endgroup
+
+针对这个问题，使用60条训练用例进行240更新的LoRA适配，冻结视觉模块，仅训练语言注意力q\_proj/v\_proj，r=8、alpha=16、学习率5e-5。布局seed400--405训练，406--407验证，408--409测试。
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.4455}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2773}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2773}}@{}}
+\caption{语言目标选择与LoRA：设置与结果}\label{tab:s05-4}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+分组
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+基座
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+LoRA
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+分组
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+基座
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+LoRA
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+验证20条，同指令模板的新布局 & 17/20 & 20/20 \\
+测试20条，同指令模板的新布局 & 18/20 & 20/20 \\
+44条未参与训练的新措辞 & 32/44 & 40/44 \\
+\end{longtable}\endgroup
+
+新措辞中，不应执行却提出执行的数量由12降到4。剩余错误均为``把蓝色方块放进盒子里''：模型仍默认选择左盒。这说明布局留出测试满分不代表语言泛化已经可靠。
+
+\stagefigure{figures/ch03/s05_goal_comparison_2c140d24.png}{目标选择对照}{fig:s05-detail-3}
+
+启动器要求指令明确给出目标颜色和目的盒子，并核对模型建议是否一致。现场运行``把蓝色方块放进盒子里''时，LoRA仍建议左盒，但启动器返回待澄清状态，没有进入抓放。
+
+\subsection{当前任务的示教数据与ACT}\label{s05-detail-4}
+
+从成功的RGB-D脚本轨迹导出66条示教，共26466帧，25Hz、320\(\times\)240。按布局划分54条训练、6条验证、6条测试；训练只覆盖4种布局，轨迹和帧之间存在较强相关性。
+
+图像来自H264渲染视频，动作标签对应下一采样时刻的末端参考。它是当前桌面任务的数据，动作维度为8，不是此前ALOHA交接的14维关节动作，也不是人类遥操作数据。
+
+两版ACT使用相同数据、训练次数和主要架构：ResNet18、256维Transformer、4头、2层编码器、动作块50、执行25步后更新。各训练10000更新，按验证误差选择权重。
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2491}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.4753}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2757}}@{}}
+\caption{当前任务的示教数据与ACT：设置与结果}\label{tab:s05-5}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+配置
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+状态输入
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+最佳验证归一化L1
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+配置
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+状态输入
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+最佳验证归一化L1
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+RGB版 & 6关节、夹爪、颜色/盒子任务符号，共12维 & 0.0332 \\
+坐标增强版 & 上述状态＋RGB-D测得的初始目标xyz，共15维 & 0.0281 \\
+\end{longtable}\endgroup
+
+开发阶段12个新任务的放置成功分别为3/12和12/12；坐标增强版进一步检查连续释放时有1个案例仍存在残留接触。随后冻结两版模型，在另外10个布局seed800--809、60个任务上做最终对照：
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.4045}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2837}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3118}}@{}}
+\caption{当前任务的示教数据与ACT：设置与结果}\label{tab:s05-6}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+冻结模型
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+放置成功
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+释放及盒底接触复核
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+冻结模型
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+放置成功
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+释放及盒底接触复核
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+RGB＋关节＋任务符号 & 20/60 & 20/60 \\
+加入RGB-D初始目标坐标 & 60/60 & 60/60 \\
+\end{longtable}\endgroup
+
+\stagefigure{figures/ch03/s05_policy_features_c302bf84.png}{ACT输入条件对照}{fig:s05-detail-4}
+
+复核以相同float32类型和采样调用重放保存的动作，与原运行物体位置逐点一致，再检查末段接触。坐标增强版的收益表明，对于当前小样本、较小目标的任务，提供几何位置条件比仅依赖RGB特征更有效。两版只各训练一个随机种子，不能把差异完全归因于单一因素，也不能据此比较不同任务或不同数据集的优劣。
+
+\subsection{定位误差敏感性}\label{s05-detail-5}
+
+对冻结的坐标增强版，在同12个任务上为初始目标xyz加入各轴独立的零均值高斯扰动。这里的扰动是设定误差模型，不是实测相机噪声。
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5276}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.4724}}@{}}
+\caption{定位误差敏感性：设置与结果}\label{tab:s05-7}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+附加坐标扰动
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+放置成功
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+附加坐标扰动
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+放置成功
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+无附加扰动 & 12/12 \\
+每轴\(\sigma\)=5mm & 10/12 \\
+每轴\(\sigma\)=10mm & 8/12 \\
+\end{longtable}\endgroup
+
+\stagefigure{figures/ch03/s05_coordinate_noise_76bee20a.png}{坐标扰动对照}{fig:s05-detail-5}
+
+因此，理想深度条件下的高成功率不能直接迁移到真实单目相机。位置估计和坐标标定仍是主要接口；当前单目深度模型的未标定距离不能直接作为该策略的米制输入。
+
+\subsection{在线流程与放置检查}\label{s05-detail-6}
+
+已增加运行入口，现场读取当前模拟图像，调用Qwen和LoRA，完成目标检查与RGB-D定位，再由ACT控制同一场景中的机器人。新布局seed900上，``把蓝色方块放进左边盒子''完成抓取、放盒、释放和盒底接触检查。与前一阶段跨模拟器的流程不同，这里语言和动作处理的是同一场景。
+
+另外，在12个语言测试任务中，将LoRA输出与ACT串接，12个明确任务均通过释放检查。动作阶段由RGB和关节反馈更新策略；语言只在开始时解析一次，没有多步任务重规划。语言推理期间仿真时钟暂停，当前流程未测量实时连续运行的端到端延迟。
+
+视觉完成检查采用6个任务的操作前、夹持中、释放后三类图像对，共18条：
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3916}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3143}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2941}}@{}}
+\caption{在线流程与放置检查：设置与结果}\label{tab:s05-8}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Qwen检查方式
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+已完成案例中提出完成候选
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+未完成阶段误报完成
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Qwen检查方式
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+已完成案例中提出完成候选
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+未完成阶段误报完成
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+操作前/当前全图 & 0/6 & 0/12 \\
+增加左右盒子局部放大 & 4/6 & 1/12 \\
+\end{longtable}\endgroup
+
+全图方案全部返回不确定；局部图改善可见性，但仍误报一个夹持中的案例。当前完成判定采用模拟器位置与接触状态，Qwen视觉结果只作为候选观察，不触发下一次动作。
+
+\stagefigure{figures/ch03/s05_placement_checks_c371e542.png}{视觉完成检查}{fig:s05-detail-6}
+
+
+\subsection{后续的周期验证与选模比较}\label{s05-detail-7}
+
+\subsubsection{LoRA周期验证与早停}\label{s05-detail-8}
+
+沿用桌面目标选择的60条训练、20条验证、20条测试，按布局分开，不改标签。训练视觉模块冻结，仅对语言注意力q\_proj/v\_proj做r8、alpha16、学习率5e-5的LoRA。每40步计算验证损失和完整目标匹配，以匹配数优先、损失至少改善0.001作为同分选择依据；连续三次未改善则早停。
+
+\stagefigure{figures/ch03/s05_lora_validation_e0b755e0.png}{LoRA验证过程}{fig:s05-detail-7}
+
+第40步验证12/20，第80步达到20/20；之后匹配数不再增加，损失改善也未达到所设阈值，在第200步结束。选中的第80步与最后第200步模型测试均20/20。
+
+实际仍训练了200步，并承担周期推理验证的开销，不能把``选中80步''说成``只花80步训练成本''。这次验证的是选模与停止流程；沿用旧数据划分，也不能把20/20当作新的语言泛化突破。
+
+相关代码在 \path|scripts/train_lora.py|；划分及逐次预测在 \path|runs/lora_validation/|。
+
+\subsubsection{ACT数据划分及选模}\label{s05-detail-9}
+
+继续使用桌面任务66条脚本示教，54/6/6轨迹按布局划分，归一化只来自训练数据。训练从manifest读取episode列表与边界，先均匀抽episode，再在轨迹内部抽帧，动作块不跨轨迹。当前轨迹均为401帧，理论上两种采样的分布相同；这次重构主要提高可读性和变长数据兼容性，不把收益归因于改变采样。
+
+ACT输入为RGB、关节/夹爪、任务符号及初始RGB-D坐标，训练10000步。每2000步计算验证L1，并在固定布局1100的六个任务运行物理仿真。分别保存最低L1模型和最高仿真成功数模型；成功数相同时保留较早模型。最终布局1200--1203的24个任务只在选模结束后评测。
+
+\stagefigure{figures/ch03/s05_act_selection_b816338f.png}{离线误差与仿真验证}{fig:s05-detail-8}
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2587}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2386}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2386}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2641}}@{}}
+\caption{ACT数据划分及选模：设置与结果}\label{tab:s05-9}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+选模依据
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+选中更新数
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+新任务成功
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+离线测试归一化L1
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+选模依据
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+选中更新数
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+新任务成功
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+离线测试归一化L1
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+验证L1 & 10000 & 24/24 & 0.0287 \\
+验证仿真成功数 & 4000 & 21/24 & 0.0452 \\
+\end{longtable}\endgroup
+
+验证L1从4000步到6000步下降，但仿真成功数由6降到4，说明两者确实不完全一致。不过仅凭一个布局六个任务选模，也会误选第4000步：它在新任务中只有21/24，而第10000步为24/24。当前结果不支持``换成成功率选模就一定更好''，下一轮应扩大验证布局、重复训练种子，并预先确定同分规则。
+
+成功判据包含抬升、夹爪接触、指定盒内稳定、释放及盒底接触。执行仍使用原桌面任务的理想末端约束和模拟深度，未迁移SO101，也不是完整移动抓取机器人。只训练一个随机种子，测试仅四种新布局。
+
+新的训练验证与最终评测复用 \path|scripts/act_runner.py|。旧公开交接任务的训练与评测兼容入口已改为公共实现，语言派发也复用同一交接执行/视频循环。公共训练入口做了一步训练、验证和保存检查，公共执行入口在已知布局1003完成一次交接；这些是兼容性检查，不是重新完成原30次成功率评测。
+
+相关代码在 \path|scripts/train_act.py|、\path|act_runner.py|、\path|public_act_trainer.py|、\path|public_act_evaluate.py|、\path|aloha_runner.py|。训练数据目录、输出目录、训练步数、验证间隔和布局种子可通过CLI配置，仍需准备对应环境与数据，不称为跨机器零配置安装。
+
+
+\subsection{扩大验证布局与重复训练种子}\label{s05-detail-10}
+
+\subsubsection{ACT扩大验证与重复训练}\label{s05-detail-11}
+
+原66条示教及54/6/6轨迹划分保持不变；该阶段不是增加示教数据。训练随机种子20261024、20261025，各10000步，每2000步在1500--1505六个布局、每布局六任务上验证。选模规则事先固定为成功数优先，同分取验证L1较低，完全同分取较早更新；另保存最低验证L1模型。1600--1607八个布局、每布局六任务只在最后测试。
+
+\stagefigure{figures/ch03/s05_expanded_validation_a8d80218.png}{扩大验证}{fig:s05-detail-9}
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1987}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2278}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1912}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1912}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1912}}@{}}
+\caption{ACT扩大验证与重复训练：设置与结果}\label{tab:s05-10}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+训练种子
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+选模方法
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+更新数
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+独立测试成功
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+测试归一化L1
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+训练种子
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+选模方法
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+更新数
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+独立测试成功
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+测试归一化L1
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+20261024 & 验证L1 & 10000 & 41/48 & 0.0291 \\
+20261024 & 仿真成功数＋同分L1 & 8000 & 48/48 & 0.0289 \\
+20261025 & 验证L1 & 10000 & 48/48 & 0.0274 \\
+20261025 & 仿真成功数＋同分L1 & 10000 & 48/48 & 0.0274 \\
+\end{longtable}\endgroup
+
+两种选模方法在同一训练种子内共用训练过程，避免把不同训练运行混为选模收益。验证布局和同分规则同时调整，该阶段不能单独归因于其中一项。两种训练种子仍不足以覆盖训练方差；示教来自脚本，执行继续使用原仿真理想末端约束及模拟深度，没有证明SO101动力学或真实视觉泛化。
+
+相关代码在 \path|scripts/train_act_expanded.py|，执行循环复用 \path|experiments/alibaba_pc_revision/scripts/act_runner.py|；全部历史与逐次测试在 \path|runs/act_seed_20261024/|、\path|runs/act_seed_20261025/|。
+
+
+\paragraph{阶段结论}自主抓放流程能够运行，也测量了坐标噪声对成功的影响，为后续识别理想控制条件提供了参照。 末端通过位置参考约束驱动，接近理想位置控制；深度由仿真直接提供，尚不能代表真实电机或真实相机条件。
+
+\stagecode{s05}
+
+\stagevideo{videos/ch03/desktop_pickplace_example.mp4}
+
+\FloatBarrier
+
+\section{早期Jetson与真实相机测试}
+
+\label{stage:s06}
+
+把真实相机图像用于耳机壳和盒子的识别，补充目标检测训练，并试验基于目标框的机械臂追踪。视觉语言模型也在当时的Jetson环境中进行过部署测试。
+
+\subsection{环境与数据流}\label{s06-detail-1}
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.2994}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.7006}}@{}}
+\caption{环境与数据流：设置与结果}\label{tab:s06-1}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+项目
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+实际设置
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+项目
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+实际设置
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+硬件 & Jetson Orin Nano，约8GB共享内存 \\
+系统 & Ubuntu22.04.5，L4T R36.4.7，15W模式；未锁定频率 \\
+基础环境 & 现有an-project，Python3.10.19、PyTorch2.8.0、CUDA12.6；未修改安装包 \\
+视觉依赖 & 项目独立Ultralytics8.4.175覆盖目录，系统TensorRT10.7.0 \\
+Qwen依赖 & 独立Transformers5.8.1、bitsandbytes0.50.2等加载目录 \\
+相机 & V4L2，640\(\times\)480，逆时针旋转90°；设备支持最高30fps，实际吞吐另测 \\
+\end{longtable}\endgroup
+
+相机线程持续更新一个最新帧槽。Qwen在上一轮结束后取当前帧，TensorRT检测与深度使用另一路最新帧；同一次检测和深度共用图像。模型输入通过内存交付，保存PNG只用于输入归档，不承担模型间传图。两路可同时运行，但不是同一帧的严格时间同步融合。
+
+相关代码在 \path|scripts/jetson_qwen.py|、\path|jetson_vision.py| 与 \path|paired_vision.py|。本报告中的scripts、runs均相对于 \path|experiments/alibaba_jetson_revision/|。
+
+\subsection{检测与深度的后端对照}\label{s06-detail-2}
+
+正式对照使用同一批10张真实腕部图像，各重复3次；三种设置都固定640\(\times\)640填充，每种后端预热3次。计时包含串行检测、深度、预处理、后处理及CPU输出拷贝，不含相机采集和文件解码。FP16检查的是实际predictor后端参数，原始YOLO包装对象因深拷贝仍可保持FP32。
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2826}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2391}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2391}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2391}}@{}}
+\caption{检测与深度的后端对照：设置与结果}\label{tab:s06-2}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+后端
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+样本数
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+中位耗时 ms
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+P95 ms
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+后端
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+样本数
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+中位耗时 ms
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+P95 ms
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+pytorch\_fp32 & 30 & 87.99 & 94.15 \\
+pytorch\_fp16 & 30 & 83.54 & 90.77 \\
+tensorrt\_fp16 & 30 & 49.93 & 50.65 \\
+\end{longtable}\endgroup
+
+本批输入下TensorRT的串行处理速度约为FP32的1.76倍。引擎在目标Jetson上编译；编译开销与稳态推理耗时分开。TensorRT10.7对检测头的导出兼容处理会改变后端实现，不能把结果简单归结为浮点位宽本身。
+
+\stagefigure{figures/ch03/s06_jetson_latency_834f2111.png}{端侧耗时}{fig:s06-detail-1}
+
+深度模型没有实测距离真值，数值一致性不等于深度准确率；该阶段未做米制标定或手眼标定。当前通用检测器在这批图像、0.35阈值下没有给出有效目标框，耳机壳的专用识别仍需任务数据或其他定位方法。不能用推理速度证明抓取检测已经有效。
+
+相关代码在 \path|scripts/paired_vision.py|；逐帧结果在 \path|runs/jetson/paired_vision/|。
+
+\subsection{连续运行与最新帧}\label{s06-detail-3}
+
+轻量场景观察使用设备上已有Qwen3-VL-2B NF4基座，该阶段重新测试，不加载其他项目适配器。它与工作站4B模型不同，不能据此得出4B量化前后提速结论。最初在另一个线程初始化TensorRT时，首次CUDA图捕获与Qwen生成发生冲突；改为在主线程先完成引擎初始化、预热与同步，再进入连续运行，复测通过。
+
+第一轮60次联动测试发现，视觉线程每次重写全部历史JSON，序列越长，CPU序列化工作越多。改成每条结果追加JSONL，仅在结束时保存一次汇总，再按相同模型、输入模式和15W设置完整运行60轮。第一轮作为预热，以下Qwen统计为59轮；视觉线程前5次单列为初始化段。
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5258}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.4742}}@{}}
+\caption{连续运行与最新帧：设置与结果}\label{tab:s06-3}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+指标
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+中位数 / P95
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+指标
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+中位数 / P95
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Qwen完整推理 s & 5.71 / 5.88 \\
+选帧时主机帧年龄 ms & 49.63 / 91.87 \\
+输出时对应画面年龄 s & 5.79 / 5.95 \\
+联动时检测＋深度 ms & 62.02 / 75.12 \\
+联动视觉结果画面年龄 ms & 107.85 / 156.35 \\
+\end{longtable}\endgroup
+
+60轮完成，视觉线程记录1414次结果，未记录相机或模型线程异常。Qwen CUDA分配峰值约1.61GiB；进程RSS峰值约4.37GiB。CUDA分配量不等于整机RAM占用。
+
+连续运行期间板载采样共338条，VDD\_IN平均10.24W，GPU温度最高63.7°C，整机已用RAM最高5294MB。该读数包括整机其他活动，不是外置功率计，也没有扣除空闲基线。
+
+输入年龄从主机read返回后计时，不是曝光时间。结果显示几秒前的画面主要来自生成耗时；没有将旧帧排成待推理队列。静态场景下持续运行可验证稳定性与帧调度，不能代表动态目标跟踪能力。
+
+日志成本单独在Jetson CPU测量，每档10次，仅计JSON编码，不含文件I/O或GPU。
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3267}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3465}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3267}}@{}}
+\caption{连续运行与最新帧：设置与结果}\label{tab:s06-4}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+历史条数
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+重写全部JSON中位 ms
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+追加单条中位 ms
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+历史条数
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+重写全部JSON中位 ms
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+追加单条中位 ms
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+100 & 1.759 & 0.011 \\
+1000 & 13.395 & 0.009 \\
+2000 & 27.200 & 0.009 \\
+5000 & 70.576 & 0.009 \\
+\end{longtable}\endgroup
+
+前后10轮中位推理耗时，旧日志方式为6.81\(\rightarrow\)10.28秒，JSONL方式为5.82\(\rightarrow\)5.71秒。逐条追加消除了随历史条数增长的编码量；两次整机运行先后进行、频率未锁定，不能把全部耗时差都归因于这一处修改。原始运行与失败日志保留。
+
+相关代码在 \path|scripts/jetson_qwen.py|；结果在 \path|runs/jetson/qwen_steady_jsonl/|。
+
+\subsection{真实场景观察的有效范围}\label{s06-detail-4}
+
+实际场景包含深蓝色塑胶壳、黑色鼠标垫和夹爪。采集原位、完全移走、换位置、边缘部分可见四种状态，每种取两张邻近帧。最初一次``移走''仍在边缘露出目标，检查截图后改标为部分可见，并重新采集真正的无目标状态。
+
+\stagefigure{figures/ch03/s06_scene_cases.jpg}{场景样例}{fig:s06-detail-2}
+
+2B基座的目标可见性与人工检查一致6/8；PC端4B基座为6/8。相邻帧高度相关，这只是四种场景状态的小样例，不是独立大测试集。JSON可解析与目标判断正确分开统计，目标移走等失败用例保留。
+
+这组观察结果说明，视觉语言输出仍需要定位校验和任务约束；当前不将单句``目标可见''直接转换为机械臂动作。
+
+相关代码在 \path|scripts/pc_scene_eval.py| 和 \path|jetson_qwen.py|；输入在 \path|runs/jetson/scene*/|。
+
+\subsection{自有4B模型与LoRA的Jetson迁移}\label{s06-detail-5}
+
+在工作站读取原固定版本Qwen3-VL-4B-Instruct，另存NF4双重量化权重，计算使用BF16。语言与视觉线性层参与量化，输出头按配置排除；原BF16缓存与LoRA文件保持不变。随后把新权重和原第80步best\_adapter传到Jetson，校验两端SHA256一致。适配器按原结构加载，没有合并，也没有把4B适配器套到2B模型上。
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5691}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.4309}}@{}}
+\caption{自有4B模型与LoRA的Jetson迁移：设置与结果}\label{tab:s06-5}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+运行设置
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+原20个测试用例完整字段匹配
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+运行设置
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+原20个测试用例完整字段匹配
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+原PC BF16＋LoRA & 20/20 \\
+该阶段PC NF4＋同一LoRA & 20/20 \\
+该阶段Jetson NF4＋同一LoRA & 20/20 \\
+\end{longtable}\endgroup
+
+Jetson完整推理耗时中位数/P95为5.22 / 5.25秒；每例输出token数保留在记录中。CUDA分配峰值约2.86GiB。
+
+这些是原划分中的20条指令，只有两个测试布局，不能泛化为真实桌面任务成功率。没有使用测试集重新训练或选择适配器；它验证的是同一个适配器在NF4及Jetson运行条件下的迁移结果，不是导航或机械臂执行成功率。
+
+相关代码在 \path|scripts/quantize_qwen.py| 与 \path|jetson_adapter_eval.py|；结果分别在 \path|runs/pc_nf4_adapter/| 和 \path|runs/jetson/adapter_eval/|。
+
+\subsection{端侧目标到仿真策略的衔接}\label{s06-detail-6}
+
+把Jetson上4B＋LoRA的20条实际输出交给PC，加载第一轮按仿真成功数选出的ACT模型。对可执行目标在对应的408、409布局重新建立仿真；执行前确认初始化RGB与语言模型所见图像一致。模型输出决定是否执行及目标颜色、盒子，评测标签只在事后统计使用。
+
+12条可执行指令成功10条；8条缺目标、歧义或否定指令均未执行。布局408的两条红色目标任务虽然完成抬升、夹持与释放，但没有稳定进入指定盒，保留为失败。目标字段20/20匹配不等于动作20/20成功。
+
+这是使用保存输出进行的离线分阶段衔接，未计网络往返时延，仿真也没有在Qwen等待期间推进，不能称为实时异构闭环。两种布局不替代前面的独立测试集。
+
+同配置完整重复一次仍为10/12成功、8条负向指令均未执行。相关代码在 \path|scripts/bridge_eval.py|；结果在 \path|runs/bridge_v2/| 与 \path|runs/bridge_repeat/|，首次一致性检查中断的部分运行保留在 \path|runs/bridge/|。
+
+
+\subsection{自采耳机壳与盒子检测模型}\label{s06-detail-7}
+
+2026-10-24，使用腕部相机采集的100张640\(\times\)480图片训练YOLO26n，类别为earbud\_case与container。相机旋转为0度，保持采集时的正向。
+
+共81个耳机壳框、74个盒子框；15张背景图经查看后补为空标注。全部100张参与训练，随机种子20261024选出其中20张作为拟合检查。检查图片与训练集重叠，没有独立验证集，不能据此判断新场景准确率。
+
+训练使用RTX4090、Ultralytics8.4.175、YOLO26n预训练权重，640输入、batch16、100轮，约50秒。最佳权重在重叠检查集上mAP50为0.995、mAP50-95为0.964；两类召回率均为1.0。这些数值仅反映训练样本上的拟合。
+
+\begin{itemize}
+\tightlist
+\item
+  训练脚本：scripts/train.py
+\item
+  数据划分：split.json
+\item
+  训练日志：train.log
+\item
+  权重：runs/all100\_v1/weights/best.pt
+\item
+  曲线与检查图：runs/all100\_v1/
+\item
+  20张检测预览：runs/fit\_check\_preview/
+\end{itemize}
+
+下一步在实时相机的新摆放中检查漏检与误检，再决定是否补图。检测框尚未转换为机械臂坐标，不直接用于运动控制。
+
+
+\subsection{目标观察与受限跟随}\label{s06-detail-8}
+
+复用自采数据训练的YOLO26n，观察腕部相机中的耳机壳。只处理earbud\_case，连续三帧确认单一目标，使用中心点平滑和40像素中心容差。未检测到目标时立即清除目标；多个候选时不选定目标。输出像素偏差和时间戳，不输出机械臂动作。
+
+脚本：scripts/observe\_target.py。Jetson复用an-project的Python/Torch与项目独立Ultralytics依赖，不改环境。
+
+当前阶段为视觉观察模式，没有串口访问。保存的grasp\_clearance\_v4姿态只是关节参考，不是已标定的空间最低高度，也未完成通电间隙验证。不能把肘关节角度阈值当作末端Z高度保护。自动低头需要先验证运动学或受限运动范围；建议先在现场确认的固定俯视姿态，只测试底座左右跟踪。丢失目标后先停止跟踪，自动搜索扫动需单独验证范围。
+
+\subsubsection{当前运行方式：YOLO＋深度}\label{s06-detail-9}
+
+用户决定VLM留到PC端，Jetson当前运行scripts/dual\_model\_observer.py。不加载Qwen、Transformers或bitsandbytes。专用检测使用earbud\_container.pt，深度使用Jetson已有的yolo26n-depth.engine。界面显示实时RGB、目标框与深度图；latest.json类状态与vision.jsonl中有像素误差、目标框内中心区域深度预测、中央区域深度分位数和主机接收时间。
+
+实测已成功启动两个模型，深度有效像素比例为1.0；当前镜头朝天时目标状态为lost。单次状态采样处理约118ms，不作为正式性能基准。程序不访问串口，allow\_lowering和motion\_enabled始终为false。Q或关闭窗口释放相机。
+
+三模型尝试因Qwen与检测PyTorch缓存占用导致深度TensorRT引擎内存不足而未跑通该次新界面；用户选择双模型后已退出VLM，停止该次新检测引擎构建。原PT和既有深度引擎保留，未修改an-project安装。三模型失败不影响此前独立实验中已有的Qwen部署结果。
+
+\subsubsection{受限低头测试}\label{s06-detail-10}
+
+lookdown\_prefix.py使用原示教0--160帧，半速且不超过该终点；读取最新检测/深度结果，检测到目标或深度/数据新鲜度异常时停止更新目标并保持关节。首次把边缘椅子当成耳机壳，经截图核对后增加边缘排除和后段确认。resume\_lookdown.py曾触发单步限制，continue\_lookdown\_slow.py采用更细时间插值继续既定范围；最终在真实蓝色壳进入视野时停止，截图核对正确。动作中只有视觉触发的停止，尚未实现机械臂持续追踪。
+
+历史编码器实测有最多数个计数的限位边缘超调；代码对下发目标仍严格限制原范围，只允许在5计数以内的实测恢复误差且目标朝限位内。此规则不等于空间高度约束。
+
+
+\subsection{物体转移回放的结果修正}\label{s06-detail-11}
+
+固定摆放下曾分段执行已记录动作，实现夹住、抬起、搬运、松开和返回。动作源是示教轨迹，过程中有现场人工确认，没有YOLO或Qwen生成动作。第二遍完整流程反馈夹爪仍碰桌，随后将revision\_03标为不通过无碰撞验收，不再作为已验证路径复用。
+
+底座跟随另做过方向检查：约3度往返时测得横向像素变化约为每编码器计数负0.332像素。初版采用左右各约10度范围、单次最多2计数、35像素死区；后版改为单次4计数、20像素死区，保留其他关节目标与丢失停止规则。现场反馈为能够跟随但幅度小、速度慢，没有独立多场景成功率。关节范围限制不等于末端空间防碰桌。
+
+
+\paragraph{阶段结论}保存了端侧耗时、真实场景输入和扩大验证的阶段记录，随后把现场代码及结果归档回工作站。 这一阶段与后期恢复后的Jetson环境分开记录。视觉追踪不等于视觉语言动作模型控制，单目深度也未成为可靠的安全距离。
+
+\stagecode{s06}
+
+\FloatBarrier
+
+\section{SO101上的SmolVLA训练与试动}
+
+\label{stage:s07}
+
+采集三条从竖直到拾取、放下再返回的真实示教，使用SmolVLA（小型视觉语言动作模型）进行任务适配。先做整条轨迹留出检查，再记录有限的真机试动。
+
+\subsection{基础模型输入与输出检查}\label{s07-detail-1}
+
+\subsubsection{已完成}\label{s07-detail-2}
+
+PC工作台已恢复，相机、Qwen连续观察、自训练YOLO和深度显示运行正常。SmolVLA使用独立环境和固定官方权重，已经完成真实录制图像、语言和关节状态到50步六维动作的推理，未启用机械臂。
+
+\subsubsection{条件对照}\label{s07-detail-3}
+
+在同一录制帧上使用3个随机seed，每个seed分别输入原指令、不同指令和黑图；同seed保持流匹配噪声相同。9次输出均为有限值。
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.4662}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5338}}@{}}
+\caption{条件对照：设置与结果}\label{tab:s07-1}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+项目
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+该阶段记录
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+项目
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+该阶段记录
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+输出形状 & 1 \(\times\) 50 \(\times\) 6 \\
+9次重复推理中位耗时 & 0.160秒 \\
+重复耗时范围 & 0.135～0.166秒 \\
+更换语言的动作差异 & 0.332（按本地每关节动作标准差缩放后取平均） \\
+图像换黑图的动作差异 & 0.139（相同缩放方法） \\
+\end{longtable}\endgroup
+
+差异说明视觉和语言参与输出，不代表模型已正确理解指令或能抓取成功。测试仅为同一帧的功能对照，不是任务评估；耗时也不是独占GPU下的正式基准，PC视觉工作台同时运行。
+
+\subsubsection{当前限制}\label{s07-detail-4}
+
+本地单条示教用于统计归一化，腕部画面映射为camera1。两者与基础权重预训练分布的兼容性尚未验证。没有把基础模型输出接到电机，没有测真机成功率，也没有把动作接近示教值解释为成功。
+
+
+\subsection{真实取放示教的训练与留出评估}\label{s07-detail-5}
+
+\subsubsection{该阶段完成}\label{s07-detail-6}
+
+三条本机遥操作示教已用于真正的SmolVLA微调，不再只运行基础权重。原始1908帧保留，去掉前后等待和启动对齐后，训练索引保留900帧。每条保留竖直出发、接近、拾取、鼠标垫放置与回竖直，动作中的腕部−90°已生效，不重复叠加。
+
+图像和关节读取使用主机时间戳。中位state到图像接收间隔约0.15毫秒，图像接收到发送动作约2.8～3.7毫秒；这些不是曝光同步精度。图像完整、六维状态和动作均有限。图像抽查可见操作阶段，不能证明每一帧无碰撞。
+
+\subsubsection{训练与留出检查}\label{s07-detail-7}
+
+第一、二条589帧训练，第三条311帧整条留出。归一化仅使用前两条的逐关节统计。基于官方固定SmolVLA权重，冻结视觉语言主干，训练动作专家及配置允许的投影层，共约9988万个可训练参数。批量2、学习率1e-4、1500次优化更新；图像保持比例填充到256\(\times\)256，输入单腕相机，预测未来50步六维绝对动作。
+
+第三条均匀抽取12个观察位置，固定各位置的随机种子，对比基础权重与微调后输出。窗口止于本条结尾，不跨条取动作，尾部padding不参与评估。表中为未来最多50步的平均绝对误差，前五维单位度，夹爪为百分比点。
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}@{}}
+\caption{训练与留出检查：设置与结果}\label{tab:s07-2}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+关节
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+微调前
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+微调后
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+保持当前位置基线
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+关节
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+微调前
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+微调后
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+保持当前位置基线
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+底座 & 8.55 & 8.34 & 3.33 \\
+肩关节 & 22.94 & 15.36 & 12.37 \\
+肘关节 & 38.80 & 35.48 & 22.27 \\
+腕俯仰 & 31.79 & 18.61 & 10.88 \\
+腕旋转 & 4.92 & 4.00 & 1.31 \\
+夹爪 & 10.91 & 13.48 & 9.81 \\
+\end{longtable}\endgroup
+
+\stagefigure{figures/ch03/s07_holdout_mae.png}{第三条留出动作误差}{fig:s07-detail-1}
+
+该次1500步模型在第三条上，六维50步误差均未优于``保持当前位置''基线，留出验证未通过。150步探索运行中部分关节更好，说明增加训练步数没有稳定改善这条留出示教；尚不能据此确定是数据覆盖、训练配置或阶段辨识中的哪项占主导。
+
+这些是录制轨迹上的开环误差，不是真机成功率。只留出一条、只比较一个任务，不能据此认定具有位置或语言泛化。静止、遮挡和视角接近时，仅凭单腕图像可能不能区分任务阶段；状态是模型的重要输入，真实执行时必须使用实时状态。
+
+\subsubsection{三条合训版本}\label{s07-detail-8}
+
+完成留出检查后，从同一基础权重重新开始，用三条900帧合训。三条合训模型中的第三条也参与了训练，其误差只能称拟合检查。三条合训后的训练内首步MAE依次为底座2.14°、肩4.29°、肘12.02°、腕俯仰6.56°、腕旋转1.18°、夹爪3.71个百分点；同一批观察点的保持基线依次约1.27°、1.67°、2.11°、1.29°、0.41°、1.31个百分点。即使训练内拟合检查也未通过首步基线，不应直接上机。模型没有接入电机，没有执行任何自主抓取。
+
+\stagefigure{figures/ch03/s07_training_loss_70023fc4.png}{训练损失}{fig:s07-detail-2}
+
+
+\subsection{短窗口接近策略}\label{s07-detail-9}
+
+\subsubsection{数据与训练}\label{s07-detail-10}
+
+沿用三条已采集示教，将片段截止在夹爪首次明显闭合前16帧，首段保留竖直姿态。该截断由夹爪角度启发式生成，不是桌面空间高度标定。第一、二条232帧训练，第三条105帧留出；三条合训共337帧。图像为单腕RGB比例填充256\(\times\)256，状态和目标均沿用本机校准坐标。腕部−90°已包含在记录动作中，不重复叠加。
+
+预测窗口从50步改为10步（名义1秒），模型仍使用官方SmolVLA动作专家和流匹配，不用YOLO或预录轨迹生成动作。高学习率训练后留出误差反弹，已停止并保留最佳检查点；之后从三条合训的最佳权重以2e-5学习率细化3000步。
+
+\stagefigure{figures/ch03/s07_first_step_mae_c613ad75.png}{首步误差变化}{fig:s07-detail-3}
+
+\subsubsection{离线检查}\label{s07-detail-11}
+
+细化阶段所选检查点为第3000步。三条参与训练的记录中均匀取36个观察点，前五关节首步MAE为1.66°，绝对误差95分位4.81°，预测首步相对实际状态的变化量95分位8.24°。
+
+该阶段预先设置的有限试动检查结果：True。这是训练内的数值筛查，不是独立泛化、运动碰撞安全或真实任务成功验证。第三条留出表现仍不足，不宣称换位置后可以正确接近或追踪。
+
+\subsubsection{执行约束}\label{s07-detail-12}
+
+实机程序 \path|scripts/run_approach_policy.py| 重新读取当前关节和相机，每轮重新推理，只取首步后限速；默认不写电机。执行时需显式参数和现场确认，初始姿态需接近记录起点。首轮最多8秒、起点相对角度上限约8°、每次4 tick，夹爪不使能；控制结束保持扭矩，托稳后OFF关闭。检查文件绑定所选权重SHA256，权重改变必须重做检查。
+
+当前没有实体测试结果，两臂按用户说明保持断电。下一步仅安排操作人员在场的受限空载接近测试。模型即使输出有效数值，也不等于动作符合指令，更不等于完整取放已通过。
+
+
+\subsection{有限真机试动与动作限制的影响}\label{s07-detail-13}
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.1689}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2967}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2872}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2471}}@{}}
+\caption{有限真机试动与动作限制的影响：设置与结果}\label{tab:s07-3}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+测试
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+模型与执行方式
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+实际观察
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+结论
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+测试
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+模型与执行方式
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+实际观察
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+结论
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+基础模型短试 & 每次只取首步方向，单轮最多2计数，总范围22计数 & 肩约0.44度、腕俯仰约1.58度，其余变化很小 & 动作接口有响应，未完成接近 \\
+微调短窗口 & 每轮4计数、总角度约8度、夹爪不驱动 & 8秒36轮；前五关节变化约负3.6、5.01、8.18、7.82、0度 & 达到限幅附近，未形成可用任务 \\
+20\%单步残差 & 目标为当前实测位置加模型残差的20\%，单轮最多5度 & 肘约4.04度、腕俯仰约1.41度 & 一次受控增量执行，非连续自主策略 \\
+50\%单步版本 & 代码已准备 & 当日没有启动 & 不列作已测结果 \\
+\end{longtable}\endgroup
+
+不能仅由``模型建议肘关节再动20度''推断控制器会立即执行20度。实际动作同时受插值比例、单次计数、总包络、误差停止与通信节奏限制；例如4计数仅约0.35度。初次短试的``推理期间位置变化''检查还把机器人自身运动当成异常，后续才把该检查限于启用扭矩前，并保留执行后的跟踪误差检查。
+
+这些问题解释了部分``几乎没动''，但并未证明解除限制后策略就能正确抓取。归一化、相机槽位、起点夹爪开度和任务数据覆盖均未被充分验证；三条真实示教不足以解决这些问题。最终记录为自主接近与拾取目标未达到，后续停止实体尝试，转向可重复的仿真基线。
+
+
+\paragraph{阶段结论}原始数据1908帧，整理后保留900帧；1500次更新后的模型在留出轨迹上没有超过保持当前位置的基线，自主拾取目标未达到。 离线轨迹误差和真实抓取成功率必须分开。三条数据不足以证明位置或语言泛化，真实试动结果也不能由训练损失替代。
+
+\stagecode{s07}
+
+\FloatBarrier
+
+\section{\pifive{}在LIBERO中的闭环复现}
+
+\label{stage:s08}
+
+为减少硬件和接口差异，收敛到LIBERO公开操作任务，使用OpenPI提供的\pifive{}权重，检查图像、语言、机器人状态到动作执行的完整过程。
+
+\subsection{该阶段范围与选型}\label{s08-detail-1}
+
+选用OpenPI官方\(\pi\)0.5 LIBERO任务检查点，因为它提供对应的模型、输入输出转换与评估入口，可以先确认执行链路是否正常。新环境与厂家LeRobot、已有SmolVLA和ROS环境分开。该阶段不打开串口、不操作实体机械臂，也不依赖Jetson、IMU或ZED。相关代码在 scripts/install.py、scripts/fetch\_sources.py。
+
+LIBERO使用固定基座机械臂，不含移动导航。它解决的是当前最需要核对的``VLA是否能够在物理仿真中完成操作''，不是直接完成整个导航抓取任务书。导航与MoveIt的既有结果仍单独保留，没有将跨模拟器流程重新包装成统一闭环。
+
+任务书中的Qwen高层感知与决策模块保留。该阶段\(\pi\)0.5不是Qwen底座，也没有将已有Qwen LoRA接进这套实验；先建立可靠的VLA执行参照，后续再单独评估高层任务分解与执行器的连接。
+
+\subsection{统一观察与动作接口}\label{s08-detail-2}
+
+输入为外部相机与腕部相机的RGB、自然语言任务描述和八维机器人状态。状态由末端位置、轴角方向和两指关节位置组成。渲染分辨率256\(\times\)256，按官方流程两路图像旋转180°后填充缩放至224\(\times\)224。模型使用检查点配套的归一化和输入输出转换。相关代码在 scripts/evaluate.py，以及上游 openpi/policies/libero\_policy.py。
+
+模型预测10\(\times\)7动作块，基线执行前5步后重新读取图像和状态。动作包含三维平移、三维旋转与夹爪控制，经LIBERO的OSC\_POSE低层控制器产生电机控制量，再由MuJoCo推进。运行中不逐帧设置机器人关节或物体位置；仅在每回合初始化时恢复公开初态。
+
+每个回合保存实际控制器参数、控制量范围、关节状态与速度、电机输出、模型完整预测块、实际动作、仿真时间及官方任务谓词。模型输入不包含这些评估用目标信息。若模型输出无效、环境报错或任务超时，单独记录，不将异常算作成功。
+
+\stagefigure{figures/ch03/s08_observation_views_bc76090f.png}{模型的两路RGB观察：外部相机与腕部相机。}{fig:s08-detail-1}
+
+\subsection{任务与评估协议}\label{s08-detail-3}
+
+基线预设Spatial、Object、Goal和Long-Horizon四个任务集，各10个任务，每任务采用公开初态0、1、2，共120个计划回合。初态固定，环境种子7，动作采样噪声按任务和初态确定；配对干预共享相同初态和模型噪声。当前每任务仅3个初态，不等同于官方每任务50次的完整协议，不能把结果直接与论文整套分数排名。
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.3831}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.6169}}@{}}
+\caption{任务与评估协议：设置与结果}\label{tab:s08-1}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+设置
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+取值
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+设置
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+取值
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+初始等待 & 10个空动作，等待物体稳定 \\
+控制率 & 20Hz \\
+基线重新观察 & 每5个动作一次 \\
+动作生成 & 10步流匹配积分，输出10步动作 \\
+成功 & 环境原始任务谓词成立 \\
+超时步数 & Spatial220；Object280；Goal300；Long-Horizon520 \\
+\end{longtable}\endgroup
+
+配对任务在查看结果前固定为Spatial与Goal的任务0、3、6，使用相同三个初态。分别测试置零两路图像、冻结初始图像、替换任务指令、位置测量加入5mm高斯噪声、动作队列延迟两步，以及增加执行块长度、减少去噪步数。相关代码和完整定义在 configs/protocol.json。
+
+\subsection{官方模型权重闭环结果}\label{s08-detail-4}
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3426}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2852}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3722}}@{}}
+\caption{官方模型权重闭环结果：设置与结果}\label{tab:s08-2}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+任务集
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+成功/总数
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+95\% Wilson区间
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+任务集
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+成功/总数
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+95\% Wilson区间
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+libero\_spatial & 30/30 & 88.6\%---100.0\% \\
+libero\_object & 29/30 & 83.3\%---99.4\% \\
+libero\_goal & 29/30 & 83.3\%---99.4\% \\
+libero\_10 & 29/30 & 83.3\%---99.4\% \\
+\end{longtable}\endgroup
+
+\stagefigure{figures/ch03/s08_success_summary.png}{基线与相同初态下的干预结果。}{fig:s08-detail-2}
+
+这些结果来自官方已经针对LIBERO训练的权重，说明本机执行链路及该检查点在指定条件下的表现，不表示本项目从零学会这些任务。任务成功是环境内的目标谓词，不是由视觉语言模型自己判断。
+
+\stagefigure{figures/ch03/s08_rollout_examples_33770969.png}{实际运行关键帧；标题注明任务和结果。}{fig:s08-detail-3}
+
+\subsubsection{松爪后的补充检查}\label{s08-detail-5}
+
+官方谓词可能在物体尚被夹持时成立。因此另外重放117条成功回合的实际动作，先核对完整关节轨迹，再保持末端并打开夹爪1秒。最后0.5秒持续满足目标的为113/117，最终一帧满足目标的为114/117。
+
+以Panda两指关节位移均至少0.03m确认夹爪充分开启（不是爪尖净间距标定），达到开启阈值的为116组；同时充分开启并保持目标的为112组。
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2859}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2380}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2380}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2380}}@{}}
+\caption{松爪后的补充检查：设置与结果}\label{tab:s08-3}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+任务集
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+重放成功回合
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+松爪后持续满足
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+末帧满足
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+任务集
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+重放成功回合
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+松爪后持续满足
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+末帧满足
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+libero\_10 & 29 & 26 & 26 \\
+libero\_goal & 29 & 29 & 29 \\
+libero\_object & 29 & 29 & 29 \\
+libero\_spatial & 30 & 29 & 30 \\
+\end{longtable}\endgroup
+
+重放与原轨迹的最大关节位置差为0.00e+00。这是附加的物理稳定性检查，不改写官方成功率，也不增加VLA评估回合数；后续1秒采用固定松爪保持指令，不冒充模型自主完成了该阶段。相关代码在 scripts/release\_stability.py。
+
+\stagefigure{figures/ch03/s08_release_check_afa70239.png}{追加检查：官方停止时与固定松爪保持后；后续指令不是模型生成的动作。}{fig:s08-detail-4}
+
+固定松爪保持不是原策略的后续行为。补充测试失败表示该固定操作协议下未保持目标，不能据此断言模型继续执行必然失败；它说明早停谓词与实际操作的完成确认需要区分。
+
+\subsection{视觉、语言与执行干预}\label{s08-detail-6}
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2288}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1928}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1928}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1928}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1928}}@{}}
+\caption{视觉、语言与执行干预：设置与结果}\label{tab:s08-4}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+条件
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+配对基线
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+干预结果
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+成功\(\rightarrow\)失败
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+失败\(\rightarrow\)成功
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+条件
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+配对基线
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+干预结果
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+成功\(\rightarrow\)失败
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+失败\(\rightarrow\)成功
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+图像置零 & 17/18 & 0/18 & 17 & 0 \\
+冻结初始画面 & 17/18 & 0/18 & 17 & 0 \\
+替换指令（原目标） & 17/18 & 6/18 & 11 & 0 \\
+状态位置噪声5mm & 17/18 & 17/18 & 0 & 0 \\
+动作延迟100ms & 17/18 & 18/18 & 0 & 1 \\
+每10步重规划 & 17/18 & 18/18 & 0 & 1 \\
+5步去噪 & 17/18 & 18/18 & 0 & 1 \\
+\end{longtable}\endgroup
+
+图像置零和冻结用于检查视觉输入依赖，不是现实相机误差模型。替换指令首先按原任务评分；原任务失败可能是模型正确响应了替代指令，也可能是行为无效，因此不直接等同于语言能力下降。对于Goal中可在同一场景求值的替代目标，另记录是否曾满足其谓词，并比较相同初态、相同噪声下的首个动作块变化。
+
+替换指令的18组首动作块对照，平均绝对变化为0.12680（动作接口单位）；可求值替代目标9组，其中9组曾满足替代谓词。在这组Goal条件中，替代目标的谓词成立支持模型依据语言改变操作；该结论限于这些已检查任务，不外推到未训练任务、中文或复杂歧义指令。
+
+\stagefigure{figures/ch03/s08_visual_intervention_61edf4a4.png}{同一初态的实时、置零、冻结视觉对照；下方展示实际提交给模型的图像。}{fig:s08-detail-5}
+
+状态噪声只加在提交给模型的末端位置测量，不修改实际物体或机器人状态。动作延迟为仿真中的100ms先进先出队列，不是让程序休眠100ms。两者分别区分观察误差与执行滞后。
+
+\subsection{推理耗时与执行效率}\label{s08-detail-7}
+
+排除各回合首个调用后的端到端推理中位数为0.073s，P95为0.078s，共7963次调用。该计时包含输入转换、模型及CPU动作返回，首次调用可能包含JIT编译，另保留原始记录。
+
+该阶段使用同步评估，模拟器在等待策略时暂停。动作按20Hz仿真时钟执行，并不说明真实机器人能以相同速度持续等待模型。增加每次执行动作数量可减少模型调用，但延长无新观察的时间；减少去噪积分步数降低计算量，但可能影响动作质量。两种改动均与原权重配对测试，不把耗时下降自动解释为策略变好。
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2623}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2459}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2459}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2459}}@{}}
+\caption{推理耗时与执行效率：设置与结果}\label{tab:s08-5}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+固定输入对照
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+调用数
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+中位耗时/ms
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+P95/ms
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+固定输入对照
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+调用数
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+中位耗时/ms
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+P95/ms
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+10步去噪 & 36 & 72.07 & 75.66 \\
+5步去噪 & 36 & 62.07 & 65.93 \\
+\end{longtable}\endgroup
+
+另以预设任务中的12个相同观察、相同动作噪声交错重复测试，排除首次编译；5步相对10步的中位推理提速为1.16倍。这是单模型计时，不含环境推进，也不代表成功率改善。相关代码在 scripts/benchmark\_inference.py。
+
+\subsection{失败与适用边界}\label{s08-detail-8}
+
+所有已完成回合均保留结果、控制轨迹和视频。成功数以原任务谓词为准，超时与异常分开。失败分析需要结合目标选择、接近、夹持、搬运和放置阶段，不仅观察最终成功率。独立检查重新读取保存数组，核对20Hz时间推进、每个预测块实际执行顺序、延迟队列、初始状态及成功标记。相关代码在 scripts/verify.py。
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5067}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.4933}}@{}}
+\caption{失败与适用边界：设置与结果}\label{tab:s08-6}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+检查项
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+结果
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+检查项
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+结果
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+已检查回合 & 246 \\
+控制样本 & 41677 \\
+动作块执行 & 已检查 \\
+配对初态 & 已检查 \\
+原始任务判据 & 已检查 \\
+mocap & 模型中无mocap驱动 \\
+错误目录 & 0 \\
+\end{longtable}\endgroup
+
+该阶段仍有明确限制：公开任务与模型训练分布存在重叠；每任务测试量较小；未进行自主微调或视觉域随机化训练；未模拟真实传感器曝光延迟与网络；低层控制采用基准自带控制器，不代表SO101电机带宽。当前结果不能外推为家中机械臂会抓取。
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.3161}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2280}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2280}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2280}}@{}}
+\caption{失败与适用边界：设置与结果}\label{tab:s08-7}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+基线失败任务
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+初态
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+状态
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+控制步数
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+基线失败任务
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+初态
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+状态
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+控制步数
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+libero\_10 / 8 & 0 & 超时 & 520 \\
+libero\_goal / 0 & 1 & 超时 & 300 \\
+libero\_object / 0 & 2 & 超时 & 280 \\
+\end{longtable}\endgroup
+
+
+\subsection{原阶段复现入口}\label{s08-detail-9}
+
+\subsubsection{复现与源码目录}\label{s08-detail-10}
+
+\noindent 运行与目录示例见\hyperlink{s08-command-1}{附录D的对应条目}。\par
+
+源码包不含官方权重、环境、上游大型资产或原始轨迹数组，按README下载固定版本后运行。官方源码和权重许可见上游仓库及本地RESEARCH.md；不将第三方实现冒充自主实现。安装锁定版本与环境信息另存，依赖适配见 ENVIRONMENT\_NOTES.md。
+
+
+\paragraph{阶段结论}基线完成120个回合，其中117个成功；另完成126组配对输入干预，保存轨迹与视频。实时图像置零或冻结的测试说明视觉输入会影响策略执行。 这里使用针对LIBERO的官方任务权重，属于复现和评测。后续改任务、改输入或训练自己的适配器，应单独评分。
+
+\stagecode{s08}
+\stagevideo{videos/ch03/pi05_official_long_task00.mp4}
+
+\FloatBarrier

@@ -1,0 +1,98 @@
+{
+  "qwen_base": {
+    "repo": "Qwen/Qwen3-VL-4B-Instruct",
+    "revision": "ebb281ec70b05090aa6165b016eac8ec08e71b17"
+  },
+  "public_act": {
+    "repo": "lerobot/act_aloha_sim_transfer_cube_human",
+    "revision": "ba73b2766f1371cdc133ca4efb97eb090d744625",
+    "license": "apache-2.0"
+  },
+  "demonstrations": {
+    "repo": "lerobot/aloha_sim_transfer_cube_human",
+    "revision": "8f81f044cbc65d9c1efbe5a302e8f9f4c16a86ed",
+    "format": "v2.1",
+    "license": "MIT",
+    "episodes": 50,
+    "frames": 20000
+  },
+  "framework": "local vendor-derived LeRobot 0.3.4",
+  "own_act": "random ACT weights, ImageNet ResNet18 initialization; public ACT actor weights not used",
+  "own_lora": "language attention q_proj/v_proj adapters only; vision frozen",
+  "extension_date": "2026-10-13 Australia/Sydney",
+  "bitsandbytes": "0.48.2",
+  "rgbd": "30 rendered scenes120cases; independent from real video; same simulator scene family",
+  "lora_split": {
+    "train_scenes": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17
+    ],
+    "validation_scenes": [
+      18,
+      19,
+      20,
+      21,
+      22,
+      23
+    ],
+    "test_scenes": [
+      24,
+      25,
+      26,
+      27,
+      28,
+      29
+    ]
+  },
+  "act_test_seeds": [
+    3000,
+    3001,
+    3002,
+    3003,
+    3004,
+    3005,
+    3006,
+    3007,
+    3008,
+    3009,
+    3010,
+    3011,
+    3012,
+    3013,
+    3014,
+    3015,
+    3016,
+    3017,
+    3018,
+    3019,
+    3020,
+    3021,
+    3022,
+    3023,
+    3024,
+    3025,
+    3026,
+    3027,
+    3028,
+    3029
+  ],
+  "workflow": "Gazebo base+MuJoCo arms+MoveIt mock separately; no shared physical scene",
+  "enterprise_data": false,
+  "jetson_tested": false
+}

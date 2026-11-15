@@ -1,0 +1,79 @@
+{
+  "max_token_len": 200,
+  "discrete_state_input": false,
+  "all_constraints_retained": true,
+  "rows": [
+    {
+      "task": 0,
+      "target_index": 0,
+      "family": "positive",
+      "prompt": "pick up the alphabet soup can and place it in the basket",
+      "raw_tokens": 14,
+      "retained_tokens": 14,
+      "decoded": "pick up the alphabet soup can and place it in the basket\n"
+    },
+    {
+      "task": 0,
+      "target_index": 0,
+      "family": "constrained",
+      "prompt": "pick up the alphabet soup can and place it in the basket. Leave the tomato sauce can at its original position. Do not move any other object. Stop after placing the target.",
+      "raw_tokens": 38,
+      "retained_tokens": 38,
+      "decoded": "pick up the alphabet soup can and place it in the basket. Leave the tomato sauce can at its original position. Do not move any other object. Stop after placing the target.\n"
+    },
+    {
+      "task": 0,
+      "target_index": 1,
+      "family": "positive",
+      "prompt": "pick up the tomato sauce can and place it in the basket",
+      "raw_tokens": 14,
+      "retained_tokens": 14,
+      "decoded": "pick up the tomato sauce can and place it in the basket\n"
+    },
+    {
+      "task": 0,
+      "target_index": 1,
+      "family": "constrained",
+      "prompt": "pick up the tomato sauce can and place it in the basket. Leave the alphabet soup can at its original position. Do not move any other object. Stop after placing the target.",
+      "raw_tokens": 38,
+      "retained_tokens": 38,
+      "decoded": "pick up the tomato sauce can and place it in the basket. Leave the alphabet soup can at its original position. Do not move any other object. Stop after placing the target.\n"
+    },
+    {
+      "task": 1,
+      "target_index": 0,
+      "family": "positive",
+      "prompt": "pick up the cream cheese box and place it in the basket",
+      "raw_tokens": 14,
+      "retained_tokens": 14,
+      "decoded": "pick up the cream cheese box and place it in the basket\n"
+    },
+    {
+      "task": 1,
+      "target_index": 0,
+      "family": "constrained",
+      "prompt": "pick up the cream cheese box and place it in the basket. Leave the butter at its original position. Do not move any other object. Stop after placing the target.",
+      "raw_tokens": 36,
+      "retained_tokens": 36,
+      "decoded": "pick up the cream cheese box and place it in the basket. Leave the butter at its original position. Do not move any other object. Stop after placing the target.\n"
+    },
+    {
+      "task": 1,
+      "target_index": 1,
+      "family": "positive",
+      "prompt": "pick up the butter and place it in the basket",
+      "raw_tokens": 12,
+      "retained_tokens": 12,
+      "decoded": "pick up the butter and place it in the basket\n"
+    },
+    {
+      "task": 1,
+      "target_index": 1,
+      "family": "constrained",
+      "prompt": "pick up the butter and place it in the basket. Leave the cream cheese box at its original position. Do not move any other object. Stop after placing the target.",
+      "raw_tokens": 36,
+      "retained_tokens": 36,
+      "decoded": "pick up the butter and place it in the basket. Leave the cream cheese box at its original position. Do not move any other object. Stop after placing the target.\n"
+    }
+  ]
+}

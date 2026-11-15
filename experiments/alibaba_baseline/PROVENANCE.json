@@ -1,0 +1,22 @@
+{
+  "qwen_base": {
+    "repo": "Qwen/Qwen3-VL-4B-Instruct",
+    "revision": "ebb281ec70b05090aa6165b016eac8ec08e71b17"
+  },
+  "public_act": {
+    "repo": "lerobot/act_aloha_sim_transfer_cube_human",
+    "revision": "ba73b2766f1371cdc133ca4efb97eb090d744625",
+    "license": "apache-2.0"
+  },
+  "demonstrations": {
+    "repo": "lerobot/aloha_sim_transfer_cube_human",
+    "revision": "8f81f044cbc65d9c1efbe5a302e8f9f4c16a86ed",
+    "format": "v2.1",
+    "license": "MIT",
+    "episodes": 50,
+    "frames": 20000
+  },
+  "framework": "local vendor-derived LeRobot 0.3.4",
+  "own_act": "random ACT weights, ImageNet ResNet18 initialization; public ACT actor weights not used",
+  "own_lora": "language attention q_proj/v_proj adapters only; vision frozen"
+}

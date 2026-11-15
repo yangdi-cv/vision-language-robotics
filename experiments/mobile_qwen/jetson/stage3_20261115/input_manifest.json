@@ -1,0 +1,37 @@
+{
+  "validation_only": true,
+  "selection": "first five sorted frozen validation IDs; test350 not used",
+  "images": [
+    {
+      "id": "static_i13_0",
+      "file": "static_i13_0.png",
+      "sha256": "9c5bd45428443108ced1014e5145f44f99daffc6fa2c8bb4ce43616478e63e20"
+    },
+    {
+      "id": "static_i13_2",
+      "file": "static_i13_2.png",
+      "sha256": "1d3bb32316428ef38639178d8cbe3e89761716ed5957409b15d96f41c4a70b24"
+    },
+    {
+      "id": "static_i14_0",
+      "file": "static_i14_0.png",
+      "sha256": "fc06f30f63c47ee9e44798bcc4b51b6ae2b449950f37dd7c56bc060197bf7bea"
+    },
+    {
+      "id": "static_i14_2",
+      "file": "static_i14_2.png",
+      "sha256": "7cf9730be013508ce08111aa6fdc2d243c62a832b3b9bb3f184e4b3c59e21bc1"
+    },
+    {
+      "id": "static_i14_3",
+      "file": "static_i14_3.png",
+      "sha256": "ed41e2823061026c7f4aade6d8e4d63e3617f1fa9205777f65f076b877fbae9e"
+    }
+  ],
+  "prompts": {
+    "handle": "Point to the handle of the lowest drawer of the small white cabinet with three drawers standing on the table at the left edge of the image, i.e. where a robot gripper should grasp to pull or push that drawer. Return only JSON: {\"point_2d\": [x, y]}",
+    "bowl": "Point to the rim of the bowl, where a robot gripper should grasp it. Return only JSON: {\"point_2d\": [x, y]}",
+    "place": "Point to the spot inside the pulled-out lowest drawer of the small white cabinet with three drawers standing on the table at the left edge of the image where the bowl should be put down. Return only JSON: {\"point_2d\": [x, y]}",
+    "cabinet": "Give the bounding box of the small white cabinet with three drawers standing on the table at the left edge of the image. Return only JSON: {\"bbox_2d\": [x1, y1, x2, y2]}"
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "conditional_tokens": [
+    2,
+    18075,
+    908,
+    573,
+    40027,
+    21078,
+    798,
+    578,
+    2040,
+    665,
+    575,
+    573,
+    12220,
+    108
+  ],
+  "null_tokens": [
+    2,
+    108
+  ],
+  "normalized_state_sha256": "389caba15b104ba8075b2c6b424febc54481153ce77a224a8a83f58c8cce88f2",
+  "noise_sha256": "2cacd6a2965a76852d8c71ded9ea34f388bf94644330019909752b29334b1a5c",
+  "nonlanguage_inputs_identical": true,
+  "discrete_state_input": false,
+  "normalized_state_retained": true,
+  "conditional_text": "pick up the alphabet soup can and place it in the basket\n",
+  "null_text": "\n",
+  "scale1_max_abs": 0.0,
+  "repeat_max_abs": 0.0,
+  "language_delta_rms": 0.05740898304526955,
+  "passed": true,
+  "no_new_model": true
+}

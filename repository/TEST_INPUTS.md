@@ -1,0 +1,7 @@
+# 离线检查输入
+
+closed_loop_iteration/data/cases.json与checker_v2/data/cases.json随仓库提供。前者的标签核验读取120条已保存回合的低维trace.npz，合计约13.35MiB；这里只保存测试必需的状态与判据轨迹，不含这些回合的原始RGB或完整视频。
+
+reports/alibaba_engineering/RESULT_AUDIT.json引用的210个小型result.json及六组动作合并探针随仓库保留。它们用于核对已报告数字，不是新增模型评测。完整训练图像、权重、虚拟环境和全部闭环记录仍留在本地。
+
+OpenPI仅附CPU图像转换工具及许可证；完整上游通过scripts/fetch_upstream.py按固定提交恢复。partial_sources.json记录所附文件的摘要。

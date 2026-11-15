@@ -1,0 +1,680 @@
+{
+  "episodes": 66,
+  "frames": 26466,
+  "fps": 25,
+  "image_shape": [
+    240,
+    320,
+    3
+  ],
+  "state_dim": 12,
+  "state_fields": "right6joint angles+normalized actual gripper+3target onehots+2bin onehots",
+  "action_dim": 8,
+  "action_fields": "next25Hz end-effector targetxyz(m), quaternionwxyz, desired normalized gripper; interpolated from exact scripted path",
+  "source": "scripted physical demonstration, not human teleoperation",
+  "split": "by layout seed, paired oracle episodes excluded; stress layout200 in train; validation103 and test104",
+  "frame_source": "H264 rendered video decoded; observation after frame step, action labels target next sampled step; control simulator originally50Hz",
+  "limitations": "Custom dataset, not converted to LeRobot format; no ACT trained on these data yet; retained initial warmup omitted",
+  "items": [
+    {
+      "file": "episode_030.npz",
+      "source_case": 30,
+      "seed": 100,
+      "target": "red",
+      "destination": "left",
+      "frames": 401,
+      "split": "train",
+      "group": "rgbd"
+    },
+    {
+      "file": "episode_031.npz",
+      "source_case": 31,
+      "seed": 100,
+      "target": "red",
+      "destination": "right",
+      "frames": 401,
+      "split": "train",
+      "group": "rgbd"
+    },
+    {
+      "file": "episode_032.npz",
+      "source_case": 32,
+      "seed": 100,
+      "target": "blue",
+      "destination": "left",
+      "frames": 401,
+      "split": "train",
+      "group": "rgbd"
+    },
+    {
+      "file": "episode_033.npz",
+      "source_case": 33,
+      "seed": 100,
+      "target": "blue",
+      "destination": "right",
+      "frames": 401,
+      "split": "train",
+      "group": "rgbd"
+    },
+    {
+      "file": "episode_034.npz",
+      "source_case": 34,
+      "seed": 100,
+      "target": "green",
+      "destination": "left",
+      "frames": 401,
+      "split": "train",
+      "group": "rgbd"
+    },
+    {
+      "file": "episode_035.npz",
+      "source_case": 35,
+      "seed": 100,
+      "target": "green",
+      "destination": "right",
+      "frames": 401,
+      "split": "train",
+      "group": "rgbd"
+    },
+    {
+      "file": "episode_036.npz",
+      "source_case": 36,
+      "seed": 101,
+      "target": "red",
+      "destination": "left",
+      "frames": 401,
+      "split": "train",
+      "group": "rgbd"
+    },
+    {
+      "file": "episode_037.npz",
+      "source_case": 37,
+      "seed": 101,
+      "target": "red",
+      "destination": "right",
+      "frames": 401,
+      "split": "train",
+      "group": "rgbd"
+    },
+    {
+      "file": "episode_038.npz",
+      "source_case": 38,
+      "seed": 101,
+      "target": "blue",
+      "destination": "left",
+      "frames": 401,
+      "split": "train",
+      "group": "rgbd"
+    },
+    {
+      "file": "episode_039.npz",
+      "source_case": 39,
+      "seed": 101,
+      "target": "blue",
+      "destination": "right",
+      "frames": 401,
+      "split": "train",
+      "group": "rgbd"
+    },
+    {
+      "file": "episode_040.npz",
+      "source_case": 40,
+      "seed": 101,
+      "target": "green",
+      "destination": "left",
+      "frames": 401,
+      "split": "train",
+      "group": "rgbd"
+    },
+    {
+      "file": "episode_041.npz",
+      "source_case": 41,
+      "seed": 101,
+      "target": "green",
+      "destination": "right",
+      "frames": 401,
+      "split": "train",
+      "group": "rgbd"
+    },
+    {
+      "file": "episode_042.npz",
+      "source_case": 42,
+      "seed": 102,
+      "target": "red",
+      "destination": "left",
+      "frames": 401,
+      "split": "train",
+      "group": "rgbd"
+    },
+    {
+      "file": "episode_043.npz",
+      "source_case": 43,
+      "seed": 102,
+      "target": "red",
+      "destination": "right",
+      "frames": 401,
+      "split": "train",
+      "group": "rgbd"
+    },
+    {
+      "file": "episode_044.npz",
+      "source_case": 44,
+      "seed": 102,
+      "target": "blue",
+      "destination": "left",
+      "frames": 401,
+      "split": "train",
+      "group": "rgbd"
+    },
+    {
+      "file": "episode_045.npz",
+      "source_case": 45,
+      "seed": 102,
+      "target": "blue",
+      "destination": "right",
+      "frames": 401,
+      "split": "train",
+      "group": "rgbd"
+    },
+    {
+      "file": "episode_046.npz",
+      "source_case": 46,
+      "seed": 102,
+      "target": "green",
+      "destination": "left",
+      "frames": 401,
+      "split": "train",
+      "group": "rgbd"
+    },
+    {
+      "file": "episode_047.npz",
+      "source_case": 47,
+      "seed": 102,
+      "target": "green",
+      "destination": "right",
+      "frames": 401,
+      "split": "train",
+      "group": "rgbd"
+    },
+    {
+      "file": "episode_048.npz",
+      "source_case": 48,
+      "seed": 103,
+      "target": "red",
+      "destination": "left",
+      "frames": 401,
+      "split": "validation",
+      "group": "rgbd"
+    },
+    {
+      "file": "episode_049.npz",
+      "source_case": 49,
+      "seed": 103,
+      "target": "red",
+      "destination": "right",
+      "frames": 401,
+      "split": "validation",
+      "group": "rgbd"
+    },
+    {
+      "file": "episode_050.npz",
+      "source_case": 50,
+      "seed": 103,
+      "target": "blue",
+      "destination": "left",
+      "frames": 401,
+      "split": "validation",
+      "group": "rgbd"
+    },
+    {
+      "file": "episode_051.npz",
+      "source_case": 51,
+      "seed": 103,
+      "target": "blue",
+      "destination": "right",
+      "frames": 401,
+      "split": "validation",
+      "group": "rgbd"
+    },
+    {
+      "file": "episode_052.npz",
+      "source_case": 52,
+      "seed": 103,
+      "target": "green",
+      "destination": "left",
+      "frames": 401,
+      "split": "validation",
+      "group": "rgbd"
+    },
+    {
+      "file": "episode_053.npz",
+      "source_case": 53,
+      "seed": 103,
+      "target": "green",
+      "destination": "right",
+      "frames": 401,
+      "split": "validation",
+      "group": "rgbd"
+    },
+    {
+      "file": "episode_054.npz",
+      "source_case": 54,
+      "seed": 104,
+      "target": "red",
+      "destination": "left",
+      "frames": 401,
+      "split": "test",
+      "group": "rgbd"
+    },
+    {
+      "file": "episode_055.npz",
+      "source_case": 55,
+      "seed": 104,
+      "target": "red",
+      "destination": "right",
+      "frames": 401,
+      "split": "test",
+      "group": "rgbd"
+    },
+    {
+      "file": "episode_056.npz",
+      "source_case": 56,
+      "seed": 104,
+      "target": "blue",
+      "destination": "left",
+      "frames": 401,
+      "split": "test",
+      "group": "rgbd"
+    },
+    {
+      "file": "episode_057.npz",
+      "source_case": 57,
+      "seed": 104,
+      "target": "blue",
+      "destination": "right",
+      "frames": 401,
+      "split": "test",
+      "group": "rgbd"
+    },
+    {
+      "file": "episode_058.npz",
+      "source_case": 58,
+      "seed": 104,
+      "target": "green",
+      "destination": "left",
+      "frames": 401,
+      "split": "test",
+      "group": "rgbd"
+    },
+    {
+      "file": "episode_059.npz",
+      "source_case": 59,
+      "seed": 104,
+      "target": "green",
+      "destination": "right",
+      "frames": 401,
+      "split": "test",
+      "group": "rgbd"
+    },
+    {
+      "file": "episode_060.npz",
+      "source_case": 60,
+      "seed": 200,
+      "target": "red",
+      "destination": "left",
+      "frames": 401,
+      "split": "train",
+      "group": "size_0.016"
+    },
+    {
+      "file": "episode_061.npz",
+      "source_case": 61,
+      "seed": 200,
+      "target": "red",
+      "destination": "right",
+      "frames": 401,
+      "split": "train",
+      "group": "size_0.016"
+    },
+    {
+      "file": "episode_062.npz",
+      "source_case": 62,
+      "seed": 200,
+      "target": "blue",
+      "destination": "left",
+      "frames": 401,
+      "split": "train",
+      "group": "size_0.016"
+    },
+    {
+      "file": "episode_063.npz",
+      "source_case": 63,
+      "seed": 200,
+      "target": "blue",
+      "destination": "right",
+      "frames": 401,
+      "split": "train",
+      "group": "size_0.016"
+    },
+    {
+      "file": "episode_064.npz",
+      "source_case": 64,
+      "seed": 200,
+      "target": "green",
+      "destination": "left",
+      "frames": 401,
+      "split": "train",
+      "group": "size_0.016"
+    },
+    {
+      "file": "episode_065.npz",
+      "source_case": 65,
+      "seed": 200,
+      "target": "green",
+      "destination": "right",
+      "frames": 401,
+      "split": "train",
+      "group": "size_0.016"
+    },
+    {
+      "file": "episode_066.npz",
+      "source_case": 66,
+      "seed": 200,
+      "target": "red",
+      "destination": "left",
+      "frames": 401,
+      "split": "train",
+      "group": "size_0.024"
+    },
+    {
+      "file": "episode_067.npz",
+      "source_case": 67,
+      "seed": 200,
+      "target": "red",
+      "destination": "right",
+      "frames": 401,
+      "split": "train",
+      "group": "size_0.024"
+    },
+    {
+      "file": "episode_068.npz",
+      "source_case": 68,
+      "seed": 200,
+      "target": "blue",
+      "destination": "left",
+      "frames": 401,
+      "split": "train",
+      "group": "size_0.024"
+    },
+    {
+      "file": "episode_069.npz",
+      "source_case": 69,
+      "seed": 200,
+      "target": "blue",
+      "destination": "right",
+      "frames": 401,
+      "split": "train",
+      "group": "size_0.024"
+    },
+    {
+      "file": "episode_070.npz",
+      "source_case": 70,
+      "seed": 200,
+      "target": "green",
+      "destination": "left",
+      "frames": 401,
+      "split": "train",
+      "group": "size_0.024"
+    },
+    {
+      "file": "episode_071.npz",
+      "source_case": 71,
+      "seed": 200,
+      "target": "green",
+      "destination": "right",
+      "frames": 401,
+      "split": "train",
+      "group": "size_0.024"
+    },
+    {
+      "file": "episode_072.npz",
+      "source_case": 72,
+      "seed": 200,
+      "target": "red",
+      "destination": "left",
+      "frames": 401,
+      "split": "train",
+      "group": "size_0.028"
+    },
+    {
+      "file": "episode_073.npz",
+      "source_case": 73,
+      "seed": 200,
+      "target": "red",
+      "destination": "right",
+      "frames": 401,
+      "split": "train",
+      "group": "size_0.028"
+    },
+    {
+      "file": "episode_074.npz",
+      "source_case": 74,
+      "seed": 200,
+      "target": "blue",
+      "destination": "left",
+      "frames": 401,
+      "split": "train",
+      "group": "size_0.028"
+    },
+    {
+      "file": "episode_075.npz",
+      "source_case": 75,
+      "seed": 200,
+      "target": "blue",
+      "destination": "right",
+      "frames": 401,
+      "split": "train",
+      "group": "size_0.028"
+    },
+    {
+      "file": "episode_076.npz",
+      "source_case": 76,
+      "seed": 200,
+      "target": "green",
+      "destination": "left",
+      "frames": 401,
+      "split": "train",
+      "group": "size_0.028"
+    },
+    {
+      "file": "episode_077.npz",
+      "source_case": 77,
+      "seed": 200,
+      "target": "green",
+      "destination": "right",
+      "frames": 401,
+      "split": "train",
+      "group": "size_0.028"
+    },
+    {
+      "file": "episode_078.npz",
+      "source_case": 78,
+      "seed": 200,
+      "target": "red",
+      "destination": "left",
+      "frames": 401,
+      "split": "train",
+      "group": "friction_0.4"
+    },
+    {
+      "file": "episode_079.npz",
+      "source_case": 79,
+      "seed": 200,
+      "target": "red",
+      "destination": "right",
+      "frames": 401,
+      "split": "train",
+      "group": "friction_0.4"
+    },
+    {
+      "file": "episode_080.npz",
+      "source_case": 80,
+      "seed": 200,
+      "target": "blue",
+      "destination": "left",
+      "frames": 401,
+      "split": "train",
+      "group": "friction_0.4"
+    },
+    {
+      "file": "episode_081.npz",
+      "source_case": 81,
+      "seed": 200,
+      "target": "blue",
+      "destination": "right",
+      "frames": 401,
+      "split": "train",
+      "group": "friction_0.4"
+    },
+    {
+      "file": "episode_082.npz",
+      "source_case": 82,
+      "seed": 200,
+      "target": "green",
+      "destination": "left",
+      "frames": 401,
+      "split": "train",
+      "group": "friction_0.4"
+    },
+    {
+      "file": "episode_083.npz",
+      "source_case": 83,
+      "seed": 200,
+      "target": "green",
+      "destination": "right",
+      "frames": 401,
+      "split": "train",
+      "group": "friction_0.4"
+    },
+    {
+      "file": "episode_084.npz",
+      "source_case": 84,
+      "seed": 200,
+      "target": "red",
+      "destination": "left",
+      "frames": 401,
+      "split": "train",
+      "group": "friction_0.7"
+    },
+    {
+      "file": "episode_085.npz",
+      "source_case": 85,
+      "seed": 200,
+      "target": "red",
+      "destination": "right",
+      "frames": 401,
+      "split": "train",
+      "group": "friction_0.7"
+    },
+    {
+      "file": "episode_086.npz",
+      "source_case": 86,
+      "seed": 200,
+      "target": "blue",
+      "destination": "left",
+      "frames": 401,
+      "split": "train",
+      "group": "friction_0.7"
+    },
+    {
+      "file": "episode_087.npz",
+      "source_case": 87,
+      "seed": 200,
+      "target": "blue",
+      "destination": "right",
+      "frames": 401,
+      "split": "train",
+      "group": "friction_0.7"
+    },
+    {
+      "file": "episode_088.npz",
+      "source_case": 88,
+      "seed": 200,
+      "target": "green",
+      "destination": "left",
+      "frames": 401,
+      "split": "train",
+      "group": "friction_0.7"
+    },
+    {
+      "file": "episode_089.npz",
+      "source_case": 89,
+      "seed": 200,
+      "target": "green",
+      "destination": "right",
+      "frames": 401,
+      "split": "train",
+      "group": "friction_0.7"
+    },
+    {
+      "file": "episode_090.npz",
+      "source_case": 90,
+      "seed": 200,
+      "target": "red",
+      "destination": "left",
+      "frames": 401,
+      "split": "train",
+      "group": "friction_1.3"
+    },
+    {
+      "file": "episode_091.npz",
+      "source_case": 91,
+      "seed": 200,
+      "target": "red",
+      "destination": "right",
+      "frames": 401,
+      "split": "train",
+      "group": "friction_1.3"
+    },
+    {
+      "file": "episode_092.npz",
+      "source_case": 92,
+      "seed": 200,
+      "target": "blue",
+      "destination": "left",
+      "frames": 401,
+      "split": "train",
+      "group": "friction_1.3"
+    },
+    {
+      "file": "episode_093.npz",
+      "source_case": 93,
+      "seed": 200,
+      "target": "blue",
+      "destination": "right",
+      "frames": 401,
+      "split": "train",
+      "group": "friction_1.3"
+    },
+    {
+      "file": "episode_094.npz",
+      "source_case": 94,
+      "seed": 200,
+      "target": "green",
+      "destination": "left",
+      "frames": 401,
+      "split": "train",
+      "group": "friction_1.3"
+    },
+    {
+      "file": "episode_095.npz",
+      "source_case": 95,
+      "seed": 200,
+      "target": "green",
+      "destination": "right",
+      "frames": 401,
+      "split": "train",
+      "group": "friction_1.3"
+    }
+  ]
+}

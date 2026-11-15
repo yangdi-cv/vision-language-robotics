@@ -1,0 +1,328 @@
+{
+  "episodes": 16,
+  "states": 5200,
+  "max_position_error_m": 0.003147310042917073,
+  "final_disagreements": 0,
+  "rows": [
+    {
+      "variant": "base",
+      "task": 0,
+      "initial": 28,
+      "target": 0,
+      "live": false,
+      "restored": false,
+      "restored_score": {
+        "selective_success": false,
+        "target_final_stable": false,
+        "final_released": true,
+        "target_ever_reached": false,
+        "protected_untouched": true,
+        "max_protected_displacement_m": 4.0141501234103316e-14,
+        "first_valid_step": null,
+        "first_violation_step": null,
+        "self_stop_success": false,
+        "premature_stop": false
+      }
+    },
+    {
+      "variant": "base",
+      "task": 0,
+      "initial": 28,
+      "target": 1,
+      "live": false,
+      "restored": false,
+      "restored_score": {
+        "selective_success": false,
+        "target_final_stable": true,
+        "final_released": true,
+        "target_ever_reached": true,
+        "protected_untouched": false,
+        "max_protected_displacement_m": 0.42529142010230403,
+        "first_valid_step": null,
+        "first_violation_step": 67,
+        "self_stop_success": false,
+        "premature_stop": false
+      }
+    },
+    {
+      "variant": "base",
+      "task": 0,
+      "initial": 29,
+      "target": 0,
+      "live": false,
+      "restored": false,
+      "restored_score": {
+        "selective_success": false,
+        "target_final_stable": true,
+        "final_released": true,
+        "target_ever_reached": true,
+        "protected_untouched": false,
+        "max_protected_displacement_m": 0.2810151541220366,
+        "first_valid_step": 149,
+        "first_violation_step": 203,
+        "self_stop_success": false,
+        "premature_stop": false
+      }
+    },
+    {
+      "variant": "base",
+      "task": 0,
+      "initial": 29,
+      "target": 1,
+      "live": false,
+      "restored": false,
+      "restored_score": {
+        "selective_success": false,
+        "target_final_stable": true,
+        "final_released": true,
+        "target_ever_reached": true,
+        "protected_untouched": false,
+        "max_protected_displacement_m": 0.4387396968677159,
+        "first_valid_step": null,
+        "first_violation_step": 67,
+        "self_stop_success": false,
+        "premature_stop": false
+      }
+    },
+    {
+      "variant": "lora",
+      "task": 0,
+      "initial": 28,
+      "target": 0,
+      "live": true,
+      "restored": true,
+      "restored_score": {
+        "selective_success": true,
+        "target_final_stable": true,
+        "final_released": true,
+        "target_ever_reached": false,
+        "protected_untouched": true,
+        "max_protected_displacement_m": 4.018313459752676e-14,
+        "first_valid_step": null,
+        "first_violation_step": null,
+        "self_stop_success": false,
+        "premature_stop": false
+      }
+    },
+    {
+      "variant": "lora",
+      "task": 0,
+      "initial": 28,
+      "target": 1,
+      "live": false,
+      "restored": false,
+      "restored_score": {
+        "selective_success": false,
+        "target_final_stable": true,
+        "final_released": true,
+        "target_ever_reached": true,
+        "protected_untouched": false,
+        "max_protected_displacement_m": 0.4109458591948904,
+        "first_valid_step": null,
+        "first_violation_step": 76,
+        "self_stop_success": false,
+        "premature_stop": false
+      }
+    },
+    {
+      "variant": "lora",
+      "task": 0,
+      "initial": 29,
+      "target": 0,
+      "live": false,
+      "restored": false,
+      "restored_score": {
+        "selective_success": false,
+        "target_final_stable": true,
+        "final_released": true,
+        "target_ever_reached": true,
+        "protected_untouched": false,
+        "max_protected_displacement_m": 0.27836765910381417,
+        "first_valid_step": 167,
+        "first_violation_step": 237,
+        "self_stop_success": false,
+        "premature_stop": false
+      }
+    },
+    {
+      "variant": "lora",
+      "task": 0,
+      "initial": 29,
+      "target": 1,
+      "live": false,
+      "restored": false,
+      "restored_score": {
+        "selective_success": false,
+        "target_final_stable": true,
+        "final_released": true,
+        "target_ever_reached": true,
+        "protected_untouched": false,
+        "max_protected_displacement_m": 0.43985506306873506,
+        "first_valid_step": null,
+        "first_violation_step": 73,
+        "self_stop_success": false,
+        "premature_stop": false
+      }
+    },
+    {
+      "variant": "base",
+      "task": 1,
+      "initial": 28,
+      "target": 0,
+      "live": false,
+      "restored": false,
+      "restored_score": {
+        "selective_success": false,
+        "target_final_stable": true,
+        "final_released": true,
+        "target_ever_reached": true,
+        "protected_untouched": false,
+        "max_protected_displacement_m": 0.25922412186996147,
+        "first_valid_step": 144,
+        "first_violation_step": 190,
+        "self_stop_success": false,
+        "premature_stop": false
+      }
+    },
+    {
+      "variant": "base",
+      "task": 1,
+      "initial": 28,
+      "target": 1,
+      "live": false,
+      "restored": false,
+      "restored_score": {
+        "selective_success": false,
+        "target_final_stable": true,
+        "final_released": true,
+        "target_ever_reached": true,
+        "protected_untouched": false,
+        "max_protected_displacement_m": 0.4816455356070316,
+        "first_valid_step": null,
+        "first_violation_step": 66,
+        "self_stop_success": false,
+        "premature_stop": false
+      }
+    },
+    {
+      "variant": "base",
+      "task": 1,
+      "initial": 29,
+      "target": 0,
+      "live": false,
+      "restored": false,
+      "restored_score": {
+        "selective_success": false,
+        "target_final_stable": true,
+        "final_released": true,
+        "target_ever_reached": true,
+        "protected_untouched": false,
+        "max_protected_displacement_m": 0.2686484184209109,
+        "first_valid_step": 148,
+        "first_violation_step": 240,
+        "self_stop_success": false,
+        "premature_stop": false
+      }
+    },
+    {
+      "variant": "base",
+      "task": 1,
+      "initial": 29,
+      "target": 1,
+      "live": false,
+      "restored": false,
+      "restored_score": {
+        "selective_success": false,
+        "target_final_stable": true,
+        "final_released": true,
+        "target_ever_reached": true,
+        "protected_untouched": false,
+        "max_protected_displacement_m": 0.4772143684428785,
+        "first_valid_step": null,
+        "first_violation_step": 67,
+        "self_stop_success": false,
+        "premature_stop": false
+      }
+    },
+    {
+      "variant": "lora",
+      "task": 1,
+      "initial": 28,
+      "target": 0,
+      "live": false,
+      "restored": false,
+      "restored_score": {
+        "selective_success": false,
+        "target_final_stable": true,
+        "final_released": true,
+        "target_ever_reached": true,
+        "protected_untouched": false,
+        "max_protected_displacement_m": 0.25094407338000474,
+        "first_valid_step": 154,
+        "first_violation_step": 210,
+        "self_stop_success": false,
+        "premature_stop": false
+      }
+    },
+    {
+      "variant": "lora",
+      "task": 1,
+      "initial": 28,
+      "target": 1,
+      "live": false,
+      "restored": false,
+      "restored_score": {
+        "selective_success": false,
+        "target_final_stable": true,
+        "final_released": true,
+        "target_ever_reached": true,
+        "protected_untouched": false,
+        "max_protected_displacement_m": 0.4800489547093288,
+        "first_valid_step": null,
+        "first_violation_step": 71,
+        "self_stop_success": false,
+        "premature_stop": false
+      }
+    },
+    {
+      "variant": "lora",
+      "task": 1,
+      "initial": 29,
+      "target": 0,
+      "live": false,
+      "restored": false,
+      "restored_score": {
+        "selective_success": false,
+        "target_final_stable": true,
+        "final_released": true,
+        "target_ever_reached": true,
+        "protected_untouched": false,
+        "max_protected_displacement_m": 0.2649505994092558,
+        "first_valid_step": 158,
+        "first_violation_step": 215,
+        "self_stop_success": false,
+        "premature_stop": false
+      }
+    },
+    {
+      "variant": "lora",
+      "task": 1,
+      "initial": 29,
+      "target": 1,
+      "live": false,
+      "restored": false,
+      "restored_score": {
+        "selective_success": false,
+        "target_final_stable": true,
+        "final_released": true,
+        "target_ever_reached": true,
+        "protected_untouched": false,
+        "max_protected_displacement_m": 0.4775107448772228,
+        "first_valid_step": null,
+        "first_violation_step": 72,
+        "self_stop_success": false,
+        "premature_stop": false
+      }
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "variant": "base",
+  "tasks": [
+    0,
+    1
+  ],
+  "initials": [
+    41
+  ],
+  "layouts": [
+    "normal",
+    "swap"
+  ],
+  "targets": [
+    0,
+    1
+  ],
+  "episodes": 8,
+  "policy_steps": 300,
+  "hold_steps": 25,
+  "oracle_box_only_upper_bound": false,
+  "current_images_unchanged": true,
+  "box_fixed_at_episode_start": true,
+  "source_sha256": {
+    "experiments/vla_libero/point_target/scripts/evaluate.py": "140d4c71c508b6b74ff732474f42268a5409b45fab05b66fe0f27fbaaa1d6180",
+    "experiments/vla_libero/point_target/scripts/policy_runtime.py": "dc9300eb0c5caa4d68ce2d0bb455846608e863a94e495d1742355c012ab4a6fd",
+    "experiments/vla_libero/point_target/scripts/goal_inputs.py": "f5b1e1512bcb2959bce2945d5925644ffdf0cfdb31060cdccb418a9c886297db",
+    "experiments/vla_libero/point_target/scripts/layout.py": "ca4ab8caacb54c979451a03bb799652468894fe6495ede04a65defeb7acea88b",
+    "experiments/vla_libero/point_target/scripts/visual_prompt.py": "937995275b7fc30709caf5eec45a7b493bdebf63d928abdea5a416b6d10705f8",
+    "experiments/vla_libero/point_target/scripts/prepare.py": "94b03d15d6d433fd39dfa2eeb52f26197ba7322d6c3525ac8f137a8ee5e498a8",
+    "experiments/vla_libero/instruction_response/scripts/run.py": "1b7d09c8c4d1d982c784bed00125af742412c21831fad329f914b86da63f693b"
+  },
+  "adapter_sha256": null
+}

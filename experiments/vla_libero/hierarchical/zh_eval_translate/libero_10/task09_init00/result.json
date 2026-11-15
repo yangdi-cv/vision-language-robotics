@@ -1,0 +1,46 @@
+{
+  "suite": "libero_10",
+  "task_id": 9,
+  "initial_state_id": 0,
+  "original_task_language": "put the yellow and white mug in the microwave and close it",
+  "input_instruction": "把黄白相间的马克杯放进微波炉，然后关上微波炉门",
+  "planner": "translate",
+  "monitor": "qwen",
+  "max_steps": 520,
+  "subgoal_step_budget": 300,
+  "monitor_every_queries": 4,
+  "monitor_res": 512,
+  "gripper_gate": true,
+  "confirm": 2,
+  "last_subgoal_runs_to_limit": true,
+  "noise_seed": 730900,
+  "runner_sha256": "0fc7e8b3817ad2fbf0df4e4055874ae74c2cda5805297879f63ba77ea00375cd",
+  "events": [
+    {
+      "kind": "plan",
+      "step": 0,
+      "ok": true,
+      "seconds": 0.8521611320029479,
+      "raw": "{\"instruction\": \"Put the yellow and white mug into the microwave and close the microwave door.\"}",
+      "error": null
+    },
+    {
+      "kind": "subgoal_start",
+      "step": 0,
+      "index": 0,
+      "subgoal": "Put the yellow and white mug into the microwave and close the microwave door."
+    }
+  ],
+  "status": "success",
+  "success": true,
+  "subgoals": [
+    "Put the yellow and white mug into the microwave and close the microwave door."
+  ],
+  "steps": 245,
+  "policy_queries": 49,
+  "qwen_checks": 0,
+  "final_atoms": [
+    true,
+    true
+  ]
+}

@@ -1,0 +1,171 @@
+{
+  "study_mode": "live_lora",
+  "stage_budget_enabled": true,
+  "initial_state_sha256": "44f0d75550c414e622b03a43e56497e8c9bd0fe4a494c1d2b9c0c9625ed80120",
+  "suite": "libero_10",
+  "task_id": 7,
+  "initial_state_id": 1,
+  "original_task_language": "put both the alphabet soup and the cream cheese box in the basket",
+  "input_instruction": "把字母汤罐头和奶油奶酪盒都放进篮子里",
+  "planner": "qwen",
+  "execution_profile": "legacy",
+  "planner_profile": "base",
+  "checker_adapter": "experiments/vla_libero/checker_v2/results/model/best_adapter",
+  "monitor": "qwen",
+  "max_steps": 520,
+  "subgoal_step_budget": 300,
+  "monitor_every_queries": 4,
+  "monitor_res": 512,
+  "gripper_gate": true,
+  "confirm": 2,
+  "max_replans": 0,
+  "last_subgoal_runs_to_limit": true,
+  "noise_seed": 730701,
+  "runner_sha256": "3bfa20bd9f7c320cf83dabe80e3c59a72fb5bd053837b65cd3bb6376c3459f61",
+  "events": [
+    {
+      "kind": "plan",
+      "step": 0,
+      "ok": true,
+      "seconds": 1.4547003956977278e-05,
+      "raw": "[\"pick up the alphabet soup can and place it in the basket\", \"pick up the cream cheese box and place it in the basket\"]",
+      "error": null
+    },
+    {
+      "kind": "subgoal_start",
+      "step": 0,
+      "index": 0,
+      "subgoal": "pick up the alphabet soup can and place it in the basket"
+    },
+    {
+      "kind": "check",
+      "step": 20,
+      "index": 0,
+      "done": false,
+      "confirmed": false,
+      "seconds": 0.15604486399388406,
+      "checker": "v2",
+      "status": "no",
+      "scores": {
+        "yes": 5.82912629267593e-05,
+        "no": 0.9999416618281699,
+        "unknown": 4.690890347901629e-08,
+        "yes_log_odds": -9.750000046911637
+      },
+      "reason": "V2 no; p_yes=0.0001, threshold=3.2481",
+      "error": null,
+      "shadow_long_task_atoms": [
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 40,
+      "index": 0,
+      "done": false,
+      "confirmed": false,
+      "seconds": 0.14631591600482352,
+      "checker": "v2",
+      "status": "no",
+      "scores": {
+        "yes": 3.5356244952798305e-05,
+        "no": 0.9999644800231502,
+        "unknown": 1.6373189709930394e-07,
+        "yes_log_odds": -10.250000163737703
+      },
+      "reason": "V2 no; p_yes=0.0000, threshold=3.2481",
+      "error": null,
+      "shadow_long_task_atoms": [
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 160,
+      "index": 0,
+      "done": true,
+      "confirmed": false,
+      "seconds": 0.1512559559996589,
+      "checker": "v2",
+      "status": "yes",
+      "scores": {
+        "yes": 0.9999990045976567,
+        "no": 5.315779963079322e-08,
+        "unknown": 9.42244543819487e-07,
+        "yes_log_odds": 13.820117820841922
+      },
+      "reason": "V2 yes; p_yes=1.0000, threshold=3.2481",
+      "error": null,
+      "shadow_long_task_atoms": [
+        true,
+        false
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 180,
+      "index": 0,
+      "done": true,
+      "confirmed": true,
+      "seconds": 0.1463745029977872,
+      "checker": "v2",
+      "status": "yes",
+      "scores": {
+        "yes": 0.9999991082363376,
+        "no": 6.023568466282213e-08,
+        "unknown": 8.315279775764719e-07,
+        "yes_log_odds": 13.930063800355025
+      },
+      "reason": "V2 yes; p_yes=1.0000, threshold=3.2481",
+      "error": null,
+      "shadow_long_task_atoms": [
+        true,
+        false
+      ]
+    },
+    {
+      "kind": "subgoal_end",
+      "step": 180,
+      "index": 0,
+      "reason": "done",
+      "long_task_atoms": [
+        true,
+        false
+      ]
+    },
+    {
+      "kind": "subgoal_start",
+      "step": 180,
+      "index": 1,
+      "subgoal": "pick up the cream cheese box and place it in the basket"
+    }
+  ],
+  "status": "success",
+  "success": true,
+  "settled_state_sha256": "edb6c195c4830265241306f45735991018d3425e3313b2925b4e36a4b7c73e97",
+  "subgoals": [
+    "pick up the alphabet soup can and place it in the basket",
+    "pick up the cream cheese box and place it in the basket"
+  ],
+  "policy_queries": 58,
+  "qwen_checks": 4,
+  "replans": 0,
+  "active_subgoal_index": 1,
+  "active_subgoal": "pick up the cream cheese box and place it in the basket",
+  "steps": 288,
+  "full_task_fallback": false,
+  "final_subgoals": [
+    "pick up the alphabet soup can and place it in the basket",
+    "pick up the cream cheese box and place it in the basket"
+  ],
+  "final_atoms": [
+    true,
+    true
+  ],
+  "protocol_sha256": "43102c29b30de89a834dd03413d9b5010377410236d6addcffc618c76a8ff03c",
+  "monitor_model_calls": 4,
+  "monitor_opportunities": 4,
+  "wall_seconds": 20.39424990399857
+}

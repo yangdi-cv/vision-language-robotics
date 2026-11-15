@@ -1,0 +1,243 @@
+{
+  "study_mode": "live_lora",
+  "stage_budget_enabled": true,
+  "initial_state_sha256": "ea7db2b727794199cfa1e42f8d924c5841e4af18716a392adf30d5517114c87f",
+  "suite": "libero_10",
+  "task_id": 9,
+  "initial_state_id": 0,
+  "original_task_language": "put the yellow and white mug in the microwave and close it",
+  "input_instruction": "把黄白相间的马克杯放进微波炉，然后关上微波炉门",
+  "planner": "qwen",
+  "execution_profile": "legacy",
+  "planner_profile": "base",
+  "checker_adapter": "experiments/vla_libero/checker_v2/results/model/best_adapter",
+  "monitor": "qwen",
+  "max_steps": 520,
+  "subgoal_step_budget": 300,
+  "monitor_every_queries": 4,
+  "monitor_res": 512,
+  "gripper_gate": true,
+  "confirm": 2,
+  "max_replans": 0,
+  "last_subgoal_runs_to_limit": true,
+  "noise_seed": 730900,
+  "runner_sha256": "3bfa20bd9f7c320cf83dabe80e3c59a72fb5bd053837b65cd3bb6376c3459f61",
+  "events": [
+    {
+      "kind": "plan",
+      "step": 0,
+      "ok": true,
+      "seconds": 1.4457000361289829e-05,
+      "raw": "[\"pick up the yellow and white mug and place it in the microwave\", \"close the microwave door\"]",
+      "error": null
+    },
+    {
+      "kind": "subgoal_start",
+      "step": 0,
+      "index": 0,
+      "subgoal": "pick up the yellow and white mug and place it in the microwave"
+    },
+    {
+      "kind": "check",
+      "step": 20,
+      "index": 0,
+      "done": false,
+      "confirmed": false,
+      "seconds": 0.15184291200057487,
+      "checker": "v2",
+      "status": "unknown",
+      "scores": {
+        "yes": 0.0235665794203801,
+        "no": 0.36864332664249055,
+        "unknown": 0.6077900939371295,
+        "yes_log_odds": -3.7240769841801082
+      },
+      "reason": "V2 unknown; p_yes=0.0236, threshold=3.2481",
+      "error": null,
+      "shadow_long_task_atoms": [
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 40,
+      "index": 0,
+      "done": false,
+      "confirmed": false,
+      "seconds": 0.14620522800032631,
+      "checker": "v2",
+      "status": "no",
+      "scores": {
+        "yes": 0.00015843569812811246,
+        "no": 0.9998382760738617,
+        "unknown": 3.2882280102063435e-06,
+        "yes_log_odds": -8.75000328875447
+      },
+      "reason": "V2 no; p_yes=0.0002, threshold=3.2481",
+      "error": null,
+      "shadow_long_task_atoms": [
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 60,
+      "index": 0,
+      "done": false,
+      "confirmed": false,
+      "seconds": 0.14427900399823557,
+      "checker": "v2",
+      "status": "no",
+      "scores": {
+        "yes": 2.7535685325547183e-05,
+        "no": 0.9999722540771226,
+        "unknown": 2.1023755184143236e-07,
+        "yes_log_odds": -10.500000210243364
+      },
+      "reason": "V2 no; p_yes=0.0000, threshold=3.2481",
+      "error": null,
+      "shadow_long_task_atoms": [
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 80,
+      "index": 0,
+      "done": false,
+      "confirmed": false,
+      "seconds": 0.14487650399678387,
+      "checker": "v2",
+      "status": "no",
+      "scores": {
+        "yes": 4.5397856447483035e-05,
+        "no": 0.9999543321980306,
+        "unknown": 2.6994552195465215e-07,
+        "yes_log_odds": -10.000000269957816
+      },
+      "reason": "V2 no; p_yes=0.0000, threshold=3.2481",
+      "error": null,
+      "shadow_long_task_atoms": [
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 180,
+      "index": 0,
+      "done": false,
+      "confirmed": false,
+      "seconds": 0.14699561599991284,
+      "checker": "v2",
+      "status": "no",
+      "scores": {
+        "yes": 0.003172292592557811,
+        "no": 0.9967047042751552,
+        "unknown": 0.0001230031322868688,
+        "yes_log_odds": -5.750123402189722
+      },
+      "reason": "V2 no; p_yes=0.0032, threshold=3.2481",
+      "error": null,
+      "shadow_long_task_atoms": [
+        true,
+        false
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 200,
+      "index": 0,
+      "done": false,
+      "confirmed": false,
+      "seconds": 0.14298637799947755,
+      "checker": "v2",
+      "status": "no",
+      "scores": {
+        "yes": 0.11877537623686385,
+        "no": 0.8776379181857814,
+        "unknown": 0.0035867055773547143,
+        "yes_log_odds": -2.004078443270572
+      },
+      "reason": "V2 no; p_yes=0.1188, threshold=3.2481",
+      "error": null,
+      "shadow_long_task_atoms": [
+        true,
+        false
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 220,
+      "index": 0,
+      "done": true,
+      "confirmed": false,
+      "seconds": 0.1426169629994547,
+      "checker": "v2",
+      "status": "yes",
+      "scores": {
+        "yes": 0.9839067151171549,
+        "no": 0.010930216292189834,
+        "unknown": 0.005163068590655386,
+        "yes_log_odds": 4.113128993885098
+      },
+      "reason": "V2 yes; p_yes=0.9839, threshold=3.2481",
+      "error": null,
+      "shadow_long_task_atoms": [
+        true,
+        false
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 240,
+      "index": 0,
+      "done": false,
+      "confirmed": false,
+      "seconds": 0.14389267699880293,
+      "checker": "v2",
+      "status": "unknown",
+      "scores": {
+        "yes": 0.6984180052295147,
+        "no": 0.2569336254679073,
+        "unknown": 0.04464836930257798,
+        "yes_log_odds": 0.8397758495619101
+      },
+      "reason": "V2 unknown; p_yes=0.6984, threshold=3.2481",
+      "error": null,
+      "shadow_long_task_atoms": [
+        true,
+        false
+      ]
+    }
+  ],
+  "status": "success",
+  "success": true,
+  "settled_state_sha256": "7835cbf05ebeeda3e38918b67db423c02c59888d62805fd622836c65ab14415c",
+  "subgoals": [
+    "pick up the yellow and white mug and place it in the microwave",
+    "close the microwave door"
+  ],
+  "policy_queries": 52,
+  "qwen_checks": 8,
+  "replans": 0,
+  "active_subgoal_index": 0,
+  "active_subgoal": "pick up the yellow and white mug and place it in the microwave",
+  "steps": 260,
+  "full_task_fallback": false,
+  "final_subgoals": [
+    "pick up the yellow and white mug and place it in the microwave",
+    "close the microwave door"
+  ],
+  "final_atoms": [
+    true,
+    true
+  ],
+  "protocol_sha256": "43102c29b30de89a834dd03413d9b5010377410236d6addcffc618c76a8ff03c",
+  "monitor_model_calls": 8,
+  "monitor_opportunities": 8,
+  "wall_seconds": 18.9310164669987
+}

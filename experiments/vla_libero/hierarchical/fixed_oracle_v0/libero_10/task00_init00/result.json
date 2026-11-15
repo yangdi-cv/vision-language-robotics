@@ -1,0 +1,51 @@
+{
+  "suite": "libero_10",
+  "task_id": 0,
+  "initial_state_id": 0,
+  "original_task_language": "put both the alphabet soup and the tomato sauce in the basket",
+  "input_instruction": "put both the alphabet soup and the tomato sauce in the basket",
+  "planner": "fixed",
+  "monitor": "oracle",
+  "max_steps": 520,
+  "subgoal_step_budget": 300,
+  "monitor_every_queries": 4,
+  "noise_seed": 730000,
+  "runner_sha256": "933dc126a833f7079b44dd0a20ae7238c640d413681fa34d80fc0820b8e0ea41",
+  "events": [
+    {
+      "kind": "subgoal_start",
+      "step": 0,
+      "index": 0,
+      "subgoal": "pick up the alphabet soup and place it in the basket"
+    },
+    {
+      "kind": "subgoal_end",
+      "step": 135,
+      "index": 0,
+      "reason": "done",
+      "long_task_atoms": [
+        true,
+        false
+      ]
+    },
+    {
+      "kind": "subgoal_start",
+      "step": 135,
+      "index": 1,
+      "subgoal": "pick up the tomato sauce and place it in the basket"
+    }
+  ],
+  "status": "success",
+  "success": true,
+  "subgoals": [
+    "pick up the alphabet soup and place it in the basket",
+    "pick up the tomato sauce and place it in the basket"
+  ],
+  "steps": 247,
+  "policy_queries": 50,
+  "qwen_checks": 0,
+  "final_atoms": [
+    true,
+    true
+  ]
+}

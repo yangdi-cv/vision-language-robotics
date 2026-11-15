@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+set -euo pipefail
+ROOT="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/../../.." && pwd)"
+unset PYTHONHOME LD_LIBRARY_PATH
+export PYTHONPATH="$ROOT/SO101/code/lerobot/src"
+export MUJOCO_GL=egl
+export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt
+exec "$ROOT/.venvs/act-sim/bin/python" "$@"

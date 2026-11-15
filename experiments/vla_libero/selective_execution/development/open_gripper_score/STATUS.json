@@ -1,0 +1,11 @@
+{
+  "state": "running",
+  "stage": "skills",
+  "completed": 3,
+  "expected": 4,
+  "latest": {
+    "case": "task01_target0_init00",
+    "first_valid_step": 155,
+    "target_ever_reached": true
+  }
+}

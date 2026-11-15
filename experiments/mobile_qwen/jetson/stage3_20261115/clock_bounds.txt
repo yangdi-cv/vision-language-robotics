@@ -1,0 +1,6 @@
+/sys/class/devfreq/17000000.gpu
+306000000
+624750000
+nvhost_podgov
+729600
+1510400

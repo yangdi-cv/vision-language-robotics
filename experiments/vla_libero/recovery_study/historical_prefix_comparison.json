@@ -1,0 +1,7 @@
+{
+  "task": 4,
+  "init": 2,
+  "step": 150,
+  "max_action_difference": 1.9934376790466308,
+  "eef_difference_m": 0.037149328479031025
+}

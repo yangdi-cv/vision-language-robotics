@@ -1,0 +1,216 @@
+{
+  "suite": "libero_10",
+  "task_id": 0,
+  "initial_state_id": 0,
+  "original_task_language": "put both the alphabet soup and the tomato sauce in the basket",
+  "input_instruction": "把字母汤罐头和番茄沙司罐头都放进篮子里",
+  "planner": "qwen",
+  "monitor": "qwen",
+  "max_steps": 520,
+  "subgoal_step_budget": 300,
+  "monitor_every_queries": 4,
+  "monitor_res": 512,
+  "noise_seed": 730000,
+  "runner_sha256": "6a9d077b1e4d5f667c8fb94bd6a4f5e07a1fe71982a2adb2e7dfc6b87db66784",
+  "events": [
+    {
+      "kind": "plan",
+      "step": 0,
+      "ok": true,
+      "seconds": 1.675885433998701,
+      "raw": "{\n  \"subgoals\": [\n    {\n      \"instruction\": \"pick up the alphabet soup can and place it in the basket\",\n      \"completion_hint\": \"The alphabet soup can is now inside the basket.\"\n    },\n    {\n      \"instruction\": \"pick up the tomato sauce can and place it in the basket\",\n      \"completion_hint\": \"The tomato sauce can is now inside the basket.\"\n    }\n  ]\n}",
+      "error": null
+    },
+    {
+      "kind": "subgoal_start",
+      "step": 0,
+      "index": 0,
+      "subgoal": "pick up the alphabet soup can and place it in the basket"
+    },
+    {
+      "kind": "check",
+      "step": 20,
+      "index": 0,
+      "done": false,
+      "seconds": 0.5201122799990117,
+      "reason": "The alphabet soup can is on the table, to the left of the milk carton and near the basket.",
+      "error": null,
+      "shadow_long_task_atoms": [
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 40,
+      "index": 0,
+      "done": false,
+      "seconds": 0.5504247629996826,
+      "reason": "The alphabet soup can is on the table, to the left of the milk carton and to the right of the basket.",
+      "error": null,
+      "shadow_long_task_atoms": [
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 60,
+      "index": 0,
+      "done": false,
+      "seconds": 0.41726703600033943,
+      "reason": "the alphabet soup can is on the table, to the right of the basket",
+      "error": null,
+      "shadow_long_task_atoms": [
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 80,
+      "index": 0,
+      "done": false,
+      "seconds": 0.45992787800059887,
+      "reason": "the alphabet soup can is on the table, directly in front of the robot's gripper",
+      "error": null,
+      "shadow_long_task_atoms": [
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 100,
+      "index": 0,
+      "done": false,
+      "seconds": 0.4466013050005131,
+      "reason": "the alphabet soup can is on the table, to the right of the robot's arm",
+      "error": null,
+      "shadow_long_task_atoms": [
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 120,
+      "index": 0,
+      "done": false,
+      "seconds": 0.37594755999998597,
+      "reason": "the alphabet soup can is on the table, near the center",
+      "error": null,
+      "shadow_long_task_atoms": [
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 140,
+      "index": 0,
+      "done": false,
+      "seconds": 0.3742903889997251,
+      "reason": "the alphabet soup can is on the table, near the center",
+      "error": null,
+      "shadow_long_task_atoms": [
+        true,
+        false
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 160,
+      "index": 0,
+      "done": false,
+      "seconds": 0.3747743559997616,
+      "reason": "the alphabet soup can is on the table, near the center",
+      "error": null,
+      "shadow_long_task_atoms": [
+        true,
+        false
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 180,
+      "index": 0,
+      "done": false,
+      "seconds": 0.40386256300007517,
+      "reason": "the alphabet soup can is on the table, in front of the robot",
+      "error": null,
+      "shadow_long_task_atoms": [
+        true,
+        false
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 200,
+      "index": 0,
+      "done": false,
+      "seconds": 0.4775452949997998,
+      "reason": "The alphabet soup can is currently being held by the robot's gripper, positioned above the table.",
+      "error": null,
+      "shadow_long_task_atoms": [
+        true,
+        false
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 220,
+      "index": 0,
+      "done": false,
+      "seconds": 0.44731524200142303,
+      "reason": "the alphabet soup can is on the table, to the left of the robot's arm",
+      "error": null,
+      "shadow_long_task_atoms": [
+        true,
+        false
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 240,
+      "index": 0,
+      "done": true,
+      "seconds": 0.4166704200015374,
+      "reason": "The alphabet soup can is in a basket on the left side of the table.",
+      "error": null,
+      "shadow_long_task_atoms": [
+        true,
+        false
+      ]
+    },
+    {
+      "kind": "subgoal_end",
+      "step": 240,
+      "index": 0,
+      "reason": "done",
+      "long_task_atoms": [
+        true,
+        false
+      ]
+    },
+    {
+      "kind": "subgoal_start",
+      "step": 240,
+      "index": 1,
+      "subgoal": "pick up the tomato sauce can and place it in the basket"
+    }
+  ],
+  "status": "success",
+  "success": true,
+  "subgoals": [
+    "pick up the alphabet soup can and place it in the basket",
+    "pick up the tomato sauce can and place it in the basket"
+  ],
+  "steps": 244,
+  "policy_queries": 49,
+  "qwen_checks": 12,
+  "final_atoms": [
+    true,
+    true
+  ]
+}

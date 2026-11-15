@@ -1,0 +1,1208 @@
+{
+  "state": "complete",
+  "group": "primary",
+  "pilot": false,
+  "completed": 150,
+  "rows": [
+    {
+      "task": 0,
+      "initial": 0,
+      "mode": "live_base",
+      "success": true,
+      "status": "success",
+      "steps": 252
+    },
+    {
+      "task": 0,
+      "initial": 0,
+      "mode": "frozen_base",
+      "success": true,
+      "status": "success",
+      "steps": 245
+    },
+    {
+      "task": 0,
+      "initial": 0,
+      "mode": "timer150",
+      "success": true,
+      "status": "success",
+      "steps": 253
+    },
+    {
+      "task": 0,
+      "initial": 0,
+      "mode": "live_lora",
+      "success": true,
+      "status": "success",
+      "steps": 252
+    },
+    {
+      "task": 0,
+      "initial": 0,
+      "mode": "hold_first",
+      "success": true,
+      "status": "success",
+      "steps": 245
+    },
+    {
+      "task": 0,
+      "initial": 1,
+      "mode": "frozen_base",
+      "success": true,
+      "status": "success",
+      "steps": 253
+    },
+    {
+      "task": 0,
+      "initial": 1,
+      "mode": "timer150",
+      "success": true,
+      "status": "success",
+      "steps": 253
+    },
+    {
+      "task": 0,
+      "initial": 1,
+      "mode": "live_lora",
+      "success": true,
+      "status": "success",
+      "steps": 250
+    },
+    {
+      "task": 0,
+      "initial": 1,
+      "mode": "hold_first",
+      "success": true,
+      "status": "success",
+      "steps": 253
+    },
+    {
+      "task": 0,
+      "initial": 1,
+      "mode": "live_base",
+      "success": true,
+      "status": "success",
+      "steps": 250
+    },
+    {
+      "task": 0,
+      "initial": 2,
+      "mode": "timer150",
+      "success": true,
+      "status": "success",
+      "steps": 248
+    },
+    {
+      "task": 0,
+      "initial": 2,
+      "mode": "live_lora",
+      "success": true,
+      "status": "success",
+      "steps": 249
+    },
+    {
+      "task": 0,
+      "initial": 2,
+      "mode": "hold_first",
+      "success": true,
+      "status": "success",
+      "steps": 265
+    },
+    {
+      "task": 0,
+      "initial": 2,
+      "mode": "live_base",
+      "success": true,
+      "status": "success",
+      "steps": 265
+    },
+    {
+      "task": 0,
+      "initial": 2,
+      "mode": "frozen_base",
+      "success": true,
+      "status": "success",
+      "steps": 265
+    },
+    {
+      "task": 1,
+      "initial": 0,
+      "mode": "live_lora",
+      "success": true,
+      "status": "success",
+      "steps": 249
+    },
+    {
+      "task": 1,
+      "initial": 0,
+      "mode": "hold_first",
+      "success": true,
+      "status": "success",
+      "steps": 249
+    },
+    {
+      "task": 1,
+      "initial": 0,
+      "mode": "live_base",
+      "success": true,
+      "status": "success",
+      "steps": 249
+    },
+    {
+      "task": 1,
+      "initial": 0,
+      "mode": "frozen_base",
+      "success": true,
+      "status": "success",
+      "steps": 249
+    },
+    {
+      "task": 1,
+      "initial": 0,
+      "mode": "timer150",
+      "success": true,
+      "status": "success",
+      "steps": 240
+    },
+    {
+      "task": 1,
+      "initial": 1,
+      "mode": "hold_first",
+      "success": true,
+      "status": "success",
+      "steps": 246
+    },
+    {
+      "task": 1,
+      "initial": 1,
+      "mode": "live_base",
+      "success": true,
+      "status": "success",
+      "steps": 246
+    },
+    {
+      "task": 1,
+      "initial": 1,
+      "mode": "frozen_base",
+      "success": true,
+      "status": "success",
+      "steps": 246
+    },
+    {
+      "task": 1,
+      "initial": 1,
+      "mode": "timer150",
+      "success": true,
+      "status": "success",
+      "steps": 249
+    },
+    {
+      "task": 1,
+      "initial": 1,
+      "mode": "live_lora",
+      "success": true,
+      "status": "success",
+      "steps": 246
+    },
+    {
+      "task": 1,
+      "initial": 2,
+      "mode": "live_base",
+      "success": true,
+      "status": "success",
+      "steps": 256
+    },
+    {
+      "task": 1,
+      "initial": 2,
+      "mode": "frozen_base",
+      "success": true,
+      "status": "success",
+      "steps": 256
+    },
+    {
+      "task": 1,
+      "initial": 2,
+      "mode": "timer150",
+      "success": true,
+      "status": "success",
+      "steps": 258
+    },
+    {
+      "task": 1,
+      "initial": 2,
+      "mode": "live_lora",
+      "success": true,
+      "status": "success",
+      "steps": 256
+    },
+    {
+      "task": 1,
+      "initial": 2,
+      "mode": "hold_first",
+      "success": true,
+      "status": "success",
+      "steps": 256
+    },
+    {
+      "task": 2,
+      "initial": 0,
+      "mode": "frozen_base",
+      "success": true,
+      "status": "success",
+      "steps": 226
+    },
+    {
+      "task": 2,
+      "initial": 0,
+      "mode": "timer150",
+      "success": true,
+      "status": "success",
+      "steps": 226
+    },
+    {
+      "task": 2,
+      "initial": 0,
+      "mode": "live_lora",
+      "success": true,
+      "status": "success",
+      "steps": 239
+    },
+    {
+      "task": 2,
+      "initial": 0,
+      "mode": "hold_first",
+      "success": true,
+      "status": "success",
+      "steps": 226
+    },
+    {
+      "task": 2,
+      "initial": 0,
+      "mode": "live_base",
+      "success": true,
+      "status": "success",
+      "steps": 239
+    },
+    {
+      "task": 2,
+      "initial": 1,
+      "mode": "timer150",
+      "success": true,
+      "status": "success",
+      "steps": 237
+    },
+    {
+      "task": 2,
+      "initial": 1,
+      "mode": "live_lora",
+      "success": true,
+      "status": "success",
+      "steps": 239
+    },
+    {
+      "task": 2,
+      "initial": 1,
+      "mode": "hold_first",
+      "success": true,
+      "status": "success",
+      "steps": 300
+    },
+    {
+      "task": 2,
+      "initial": 1,
+      "mode": "live_base",
+      "success": true,
+      "status": "success",
+      "steps": 239
+    },
+    {
+      "task": 2,
+      "initial": 1,
+      "mode": "frozen_base",
+      "success": true,
+      "status": "success",
+      "steps": 300
+    },
+    {
+      "task": 2,
+      "initial": 2,
+      "mode": "live_lora",
+      "success": false,
+      "status": "timeout",
+      "steps": 520
+    },
+    {
+      "task": 2,
+      "initial": 2,
+      "mode": "hold_first",
+      "success": false,
+      "status": "timeout",
+      "steps": 520
+    },
+    {
+      "task": 2,
+      "initial": 2,
+      "mode": "live_base",
+      "success": false,
+      "status": "timeout",
+      "steps": 520
+    },
+    {
+      "task": 2,
+      "initial": 2,
+      "mode": "frozen_base",
+      "success": false,
+      "status": "timeout",
+      "steps": 520
+    },
+    {
+      "task": 2,
+      "initial": 2,
+      "mode": "timer150",
+      "success": false,
+      "status": "timeout",
+      "steps": 520
+    },
+    {
+      "task": 3,
+      "initial": 0,
+      "mode": "hold_first",
+      "success": true,
+      "status": "success",
+      "steps": 218
+    },
+    {
+      "task": 3,
+      "initial": 0,
+      "mode": "live_base",
+      "success": true,
+      "status": "success",
+      "steps": 218
+    },
+    {
+      "task": 3,
+      "initial": 0,
+      "mode": "frozen_base",
+      "success": true,
+      "status": "success",
+      "steps": 218
+    },
+    {
+      "task": 3,
+      "initial": 0,
+      "mode": "timer150",
+      "success": true,
+      "status": "success",
+      "steps": 218
+    },
+    {
+      "task": 3,
+      "initial": 0,
+      "mode": "live_lora",
+      "success": true,
+      "status": "success",
+      "steps": 218
+    },
+    {
+      "task": 3,
+      "initial": 1,
+      "mode": "live_base",
+      "success": true,
+      "status": "success",
+      "steps": 235
+    },
+    {
+      "task": 3,
+      "initial": 1,
+      "mode": "frozen_base",
+      "success": true,
+      "status": "success",
+      "steps": 227
+    },
+    {
+      "task": 3,
+      "initial": 1,
+      "mode": "timer150",
+      "success": true,
+      "status": "success",
+      "steps": 225
+    },
+    {
+      "task": 3,
+      "initial": 1,
+      "mode": "live_lora",
+      "success": true,
+      "status": "success",
+      "steps": 227
+    },
+    {
+      "task": 3,
+      "initial": 1,
+      "mode": "hold_first",
+      "success": true,
+      "status": "success",
+      "steps": 227
+    },
+    {
+      "task": 3,
+      "initial": 2,
+      "mode": "frozen_base",
+      "success": true,
+      "status": "success",
+      "steps": 267
+    },
+    {
+      "task": 3,
+      "initial": 2,
+      "mode": "timer150",
+      "success": true,
+      "status": "success",
+      "steps": 267
+    },
+    {
+      "task": 3,
+      "initial": 2,
+      "mode": "live_lora",
+      "success": true,
+      "status": "success",
+      "steps": 267
+    },
+    {
+      "task": 3,
+      "initial": 2,
+      "mode": "hold_first",
+      "success": true,
+      "status": "success",
+      "steps": 267
+    },
+    {
+      "task": 3,
+      "initial": 2,
+      "mode": "live_base",
+      "success": true,
+      "status": "success",
+      "steps": 267
+    },
+    {
+      "task": 4,
+      "initial": 0,
+      "mode": "timer150",
+      "success": true,
+      "status": "success",
+      "steps": 241
+    },
+    {
+      "task": 4,
+      "initial": 0,
+      "mode": "live_lora",
+      "success": true,
+      "status": "success",
+      "steps": 236
+    },
+    {
+      "task": 4,
+      "initial": 0,
+      "mode": "hold_first",
+      "success": true,
+      "status": "success",
+      "steps": 236
+    },
+    {
+      "task": 4,
+      "initial": 0,
+      "mode": "live_base",
+      "success": true,
+      "status": "success",
+      "steps": 237
+    },
+    {
+      "task": 4,
+      "initial": 0,
+      "mode": "frozen_base",
+      "success": true,
+      "status": "success",
+      "steps": 236
+    },
+    {
+      "task": 4,
+      "initial": 1,
+      "mode": "live_lora",
+      "success": true,
+      "status": "success",
+      "steps": 214
+    },
+    {
+      "task": 4,
+      "initial": 1,
+      "mode": "hold_first",
+      "success": true,
+      "status": "success",
+      "steps": 214
+    },
+    {
+      "task": 4,
+      "initial": 1,
+      "mode": "live_base",
+      "success": true,
+      "status": "success",
+      "steps": 214
+    },
+    {
+      "task": 4,
+      "initial": 1,
+      "mode": "frozen_base",
+      "success": true,
+      "status": "success",
+      "steps": 214
+    },
+    {
+      "task": 4,
+      "initial": 1,
+      "mode": "timer150",
+      "success": true,
+      "status": "success",
+      "steps": 214
+    },
+    {
+      "task": 4,
+      "initial": 2,
+      "mode": "hold_first",
+      "success": true,
+      "status": "success",
+      "steps": 212
+    },
+    {
+      "task": 4,
+      "initial": 2,
+      "mode": "live_base",
+      "success": true,
+      "status": "success",
+      "steps": 212
+    },
+    {
+      "task": 4,
+      "initial": 2,
+      "mode": "frozen_base",
+      "success": true,
+      "status": "success",
+      "steps": 212
+    },
+    {
+      "task": 4,
+      "initial": 2,
+      "mode": "timer150",
+      "success": true,
+      "status": "success",
+      "steps": 212
+    },
+    {
+      "task": 4,
+      "initial": 2,
+      "mode": "live_lora",
+      "success": true,
+      "status": "success",
+      "steps": 212
+    },
+    {
+      "task": 5,
+      "initial": 0,
+      "mode": "live_base",
+      "success": true,
+      "status": "success",
+      "steps": 164
+    },
+    {
+      "task": 5,
+      "initial": 0,
+      "mode": "frozen_base",
+      "success": true,
+      "status": "success",
+      "steps": 164
+    },
+    {
+      "task": 5,
+      "initial": 0,
+      "mode": "timer150",
+      "success": true,
+      "status": "success",
+      "steps": 164
+    },
+    {
+      "task": 5,
+      "initial": 0,
+      "mode": "live_lora",
+      "success": true,
+      "status": "success",
+      "steps": 164
+    },
+    {
+      "task": 5,
+      "initial": 0,
+      "mode": "hold_first",
+      "success": true,
+      "status": "success",
+      "steps": 164
+    },
+    {
+      "task": 5,
+      "initial": 1,
+      "mode": "frozen_base",
+      "success": true,
+      "status": "success",
+      "steps": 177
+    },
+    {
+      "task": 5,
+      "initial": 1,
+      "mode": "timer150",
+      "success": true,
+      "status": "success",
+      "steps": 177
+    },
+    {
+      "task": 5,
+      "initial": 1,
+      "mode": "live_lora",
+      "success": true,
+      "status": "success",
+      "steps": 208
+    },
+    {
+      "task": 5,
+      "initial": 1,
+      "mode": "hold_first",
+      "success": true,
+      "status": "success",
+      "steps": 177
+    },
+    {
+      "task": 5,
+      "initial": 1,
+      "mode": "live_base",
+      "success": true,
+      "status": "success",
+      "steps": 208
+    },
+    {
+      "task": 5,
+      "initial": 2,
+      "mode": "timer150",
+      "success": true,
+      "status": "success",
+      "steps": 176
+    },
+    {
+      "task": 5,
+      "initial": 2,
+      "mode": "live_lora",
+      "success": true,
+      "status": "success",
+      "steps": 176
+    },
+    {
+      "task": 5,
+      "initial": 2,
+      "mode": "hold_first",
+      "success": true,
+      "status": "success",
+      "steps": 176
+    },
+    {
+      "task": 5,
+      "initial": 2,
+      "mode": "live_base",
+      "success": true,
+      "status": "success",
+      "steps": 176
+    },
+    {
+      "task": 5,
+      "initial": 2,
+      "mode": "frozen_base",
+      "success": true,
+      "status": "success",
+      "steps": 176
+    },
+    {
+      "task": 6,
+      "initial": 0,
+      "mode": "live_lora",
+      "success": true,
+      "status": "success",
+      "steps": 210
+    },
+    {
+      "task": 6,
+      "initial": 0,
+      "mode": "hold_first",
+      "success": true,
+      "status": "success",
+      "steps": 210
+    },
+    {
+      "task": 6,
+      "initial": 0,
+      "mode": "live_base",
+      "success": true,
+      "status": "success",
+      "steps": 213
+    },
+    {
+      "task": 6,
+      "initial": 0,
+      "mode": "frozen_base",
+      "success": true,
+      "status": "success",
+      "steps": 210
+    },
+    {
+      "task": 6,
+      "initial": 0,
+      "mode": "timer150",
+      "success": true,
+      "status": "success",
+      "steps": 210
+    },
+    {
+      "task": 6,
+      "initial": 1,
+      "mode": "hold_first",
+      "success": true,
+      "status": "success",
+      "steps": 200
+    },
+    {
+      "task": 6,
+      "initial": 1,
+      "mode": "live_base",
+      "success": true,
+      "status": "success",
+      "steps": 203
+    },
+    {
+      "task": 6,
+      "initial": 1,
+      "mode": "frozen_base",
+      "success": true,
+      "status": "success",
+      "steps": 200
+    },
+    {
+      "task": 6,
+      "initial": 1,
+      "mode": "timer150",
+      "success": true,
+      "status": "success",
+      "steps": 200
+    },
+    {
+      "task": 6,
+      "initial": 1,
+      "mode": "live_lora",
+      "success": true,
+      "status": "success",
+      "steps": 200
+    },
+    {
+      "task": 6,
+      "initial": 2,
+      "mode": "live_base",
+      "success": true,
+      "status": "success",
+      "steps": 211
+    },
+    {
+      "task": 6,
+      "initial": 2,
+      "mode": "frozen_base",
+      "success": true,
+      "status": "success",
+      "steps": 210
+    },
+    {
+      "task": 6,
+      "initial": 2,
+      "mode": "timer150",
+      "success": true,
+      "status": "success",
+      "steps": 210
+    },
+    {
+      "task": 6,
+      "initial": 2,
+      "mode": "live_lora",
+      "success": true,
+      "status": "success",
+      "steps": 210
+    },
+    {
+      "task": 6,
+      "initial": 2,
+      "mode": "hold_first",
+      "success": true,
+      "status": "success",
+      "steps": 210
+    },
+    {
+      "task": 7,
+      "initial": 0,
+      "mode": "frozen_base",
+      "success": true,
+      "status": "success",
+      "steps": 253
+    },
+    {
+      "task": 7,
+      "initial": 0,
+      "mode": "timer150",
+      "success": true,
+      "status": "success",
+      "steps": 235
+    },
+    {
+      "task": 7,
+      "initial": 0,
+      "mode": "live_lora",
+      "success": true,
+      "status": "success",
+      "steps": 238
+    },
+    {
+      "task": 7,
+      "initial": 0,
+      "mode": "hold_first",
+      "success": true,
+      "status": "success",
+      "steps": 253
+    },
+    {
+      "task": 7,
+      "initial": 0,
+      "mode": "live_base",
+      "success": true,
+      "status": "success",
+      "steps": 238
+    },
+    {
+      "task": 7,
+      "initial": 1,
+      "mode": "timer150",
+      "success": true,
+      "status": "success",
+      "steps": 288
+    },
+    {
+      "task": 7,
+      "initial": 1,
+      "mode": "live_lora",
+      "success": true,
+      "status": "success",
+      "steps": 288
+    },
+    {
+      "task": 7,
+      "initial": 1,
+      "mode": "hold_first",
+      "success": true,
+      "status": "success",
+      "steps": 316
+    },
+    {
+      "task": 7,
+      "initial": 1,
+      "mode": "live_base",
+      "success": true,
+      "status": "success",
+      "steps": 288
+    },
+    {
+      "task": 7,
+      "initial": 1,
+      "mode": "frozen_base",
+      "success": true,
+      "status": "success",
+      "steps": 319
+    },
+    {
+      "task": 7,
+      "initial": 2,
+      "mode": "live_lora",
+      "success": true,
+      "status": "success",
+      "steps": 239
+    },
+    {
+      "task": 7,
+      "initial": 2,
+      "mode": "hold_first",
+      "success": true,
+      "status": "success",
+      "steps": 230
+    },
+    {
+      "task": 7,
+      "initial": 2,
+      "mode": "live_base",
+      "success": true,
+      "status": "success",
+      "steps": 239
+    },
+    {
+      "task": 7,
+      "initial": 2,
+      "mode": "frozen_base",
+      "success": true,
+      "status": "success",
+      "steps": 230
+    },
+    {
+      "task": 7,
+      "initial": 2,
+      "mode": "timer150",
+      "success": true,
+      "status": "success",
+      "steps": 230
+    },
+    {
+      "task": 8,
+      "initial": 0,
+      "mode": "hold_first",
+      "success": true,
+      "status": "success",
+      "steps": 401
+    },
+    {
+      "task": 8,
+      "initial": 0,
+      "mode": "live_base",
+      "success": true,
+      "status": "success",
+      "steps": 408
+    },
+    {
+      "task": 8,
+      "initial": 0,
+      "mode": "frozen_base",
+      "success": true,
+      "status": "success",
+      "steps": 401
+    },
+    {
+      "task": 8,
+      "initial": 0,
+      "mode": "timer150",
+      "success": true,
+      "status": "success",
+      "steps": 408
+    },
+    {
+      "task": 8,
+      "initial": 0,
+      "mode": "live_lora",
+      "success": true,
+      "status": "success",
+      "steps": 408
+    },
+    {
+      "task": 8,
+      "initial": 1,
+      "mode": "live_base",
+      "success": true,
+      "status": "success",
+      "steps": 373
+    },
+    {
+      "task": 8,
+      "initial": 1,
+      "mode": "frozen_base",
+      "success": true,
+      "status": "success",
+      "steps": 351
+    },
+    {
+      "task": 8,
+      "initial": 1,
+      "mode": "timer150",
+      "success": true,
+      "status": "success",
+      "steps": 373
+    },
+    {
+      "task": 8,
+      "initial": 1,
+      "mode": "live_lora",
+      "success": true,
+      "status": "success",
+      "steps": 373
+    },
+    {
+      "task": 8,
+      "initial": 1,
+      "mode": "hold_first",
+      "success": true,
+      "status": "success",
+      "steps": 351
+    },
+    {
+      "task": 8,
+      "initial": 2,
+      "mode": "frozen_base",
+      "success": false,
+      "status": "timeout",
+      "steps": 520
+    },
+    {
+      "task": 8,
+      "initial": 2,
+      "mode": "timer150",
+      "success": false,
+      "status": "timeout",
+      "steps": 520
+    },
+    {
+      "task": 8,
+      "initial": 2,
+      "mode": "live_lora",
+      "success": false,
+      "status": "timeout",
+      "steps": 520
+    },
+    {
+      "task": 8,
+      "initial": 2,
+      "mode": "hold_first",
+      "success": false,
+      "status": "timeout",
+      "steps": 520
+    },
+    {
+      "task": 8,
+      "initial": 2,
+      "mode": "live_base",
+      "success": false,
+      "status": "timeout",
+      "steps": 520
+    },
+    {
+      "task": 9,
+      "initial": 0,
+      "mode": "timer150",
+      "success": true,
+      "status": "success",
+      "steps": 258
+    },
+    {
+      "task": 9,
+      "initial": 0,
+      "mode": "live_lora",
+      "success": true,
+      "status": "success",
+      "steps": 260
+    },
+    {
+      "task": 9,
+      "initial": 0,
+      "mode": "hold_first",
+      "success": true,
+      "status": "success",
+      "steps": 260
+    },
+    {
+      "task": 9,
+      "initial": 0,
+      "mode": "live_base",
+      "success": true,
+      "status": "success",
+      "steps": 260
+    },
+    {
+      "task": 9,
+      "initial": 0,
+      "mode": "frozen_base",
+      "success": true,
+      "status": "success",
+      "steps": 260
+    },
+    {
+      "task": 9,
+      "initial": 1,
+      "mode": "live_lora",
+      "success": true,
+      "status": "success",
+      "steps": 234
+    },
+    {
+      "task": 9,
+      "initial": 1,
+      "mode": "hold_first",
+      "success": true,
+      "status": "success",
+      "steps": 234
+    },
+    {
+      "task": 9,
+      "initial": 1,
+      "mode": "live_base",
+      "success": true,
+      "status": "success",
+      "steps": 235
+    },
+    {
+      "task": 9,
+      "initial": 1,
+      "mode": "frozen_base",
+      "success": true,
+      "status": "success",
+      "steps": 234
+    },
+    {
+      "task": 9,
+      "initial": 1,
+      "mode": "timer150",
+      "success": true,
+      "status": "success",
+      "steps": 236
+    },
+    {
+      "task": 9,
+      "initial": 2,
+      "mode": "hold_first",
+      "success": true,
+      "status": "success",
+      "steps": 248
+    },
+    {
+      "task": 9,
+      "initial": 2,
+      "mode": "live_base",
+      "success": true,
+      "status": "success",
+      "steps": 250
+    },
+    {
+      "task": 9,
+      "initial": 2,
+      "mode": "frozen_base",
+      "success": true,
+      "status": "success",
+      "steps": 248
+    },
+    {
+      "task": 9,
+      "initial": 2,
+      "mode": "timer150",
+      "success": true,
+      "status": "success",
+      "steps": 250
+    },
+    {
+      "task": 9,
+      "initial": 2,
+      "mode": "live_lora",
+      "success": true,
+      "status": "success",
+      "steps": 248
+    }
+  ]
+}

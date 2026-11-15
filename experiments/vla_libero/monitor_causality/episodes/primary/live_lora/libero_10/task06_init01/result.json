@@ -1,0 +1,155 @@
+{
+  "study_mode": "live_lora",
+  "stage_budget_enabled": true,
+  "initial_state_sha256": "606fa88e4dcd86bf0c84c6c2954eb002166e93037b39e7ed893f0c41e7a15577",
+  "suite": "libero_10",
+  "task_id": 6,
+  "initial_state_id": 1,
+  "original_task_language": "put the white mug on the plate and put the chocolate pudding to the right of the plate",
+  "input_instruction": "把白色马克杯放到盘子上，再把巧克力布丁放到盘子右边",
+  "planner": "qwen",
+  "execution_profile": "legacy",
+  "planner_profile": "base",
+  "checker_adapter": "experiments/vla_libero/checker_v2/results/model/best_adapter",
+  "monitor": "qwen",
+  "max_steps": 520,
+  "subgoal_step_budget": 300,
+  "monitor_every_queries": 4,
+  "monitor_res": 512,
+  "gripper_gate": true,
+  "confirm": 2,
+  "max_replans": 0,
+  "last_subgoal_runs_to_limit": true,
+  "noise_seed": 730601,
+  "runner_sha256": "3bfa20bd9f7c320cf83dabe80e3c59a72fb5bd053837b65cd3bb6376c3459f61",
+  "events": [
+    {
+      "kind": "plan",
+      "step": 0,
+      "ok": true,
+      "seconds": 1.4576995454262942e-05,
+      "raw": "[\"put the white mug on the plate\", \"put the chocolate pudding to the right of the plate\"]",
+      "error": null
+    },
+    {
+      "kind": "subgoal_start",
+      "step": 0,
+      "index": 0,
+      "subgoal": "put the white mug on the plate"
+    },
+    {
+      "kind": "check",
+      "step": 20,
+      "index": 0,
+      "done": false,
+      "confirmed": false,
+      "seconds": 0.15021376899676397,
+      "checker": "v2",
+      "status": "unknown",
+      "scores": {
+        "yes": 0.0058417208667958164,
+        "no": 0.3189471523370674,
+        "unknown": 0.6752111267961369,
+        "yes_log_odds": -5.136871006114902
+      },
+      "reason": "V2 unknown; p_yes=0.0058, threshold=3.2481",
+      "error": null,
+      "shadow_long_task_atoms": [
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 40,
+      "index": 0,
+      "done": false,
+      "confirmed": false,
+      "seconds": 0.1436671949995798,
+      "checker": "v2",
+      "status": "no",
+      "scores": {
+        "yes": 2.7535681570077506e-05,
+        "no": 0.9999721176953535,
+        "unknown": 3.4662307634650403e-07,
+        "yes_log_odds": -10.500000346632682
+      },
+      "reason": "V2 no; p_yes=0.0000, threshold=3.2481",
+      "error": null,
+      "shadow_long_task_atoms": [
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 140,
+      "index": 0,
+      "done": false,
+      "confirmed": false,
+      "seconds": 0.14560183800494997,
+      "checker": "v2",
+      "status": "unknown",
+      "scores": {
+        "yes": 0.9523371204526168,
+        "no": 0.000248806222154275,
+        "unknown": 0.04741407332522911,
+        "yes_log_odds": 2.9947662018482575
+      },
+      "reason": "V2 unknown; p_yes=0.9523, threshold=3.2481",
+      "error": null,
+      "shadow_long_task_atoms": [
+        true,
+        false
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 160,
+      "index": 0,
+      "done": true,
+      "confirmed": false,
+      "seconds": 0.14173244400444673,
+      "checker": "v2",
+      "status": "yes",
+      "scores": {
+        "yes": 0.9859344339387195,
+        "no": 1.9666766418428685e-06,
+        "unknown": 0.014063599384638668,
+        "yes_log_odds": 4.249860168148338
+      },
+      "reason": "V2 yes; p_yes=0.9859, threshold=3.2481",
+      "error": null,
+      "shadow_long_task_atoms": [
+        true,
+        false
+      ]
+    }
+  ],
+  "status": "success",
+  "success": true,
+  "settled_state_sha256": "76c6b93b640591bf8049c9032663cf07a741aba68f05229d89ba3215010947b5",
+  "subgoals": [
+    "put the white mug on the plate",
+    "put the chocolate pudding to the right of the plate"
+  ],
+  "policy_queries": 40,
+  "qwen_checks": 4,
+  "replans": 0,
+  "active_subgoal_index": 0,
+  "active_subgoal": "put the white mug on the plate",
+  "steps": 200,
+  "full_task_fallback": false,
+  "final_subgoals": [
+    "put the white mug on the plate",
+    "put the chocolate pudding to the right of the plate"
+  ],
+  "final_atoms": [
+    true,
+    true
+  ],
+  "protocol_sha256": "43102c29b30de89a834dd03413d9b5010377410236d6addcffc618c76a8ff03c",
+  "monitor_model_calls": 4,
+  "monitor_opportunities": 4,
+  "wall_seconds": 15.25527633499587
+}

@@ -1,0 +1,14 @@
+{
+  "source_entries": 369,
+  "source_crc_ok": true,
+  "python_syntax_ok": true,
+  "new_vision_records": 1414,
+  "qwen_cycles": 60,
+  "schema_valid_cycles": 60,
+  "frame_selection_monotonic": true,
+  "original_conda_package_list_unchanged": true,
+  "adapter_trials": 20,
+  "adapter_correct": 20,
+  "bridge_results_repeat_exact": true,
+  "act_final_records": 192
+}

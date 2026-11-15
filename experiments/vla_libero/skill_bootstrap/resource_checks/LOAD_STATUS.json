@@ -1,0 +1,9 @@
+{
+  "stage": "model_ready",
+  "arrays": 51,
+  "chunks": 408,
+  "max_source_chunk_bytes": 603979776,
+  "max_output_chunk_bytes": 301989888,
+  "seconds": 23.530581650000386,
+  "adapter_weight_groups": 0
+}

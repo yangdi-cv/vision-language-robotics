@@ -1,0 +1,28 @@
+\documentclass[UTF8,a4paper,oneside,openany,fontset=fandol,zihao=-4]{ctexbook}
+\usepackage[left=26mm,right=24mm,top=25mm,bottom=25mm]{geometry}
+\usepackage{fontspec}
+\setCJKmainfont[BoldFont=FandolSong-Bold.otf,ItalicFont=FandolSong-Regular.otf]{FandolSong-Regular.otf}
+\setCJKsansfont[BoldFont=FandolSong-Bold.otf]{FandolSong-Regular.otf}
+\setCJKmonofont{FandolSong-Regular.otf}
+\usepackage{graphicx,booktabs,longtable,array,amsmath,calc,fvextra,xurl}
+\usepackage{caption,placeins}
+\usepackage{url}
+\usepackage[hidelinks,unicode,bookmarksnumbered]{hyperref}
+\hypersetup{pdftitle={视觉语言引导的机器人操作：技术与工程报告},pdfauthor={},pdfsubject={中文版详细工程报告}}
+\ctexset{chapter={format=\centering\songti\bfseries\zihao{-2},beforeskip=15pt,afterskip=22pt},section={format=\songti\bfseries\zihao{4}},subsection={format=\songti\bfseries\zihao{-4}}}
+\captionsetup{font=small,labelfont=bf}
+\linespread{1.35}
+\setlength{\parindent}{2em}
+\setlength{\parskip}{2pt}
+\setcounter{tocdepth}{1}
+\setcounter{secnumdepth}{2}
+\pagestyle{plain}
+\emergencystretch=3em
+\Urlmuskip=0mu plus 1mu
+\newcommand{\stagefigure}[3]{\par\begin{center}\begin{minipage}{\linewidth}\centering\includegraphics[width=.94\linewidth,height=.42\textheight,keepaspectratio]{#1}\captionof{figure}{#2}\label{#3}\end{minipage}\end{center}\par}
+\newcommand{\stagecode}[1]{\par\noindent\small 代码位置见\hyperlink{code-#1}{附录A的\texttt{#1}条目}。\normalsize\par}
+\newcommand{\stagevideo}[1]{\par\noindent\small 相关视频：\path{#1}。\normalsize\par}
+\newcommand{\pifive}{\texorpdfstring{\ensuremath{\pi}0.5}{pi0.5}}
+
+\providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\providecommand{\passthrough}[1]{#1}

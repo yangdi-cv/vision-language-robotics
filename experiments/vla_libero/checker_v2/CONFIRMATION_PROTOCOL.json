@@ -1,0 +1,26 @@
+{
+  "reason": "Primary 9/10 test failed FPR (12/179). Keep that failure unchanged; improve vision adapters using train3-6 and validation7-8 only. Do not retune on primary test.",
+  "new_confirmation_initials": [
+    11,
+    12
+  ],
+  "natural_confirmation": {
+    "suites": [
+      "libero_object",
+      "libero_spatial"
+    ],
+    "tasks": [
+      0,
+      3,
+      6
+    ],
+    "initials": [
+      11,
+      12
+    ]
+  },
+  "training": "One bounded vision-qkv LoRA development run, max360 updates, rank8, warm language adapter from validation-selected classifier",
+  "calibration": "Both base and adapter threshold on validation FPR<=2% to leave an engineering margin; confirmation still must meet FPR<=5%, recall>=20%, gain>=15pp. No statistical guarantee claimed.",
+  "go_no_go": "Do not score new confirmation until validation recall and gain pass; do not run closed loop unless fresh confirmation passes.",
+  "original_test_preserved": true
+}

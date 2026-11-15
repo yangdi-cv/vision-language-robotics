@@ -1,0 +1,135 @@
+{
+  "study_mode": "live_base",
+  "stage_budget_enabled": true,
+  "initial_state_sha256": "1d2fdd615bb32a097ad2781dd5e9203104555e54521dd9bce6eacbb5bf718e33",
+  "suite": "libero_10",
+  "task_id": 4,
+  "initial_state_id": 2,
+  "original_task_language": "put the white mug on the left plate and put the yellow and white mug on the right plate",
+  "input_instruction": "把白色马克杯放到左边的盘子上，再把黄白相间的马克杯放到右边的盘子上",
+  "planner": "qwen",
+  "execution_profile": "legacy",
+  "planner_profile": "base",
+  "checker_adapter": "experiments/vla_libero/checker_v2/results/model/best_adapter",
+  "monitor": "qwen",
+  "max_steps": 520,
+  "subgoal_step_budget": 300,
+  "monitor_every_queries": 4,
+  "monitor_res": 512,
+  "gripper_gate": true,
+  "confirm": 2,
+  "max_replans": 0,
+  "last_subgoal_runs_to_limit": true,
+  "noise_seed": 730402,
+  "runner_sha256": "3bfa20bd9f7c320cf83dabe80e3c59a72fb5bd053837b65cd3bb6376c3459f61",
+  "events": [
+    {
+      "kind": "plan",
+      "step": 0,
+      "ok": true,
+      "seconds": 1.5577003068756312e-05,
+      "raw": "[\"put the white mug on the left plate\", \"put the yellow and white mug on the right plate\"]",
+      "error": null
+    },
+    {
+      "kind": "subgoal_start",
+      "step": 0,
+      "index": 0,
+      "subgoal": "put the white mug on the left plate"
+    },
+    {
+      "kind": "check",
+      "step": 20,
+      "index": 0,
+      "done": false,
+      "confirmed": false,
+      "seconds": 0.3678769810067024,
+      "checker": "base",
+      "status": null,
+      "scores": null,
+      "reason": "No change detected.",
+      "error": null,
+      "shadow_long_task_atoms": [
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 120,
+      "index": 0,
+      "done": false,
+      "confirmed": false,
+      "seconds": 0.6164591999986442,
+      "checker": "base",
+      "status": null,
+      "scores": null,
+      "reason": "The white mug is now on the right plate, which was not the case in image 1.",
+      "error": null,
+      "shadow_long_task_atoms": [
+        true,
+        false
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 140,
+      "index": 0,
+      "done": false,
+      "confirmed": false,
+      "seconds": 0.5960621080012061,
+      "checker": "base",
+      "status": null,
+      "scores": null,
+      "reason": "The white mug is now on the right plate, which was not the case in image 1.",
+      "error": null,
+      "shadow_long_task_atoms": [
+        true,
+        false
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 160,
+      "index": 0,
+      "done": true,
+      "confirmed": false,
+      "seconds": 0.6025013960024808,
+      "checker": "base",
+      "status": null,
+      "scores": null,
+      "reason": "The white mug is now on the left plate, which was not the case in image 1.",
+      "error": null,
+      "shadow_long_task_atoms": [
+        true,
+        false
+      ]
+    }
+  ],
+  "status": "success",
+  "success": true,
+  "settled_state_sha256": "5059640be7f15c5776b0b1fc03ec49329980e9a5d9bd59a275efe41216789740",
+  "subgoals": [
+    "put the white mug on the left plate",
+    "put the yellow and white mug on the right plate"
+  ],
+  "policy_queries": 43,
+  "qwen_checks": 4,
+  "replans": 0,
+  "active_subgoal_index": 0,
+  "active_subgoal": "put the white mug on the left plate",
+  "steps": 212,
+  "full_task_fallback": false,
+  "final_subgoals": [
+    "put the white mug on the left plate",
+    "put the yellow and white mug on the right plate"
+  ],
+  "final_atoms": [
+    true,
+    true
+  ],
+  "protocol_sha256": "43102c29b30de89a834dd03413d9b5010377410236d6addcffc618c76a8ff03c",
+  "monitor_model_calls": 4,
+  "monitor_opportunities": 4,
+  "wall_seconds": 18.17900555599772
+}

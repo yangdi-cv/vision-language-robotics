@@ -1,0 +1,38 @@
+{
+  "variant": "lora",
+  "initials": [
+    28,
+    29
+  ],
+  "tasks": [
+    0,
+    1
+  ],
+  "modes": [
+    "target0",
+    "target1"
+  ],
+  "episodes": 8,
+  "policy_steps": 300,
+  "hold_steps": 25,
+  "no_oracle_control": true,
+  "no_teacher_pose": true,
+  "engine": "same immutable diagnostic rollout; only its output root is redirected",
+  "source_sha256": {
+    "experiments/vla_libero/skill_bootstrap/scripts/evaluate_policy.py": "c1e136ae2528a3111736f4c16c774e46deaab4b4e7a57d0db8b2f68bbc0154a1",
+    "experiments/vla_libero/skill_bootstrap/scripts/runtime.py": "15e6f6e2012a5c10287e51c6c2d5e6cd697c1db316edf5d7993e97055e817620",
+    "experiments/vla_libero/skill_bootstrap/scripts/bounded_restore.py": "b906042560726b8f92242fca1ba0b5e2adc12f1b294559a3dbf8550601aa5961",
+    "experiments/vla_libero/skill_bootstrap/scripts/chunk_math.py": "02655758b0ad1abf6196c317c5ec1b32e1cdc14cadbf154adba049bde1126c99",
+    "experiments/vla_libero/instruction_response/scripts/run.py": "1b7d09c8c4d1d982c784bed00125af742412c21831fad329f914b86da63f693b",
+    "experiments/vla_libero/skill_bootstrap/DATA_PROTOCOL.json": "d45b9f3c1e6fbc3d6630b1158f77e0a87c3579695d71be73410f9e17202af55c"
+  },
+  "adapter_sha256": "e1ed96473fa254e19bfab85383decd5d1da96fce7e8437cfa84eb3b00fd9e130",
+  "selected": {
+    "step": 200,
+    "validation_loss": 0.013371321098929911,
+    "baseline_validation_loss": 0.027692875752109103,
+    "tensors": 20,
+    "parameters": 49987584,
+    "sha256": "e1ed96473fa254e19bfab85383decd5d1da96fce7e8437cfa84eb3b00fd9e130"
+  }
+}

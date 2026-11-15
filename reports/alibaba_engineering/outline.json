@@ -1,0 +1,528 @@
+[
+  {
+    "chapter": 1,
+    "id": "s01",
+    "title": "SO101基础平台与示教工具",
+    "body": "首先建立电脑与主从机械臂之间的连接，完成串口识别、校准、遥操作和示教记录。示教同时保存图像、关节状态与发送的动作，回放用于核对录制与执行接口。",
+    "result": "完成过一条完整示教的录制及动作回放。后续腕部安装方向变化，又引入临时的负90度映射；这一映射必须与记录数据一同保存。",
+    "limit": "稳定设备标识、校准文件和角度约定需要随运行保存。轨迹回放说明记录与执行接口可用，不计为模型自主操作。",
+    "sources": [
+      "PROJECT_LOG.md",
+      "SO101"
+    ],
+    "code": [
+      "SO101",
+      "datasets",
+      "environments"
+    ],
+    "figure": null,
+    "caption": null,
+    "video": null,
+    "report_chapter": 2
+  },
+  {
+    "chapter": 1,
+    "id": "s02",
+    "title": "相机、场景理解与观察工作台",
+    "body": "把腕部相机、Qwen场景描述、YOLO目标检测和单目深度显示接入网页。模型完成一次推理后再取当时的新画面，操作人员可在等待期间阅读上一轮输出。",
+    "result": "形成可以同时观察视频、检测结果和文字描述的原型。界面曾调整画面方向与深度色阶，后来收敛为网页工作台。",
+    "limit": "单目深度未经真实尺度标定，不能直接用作防碰撞距离。惯性传感器只作为共享观察功能介绍，其控制实验不并入本报告。",
+    "sources": [
+      "PROJECT_LOG.md"
+    ],
+    "code": [
+      "perception/qwen_scene",
+      "perception/web_workbench",
+      "perception/vla_workbench"
+    ],
+    "figure": "records/scene_understanding/web_workbench_preview.png",
+    "caption": "早期网页工作台。图中保留当时界面，用于说明观察功能的组成。",
+    "video": null,
+    "figure_local": "figures/ch02/s02_web_workbench_preview.png",
+    "report_chapter": 2
+  },
+  {
+    "chapter": 1,
+    "id": "s03",
+    "title": "首轮Qwen适配与动作分块策略训练",
+    "body": "使用真实示教抽帧构造图像与指令用例，再训练Qwen的低秩适配器。动作侧采用ACT（动作分块变换器），在公开双臂交接数据上独立训练与仿真评测。",
+    "result": "首轮Qwen测试为72个图像指令组合；ACT建立了自训练、公开权重和实际仿真回合之间的对照。",
+    "limit": "同一视频抽取的画面相关性较强。早期匹配率和动作回合数应按原报告分别列出，不合并成通用机器人成功率。",
+    "sources": [
+      "experiments/alibaba_baseline/REPORT.md"
+    ],
+    "code": [
+      "experiments/alibaba_baseline"
+    ],
+    "figure": "experiments/alibaba_baseline/figures/act_rollout_comparison.png",
+    "caption": "早期ACT自训练与公开策略的仿真对照。",
+    "video": null,
+    "figure_local": "figures/ch02/s03_act_rollout_comparison.png",
+    "report_chapter": 2
+  },
+  {
+    "chapter": 1,
+    "id": "s04",
+    "title": "训练扩展、深度定位与初步流程衔接",
+    "body": "继续训练ACT，增加模拟深度、场景划分和Qwen定位适配，并测试语言部分INT8（8位整数）与键值缓存。导航和机械臂规划也开始接入任务流程。",
+    "result": "形成了Nav2导航、MoveIt规划与ACT执行的初步衔接，以及按验证集选择检查点的训练记录。",
+    "limit": "这一时期导航与抓取处于不同模拟环境，MoveIt执行使用模拟接口；它还不是同一物理世界里的移动操作。",
+    "sources": [
+      "experiments/alibaba_extension/REPORT.md",
+      "experiments/alibaba_pc_revision/REPORT.md"
+    ],
+    "code": [
+      "experiments/alibaba_extension"
+    ],
+    "figure": "experiments/alibaba_extension/figures/act_test30.png",
+    "caption": "ACT追加训练后在相同测试条件下的对照，详细选择规则沿用原报告。",
+    "video": null,
+    "figure_local": "figures/ch02/s04_act_test30.png",
+    "report_chapter": 2
+  },
+  {
+    "chapter": 2,
+    "id": "s05",
+    "title": "桌面自主拾取与放置仿真",
+    "body": "在同一MuJoCo桌面中放置三种颜色方块和两个盒子，连接语言解析、目标坐标估计、抓放执行和放置检查。对比脚本几何方法与目标条件ACT。",
+    "result": "自主抓放流程能够运行，也测量了坐标噪声对成功的影响，为后续识别理想控制条件提供了参照。",
+    "limit": "末端通过位置参考约束驱动，接近理想位置控制；深度由仿真直接提供，尚不能代表真实电机或真实相机条件。",
+    "sources": [
+      "experiments/desktop_pickplace/REPORT.md",
+      "experiments/alibaba_pc_revision/REPORT.md",
+      "experiments/alibaba_jetson_revision/REPORT.md"
+    ],
+    "code": [
+      "experiments/desktop_pickplace",
+      "experiments/alibaba_pc_revision/scripts/train_act.py",
+      "experiments/alibaba_jetson_revision/scripts/train_act_expanded.py"
+    ],
+    "figure": "experiments/desktop_pickplace/figures/pickplace_sequence.jpg",
+    "caption": "早期桌面抓放过程。该实验使用理想化末端位置控制。",
+    "video": [
+      "experiments/desktop_pickplace/runs/policy_test60_rgb/801_red_left/rollout.mp4",
+      "desktop_pickplace_example.mp4"
+    ],
+    "figure_local": "figures/ch03/s05_pickplace_sequence.jpg",
+    "video_local": "videos/ch03/desktop_pickplace_example.mp4",
+    "report_chapter": 3
+  },
+  {
+    "chapter": 2,
+    "id": "s06",
+    "title": "早期Jetson与真实相机测试",
+    "body": "把真实相机图像用于耳机壳和盒子的识别，补充目标检测训练，并试验基于目标框的机械臂追踪。视觉语言模型也在当时的Jetson环境中进行过部署测试。",
+    "result": "保存了端侧耗时、真实场景输入和扩大验证的阶段记录，随后把现场代码及结果归档回工作站。",
+    "limit": "这一阶段与后期恢复后的Jetson环境分开记录。视觉追踪不等于视觉语言动作模型控制，单目深度也未成为可靠的安全距离。",
+    "sources": [
+      "experiments/alibaba_jetson_revision/REPORT.md",
+      "PROJECT_LOG.md",
+      "experiments/earbud_detector/README.md",
+      "experiments/earbud_tracking/README.md"
+    ],
+    "code": [
+      "experiments/alibaba_jetson_revision",
+      "tools/annotate_earbud.py",
+      "experiments/earbud_detector",
+      "experiments/earbud_tracking"
+    ],
+    "figure": "experiments/alibaba_jetson_revision/figures/scene_cases.jpg",
+    "caption": "早期真实相机场景样例，完整输入与对照见原阶段报告。",
+    "video": null,
+    "figure_local": "figures/ch03/s06_scene_cases.jpg",
+    "report_chapter": 3
+  },
+  {
+    "chapter": 2,
+    "id": "s07",
+    "title": "SO101上的SmolVLA训练与试动",
+    "body": "采集三条从竖直到拾取、放下再返回的真实示教，使用SmolVLA（小型视觉语言动作模型）进行任务适配。先做整条轨迹留出检查，再记录有限的真机试动。",
+    "result": "原始数据1908帧，整理后保留900帧；1500次更新后的模型在留出轨迹上没有超过保持当前位置的基线，自主拾取目标未达到。",
+    "limit": "离线轨迹误差和真实抓取成功率必须分开。三条数据不足以证明位置或语言泛化，真实试动结果也不能由训练损失替代。",
+    "sources": [
+      "experiments/smolvla_pc/mousepad_report/REPORT.md",
+      "experiments/smolvla_pc/approach_report/REPORT.md"
+    ],
+    "code": [
+      "experiments/smolvla_pc"
+    ],
+    "figure": "experiments/smolvla_pc/mousepad_report/holdout_mae.png",
+    "caption": "真实示教留出轨迹上的动作误差。静止基线是该阶段的重要对照。",
+    "video": null,
+    "figure_local": "figures/ch03/s07_holdout_mae.png",
+    "report_chapter": 3
+  },
+  {
+    "chapter": 2,
+    "id": "s08",
+    "title": "π0.5在LIBERO中的闭环复现",
+    "body": "为减少硬件和接口差异，收敛到LIBERO公开操作任务，使用OpenPI提供的π0.5权重，检查图像、语言、机器人状态到动作执行的完整过程。",
+    "result": "基线完成120个回合，其中117个成功；另完成126组配对输入干预，保存轨迹与视频。实时图像置零或冻结的测试说明视觉输入会影响策略执行。",
+    "limit": "这里使用针对LIBERO的官方任务权重，属于复现和评测。后续改任务、改输入或训练自己的适配器，应单独评分。",
+    "sources": [
+      "experiments/vla_libero/REPORT.md"
+    ],
+    "code": [
+      "experiments/vla_libero/scripts/evaluate.py",
+      "experiments/vla_libero/configs"
+    ],
+    "figure": "experiments/vla_libero/figures/success_summary.png",
+    "caption": "π0.5公开任务基线与干预结果；不同分组的分母分别保留。",
+    "video": null,
+    "figure_local": "figures/ch03/s08_success_summary.png",
+    "report_chapter": 3
+  },
+  {
+    "chapter": 3,
+    "id": "s09",
+    "title": "中文长任务分解与翻译对照",
+    "body": "让Qwen先理解中文长指令，再把英文子目标交给π0.5执行。为区分语言翻译与分层规划的收益，增加只翻译整句指令的平坦执行对照。",
+    "result": "冻结分层版本为28/30，直接中文22/30，仅翻译29/30。结果表明中文收益主要可由语言处理解释，尚未证明分层具有额外成功率优势。",
+    "limit": "每任务仅三个初态，结论受样本规模限制。历史开发版本和重跑结果应与冻结版本分开。",
+    "sources": [
+      "PROJECT_LOG.md",
+      "experiments/vla_libero/HANDOFF_QWEN.md",
+      "experiments/vla_libero/qwen8b_comparison/REPORT.md",
+      "experiments/vla_libero/INTEGRATION_PLAN.md"
+    ],
+    "code": [
+      "experiments/vla_libero/scripts/run_hierarchical.py",
+      "experiments/vla_libero/scripts/qwen_planner.py",
+      "experiments/vla_libero/qwen8b_comparison/scripts"
+    ],
+    "figure": "experiments/vla_libero/records/qwen_handoff/long0_initial.png",
+    "caption": "LIBERO长任务的观察画面，作为高层分解与检查的输入背景。",
+    "video": [
+      "experiments/vla_libero/hierarchical/zh_eval_hier_v3/libero_10/task00_init00/rollout.mp4",
+      "hierarchical_long_example.mp4"
+    ],
+    "figure_local": "figures/ch04/s09_long0_initial.png",
+    "video_local": "videos/ch04/hierarchical_long_example.mp4",
+    "report_chapter": 4
+  },
+  {
+    "chapter": 3,
+    "id": "s10",
+    "title": "执行状态管理与受控恢复",
+    "body": "分析近终点失败、步骤超时和重规划覆盖不足，再通过固定恢复起点、受控扰动和不同恢复方式进行对照。",
+    "result": "三个自然失败状态的26次恢复尝试未成功；后续27次受控恢复也未证实Qwen带来额外收益。分析修正了对物体偏心与视觉完成状态的早期解释。",
+    "limit": "恢复起点选择会影响实验难度。未成功的结果同样保留，但不把诊断本身写成恢复性能提升。",
+    "sources": [
+      "experiments/vla_libero/recovery_study/REPORT.md",
+      "experiments/vla_libero/closed_loop_iteration/REPORT.md"
+    ],
+    "code": [
+      "experiments/vla_libero/recovery_study",
+      "experiments/vla_libero/closed_loop_iteration"
+    ],
+    "figure": "experiments/vla_libero/recovery_study/figures/plate_boundary.png",
+    "caption": "物体已接触盘子与满足官方中心距离条件之间的区别。",
+    "video": null,
+    "figure_local": "figures/ch04/s10_plate_boundary.png",
+    "report_chapter": 4
+  },
+  {
+    "chapter": 3,
+    "id": "s11",
+    "title": "视觉完成检查器的低秩适配",
+    "body": "把问题转为开始画面、当前画面和子目标指令到完成判断。构造偏心、悬空、夹持未放等近似完成样例，训练并验证检查器。",
+    "result": "V2整理1040例数据，完成召回从2.9%提高到26.7%；误报率6.7%，超过预设5%上限。视觉层适配没有通过验证集筛选。",
+    "limit": "误报率是未完成样例被误判完成的比例；召回率是已完成样例被正确确认的比例。离线结果不能直接替代闭环验证。",
+    "sources": [
+      "experiments/vla_libero/checker_v2/REPORT.md"
+    ],
+    "code": [
+      "experiments/vla_libero/checker_v2"
+    ],
+    "figure": "experiments/vla_libero/checker_v2/figures/validation_false_positives.png",
+    "caption": "检查器的误确认样例。最终版需逐项解释物理状态与视觉可辨性。",
+    "video": null,
+    "figure_local": "figures/ch04/s11_validation_false_positives.png",
+    "report_chapter": 4
+  },
+  {
+    "chapter": 3,
+    "id": "s12",
+    "title": "检查器的闭环作用与输入对照",
+    "body": "在真实执行回合中比较视觉检查、冻结图像、固定时刻切换和始终保持第一条子目标，并补充腕部视角与任务约束透传。",
+    "result": "五组主要干预共150回合；正常视觉、冻结图像和保持第一条指令均为28/30。当前任务不能充分证明视觉检查器的额外收益。",
+    "limit": "需要区分低层策略自身覆盖整项任务和高层阶段切换的作用。两次连续确认也可能重复同一种误判。",
+    "sources": [
+      "experiments/vla_libero/monitor_causality/REPORT.md",
+      "experiments/vla_libero/checker_v2/EXPLORATORY_REPORT.md",
+      "experiments/vla_libero/constraint_retention/REPORT.md"
+    ],
+    "code": [
+      "experiments/vla_libero/monitor_causality",
+      "experiments/vla_libero/constraint_retention"
+    ],
+    "figure": "experiments/vla_libero/monitor_causality/figures/outcomes.png",
+    "caption": "固定低层条件后的视觉干预对照，用于检验阶段检查的实际作用。",
+    "video": null,
+    "figure_local": "figures/ch04/s12_outcomes.png",
+    "report_chapter": 4
+  },
+  {
+    "chapter": 4,
+    "id": "s13",
+    "title": "指定目标与选择性搬运诊断",
+    "body": "把任务改为只搬指定物体、另一件保持原位，检查高层选对目标后，低层动作是否真正按目标改变。",
+    "result": "主要对照140回合中，视觉停止4/20，固定150步10/20。Qwen选对目标不代表低层能够可靠按选择执行。",
+    "limit": "本节把目标选择错误与停止时机错误分开，避免把所有失败都归因于视觉判断。",
+    "sources": [
+      "experiments/vla_libero/selective_execution/REPORT.md",
+      "experiments/vla_libero/instruction_response/RESEARCH.md"
+    ],
+    "code": [
+      "experiments/vla_libero/selective_execution",
+      "experiments/vla_libero/instruction_response"
+    ],
+    "figure": "experiments/vla_libero/selective_execution/figures/outcomes.png",
+    "caption": "选择性搬运中的不同执行和停止方式。",
+    "video": null,
+    "figure_local": "figures/ch05/s13_outcomes.png",
+    "report_chapter": 5
+  },
+  {
+    "chapter": 4,
+    "id": "s14",
+    "title": "公开方法参考与显式目标接口",
+    "body": "参考CAG（反事实动作引导）的免训练形式和Point-VLA的显式目标思路，构造同一观察对应不同目标的配对数据，并训练轻量策略适配器。",
+    "result": "CAG开发回合未改善首次目标选择；显式目标图版本在保留初态上首次选对仅1/8。与此同时，官方原任务实例另有6/6成功回合。",
+    "limit": "本地参考实现及数据规模与原论文不同，负结果不能解释为否定论文方法。官方任务复现与自定义目标能力分别统计。",
+    "sources": [
+      "experiments/vla_libero/cag_reproduction/REPORT.md",
+      "experiments/vla_libero/skill_bootstrap/REPORT.md",
+      "experiments/vla_libero/point_target/REPORT.md",
+      "experiments/vla_libero/target_skill/PLAN.md",
+      "experiments/vla_libero/target_skill/SEMANTIC_CHECK.json"
+    ],
+    "code": [
+      "experiments/vla_libero/cag_reproduction",
+      "experiments/vla_libero/skill_bootstrap",
+      "experiments/vla_libero/point_target"
+    ],
+    "figure": "experiments/vla_libero/point_target/figures/goal_interface.png",
+    "caption": "显式目标参考图接口。该适配尚未达到可用目标选择能力。",
+    "video": null,
+    "figure_local": "figures/ch05/s14_goal_interface.png",
+    "report_chapter": 5
+  },
+  {
+    "chapter": 4,
+    "id": "s15",
+    "title": "同一物理场景中的导航与操作",
+    "body": "给LIBERO厨房场景加入平面移动底座，让Panda、工作台、物体、相机和障碍物共用同一MuJoCo实例。Nav2导航停靠后，以控制方式展开机械臂，再由π0.5操作。",
+    "result": "修正支架碰撞、障碍感知和坐标变换后，三个开发初态完成导航及操作。导航之后没有重新生成任务场景。",
+    "limit": "底座是有限力的平面速度近似，定位使用仿真位姿和已知地图；未包含真实轮地滑移、建图与定位误差。",
+    "sources": [
+      "experiments/mobile_vla/README.md"
+    ],
+    "code": [
+      "experiments/mobile_vla/scripts",
+      "experiments/mobile_vla/configs"
+    ],
+    "figure": null,
+    "caption": "同一MuJoCo世界中的移动机械臂与厨房工作台。该图来自开发回合nav05。",
+    "video": [
+      "experiments/mobile_vla/results/nav05/rollout.mp4",
+      "mobile_navigation_operation.mp4"
+    ],
+    "video_local": "videos/ch05/mobile_navigation_operation.mp4",
+    "report_chapter": 5,
+    "figure_local": "figures/ch05/s15_mobile_scene.jpg"
+  },
+  {
+    "chapter": 4,
+    "id": "s16",
+    "title": "Qwen任务准入与记忆里程碑监视",
+    "body": "在同场景链路中加入Qwen对请求的接受或拒绝、站点和技能匹配，以及带文字记忆的阶段检查。",
+    "result": "任务决策7/7正确；后期五回合中停止决策5/5正确，其中实际任务成功4/5。失败回合未被误报成完成。",
+    "limit": "只验证一个厨房站点和一种技能，应称任务准入与单技能匹配。当前基座模型没有经过指令分解专项微调。",
+    "sources": [
+      "experiments/mobile_qwen/reports/20261114/STAGE_REPORT.md",
+      "experiments/mobile_qwen/RESULTS.md"
+    ],
+    "code": [
+      "experiments/mobile_qwen/scripts/skills.py",
+      "experiments/mobile_qwen/scripts/milestones.py",
+      "experiments/mobile_qwen/scripts/qwen_worker.py"
+    ],
+    "figure": null,
+    "caption": null,
+    "video": [
+      "experiments/mobile_qwen/results/ms2_zh_i08/rollout.mp4",
+      "milestone_monitor_example.mp4"
+    ],
+    "video_local": "videos/ch05/milestone_monitor_example.mp4",
+    "report_chapter": 5
+  },
+  {
+    "chapter": 5,
+    "id": "s17",
+    "title": "可供性数据、把手定位与三维反投影",
+    "body": "可供性在本报告中指适合机器人施加动作的位置，例如抽屉把手的接近点。使用仿真图像、分割和深度自动生成标签，训练Qwen定位适配器。",
+    "result": "在350帧测试子集上，4B模型严格把手命中由5.7%提高到92.3%，4像素邻域命中由17.7%提高到98.6%。固定像素点对照排除了部分仅记住固定位置的解释。",
+    "limit": "训练与测试初态分开，但动作模板有共享。深度由仿真真值提供，测试仍是同场景，不代表跨场景或真实三维定位能力。",
+    "sources": [
+      "experiments/mobile_qwen/reports/20261114/STAGE_REPORT.md"
+    ],
+    "code": [
+      "experiments/mobile_qwen/affordance"
+    ],
+    "figure": null,
+    "caption": "首个配对测试样例。白色十字为把手标注，圆圈为模型预测；整体命中率另由完整测试统计。",
+    "video": null,
+    "report_chapter": 6,
+    "figure_local": "figures/ch06/s17_affordance_example.png"
+  },
+  {
+    "chapter": 5,
+    "id": "s18",
+    "title": "运行维护与可复现性修正",
+    "body": "根据实际反馈补齐输入文件、统一推理记录，并增加逐步落盘、异常返回码和内存上限管理，使长回合中断后仍能定位问题。",
+    "result": "代码、结果和输入版本开始分别保存。图像旋转、模型与提示词来源、退出状态等信息纳入工程核对。",
+    "limit": "这一节按具体故障和修复验证组织。当前仍有MoveIt退出析构异常，不能将动作到位当作软件生命周期全部正常。",
+    "sources": [
+      "PROJECT_LOG.md",
+      "experiments/mobile_qwen/README.md",
+      "experiments/alibaba_pc_revision/REPORT.md"
+    ],
+    "code": [
+      "perception/qwen_scene/engine.py",
+      "experiments/mobile_qwen/scripts/durable_log.py",
+      "experiments/mobile_qwen/scripts/launch.sh",
+      "experiments/alibaba_pc_revision/scripts"
+    ],
+    "figure": null,
+    "caption": null,
+    "video": null,
+    "report_chapter": 6
+  },
+  {
+    "chapter": 5,
+    "id": "s19",
+    "title": "可供性定位驱动MoveIt实际仿真执行",
+    "body": "让预测把手点经深度反投影、坐标转换和MoveIt规划，驱动MuJoCo中的真实模拟关节。控制器读取实际关节位置与速度，没有用命令值冒充反馈。",
+    "result": "两个初态、两种相机平移条件下，LoRA预接触4/4通过，基座0/4，真值定位4/4；到位误差中位数分别10.4、73.3和6.2毫米。",
+    "limit": "目标是把手斜前上方约18.5厘米的预接近位置，不是接触或抓取。碰撞地图与深度来自仿真已知量，只有四个条件。",
+    "sources": [
+      "experiments/mobile_qwen/closed_loop_20261115/REPORT.md"
+    ],
+    "code": [
+      "experiments/mobile_qwen/closed_loop_20261115/scripts/run_cases.py",
+      "experiments/mobile_qwen/closed_loop_20261115/scripts/physics_bridge.py",
+      "experiments/mobile_qwen/closed_loop_20261115/scripts/plan_execute.py"
+    ],
+    "figure": "experiments/mobile_qwen/closed_loop_20261115/grounding_comparison.png",
+    "caption": "相同配对条件下的把手点定位。绿色为参考位置，红色为模型预测。",
+    "video": null,
+    "figure_local": "figures/ch06/s19_grounding_comparison.png",
+    "report_chapter": 6
+  },
+  {
+    "chapter": 5,
+    "id": "s20",
+    "title": "无重置交接π0.5与技能兼容性",
+    "body": "在MoveIt到位后停止关节轨迹驱动，保持关节状态不变，将执行权交给π0.5，再由Qwen监视搬碗和关抽屉。",
+    "result": "一个开发探针加三个重复性回合，整任务2/4成功；失败初态4的原生对照跳过预接触后在320步成功。",
+    "limit": "额外前置姿态可能干扰策略，不应默认加入所有技能。单个事后对照不能证明因果；现有原生闭环继续保留。",
+    "sources": [
+      "experiments/mobile_qwen/closed_loop_20261115/REPORT.md"
+    ],
+    "code": [
+      "experiments/mobile_qwen/closed_loop_20261115/scripts/sim_combined.py",
+      "experiments/mobile_qwen/closed_loop_20261115/scripts/run_combined.py",
+      "experiments/mobile_qwen/closed_loop_20261115/scripts/run_native_control.py"
+    ],
+    "figure": null,
+    "caption": null,
+    "video": [
+      "experiments/mobile_qwen/closed_loop_20261115/results/combined_probe1_nominal_i00_lora/rollout.mp4",
+      "policy_handover_success.mp4"
+    ],
+    "video_local": "videos/ch06/policy_handover_success.mp4",
+    "report_chapter": 6
+  },
+  {
+    "chapter": 6,
+    "id": "s21",
+    "title": "Jetson恢复与独立GPU环境",
+    "body": "恢复板端系统，创建独立推理环境，按JetPack与CUDA版本安装适配的PyTorch、量化库和低秩适配工具，并逐步验证GPU计算与4位加载。",
+    "result": "恢复后的Orin Nano 8GB建立了可运行的推理软件栈。环境与早期借用设备的测试分别记录，内存不足时通过受限进程和交换空间门控处理。",
+    "limit": "端侧可运行不等于延迟达标。使用SD卡交换空间的加载过程和无交换的稳定推理必须分开。",
+    "sources": [
+      "experiments/mobile_qwen/jetson/SOFTWARE_STACK_REPORT.md"
+    ],
+    "code": [
+      "experiments/mobile_qwen/jetson/software_stack_20261114",
+      "experiments/mobile_qwen/jetson/stage2_20261114/scripts"
+    ],
+    "figure": null,
+    "caption": null,
+    "video": null,
+    "report_chapter": 7
+  },
+  {
+    "chapter": 6,
+    "id": "s22",
+    "title": "2B适配与PC、Jetson精度对照",
+    "body": "使用相同数据划分和超参数训练2B可供性LoRA，再按PC BF16、PC NF4、Jetson NF4逐步比较，区分模型规模、量化与设备的影响。",
+    "result": "2B BF16严格把手命中328/350；2B NF4在PC与Jetson上均为319/350。全部1014次问答的输入哈希一致，原文和坐标输出一致774次。",
+    "limit": "BF16是脑浮点16位格式，NF4是4位正规化量化格式。稳定评测无交换空间活动，设备输出一致率不等于总体精度。",
+    "sources": [
+      "experiments/mobile_qwen/jetson/stage2_20261114/REPORT.md"
+    ],
+    "code": [
+      "experiments/mobile_qwen/jetson/stage2_20261114/scripts"
+    ],
+    "figure": "experiments/mobile_qwen/jetson/stage2_20261114/precision_comparison.png",
+    "caption": "相同350帧中的模型、精度格式和设备对照。",
+    "video": null,
+    "figure_local": "figures/ch07/s22_precision_comparison.png",
+    "report_chapter": 7
+  },
+  {
+    "chapter": 6,
+    "id": "s23",
+    "title": "Jetson视觉服务与PC仿真联调",
+    "body": "将2B量化模型常驻板端，通过SSH隧道向PC提供把手点。PC保持唯一物理场景，完成导航、反投影、规划和关节执行。",
+    "result": "三个联合预接触回合3/3通过，误差18.2、8.5、15.4毫米；六次正式响应的图片哈希与PC源帧匹配，稳定段无交换活动。",
+    "limit": "模型返回期间仿真暂停，联合成功不能替代实时达标。512像素配置沿用既有350帧精度对照，未做实体机械臂联调。",
+    "sources": [
+      "experiments/mobile_qwen/jetson/stage3_20261115/REPORT.md"
+    ],
+    "code": [
+      "experiments/mobile_qwen/jetson/stage3_20261115/scripts/vision_service.py",
+      "experiments/mobile_qwen/closed_loop_20261115/scripts/remote_grounding_worker.py"
+    ],
+    "figure": null,
+    "caption": null,
+    "video": [
+      "experiments/mobile_qwen/closed_loop_20261115/results/jetson_joint_v1_nominal_i02_lora/rollout.mp4",
+      "jetson_vision_pc_execution.mp4"
+    ],
+    "video_local": "videos/ch07/jetson_vision_pc_execution.mp4",
+    "report_chapter": 7
+  },
+  {
+    "chapter": 6,
+    "id": "s24",
+    "title": "端侧时延、资源与算子剖析",
+    "body": "固定验证集五张图，在15瓦功耗下比较512、384和256像素，记录输出长度、墙钟时延和资源；另做一次独立的算子性能剖析。",
+    "result": "三档P50约5.06、4.91、4.78秒，P95约7.15、6.97、6.85秒，均未达3秒目标。单次剖析捕获约4.1万个CUDA内核事件。",
+    "limit": "P50和P95分别为第50、95百分位数，样本量小。剖析开销不混入时延；现有量化器自动编译兼容性尚未打通，没有为新尺寸追加全量精度评测。",
+    "sources": [
+      "experiments/mobile_qwen/jetson/stage3_20261115/REPORT.md",
+      "experiments/mobile_qwen/jetson/stage3_20261115/compiler_preflight.json"
+    ],
+    "code": [
+      "experiments/mobile_qwen/jetson/stage3_20261115/scripts/latency_probe.py",
+      "experiments/mobile_qwen/jetson/stage3_20261115/scripts/profile_one.py"
+    ],
+    "figure": null,
+    "caption": null,
+    "video": null,
+    "report_chapter": 7
+  }
+]

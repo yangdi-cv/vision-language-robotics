@@ -1,0 +1,12 @@
+{
+  "source_parse": true,
+  "pixel_integrity_reads": 144,
+  "worker_failures": 4,
+  "act_final_episodes": 48,
+  "manifest_split_disjoint": true,
+  "workbench_constructor_and_memory": true,
+  "legacy_rollout_success": true,
+  "legacy_one_step_train": true,
+  "camera_or_serial_opened": false,
+  "passed": true
+}

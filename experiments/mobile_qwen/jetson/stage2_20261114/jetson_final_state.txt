@@ -1,0 +1,11 @@
+NAME                 TYPE      SIZE USED PRIO
+/swapfile-ali-jetson file        8G   0B   -2
+/dev/zram0           partition 635M   0B    5
+/dev/zram1           partition 635M   0B    5
+/dev/zram2           partition 635M   0B    5
+/dev/zram3           partition 635M   0B    5
+/dev/zram4           partition 635M   0B    5
+/dev/zram5           partition 635M   0B    5
+NV Power Mode: 15W
+0
+multi-user.target

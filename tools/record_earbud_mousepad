@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+set -euo pipefail
+VLA_PROJECT_ROOT="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)"
+VLA_EPISODE="${1:?Provide episode number: 1, 2, or 3}"
+case "$VLA_EPISODE" in 1|2|3) ;; *) echo 'Episode must be 1, 2, or 3'; exit 2;; esac
+export TCL_LIBRARY=/home/yd/Documents/VLA-old/.conda/envs/hiwonder-so101/lib/tcl8.6
+export TK_LIBRARY=/home/yd/Documents/VLA-old/.conda/envs/hiwonder-so101/lib/tk8.6
+exec "$VLA_PROJECT_ROOT/SO101/code/scripts/ubuntu/project-python" \
+ "$VLA_PROJECT_ROOT/experiments/so101_pickplace/scripts/run_teleop_record.py" \
+ --leader-port /dev/serial/by-id/usb-1a86_USB_Single_Serial_5CE5121669-if00 \
+ --follower-port /dev/serial/by-id/usb-1a86_USB_Single_Serial_5CE5122996-if00 \
+ --record-root "$VLA_PROJECT_ROOT/datasets/earbud_mousepad/episode_0$VLA_EPISODE" \
+ --task 'Pick up the blue earbud case from the table and place it on the black mouse pad.' \
+ --record-format jsonl --rotation 0 --wrist-roll-offset -90 \
+ --record-preview --require-calibration --quiet

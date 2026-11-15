@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "counts": {
+    "frozen_sources": 34,
+    "new_episodes": 32,
+    "policy_queries": 1808,
+    "image_checks": 615,
+    "matched_live_prefixes": 4
+  },
+  "physics_rescore": false
+}

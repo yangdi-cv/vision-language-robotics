@@ -1,0 +1,21 @@
+{
+  "task": "pick up the black bowl between the plate and the ramekin and place it on the plate",
+  "state": [
+    -0.21124162683394807,
+    -0.011090601889321502,
+    1.1742495176982402,
+    3.140895396142254,
+    -0.002847819833825949,
+    -0.08773931027790592,
+    0.03872336505859045,
+    -0.0387222020954563
+  ],
+  "mocap_count": 0,
+  "actuators": 9,
+  "physics_dt_s": 0.002,
+  "control_hz": 20,
+  "controller_class": "OperationalSpaceController",
+  "initial_predicate": false,
+  "base_image_sha256": "1f09797f0503ed9b897c3ab4eb7b48807813fe7d257e4b0a37853bcda5f326d7",
+  "wrist_image_sha256": "71740409ddd31bce184333929b868374f9adc34eba10f8e1a2f718487a5b2bb8"
+}

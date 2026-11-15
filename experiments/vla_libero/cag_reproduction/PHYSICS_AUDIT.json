@@ -1,0 +1,328 @@
+{
+  "episodes": 16,
+  "states": 5200,
+  "max_position_error_m": 0.002988794682397211,
+  "final_disagreements": 0,
+  "rows": [
+    {
+      "variant": "base",
+      "task": 0,
+      "initial": 0,
+      "target": 0,
+      "live": false,
+      "restored": false,
+      "restored_score": {
+        "selective_success": false,
+        "target_final_stable": true,
+        "final_released": true,
+        "target_ever_reached": true,
+        "protected_untouched": false,
+        "max_protected_displacement_m": 0.28001738877037247,
+        "first_valid_step": 143,
+        "first_violation_step": 199,
+        "self_stop_success": false,
+        "premature_stop": false
+      }
+    },
+    {
+      "variant": "base",
+      "task": 0,
+      "initial": 0,
+      "target": 1,
+      "live": false,
+      "restored": false,
+      "restored_score": {
+        "selective_success": false,
+        "target_final_stable": true,
+        "final_released": true,
+        "target_ever_reached": true,
+        "protected_untouched": false,
+        "max_protected_displacement_m": 0.44372442374274246,
+        "first_valid_step": null,
+        "first_violation_step": 75,
+        "self_stop_success": false,
+        "premature_stop": false
+      }
+    },
+    {
+      "variant": "base",
+      "task": 0,
+      "initial": 11,
+      "target": 0,
+      "live": false,
+      "restored": false,
+      "restored_score": {
+        "selective_success": false,
+        "target_final_stable": true,
+        "final_released": true,
+        "target_ever_reached": true,
+        "protected_untouched": false,
+        "max_protected_displacement_m": 0.2903040509746909,
+        "first_valid_step": 148,
+        "first_violation_step": 205,
+        "self_stop_success": false,
+        "premature_stop": false
+      }
+    },
+    {
+      "variant": "base",
+      "task": 0,
+      "initial": 11,
+      "target": 1,
+      "live": false,
+      "restored": false,
+      "restored_score": {
+        "selective_success": false,
+        "target_final_stable": false,
+        "final_released": true,
+        "target_ever_reached": false,
+        "protected_untouched": false,
+        "max_protected_displacement_m": 0.42710304001902744,
+        "first_valid_step": null,
+        "first_violation_step": 70,
+        "self_stop_success": false,
+        "premature_stop": false
+      }
+    },
+    {
+      "variant": "cag15",
+      "task": 0,
+      "initial": 0,
+      "target": 0,
+      "live": true,
+      "restored": true,
+      "restored_score": {
+        "selective_success": true,
+        "target_final_stable": true,
+        "final_released": true,
+        "target_ever_reached": true,
+        "protected_untouched": true,
+        "max_protected_displacement_m": 0.010822267790707173,
+        "first_valid_step": 195,
+        "first_violation_step": null,
+        "self_stop_success": false,
+        "premature_stop": false
+      }
+    },
+    {
+      "variant": "cag15",
+      "task": 0,
+      "initial": 0,
+      "target": 1,
+      "live": false,
+      "restored": false,
+      "restored_score": {
+        "selective_success": false,
+        "target_final_stable": true,
+        "final_released": true,
+        "target_ever_reached": true,
+        "protected_untouched": false,
+        "max_protected_displacement_m": 0.4608114246874889,
+        "first_valid_step": null,
+        "first_violation_step": 73,
+        "self_stop_success": false,
+        "premature_stop": false
+      }
+    },
+    {
+      "variant": "cag15",
+      "task": 0,
+      "initial": 11,
+      "target": 0,
+      "live": false,
+      "restored": false,
+      "restored_score": {
+        "selective_success": false,
+        "target_final_stable": true,
+        "final_released": true,
+        "target_ever_reached": true,
+        "protected_untouched": false,
+        "max_protected_displacement_m": 0.29435275760329677,
+        "first_valid_step": 156,
+        "first_violation_step": 210,
+        "self_stop_success": false,
+        "premature_stop": false
+      }
+    },
+    {
+      "variant": "cag15",
+      "task": 0,
+      "initial": 11,
+      "target": 1,
+      "live": false,
+      "restored": false,
+      "restored_score": {
+        "selective_success": false,
+        "target_final_stable": true,
+        "final_released": true,
+        "target_ever_reached": true,
+        "protected_untouched": false,
+        "max_protected_displacement_m": 0.44421591541879085,
+        "first_valid_step": null,
+        "first_violation_step": 85,
+        "self_stop_success": false,
+        "premature_stop": false
+      }
+    },
+    {
+      "variant": "base",
+      "task": 1,
+      "initial": 0,
+      "target": 0,
+      "live": false,
+      "restored": false,
+      "restored_score": {
+        "selective_success": false,
+        "target_final_stable": true,
+        "final_released": true,
+        "target_ever_reached": true,
+        "protected_untouched": false,
+        "max_protected_displacement_m": 0.2880939546068627,
+        "first_valid_step": 158,
+        "first_violation_step": 245,
+        "self_stop_success": false,
+        "premature_stop": false
+      }
+    },
+    {
+      "variant": "base",
+      "task": 1,
+      "initial": 0,
+      "target": 1,
+      "live": false,
+      "restored": false,
+      "restored_score": {
+        "selective_success": false,
+        "target_final_stable": true,
+        "final_released": true,
+        "target_ever_reached": true,
+        "protected_untouched": false,
+        "max_protected_displacement_m": 0.47764907401776313,
+        "first_valid_step": null,
+        "first_violation_step": 71,
+        "self_stop_success": false,
+        "premature_stop": false
+      }
+    },
+    {
+      "variant": "base",
+      "task": 1,
+      "initial": 11,
+      "target": 0,
+      "live": false,
+      "restored": false,
+      "restored_score": {
+        "selective_success": false,
+        "target_final_stable": true,
+        "final_released": true,
+        "target_ever_reached": true,
+        "protected_untouched": false,
+        "max_protected_displacement_m": 0.2828867347262485,
+        "first_valid_step": 137,
+        "first_violation_step": 182,
+        "self_stop_success": false,
+        "premature_stop": false
+      }
+    },
+    {
+      "variant": "base",
+      "task": 1,
+      "initial": 11,
+      "target": 1,
+      "live": false,
+      "restored": false,
+      "restored_score": {
+        "selective_success": false,
+        "target_final_stable": true,
+        "final_released": true,
+        "target_ever_reached": true,
+        "protected_untouched": false,
+        "max_protected_displacement_m": 0.4816507476382637,
+        "first_valid_step": null,
+        "first_violation_step": 69,
+        "self_stop_success": false,
+        "premature_stop": false
+      }
+    },
+    {
+      "variant": "cag15",
+      "task": 1,
+      "initial": 0,
+      "target": 0,
+      "live": false,
+      "restored": false,
+      "restored_score": {
+        "selective_success": false,
+        "target_final_stable": true,
+        "final_released": true,
+        "target_ever_reached": true,
+        "protected_untouched": false,
+        "max_protected_displacement_m": 0.27208553679989345,
+        "first_valid_step": 149,
+        "first_violation_step": 232,
+        "self_stop_success": false,
+        "premature_stop": false
+      }
+    },
+    {
+      "variant": "cag15",
+      "task": 1,
+      "initial": 0,
+      "target": 1,
+      "live": false,
+      "restored": false,
+      "restored_score": {
+        "selective_success": false,
+        "target_final_stable": true,
+        "final_released": true,
+        "target_ever_reached": true,
+        "protected_untouched": false,
+        "max_protected_displacement_m": 0.46986266043869246,
+        "first_valid_step": null,
+        "first_violation_step": 62,
+        "self_stop_success": false,
+        "premature_stop": false
+      }
+    },
+    {
+      "variant": "cag15",
+      "task": 1,
+      "initial": 11,
+      "target": 0,
+      "live": false,
+      "restored": false,
+      "restored_score": {
+        "selective_success": false,
+        "target_final_stable": true,
+        "final_released": true,
+        "target_ever_reached": true,
+        "protected_untouched": false,
+        "max_protected_displacement_m": 0.2871819597198823,
+        "first_valid_step": 140,
+        "first_violation_step": 190,
+        "self_stop_success": false,
+        "premature_stop": false
+      }
+    },
+    {
+      "variant": "cag15",
+      "task": 1,
+      "initial": 11,
+      "target": 1,
+      "live": false,
+      "restored": false,
+      "restored_score": {
+        "selective_success": false,
+        "target_final_stable": true,
+        "final_released": true,
+        "target_ever_reached": true,
+        "protected_untouched": false,
+        "max_protected_displacement_m": 0.48675799948572973,
+        "first_valid_step": null,
+        "first_violation_step": 64,
+        "self_stop_success": false,
+        "premature_stop": false
+      }
+    }
+  ]
+}

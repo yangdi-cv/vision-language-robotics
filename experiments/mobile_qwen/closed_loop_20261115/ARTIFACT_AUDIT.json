@@ -1,0 +1,74 @@
+[
+  {
+    "tag": "paired_v1_camera_right_3cm_i02_oracle",
+    "control_samples": 134,
+    "successful_controller_final_max_joint_error": 0.00016834906362017676,
+    "artifact_check_passed": true
+  },
+  {
+    "tag": "paired_v1_camera_right_3cm_i02_base",
+    "control_samples": 203,
+    "successful_controller_final_max_joint_error": 0.0001370195977175026,
+    "artifact_check_passed": true
+  },
+  {
+    "tag": "paired_v1_camera_right_3cm_i02_lora",
+    "control_samples": 128,
+    "successful_controller_final_max_joint_error": 0.00022218143727281703,
+    "artifact_check_passed": true
+  },
+  {
+    "tag": "paired_v1_camera_up_3cm_i02_oracle",
+    "control_samples": 118,
+    "successful_controller_final_max_joint_error": 0.00020235278736821516,
+    "artifact_check_passed": true
+  },
+  {
+    "tag": "paired_v1_camera_up_3cm_i02_base",
+    "control_samples": 156,
+    "successful_controller_final_max_joint_error": 0.0002378940458632739,
+    "artifact_check_passed": true
+  },
+  {
+    "tag": "paired_v1_camera_up_3cm_i02_lora",
+    "control_samples": 141,
+    "successful_controller_final_max_joint_error": 0.0001940911673238288,
+    "artifact_check_passed": true
+  },
+  {
+    "tag": "paired_v1_camera_right_3cm_i03_oracle",
+    "control_samples": 202,
+    "successful_controller_final_max_joint_error": 0.00016984904195294082,
+    "artifact_check_passed": true
+  },
+  {
+    "tag": "paired_v1_camera_right_3cm_i03_base",
+    "control_samples": 212,
+    "successful_controller_final_max_joint_error": 0.00013399435537639337,
+    "artifact_check_passed": true
+  },
+  {
+    "tag": "paired_v1_camera_right_3cm_i03_lora",
+    "control_samples": 122,
+    "successful_controller_final_max_joint_error": 0.00017258899097710723,
+    "artifact_check_passed": true
+  },
+  {
+    "tag": "paired_v1_camera_up_3cm_i03_oracle",
+    "control_samples": 233,
+    "successful_controller_final_max_joint_error": 0.00013476944897040238,
+    "artifact_check_passed": true
+  },
+  {
+    "tag": "paired_v1_camera_up_3cm_i03_base",
+    "control_samples": 132,
+    "successful_controller_final_max_joint_error": 0.00018379991766548365,
+    "artifact_check_passed": true
+  },
+  {
+    "tag": "paired_v1_camera_up_3cm_i03_lora",
+    "control_samples": 115,
+    "successful_controller_final_max_joint_error": 0.00017522875088554768,
+    "artifact_check_passed": true
+  }
+]

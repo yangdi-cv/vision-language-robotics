@@ -1,0 +1,77 @@
+{
+  "version": "v2_frozen_1",
+  "timebox_days": 3,
+  "hardware": "RTX 4090; simulation only; no new base-model download",
+  "base_model": "Qwen/Qwen3-VL-4B-Instruct",
+  "base_revision": "ebb281ec70b05090aa6165b016eac8ec08e71b17",
+  "input": "subgoal start RGB + current RGB + subgoal instruction; 512px same camera per pair",
+  "output_classes": [
+    "yes",
+    "no",
+    "unknown"
+  ],
+  "done_definition": "requested relation satisfied and target released; ambiguity leads to abstention, not credit for success",
+  "generation": "Matched positive/offset/hover/edge variants share robot pose, camera and background. Counterfactuals are static simulator snapshots, not autonomous robot successes. Natural held/released examples supplement them.",
+  "split": {
+    "train_initials": [
+      3,
+      4,
+      5,
+      6
+    ],
+    "validation_initials": [
+      7,
+      8
+    ],
+    "test_initials": [
+      9,
+      10
+    ],
+    "closed_loop_reserved_initials": [
+      0,
+      1,
+      2
+    ]
+  },
+  "grouping": "All variants from a complete scene-instance group stay in one split; assets/tasks may be shared. No frame-level random split.",
+  "existing_long_checks": "Initials0-2 are retained for deployment diagnostics only, never gradient or threshold selection.",
+  "observability": "Narrow margins near geometric/contact boundaries are unknown training targets; record official predicate separately. Report abstention and missed true completions, not just false-positive rate.",
+  "offline_acceptance": {
+    "test_false_confirmation_rate_max": 0.05,
+    "recall_gain_over_same_prompt_base_min": 0.15,
+    "decision_rule": "validation-only threshold; unknown/rejection counts as missed completion on positives",
+    "minimum_positive_recall": 0.2
+  },
+  "closed_loop_acceptance": {
+    "suite": "libero_10",
+    "tasks": 10,
+    "initials": [
+      0,
+      1,
+      2
+    ],
+    "minimum_successes": 28,
+    "comparison": "same frozen v3 plans, seeds, image resolution, action settings and budget; only checker changes; contemporaneous paired base if offline passes",
+    "false_switches": "manually aligned predicate subset; unsupported steps separately reported",
+    "latency_and_timeout": true
+  },
+  "deployment_scope": "Transport end-state goals supported by generated data; articulated-state changes and standalone pickup retain the base checker. Scope frozen before model evaluation.",
+  "stop_rule": "Complete offline train/test first. If offline criteria fail, do not launch full closed-loop batch; report failure and retain artifacts without unlimited tuning. If pass, run the paired closed-loop acceptance once and report all outcomes.",
+  "training": {
+    "rank": 8,
+    "alpha": 16,
+    "learning_rate": 5e-05,
+    "max_updates": 360,
+    "validation_every": 120,
+    "gradient_accumulation": 3,
+    "checkpoint_selection": "highest validation completion recall with validation FPR<=5%, then lower FPR and 3-class macro recall; all chosen before test"
+  },
+  "premodel_clarification": "Checkpoint selection aligned to the operational acceptance metric before any model scoring; data split and acceptance limits unchanged.",
+  "development_amendment": {
+    "reason": "Validation recall of JSON-sequence SFT was insufficient; use direct class-logit CE before opening test set. Acceptance limits and split unchanged.",
+    "json_development_updates": 360,
+    "direct_classification_max_updates": 360,
+    "warm_start": "validation-selected JSON update360; no test scores used",
+    "untouched_test_verified_before_amendment": true
+  }
+}

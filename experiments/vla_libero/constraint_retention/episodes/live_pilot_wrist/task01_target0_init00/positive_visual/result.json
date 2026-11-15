@@ -1,0 +1,1296 @@
+{
+  "case": {
+    "task": 1,
+    "target_index": 0,
+    "initial": 0,
+    "target": "cream_cheese_1",
+    "protected": "butter_1",
+    "objects": [
+      [
+        "cream_cheese_1",
+        "cream cheese box",
+        "奶油奶酪盒"
+      ],
+      [
+        "butter_1",
+        "butter",
+        "黄油"
+      ]
+    ],
+    "instruction": "只把奶油奶酪盒放进篮子里，黄油保持原位。放好后停止，不要继续搬其他物体。",
+    "reference_skill": "pick up the cream cheese box and place it in the basket",
+    "key": "task01_target0_init00"
+  },
+  "mode": "positive_visual",
+  "phase": "live_pilot_wrist",
+  "protocol_sha256": "fb040efd1d285a7068320c28ee5bb3c1de890b657bb2d626f450def7c77d832f",
+  "noise_seed": 920100,
+  "status": "complete",
+  "steps": 325,
+  "events": [
+    {
+      "kind": "check",
+      "step": 10,
+      "decision": {
+        "done": false,
+        "streak": 0,
+        "stop": false
+      },
+      "images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_wrist/task01_target0_init00/positive_visual/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_wrist/task01_target0_init00/positive_visual/images/current_0010.png"
+      ],
+      "sent_images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_wrist/task01_target0_init00/positive_visual/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_wrist/task01_target0_init00/positive_visual/images/current_0010.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_wrist/task01_target0_init00/positive_visual/images/wrist_0010.png"
+      ],
+      "reply": {
+        "raw": "{\"status\":\"not_done\", \"reason\":\"The cream cheese box is not yet in the basket and the robot has not released it.\"}",
+        "seconds": 0.5018365549985901,
+        "inference": {
+          "model": "Qwen/Qwen3-VL-4B-Instruct",
+          "revision": "ebb281ec70b05090aa6165b016eac8ec08e71b17",
+          "prompt": "Check this single robot subgoal: \"pick up the cream cheese box and place it in the basket\".\nImage 1 is the third-person view when the subgoal started. Image 2 is the current third-person view. Image 3 is a current auxiliary view; it may repeat image 2.\nUse the views together to identify the TARGET and its DESTINATION. A placement is done only when the target is visibly at the destination and released from the gripper. Do not infer completion merely because the target disappeared from its starting position. If destination, identity or release cannot be established from the images, choose unknown. Do not treat another object at the destination as the target.\nReturn only JSON: {\"status\":\"done\" or \"not_done\" or \"unknown\", \"reason\":\"one short sentence\"}.",
+          "prompt_sha256": "0b546497ffa952458d5e06b9994f92cae1d1da4c6f4fa524a41cdc2fdb882cd6",
+          "engine_sha256": "6c14802fbe468fa57e2ad48b25fc02c9a100d82d9aafdbf8d11224e969b699fb",
+          "generation": {
+            "max_new_tokens": 128,
+            "do_sample": false
+          },
+          "images": [
+            {
+              "size": [
+                512,
+                512
+              ],
+              "mode": "RGB",
+              "pixel_sha256": "cedb1fa62dafec3f0e29f7a0fd59aa26a91828f15ba822305d20c0d582451384"
+            },
+            {
+              "size": [
+                512,
+                512
+              ],
+              "mode": "RGB",
+              "pixel_sha256": "e50d5b3b60f2d58d2265003558245eb455e4f33a9a118c46aeac6bb62cb4302f"
+            },
+            {
+              "size": [
+                512,
+                512
+              ],
+              "mode": "RGB",
+              "pixel_sha256": "9513612606977142f4783de849335cabd8359440ba04c0f7e039d6bc60c81a37"
+            }
+          ],
+          "libraries": {
+            "torch": "2.7.1",
+            "transformers": "4.57.6"
+          },
+          "planner_sha256": "87ea0a00e0a662d034cfc200b326cd569ecd2f32f57fe6681851fefdd47aabc7"
+        },
+        "device": "cuda:0",
+        "allocated_mib": 8490.62890625,
+        "reserved_mib": 8800.0,
+        "tokens": 29,
+        "ok": true,
+        "status": "not_done",
+        "done": false,
+        "reason": "The cream cheese box is not yet in the basket and the robot has not released it.",
+        "live_checker_sha256": "c8757dbe355e8d7c957ecb1cda204b00631954e0aef5a57bda7e65653623fb34"
+      },
+      "wrist_image": "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_wrist/task01_target0_init00/positive_visual/images/wrist_0010.png",
+      "seconds": 0.5498938500022632
+    },
+    {
+      "kind": "check",
+      "step": 20,
+      "decision": {
+        "done": false,
+        "streak": 0,
+        "stop": false
+      },
+      "images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_wrist/task01_target0_init00/positive_visual/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_wrist/task01_target0_init00/positive_visual/images/current_0020.png"
+      ],
+      "sent_images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_wrist/task01_target0_init00/positive_visual/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_wrist/task01_target0_init00/positive_visual/images/current_0020.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_wrist/task01_target0_init00/positive_visual/images/wrist_0020.png"
+      ],
+      "reply": {
+        "raw": "{\"status\":\"not_done\", \"reason\":\"The cream cheese box is not yet in the basket and the robot has not released it.\"}",
+        "seconds": 0.4967226619992289,
+        "inference": {
+          "model": "Qwen/Qwen3-VL-4B-Instruct",
+          "revision": "ebb281ec70b05090aa6165b016eac8ec08e71b17",
+          "prompt": "Check this single robot subgoal: \"pick up the cream cheese box and place it in the basket\".\nImage 1 is the third-person view when the subgoal started. Image 2 is the current third-person view. Image 3 is a current auxiliary view; it may repeat image 2.\nUse the views together to identify the TARGET and its DESTINATION. A placement is done only when the target is visibly at the destination and released from the gripper. Do not infer completion merely because the target disappeared from its starting position. If destination, identity or release cannot be established from the images, choose unknown. Do not treat another object at the destination as the target.\nReturn only JSON: {\"status\":\"done\" or \"not_done\" or \"unknown\", \"reason\":\"one short sentence\"}.",
+          "prompt_sha256": "0b546497ffa952458d5e06b9994f92cae1d1da4c6f4fa524a41cdc2fdb882cd6",
+          "engine_sha256": "6c14802fbe468fa57e2ad48b25fc02c9a100d82d9aafdbf8d11224e969b699fb",
+          "generation": {
+            "max_new_tokens": 128,
+            "do_sample": false
+          },
+          "images": [
+            {
+              "size": [
+                512,
+                512
+              ],
+              "mode": "RGB",
+              "pixel_sha256": "cedb1fa62dafec3f0e29f7a0fd59aa26a91828f15ba822305d20c0d582451384"
+            },
+            {
+              "size": [
+                512,
+                512
+              ],
+              "mode": "RGB",
+              "pixel_sha256": "a6186cbb22542ef8dd6d031654acdac79089c3125f8a8d444f0c07e375ea4266"
+            },
+            {
+              "size": [
+                512,
+                512
+              ],
+              "mode": "RGB",
+              "pixel_sha256": "666e9a676958e0d603192719e3d5deb7f04d9eae9b039d4e23661281684643e7"
+            }
+          ],
+          "libraries": {
+            "torch": "2.7.1",
+            "transformers": "4.57.6"
+          },
+          "planner_sha256": "87ea0a00e0a662d034cfc200b326cd569ecd2f32f57fe6681851fefdd47aabc7"
+        },
+        "device": "cuda:0",
+        "allocated_mib": 8490.62890625,
+        "reserved_mib": 8800.0,
+        "tokens": 29,
+        "ok": true,
+        "status": "not_done",
+        "done": false,
+        "reason": "The cream cheese box is not yet in the basket and the robot has not released it.",
+        "live_checker_sha256": "c8757dbe355e8d7c957ecb1cda204b00631954e0aef5a57bda7e65653623fb34"
+      },
+      "wrist_image": "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_wrist/task01_target0_init00/positive_visual/images/wrist_0020.png",
+      "seconds": 0.5455240759984008
+    },
+    {
+      "kind": "check",
+      "step": 30,
+      "decision": {
+        "done": false,
+        "streak": 0,
+        "stop": false
+      },
+      "images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_wrist/task01_target0_init00/positive_visual/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_wrist/task01_target0_init00/positive_visual/images/current_0030.png"
+      ],
+      "sent_images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_wrist/task01_target0_init00/positive_visual/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_wrist/task01_target0_init00/positive_visual/images/current_0030.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_wrist/task01_target0_init00/positive_visual/images/wrist_0030.png"
+      ],
+      "reply": {
+        "raw": "{\"status\":\"not_done\", \"reason\":\"The cream cheese box is not yet in the basket and the robot has not released it.\"}",
+        "seconds": 0.4981823459966108,
+        "inference": {
+          "model": "Qwen/Qwen3-VL-4B-Instruct",
+          "revision": "ebb281ec70b05090aa6165b016eac8ec08e71b17",
+          "prompt": "Check this single robot subgoal: \"pick up the cream cheese box and place it in the basket\".\nImage 1 is the third-person view when the subgoal started. Image 2 is the current third-person view. Image 3 is a current auxiliary view; it may repeat image 2.\nUse the views together to identify the TARGET and its DESTINATION. A placement is done only when the target is visibly at the destination and released from the gripper. Do not infer completion merely because the target disappeared from its starting position. If destination, identity or release cannot be established from the images, choose unknown. Do not treat another object at the destination as the target.\nReturn only JSON: {\"status\":\"done\" or \"not_done\" or \"unknown\", \"reason\":\"one short sentence\"}.",
+          "prompt_sha256": "0b546497ffa952458d5e06b9994f92cae1d1da4c6f4fa524a41cdc2fdb882cd6",
+          "engine_sha256": "6c14802fbe468fa57e2ad48b25fc02c9a100d82d9aafdbf8d11224e969b699fb",
+          "generation": {
+            "max_new_tokens": 128,
+            "do_sample": false
+          },
+          "images": [
+            {
+              "size": [
+                512,
+                512
+              ],
+              "mode": "RGB",
+              "pixel_sha256": "cedb1fa62dafec3f0e29f7a0fd59aa26a91828f15ba822305d20c0d582451384"
+            },
+            {
+              "size": [
+                512,
+                512
+              ],
+              "mode": "RGB",
+              "pixel_sha256": "b9fe31788e16ea919ffb43f24567c855e989767a794df323f2c105019ecea310"
+            },
+            {
+              "size": [
+                512,
+                512
+              ],
+              "mode": "RGB",
+              "pixel_sha256": "c282a33ed1cee2c6e6bd7532826bffe57d14ee6151670f9b33f29aa4a79f2664"
+            }
+          ],
+          "libraries": {
+            "torch": "2.7.1",
+            "transformers": "4.57.6"
+          },
+          "planner_sha256": "87ea0a00e0a662d034cfc200b326cd569ecd2f32f57fe6681851fefdd47aabc7"
+        },
+        "device": "cuda:0",
+        "allocated_mib": 8490.62890625,
+        "reserved_mib": 8800.0,
+        "tokens": 29,
+        "ok": true,
+        "status": "not_done",
+        "done": false,
+        "reason": "The cream cheese box is not yet in the basket and the robot has not released it.",
+        "live_checker_sha256": "c8757dbe355e8d7c957ecb1cda204b00631954e0aef5a57bda7e65653623fb34"
+      },
+      "wrist_image": "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_wrist/task01_target0_init00/positive_visual/images/wrist_0030.png",
+      "seconds": 0.5455869739962509
+    },
+    {
+      "kind": "check",
+      "step": 40,
+      "decision": {
+        "done": false,
+        "streak": 0,
+        "stop": false
+      },
+      "images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_wrist/task01_target0_init00/positive_visual/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_wrist/task01_target0_init00/positive_visual/images/current_0040.png"
+      ],
+      "sent_images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_wrist/task01_target0_init00/positive_visual/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_wrist/task01_target0_init00/positive_visual/images/current_0040.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_wrist/task01_target0_init00/positive_visual/images/wrist_0040.png"
+      ],
+      "reply": {
+        "raw": "{\"status\":\"not_done\", \"reason\":\"The cream cheese box is not yet in the basket and the robot's gripper is not visibly holding it.\"}",
+        "seconds": 0.5588897990019177,
+        "inference": {
+          "model": "Qwen/Qwen3-VL-4B-Instruct",
+          "revision": "ebb281ec70b05090aa6165b016eac8ec08e71b17",
+          "prompt": "Check this single robot subgoal: \"pick up the cream cheese box and place it in the basket\".\nImage 1 is the third-person view when the subgoal started. Image 2 is the current third-person view. Image 3 is a current auxiliary view; it may repeat image 2.\nUse the views together to identify the TARGET and its DESTINATION. A placement is done only when the target is visibly at the destination and released from the gripper. Do not infer completion merely because the target disappeared from its starting position. If destination, identity or release cannot be established from the images, choose unknown. Do not treat another object at the destination as the target.\nReturn only JSON: {\"status\":\"done\" or \"not_done\" or \"unknown\", \"reason\":\"one short sentence\"}.",
+          "prompt_sha256": "0b546497ffa952458d5e06b9994f92cae1d1da4c6f4fa524a41cdc2fdb882cd6",
+          "engine_sha256": "6c14802fbe468fa57e2ad48b25fc02c9a100d82d9aafdbf8d11224e969b699fb",
+          "generation": {
+            "max_new_tokens": 128,
+            "do_sample": false
+          },
+          "images": [
+            {
+              "size": [
+                512,
+                512
+              ],
+              "mode": "RGB",
+              "pixel_sha256": "cedb1fa62dafec3f0e29f7a0fd59aa26a91828f15ba822305d20c0d582451384"
+            },
+            {
+              "size": [
+                512,
+                512
+              ],
+              "mode": "RGB",
+              "pixel_sha256": "a7644427ec2bd169c6b40061715546b1314766d1bfe70836eabbb3b6f8961955"
+            },
+            {
+              "size": [
+                512,
+                512
+              ],
+              "mode": "RGB",
+              "pixel_sha256": "b971a021a4196c08a423dd94a9ac0ef1c59efdd59de3cf8b1d4a0edac634c4d7"
+            }
+          ],
+          "libraries": {
+            "torch": "2.7.1",
+            "transformers": "4.57.6"
+          },
+          "planner_sha256": "87ea0a00e0a662d034cfc200b326cd569ecd2f32f57fe6681851fefdd47aabc7"
+        },
+        "device": "cuda:0",
+        "allocated_mib": 8490.62890625,
+        "reserved_mib": 8800.0,
+        "tokens": 33,
+        "ok": true,
+        "status": "not_done",
+        "done": false,
+        "reason": "The cream cheese box is not yet in the basket and the robot's gripper is not visibly holding it.",
+        "live_checker_sha256": "c8757dbe355e8d7c957ecb1cda204b00631954e0aef5a57bda7e65653623fb34"
+      },
+      "wrist_image": "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_wrist/task01_target0_init00/positive_visual/images/wrist_0040.png",
+      "seconds": 0.6060406980031985
+    },
+    {
+      "kind": "check",
+      "step": 50,
+      "decision": {
+        "done": false,
+        "streak": 0,
+        "stop": false
+      },
+      "images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_wrist/task01_target0_init00/positive_visual/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_wrist/task01_target0_init00/positive_visual/images/current_0050.png"
+      ],
+      "sent_images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_wrist/task01_target0_init00/positive_visual/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_wrist/task01_target0_init00/positive_visual/images/current_0050.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_wrist/task01_target0_init00/positive_visual/images/wrist_0050.png"
+      ],
+      "reply": {
+        "raw": "{\"status\":\"not_done\", \"reason\":\"The cream cheese box is still on the table and not yet placed in the basket.\"}",
+        "seconds": 0.48182786400138866,
+        "inference": {
+          "model": "Qwen/Qwen3-VL-4B-Instruct",
+          "revision": "ebb281ec70b05090aa6165b016eac8ec08e71b17",
+          "prompt": "Check this single robot subgoal: \"pick up the cream cheese box and place it in the basket\".\nImage 1 is the third-person view when the subgoal started. Image 2 is the current third-person view. Image 3 is a current auxiliary view; it may repeat image 2.\nUse the views together to identify the TARGET and its DESTINATION. A placement is done only when the target is visibly at the destination and released from the gripper. Do not infer completion merely because the target disappeared from its starting position. If destination, identity or release cannot be established from the images, choose unknown. Do not treat another object at the destination as the target.\nReturn only JSON: {\"status\":\"done\" or \"not_done\" or \"unknown\", \"reason\":\"one short sentence\"}.",
+          "prompt_sha256": "0b546497ffa952458d5e06b9994f92cae1d1da4c6f4fa524a41cdc2fdb882cd6",
+          "engine_sha256": "6c14802fbe468fa57e2ad48b25fc02c9a100d82d9aafdbf8d11224e969b699fb",
+          "generation": {
+            "max_new_tokens": 128,
+            "do_sample": false
+          },
+          "images": [
+            {
+              "size": [
+                512,
+                512
+              ],
+              "mode": "RGB",
+              "pixel_sha256": "cedb1fa62dafec3f0e29f7a0fd59aa26a91828f15ba822305d20c0d582451384"
+            },
+            {
+              "size": [
+                512,
+                512
+              ],
+              "mode": "RGB",
+              "pixel_sha256": "308555be6103038c9039a6edeb7e292d18a81b209add87e5b010de4b8403f3d8"
+            },
+            {
+              "size": [
+                512,
+                512
+              ],
+              "mode": "RGB",
+              "pixel_sha256": "38f84e65e959671da37c86521fd8a11329644eb5eb25543168115b536ae5c866"
+            }
+          ],
+          "libraries": {
+            "torch": "2.7.1",
+            "transformers": "4.57.6"
+          },
+          "planner_sha256": "87ea0a00e0a662d034cfc200b326cd569ecd2f32f57fe6681851fefdd47aabc7"
+        },
+        "device": "cuda:0",
+        "allocated_mib": 8490.62890625,
+        "reserved_mib": 8800.0,
+        "tokens": 28,
+        "ok": true,
+        "status": "not_done",
+        "done": false,
+        "reason": "The cream cheese box is still on the table and not yet placed in the basket.",
+        "live_checker_sha256": "c8757dbe355e8d7c957ecb1cda204b00631954e0aef5a57bda7e65653623fb34"
+      },
+      "wrist_image": "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_wrist/task01_target0_init00/positive_visual/images/wrist_0050.png",
+      "seconds": 0.5296553860025597
+    },
+    {
+      "kind": "check",
+      "step": 60,
+      "decision": {
+        "done": false,
+        "streak": 0,
+        "stop": false
+      },
+      "images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_wrist/task01_target0_init00/positive_visual/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_wrist/task01_target0_init00/positive_visual/images/current_0060.png"
+      ],
+      "sent_images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_wrist/task01_target0_init00/positive_visual/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_wrist/task01_target0_init00/positive_visual/images/current_0060.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_wrist/task01_target0_init00/positive_visual/images/wrist_0060.png"
+      ],
+      "reply": {
+        "raw": "{\"status\":\"not_done\", \"reason\":\"The cream cheese box is still being held by the robot and not yet placed in the basket.\"}",
+        "seconds": 0.5094683620045544,
+        "inference": {
+          "model": "Qwen/Qwen3-VL-4B-Instruct",
+          "revision": "ebb281ec70b05090aa6165b016eac8ec08e71b17",
+          "prompt": "Check this single robot subgoal: \"pick up the cream cheese box and place it in the basket\".\nImage 1 is the third-person view when the subgoal started. Image 2 is the current third-person view. Image 3 is a current auxiliary view; it may repeat image 2.\nUse the views together to identify the TARGET and its DESTINATION. A placement is done only when the target is visibly at the destination and released from the gripper. Do not infer completion merely because the target disappeared from its starting position. If destination, identity or release cannot be established from the images, choose unknown. Do not treat another object at the destination as the target.\nReturn only JSON: {\"status\":\"done\" or \"not_done\" or \"unknown\", \"reason\":\"one short sentence\"}.",
+          "prompt_sha256": "0b546497ffa952458d5e06b9994f92cae1d1da4c6f4fa524a41cdc2fdb882cd6",
+          "engine_sha256": "6c14802fbe468fa57e2ad48b25fc02c9a100d82d9aafdbf8d11224e969b699fb",
+          "generation": {
+            "max_new_tokens": 128,
+            "do_sample": false
+          },
+          "images": [
+            {
+              "size": [
+                512,
+                512
+              ],
+              "mode": "RGB",
+              "pixel_sha256": "cedb1fa62dafec3f0e29f7a0fd59aa26a91828f15ba822305d20c0d582451384"
+            },
+            {
+              "size": [
+                512,
+                512
+              ],
+              "mode": "RGB",
+              "pixel_sha256": "c10aaafb4f5cf3fd2ac64ec9d4fd6b1951df96233ccd59da9035fe0167495a0c"
+            },
+            {
+              "size": [
+                512,
+                512
+              ],
+              "mode": "RGB",
+              "pixel_sha256": "2ce7b96040df334157f936c2a801896f91f0ba361d06edf3b2d484c76354f0e5"
+            }
+          ],
+          "libraries": {
+            "torch": "2.7.1",
+            "transformers": "4.57.6"
+          },
+          "planner_sha256": "87ea0a00e0a662d034cfc200b326cd569ecd2f32f57fe6681851fefdd47aabc7"
+        },
+        "device": "cuda:0",
+        "allocated_mib": 8490.62890625,
+        "reserved_mib": 8800.0,
+        "tokens": 30,
+        "ok": true,
+        "status": "not_done",
+        "done": false,
+        "reason": "The cream cheese box is still being held by the robot and not yet placed in the basket.",
+        "live_checker_sha256": "c8757dbe355e8d7c957ecb1cda204b00631954e0aef5a57bda7e65653623fb34"
+      },
+      "wrist_image": "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_wrist/task01_target0_init00/positive_visual/images/wrist_0060.png",
+      "seconds": 0.5593545750016347
+    },
+    {
+      "kind": "check",
+      "step": 150,
+      "decision": {
+        "done": false,
+        "streak": 0,
+        "stop": false
+      },
+      "images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_wrist/task01_target0_init00/positive_visual/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_wrist/task01_target0_init00/positive_visual/images/current_0150.png"
+      ],
+      "sent_images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_wrist/task01_target0_init00/positive_visual/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_wrist/task01_target0_init00/positive_visual/images/current_0150.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_wrist/task01_target0_init00/positive_visual/images/wrist_0150.png"
+      ],
+      "reply": {
+        "raw": "{\"status\":\"not_done\", \"reason\":\"The cream cheese box is not yet in the basket and the robot's arm is not visibly holding it.\"}",
+        "seconds": 0.5449318770042737,
+        "inference": {
+          "model": "Qwen/Qwen3-VL-4B-Instruct",
+          "revision": "ebb281ec70b05090aa6165b016eac8ec08e71b17",
+          "prompt": "Check this single robot subgoal: \"pick up the cream cheese box and place it in the basket\".\nImage 1 is the third-person view when the subgoal started. Image 2 is the current third-person view. Image 3 is a current auxiliary view; it may repeat image 2.\nUse the views together to identify the TARGET and its DESTINATION. A placement is done only when the target is visibly at the destination and released from the gripper. Do not infer completion merely because the target disappeared from its starting position. If destination, identity or release cannot be established from the images, choose unknown. Do not treat another object at the destination as the target.\nReturn only JSON: {\"status\":\"done\" or \"not_done\" or \"unknown\", \"reason\":\"one short sentence\"}.",
+          "prompt_sha256": "0b546497ffa952458d5e06b9994f92cae1d1da4c6f4fa524a41cdc2fdb882cd6",
+          "engine_sha256": "6c14802fbe468fa57e2ad48b25fc02c9a100d82d9aafdbf8d11224e969b699fb",
+          "generation": {
+            "max_new_tokens": 128,
+            "do_sample": false
+          },
+          "images": [
+            {
+              "size": [
+                512,
+                512
+              ],
+              "mode": "RGB",
+              "pixel_sha256": "cedb1fa62dafec3f0e29f7a0fd59aa26a91828f15ba822305d20c0d582451384"
+            },
+            {
+              "size": [
+                512,
+                512
+              ],
+              "mode": "RGB",
+              "pixel_sha256": "68b2b3e6321ad82d7376d6fbedf4077d69c29631d0f0dab52f427a7fd9258e36"
+            },
+            {
+              "size": [
+                512,
+                512
+              ],
+              "mode": "RGB",
+              "pixel_sha256": "8ae72df014fede71387d26bc2223118cc8ddb2995690af6cff64009629049c4f"
+            }
+          ],
+          "libraries": {
+            "torch": "2.7.1",
+            "transformers": "4.57.6"
+          },
+          "planner_sha256": "87ea0a00e0a662d034cfc200b326cd569ecd2f32f57fe6681851fefdd47aabc7"
+        },
+        "device": "cuda:0",
+        "allocated_mib": 8490.62890625,
+        "reserved_mib": 8800.0,
+        "tokens": 32,
+        "ok": true,
+        "status": "not_done",
+        "done": false,
+        "reason": "The cream cheese box is not yet in the basket and the robot's arm is not visibly holding it.",
+        "live_checker_sha256": "c8757dbe355e8d7c957ecb1cda204b00631954e0aef5a57bda7e65653623fb34"
+      },
+      "wrist_image": "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_wrist/task01_target0_init00/positive_visual/images/wrist_0150.png",
+      "seconds": 0.5918711289996281
+    },
+    {
+      "kind": "check",
+      "step": 160,
+      "decision": {
+        "done": false,
+        "streak": 0,
+        "stop": false
+      },
+      "images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_wrist/task01_target0_init00/positive_visual/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_wrist/task01_target0_init00/positive_visual/images/current_0160.png"
+      ],
+      "sent_images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_wrist/task01_target0_init00/positive_visual/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_wrist/task01_target0_init00/positive_visual/images/current_0160.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_wrist/task01_target0_init00/positive_visual/images/wrist_0160.png"
+      ],
+      "reply": {
+        "raw": "{\"status\":\"not_done\", \"reason\":\"The cream cheese box is not yet in the basket and the robot's arm is not visibly holding it.\"}",
+        "seconds": 0.5405974239984062,
+        "inference": {
+          "model": "Qwen/Qwen3-VL-4B-Instruct",
+          "revision": "ebb281ec70b05090aa6165b016eac8ec08e71b17",
+          "prompt": "Check this single robot subgoal: \"pick up the cream cheese box and place it in the basket\".\nImage 1 is the third-person view when the subgoal started. Image 2 is the current third-person view. Image 3 is a current auxiliary view; it may repeat image 2.\nUse the views together to identify the TARGET and its DESTINATION. A placement is done only when the target is visibly at the destination and released from the gripper. Do not infer completion merely because the target disappeared from its starting position. If destination, identity or release cannot be established from the images, choose unknown. Do not treat another object at the destination as the target.\nReturn only JSON: {\"status\":\"done\" or \"not_done\" or \"unknown\", \"reason\":\"one short sentence\"}.",
+          "prompt_sha256": "0b546497ffa952458d5e06b9994f92cae1d1da4c6f4fa524a41cdc2fdb882cd6",
+          "engine_sha256": "6c14802fbe468fa57e2ad48b25fc02c9a100d82d9aafdbf8d11224e969b699fb",
+          "generation": {
+            "max_new_tokens": 128,
+            "do_sample": false
+          },
+          "images": [
+            {
+              "size": [
+                512,
+                512
+              ],
+              "mode": "RGB",
+              "pixel_sha256": "cedb1fa62dafec3f0e29f7a0fd59aa26a91828f15ba822305d20c0d582451384"
+            },
+            {
+              "size": [
+                512,
+                512
+              ],
+              "mode": "RGB",
+              "pixel_sha256": "d5a7a2a5e6f2f727606ebe03ead5f09a3511f434a37cb9795e36f6bb371acbd8"
+            },
+            {
+              "size": [
+                512,
+                512
+              ],
+              "mode": "RGB",
+              "pixel_sha256": "3d18061e706f36371cd59edbebd0795d0c0fdc3260aca090349d4fb8045e0845"
+            }
+          ],
+          "libraries": {
+            "torch": "2.7.1",
+            "transformers": "4.57.6"
+          },
+          "planner_sha256": "87ea0a00e0a662d034cfc200b326cd569ecd2f32f57fe6681851fefdd47aabc7"
+        },
+        "device": "cuda:0",
+        "allocated_mib": 8490.62890625,
+        "reserved_mib": 8800.0,
+        "tokens": 32,
+        "ok": true,
+        "status": "not_done",
+        "done": false,
+        "reason": "The cream cheese box is not yet in the basket and the robot's arm is not visibly holding it.",
+        "live_checker_sha256": "c8757dbe355e8d7c957ecb1cda204b00631954e0aef5a57bda7e65653623fb34"
+      },
+      "wrist_image": "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_wrist/task01_target0_init00/positive_visual/images/wrist_0160.png",
+      "seconds": 0.5883798249997199
+    },
+    {
+      "kind": "check",
+      "step": 170,
+      "decision": {
+        "done": false,
+        "streak": 0,
+        "stop": false
+      },
+      "images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_wrist/task01_target0_init00/positive_visual/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_wrist/task01_target0_init00/positive_visual/images/current_0170.png"
+      ],
+      "sent_images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_wrist/task01_target0_init00/positive_visual/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_wrist/task01_target0_init00/positive_visual/images/current_0170.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_wrist/task01_target0_init00/positive_visual/images/wrist_0170.png"
+      ],
+      "reply": {
+        "raw": "{\"status\":\"not_done\", \"reason\":\"The cream cheese box is still on the table and not yet in the basket.\"}",
+        "seconds": 0.4808706969997729,
+        "inference": {
+          "model": "Qwen/Qwen3-VL-4B-Instruct",
+          "revision": "ebb281ec70b05090aa6165b016eac8ec08e71b17",
+          "prompt": "Check this single robot subgoal: \"pick up the cream cheese box and place it in the basket\".\nImage 1 is the third-person view when the subgoal started. Image 2 is the current third-person view. Image 3 is a current auxiliary view; it may repeat image 2.\nUse the views together to identify the TARGET and its DESTINATION. A placement is done only when the target is visibly at the destination and released from the gripper. Do not infer completion merely because the target disappeared from its starting position. If destination, identity or release cannot be established from the images, choose unknown. Do not treat another object at the destination as the target.\nReturn only JSON: {\"status\":\"done\" or \"not_done\" or \"unknown\", \"reason\":\"one short sentence\"}.",
+          "prompt_sha256": "0b546497ffa952458d5e06b9994f92cae1d1da4c6f4fa524a41cdc2fdb882cd6",
+          "engine_sha256": "6c14802fbe468fa57e2ad48b25fc02c9a100d82d9aafdbf8d11224e969b699fb",
+          "generation": {
+            "max_new_tokens": 128,
+            "do_sample": false
+          },
+          "images": [
+            {
+              "size": [
+                512,
+                512
+              ],
+              "mode": "RGB",
+              "pixel_sha256": "cedb1fa62dafec3f0e29f7a0fd59aa26a91828f15ba822305d20c0d582451384"
+            },
+            {
+              "size": [
+                512,
+                512
+              ],
+              "mode": "RGB",
+              "pixel_sha256": "b10c0581f11b6eed301b28735e737ae9792e932d6d1f3135e14cddb1c91ff1d7"
+            },
+            {
+              "size": [
+                512,
+                512
+              ],
+              "mode": "RGB",
+              "pixel_sha256": "a7fe26ff527ec5ecc6c729e331b28f44d6a0c6623b3f1aebef876b542946d394"
+            }
+          ],
+          "libraries": {
+            "torch": "2.7.1",
+            "transformers": "4.57.6"
+          },
+          "planner_sha256": "87ea0a00e0a662d034cfc200b326cd569ecd2f32f57fe6681851fefdd47aabc7"
+        },
+        "device": "cuda:0",
+        "allocated_mib": 8490.62890625,
+        "reserved_mib": 8800.0,
+        "tokens": 27,
+        "ok": true,
+        "status": "not_done",
+        "done": false,
+        "reason": "The cream cheese box is still on the table and not yet in the basket.",
+        "live_checker_sha256": "c8757dbe355e8d7c957ecb1cda204b00631954e0aef5a57bda7e65653623fb34"
+      },
+      "wrist_image": "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_wrist/task01_target0_init00/positive_visual/images/wrist_0170.png",
+      "seconds": 0.5287523759980104
+    },
+    {
+      "kind": "check",
+      "step": 180,
+      "decision": {
+        "done": false,
+        "streak": 0,
+        "stop": false
+      },
+      "images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_wrist/task01_target0_init00/positive_visual/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_wrist/task01_target0_init00/positive_visual/images/current_0180.png"
+      ],
+      "sent_images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_wrist/task01_target0_init00/positive_visual/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_wrist/task01_target0_init00/positive_visual/images/current_0180.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_wrist/task01_target0_init00/positive_visual/images/wrist_0180.png"
+      ],
+      "reply": {
+        "raw": "{\"status\":\"not_done\", \"reason\":\"The cream cheese box is still on the table and not yet in the basket.\"}",
+        "seconds": 0.46879746500053443,
+        "inference": {
+          "model": "Qwen/Qwen3-VL-4B-Instruct",
+          "revision": "ebb281ec70b05090aa6165b016eac8ec08e71b17",
+          "prompt": "Check this single robot subgoal: \"pick up the cream cheese box and place it in the basket\".\nImage 1 is the third-person view when the subgoal started. Image 2 is the current third-person view. Image 3 is a current auxiliary view; it may repeat image 2.\nUse the views together to identify the TARGET and its DESTINATION. A placement is done only when the target is visibly at the destination and released from the gripper. Do not infer completion merely because the target disappeared from its starting position. If destination, identity or release cannot be established from the images, choose unknown. Do not treat another object at the destination as the target.\nReturn only JSON: {\"status\":\"done\" or \"not_done\" or \"unknown\", \"reason\":\"one short sentence\"}.",
+          "prompt_sha256": "0b546497ffa952458d5e06b9994f92cae1d1da4c6f4fa524a41cdc2fdb882cd6",
+          "engine_sha256": "6c14802fbe468fa57e2ad48b25fc02c9a100d82d9aafdbf8d11224e969b699fb",
+          "generation": {
+            "max_new_tokens": 128,
+            "do_sample": false
+          },
+          "images": [
+            {
+              "size": [
+                512,
+                512
+              ],
+              "mode": "RGB",
+              "pixel_sha256": "cedb1fa62dafec3f0e29f7a0fd59aa26a91828f15ba822305d20c0d582451384"
+            },
+            {
+              "size": [
+                512,
+                512
+              ],
+              "mode": "RGB",
+              "pixel_sha256": "9bff2c121f7ca31e0ac8216b907dae087286ef5515dd280af66f2d3c107386ed"
+            },
+            {
+              "size": [
+                512,
+                512
+              ],
+              "mode": "RGB",
+              "pixel_sha256": "b29fac882aee1b6f3ae1dcc752a269a4918402b34c93b2a4200f0819574b84a7"
+            }
+          ],
+          "libraries": {
+            "torch": "2.7.1",
+            "transformers": "4.57.6"
+          },
+          "planner_sha256": "87ea0a00e0a662d034cfc200b326cd569ecd2f32f57fe6681851fefdd47aabc7"
+        },
+        "device": "cuda:0",
+        "allocated_mib": 8490.62890625,
+        "reserved_mib": 8800.0,
+        "tokens": 27,
+        "ok": true,
+        "status": "not_done",
+        "done": false,
+        "reason": "The cream cheese box is still on the table and not yet in the basket.",
+        "live_checker_sha256": "c8757dbe355e8d7c957ecb1cda204b00631954e0aef5a57bda7e65653623fb34"
+      },
+      "wrist_image": "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_wrist/task01_target0_init00/positive_visual/images/wrist_0180.png",
+      "seconds": 0.5164073100022506
+    },
+    {
+      "kind": "check",
+      "step": 190,
+      "decision": {
+        "done": false,
+        "streak": 0,
+        "stop": false
+      },
+      "images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_wrist/task01_target0_init00/positive_visual/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_wrist/task01_target0_init00/positive_visual/images/current_0190.png"
+      ],
+      "sent_images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_wrist/task01_target0_init00/positive_visual/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_wrist/task01_target0_init00/positive_visual/images/current_0190.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_wrist/task01_target0_init00/positive_visual/images/wrist_0190.png"
+      ],
+      "reply": {
+        "raw": "{\"status\":\"not_done\", \"reason\":\"The cream cheese box is not yet in the basket and the robot has not released it.\"}",
+        "seconds": 0.4962829649957712,
+        "inference": {
+          "model": "Qwen/Qwen3-VL-4B-Instruct",
+          "revision": "ebb281ec70b05090aa6165b016eac8ec08e71b17",
+          "prompt": "Check this single robot subgoal: \"pick up the cream cheese box and place it in the basket\".\nImage 1 is the third-person view when the subgoal started. Image 2 is the current third-person view. Image 3 is a current auxiliary view; it may repeat image 2.\nUse the views together to identify the TARGET and its DESTINATION. A placement is done only when the target is visibly at the destination and released from the gripper. Do not infer completion merely because the target disappeared from its starting position. If destination, identity or release cannot be established from the images, choose unknown. Do not treat another object at the destination as the target.\nReturn only JSON: {\"status\":\"done\" or \"not_done\" or \"unknown\", \"reason\":\"one short sentence\"}.",
+          "prompt_sha256": "0b546497ffa952458d5e06b9994f92cae1d1da4c6f4fa524a41cdc2fdb882cd6",
+          "engine_sha256": "6c14802fbe468fa57e2ad48b25fc02c9a100d82d9aafdbf8d11224e969b699fb",
+          "generation": {
+            "max_new_tokens": 128,
+            "do_sample": false
+          },
+          "images": [
+            {
+              "size": [
+                512,
+                512
+              ],
+              "mode": "RGB",
+              "pixel_sha256": "cedb1fa62dafec3f0e29f7a0fd59aa26a91828f15ba822305d20c0d582451384"
+            },
+            {
+              "size": [
+                512,
+                512
+              ],
+              "mode": "RGB",
+              "pixel_sha256": "1c346664ab2480607f770c5474ec5eb04dc1103c9e7ed889e86bb2be7f3d6df5"
+            },
+            {
+              "size": [
+                512,
+                512
+              ],
+              "mode": "RGB",
+              "pixel_sha256": "ef11976a5829c058defcf6840f4d269d44a801a76b15b1ff62a7278c8c434d05"
+            }
+          ],
+          "libraries": {
+            "torch": "2.7.1",
+            "transformers": "4.57.6"
+          },
+          "planner_sha256": "87ea0a00e0a662d034cfc200b326cd569ecd2f32f57fe6681851fefdd47aabc7"
+        },
+        "device": "cuda:0",
+        "allocated_mib": 8490.62890625,
+        "reserved_mib": 8800.0,
+        "tokens": 29,
+        "ok": true,
+        "status": "not_done",
+        "done": false,
+        "reason": "The cream cheese box is not yet in the basket and the robot has not released it.",
+        "live_checker_sha256": "c8757dbe355e8d7c957ecb1cda204b00631954e0aef5a57bda7e65653623fb34"
+      },
+      "wrist_image": "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_wrist/task01_target0_init00/positive_visual/images/wrist_0190.png",
+      "seconds": 0.5434293020007317
+    },
+    {
+      "kind": "check",
+      "step": 260,
+      "decision": {
+        "done": false,
+        "streak": 0,
+        "stop": false
+      },
+      "images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_wrist/task01_target0_init00/positive_visual/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_wrist/task01_target0_init00/positive_visual/images/current_0260.png"
+      ],
+      "sent_images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_wrist/task01_target0_init00/positive_visual/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_wrist/task01_target0_init00/positive_visual/images/current_0260.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_wrist/task01_target0_init00/positive_visual/images/wrist_0260.png"
+      ],
+      "reply": {
+        "raw": "{\"status\":\"not_done\", \"reason\":\"The cream cheese box is not yet in the basket and the robot's arm is not visibly holding it.\"}",
+        "seconds": 0.5461907150020124,
+        "inference": {
+          "model": "Qwen/Qwen3-VL-4B-Instruct",
+          "revision": "ebb281ec70b05090aa6165b016eac8ec08e71b17",
+          "prompt": "Check this single robot subgoal: \"pick up the cream cheese box and place it in the basket\".\nImage 1 is the third-person view when the subgoal started. Image 2 is the current third-person view. Image 3 is a current auxiliary view; it may repeat image 2.\nUse the views together to identify the TARGET and its DESTINATION. A placement is done only when the target is visibly at the destination and released from the gripper. Do not infer completion merely because the target disappeared from its starting position. If destination, identity or release cannot be established from the images, choose unknown. Do not treat another object at the destination as the target.\nReturn only JSON: {\"status\":\"done\" or \"not_done\" or \"unknown\", \"reason\":\"one short sentence\"}.",
+          "prompt_sha256": "0b546497ffa952458d5e06b9994f92cae1d1da4c6f4fa524a41cdc2fdb882cd6",
+          "engine_sha256": "6c14802fbe468fa57e2ad48b25fc02c9a100d82d9aafdbf8d11224e969b699fb",
+          "generation": {
+            "max_new_tokens": 128,
+            "do_sample": false
+          },
+          "images": [
+            {
+              "size": [
+                512,
+                512
+              ],
+              "mode": "RGB",
+              "pixel_sha256": "cedb1fa62dafec3f0e29f7a0fd59aa26a91828f15ba822305d20c0d582451384"
+            },
+            {
+              "size": [
+                512,
+                512
+              ],
+              "mode": "RGB",
+              "pixel_sha256": "fe3aee2118f46307328302a22bbe1c3246031c43697874d5cfcb5ae12c8d9e48"
+            },
+            {
+              "size": [
+                512,
+                512
+              ],
+              "mode": "RGB",
+              "pixel_sha256": "012765b01c765305f08f9229ebb558b02c484b0c85e96a08e9eab7dd6d034507"
+            }
+          ],
+          "libraries": {
+            "torch": "2.7.1",
+            "transformers": "4.57.6"
+          },
+          "planner_sha256": "87ea0a00e0a662d034cfc200b326cd569ecd2f32f57fe6681851fefdd47aabc7"
+        },
+        "device": "cuda:0",
+        "allocated_mib": 8490.62890625,
+        "reserved_mib": 8800.0,
+        "tokens": 32,
+        "ok": true,
+        "status": "not_done",
+        "done": false,
+        "reason": "The cream cheese box is not yet in the basket and the robot's arm is not visibly holding it.",
+        "live_checker_sha256": "c8757dbe355e8d7c957ecb1cda204b00631954e0aef5a57bda7e65653623fb34"
+      },
+      "wrist_image": "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_wrist/task01_target0_init00/positive_visual/images/wrist_0260.png",
+      "seconds": 0.5936206830010633
+    },
+    {
+      "kind": "check",
+      "step": 270,
+      "decision": {
+        "done": false,
+        "streak": 0,
+        "stop": false
+      },
+      "images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_wrist/task01_target0_init00/positive_visual/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_wrist/task01_target0_init00/positive_visual/images/current_0270.png"
+      ],
+      "sent_images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_wrist/task01_target0_init00/positive_visual/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_wrist/task01_target0_init00/positive_visual/images/current_0270.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_wrist/task01_target0_init00/positive_visual/images/wrist_0270.png"
+      ],
+      "reply": {
+        "raw": "{\"status\":\"not_done\", \"reason\":\"The cream cheese box is not yet in the basket and the robot's arm is not visibly holding it.\"}",
+        "seconds": 0.5440696770019713,
+        "inference": {
+          "model": "Qwen/Qwen3-VL-4B-Instruct",
+          "revision": "ebb281ec70b05090aa6165b016eac8ec08e71b17",
+          "prompt": "Check this single robot subgoal: \"pick up the cream cheese box and place it in the basket\".\nImage 1 is the third-person view when the subgoal started. Image 2 is the current third-person view. Image 3 is a current auxiliary view; it may repeat image 2.\nUse the views together to identify the TARGET and its DESTINATION. A placement is done only when the target is visibly at the destination and released from the gripper. Do not infer completion merely because the target disappeared from its starting position. If destination, identity or release cannot be established from the images, choose unknown. Do not treat another object at the destination as the target.\nReturn only JSON: {\"status\":\"done\" or \"not_done\" or \"unknown\", \"reason\":\"one short sentence\"}.",
+          "prompt_sha256": "0b546497ffa952458d5e06b9994f92cae1d1da4c6f4fa524a41cdc2fdb882cd6",
+          "engine_sha256": "6c14802fbe468fa57e2ad48b25fc02c9a100d82d9aafdbf8d11224e969b699fb",
+          "generation": {
+            "max_new_tokens": 128,
+            "do_sample": false
+          },
+          "images": [
+            {
+              "size": [
+                512,
+                512
+              ],
+              "mode": "RGB",
+              "pixel_sha256": "cedb1fa62dafec3f0e29f7a0fd59aa26a91828f15ba822305d20c0d582451384"
+            },
+            {
+              "size": [
+                512,
+                512
+              ],
+              "mode": "RGB",
+              "pixel_sha256": "819d64e168b306e45a8a8404de66d272bb6f70e9eee888e63cbc713041896bc6"
+            },
+            {
+              "size": [
+                512,
+                512
+              ],
+              "mode": "RGB",
+              "pixel_sha256": "7f93685bcc6c8c7d7186394f9b3b2a525fb640d0fb48eb5848c97ad76fdd9dd8"
+            }
+          ],
+          "libraries": {
+            "torch": "2.7.1",
+            "transformers": "4.57.6"
+          },
+          "planner_sha256": "87ea0a00e0a662d034cfc200b326cd569ecd2f32f57fe6681851fefdd47aabc7"
+        },
+        "device": "cuda:0",
+        "allocated_mib": 8490.62890625,
+        "reserved_mib": 8800.0,
+        "tokens": 32,
+        "ok": true,
+        "status": "not_done",
+        "done": false,
+        "reason": "The cream cheese box is not yet in the basket and the robot's arm is not visibly holding it.",
+        "live_checker_sha256": "c8757dbe355e8d7c957ecb1cda204b00631954e0aef5a57bda7e65653623fb34"
+      },
+      "wrist_image": "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_wrist/task01_target0_init00/positive_visual/images/wrist_0270.png",
+      "seconds": 0.592649102996802
+    },
+    {
+      "kind": "check",
+      "step": 280,
+      "decision": {
+        "done": false,
+        "streak": 0,
+        "stop": false
+      },
+      "images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_wrist/task01_target0_init00/positive_visual/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_wrist/task01_target0_init00/positive_visual/images/current_0280.png"
+      ],
+      "sent_images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_wrist/task01_target0_init00/positive_visual/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_wrist/task01_target0_init00/positive_visual/images/current_0280.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_wrist/task01_target0_init00/positive_visual/images/wrist_0280.png"
+      ],
+      "reply": {
+        "raw": "{\"status\":\"not_done\", \"reason\":\"The cream cheese box is not yet in the basket and the robot has not released it.\"}",
+        "seconds": 0.4958393779961625,
+        "inference": {
+          "model": "Qwen/Qwen3-VL-4B-Instruct",
+          "revision": "ebb281ec70b05090aa6165b016eac8ec08e71b17",
+          "prompt": "Check this single robot subgoal: \"pick up the cream cheese box and place it in the basket\".\nImage 1 is the third-person view when the subgoal started. Image 2 is the current third-person view. Image 3 is a current auxiliary view; it may repeat image 2.\nUse the views together to identify the TARGET and its DESTINATION. A placement is done only when the target is visibly at the destination and released from the gripper. Do not infer completion merely because the target disappeared from its starting position. If destination, identity or release cannot be established from the images, choose unknown. Do not treat another object at the destination as the target.\nReturn only JSON: {\"status\":\"done\" or \"not_done\" or \"unknown\", \"reason\":\"one short sentence\"}.",
+          "prompt_sha256": "0b546497ffa952458d5e06b9994f92cae1d1da4c6f4fa524a41cdc2fdb882cd6",
+          "engine_sha256": "6c14802fbe468fa57e2ad48b25fc02c9a100d82d9aafdbf8d11224e969b699fb",
+          "generation": {
+            "max_new_tokens": 128,
+            "do_sample": false
+          },
+          "images": [
+            {
+              "size": [
+                512,
+                512
+              ],
+              "mode": "RGB",
+              "pixel_sha256": "cedb1fa62dafec3f0e29f7a0fd59aa26a91828f15ba822305d20c0d582451384"
+            },
+            {
+              "size": [
+                512,
+                512
+              ],
+              "mode": "RGB",
+              "pixel_sha256": "52b61c7b480c453b993453600dfbb686d789419646560b60ec2f3363f6906862"
+            },
+            {
+              "size": [
+                512,
+                512
+              ],
+              "mode": "RGB",
+              "pixel_sha256": "f13c8ccb24fa1f2a337262d834f3159da7fc45ad516a928836ecd5757f6a26bf"
+            }
+          ],
+          "libraries": {
+            "torch": "2.7.1",
+            "transformers": "4.57.6"
+          },
+          "planner_sha256": "87ea0a00e0a662d034cfc200b326cd569ecd2f32f57fe6681851fefdd47aabc7"
+        },
+        "device": "cuda:0",
+        "allocated_mib": 8490.62890625,
+        "reserved_mib": 8800.0,
+        "tokens": 29,
+        "ok": true,
+        "status": "not_done",
+        "done": false,
+        "reason": "The cream cheese box is not yet in the basket and the robot has not released it.",
+        "live_checker_sha256": "c8757dbe355e8d7c957ecb1cda204b00631954e0aef5a57bda7e65653623fb34"
+      },
+      "wrist_image": "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_wrist/task01_target0_init00/positive_visual/images/wrist_0280.png",
+      "seconds": 0.545404172000417
+    },
+    {
+      "kind": "check",
+      "step": 290,
+      "decision": {
+        "done": false,
+        "streak": 0,
+        "stop": false
+      },
+      "images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_wrist/task01_target0_init00/positive_visual/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_wrist/task01_target0_init00/positive_visual/images/current_0290.png"
+      ],
+      "sent_images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_wrist/task01_target0_init00/positive_visual/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_wrist/task01_target0_init00/positive_visual/images/current_0290.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_wrist/task01_target0_init00/positive_visual/images/wrist_0290.png"
+      ],
+      "reply": {
+        "raw": "{\"status\":\"not_done\", \"reason\":\"The cream cheese box is not yet in the basket and the robot has not released it.\"}",
+        "seconds": 0.49581358399882447,
+        "inference": {
+          "model": "Qwen/Qwen3-VL-4B-Instruct",
+          "revision": "ebb281ec70b05090aa6165b016eac8ec08e71b17",
+          "prompt": "Check this single robot subgoal: \"pick up the cream cheese box and place it in the basket\".\nImage 1 is the third-person view when the subgoal started. Image 2 is the current third-person view. Image 3 is a current auxiliary view; it may repeat image 2.\nUse the views together to identify the TARGET and its DESTINATION. A placement is done only when the target is visibly at the destination and released from the gripper. Do not infer completion merely because the target disappeared from its starting position. If destination, identity or release cannot be established from the images, choose unknown. Do not treat another object at the destination as the target.\nReturn only JSON: {\"status\":\"done\" or \"not_done\" or \"unknown\", \"reason\":\"one short sentence\"}.",
+          "prompt_sha256": "0b546497ffa952458d5e06b9994f92cae1d1da4c6f4fa524a41cdc2fdb882cd6",
+          "engine_sha256": "6c14802fbe468fa57e2ad48b25fc02c9a100d82d9aafdbf8d11224e969b699fb",
+          "generation": {
+            "max_new_tokens": 128,
+            "do_sample": false
+          },
+          "images": [
+            {
+              "size": [
+                512,
+                512
+              ],
+              "mode": "RGB",
+              "pixel_sha256": "cedb1fa62dafec3f0e29f7a0fd59aa26a91828f15ba822305d20c0d582451384"
+            },
+            {
+              "size": [
+                512,
+                512
+              ],
+              "mode": "RGB",
+              "pixel_sha256": "2b421685704abd24f584389b5ea7aa813636573d0cc233821eef14718b3d23b3"
+            },
+            {
+              "size": [
+                512,
+                512
+              ],
+              "mode": "RGB",
+              "pixel_sha256": "00ca5b416b5b1aaf156dca4dfdd9ca938bb4604dd0d02a9248ff0e7ed846b02d"
+            }
+          ],
+          "libraries": {
+            "torch": "2.7.1",
+            "transformers": "4.57.6"
+          },
+          "planner_sha256": "87ea0a00e0a662d034cfc200b326cd569ecd2f32f57fe6681851fefdd47aabc7"
+        },
+        "device": "cuda:0",
+        "allocated_mib": 8490.62890625,
+        "reserved_mib": 8800.0,
+        "tokens": 29,
+        "ok": true,
+        "status": "not_done",
+        "done": false,
+        "reason": "The cream cheese box is not yet in the basket and the robot has not released it.",
+        "live_checker_sha256": "c8757dbe355e8d7c957ecb1cda204b00631954e0aef5a57bda7e65653623fb34"
+      },
+      "wrist_image": "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_wrist/task01_target0_init00/positive_visual/images/wrist_0290.png",
+      "seconds": 0.5439563649997581
+    },
+    {
+      "kind": "stop",
+      "step": 300,
+      "reason": "budget"
+    }
+  ],
+  "policy_queries": 60,
+  "model_checks": 15,
+  "control_truth_inputs": false,
+  "original_done_used_for_stopping": false,
+  "monitor_scheme": "wrist",
+  "initial_state_sha256": "5abdf8f466f490901dee9f931b32eb181b2928eaa17bb6379742f988581d564a",
+  "settled_state_sha256": "b11f72fac2b3e871efe3317925d09e9d5261be1d4a6edf7e2f40ea9f9bf8463f",
+  "goal_atoms": [
+    [
+      "in",
+      "cream_cheese_1",
+      "basket_1_contain_region"
+    ],
+    [
+      "in",
+      "butter_1",
+      "basket_1_contain_region"
+    ]
+  ],
+  "initial_object_positions": [
+    [
+      0.09910931425692633,
+      -0.18146601062546336,
+      0.44569592152000004
+    ],
+    [
+      0.0489602377124352,
+      0.05760379687259051,
+      0.44546992152000003
+    ]
+  ],
+  "plan": "plans/live/task01_target0_init00.json",
+  "plan_sha256": "534075cf75d168acde6b6eb9edc3339b82c8927b6d990e61bb95a45dadfa8455",
+  "selector_correct": true,
+  "selection": {
+    "raw": "{\"target\":\"cream_cheese_1\", \"protected\":\"butter_1\"}",
+    "seconds": 0.3057110730005661,
+    "inference": {
+      "model": "Qwen/Qwen3-VL-4B-Instruct",
+      "revision": "ebb281ec70b05090aa6165b016eac8ec08e71b17",
+      "prompt": "Inspect the image and the instruction. Select exactly one object to move into the basket, and the one explicitly required to remain untouched.\nKnown object IDs and English/Chinese names: [[\"cream_cheese_1\", \"cream cheese box\", \"奶油奶酪盒\"], [\"butter_1\", \"butter\", \"黄油\"]]\nInstruction: 只把奶油奶酪盒放进篮子里，黄油保持原位。放好后停止，不要继续搬其他物体。\nReturn only JSON: {\"target\":\"one known ID\", \"protected\":\"the other known ID\"}. Do not output coordinates or add another action.",
+      "prompt_sha256": "a07459c90dd80267d4c3040cf80c57761d16afd4eb1c231e2cb8d54ab388d6ad",
+      "engine_sha256": "6c14802fbe468fa57e2ad48b25fc02c9a100d82d9aafdbf8d11224e969b699fb",
+      "generation": {
+        "max_new_tokens": 96,
+        "do_sample": false
+      },
+      "images": [
+        {
+          "size": [
+            512,
+            512
+          ],
+          "mode": "RGB",
+          "pixel_sha256": "cedb1fa62dafec3f0e29f7a0fd59aa26a91828f15ba822305d20c0d582451384"
+        }
+      ],
+      "libraries": {
+        "torch": "2.7.1",
+        "transformers": "4.57.6"
+      },
+      "planner_sha256": "87ea0a00e0a662d034cfc200b326cd569ecd2f32f57fe6681851fefdd47aabc7"
+    },
+    "device": "cuda:0",
+    "allocated_mib": 8478.61669921875,
+    "reserved_mib": 8748.0,
+    "tokens": 18,
+    "ok": true,
+    "target": "cream_cheese_1",
+    "protected": "butter_1",
+    "worker_sha256": "eabf321de58b827bd022188cc7c8aba5596e77f0488acbadec7d1988af789f78"
+  },
+  "translation": {
+    "raw": "{\"instruction\": \"Put the cream cheese box in the basket, leave the butter in place, and stop.\"}",
+    "seconds": 0.38737808599398704,
+    "inference": {
+      "model": "Qwen/Qwen3-VL-4B-Instruct",
+      "revision": "ebb281ec70b05090aa6165b016eac8ec08e71b17",
+      "prompt": "Translate this robot task instruction into one short English imperative sentence, keeping every object and relation. Use the image only to name the objects correctly. Do not split it into steps.\nInstruction: 只把奶油奶酪盒放进篮子里，黄油保持原位。放好后停止，不要继续搬其他物体。\nReturn only JSON: {\"instruction\": \"English instruction\"}",
+      "prompt_sha256": "f1229777dbe68ef4c0659c222a32bf89a08b3f17062f14c6bbcaeaca48d2da89",
+      "engine_sha256": "6c14802fbe468fa57e2ad48b25fc02c9a100d82d9aafdbf8d11224e969b699fb",
+      "generation": {
+        "max_new_tokens": 64,
+        "do_sample": false
+      },
+      "images": [
+        {
+          "size": [
+            512,
+            512
+          ],
+          "mode": "RGB",
+          "pixel_sha256": "cedb1fa62dafec3f0e29f7a0fd59aa26a91828f15ba822305d20c0d582451384"
+        }
+      ],
+      "libraries": {
+        "torch": "2.7.1",
+        "transformers": "4.57.6"
+      },
+      "planner_sha256": "87ea0a00e0a662d034cfc200b326cd569ecd2f32f57fe6681851fefdd47aabc7"
+    },
+    "device": "cuda:0",
+    "allocated_mib": 8478.615234375,
+    "reserved_mib": 8748.0,
+    "tokens": 24,
+    "ok": true,
+    "subgoals": [
+      {
+        "instruction": "Put the cream cheese box in the basket, leave the butter in place, and stop.",
+        "completion_hint": ""
+      }
+    ]
+  },
+  "policy_instruction": "pick up the cream cheese box and place it in the basket",
+  "selected_target": "cream_cheese_1",
+  "timer_threshold": 150,
+  "prompt_family": "positive",
+  "stop_family": "visual",
+  "selective_success": false,
+  "target_final_stable": true,
+  "final_released": true,
+  "target_ever_reached": true,
+  "protected_untouched": false,
+  "max_protected_displacement_m": 0.2868908891615502,
+  "first_valid_step": 152,
+  "first_violation_step": 200,
+  "self_stop_success": false,
+  "premature_stop": false,
+  "decision_step": 300,
+  "stop_reason": "budget",
+  "wall_seconds": 31.126285379003093,
+  "original_success_observed": true,
+  "policy_steps_after_original_success": 45,
+  "success": false
+}

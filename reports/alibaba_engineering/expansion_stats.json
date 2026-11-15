@@ -1,0 +1,170 @@
+{
+  "s01": {
+    "source_pieces": 1,
+    "source_characters": 1234,
+    "tables": 2,
+    "figures": 0,
+    "videos": 0
+  },
+  "s02": {
+    "source_pieces": 1,
+    "source_characters": 767,
+    "tables": 0,
+    "figures": 1,
+    "videos": 0
+  },
+  "s03": {
+    "source_pieces": 1,
+    "source_characters": 2607,
+    "tables": 3,
+    "figures": 5,
+    "videos": 0
+  },
+  "s04": {
+    "source_pieces": 1,
+    "source_characters": 4350,
+    "tables": 4,
+    "figures": 6,
+    "videos": 0
+  },
+  "s05": {
+    "source_pieces": 3,
+    "source_characters": 5967,
+    "tables": 10,
+    "figures": 9,
+    "videos": 1
+  },
+  "s06": {
+    "source_pieces": 4,
+    "source_characters": 6007,
+    "tables": 5,
+    "figures": 2,
+    "videos": 0
+  },
+  "s07": {
+    "source_pieces": 4,
+    "source_characters": 3280,
+    "tables": 3,
+    "figures": 3,
+    "videos": 0
+  },
+  "s08": {
+    "source_pieces": 2,
+    "source_characters": 5377,
+    "tables": 7,
+    "figures": 5,
+    "videos": 0
+  },
+  "s09": {
+    "source_pieces": 2,
+    "source_characters": 2616,
+    "tables": 3,
+    "figures": 1,
+    "videos": 1
+  },
+  "s10": {
+    "source_pieces": 2,
+    "source_characters": 7109,
+    "tables": 6,
+    "figures": 3,
+    "videos": 0
+  },
+  "s11": {
+    "source_pieces": 3,
+    "source_characters": 5143,
+    "tables": 5,
+    "figures": 2,
+    "videos": 0
+  },
+  "s12": {
+    "source_pieces": 3,
+    "source_characters": 8164,
+    "tables": 10,
+    "figures": 4,
+    "videos": 0
+  },
+  "s13": {
+    "source_pieces": 3,
+    "source_characters": 9114,
+    "tables": 12,
+    "figures": 5,
+    "videos": 0
+  },
+  "s14": {
+    "source_pieces": 5,
+    "source_characters": 10984,
+    "tables": 10,
+    "figures": 9,
+    "videos": 0
+  },
+  "s15": {
+    "source_pieces": 2,
+    "source_characters": 1749,
+    "tables": 1,
+    "figures": 1,
+    "videos": 1
+  },
+  "s16": {
+    "source_pieces": 1,
+    "source_characters": 1830,
+    "tables": 2,
+    "figures": 0,
+    "videos": 1
+  },
+  "s17": {
+    "source_pieces": 2,
+    "source_characters": 2050,
+    "tables": 2,
+    "figures": 1,
+    "videos": 0
+  },
+  "s18": {
+    "source_pieces": 4,
+    "source_characters": 4805,
+    "tables": 5,
+    "figures": 1,
+    "videos": 0
+  },
+  "s19": {
+    "source_pieces": 2,
+    "source_characters": 3084,
+    "tables": 2,
+    "figures": 1,
+    "videos": 0
+  },
+  "s20": {
+    "source_pieces": 2,
+    "source_characters": 1743,
+    "tables": 1,
+    "figures": 0,
+    "videos": 1
+  },
+  "s21": {
+    "source_pieces": 1,
+    "source_characters": 2469,
+    "tables": 2,
+    "figures": 0,
+    "videos": 0
+  },
+  "s22": {
+    "source_pieces": 1,
+    "source_characters": 3126,
+    "tables": 1,
+    "figures": 1,
+    "videos": 0
+  },
+  "s23": {
+    "source_pieces": 1,
+    "source_characters": 465,
+    "tables": 1,
+    "figures": 0,
+    "videos": 1
+  },
+  "s24": {
+    "source_pieces": 2,
+    "source_characters": 2272,
+    "tables": 2,
+    "figures": 0,
+    "videos": 0
+  }
+}

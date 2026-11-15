@@ -1,0 +1,26 @@
+{
+  "cases": [
+    [
+      0,
+      "tf22524_i00",
+      82
+    ],
+    [
+      1,
+      "tf22524_i01",
+      83
+    ],
+    [
+      2,
+      "tf22524_i02",
+      84
+    ]
+  ],
+  "suite": "libero_10",
+  "task": 3,
+  "runtime": "official tf2/tf2_ros 0.25.24 scoped library overlay",
+  "goal": "same-world navigation, parked unfolding, official pi0.5 task completion",
+  "scope": "development regression, three public initial states; not population success estimate",
+  "localization": "known map and ideal simulator odometry",
+  "policy": "official pi05_libero, fixed English full-task instruction; Qwen modules not integrated yet"
+}

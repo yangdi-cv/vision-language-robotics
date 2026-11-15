@@ -1,0 +1,95 @@
+{
+  "paired_vision": [
+    {
+      "backend": "pytorch_fp32",
+      "n": 30,
+      "p50_ms": 87.9938029997902,
+      "p95_ms": 94.15125429984526,
+      "cuda_peak_allocated_bytes": 132061696,
+      "pytorch_parameter_dtypes": [
+        [
+          "torch.float32"
+        ],
+        [
+          "torch.float32"
+        ]
+      ]
+    },
+    {
+      "backend": "pytorch_fp16",
+      "n": 30,
+      "p50_ms": 83.54253599986805,
+      "p95_ms": 90.77037379975081,
+      "cuda_peak_allocated_bytes": 132061696,
+      "pytorch_parameter_dtypes": [
+        [
+          "torch.float16"
+        ],
+        [
+          "torch.float16"
+        ]
+      ]
+    },
+    {
+      "backend": "tensorrt_fp16",
+      "n": 30,
+      "p50_ms": 49.92941300019993,
+      "p95_ms": 50.6455853497755,
+      "cuda_peak_allocated_bytes": 132061696,
+      "pytorch_parameter_dtypes": null
+    }
+  ],
+  "steady_cycles": 60,
+  "adapter_correct": 20,
+  "adapter_trials": 20,
+  "act": {
+    "20261024": {
+      "selection": {
+        "l1": {
+          "selected_step": 10000,
+          "test_success": 41,
+          "test_trials": 48,
+          "test_l1": 0.02910104281532226
+        },
+        "rollout": {
+          "selected_step": 8000,
+          "test_success": 48,
+          "test_trials": 48,
+          "test_l1": 0.028936132060648413
+        }
+      },
+      "seconds": 722.5187472000002,
+      "equal_episode_lengths": true,
+      "test_used_for_selection": false
+    },
+    "20261025": {
+      "selection": {
+        "l1": {
+          "selected_step": 10000,
+          "test_success": 48,
+          "test_trials": 48,
+          "test_l1": 0.027421314478952647
+        },
+        "rollout": {
+          "selected_step": 10000,
+          "test_success": 48,
+          "test_trials": 48,
+          "test_l1": 0.027421314478952647
+        }
+      },
+      "seconds": 706.428338875,
+      "equal_episode_lengths": true,
+      "test_used_for_selection": false
+    }
+  },
+  "bridge": {
+    "positive_cases": 12,
+    "positive_successes": 10,
+    "negative_cases": 8,
+    "negative_executions": 0,
+    "source": "saved actual Jetson 4B NF4+LoRA predictions; PC ACT simulation",
+    "clock": "offline staged handoff; not live network latency; simulator initialized after inference",
+    "same_initial_rgb_verified": true,
+    "robot_commands_sent": 0
+  }
+}

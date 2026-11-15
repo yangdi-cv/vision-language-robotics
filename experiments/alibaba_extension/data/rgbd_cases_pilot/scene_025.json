@@ -1,0 +1,19 @@
+{
+  "scene": 25,
+  "seed": 4025,
+  "color": "blue",
+  "cube_half_size_m": 0.025,
+  "bbox_xyxy_pixels": [
+    248,
+    225,
+    280,
+    255
+  ],
+  "visible_pixels": 515,
+  "target_depth_m": 0.7294471263885498,
+  "camera_pos": [
+    0.0732245021720138,
+    0.6654098926286686,
+    0.8
+  ]
+}

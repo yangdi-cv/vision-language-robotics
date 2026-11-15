@@ -1,0 +1,8 @@
+{
+  "stage": "reading_chunks",
+  "arrays": 51,
+  "latest": "time_mlp_out/kernel",
+  "seconds": 22.763500862,
+  "max_source_chunk_bytes": 603979776,
+  "max_output_chunk_bytes": 301989888
+}

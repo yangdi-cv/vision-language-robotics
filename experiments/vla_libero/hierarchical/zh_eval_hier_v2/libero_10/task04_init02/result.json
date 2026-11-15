@@ -1,0 +1,189 @@
+{
+  "suite": "libero_10",
+  "task_id": 4,
+  "initial_state_id": 2,
+  "original_task_language": "put the white mug on the left plate and put the yellow and white mug on the right plate",
+  "input_instruction": "把白色马克杯放到左边的盘子上，再把黄白相间的马克杯放到右边的盘子上",
+  "planner": "qwen",
+  "monitor": "qwen",
+  "max_steps": 520,
+  "subgoal_step_budget": 300,
+  "monitor_every_queries": 4,
+  "monitor_res": 512,
+  "gripper_gate": true,
+  "confirm": 2,
+  "last_subgoal_runs_to_limit": true,
+  "noise_seed": 730402,
+  "runner_sha256": "05d5d8308e3282e683448fad8ccb2b1bff0dcbb4f27f9d8a497c867e7382ae7e",
+  "events": [
+    {
+      "kind": "plan",
+      "step": 0,
+      "ok": true,
+      "seconds": 0.7958444880005118,
+      "raw": "{\n  \"subgoals\": [\n    {\n      \"instruction\": \"put the white mug on the left plate\"\n    },\n    {\n      \"instruction\": \"put the yellow and white mug on the right plate\"\n    }\n  ]\n}",
+      "error": null
+    },
+    {
+      "kind": "subgoal_start",
+      "step": 0,
+      "index": 0,
+      "subgoal": "put the white mug on the left plate"
+    },
+    {
+      "kind": "check",
+      "step": 20,
+      "index": 0,
+      "done": false,
+      "confirmed": false,
+      "seconds": 0.33178860999942117,
+      "reason": "No change detected.",
+      "error": null,
+      "shadow_long_task_atoms": [
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 100,
+      "index": 0,
+      "done": false,
+      "confirmed": false,
+      "seconds": 0.5933930760002113,
+      "reason": "The white mug is now on the right plate, which was not the case in image 1.",
+      "error": null,
+      "shadow_long_task_atoms": [
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 120,
+      "index": 0,
+      "done": false,
+      "confirmed": false,
+      "seconds": 0.5934889899999689,
+      "reason": "The white mug is now on the right plate, which was not the case in image 1.",
+      "error": null,
+      "shadow_long_task_atoms": [
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 140,
+      "index": 0,
+      "done": false,
+      "confirmed": false,
+      "seconds": 0.5772323689998302,
+      "reason": "The white mug is now on the right plate, which was not the case in image 1.",
+      "error": null,
+      "shadow_long_task_atoms": [
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 160,
+      "index": 0,
+      "done": true,
+      "confirmed": false,
+      "seconds": 0.5537887459995545,
+      "reason": "The white mug is now on the left plate, which was empty in image 1.",
+      "error": null,
+      "shadow_long_task_atoms": [
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 180,
+      "index": 0,
+      "done": false,
+      "confirmed": false,
+      "seconds": 0.5680086730008043,
+      "reason": "The white mug is now on the right plate, which was not the case in image 1.",
+      "error": null,
+      "shadow_long_task_atoms": [
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 260,
+      "index": 0,
+      "done": false,
+      "confirmed": false,
+      "seconds": 0.599403281999912,
+      "reason": "The white mug is now on the right plate, which was not the case in image 1.",
+      "error": null,
+      "shadow_long_task_atoms": [
+        false,
+        true
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 280,
+      "index": 0,
+      "done": false,
+      "confirmed": false,
+      "seconds": 0.5690468829998281,
+      "reason": "The white mug is now on the right plate, which was not the case in image 1.",
+      "error": null,
+      "shadow_long_task_atoms": [
+        false,
+        true
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 300,
+      "index": 0,
+      "done": false,
+      "confirmed": false,
+      "seconds": 0.5667615990005288,
+      "reason": "The white mug is now on the right plate, which was not the case in image 1.",
+      "error": null,
+      "shadow_long_task_atoms": [
+        false,
+        true
+      ]
+    },
+    {
+      "kind": "subgoal_end",
+      "step": 300,
+      "index": 0,
+      "reason": "budget",
+      "long_task_atoms": [
+        false,
+        true
+      ]
+    },
+    {
+      "kind": "subgoal_start",
+      "step": 300,
+      "index": 1,
+      "subgoal": "put the yellow and white mug on the right plate"
+    }
+  ],
+  "status": "timeout",
+  "success": false,
+  "subgoals": [
+    "put the white mug on the left plate",
+    "put the yellow and white mug on the right plate"
+  ],
+  "steps": 520,
+  "policy_queries": 104,
+  "qwen_checks": 9,
+  "final_atoms": [
+    false,
+    true
+  ]
+}

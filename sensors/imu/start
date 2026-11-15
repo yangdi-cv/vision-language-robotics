@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+set -euo pipefail
+PROJECT_ROOT="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/../.." && pwd)"
+imu_args=("$PROJECT_ROOT/SO101/code/scripts/ubuntu/project-python" "$PROJECT_ROOT/sensors/imu/server.py")
+printf -v imu_command '%q ' "${imu_args[@]}"
+exec sg dialout -c "exec $imu_command"

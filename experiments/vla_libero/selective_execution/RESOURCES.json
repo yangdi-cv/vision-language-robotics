@@ -1,0 +1,21 @@
+{
+  "checkpoint_manifest_sha256": "23acbc7bd05a140b06af096e271af51aef6f3b7d9a9dd10cba66dc38db042ac9",
+  "upstream_sources": {
+    "openpi": {
+      "repo": "Physical-Intelligence/openpi",
+      "revision": "215abfb217dbac7d5f1273282331b9b1866c0479"
+    },
+    "libero": {
+      "repo": "Lifelong-Robot-Learning/LIBERO",
+      "revision": "f78abd68ee283de9f9be3c8f7e2a9ad60246e95c",
+      "git_blobs_verified": 1116
+    },
+    "lerobot": {
+      "repo": "huggingface/lerobot",
+      "revision": "0cf864870cf29f4738d3ade893e6fd13fbd7cdb5"
+    }
+  },
+  "launcher": "experiments/vla_libero/scripts/python_shared",
+  "policy_python": "/home/yd/Documents/VLA/.venvs/openpi-libero/bin/python",
+  "qwen_python": "/home/yd/Documents/VLA/.venvs/qwen-scene/bin/python"
+}

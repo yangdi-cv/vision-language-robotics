@@ -1,0 +1,6 @@
+{
+  "source": "experiments/vla_libero/skill_bootstrap/resource_checks/memory_ali-vla-cag-dev-v2.service.jsonl",
+  "samples": 160,
+  "observed_rss_peak_gib": 5.781887054443359,
+  "observed_cgroup_peak_gib": 5.20654296875
+}

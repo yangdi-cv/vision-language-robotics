@@ -1,0 +1,419 @@
+{
+  "scope": "Mechanism diagnosis on previously studied Long initial states, not held-out policy improvement",
+  "modes": [
+    "live_base",
+    "frozen_base",
+    "timer150",
+    "live_lora",
+    "hold_first"
+  ],
+  "cases": [
+    [
+      0,
+      0
+    ],
+    [
+      0,
+      1
+    ],
+    [
+      0,
+      2
+    ],
+    [
+      1,
+      0
+    ],
+    [
+      1,
+      1
+    ],
+    [
+      1,
+      2
+    ],
+    [
+      2,
+      0
+    ],
+    [
+      2,
+      1
+    ],
+    [
+      2,
+      2
+    ],
+    [
+      3,
+      0
+    ],
+    [
+      3,
+      1
+    ],
+    [
+      3,
+      2
+    ],
+    [
+      4,
+      0
+    ],
+    [
+      4,
+      1
+    ],
+    [
+      4,
+      2
+    ],
+    [
+      5,
+      0
+    ],
+    [
+      5,
+      1
+    ],
+    [
+      5,
+      2
+    ],
+    [
+      6,
+      0
+    ],
+    [
+      6,
+      1
+    ],
+    [
+      6,
+      2
+    ],
+    [
+      7,
+      0
+    ],
+    [
+      7,
+      1
+    ],
+    [
+      7,
+      2
+    ],
+    [
+      8,
+      0
+    ],
+    [
+      8,
+      1
+    ],
+    [
+      8,
+      2
+    ],
+    [
+      9,
+      0
+    ],
+    [
+      9,
+      1
+    ],
+    [
+      9,
+      2
+    ]
+  ],
+  "plans": {
+    "00_00": {
+      "instruction": "把字母汤罐头和番茄沙司罐头都放进篮子里",
+      "plan": [
+        "pick up the alphabet soup can and place it in the basket",
+        "pick up the tomato sauce can and place it in the basket"
+      ],
+      "source_sha256": "993800e5ddcb9ead33df3bb6fbb1ef2f8a1f3ef40123458ad13fa52d5f375327"
+    },
+    "00_01": {
+      "instruction": "把字母汤罐头和番茄沙司罐头都放进篮子里",
+      "plan": [
+        "pick up the alphabet soup can and place it in the basket",
+        "pick up the tomato sauce bottle and place it in the basket"
+      ],
+      "source_sha256": "f1226421d469ddf215dbfaae0260186c017f49f80f8b9b34ac04f274bfa6fea4"
+    },
+    "00_02": {
+      "instruction": "把字母汤罐头和番茄沙司罐头都放进篮子里",
+      "plan": [
+        "pick up the alphabet soup can and place it in the basket",
+        "pick up the tomato sauce bottle and place it in the basket"
+      ],
+      "source_sha256": "e3685b3791fbe701b2f8bc85472e6e6eaee6594b618bbade1d5b1c167c03e7c9"
+    },
+    "01_00": {
+      "instruction": "把奶油奶酪盒和黄油都放进篮子里",
+      "plan": [
+        "pick up the cream cheese box and place it in the basket",
+        "pick up the butter and place it in the basket"
+      ],
+      "source_sha256": "f32f0aaeeb8714cf3ba16b08750fcf9168ee0efb9d02aba263ef6064092a5610"
+    },
+    "01_01": {
+      "instruction": "把奶油奶酪盒和黄油都放进篮子里",
+      "plan": [
+        "pick up the cream cheese box and place it in the basket",
+        "pick up the butter box and place it in the basket"
+      ],
+      "source_sha256": "17c58e4fa087c689f676e0d27aed541621216d08e82d87d4da211bf497883ce9"
+    },
+    "01_02": {
+      "instruction": "把奶油奶酪盒和黄油都放进篮子里",
+      "plan": [
+        "pick up the cream cheese box and place it in the basket",
+        "pick up the butter box and place it in the basket"
+      ],
+      "source_sha256": "6c398ff2b340266adb6d6c2249b91da16c2de3ed8b21fff52fdf527ce59d62d7"
+    },
+    "02_00": {
+      "instruction": "打开炉子，然后把摩卡壶放到炉子上",
+      "plan": [
+        "turn on the stove",
+        "put the moka pot on the stove"
+      ],
+      "source_sha256": "a635b410678c63258c515df5f609c3acd3f137489ceb6a6a52651c4232e42f50"
+    },
+    "02_01": {
+      "instruction": "打开炉子，然后把摩卡壶放到炉子上",
+      "plan": [
+        "turn on the stove",
+        "put the moka pot on the stove"
+      ],
+      "source_sha256": "8bf7451068c35d605b4a5242fd8e5f506d7869cdacd991c5122f78163ab5cc10"
+    },
+    "02_02": {
+      "instruction": "打开炉子，然后把摩卡壶放到炉子上",
+      "plan": [
+        "turn on the stove",
+        "put the moka pot on the stove"
+      ],
+      "source_sha256": "81ba0fb955fb4b85db4bd47bb7414c7769ac8bdbbcdee5fd36d2da9168affc47"
+    },
+    "03_00": {
+      "instruction": "把黑色的碗放进柜子最下面的抽屉，然后关上抽屉",
+      "plan": [
+        "put the black bowl in the bottom drawer of the cabinet",
+        "close the bottom drawer of the cabinet"
+      ],
+      "source_sha256": "45b45575cf59cc900d0309226e2f48a11200929048b858cad78a9926860ae720"
+    },
+    "03_01": {
+      "instruction": "把黑色的碗放进柜子最下面的抽屉，然后关上抽屉",
+      "plan": [
+        "put the black bowl in the bottom drawer of the cabinet",
+        "close the bottom drawer of the cabinet"
+      ],
+      "source_sha256": "98f3698ce34cf3296fad4337a7a6dcf7ac67b570dd6e117a7caf21fc0b493c96"
+    },
+    "03_02": {
+      "instruction": "把黑色的碗放进柜子最下面的抽屉，然后关上抽屉",
+      "plan": [
+        "put the black bowl in the bottom drawer of the cabinet",
+        "close the bottom drawer of the cabinet"
+      ],
+      "source_sha256": "e93a5a267345017dd121895a966c3a47196146e95d713f1fa62a002abe87fda7"
+    },
+    "04_00": {
+      "instruction": "把白色马克杯放到左边的盘子上，再把黄白相间的马克杯放到右边的盘子上",
+      "plan": [
+        "put the white textured mug on the left plate",
+        "put the yellow and white mug on the right plate"
+      ],
+      "source_sha256": "3748e60c5441e6fcc0e5111bb426d7e71306b45c70cdb28e573dcc7065aac619"
+    },
+    "04_01": {
+      "instruction": "把白色马克杯放到左边的盘子上，再把黄白相间的马克杯放到右边的盘子上",
+      "plan": [
+        "put the white mug on the left plate",
+        "put the yellow and white mug on the right plate"
+      ],
+      "source_sha256": "3d0c2eaf6dd858b3df1df7f002d82dce6210f058e1e467386e077e50332e3ae0"
+    },
+    "04_02": {
+      "instruction": "把白色马克杯放到左边的盘子上，再把黄白相间的马克杯放到右边的盘子上",
+      "plan": [
+        "put the white mug on the left plate",
+        "put the yellow and white mug on the right plate"
+      ],
+      "source_sha256": "51ff696eb036be6f987c242a7a074bef0c6aee38b18a5fc84d10c612ae76fb63"
+    },
+    "05_00": {
+      "instruction": "拿起那本书，放进桌面收纳盒靠后的格子里",
+      "plan": [
+        "pick up the black book",
+        "place the black book in the back compartment of the brown desk organizer"
+      ],
+      "source_sha256": "6f48439771a6b4716630c50eb3a0c3280c26c933501214a29b671a2f5e25b6a9"
+    },
+    "05_01": {
+      "instruction": "拿起那本书，放进桌面收纳盒靠后的格子里",
+      "plan": [
+        "pick up the black book",
+        "place the black book in the back compartment of the brown desk organizer"
+      ],
+      "source_sha256": "b9166baee19a59c35b0a9718ee534267abba2f8aa0cb83d6ff2d0bba6cbf6d51"
+    },
+    "05_02": {
+      "instruction": "拿起那本书，放进桌面收纳盒靠后的格子里",
+      "plan": [
+        "pick up the black book",
+        "place the black book in the back compartment of the brown desk organizer"
+      ],
+      "source_sha256": "aef3f0d5b3be5a54b359148c215c315fbecb12d370447e18d71f4a1afc9e024f"
+    },
+    "06_00": {
+      "instruction": "把白色马克杯放到盘子上，再把巧克力布丁放到盘子右边",
+      "plan": [
+        "put the white mug on the plate",
+        "put the chocolate pudding to the right of the plate"
+      ],
+      "source_sha256": "f06e40221d0c25df5a8ddd897bb2284313edde8f9b338de07fa41562c94e6ff4"
+    },
+    "06_01": {
+      "instruction": "把白色马克杯放到盘子上，再把巧克力布丁放到盘子右边",
+      "plan": [
+        "put the white mug on the plate",
+        "put the chocolate pudding to the right of the plate"
+      ],
+      "source_sha256": "2caa9a8e9550ed6c5280f82555af9597f83b85c4385a8cbedfacb9aee59ab3ea"
+    },
+    "06_02": {
+      "instruction": "把白色马克杯放到盘子上，再把巧克力布丁放到盘子右边",
+      "plan": [
+        "put the white mug on the plate",
+        "put the chocolate pudding to the right of the plate"
+      ],
+      "source_sha256": "deee554186180915476310b9d300a409d47a8ab42908148d3d61782b7b2f5320"
+    },
+    "07_00": {
+      "instruction": "把字母汤罐头和奶油奶酪盒都放进篮子里",
+      "plan": [
+        "pick up the alphabet soup can and place it in the basket",
+        "pick up the cream cheese box and place it in the basket"
+      ],
+      "source_sha256": "e49267ccab860c1447b78111a37f7151bcae36d3cfcdbaae08a2fa0e73aa4264"
+    },
+    "07_01": {
+      "instruction": "把字母汤罐头和奶油奶酪盒都放进篮子里",
+      "plan": [
+        "pick up the alphabet soup can and place it in the basket",
+        "pick up the cream cheese box and place it in the basket"
+      ],
+      "source_sha256": "4b240b327ab7bf2e7f0e43331bfd018baef2c2baef6cb38ef951a4a5c3a32425"
+    },
+    "07_02": {
+      "instruction": "把字母汤罐头和奶油奶酪盒都放进篮子里",
+      "plan": [
+        "pick up the alphabet soup can and place it in the basket",
+        "pick up the cream cheese box and place it in the basket"
+      ],
+      "source_sha256": "d8c38e98e0bda36f6259a8dc9aacd9b4de4916ef8ba0caabc525c59510b53339"
+    },
+    "08_00": {
+      "instruction": "把两个摩卡壶都放到炉子上",
+      "plan": [
+        "put the first moka pot on the stove",
+        "put the second moka pot on the stove"
+      ],
+      "source_sha256": "1c3056d63c234262ea8c6cff9323c6847d24a3df40a062bb3e58a6d0199aba9b"
+    },
+    "08_01": {
+      "instruction": "把两个摩卡壶都放到炉子上",
+      "plan": [
+        "put the first moka pot on the stove",
+        "put the second moka pot on the stove"
+      ],
+      "source_sha256": "bfb7edf92f1e5495baf294e29f24946732f29c126a93a85c1e599976409f7835"
+    },
+    "08_02": {
+      "instruction": "把两个摩卡壶都放到炉子上",
+      "plan": [
+        "put the first moka pot on the stove",
+        "put the second moka pot on the stove"
+      ],
+      "source_sha256": "076a99c9e60b2e9676f6b4bdb5cb490b781b083aebdf1793bb62013b875b3801"
+    },
+    "09_00": {
+      "instruction": "把黄白相间的马克杯放进微波炉，然后关上微波炉门",
+      "plan": [
+        "pick up the yellow and white mug and place it in the microwave",
+        "close the microwave door"
+      ],
+      "source_sha256": "ba9f5b6b4ebbf86421c09f549b0dc71b2b1a3bc285ab267ae6c2fbdace8426ce"
+    },
+    "09_01": {
+      "instruction": "把黄白相间的马克杯放进微波炉，然后关上微波炉门",
+      "plan": [
+        "pick up the yellow and white mug and place it in the microwave",
+        "close the microwave door"
+      ],
+      "source_sha256": "24360a2de450a82de0cb0bfa74eb7991cdbb66ffb0a5902b5a932a469029f80b"
+    },
+    "09_02": {
+      "instruction": "把黄白相间的马克杯放进微波炉，然后关上微波炉门",
+      "plan": [
+        "pick up the yellow and white mug and place it in the microwave",
+        "close the microwave door"
+      ],
+      "source_sha256": "868441ca9feb71c0bbbf52eca07cc3eedb4c31258d3d15e64337ebeccf8a3e05"
+    }
+  },
+  "policy": "official pi05_libero;10 denoising steps; execute first5 of10 actions; explicit paired noise",
+  "environment_seed": 7,
+  "max_steps": 520,
+  "stage_budget": 300,
+  "confirm": 2,
+  "gripper_gate": true,
+  "monitor_every_queries": 4,
+  "timer_threshold": 150,
+  "timer_note": "Threshold declared before results, not fitted per task; switching waits for the common gripper gate and two votes",
+  "frozen_note": "Only checker current image replaced by subgoal-start image; policy images/states unchanged",
+  "hold_first_note": "Original plan retained but all transition confirmations and the 300-step stage budget disabled; official success or 520-step termination only",
+  "shared_worker": "Same base+adapter resident for all arms; generation checker disables adapter; unsupported V2 operations fall back to base",
+  "adapter": "experiments/vla_libero/checker_v2/results/model/best_adapter",
+  "threshold": 3.2480709186546264,
+  "offline_pass": false,
+  "adapter_sha256": {
+    "merges.txt": "8831e4f1a044471340f7c0a83d7bd71306a5b867e95fd870f74d0c5308a904d5",
+    "tokenizer.json": "aeb13307a71acd8fe81861d94ad54ab689df773318809eed3cbe794b4492dae4",
+    "vocab.json": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910",
+    "chat_template.jinja": "3636d0f0bd6bef02654cdffdc447b79cb2cef8ab02cc75267345946291a489e4",
+    "README.md": "02b765c1997af38585954aca9c1b094b3c2d064717a09aad6d95d834c7ec2fa4",
+    "tokenizer_config.json": "81ec7bb9530159b326c0bef1d0b6c33d392090524014ea3f0123a3c1eb9c2af5",
+    "added_tokens.json": "c0284b582e14987fbd3d5a2cb2bd139084371ed9acbae488829a1c900833c680",
+    "adapter_model.safetensors": "51d06d49c4dbaba60f5b224a67f6b2de4318a89f5a3b30193225402ae2fac88c",
+    "video_preprocessor_config.json": "59c5c9eb52182eb14c06ffb10ca9effd29adce5f238a95de23ca14a38dbd2cb1",
+    "adapter_config.json": "478f6312aba72f208bc3548e12d6e7126d8542316fef97d52685ec2bf7a52388",
+    "special_tokens_map.json": "76862e765266b85aa9459767e33cbaf13970f327a0e88d1c65846c2ddd3a1ecd",
+    "preprocessor_config.json": "93585062a80db5e8ca038efc7726a3e6411d9db948472d81d63c6303993be8c5"
+  },
+  "model_manifest_sha256": "23acbc7bd05a140b06af096e271af51aef6f3b7d9a9dd10cba66dc38db042ac9",
+  "sources": {
+    "experiments/vla_libero/monitor_causality/scripts/runner_snapshot.py": "3bfa20bd9f7c320cf83dabe80e3c59a72fb5bd053837b65cd3bb6376c3459f61",
+    "experiments/vla_libero/monitor_causality/scripts/run_study.py": "a08445833f78cef7d71bd1c77bcbe82834c65a1df8af47bf134455f09baadd31",
+    "experiments/vla_libero/monitor_causality/scripts/interventions.py": "a2586e09baa204fc8d920031f82f00f6c5375720442fa8bea60972b1a496e5e1",
+    "experiments/vla_libero/scripts/run_hierarchical.py": "fe190d99b57b276fbe12d3f8e2fd072dd658377f68517ae59c30d12ddda365c3",
+    "experiments/vla_libero/scripts/episode_journal.py": "b73d991a76b216a17564febbdf3d4990712786bec06d5af56cbe1cbdcb715f69",
+    "experiments/vla_libero/scripts/qwen_planner.py": "87ea0a00e0a662d034cfc200b326cd569ecd2f32f57fe6681851fefdd47aabc7",
+    "experiments/vla_libero/scripts/completion_checker_v2.py": "21c13b9ece535c6e3d5d36b84a769fb8d988701827b55ad2efe176129e302ad7",
+    "experiments/vla_libero/checker_v2/scripts/protocol.py": "df10d7b9578c5e4dce89b7a5331571e3cba85f883a7b9154b1424e4a2e19b188",
+    "perception/qwen_scene/engine.py": "6c14802fbe468fa57e2ad48b25fc02c9a100d82d9aafdbf8d11224e969b699fb",
+    "perception/qwen_scene/worker_client.py": "3c3a93bd3d5e3f4ad7ea8d64e895244234a093ec779397d0d4f110ef673246b8"
+  },
+  "evaluation": "Official LIBERO long-task check; goal predicates logged for offline diagnosis only; task5 first pickup unscorable by final task predicates",
+  "no_new_training": true,
+  "no_hardware": true
+}

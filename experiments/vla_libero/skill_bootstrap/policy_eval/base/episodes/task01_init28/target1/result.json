@@ -1,0 +1,70 @@
+{
+  "status": "complete",
+  "task": 1,
+  "initial": 28,
+  "mode": "target1",
+  "prompt": "pick up the butter and place it in the basket",
+  "all_prompts": {
+    "target0": "pick up the cream cheese box and place it in the basket",
+    "target1": "pick up the butter and place it in the basket",
+    "original": "put both the cream cheese box and the butter in the basket"
+  },
+  "protocol_sha256": "952f8cb2aa1d65f8d5036aab7b381144112fbd79a2df648a8e54f46ba9853aa3",
+  "noise_seed": 930128,
+  "original_done_used_for_stopping": false,
+  "steps": 325,
+  "initial_sha256": "5b8555c0c987c800389082eb4e3a53b06743bf90e9475dc47e34b49a22912e50",
+  "settled_sha256": "48cc929ddd6bbecb16f61048b1edff8e8f2f70e3e2f8094ab489a63ccefbfdba",
+  "origins": [
+    [
+      0.0770397036560923,
+      -0.20278626614800258,
+      0.44569592152000004
+    ],
+    [
+      0.06498256955537969,
+      0.07199488987323638,
+      0.44546992152000003
+    ]
+  ],
+  "goal_atoms": [
+    [
+      "in",
+      "cream_cheese_1",
+      "basket_1_contain_region"
+    ],
+    [
+      "in",
+      "butter_1",
+      "basket_1_contain_region"
+    ]
+  ],
+  "scores": {
+    "target0": {
+      "selective_success": false,
+      "target_final_stable": true,
+      "final_released": true,
+      "target_ever_reached": true,
+      "protected_untouched": false,
+      "max_protected_displacement_m": 0.26290136196733255,
+      "first_valid_step": 147,
+      "first_violation_step": 222,
+      "self_stop_success": false,
+      "premature_stop": false
+    },
+    "target1": {
+      "selective_success": false,
+      "target_final_stable": true,
+      "final_released": true,
+      "target_ever_reached": true,
+      "protected_untouched": false,
+      "max_protected_displacement_m": 0.4816514083319565,
+      "first_valid_step": null,
+      "first_violation_step": 66,
+      "self_stop_success": false,
+      "premature_stop": false
+    }
+  },
+  "original_success_observed": true,
+  "wall_seconds": 14.52654541099946
+}

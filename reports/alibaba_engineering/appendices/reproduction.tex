@@ -1,0 +1,120 @@
+\chapter{运行与目录示例}
+
+本附录保留各阶段的运行和目录片段。它们对应历史环境与数据，不应直接覆盖已有输出；再次运行应更换实验标识，并准备原项目所需权重与数据。本文写作期间没有执行这些模型、仿真或实体命令。
+
+\section*{S08运行示例}
+\noindent\path|experiments/vla_libero/REPORT.md|
+
+\hypertarget{s08-command-1}{}
+
+\begin{Verbatim}[breaklines=true,breakanywhere=true,fontsize=\footnotesize]
+
+experiments/vla_libero/
+  configs/protocol.json        固定任务与干预协议
+  configs/checkpoint_objects.json 官方权重对象及校验信息
+  scripts/fetch_sources.py     固定上游源码
+  scripts/install.py           独立环境依赖
+  scripts/install_simulation.py 仿真依赖
+  scripts/download_segments.py 权重分段下载
+  scripts/verify_checkpoint.py CRC32C/MD5及SHA256校验
+  scripts/simulation_smoke.py  相机和物理接口检查
+  scripts/evaluate.py          模型闭环与干预
+  scripts/tests.py             输入与协议回归
+  scripts/analyze.py           配对统计与图表
+  scripts/verify.py            原始轨迹检查
+  scripts/release_stability.py 重放与松爪保持检查
+  scripts/benchmark_inference.py 固定输入计时
+  scripts/video.py            任务关键帧与演示
+  scripts/visual_comparison.py 输入干预对照视频
+  scripts/report.py            报告与源码打包
+  results/                    本地动作、状态和视频
+  figures/
+  third_party/sources.json     上游固定版本
+  README.md / RESEARCH.md
+
+\end{Verbatim}
+
+\section*{S11运行示例}
+\noindent\path|experiments/vla_libero/checker_v2/REPORT.md|
+
+\hypertarget{s11-command-2}{}
+
+\begin{Verbatim}[breaklines=true,breakanywhere=true,fontsize=\footnotesize]
+
+experiments/vla_libero/
+  checker_v2/
+    PROTOCOL.json                  原始验收与数据协议
+    CONFIRMATION_PROTOCOL.json     新确认集及视觉适配规则
+    DATA_REVIEW.md                 标签审核记录
+    scripts/
+      generate.py                 仿真反事实和自然回合数据
+      audit_data.py               数据划分与重复检查
+      protocol.py                 输入、分类分数、阈值和指标
+      train.py                    JSON 监督开发版本
+      train_classification.py     语言层分类训练
+      train_vision.py             视觉＋语言适配
+      final_evaluate.py           原独立测试
+      generate_confirmation.py    新初态确认数据
+      collect_confirmation_natural.py  预留自然回合采集
+      confirmation_evaluate.py    预留独立确认评价
+      evaluate_loop.py            离线通过后才允许闭环
+      test_v2.py                  单元测试
+    data/                         原数据、图像和状态
+    results/model/                语言层权重与测试结果
+    results/model_vision/         视觉层开发权重与验证结果
+    confirmation/                 未评分的新确认数据
+  scripts/
+    completion_checker_v2.py       检查器推理封装与适用范围
+    qwen_planner.py                原有 worker 增加显式适配器参数
+    run_hierarchical.py            原有闭环增加可选检查器参数
+
+\end{Verbatim}
+
+\section*{S12运行示例}
+\noindent\path|experiments/vla_libero/checker_v2/EXPLORATORY_REPORT.md|
+
+\hypertarget{s12-command-3}{}
+
+\begin{Verbatim}[breaklines=true,breakanywhere=true,fontsize=\footnotesize]
+
+experiments/vla_libero/checker_v2/
+  EXPLORATORY_PROTOCOL.json         模型、阈值与固定回合
+  EXPLORATORY_AMENDMENT.json        探索性仿真与原验收分开
+  EXPLORATORY_METRICS_PROTOCOL.json 指标定义与谓词映射
+  scripts/evaluate_loop.py          配对执行入口
+  scripts/summarize_loop.py         逐回合指标与动作一致性
+  scripts/test_loop_metrics.py      时间对齐及切换统计测试
+  results/exploratory_metrics.json  汇总
+  results/exploratory_metrics.csv   逐回合表格
+  results/exploratory_episode_metrics.json
+  results/exploratory_pair_integrity.json
+experiments/vla_libero/hierarchical/
+  checker_v2_exploratory_base/libero_10/taskXX_initYY/
+  checker_v2_exploratory_v2/libero_10/taskXX_initYY/
+    result.json / trace.npz / rollout.mp4 / qwen_inputs/
+
+\end{Verbatim}
+
+\section*{S13运行示例}
+\noindent\path|experiments/vla_libero/selective_execution/REPORT.md|
+
+\hypertarget{s13-command-4}{}
+
+\begin{Verbatim}[breaklines=true,breakanywhere=true,fontsize=\footnotesize]
+
+experiments/vla_libero/selective_execution/
+  PROTOCOL.json / CALIBRATION.json / EVALUATION_LOCK.json
+  ANALYSIS_PLAN.json / RESOURCES.json
+  scripts/run.py                 仿真、模型动作与逐步记录
+  scripts/worker.py              Qwen选目标，复用已有翻译/检查
+  scripts/control.py             门控、票据与停止，不接收任务真值
+  scripts/protocol.py            指令构造、开发标定与离线评分
+  scripts/analyze.py / verify.py  配对统计与状态核验
+  scripts/build.py               图表、报告、实际视频与源码包
+  tests/test_selective.py        12项自包含CPU检查
+  plans/<pilot|eval>/<条件>.json  实际模型选择/翻译及提示词版本
+  episodes/<阶段>/<条件>/<方法>/
+    result.json / trace.npz / trace.jsonl / events.jsonl
+    rollout.mp4 / images/ / policy_inputs/ / policy_queries.jsonl
+
+\end{Verbatim}

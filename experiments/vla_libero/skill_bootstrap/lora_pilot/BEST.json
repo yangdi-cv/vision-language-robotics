@@ -1,0 +1,8 @@
+{
+  "step": 200,
+  "validation_loss": 0.013371321098929911,
+  "baseline_validation_loss": 0.027692875752109103,
+  "tensors": 20,
+  "parameters": 49987584,
+  "sha256": "e1ed96473fa254e19bfab85383decd5d1da96fce7e8437cfa84eb3b00fd9e130"
+}

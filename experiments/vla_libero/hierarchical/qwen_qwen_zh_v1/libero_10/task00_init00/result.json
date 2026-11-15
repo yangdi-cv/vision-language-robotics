@@ -1,0 +1,199 @@
+{
+  "suite": "libero_10",
+  "task_id": 0,
+  "initial_state_id": 0,
+  "original_task_language": "put both the alphabet soup and the tomato sauce in the basket",
+  "input_instruction": "把字母汤罐头和番茄沙司罐头都放进篮子里",
+  "planner": "qwen",
+  "monitor": "qwen",
+  "max_steps": 520,
+  "subgoal_step_budget": 300,
+  "monitor_every_queries": 4,
+  "noise_seed": 730000,
+  "runner_sha256": "2801f5dc587c2caa2db0264b3a552978eacc066fcec27989472c344cdb6dbead",
+  "events": [
+    {
+      "kind": "plan",
+      "step": 0,
+      "ok": true,
+      "seconds": 1.802688498999487,
+      "raw": "{\n  \"subgoals\": [\n    {\n      \"instruction\": \"pick up the alphabet soup can and place it in the basket\",\n      \"completion_hint\": \"The alphabet soup can is now inside the basket.\"\n    },\n    {\n      \"instruction\": \"pick up the ketchup can and place it in the basket\",\n      \"completion_hint\": \"The ketchup can is now inside the basket.\"\n    }\n  ]\n}",
+      "error": null
+    },
+    {
+      "kind": "subgoal_start",
+      "step": 0,
+      "index": 0,
+      "subgoal": "pick up the alphabet soup can and place it in the basket"
+    },
+    {
+      "kind": "check",
+      "step": 20,
+      "index": 0,
+      "done": false,
+      "seconds": 0.713224380999236,
+      "reason": "The alphabet soup can is not yet picked up; it remains on the table in image 1, and the gripper is not interacting with it.",
+      "error": null,
+      "shadow_long_task_atoms": [
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 40,
+      "index": 0,
+      "done": false,
+      "seconds": 0.6869854060005309,
+      "reason": "The gripper is not yet holding the alphabet soup can; it is positioned near the milk carton, and the can is still on the table.",
+      "error": null,
+      "shadow_long_task_atoms": [
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 60,
+      "index": 0,
+      "done": false,
+      "seconds": 1.0039461579999625,
+      "reason": null,
+      "error": "Unterminated string starting at: line 1 column 27 (char 26)",
+      "shadow_long_task_atoms": [
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 80,
+      "index": 0,
+      "done": false,
+      "seconds": 0.9946436090012867,
+      "reason": "The gripper is holding an object, but it is not clear from the images whether it is the alphabet soup can. The can is not visible in the gripper's view (image 2), and the gripper is not yet positioned over the basket.",
+      "error": null,
+      "shadow_long_task_atoms": [
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 100,
+      "index": 0,
+      "done": false,
+      "seconds": 1.0300633389997529,
+      "reason": null,
+      "error": "Unterminated string starting at: line 1 column 27 (char 26)",
+      "shadow_long_task_atoms": [
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 120,
+      "index": 0,
+      "done": false,
+      "seconds": 0.7455374319997645,
+      "reason": "The alphabet soup can is not yet picked up; it remains on the table in the first image, and the gripper is not interacting with it in the second image.",
+      "error": null,
+      "shadow_long_task_atoms": [
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 140,
+      "index": 0,
+      "done": false,
+      "seconds": 0.8201961139984633,
+      "reason": "The gripper is currently holding the alphabet soup can, but it has not yet been placed in the basket. The can is still between the gripper fingers, so the subgoal is not completed.",
+      "error": null,
+      "shadow_long_task_atoms": [
+        true,
+        false
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 160,
+      "index": 0,
+      "done": false,
+      "seconds": 0.9716035139990709,
+      "reason": "The alphabet soup can is visible on the table in image 1, but the gripper is not yet interacting with it. The wrist camera view in image 2 shows the gripper approaching the can, but it has not yet picked it up.",
+      "error": null,
+      "shadow_long_task_atoms": [
+        true,
+        false
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 180,
+      "index": 0,
+      "done": false,
+      "seconds": 0.8368959439994796,
+      "reason": "The gripper is currently holding the alphabet soup can, but it has not yet been placed in the basket. The can is still between the gripper fingers, so the subgoal is not completed.",
+      "error": null,
+      "shadow_long_task_atoms": [
+        true,
+        false
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 200,
+      "index": 0,
+      "done": false,
+      "seconds": 0.835459064999668,
+      "reason": "The gripper is holding the alphabet soup can, but it has not yet been placed in the basket. The can is still between the gripper fingers, so the subgoal is not completed.",
+      "error": null,
+      "shadow_long_task_atoms": [
+        true,
+        false
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 220,
+      "index": 0,
+      "done": false,
+      "seconds": 0.8473637890001555,
+      "reason": "The gripper is holding the alphabet soup can, but it has not yet been placed in the basket. The can is still between the gripper fingers, so the subgoal is not completed.",
+      "error": null,
+      "shadow_long_task_atoms": [
+        true,
+        false
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 240,
+      "index": 0,
+      "done": false,
+      "seconds": 0.8403737699991325,
+      "reason": "The gripper is holding the alphabet soup can, but it has not yet been placed in the basket. The can is still between the gripper fingers, so the subgoal is not completed.",
+      "error": null,
+      "shadow_long_task_atoms": [
+        true,
+        false
+      ]
+    }
+  ],
+  "status": "success",
+  "success": true,
+  "subgoals": [
+    "pick up the alphabet soup can and place it in the basket",
+    "pick up the ketchup can and place it in the basket"
+  ],
+  "steps": 244,
+  "policy_queries": 49,
+  "qwen_checks": 12,
+  "final_atoms": [
+    true,
+    true
+  ]
+}

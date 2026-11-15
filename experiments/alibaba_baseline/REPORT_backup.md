@@ -1,0 +1,98 @@
+# 阿里 Qwen 具身方向：离线训练与分层仿真阶段报告
+
+日期：2026-10-13；设备：Ubuntu 22.04 / RTX 4090。对应《阿里千问具身智能方向_第一期任务书》，本轮由 agent 完成软件执行与记录，无新增真机操作。
+
+本轮完成了 Qwen 指令感知评测、首轮 LoRA 适配器训练、独立 ACT 训练与 MuJoCo 评测，以及“语言指令 → 技能选择 → ACT 执行 → 仿真反馈”的有限任务演示。它是原任务的阶段成果，尚不满足完整导航抓取、Jetson 部署和企业代测验收。
+
+## 1. 与原任务逐项对应
+
+| 子任务 | 本轮实际交付 | 完成边界 |
+|---|---|---|
+| 1：Qwen-VL 感知/决策适配微调 | 72 条图像指令用例、基座评测、LoRA 适配器与重新加载验证、有限技能选择 | 首轮完成；仅 RGB，未完成 RGB-D 定位、可供性与多步分解；标签尚待人工复核 |
+| 2：ROS2 仿真与模仿学习 | ALOHA/MuJoCo 物理仿真、ACT 自训练权重、公开策略对照、视频与逐次指标 | ACT 与受限分层执行完成；未连接 Nav2/MoveIt2，任务为双臂方块交接，并非完整导航 Pick-and-Place |
+| 3：端侧优化 | 本地短输出推理耗时、独立环境 | Jetson/INT8/蒸馏尚未完成，本机延迟不替代端侧指标 |
+| 4：企业代测与鲁棒性 | 否定目标测试、模型误选技能及修复前后记录 | 无企业真机数据；本轮均为离线图像或仿真 |
+| 5：实验与技术文档 | 源码、环境锁文件、来源版本、训练日志、报告、模型、图表、复现入口 | 阶段材料完成；论文/专利草稿及公开发布尚未完成 |
+
+## 2. Qwen 图像与指令评测
+
+使用固定版本 Qwen3-VL-4B-Instruct，从既有 SO101 单条真实示教抽取 24 帧，分别提问“深蓝色塑胶壳”“蓝色耳机保护套”和不存在的“红色杯子”，共 72 条。输出目标可见性和 locate/observe 子任务，不输出关节命令。
+
+参考标签来自 agent 对图像的独立视觉审阅，**不是被测模型生成的标签，也尚未由用户确认**。24 帧同属一个视频，相关性高，结果只能称为暂定标签匹配率。
+
+| 指标 | 结果 |
+|---|---:|
+| JSON 格式有效 | 72/72 |
+| 目标可见性及子任务匹配 | 66/72（91.67%） |
+| 深蓝色塑胶壳 | 23/24；正例召回 12/13 |
+| 蓝色耳机保护套 | 19/24；正例召回 8/13 |
+| 不存在的红色杯子 | 24/24 正确拒绝 |
+| 耗时中位数 / P95 | 0.380 / 0.566 秒 |
+
+恒定回答“不可见”能匹配 46/72，说明类别分布偏斜，应同时看正例召回。换一种描述后漏识别增加，不能以单一总指标断言稳定理解。耗时针对短结构化回答，不直接对比工作台较长的自然语言描述。
+
+![Qwen 评测](figures/qwen_instruction.png)
+
+证据：[暂定标签及样本](data/qwen_cases.json)、[标注说明](data/qwen_annotation_notes.md)、[逐条预测](runs/qwen_instruction_001/predictions.jsonl)、[指标](runs/qwen_instruction_001/metrics.json)。
+
+## 3. Qwen LoRA 首轮训练
+
+按图像帧划分 48/12/12 条训练/验证/测试用例；同一帧的不同问法在同一分组。仍来自同一视频，不是跨场景验证。冻结视觉模块，仅对语言 self-attention 的 q_proj/v_proj 加 LoRA：r=8、alpha=16、dropout=0.05、学习率 5e-5、120 次更新、梯度累积 2，训练参数 2,949,120。仅监督回答 token，保留输入前缀核对。
+
+| 分组 | 基座 | LoRA |
+|---|---:|---:|
+| 验证 12 条 | 11/12 | 12/12 |
+| 测试 12 条 | 11/12 | 11/12 |
+
+测试未改善，训练损失极低可能反映记忆，不能宣称泛化提升。另一次缩写提示词重新加载测试出现字段遗漏及子任务不一致；使用训练协议的完整提示词重新加载通过。两份结果均保留，说明适配器存在提示词敏感性。
+
+![LoRA 对比](figures/qwen_lora_comparison.png)
+
+交付：[适配器](runs/qwen_lora_001/adapter/)、[训练设置](runs/qwen_lora_001/training_config.json)、[汇总](runs/qwen_lora_001/summary.json)、[完整协议加载验证](runs/qwen_lora_001/reload_check.json)、[缩写提示词失败](runs/qwen_lora_001/reload_check_alternate_prompt.json)。适配器必须配合同一基座版本加载，不是独立完整大模型。
+
+## 4. ACT 训练与实际物理仿真评测
+
+采用公开 ALOHA 双臂方块交接示教：50 个 episode、20,000 帧、50Hz、480×640 RGB、14 维双臂关节/夹爪状态与动作。逐 episode 核对图像与动作帧数，按 episode 40/5/5 拆分；自身训练的归一化统计仅来自训练集，未来动作序列不跨 episode。
+
+自训练 ACT 从随机策略参数开始，仅 ResNet18 使用 ImageNet 初始化，**没有加载公开 ACT 策略权重**。chunk=100、batch=8、学习率 1e-4、backbone 1e-5、seed=2026，共 5,000 更新，记录训练耗时 236.3 秒。验证与测试各取 64 个分层样本评估归一化动作 L1。
+
+- 验证 L1：0.9928 → 0.2844；最佳验证 0.2714。
+- 最终 checkpoint 的测试 L1：0.2839。
+- 离线误差下降不等于抓取成功，另做实际 rollout。
+
+![ACT 曲线](figures/act_learning.png)
+
+在 `gym_aloha/AlohaTransferCube-v0` 实际运行策略，固定 seeds 1000–1009，每次最多 400 步；最大任务 reward≥4 作为方块交接成功。每次重置策略动作缓存，模型输入当前 RGB 和关节状态，保存逐次动作、奖励、视频。
+
+| 策略来源 | 成功 | 说明 |
+|---|---:|---|
+| 公开预训练 ACT | 7/10（70%） | 外部对照，训练使用了全部 50 episode，不能算自己的训练成果 |
+| 自训练 ACT 最终权重 | 2/10（20%） | 首轮 baseline，尚不稳定；两个失败试次达到 reward 2，但未完成交接 |
+
+同样种子用于配对比较；样本只有 10 次，未给置信稳定性或真机迁移结论。公开策略与自训练数据量/训练配置不完全一致，此处是参考对照而非公平消融。
+
+![成功率对比](figures/act_rollout_comparison.png)
+
+![实际仿真关键帧](figures/rollout_contact_sheet.jpg)
+
+证据：[自训练权重](runs/own_act_train_001/final_checkpoint/)、[训练汇总](runs/own_act_train_001/training_summary.json)、[公开策略指标](runs/official_act_eval_001/metrics.json)、[自训练指标](runs/own_act_eval_001/metrics.json)。视频：[公开策略成功 seed1003](runs/official_act_eval_001/rollout_1003.mp4)、[自训练成功 seed1003](runs/own_act_eval_001/rollout_1003.mp4)、[自训练失败 seed1004](runs/own_act_eval_001/rollout_1004.mp4)。这些是实际渲染的仿真画面，不是真机或桌面录屏。
+
+另存单试次时延检查，不混入 10 次成功率统计。`select_action` 多数调用只取缓存动作，不能把其亚毫秒中位数当成整块网络推理耗时；完整 chunk 单独记录于 `*_act_latency_001/latencies.csv`，样本很少，含首次冷启动，不作为稳定性能基准。
+
+## 5. 有限分层链路与失败修复
+
+本轮集成明确使用**基座 Qwen + 公开 ACT**，未把首轮 LoRA 或低成功率的自训练 ACT 当成集成模型。Qwen 看仿真初始 RGB 和指令，选择唯一已实现技能 transfer_red_cube 或 observe；ACT 执行后用仿真奖励记录结果。这里是单次高层选择和底层视觉反馈执行，尚未实现 Qwen 连续监控、自动重试或多步规划。
+
+测试 5 条红方块交接指令、2 条蓝球指令，seeds1010–1016。初版模型技能选择 5/7 正确；两条蓝球指令均误选红方块技能并执行，说明仅靠提示词拒绝并不可靠。
+
+增加独立于模型输出和测试标签的有限指令语法授权：只接受明确红方块抓取指令，否定或未支持目标进入 observe。相同用例复测：模型自身仍 5/7 正确，但有效派发 7/7 正确，蓝球误执行从 2/2 降至 0/2；红方块执行成功仍 3/5。**7/7 是受约束派发结果，不是 Qwen 准确率提升。** 指令语法覆盖范围有限，不能代替通用语言理解。
+
+证据：[未约束结果](runs/integrated_demo_001/summary.json)、[约束后结果](runs/integrated_demo_guarded_001/summary.json)、[集成源码](scripts/integrated_demo.py)、对应目录中的初始图像、逐条决策和实际 rollout 视频。
+
+## 6. 复现、来源与下一步
+
+[README](README.md) 给出环境和命令，[RUN_LEDGER](RUN_LEDGER.md) 保留执行顺序，[PROVENANCE](PROVENANCE.json) 固定下载版本，`setup_logs/` 保存安装、训练、推理日志及依赖锁文件。独立环境 `.venvs/act-sim` 与 `.venvs/qwen-scene`，未修改系统 Python 或 ROS2 环境。
+
+来源：[官方 gym-aloha](https://github.com/huggingface/gym-aloha)、[公开示教数据](https://huggingface.co/datasets/lerobot/aloha_sim_transfer_cube_human)、[公开 ACT 对照模型](https://huggingface.co/lerobot/act_aloha_sim_transfer_cube_human)、[Qwen 基座](https://huggingface.co/Qwen/Qwen3-VL-4B-Instruct)。采用本地厂家衍生 LeRobot 0.3.4，未升级到官方最新版；版本与许可见来源文件。
+
+下一阶段应先提高自训练 ACT 的多种子交接成功率，增加独立场景的人工确认 Qwen 数据，再连接 ROS2/Nav2/MoveIt2。Jetson 与企业代测需要实际设备/数据后单独验收；单条 SO101 示教及本轮仿真不能替代这些成果。

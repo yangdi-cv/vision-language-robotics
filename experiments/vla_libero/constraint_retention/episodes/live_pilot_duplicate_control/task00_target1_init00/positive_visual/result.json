@@ -1,0 +1,1146 @@
+{
+  "case": {
+    "task": 0,
+    "target_index": 1,
+    "initial": 0,
+    "target": "tomato_sauce_1",
+    "protected": "alphabet_soup_1",
+    "objects": [
+      [
+        "alphabet_soup_1",
+        "alphabet soup can",
+        "字母汤罐头"
+      ],
+      [
+        "tomato_sauce_1",
+        "tomato sauce can",
+        "番茄酱罐头"
+      ]
+    ],
+    "instruction": "只把番茄酱罐头放进篮子里，字母汤罐头保持原位。放好后停止，不要继续搬其他物体。",
+    "reference_skill": "pick up the tomato sauce can and place it in the basket",
+    "key": "task00_target1_init00"
+  },
+  "mode": "positive_visual",
+  "phase": "live_pilot_duplicate_control",
+  "protocol_sha256": "fb040efd1d285a7068320c28ee5bb3c1de890b657bb2d626f450def7c77d832f",
+  "noise_seed": 920000,
+  "status": "complete",
+  "steps": 325,
+  "events": [
+    {
+      "kind": "check",
+      "step": 10,
+      "decision": {
+        "done": false,
+        "streak": 0,
+        "stop": false
+      },
+      "images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_duplicate_control/task00_target1_init00/positive_visual/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_duplicate_control/task00_target1_init00/positive_visual/images/current_0010.png"
+      ],
+      "sent_images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_duplicate_control/task00_target1_init00/positive_visual/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_duplicate_control/task00_target1_init00/positive_visual/images/current_0010.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_duplicate_control/task00_target1_init00/positive_visual/images/current_0010.png"
+      ],
+      "reply": {
+        "raw": "{\"status\":\"not_done\", \"reason\":\"The tomato sauce can is still on the table and not yet placed in the basket.\"}",
+        "seconds": 0.4996815259946743,
+        "inference": {
+          "model": "Qwen/Qwen3-VL-4B-Instruct",
+          "revision": "ebb281ec70b05090aa6165b016eac8ec08e71b17",
+          "prompt": "Check this single robot subgoal: \"pick up the tomato sauce can and place it in the basket\".\nImage 1 is the third-person view when the subgoal started. Image 2 is the current third-person view. Image 3 is a current auxiliary view; it may repeat image 2.\nUse the views together to identify the TARGET and its DESTINATION. A placement is done only when the target is visibly at the destination and released from the gripper. Do not infer completion merely because the target disappeared from its starting position. If destination, identity or release cannot be established from the images, choose unknown. Do not treat another object at the destination as the target.\nReturn only JSON: {\"status\":\"done\" or \"not_done\" or \"unknown\", \"reason\":\"one short sentence\"}.",
+          "prompt_sha256": "6cb4aea999f7000a692b5d9a953c6efbc111d6be5f36e115ef6efbf615c181a3",
+          "engine_sha256": "6c14802fbe468fa57e2ad48b25fc02c9a100d82d9aafdbf8d11224e969b699fb",
+          "generation": {
+            "max_new_tokens": 128,
+            "do_sample": false
+          },
+          "images": [
+            {
+              "size": [
+                512,
+                512
+              ],
+              "mode": "RGB",
+              "pixel_sha256": "7c8349a65a2cdfac67e64f861bf00b162b8e5af63eea6b1f0386444765340b44"
+            },
+            {
+              "size": [
+                512,
+                512
+              ],
+              "mode": "RGB",
+              "pixel_sha256": "fef7046f1898f8a56569282f1d969811845822a31e95003f28ab89920a036d5e"
+            },
+            {
+              "size": [
+                512,
+                512
+              ],
+              "mode": "RGB",
+              "pixel_sha256": "fef7046f1898f8a56569282f1d969811845822a31e95003f28ab89920a036d5e"
+            }
+          ],
+          "libraries": {
+            "torch": "2.7.1",
+            "transformers": "4.57.6"
+          },
+          "planner_sha256": "87ea0a00e0a662d034cfc200b326cd569ecd2f32f57fe6681851fefdd47aabc7"
+        },
+        "device": "cuda:0",
+        "allocated_mib": 8490.62890625,
+        "reserved_mib": 8800.0,
+        "tokens": 28,
+        "ok": true,
+        "status": "not_done",
+        "done": false,
+        "reason": "The tomato sauce can is still on the table and not yet placed in the basket.",
+        "live_checker_sha256": "c8757dbe355e8d7c957ecb1cda204b00631954e0aef5a57bda7e65653623fb34"
+      },
+      "wrist_image": "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_duplicate_control/task00_target1_init00/positive_visual/images/wrist_0010.png",
+      "seconds": 0.5477180119996774
+    },
+    {
+      "kind": "check",
+      "step": 20,
+      "decision": {
+        "done": false,
+        "streak": 0,
+        "stop": false
+      },
+      "images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_duplicate_control/task00_target1_init00/positive_visual/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_duplicate_control/task00_target1_init00/positive_visual/images/current_0020.png"
+      ],
+      "sent_images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_duplicate_control/task00_target1_init00/positive_visual/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_duplicate_control/task00_target1_init00/positive_visual/images/current_0020.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_duplicate_control/task00_target1_init00/positive_visual/images/current_0020.png"
+      ],
+      "reply": {
+        "raw": "{\"status\":\"not_done\", \"reason\":\"The tomato sauce can is still on the table and not yet placed in the basket.\"}",
+        "seconds": 0.4817255279995152,
+        "inference": {
+          "model": "Qwen/Qwen3-VL-4B-Instruct",
+          "revision": "ebb281ec70b05090aa6165b016eac8ec08e71b17",
+          "prompt": "Check this single robot subgoal: \"pick up the tomato sauce can and place it in the basket\".\nImage 1 is the third-person view when the subgoal started. Image 2 is the current third-person view. Image 3 is a current auxiliary view; it may repeat image 2.\nUse the views together to identify the TARGET and its DESTINATION. A placement is done only when the target is visibly at the destination and released from the gripper. Do not infer completion merely because the target disappeared from its starting position. If destination, identity or release cannot be established from the images, choose unknown. Do not treat another object at the destination as the target.\nReturn only JSON: {\"status\":\"done\" or \"not_done\" or \"unknown\", \"reason\":\"one short sentence\"}.",
+          "prompt_sha256": "6cb4aea999f7000a692b5d9a953c6efbc111d6be5f36e115ef6efbf615c181a3",
+          "engine_sha256": "6c14802fbe468fa57e2ad48b25fc02c9a100d82d9aafdbf8d11224e969b699fb",
+          "generation": {
+            "max_new_tokens": 128,
+            "do_sample": false
+          },
+          "images": [
+            {
+              "size": [
+                512,
+                512
+              ],
+              "mode": "RGB",
+              "pixel_sha256": "7c8349a65a2cdfac67e64f861bf00b162b8e5af63eea6b1f0386444765340b44"
+            },
+            {
+              "size": [
+                512,
+                512
+              ],
+              "mode": "RGB",
+              "pixel_sha256": "a333c295da2a8d92d0488b06d9ef380146d057fc93e4be2a7931597ebcbd31b6"
+            },
+            {
+              "size": [
+                512,
+                512
+              ],
+              "mode": "RGB",
+              "pixel_sha256": "a333c295da2a8d92d0488b06d9ef380146d057fc93e4be2a7931597ebcbd31b6"
+            }
+          ],
+          "libraries": {
+            "torch": "2.7.1",
+            "transformers": "4.57.6"
+          },
+          "planner_sha256": "87ea0a00e0a662d034cfc200b326cd569ecd2f32f57fe6681851fefdd47aabc7"
+        },
+        "device": "cuda:0",
+        "allocated_mib": 8490.62890625,
+        "reserved_mib": 8800.0,
+        "tokens": 28,
+        "ok": true,
+        "status": "not_done",
+        "done": false,
+        "reason": "The tomato sauce can is still on the table and not yet placed in the basket.",
+        "live_checker_sha256": "c8757dbe355e8d7c957ecb1cda204b00631954e0aef5a57bda7e65653623fb34"
+      },
+      "wrist_image": "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_duplicate_control/task00_target1_init00/positive_visual/images/wrist_0020.png",
+      "seconds": 0.5321392490004655
+    },
+    {
+      "kind": "check",
+      "step": 30,
+      "decision": {
+        "done": false,
+        "streak": 0,
+        "stop": false
+      },
+      "images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_duplicate_control/task00_target1_init00/positive_visual/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_duplicate_control/task00_target1_init00/positive_visual/images/current_0030.png"
+      ],
+      "sent_images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_duplicate_control/task00_target1_init00/positive_visual/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_duplicate_control/task00_target1_init00/positive_visual/images/current_0030.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_duplicate_control/task00_target1_init00/positive_visual/images/current_0030.png"
+      ],
+      "reply": {
+        "raw": "{\"status\":\"not_done\", \"reason\":\"The robot has not yet picked up the tomato sauce bottle.\"}",
+        "seconds": 0.4103042079950683,
+        "inference": {
+          "model": "Qwen/Qwen3-VL-4B-Instruct",
+          "revision": "ebb281ec70b05090aa6165b016eac8ec08e71b17",
+          "prompt": "Check this single robot subgoal: \"pick up the tomato sauce can and place it in the basket\".\nImage 1 is the third-person view when the subgoal started. Image 2 is the current third-person view. Image 3 is a current auxiliary view; it may repeat image 2.\nUse the views together to identify the TARGET and its DESTINATION. A placement is done only when the target is visibly at the destination and released from the gripper. Do not infer completion merely because the target disappeared from its starting position. If destination, identity or release cannot be established from the images, choose unknown. Do not treat another object at the destination as the target.\nReturn only JSON: {\"status\":\"done\" or \"not_done\" or \"unknown\", \"reason\":\"one short sentence\"}.",
+          "prompt_sha256": "6cb4aea999f7000a692b5d9a953c6efbc111d6be5f36e115ef6efbf615c181a3",
+          "engine_sha256": "6c14802fbe468fa57e2ad48b25fc02c9a100d82d9aafdbf8d11224e969b699fb",
+          "generation": {
+            "max_new_tokens": 128,
+            "do_sample": false
+          },
+          "images": [
+            {
+              "size": [
+                512,
+                512
+              ],
+              "mode": "RGB",
+              "pixel_sha256": "7c8349a65a2cdfac67e64f861bf00b162b8e5af63eea6b1f0386444765340b44"
+            },
+            {
+              "size": [
+                512,
+                512
+              ],
+              "mode": "RGB",
+              "pixel_sha256": "1f4a88a1e87dcd7c40c6ef47e04f94c996647bc8e8dcc9038aad3b46e51ea358"
+            },
+            {
+              "size": [
+                512,
+                512
+              ],
+              "mode": "RGB",
+              "pixel_sha256": "1f4a88a1e87dcd7c40c6ef47e04f94c996647bc8e8dcc9038aad3b46e51ea358"
+            }
+          ],
+          "libraries": {
+            "torch": "2.7.1",
+            "transformers": "4.57.6"
+          },
+          "planner_sha256": "87ea0a00e0a662d034cfc200b326cd569ecd2f32f57fe6681851fefdd47aabc7"
+        },
+        "device": "cuda:0",
+        "allocated_mib": 8490.62890625,
+        "reserved_mib": 8800.0,
+        "tokens": 23,
+        "ok": true,
+        "status": "not_done",
+        "done": false,
+        "reason": "The robot has not yet picked up the tomato sauce bottle.",
+        "live_checker_sha256": "c8757dbe355e8d7c957ecb1cda204b00631954e0aef5a57bda7e65653623fb34"
+      },
+      "wrist_image": "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_duplicate_control/task00_target1_init00/positive_visual/images/wrist_0030.png",
+      "seconds": 0.4577815279990318
+    },
+    {
+      "kind": "check",
+      "step": 40,
+      "decision": {
+        "done": false,
+        "streak": 0,
+        "stop": false
+      },
+      "images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_duplicate_control/task00_target1_init00/positive_visual/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_duplicate_control/task00_target1_init00/positive_visual/images/current_0040.png"
+      ],
+      "sent_images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_duplicate_control/task00_target1_init00/positive_visual/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_duplicate_control/task00_target1_init00/positive_visual/images/current_0040.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_duplicate_control/task00_target1_init00/positive_visual/images/current_0040.png"
+      ],
+      "reply": {
+        "raw": "{\"status\":\"not_done\", \"reason\":\"The robot has not yet picked up the tomato sauce can.\"}",
+        "seconds": 0.4185591679997742,
+        "inference": {
+          "model": "Qwen/Qwen3-VL-4B-Instruct",
+          "revision": "ebb281ec70b05090aa6165b016eac8ec08e71b17",
+          "prompt": "Check this single robot subgoal: \"pick up the tomato sauce can and place it in the basket\".\nImage 1 is the third-person view when the subgoal started. Image 2 is the current third-person view. Image 3 is a current auxiliary view; it may repeat image 2.\nUse the views together to identify the TARGET and its DESTINATION. A placement is done only when the target is visibly at the destination and released from the gripper. Do not infer completion merely because the target disappeared from its starting position. If destination, identity or release cannot be established from the images, choose unknown. Do not treat another object at the destination as the target.\nReturn only JSON: {\"status\":\"done\" or \"not_done\" or \"unknown\", \"reason\":\"one short sentence\"}.",
+          "prompt_sha256": "6cb4aea999f7000a692b5d9a953c6efbc111d6be5f36e115ef6efbf615c181a3",
+          "engine_sha256": "6c14802fbe468fa57e2ad48b25fc02c9a100d82d9aafdbf8d11224e969b699fb",
+          "generation": {
+            "max_new_tokens": 128,
+            "do_sample": false
+          },
+          "images": [
+            {
+              "size": [
+                512,
+                512
+              ],
+              "mode": "RGB",
+              "pixel_sha256": "7c8349a65a2cdfac67e64f861bf00b162b8e5af63eea6b1f0386444765340b44"
+            },
+            {
+              "size": [
+                512,
+                512
+              ],
+              "mode": "RGB",
+              "pixel_sha256": "ff849f0dfcf48bdef58bdb3c3680b6d7797c562f78eeea4e4a31f585e40fab5e"
+            },
+            {
+              "size": [
+                512,
+                512
+              ],
+              "mode": "RGB",
+              "pixel_sha256": "ff849f0dfcf48bdef58bdb3c3680b6d7797c562f78eeea4e4a31f585e40fab5e"
+            }
+          ],
+          "libraries": {
+            "torch": "2.7.1",
+            "transformers": "4.57.6"
+          },
+          "planner_sha256": "87ea0a00e0a662d034cfc200b326cd569ecd2f32f57fe6681851fefdd47aabc7"
+        },
+        "device": "cuda:0",
+        "allocated_mib": 8490.62890625,
+        "reserved_mib": 8800.0,
+        "tokens": 23,
+        "ok": true,
+        "status": "not_done",
+        "done": false,
+        "reason": "The robot has not yet picked up the tomato sauce can.",
+        "live_checker_sha256": "c8757dbe355e8d7c957ecb1cda204b00631954e0aef5a57bda7e65653623fb34"
+      },
+      "wrist_image": "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_duplicate_control/task00_target1_init00/positive_visual/images/wrist_0040.png",
+      "seconds": 0.4711014709973824
+    },
+    {
+      "kind": "check",
+      "step": 50,
+      "decision": {
+        "done": false,
+        "streak": 0,
+        "stop": false
+      },
+      "images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_duplicate_control/task00_target1_init00/positive_visual/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_duplicate_control/task00_target1_init00/positive_visual/images/current_0050.png"
+      ],
+      "sent_images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_duplicate_control/task00_target1_init00/positive_visual/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_duplicate_control/task00_target1_init00/positive_visual/images/current_0050.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_duplicate_control/task00_target1_init00/positive_visual/images/current_0050.png"
+      ],
+      "reply": {
+        "raw": "{\"status\":\"not_done\", \"reason\":\"The robot has not yet picked up the tomato sauce can.\"}",
+        "seconds": 0.4099993420022656,
+        "inference": {
+          "model": "Qwen/Qwen3-VL-4B-Instruct",
+          "revision": "ebb281ec70b05090aa6165b016eac8ec08e71b17",
+          "prompt": "Check this single robot subgoal: \"pick up the tomato sauce can and place it in the basket\".\nImage 1 is the third-person view when the subgoal started. Image 2 is the current third-person view. Image 3 is a current auxiliary view; it may repeat image 2.\nUse the views together to identify the TARGET and its DESTINATION. A placement is done only when the target is visibly at the destination and released from the gripper. Do not infer completion merely because the target disappeared from its starting position. If destination, identity or release cannot be established from the images, choose unknown. Do not treat another object at the destination as the target.\nReturn only JSON: {\"status\":\"done\" or \"not_done\" or \"unknown\", \"reason\":\"one short sentence\"}.",
+          "prompt_sha256": "6cb4aea999f7000a692b5d9a953c6efbc111d6be5f36e115ef6efbf615c181a3",
+          "engine_sha256": "6c14802fbe468fa57e2ad48b25fc02c9a100d82d9aafdbf8d11224e969b699fb",
+          "generation": {
+            "max_new_tokens": 128,
+            "do_sample": false
+          },
+          "images": [
+            {
+              "size": [
+                512,
+                512
+              ],
+              "mode": "RGB",
+              "pixel_sha256": "7c8349a65a2cdfac67e64f861bf00b162b8e5af63eea6b1f0386444765340b44"
+            },
+            {
+              "size": [
+                512,
+                512
+              ],
+              "mode": "RGB",
+              "pixel_sha256": "299f48485400f2ce25a2e3dff7cdba18e8753e3be5a17abef5fc82d10bf7401c"
+            },
+            {
+              "size": [
+                512,
+                512
+              ],
+              "mode": "RGB",
+              "pixel_sha256": "299f48485400f2ce25a2e3dff7cdba18e8753e3be5a17abef5fc82d10bf7401c"
+            }
+          ],
+          "libraries": {
+            "torch": "2.7.1",
+            "transformers": "4.57.6"
+          },
+          "planner_sha256": "87ea0a00e0a662d034cfc200b326cd569ecd2f32f57fe6681851fefdd47aabc7"
+        },
+        "device": "cuda:0",
+        "allocated_mib": 8490.62890625,
+        "reserved_mib": 8800.0,
+        "tokens": 23,
+        "ok": true,
+        "status": "not_done",
+        "done": false,
+        "reason": "The robot has not yet picked up the tomato sauce can.",
+        "live_checker_sha256": "c8757dbe355e8d7c957ecb1cda204b00631954e0aef5a57bda7e65653623fb34"
+      },
+      "wrist_image": "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_duplicate_control/task00_target1_init00/positive_visual/images/wrist_0050.png",
+      "seconds": 0.44870900599926244
+    },
+    {
+      "kind": "check",
+      "step": 150,
+      "decision": {
+        "done": false,
+        "streak": 0,
+        "stop": false
+      },
+      "images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_duplicate_control/task00_target1_init00/positive_visual/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_duplicate_control/task00_target1_init00/positive_visual/images/current_0150.png"
+      ],
+      "sent_images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_duplicate_control/task00_target1_init00/positive_visual/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_duplicate_control/task00_target1_init00/positive_visual/images/current_0150.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_duplicate_control/task00_target1_init00/positive_visual/images/current_0150.png"
+      ],
+      "reply": {
+        "raw": "{\"status\":\"not_done\", \"reason\":\"The tomato sauce can is still on the table and not in the basket.\"}",
+        "seconds": 0.4699413540001842,
+        "inference": {
+          "model": "Qwen/Qwen3-VL-4B-Instruct",
+          "revision": "ebb281ec70b05090aa6165b016eac8ec08e71b17",
+          "prompt": "Check this single robot subgoal: \"pick up the tomato sauce can and place it in the basket\".\nImage 1 is the third-person view when the subgoal started. Image 2 is the current third-person view. Image 3 is a current auxiliary view; it may repeat image 2.\nUse the views together to identify the TARGET and its DESTINATION. A placement is done only when the target is visibly at the destination and released from the gripper. Do not infer completion merely because the target disappeared from its starting position. If destination, identity or release cannot be established from the images, choose unknown. Do not treat another object at the destination as the target.\nReturn only JSON: {\"status\":\"done\" or \"not_done\" or \"unknown\", \"reason\":\"one short sentence\"}.",
+          "prompt_sha256": "6cb4aea999f7000a692b5d9a953c6efbc111d6be5f36e115ef6efbf615c181a3",
+          "engine_sha256": "6c14802fbe468fa57e2ad48b25fc02c9a100d82d9aafdbf8d11224e969b699fb",
+          "generation": {
+            "max_new_tokens": 128,
+            "do_sample": false
+          },
+          "images": [
+            {
+              "size": [
+                512,
+                512
+              ],
+              "mode": "RGB",
+              "pixel_sha256": "7c8349a65a2cdfac67e64f861bf00b162b8e5af63eea6b1f0386444765340b44"
+            },
+            {
+              "size": [
+                512,
+                512
+              ],
+              "mode": "RGB",
+              "pixel_sha256": "cceb39249d3900ae5cf4f2d5adb22ddcbe843c23df74186cb953780498d4ea20"
+            },
+            {
+              "size": [
+                512,
+                512
+              ],
+              "mode": "RGB",
+              "pixel_sha256": "cceb39249d3900ae5cf4f2d5adb22ddcbe843c23df74186cb953780498d4ea20"
+            }
+          ],
+          "libraries": {
+            "torch": "2.7.1",
+            "transformers": "4.57.6"
+          },
+          "planner_sha256": "87ea0a00e0a662d034cfc200b326cd569ecd2f32f57fe6681851fefdd47aabc7"
+        },
+        "device": "cuda:0",
+        "allocated_mib": 8490.62890625,
+        "reserved_mib": 8800.0,
+        "tokens": 26,
+        "ok": true,
+        "status": "not_done",
+        "done": false,
+        "reason": "The tomato sauce can is still on the table and not in the basket.",
+        "live_checker_sha256": "c8757dbe355e8d7c957ecb1cda204b00631954e0aef5a57bda7e65653623fb34"
+      },
+      "wrist_image": "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_duplicate_control/task00_target1_init00/positive_visual/images/wrist_0150.png",
+      "seconds": 0.5218917619931744
+    },
+    {
+      "kind": "check",
+      "step": 160,
+      "decision": {
+        "done": false,
+        "streak": 0,
+        "stop": false
+      },
+      "images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_duplicate_control/task00_target1_init00/positive_visual/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_duplicate_control/task00_target1_init00/positive_visual/images/current_0160.png"
+      ],
+      "sent_images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_duplicate_control/task00_target1_init00/positive_visual/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_duplicate_control/task00_target1_init00/positive_visual/images/current_0160.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_duplicate_control/task00_target1_init00/positive_visual/images/current_0160.png"
+      ],
+      "reply": {
+        "raw": "{\"status\":\"not_done\", \"reason\":\"The tomato sauce can is still on the table and not yet in the basket.\"}",
+        "seconds": 0.46877602400491014,
+        "inference": {
+          "model": "Qwen/Qwen3-VL-4B-Instruct",
+          "revision": "ebb281ec70b05090aa6165b016eac8ec08e71b17",
+          "prompt": "Check this single robot subgoal: \"pick up the tomato sauce can and place it in the basket\".\nImage 1 is the third-person view when the subgoal started. Image 2 is the current third-person view. Image 3 is a current auxiliary view; it may repeat image 2.\nUse the views together to identify the TARGET and its DESTINATION. A placement is done only when the target is visibly at the destination and released from the gripper. Do not infer completion merely because the target disappeared from its starting position. If destination, identity or release cannot be established from the images, choose unknown. Do not treat another object at the destination as the target.\nReturn only JSON: {\"status\":\"done\" or \"not_done\" or \"unknown\", \"reason\":\"one short sentence\"}.",
+          "prompt_sha256": "6cb4aea999f7000a692b5d9a953c6efbc111d6be5f36e115ef6efbf615c181a3",
+          "engine_sha256": "6c14802fbe468fa57e2ad48b25fc02c9a100d82d9aafdbf8d11224e969b699fb",
+          "generation": {
+            "max_new_tokens": 128,
+            "do_sample": false
+          },
+          "images": [
+            {
+              "size": [
+                512,
+                512
+              ],
+              "mode": "RGB",
+              "pixel_sha256": "7c8349a65a2cdfac67e64f861bf00b162b8e5af63eea6b1f0386444765340b44"
+            },
+            {
+              "size": [
+                512,
+                512
+              ],
+              "mode": "RGB",
+              "pixel_sha256": "7bf65707d5d5f3e50343115b3f2c465e0b928f5049320783516f3d616c2b3737"
+            },
+            {
+              "size": [
+                512,
+                512
+              ],
+              "mode": "RGB",
+              "pixel_sha256": "7bf65707d5d5f3e50343115b3f2c465e0b928f5049320783516f3d616c2b3737"
+            }
+          ],
+          "libraries": {
+            "torch": "2.7.1",
+            "transformers": "4.57.6"
+          },
+          "planner_sha256": "87ea0a00e0a662d034cfc200b326cd569ecd2f32f57fe6681851fefdd47aabc7"
+        },
+        "device": "cuda:0",
+        "allocated_mib": 8490.62890625,
+        "reserved_mib": 8800.0,
+        "tokens": 27,
+        "ok": true,
+        "status": "not_done",
+        "done": false,
+        "reason": "The tomato sauce can is still on the table and not yet in the basket.",
+        "live_checker_sha256": "c8757dbe355e8d7c957ecb1cda204b00631954e0aef5a57bda7e65653623fb34"
+      },
+      "wrist_image": "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_duplicate_control/task00_target1_init00/positive_visual/images/wrist_0160.png",
+      "seconds": 0.5172226549984771
+    },
+    {
+      "kind": "check",
+      "step": 170,
+      "decision": {
+        "done": false,
+        "streak": 0,
+        "stop": false
+      },
+      "images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_duplicate_control/task00_target1_init00/positive_visual/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_duplicate_control/task00_target1_init00/positive_visual/images/current_0170.png"
+      ],
+      "sent_images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_duplicate_control/task00_target1_init00/positive_visual/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_duplicate_control/task00_target1_init00/positive_visual/images/current_0170.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_duplicate_control/task00_target1_init00/positive_visual/images/current_0170.png"
+      ],
+      "reply": {
+        "raw": "{\"status\":\"not_done\", \"reason\":\"The robot has not yet picked up the tomato sauce can.\"}",
+        "seconds": 0.4109604120021686,
+        "inference": {
+          "model": "Qwen/Qwen3-VL-4B-Instruct",
+          "revision": "ebb281ec70b05090aa6165b016eac8ec08e71b17",
+          "prompt": "Check this single robot subgoal: \"pick up the tomato sauce can and place it in the basket\".\nImage 1 is the third-person view when the subgoal started. Image 2 is the current third-person view. Image 3 is a current auxiliary view; it may repeat image 2.\nUse the views together to identify the TARGET and its DESTINATION. A placement is done only when the target is visibly at the destination and released from the gripper. Do not infer completion merely because the target disappeared from its starting position. If destination, identity or release cannot be established from the images, choose unknown. Do not treat another object at the destination as the target.\nReturn only JSON: {\"status\":\"done\" or \"not_done\" or \"unknown\", \"reason\":\"one short sentence\"}.",
+          "prompt_sha256": "6cb4aea999f7000a692b5d9a953c6efbc111d6be5f36e115ef6efbf615c181a3",
+          "engine_sha256": "6c14802fbe468fa57e2ad48b25fc02c9a100d82d9aafdbf8d11224e969b699fb",
+          "generation": {
+            "max_new_tokens": 128,
+            "do_sample": false
+          },
+          "images": [
+            {
+              "size": [
+                512,
+                512
+              ],
+              "mode": "RGB",
+              "pixel_sha256": "7c8349a65a2cdfac67e64f861bf00b162b8e5af63eea6b1f0386444765340b44"
+            },
+            {
+              "size": [
+                512,
+                512
+              ],
+              "mode": "RGB",
+              "pixel_sha256": "7bdae03d62c8e949f1f9c5c172a726f83e429ceda0ef2be51c905165232a9aba"
+            },
+            {
+              "size": [
+                512,
+                512
+              ],
+              "mode": "RGB",
+              "pixel_sha256": "7bdae03d62c8e949f1f9c5c172a726f83e429ceda0ef2be51c905165232a9aba"
+            }
+          ],
+          "libraries": {
+            "torch": "2.7.1",
+            "transformers": "4.57.6"
+          },
+          "planner_sha256": "87ea0a00e0a662d034cfc200b326cd569ecd2f32f57fe6681851fefdd47aabc7"
+        },
+        "device": "cuda:0",
+        "allocated_mib": 8490.62890625,
+        "reserved_mib": 8800.0,
+        "tokens": 23,
+        "ok": true,
+        "status": "not_done",
+        "done": false,
+        "reason": "The robot has not yet picked up the tomato sauce can.",
+        "live_checker_sha256": "c8757dbe355e8d7c957ecb1cda204b00631954e0aef5a57bda7e65653623fb34"
+      },
+      "wrist_image": "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_duplicate_control/task00_target1_init00/positive_visual/images/wrist_0170.png",
+      "seconds": 0.4513242739994894
+    },
+    {
+      "kind": "check",
+      "step": 180,
+      "decision": {
+        "done": false,
+        "streak": 0,
+        "stop": false
+      },
+      "images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_duplicate_control/task00_target1_init00/positive_visual/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_duplicate_control/task00_target1_init00/positive_visual/images/current_0180.png"
+      ],
+      "sent_images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_duplicate_control/task00_target1_init00/positive_visual/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_duplicate_control/task00_target1_init00/positive_visual/images/current_0180.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_duplicate_control/task00_target1_init00/positive_visual/images/current_0180.png"
+      ],
+      "reply": {
+        "raw": "{\"status\":\"not_done\", \"reason\":\"The robot has not yet picked up the tomato sauce can.\"}",
+        "seconds": 0.4099819760012906,
+        "inference": {
+          "model": "Qwen/Qwen3-VL-4B-Instruct",
+          "revision": "ebb281ec70b05090aa6165b016eac8ec08e71b17",
+          "prompt": "Check this single robot subgoal: \"pick up the tomato sauce can and place it in the basket\".\nImage 1 is the third-person view when the subgoal started. Image 2 is the current third-person view. Image 3 is a current auxiliary view; it may repeat image 2.\nUse the views together to identify the TARGET and its DESTINATION. A placement is done only when the target is visibly at the destination and released from the gripper. Do not infer completion merely because the target disappeared from its starting position. If destination, identity or release cannot be established from the images, choose unknown. Do not treat another object at the destination as the target.\nReturn only JSON: {\"status\":\"done\" or \"not_done\" or \"unknown\", \"reason\":\"one short sentence\"}.",
+          "prompt_sha256": "6cb4aea999f7000a692b5d9a953c6efbc111d6be5f36e115ef6efbf615c181a3",
+          "engine_sha256": "6c14802fbe468fa57e2ad48b25fc02c9a100d82d9aafdbf8d11224e969b699fb",
+          "generation": {
+            "max_new_tokens": 128,
+            "do_sample": false
+          },
+          "images": [
+            {
+              "size": [
+                512,
+                512
+              ],
+              "mode": "RGB",
+              "pixel_sha256": "7c8349a65a2cdfac67e64f861bf00b162b8e5af63eea6b1f0386444765340b44"
+            },
+            {
+              "size": [
+                512,
+                512
+              ],
+              "mode": "RGB",
+              "pixel_sha256": "e77892424a4729a0398b62381f6924d5e5854c2f1708d0d516936a67a7796002"
+            },
+            {
+              "size": [
+                512,
+                512
+              ],
+              "mode": "RGB",
+              "pixel_sha256": "e77892424a4729a0398b62381f6924d5e5854c2f1708d0d516936a67a7796002"
+            }
+          ],
+          "libraries": {
+            "torch": "2.7.1",
+            "transformers": "4.57.6"
+          },
+          "planner_sha256": "87ea0a00e0a662d034cfc200b326cd569ecd2f32f57fe6681851fefdd47aabc7"
+        },
+        "device": "cuda:0",
+        "allocated_mib": 8490.62890625,
+        "reserved_mib": 8800.0,
+        "tokens": 23,
+        "ok": true,
+        "status": "not_done",
+        "done": false,
+        "reason": "The robot has not yet picked up the tomato sauce can.",
+        "live_checker_sha256": "c8757dbe355e8d7c957ecb1cda204b00631954e0aef5a57bda7e65653623fb34"
+      },
+      "wrist_image": "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_duplicate_control/task00_target1_init00/positive_visual/images/wrist_0180.png",
+      "seconds": 0.459976320998976
+    },
+    {
+      "kind": "check",
+      "step": 190,
+      "decision": {
+        "done": false,
+        "streak": 0,
+        "stop": false
+      },
+      "images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_duplicate_control/task00_target1_init00/positive_visual/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_duplicate_control/task00_target1_init00/positive_visual/images/current_0190.png"
+      ],
+      "sent_images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_duplicate_control/task00_target1_init00/positive_visual/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_duplicate_control/task00_target1_init00/positive_visual/images/current_0190.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_duplicate_control/task00_target1_init00/positive_visual/images/current_0190.png"
+      ],
+      "reply": {
+        "raw": "{\"status\":\"not_done\", \"reason\":\"The robot is holding the can but has not yet placed it in the basket.\"}",
+        "seconds": 0.4732889160004561,
+        "inference": {
+          "model": "Qwen/Qwen3-VL-4B-Instruct",
+          "revision": "ebb281ec70b05090aa6165b016eac8ec08e71b17",
+          "prompt": "Check this single robot subgoal: \"pick up the tomato sauce can and place it in the basket\".\nImage 1 is the third-person view when the subgoal started. Image 2 is the current third-person view. Image 3 is a current auxiliary view; it may repeat image 2.\nUse the views together to identify the TARGET and its DESTINATION. A placement is done only when the target is visibly at the destination and released from the gripper. Do not infer completion merely because the target disappeared from its starting position. If destination, identity or release cannot be established from the images, choose unknown. Do not treat another object at the destination as the target.\nReturn only JSON: {\"status\":\"done\" or \"not_done\" or \"unknown\", \"reason\":\"one short sentence\"}.",
+          "prompt_sha256": "6cb4aea999f7000a692b5d9a953c6efbc111d6be5f36e115ef6efbf615c181a3",
+          "engine_sha256": "6c14802fbe468fa57e2ad48b25fc02c9a100d82d9aafdbf8d11224e969b699fb",
+          "generation": {
+            "max_new_tokens": 128,
+            "do_sample": false
+          },
+          "images": [
+            {
+              "size": [
+                512,
+                512
+              ],
+              "mode": "RGB",
+              "pixel_sha256": "7c8349a65a2cdfac67e64f861bf00b162b8e5af63eea6b1f0386444765340b44"
+            },
+            {
+              "size": [
+                512,
+                512
+              ],
+              "mode": "RGB",
+              "pixel_sha256": "67aa13b6bcc64f92d4ee4b226874c921ae61f9aab2695841e4634690164c6575"
+            },
+            {
+              "size": [
+                512,
+                512
+              ],
+              "mode": "RGB",
+              "pixel_sha256": "67aa13b6bcc64f92d4ee4b226874c921ae61f9aab2695841e4634690164c6575"
+            }
+          ],
+          "libraries": {
+            "torch": "2.7.1",
+            "transformers": "4.57.6"
+          },
+          "planner_sha256": "87ea0a00e0a662d034cfc200b326cd569ecd2f32f57fe6681851fefdd47aabc7"
+        },
+        "device": "cuda:0",
+        "allocated_mib": 8490.62890625,
+        "reserved_mib": 8800.0,
+        "tokens": 27,
+        "ok": true,
+        "status": "not_done",
+        "done": false,
+        "reason": "The robot is holding the can but has not yet placed it in the basket.",
+        "live_checker_sha256": "c8757dbe355e8d7c957ecb1cda204b00631954e0aef5a57bda7e65653623fb34"
+      },
+      "wrist_image": "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_duplicate_control/task00_target1_init00/positive_visual/images/wrist_0190.png",
+      "seconds": 0.5240237640027772
+    },
+    {
+      "kind": "check",
+      "step": 200,
+      "decision": {
+        "done": false,
+        "streak": 0,
+        "stop": false
+      },
+      "images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_duplicate_control/task00_target1_init00/positive_visual/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_duplicate_control/task00_target1_init00/positive_visual/images/current_0200.png"
+      ],
+      "sent_images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_duplicate_control/task00_target1_init00/positive_visual/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_duplicate_control/task00_target1_init00/positive_visual/images/current_0200.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_duplicate_control/task00_target1_init00/positive_visual/images/current_0200.png"
+      ],
+      "reply": {
+        "raw": "{\"status\":\"not_done\", \"reason\":\"The robot is holding the can but has not yet placed it in the basket.\"}",
+        "seconds": 0.4726983540022047,
+        "inference": {
+          "model": "Qwen/Qwen3-VL-4B-Instruct",
+          "revision": "ebb281ec70b05090aa6165b016eac8ec08e71b17",
+          "prompt": "Check this single robot subgoal: \"pick up the tomato sauce can and place it in the basket\".\nImage 1 is the third-person view when the subgoal started. Image 2 is the current third-person view. Image 3 is a current auxiliary view; it may repeat image 2.\nUse the views together to identify the TARGET and its DESTINATION. A placement is done only when the target is visibly at the destination and released from the gripper. Do not infer completion merely because the target disappeared from its starting position. If destination, identity or release cannot be established from the images, choose unknown. Do not treat another object at the destination as the target.\nReturn only JSON: {\"status\":\"done\" or \"not_done\" or \"unknown\", \"reason\":\"one short sentence\"}.",
+          "prompt_sha256": "6cb4aea999f7000a692b5d9a953c6efbc111d6be5f36e115ef6efbf615c181a3",
+          "engine_sha256": "6c14802fbe468fa57e2ad48b25fc02c9a100d82d9aafdbf8d11224e969b699fb",
+          "generation": {
+            "max_new_tokens": 128,
+            "do_sample": false
+          },
+          "images": [
+            {
+              "size": [
+                512,
+                512
+              ],
+              "mode": "RGB",
+              "pixel_sha256": "7c8349a65a2cdfac67e64f861bf00b162b8e5af63eea6b1f0386444765340b44"
+            },
+            {
+              "size": [
+                512,
+                512
+              ],
+              "mode": "RGB",
+              "pixel_sha256": "5abfe5e078bcbcc0b7d54ada37cbd1e80b9afd1cd82e94035115dd9cba272449"
+            },
+            {
+              "size": [
+                512,
+                512
+              ],
+              "mode": "RGB",
+              "pixel_sha256": "5abfe5e078bcbcc0b7d54ada37cbd1e80b9afd1cd82e94035115dd9cba272449"
+            }
+          ],
+          "libraries": {
+            "torch": "2.7.1",
+            "transformers": "4.57.6"
+          },
+          "planner_sha256": "87ea0a00e0a662d034cfc200b326cd569ecd2f32f57fe6681851fefdd47aabc7"
+        },
+        "device": "cuda:0",
+        "allocated_mib": 8490.62890625,
+        "reserved_mib": 8800.0,
+        "tokens": 27,
+        "ok": true,
+        "status": "not_done",
+        "done": false,
+        "reason": "The robot is holding the can but has not yet placed it in the basket.",
+        "live_checker_sha256": "c8757dbe355e8d7c957ecb1cda204b00631954e0aef5a57bda7e65653623fb34"
+      },
+      "wrist_image": "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_duplicate_control/task00_target1_init00/positive_visual/images/wrist_0200.png",
+      "seconds": 0.5222828850019141
+    },
+    {
+      "kind": "check",
+      "step": 260,
+      "decision": {
+        "done": false,
+        "streak": 0,
+        "stop": false
+      },
+      "images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_duplicate_control/task00_target1_init00/positive_visual/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_duplicate_control/task00_target1_init00/positive_visual/images/current_0260.png"
+      ],
+      "sent_images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_duplicate_control/task00_target1_init00/positive_visual/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_duplicate_control/task00_target1_init00/positive_visual/images/current_0260.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_duplicate_control/task00_target1_init00/positive_visual/images/current_0260.png"
+      ],
+      "reply": {
+        "raw": "{\"status\":\"not_done\", \"reason\":\"The robot has not yet picked up the tomato sauce can.\"}",
+        "seconds": 0.4176597129990114,
+        "inference": {
+          "model": "Qwen/Qwen3-VL-4B-Instruct",
+          "revision": "ebb281ec70b05090aa6165b016eac8ec08e71b17",
+          "prompt": "Check this single robot subgoal: \"pick up the tomato sauce can and place it in the basket\".\nImage 1 is the third-person view when the subgoal started. Image 2 is the current third-person view. Image 3 is a current auxiliary view; it may repeat image 2.\nUse the views together to identify the TARGET and its DESTINATION. A placement is done only when the target is visibly at the destination and released from the gripper. Do not infer completion merely because the target disappeared from its starting position. If destination, identity or release cannot be established from the images, choose unknown. Do not treat another object at the destination as the target.\nReturn only JSON: {\"status\":\"done\" or \"not_done\" or \"unknown\", \"reason\":\"one short sentence\"}.",
+          "prompt_sha256": "6cb4aea999f7000a692b5d9a953c6efbc111d6be5f36e115ef6efbf615c181a3",
+          "engine_sha256": "6c14802fbe468fa57e2ad48b25fc02c9a100d82d9aafdbf8d11224e969b699fb",
+          "generation": {
+            "max_new_tokens": 128,
+            "do_sample": false
+          },
+          "images": [
+            {
+              "size": [
+                512,
+                512
+              ],
+              "mode": "RGB",
+              "pixel_sha256": "7c8349a65a2cdfac67e64f861bf00b162b8e5af63eea6b1f0386444765340b44"
+            },
+            {
+              "size": [
+                512,
+                512
+              ],
+              "mode": "RGB",
+              "pixel_sha256": "bb81bb97a1126b905440b02dc2395c9e04f4d1c016dfd041f34911757999e799"
+            },
+            {
+              "size": [
+                512,
+                512
+              ],
+              "mode": "RGB",
+              "pixel_sha256": "bb81bb97a1126b905440b02dc2395c9e04f4d1c016dfd041f34911757999e799"
+            }
+          ],
+          "libraries": {
+            "torch": "2.7.1",
+            "transformers": "4.57.6"
+          },
+          "planner_sha256": "87ea0a00e0a662d034cfc200b326cd569ecd2f32f57fe6681851fefdd47aabc7"
+        },
+        "device": "cuda:0",
+        "allocated_mib": 8490.62890625,
+        "reserved_mib": 8800.0,
+        "tokens": 23,
+        "ok": true,
+        "status": "not_done",
+        "done": false,
+        "reason": "The robot has not yet picked up the tomato sauce can.",
+        "live_checker_sha256": "c8757dbe355e8d7c957ecb1cda204b00631954e0aef5a57bda7e65653623fb34"
+      },
+      "wrist_image": "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_duplicate_control/task00_target1_init00/positive_visual/images/wrist_0260.png",
+      "seconds": 0.467235398995399
+    },
+    {
+      "kind": "check",
+      "step": 270,
+      "decision": {
+        "done": false,
+        "streak": 0,
+        "stop": false
+      },
+      "images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_duplicate_control/task00_target1_init00/positive_visual/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_duplicate_control/task00_target1_init00/positive_visual/images/current_0270.png"
+      ],
+      "sent_images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_duplicate_control/task00_target1_init00/positive_visual/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_duplicate_control/task00_target1_init00/positive_visual/images/current_0270.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_duplicate_control/task00_target1_init00/positive_visual/images/current_0270.png"
+      ],
+      "reply": {
+        "raw": "{\"status\":\"not_done\", \"reason\":\"The robot is holding the can but has not yet placed it in the basket.\"}",
+        "seconds": 0.466264267997758,
+        "inference": {
+          "model": "Qwen/Qwen3-VL-4B-Instruct",
+          "revision": "ebb281ec70b05090aa6165b016eac8ec08e71b17",
+          "prompt": "Check this single robot subgoal: \"pick up the tomato sauce can and place it in the basket\".\nImage 1 is the third-person view when the subgoal started. Image 2 is the current third-person view. Image 3 is a current auxiliary view; it may repeat image 2.\nUse the views together to identify the TARGET and its DESTINATION. A placement is done only when the target is visibly at the destination and released from the gripper. Do not infer completion merely because the target disappeared from its starting position. If destination, identity or release cannot be established from the images, choose unknown. Do not treat another object at the destination as the target.\nReturn only JSON: {\"status\":\"done\" or \"not_done\" or \"unknown\", \"reason\":\"one short sentence\"}.",
+          "prompt_sha256": "6cb4aea999f7000a692b5d9a953c6efbc111d6be5f36e115ef6efbf615c181a3",
+          "engine_sha256": "6c14802fbe468fa57e2ad48b25fc02c9a100d82d9aafdbf8d11224e969b699fb",
+          "generation": {
+            "max_new_tokens": 128,
+            "do_sample": false
+          },
+          "images": [
+            {
+              "size": [
+                512,
+                512
+              ],
+              "mode": "RGB",
+              "pixel_sha256": "7c8349a65a2cdfac67e64f861bf00b162b8e5af63eea6b1f0386444765340b44"
+            },
+            {
+              "size": [
+                512,
+                512
+              ],
+              "mode": "RGB",
+              "pixel_sha256": "1f5f13ab8a6fcf621fb263b429ad9b0b637d60eb56abece7c7b066618da5b329"
+            },
+            {
+              "size": [
+                512,
+                512
+              ],
+              "mode": "RGB",
+              "pixel_sha256": "1f5f13ab8a6fcf621fb263b429ad9b0b637d60eb56abece7c7b066618da5b329"
+            }
+          ],
+          "libraries": {
+            "torch": "2.7.1",
+            "transformers": "4.57.6"
+          },
+          "planner_sha256": "87ea0a00e0a662d034cfc200b326cd569ecd2f32f57fe6681851fefdd47aabc7"
+        },
+        "device": "cuda:0",
+        "allocated_mib": 8490.62890625,
+        "reserved_mib": 8800.0,
+        "tokens": 27,
+        "ok": true,
+        "status": "not_done",
+        "done": false,
+        "reason": "The robot is holding the can but has not yet placed it in the basket.",
+        "live_checker_sha256": "c8757dbe355e8d7c957ecb1cda204b00631954e0aef5a57bda7e65653623fb34"
+      },
+      "wrist_image": "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/live_pilot_duplicate_control/task00_target1_init00/positive_visual/images/wrist_0270.png",
+      "seconds": 0.5176120920004905
+    },
+    {
+      "kind": "stop",
+      "step": 300,
+      "reason": "budget"
+    }
+  ],
+  "policy_queries": 60,
+  "model_checks": 13,
+  "control_truth_inputs": false,
+  "original_done_used_for_stopping": false,
+  "monitor_scheme": "duplicate_control",
+  "initial_state_sha256": "747b653b2ca1feeae8f3bd994880ce743730993ea5ce4bd003623e877f26b3bd",
+  "settled_state_sha256": "358af039709266907fdd0abd2f9b747fbf84abb2814f687b503d32e580d002bd",
+  "goal_atoms": [
+    [
+      "in",
+      "alphabet_soup_1",
+      "basket_1_contain_region"
+    ],
+    [
+      "in",
+      "tomato_sauce_1",
+      "basket_1_contain_region"
+    ]
+  ],
+  "initial_object_positions": [
+    [
+      -0.1001602877640908,
+      -0.1520157700938654,
+      0.4751701239604015
+    ],
+    [
+      -0.11728698342501227,
+      0.055747991004013384,
+      0.47516915037869295
+    ]
+  ],
+  "plan": "plans/live/task00_target1_init00.json",
+  "plan_sha256": "319e3830a465612da5c21741d02c0011998aabbbb5e44a5e2019810acf4fda2f",
+  "selector_correct": true,
+  "selection": {
+    "raw": "{\"target\":\"tomato_sauce_1\", \"protected\":\"alphabet_soup_1\"}",
+    "seconds": 0.3140462769952137,
+    "inference": {
+      "model": "Qwen/Qwen3-VL-4B-Instruct",
+      "revision": "ebb281ec70b05090aa6165b016eac8ec08e71b17",
+      "prompt": "Inspect the image and the instruction. Select exactly one object to move into the basket, and the one explicitly required to remain untouched.\nKnown object IDs and English/Chinese names: [[\"alphabet_soup_1\", \"alphabet soup can\", \"字母汤罐头\"], [\"tomato_sauce_1\", \"tomato sauce can\", \"番茄酱罐头\"]]\nInstruction: 只把番茄酱罐头放进篮子里，字母汤罐头保持原位。放好后停止，不要继续搬其他物体。\nReturn only JSON: {\"target\":\"one known ID\", \"protected\":\"the other known ID\"}. Do not output coordinates or add another action.",
+      "prompt_sha256": "4a1ee987a32fd4a4fe2e15913d0211138cd7fec672e0040731e79052b5532f49",
+      "engine_sha256": "6c14802fbe468fa57e2ad48b25fc02c9a100d82d9aafdbf8d11224e969b699fb",
+      "generation": {
+        "max_new_tokens": 96,
+        "do_sample": false
+      },
+      "images": [
+        {
+          "size": [
+            512,
+            512
+          ],
+          "mode": "RGB",
+          "pixel_sha256": "7c8349a65a2cdfac67e64f861bf00b162b8e5af63eea6b1f0386444765340b44"
+        }
+      ],
+      "libraries": {
+        "torch": "2.7.1",
+        "transformers": "4.57.6"
+      },
+      "planner_sha256": "87ea0a00e0a662d034cfc200b326cd569ecd2f32f57fe6681851fefdd47aabc7"
+    },
+    "device": "cuda:0",
+    "allocated_mib": 8478.61669921875,
+    "reserved_mib": 8748.0,
+    "tokens": 19,
+    "ok": true,
+    "target": "tomato_sauce_1",
+    "protected": "alphabet_soup_1",
+    "worker_sha256": "eabf321de58b827bd022188cc7c8aba5596e77f0488acbadec7d1988af789f78"
+  },
+  "translation": {
+    "raw": "{\"instruction\": \"Put the ketchup can in the basket and leave the letter soup can where it is.\"}",
+    "seconds": 0.37765570099873,
+    "inference": {
+      "model": "Qwen/Qwen3-VL-4B-Instruct",
+      "revision": "ebb281ec70b05090aa6165b016eac8ec08e71b17",
+      "prompt": "Translate this robot task instruction into one short English imperative sentence, keeping every object and relation. Use the image only to name the objects correctly. Do not split it into steps.\nInstruction: 只把番茄酱罐头放进篮子里，字母汤罐头保持原位。放好后停止，不要继续搬其他物体。\nReturn only JSON: {\"instruction\": \"English instruction\"}",
+      "prompt_sha256": "767d3c5cf9c53c49f15c0d186c447fcc58e5035c834d0019f3374f3832fa454e",
+      "engine_sha256": "6c14802fbe468fa57e2ad48b25fc02c9a100d82d9aafdbf8d11224e969b699fb",
+      "generation": {
+        "max_new_tokens": 64,
+        "do_sample": false
+      },
+      "images": [
+        {
+          "size": [
+            512,
+            512
+          ],
+          "mode": "RGB",
+          "pixel_sha256": "7c8349a65a2cdfac67e64f861bf00b162b8e5af63eea6b1f0386444765340b44"
+        }
+      ],
+      "libraries": {
+        "torch": "2.7.1",
+        "transformers": "4.57.6"
+      },
+      "planner_sha256": "87ea0a00e0a662d034cfc200b326cd569ecd2f32f57fe6681851fefdd47aabc7"
+    },
+    "device": "cuda:0",
+    "allocated_mib": 8478.615234375,
+    "reserved_mib": 8748.0,
+    "tokens": 24,
+    "ok": true,
+    "subgoals": [
+      {
+        "instruction": "Put the ketchup can in the basket and leave the letter soup can where it is.",
+        "completion_hint": ""
+      }
+    ]
+  },
+  "policy_instruction": "pick up the tomato sauce can and place it in the basket",
+  "selected_target": "tomato_sauce_1",
+  "timer_threshold": 150,
+  "prompt_family": "positive",
+  "stop_family": "visual",
+  "selective_success": false,
+  "target_final_stable": false,
+  "final_released": true,
+  "target_ever_reached": false,
+  "protected_untouched": false,
+  "max_protected_displacement_m": 0.46080484836151425,
+  "first_valid_step": null,
+  "first_violation_step": 69,
+  "self_stop_success": false,
+  "premature_stop": false,
+  "decision_step": 300,
+  "stop_reason": "budget",
+  "wall_seconds": 28.85864028800279,
+  "original_success_observed": false,
+  "policy_steps_after_original_success": 0,
+  "success": false
+}

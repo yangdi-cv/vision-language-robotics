@@ -1,0 +1,2062 @@
+{
+  "PROJECT_LOG.md": {
+    "bytes": 34504,
+    "sha256": "1b2b76636d0aa4521a7d06a47ce98e2d9400e0b338b6477f40a4e06f2db20f63"
+  },
+  "PROJECT_PLAN.md": {
+    "bytes": 11527,
+    "sha256": "7d0baa9e57d4cd830797093f603a648bc1611bc02c2bb97c18c05ada720e7606"
+  },
+  "PTA/阿里/阶段交付索引_2026-10-13.md": {
+    "bytes": 850,
+    "sha256": "dc88fbf5e31999335fdd3df5bab113eef0def457734da68b3c40ae800be41d25"
+  },
+  "SO101/code/lerobot/LICENSE": {
+    "bytes": 27627,
+    "sha256": "0583375a0ec642ec79c447781f34322b0cfa66baff31258214d040f1f6d86d7c"
+  },
+  "SO101/code/lerobot/README.md": {
+    "bytes": 20369,
+    "sha256": "c2beaeb7f1b006780d8e104e330dfbec1cb37705c2963b8c5bb2758d9df04330"
+  },
+  "SO101/code/lerobot/pyproject.toml": {
+    "bytes": 8797,
+    "sha256": "9ce8be173900a5e47c6a6cb811bc8673809a107b751963246d23d1fb050dcc73"
+  },
+  "SO101/code/lerobot/src/lerobot/__init__.py": {
+    "bytes": 7476,
+    "sha256": "84f5867e030200227e2af3a61d8a5efbf8aa63674d4e017fde0aba832f48fcdc"
+  },
+  "SO101/code/lerobot/src/lerobot/__version__.py": {
+    "bytes": 834,
+    "sha256": "beb2aa5d785c7e7ccbcb910ec4688e2868423458e2a1aac7fd76c1e1a182a470"
+  },
+  "SO101/code/lerobot/src/lerobot/calibrate.py": {
+    "bytes": 2393,
+    "sha256": "1b581387b494618db41fcd5410eb7eba882d9b9595ec4d2de7974d17c0d39c10"
+  },
+  "SO101/code/lerobot/src/lerobot/cameras/__init__.py": {
+    "bytes": 742,
+    "sha256": "a58ede8ae08e202155dea5d61f3bf3335cc5a60eacf1e3005b0f79098849a1b8"
+  },
+  "SO101/code/lerobot/src/lerobot/cameras/camera.py": {
+    "bytes": 3830,
+    "sha256": "6b148526ed30cbb655559c5e51600b2bdf2e16c59260f059e2e83a9e4ffd7989"
+  },
+  "SO101/code/lerobot/src/lerobot/cameras/configs.py": {
+    "bytes": 1153,
+    "sha256": "689f8dabe8141230383b3cc2c16b4b6f02c80774e961958b22ad4e86583060ef"
+  },
+  "SO101/code/lerobot/src/lerobot/cameras/opencv/__init__.py": {
+    "bytes": 705,
+    "sha256": "1638634176658b5e1a8e34c5a674b34d17b4b9373d93d830cd35d8b1b9bc2460"
+  },
+  "SO101/code/lerobot/src/lerobot/cameras/opencv/camera_opencv.py": {
+    "bytes": 19330,
+    "sha256": "5d03d5c242cfafdbde7d43fad55bb0bdcddc0d9bfb41fecf7e1fbd2649a321df"
+  },
+  "SO101/code/lerobot/src/lerobot/cameras/opencv/configuration_opencv.py": {
+    "bytes": 3029,
+    "sha256": "d813f17059115044c38c1b12defa5d6897564f4872ea6d7cdf57857f76450a46"
+  },
+  "SO101/code/lerobot/src/lerobot/cameras/realsense/__init__.py": {
+    "bytes": 717,
+    "sha256": "24932dc9ddb774eb3d1ced5a700275a7d3e2e554d68364ce82267a1d30efb432"
+  },
+  "SO101/code/lerobot/src/lerobot/cameras/realsense/camera_realsense.py": {
+    "bytes": 21811,
+    "sha256": "a984a366a1477345a0ab89678262167729c7c346d065abafa0c1cad621d0bd27"
+  },
+  "SO101/code/lerobot/src/lerobot/cameras/realsense/configuration_realsense.py": {
+    "bytes": 3692,
+    "sha256": "8299760872dbe5de4f220c334063acba0c7edfa5a3780f282db96e398e02f726"
+  },
+  "SO101/code/lerobot/src/lerobot/cameras/utils.py": {
+    "bytes": 2060,
+    "sha256": "b572087088e2f0f6a1a78c856dec8cc6f30586f92f318f0bad6410badd7cd57f"
+  },
+  "SO101/code/lerobot/src/lerobot/configs/default.py": {
+    "bytes": 3048,
+    "sha256": "b85c08980bc69bd70b6268fcf0b793f86026171faccf7e8b512d5d4729fcb072"
+  },
+  "SO101/code/lerobot/src/lerobot/configs/eval.py": {
+    "bytes": 2630,
+    "sha256": "6e8076da6c96fccf8557d2a99b9906f7fbb3f94d242e2288ec777c51ce00852d"
+  },
+  "SO101/code/lerobot/src/lerobot/configs/parser.py": {
+    "bytes": 9373,
+    "sha256": "d06bd8aefa3b72569ef5b0a497756f486cd281dd782486a4d3929208d5ce4008"
+  },
+  "SO101/code/lerobot/src/lerobot/configs/policies.py": {
+    "bytes": 8032,
+    "sha256": "69b134c920c476d545fd34df71676c5ac45b094c39cacfcbd933e6b6421c51fd"
+  },
+  "SO101/code/lerobot/src/lerobot/configs/train.py": {
+    "bytes": 7997,
+    "sha256": "81e0474186f5e574c9bade48e8c4440dd9eccc56f13f138169525c481096d531"
+  },
+  "SO101/code/lerobot/src/lerobot/configs/types.py": {
+    "bytes": 1244,
+    "sha256": "f32750541f2c33bc37cd19bfb153f4a5c31c47892bcaa375dc97ebda5aa7abb3"
+  },
+  "SO101/code/lerobot/src/lerobot/constants.py": {
+    "bytes": 1915,
+    "sha256": "11ac9260341e1560c5eb0dd7acb79ed63c74180b8ab4113c27622ff213db417f"
+  },
+  "SO101/code/lerobot/src/lerobot/datasets/backward_compatibility.py": {
+    "bytes": 3007,
+    "sha256": "a1090ab98db67e09ddb2047f4c7c2a482f089dd4c0bd5997e763f7481e3a4cc9"
+  },
+  "SO101/code/lerobot/src/lerobot/datasets/card_template.md": {
+    "bytes": 796,
+    "sha256": "32e122b50cd394ae5778948b901eeb9bfcbcaa13aeab3cb4b51860e43b74abc4"
+  },
+  "SO101/code/lerobot/src/lerobot/datasets/compute_stats.py": {
+    "bytes": 6942,
+    "sha256": "4f8006d2124e815d702501fc709d4c333d80e60bc32f80a13719b0dbc37c4941"
+  },
+  "SO101/code/lerobot/src/lerobot/datasets/factory.py": {
+    "bytes": 4590,
+    "sha256": "26c8ace7bb0ea056114ebdf5103cbccd45f02b3cc6e9f332496cc7197a632ddd"
+  },
+  "SO101/code/lerobot/src/lerobot/datasets/image_writer.py": {
+    "bytes": 6284,
+    "sha256": "44f057d19b1036a5e64d67503a073c9c256ed956005fcefce51902b05c5e231c"
+  },
+  "SO101/code/lerobot/src/lerobot/datasets/lerobot_dataset.py": {
+    "bytes": 52008,
+    "sha256": "b9226fee0ab0585cf7b2575e39b2291a295f632185abfa767ccc37ec5edcea8f"
+  },
+  "SO101/code/lerobot/src/lerobot/datasets/online_buffer.py": {
+    "bytes": 17701,
+    "sha256": "e0bc4813e8a902f5797b6e42cfe44c4b43047cf1db3cb4e0de6d317d7fd3e7ec"
+  },
+  "SO101/code/lerobot/src/lerobot/datasets/push_dataset_to_hub/utils.py": {
+    "bytes": 4991,
+    "sha256": "9fdecf7f5e80c383d6c532f0349ab4fd22b51434a62ea0f6e91cc2693dd5a822"
+  },
+  "SO101/code/lerobot/src/lerobot/datasets/sampler.py": {
+    "bytes": 2373,
+    "sha256": "d00ce9e253a9bbbc4c3659ad5e35a4b9b52f1d708e84d1da2823c2bd84ab24b2"
+  },
+  "SO101/code/lerobot/src/lerobot/datasets/transforms.py": {
+    "bytes": 9688,
+    "sha256": "23dc1b457d663f0ed664cfe16a05a24bc437fc10d20b0f29e0660d1eab052783"
+  },
+  "SO101/code/lerobot/src/lerobot/datasets/utils.py": {
+    "bytes": 30877,
+    "sha256": "d5304b7f7039a6c97ab2de51748ad781a40edce15816ed3efe865cf1e261d033"
+  },
+  "SO101/code/lerobot/src/lerobot/datasets/v2/batch_convert_dataset_v1_to_v2.py": {
+    "bytes": 43322,
+    "sha256": "c272b778986329133880090627036cec8533355658895f5770c66cd365dd69f6"
+  },
+  "SO101/code/lerobot/src/lerobot/datasets/v2/convert_dataset_v1_to_v2.py": {
+    "bytes": 25622,
+    "sha256": "20993f011ec1f1970415a0374159cc4e905167b8a0bf425e47274782ccf573b7"
+  },
+  "SO101/code/lerobot/src/lerobot/datasets/v21/_remove_language_instruction.py": {
+    "bytes": 3204,
+    "sha256": "9acc1f3bff383a039489a86b2eace54513e39edf19063d87543c27e0e3164b93"
+  },
+  "SO101/code/lerobot/src/lerobot/datasets/v21/batch_convert_dataset_v20_to_v21.py": {
+    "bytes": 1826,
+    "sha256": "e1ae8b8d28167dd4369784cb88e4ef46410f71ca5e4aebe1ef366b6596ff7ef1"
+  },
+  "SO101/code/lerobot/src/lerobot/datasets/v21/convert_dataset_v20_to_v21.py": {
+    "bytes": 3697,
+    "sha256": "08d78f96579f87b75db9328ad3adbd6ea7e2eb1fddea9a02fc76ba893431e4f6"
+  },
+  "SO101/code/lerobot/src/lerobot/datasets/v21/convert_stats.py": {
+    "bytes": 4209,
+    "sha256": "8693444bc27515788245ae06b7a56cb6c3c848cc5c5af214b1620848e31652e1"
+  },
+  "SO101/code/lerobot/src/lerobot/datasets/video_utils.py": {
+    "bytes": 19528,
+    "sha256": "14a159f67e18a5f379b754539d8fa51ef6059f93b5a8b9ee32de89ff2788661e"
+  },
+  "SO101/code/lerobot/src/lerobot/envs/__init__.py": {
+    "bytes": 686,
+    "sha256": "4109273a32977e5edd453b67dfd40b5feaafdc452d60347bff7fdf3edae0a983"
+  },
+  "SO101/code/lerobot/src/lerobot/envs/configs.py": {
+    "bytes": 9293,
+    "sha256": "cedc755008d926c81b3a84332297033c109f3a281a795d6f1168d8628a0744ea"
+  },
+  "SO101/code/lerobot/src/lerobot/envs/factory.py": {
+    "bytes": 2532,
+    "sha256": "e2e19a762562847b2e44084d288c2523124a6eb8e4561a3d970ec1b6d4a9895c"
+  },
+  "SO101/code/lerobot/src/lerobot/envs/utils.py": {
+    "bytes": 5800,
+    "sha256": "03d875d2007e005509f38c41eecbcba85defdd9e7a6ed02a7bc711f5289f2c47"
+  },
+  "SO101/code/lerobot/src/lerobot/errors.py": {
+    "bytes": 1527,
+    "sha256": "69b6cf0f2d609901c988dd3def7bd99fd52030a435b2f28afb0cd8e7330a504c"
+  },
+  "SO101/code/lerobot/src/lerobot/find_cameras.py": {
+    "bytes": 11408,
+    "sha256": "20d69a815873923146e16c2ae2b22f689f0d694b3e1a324df8408a353615b9b2"
+  },
+  "SO101/code/lerobot/src/lerobot/find_port.py": {
+    "bytes": 2117,
+    "sha256": "a64de40270cdb6e48847af7898016a84f970914b3d1eb220854ff13b4349c907"
+  },
+  "SO101/code/lerobot/src/lerobot/model/kinematics.py": {
+    "bytes": 4798,
+    "sha256": "54cd1793fc7b0b7412c59ccac7138a1b96818132581d9ad37345a4e37c68b5dd"
+  },
+  "SO101/code/lerobot/src/lerobot/motors/__init__.py": {
+    "bytes": 74,
+    "sha256": "2ab6675405dc62d101e3fc8ff48f18d531e86ed95f79de019e1ab6a226ca63b4"
+  },
+  "SO101/code/lerobot/src/lerobot/motors/calibration_gui.py": {
+    "bytes": 14254,
+    "sha256": "3dde13844e062f29e7a5891e2bc32891d6bf4f24fd3cbc990ea1f0f4f9df40d3"
+  },
+  "SO101/code/lerobot/src/lerobot/motors/dynamixel/__init__.py": {
+    "bytes": 737,
+    "sha256": "080d8b76d52d7674bf7528b0232777b330d0d88d444be95fb1d318b7c19fedd0"
+  },
+  "SO101/code/lerobot/src/lerobot/motors/dynamixel/dynamixel.py": {
+    "bytes": 11125,
+    "sha256": "56adb1e3f279bfa260bf48b7ef11f9bfdd3260e6503fe4115c1aef545a0dc4d3"
+  },
+  "SO101/code/lerobot/src/lerobot/motors/dynamixel/tables.py": {
+    "bytes": 6049,
+    "sha256": "65dfec2f2974411ed71b62dd28baa7ab4d4c1e5d94c60f2d56df4946e81734c1"
+  },
+  "SO101/code/lerobot/src/lerobot/motors/feetech/__init__.py": {
+    "bytes": 733,
+    "sha256": "17b9e22b45fd71e4e04db7a072f8d32fa0a01de91e906b8b9746a1c83e7bbe8c"
+  },
+  "SO101/code/lerobot/src/lerobot/motors/feetech/feetech.py": {
+    "bytes": 18969,
+    "sha256": "cfc71b3166be5379b7daf53bea67d94adba7f7209e4d1ce8f9b1b1c2f06ce019"
+  },
+  "SO101/code/lerobot/src/lerobot/motors/feetech/tables.py": {
+    "bytes": 7563,
+    "sha256": "3030a82ee3e4775993792a22f4ed4385c798fa3e5385049a77a5c17196445fc8"
+  },
+  "SO101/code/lerobot/src/lerobot/motors/motors_bus.py": {
+    "bytes": 47676,
+    "sha256": "b524e33f61f8f776af7c5684f7e90c99ba535575525ddd370d59edac0ce03e2c"
+  },
+  "SO101/code/lerobot/src/lerobot/optim/__init__.py": {
+    "bytes": 671,
+    "sha256": "4f485904e4eca422d708f5507810d51ae99a614dd41aac98127ed6019b9b3cc5"
+  },
+  "SO101/code/lerobot/src/lerobot/optim/factory.py": {
+    "bytes": 1652,
+    "sha256": "edf8d89ccb778d45588a2b8e23fa85de27a75a8b06332fd23da614860f01f9bb"
+  },
+  "SO101/code/lerobot/src/lerobot/optim/optimizers.py": {
+    "bytes": 7983,
+    "sha256": "0845806f9d5bf883da4f388d6ec1a2791c4f00fc54c43aa543b184d18f0239fa"
+  },
+  "SO101/code/lerobot/src/lerobot/optim/schedulers.py": {
+    "bytes": 4469,
+    "sha256": "c13291786debe87ab82aa53ebe39b90b68afdd75dc4a76db33e4a37e2144ac10"
+  },
+  "SO101/code/lerobot/src/lerobot/policies/__init__.py": {
+    "bytes": 1016,
+    "sha256": "4d32a22557fccb9ba3e427642732f05b0b3b75560ff7d23f6ee53a325350edab"
+  },
+  "SO101/code/lerobot/src/lerobot/policies/act/README.md": {
+    "bytes": 44,
+    "sha256": "31ac5eaed43f5de5729d6893cf2c848aa63f647dbefb4c3baae7236b45f923d8"
+  },
+  "SO101/code/lerobot/src/lerobot/policies/act/configuration_act.py": {
+    "bytes": 9551,
+    "sha256": "4bc1605c6b7d522465c53e3826adadbd0d91b54a9731ad9d6153ed1c9f261d37"
+  },
+  "SO101/code/lerobot/src/lerobot/policies/act/modeling_act.py": {
+    "bytes": 36037,
+    "sha256": "48ba3a2620198154b7b63948d14ebf76fa50da53efba194aedd76d9392c955ae"
+  },
+  "SO101/code/lerobot/src/lerobot/policies/diffusion/README.md": {
+    "bytes": 50,
+    "sha256": "6f0590a0619341b01dc72b6d61a90fdaa224c51ede9e9a553a8577903c9fadcd"
+  },
+  "SO101/code/lerobot/src/lerobot/policies/diffusion/configuration_diffusion.py": {
+    "bytes": 12385,
+    "sha256": "de06c1fd9cdfa3d0c0ed8930e1ce60153003175b9607f48db81e9579a126b4fc"
+  },
+  "SO101/code/lerobot/src/lerobot/policies/diffusion/modeling_diffusion.py": {
+    "bytes": 33640,
+    "sha256": "c60d98bade6508be7446d9eb39a28c788b47d8c336b28767046bb84fe1484095"
+  },
+  "SO101/code/lerobot/src/lerobot/policies/factory.py": {
+    "bytes": 7528,
+    "sha256": "2d8521751c448a9f75a3b0903936f1c6e76d0e381869ae641ec20f8db17470dd"
+  },
+  "SO101/code/lerobot/src/lerobot/policies/normalize.py": {
+    "bytes": 19548,
+    "sha256": "a28fbec9127c0e23510d5720747cf14f42e0b997c361556ec1f9702c63d559d5"
+  },
+  "SO101/code/lerobot/src/lerobot/policies/pi0/configuration_pi0.py": {
+    "bytes": 5127,
+    "sha256": "3a154bf4691789303bced13b431723b255af0ff736e45c919c7c91d5272e7023"
+  },
+  "SO101/code/lerobot/src/lerobot/policies/pi0/conversion_scripts/benchmark.py": {
+    "bytes": 2488,
+    "sha256": "a23c6a6ccdc4b2fa50c59f3135f0420369a8082b0eec583964155dc1c9b5b84a"
+  },
+  "SO101/code/lerobot/src/lerobot/policies/pi0/conversion_scripts/compare_with_jax.py": {
+    "bytes": 4555,
+    "sha256": "98cae95b1ce317a9561b46a71af16b58b7ca19a41f43f1d87665c98ad85d9092"
+  },
+  "SO101/code/lerobot/src/lerobot/policies/pi0/conversion_scripts/conversion_utils.py": {
+    "bytes": 2660,
+    "sha256": "5ae68dcea45c8542a986d1e4ce81ea59c089e5ad30f63c173c1016b19a8050ff"
+  },
+  "SO101/code/lerobot/src/lerobot/policies/pi0/conversion_scripts/convert_pi0_to_hf_lerobot.py": {
+    "bytes": 21789,
+    "sha256": "84a67892da4d584d1c01d17f70f8d352874fbfb76061a6448f645067ad21feb4"
+  },
+  "SO101/code/lerobot/src/lerobot/policies/pi0/flex_attention.py": {
+    "bytes": 4807,
+    "sha256": "879be3dd236ff12734668f6abf01fed6c0a68dfa08c8b2b78cafdb45f8725de8"
+  },
+  "SO101/code/lerobot/src/lerobot/policies/pi0/modeling_pi0.py": {
+    "bytes": 32968,
+    "sha256": "c4e9d1934f850d8af8e9f36437bc5f12847db26d0e9afca5f578b9c4d8e23487"
+  },
+  "SO101/code/lerobot/src/lerobot/policies/pi0/paligemma_with_expert.py": {
+    "bytes": 17047,
+    "sha256": "5fb1beff9a53e7d37431326ad71e6befc2212eeca9904f53009711dd0e5626ef"
+  },
+  "SO101/code/lerobot/src/lerobot/policies/pi0fast/configuration_pi0fast.py": {
+    "bytes": 4502,
+    "sha256": "12d35ffc8a5cba1570a35a3d5398f4f918ed815083a68f26eaa33d505e49022f"
+  },
+  "SO101/code/lerobot/src/lerobot/policies/pi0fast/modeling_pi0fast.py": {
+    "bytes": 41368,
+    "sha256": "1794dc0d09ed1cda13fe3b4fe57cfe29de3fb9e1eb807cb3cb927d67557a012d"
+  },
+  "SO101/code/lerobot/src/lerobot/policies/pretrained.py": {
+    "bytes": 10098,
+    "sha256": "089c7878629b479b79ec1408d1aa7edd5418f62c54b2f1a6b8af96499f3d0b52"
+  },
+  "SO101/code/lerobot/src/lerobot/policies/sac/configuration_sac.py": {
+    "bytes": 8605,
+    "sha256": "08390f159b5e9cc56182ce5de73bca38fda98462897a7db7616f8d648df2ebfe"
+  },
+  "SO101/code/lerobot/src/lerobot/policies/sac/modeling_sac.py": {
+    "bytes": 43880,
+    "sha256": "14dd83dbc2c6e55d8c6a4b4149342dd2587d2fe2304da5fd7ccd5257de72de44"
+  },
+  "SO101/code/lerobot/src/lerobot/policies/sac/reward_model/configuration_classifier.py": {
+    "bytes": 2614,
+    "sha256": "cf48cd5556bd0a2685de2ad77d4089fef54f9206cb07ceb59473fe303fad7841"
+  },
+  "SO101/code/lerobot/src/lerobot/policies/sac/reward_model/modeling_classifier.py": {
+    "bytes": 12077,
+    "sha256": "cd000c0d1f4e8b41541f04c3ba8932ba69d57922009c55dc670d91324ce9741c"
+  },
+  "SO101/code/lerobot/src/lerobot/policies/smolvla/README.md": {
+    "bytes": 48,
+    "sha256": "9aa0666e77cd7de3612c06c2f74a226e114921a1bc5bf367ecb36a0c32f37e98"
+  },
+  "SO101/code/lerobot/src/lerobot/policies/smolvla/configuration_smolvla.py": {
+    "bytes": 5699,
+    "sha256": "8abeabe530e7a8ebc6a791d4259d8636a75e451d2190976e3795b7fe6f7254ea"
+  },
+  "SO101/code/lerobot/src/lerobot/policies/smolvla/modeling_smolvla.py": {
+    "bytes": 36864,
+    "sha256": "fb68700331c46cdf779acdf09b73d283e8ae9a46d66975e6535cd05f403d8c9e"
+  },
+  "SO101/code/lerobot/src/lerobot/policies/smolvla/smolvlm_with_expert.py": {
+    "bytes": 22973,
+    "sha256": "0178ae64a804031cc99f109ab5ab4d00ebe3e5bbaae86d5e529884ed2ffb4d1d"
+  },
+  "SO101/code/lerobot/src/lerobot/policies/tdmpc/README.md": {
+    "bytes": 46,
+    "sha256": "036b10e393c121f06080ed67fe68741ff83ea3ee1488c60f3d8d279db0863076"
+  },
+  "SO101/code/lerobot/src/lerobot/policies/tdmpc/configuration_tdmpc.py": {
+    "bytes": 11877,
+    "sha256": "4090923d35fa97624640e1fc13c84d1a7cf452bd2558f4b6a0431d595c5cf113"
+  },
+  "SO101/code/lerobot/src/lerobot/policies/tdmpc/modeling_tdmpc.py": {
+    "bytes": 38337,
+    "sha256": "913215568f2fc1659cde414ab62414dd78cc8d172336ee47899f9dc9aaac5506"
+  },
+  "SO101/code/lerobot/src/lerobot/policies/utils.py": {
+    "bytes": 3093,
+    "sha256": "3aea551920ca2bfc13ea46f5ce93facc09909e799fe3d158db0b311f9aba7c5a"
+  },
+  "SO101/code/lerobot/src/lerobot/policies/vqbet/README.md": {
+    "bytes": 46,
+    "sha256": "923d0de3dc70661616f6240a8430588b07aa4b3ec2a1e746b03f63e91cc53f32"
+  },
+  "SO101/code/lerobot/src/lerobot/policies/vqbet/configuration_vqbet.py": {
+    "bytes": 9918,
+    "sha256": "eefc01367b6af85d6eec2c7454f47a6468de28e3b6988ff542cd2412a75c105f"
+  },
+  "SO101/code/lerobot/src/lerobot/policies/vqbet/modeling_vqbet.py": {
+    "bytes": 45747,
+    "sha256": "3deb3dfe8efea127abec51c59591da276dde2b87efcbb95c413bf213833f95ab"
+  },
+  "SO101/code/lerobot/src/lerobot/policies/vqbet/vqbet_utils.py": {
+    "bytes": 54110,
+    "sha256": "0ac0f8c45cd16426e67ad5b07b283d82257f99e33c9ef07a487bcebe9dba38fa"
+  },
+  "SO101/code/lerobot/src/lerobot/processor/__init__.py": {
+    "bytes": 1582,
+    "sha256": "d7f31643439db449c884155505e08a43acab1ac7d45f696bdd312eee954a1951"
+  },
+  "SO101/code/lerobot/src/lerobot/processor/device_processor.py": {
+    "bytes": 3245,
+    "sha256": "cf37fc7387d6cdf7885434351d0ad743c0857e187156ccbf8177006c93844eb5"
+  },
+  "SO101/code/lerobot/src/lerobot/processor/normalize_processor.py": {
+    "bytes": 13964,
+    "sha256": "b9aad34b65988d2c999b92b80878b8bb1b5c2e99dd4b8fec7aac86c8a95188c6"
+  },
+  "SO101/code/lerobot/src/lerobot/processor/observation_processor.py": {
+    "bytes": 5845,
+    "sha256": "91a11e0101b14b6b6ab53e8eb63980ab087d9b8907725ef81554d3fe912e3186"
+  },
+  "SO101/code/lerobot/src/lerobot/processor/pipeline.py": {
+    "bytes": 49467,
+    "sha256": "5238a2a5ee412f6626192d82f7a5ec6592a32abfaac3a5a3b8e3b8ead807323f"
+  },
+  "SO101/code/lerobot/src/lerobot/processor/rename_processor.py": {
+    "bytes": 1834,
+    "sha256": "ae06283e82a6bd38be7973f8876954ad33409262e56a7c013f5a8be79ecca86e"
+  },
+  "SO101/code/lerobot/src/lerobot/record.py": {
+    "bytes": 15550,
+    "sha256": "a09c18bbb88a21a11de507b5e1c1a543952dab11c411fe67184c6114da39c353"
+  },
+  "SO101/code/lerobot/src/lerobot/replay.py": {
+    "bytes": 3222,
+    "sha256": "a83559c005c8f18e60c8e88bbecec58b852db5e012bfee1e2bf68b6bbb464fed"
+  },
+  "SO101/code/lerobot/src/lerobot/robots/__init__.py": {
+    "bytes": 99,
+    "sha256": "ab4afe34efd5f7b1457441710ff933f0523fdd93a7a2f342152003a864995afb"
+  },
+  "SO101/code/lerobot/src/lerobot/robots/bi_so100_follower/__init__.py": {
+    "bytes": 742,
+    "sha256": "432fd2579fbb65166f175f24b0e3857fc298a87709634c9efc9756ea5fac286e"
+  },
+  "SO101/code/lerobot/src/lerobot/robots/bi_so100_follower/bi_so100_follower.py": {
+    "bytes": 5945,
+    "sha256": "804a24620639a5eb10dde89ea81b60de2b9d97110366d0af75f88e0d088211b1"
+  },
+  "SO101/code/lerobot/src/lerobot/robots/bi_so100_follower/config_bi_so100_follower.py": {
+    "bytes": 1326,
+    "sha256": "489ab87836ea9f371e82435ce776a5308616a17e25b09ee8f8f51f4e1c2274d9"
+  },
+  "SO101/code/lerobot/src/lerobot/robots/bi_so101_follower/__init__.py": {
+    "bytes": 742,
+    "sha256": "f737856f69a73481d566bf892a08f1da6e2ff661626008298a714ee544d52ea0"
+  },
+  "SO101/code/lerobot/src/lerobot/robots/bi_so101_follower/bi_so101_follower.py": {
+    "bytes": 5759,
+    "sha256": "cc81c11db423bf9429cec585f9a7de1069b7821dd9e88811ba7fbaba9995393c"
+  },
+  "SO101/code/lerobot/src/lerobot/robots/bi_so101_follower/config_bi_so101_follower.py": {
+    "bytes": 1368,
+    "sha256": "81e9a1b314aa5c6d6a1358078485420b185750160c81dc36043f0e01c7e46872"
+  },
+  "SO101/code/lerobot/src/lerobot/robots/config.py": {
+    "bytes": 1462,
+    "sha256": "65f420e72414df8717d4d2d0788d7e3584d7420f616e39b0d07af2098a877094"
+  },
+  "SO101/code/lerobot/src/lerobot/robots/hope_jr/__init__.py": {
+    "bytes": 769,
+    "sha256": "e89db6b32acbf2edb7a936cf906a0e29be4150e2ad7a3be324be8e05bb0ec6e4"
+  },
+  "SO101/code/lerobot/src/lerobot/robots/hope_jr/config_hope_jr.py": {
+    "bytes": 1763,
+    "sha256": "e2afcda236e2d4bd43eca84e63cc7d3963a4f761d6816d5ac75940579ff9690b"
+  },
+  "SO101/code/lerobot/src/lerobot/robots/hope_jr/hope_jr.mdx": {
+    "bytes": 35,
+    "sha256": "1eb7f29681816d75eb8481837b197ffd3397d3b3defb1c1ee2cb6015d4f233f9"
+  },
+  "SO101/code/lerobot/src/lerobot/robots/hope_jr/hope_jr_arm.py": {
+    "bytes": 6792,
+    "sha256": "3cf593943a7f24bb38a5c95c8ea784efcf855776ba6b3b94c3c6b14f5d49ca0a"
+  },
+  "SO101/code/lerobot/src/lerobot/robots/hope_jr/hope_jr_hand.py": {
+    "bytes": 7262,
+    "sha256": "897136e0bcc2d20d5d62374399474814b3b233e23fb919250815361e7face9c4"
+  },
+  "SO101/code/lerobot/src/lerobot/robots/koch_follower/__init__.py": {
+    "bytes": 728,
+    "sha256": "388106434f9b1554b9943422ae413127d0b4e81b934d99cd0ede32384046fe67"
+  },
+  "SO101/code/lerobot/src/lerobot/robots/koch_follower/config_koch_follower.py": {
+    "bytes": 1431,
+    "sha256": "3f70fb9981fdcc22bf3aee74517dfaecb59b4716a347d6d640f6571b0019896c"
+  },
+  "SO101/code/lerobot/src/lerobot/robots/koch_follower/koch.mdx": {
+    "bytes": 32,
+    "sha256": "4ee1b6cf6f2db0344c31d144f416c35702a7468c5479dd3755de5b091a02c75d"
+  },
+  "SO101/code/lerobot/src/lerobot/robots/koch_follower/koch_follower.py": {
+    "bytes": 10488,
+    "sha256": "74d3e39acdcab5339c120eeb44a7e2b9a5ed5b7ee520c11b31edbabb552d6454"
+  },
+  "SO101/code/lerobot/src/lerobot/robots/lekiwi/__init__.py": {
+    "bytes": 762,
+    "sha256": "8f54519fae5e757bf367c327d02f23974fe12723b24e1e9eeb85b40a985c8812"
+  },
+  "SO101/code/lerobot/src/lerobot/robots/lekiwi/config_lekiwi.py": {
+    "bytes": 3133,
+    "sha256": "615e208246fd8cc6a4f570062fd5ce8a773e981a96c7eedacdd4b93483489df8"
+  },
+  "SO101/code/lerobot/src/lerobot/robots/lekiwi/lekiwi.mdx": {
+    "bytes": 34,
+    "sha256": "a9de676d07b3ccab99a4cde3444469a6d7b2bc623fa03fa55a640012a5849380"
+  },
+  "SO101/code/lerobot/src/lerobot/robots/lekiwi/lekiwi.py": {
+    "bytes": 16801,
+    "sha256": "79d2d9b22f8065944109400ba8b012ee2a1ec7c375fa672be3bc13f199333c21"
+  },
+  "SO101/code/lerobot/src/lerobot/robots/lekiwi/lekiwi_client.py": {
+    "bytes": 12422,
+    "sha256": "2df850aa00dbf533ae1f6a0712858c6b726938045d183dc627f9fdda62ddcc50"
+  },
+  "SO101/code/lerobot/src/lerobot/robots/lekiwi/lekiwi_host.py": {
+    "bytes": 4413,
+    "sha256": "34e9613b8305ef6831f79a221b8953fda429cb112b6287be5e3707c7782da2be"
+  },
+  "SO101/code/lerobot/src/lerobot/robots/robot.py": {
+    "bytes": 6991,
+    "sha256": "33eef93fd655633adf3e4f21142446753758400764fa48b755ac41ef3fcba221"
+  },
+  "SO101/code/lerobot/src/lerobot/robots/so100_follower/__init__.py": {
+    "bytes": 830,
+    "sha256": "26d379248e3663006da7f3902caef64910faf763efad0e0f1f333ab9aab55057"
+  },
+  "SO101/code/lerobot/src/lerobot/robots/so100_follower/config_so100_follower.py": {
+    "bytes": 2478,
+    "sha256": "efb64a37c9a1d2f6c9ea80cafe536eab986272018a799e00dcbba73647a179f0"
+  },
+  "SO101/code/lerobot/src/lerobot/robots/so100_follower/so100.mdx": {
+    "bytes": 33,
+    "sha256": "18768d3be3d967902de387b0b89313c0e9111c115ea72e9836b3038a1c458f2e"
+  },
+  "SO101/code/lerobot/src/lerobot/robots/so100_follower/so100_follower.py": {
+    "bytes": 9462,
+    "sha256": "41cf34cdcf093ff937b33e615bfe307a7fcf2a518b98fc5d8934d75f26360117"
+  },
+  "SO101/code/lerobot/src/lerobot/robots/so100_follower/so100_follower_end_effector.py": {
+    "bytes": 7808,
+    "sha256": "2e425c2e36759f4a8b2c772de14bc2680195465a68b222d682224a656d2b394b"
+  },
+  "SO101/code/lerobot/src/lerobot/robots/so101_follower/__init__.py": {
+    "bytes": 732,
+    "sha256": "2a0433cbeca23a45ea649f5705598c187bf182d431e33412b41b28d5dd91f56b"
+  },
+  "SO101/code/lerobot/src/lerobot/robots/so101_follower/config_so101_follower.py": {
+    "bytes": 1456,
+    "sha256": "e5702d9b6c4a09d10de83f912a1640169698292d5145091d403f4fdce0211cbe"
+  },
+  "SO101/code/lerobot/src/lerobot/robots/so101_follower/so101.mdx": {
+    "bytes": 33,
+    "sha256": "44726e807c0a35dcfc1a6b4da8e2d847f3477da2d06e4f27686e07acaf7ac249"
+  },
+  "SO101/code/lerobot/src/lerobot/robots/so101_follower/so101_follower.py": {
+    "bytes": 9182,
+    "sha256": "26c675c71ade2670fa1bed2d887507b6ef3ad53a49e20182f5ba3d032a0afd7a"
+  },
+  "SO101/code/lerobot/src/lerobot/robots/stretch3/README.md": {
+    "bytes": 6593,
+    "sha256": "53deef051be2c54f3998a33beeb152271ea6c085828130c8bd84f840339303d2"
+  },
+  "SO101/code/lerobot/src/lerobot/robots/stretch3/__init__.py": {
+    "bytes": 733,
+    "sha256": "da9c19d1031308795a94d52b405d00feb3caa746dacd3597d0912b88f6c10d9a"
+  },
+  "SO101/code/lerobot/src/lerobot/robots/stretch3/configuration_stretch3.py": {
+    "bytes": 2016,
+    "sha256": "14811c7803bcaf9e1bfb9eb64015d5b456e054fc951aaa4706b82d7c5bee2d8d"
+  },
+  "SO101/code/lerobot/src/lerobot/robots/stretch3/robot_stretch3.py": {
+    "bytes": 6059,
+    "sha256": "c8dffb3236df53ed395cb1f42e4497cb84fdedbdd9b065e9b545b17b82fb92b1"
+  },
+  "SO101/code/lerobot/src/lerobot/robots/utils.py": {
+    "bytes": 3746,
+    "sha256": "566277ad12f1bb546e57baff938ca4c53d6b6155ed9400b129551e894e91b034"
+  },
+  "SO101/code/lerobot/src/lerobot/robots/viperx/README.md": {
+    "bytes": 8604,
+    "sha256": "6e9494073848fc059446477fdee153a80e5a237b65109a2d425be75262f90467"
+  },
+  "SO101/code/lerobot/src/lerobot/robots/viperx/__init__.py": {
+    "bytes": 702,
+    "sha256": "31d5de7992900ded9ba66ca2cadf884299cae03747b3df1ce835d7235271d0bb"
+  },
+  "SO101/code/lerobot/src/lerobot/robots/viperx/config_viperx.py": {
+    "bytes": 2093,
+    "sha256": "951c36681b33368e0e03b723d4ac83bbf7ffc5d1e303e49830c870435d739631"
+  },
+  "SO101/code/lerobot/src/lerobot/robots/viperx/viperx.py": {
+    "bytes": 9709,
+    "sha256": "b6dd2ed4be184bbe2ebf4891a4b1e72686d368b6e297ebd04de97c187d3bd8c6"
+  },
+  "SO101/code/lerobot/src/lerobot/scripts/display_sys_info.py": {
+    "bytes": 2772,
+    "sha256": "2489004a336847fccedaae560a241041fec964ad9042590b3b7e1d4d97795b66"
+  },
+  "SO101/code/lerobot/src/lerobot/scripts/eval.py": {
+    "bytes": 19938,
+    "sha256": "8e1ef22e62ce043bcb0ba93b32a19f1e627b8fdebaa7e86310fe8b3be5881da3"
+  },
+  "SO101/code/lerobot/src/lerobot/scripts/find_joint_limits.py": {
+    "bytes": 3817,
+    "sha256": "d8957d9f20a6c110f568269232918518a30de45250b205739b717cb58f306f77"
+  },
+  "SO101/code/lerobot/src/lerobot/scripts/rl/actor.py": {
+    "bytes": 25519,
+    "sha256": "fbf1bbcee2a806ed06aca6db9469831232ffb457d5ca676be200e15c8515d40d"
+  },
+  "SO101/code/lerobot/src/lerobot/scripts/rl/crop_dataset_roi.py": {
+    "bytes": 11116,
+    "sha256": "60c4bda7addc074b2010cdba84c3157b4c9e97c38c9d6bd73c7f9ad5e3babb21"
+  },
+  "SO101/code/lerobot/src/lerobot/scripts/rl/eval_policy.py": {
+    "bytes": 2343,
+    "sha256": "631997faee749e42275492cd6c077e573ed8a19edd18703df57444753571e06f"
+  },
+  "SO101/code/lerobot/src/lerobot/scripts/rl/gym_manipulator.py": {
+    "bytes": 82578,
+    "sha256": "a520775c1e6e7b8fbe91871d108f0653c96d17aa94bdb6c44b3a085b0aeffc77"
+  },
+  "SO101/code/lerobot/src/lerobot/scripts/rl/learner.py": {
+    "bytes": 45605,
+    "sha256": "d4b6c68a5339efaacf3b0351a913e768ab0924536d01a36ee84786b127afb039"
+  },
+  "SO101/code/lerobot/src/lerobot/scripts/rl/learner_service.py": {
+    "bytes": 4314,
+    "sha256": "42d3e52ed7d9653613d511e667abe8a2d162879ad003f4611ae707f5a4528a8e"
+  },
+  "SO101/code/lerobot/src/lerobot/scripts/server/configs.py": {
+    "bytes": 7726,
+    "sha256": "56e03de90e760d4d94abb2e84cbec651fb3bccf10e4edf3fbbb62f69afdc4701"
+  },
+  "SO101/code/lerobot/src/lerobot/scripts/server/constants.py": {
+    "bytes": 1099,
+    "sha256": "520863387ca331b50fe614b71981a14c6f507b39b3d2b15b5db0a944cab61d4b"
+  },
+  "SO101/code/lerobot/src/lerobot/scripts/server/helpers.py": {
+    "bytes": 10136,
+    "sha256": "01e9c0ebb07ea16274042e3e6837f814fd81be9f9bdec33a0f5112573938340d"
+  },
+  "SO101/code/lerobot/src/lerobot/scripts/server/policy_server.py": {
+    "bytes": 15318,
+    "sha256": "909d716ec4e717868072b5ba1bdd4fb8a199029f3efb26eed58c3d2de2732b7c"
+  },
+  "SO101/code/lerobot/src/lerobot/scripts/server/robot_client.py": {
+    "bytes": 19932,
+    "sha256": "0acef4dc38f1759ec4d3ebeca84f6fa71973a5865f4f115cd6191fa011f5237d"
+  },
+  "SO101/code/lerobot/src/lerobot/scripts/train.py": {
+    "bytes": 10774,
+    "sha256": "ad0bb7d38cdee3dc4fdae87a177c56b1af7d7fb19932c7cfdef8b7327c3677b9"
+  },
+  "SO101/code/lerobot/src/lerobot/scripts/visualize_dataset.py": {
+    "bytes": 9947,
+    "sha256": "d4189e82b12242d85653b5702fdf4c5d37bdf210e2a0c98e752bbbe6fc9fa262"
+  },
+  "SO101/code/lerobot/src/lerobot/scripts/visualize_dataset_html.py": {
+    "bytes": 17138,
+    "sha256": "4bb075a5e45334cd5cb799d98a5b3a8a43eb04fff4a97cf24f301708325ea368"
+  },
+  "SO101/code/lerobot/src/lerobot/scripts/visualize_image_transforms.py": {
+    "bytes": 4967,
+    "sha256": "f08dd505a7c9b677ddc050e7c6bb738bd52f11a02987d62337aa86bfb4756788"
+  },
+  "SO101/code/lerobot/src/lerobot/setup_motors.py": {
+    "bytes": 2056,
+    "sha256": "15cc36d45983e79cdfc8bbaff7cc71959e240e5b55413446dcc3d4a0151dee6b"
+  },
+  "SO101/code/lerobot/src/lerobot/teleoperate.py": {
+    "bytes": 4946,
+    "sha256": "018a04f7cc708da29c2bc180367bf05a1b4d9dd9f0c17df92df415f1c0d63856"
+  },
+  "SO101/code/lerobot/src/lerobot/teleoperators/__init__.py": {
+    "bytes": 762,
+    "sha256": "35f5fb4f82a13cbd1b67a766d92ffad2fd0b8ac371ed0fcabc225917648b2c20"
+  },
+  "SO101/code/lerobot/src/lerobot/teleoperators/bi_so100_leader/__init__.py": {
+    "bytes": 734,
+    "sha256": "f08fd223cc06ffe8b299627d5d0836fc63caab59bdfb44a70607eecdc03b53e2"
+  },
+  "SO101/code/lerobot/src/lerobot/teleoperators/bi_so100_leader/bi_so100_leader.py": {
+    "bytes": 4212,
+    "sha256": "ceaf62865fd82ba1a109818c5e3ee5780747e027d2ce233b4b94039a626b3e50"
+  },
+  "SO101/code/lerobot/src/lerobot/teleoperators/bi_so100_leader/config_bi_so100_leader.py": {
+    "bytes": 874,
+    "sha256": "be177e176832b6274762658975b8d59943fae156be8e32c1f944b6e80de5e8e6"
+  },
+  "SO101/code/lerobot/src/lerobot/teleoperators/bi_so101_leader/__init__.py": {
+    "bytes": 734,
+    "sha256": "ab67f4f297c87e029b3b9b752f262ef2510daf3104f87126d437428bc0b1f56e"
+  },
+  "SO101/code/lerobot/src/lerobot/teleoperators/bi_so101_leader/bi_so101_leader.py": {
+    "bytes": 4031,
+    "sha256": "811b733cc3963d285a5ba9fedc1bfa54ab70c9348bca925363e67e969632bfbd"
+  },
+  "SO101/code/lerobot/src/lerobot/teleoperators/bi_so101_leader/config_bi_so101_leader.py": {
+    "bytes": 874,
+    "sha256": "d77b3001ebafb82ee818518e692015af9d6e01618b7985b0f645d5acadde8e17"
+  },
+  "SO101/code/lerobot/src/lerobot/teleoperators/config.py": {
+    "bytes": 1063,
+    "sha256": "cc9bacc17230e4c0d1532ee4c998a9d2aa4d6ec374f4606e7f447f1e3c94ba28"
+  },
+  "SO101/code/lerobot/src/lerobot/teleoperators/gamepad/__init__.py": {
+    "bytes": 733,
+    "sha256": "500e9c84a0cc28a9920d01270cb3378f12c4667b99056e8bb1261dbf1d0f4c7f"
+  },
+  "SO101/code/lerobot/src/lerobot/teleoperators/gamepad/configuration_gamepad.py": {
+    "bytes": 848,
+    "sha256": "a7d9b9faa048e816ddbffb83cd79507eb19008de95949a7b1134b42fe7dd6655"
+  },
+  "SO101/code/lerobot/src/lerobot/teleoperators/gamepad/gamepad_utils.py": {
+    "bytes": 17531,
+    "sha256": "0b8762b28fcd25d6526cd8d4c06101d18e865a5b0dad5e3adc1f01fa6d15f210"
+  },
+  "SO101/code/lerobot/src/lerobot/teleoperators/gamepad/teleop_gamepad.py": {
+    "bytes": 4067,
+    "sha256": "de59ec0f494270892614ceb3397e77843388994850d9e7a2a013058420093f17"
+  },
+  "SO101/code/lerobot/src/lerobot/teleoperators/homunculus/__init__.py": {
+    "bytes": 862,
+    "sha256": "228da9986c2221e6a0ff5ae74fb01102331ac9fa3770edec8e7e3b7e2df1962c"
+  },
+  "SO101/code/lerobot/src/lerobot/teleoperators/homunculus/config_homunculus.py": {
+    "bytes": 1245,
+    "sha256": "4d73d21d5d1fc6ec80ece3e0a05b2319ee07a7de48bb5b2e42e45b963db72f8e"
+  },
+  "SO101/code/lerobot/src/lerobot/teleoperators/homunculus/homunculus_arm.py": {
+    "bytes": 11688,
+    "sha256": "fe52afe7a00b46566dc7c4a494cb38027bbc5b43b742eea2ec393fce5c8ecba8"
+  },
+  "SO101/code/lerobot/src/lerobot/teleoperators/homunculus/homunculus_glove.py": {
+    "bytes": 12879,
+    "sha256": "362341e32326d5e8492ae9dd4bcd414642d43601d5aa36469b5429ed6f1d1e2a"
+  },
+  "SO101/code/lerobot/src/lerobot/teleoperators/homunculus/joints_translation.py": {
+    "bytes": 2865,
+    "sha256": "727e1a242f1c913b337090fe1ccca146a93abdbbe3aa0130ed76a073affab13b"
+  },
+  "SO101/code/lerobot/src/lerobot/teleoperators/keyboard/__init__.py": {
+    "bytes": 933,
+    "sha256": "edf6611f2de7b2f68121e7924f459708fcb7342db44625700e95f21af0479f8f"
+  },
+  "SO101/code/lerobot/src/lerobot/teleoperators/keyboard/configuration_keyboard.py": {
+    "bytes": 1085,
+    "sha256": "09990a71cf57ae72c36db3a0abc24cc3f80fbc9393549d666d0cd219bdd1c3c6"
+  },
+  "SO101/code/lerobot/src/lerobot/teleoperators/keyboard/teleop_keyboard.py": {
+    "bytes": 7614,
+    "sha256": "909ce34f2b6ae69a716498571df5e9c2367b95db1b7105d74291b678974b911a"
+  },
+  "SO101/code/lerobot/src/lerobot/teleoperators/koch_leader/__init__.py": {
+    "bytes": 720,
+    "sha256": "015b250b5661ffc3a5a25abfbeb5b3e9f1aa8a0d399004c92dc8c714c50216ec"
+  },
+  "SO101/code/lerobot/src/lerobot/teleoperators/koch_leader/config_koch_leader.py": {
+    "bytes": 1087,
+    "sha256": "56c35642f5b7910d1e8865be003f4285111f4c061329e82518451e13d6648fad"
+  },
+  "SO101/code/lerobot/src/lerobot/teleoperators/koch_leader/koch_leader.py": {
+    "bytes": 7919,
+    "sha256": "4e1fbc0df60616a567c4ea775b05dc569fa81a2e57efd69e4c07180dd805498f"
+  },
+  "SO101/code/lerobot/src/lerobot/teleoperators/so100_leader/__init__.py": {
+    "bytes": 724,
+    "sha256": "854865825a1978fcc3b704c1d535fa35d80f4e984472a9350df844c1a0a407fa"
+  },
+  "SO101/code/lerobot/src/lerobot/teleoperators/so100_leader/config_so100_leader.py": {
+    "bytes": 869,
+    "sha256": "79da9490fba49640401099be8a9e6dffcebd3fd8a6ee51c6e795f38653be6757"
+  },
+  "SO101/code/lerobot/src/lerobot/teleoperators/so100_leader/so100_leader.py": {
+    "bytes": 6059,
+    "sha256": "58724c22f35c60deee134ab93d24b1628a3a43bcc1e9b1258cae0251e2c6a9f1"
+  },
+  "SO101/code/lerobot/src/lerobot/teleoperators/so101_leader/__init__.py": {
+    "bytes": 724,
+    "sha256": "26b6bc53718a39716397336339caeda8c8af7e65836bbe527d4ed053e79169eb"
+  },
+  "SO101/code/lerobot/src/lerobot/teleoperators/so101_leader/config_so101_leader.py": {
+    "bytes": 900,
+    "sha256": "32d229a709ebe56b7bdd197760baa3ed8b419f044cd3c6eaeb3fc20bd468e8f4"
+  },
+  "SO101/code/lerobot/src/lerobot/teleoperators/so101_leader/so101_leader.py": {
+    "bytes": 5796,
+    "sha256": "fb24b6c2621f814aee9f589f1bd8eb5630decb3549cee2fdcee3bd270b14930a"
+  },
+  "SO101/code/lerobot/src/lerobot/teleoperators/stretch3_gamepad/__init__.py": {
+    "bytes": 739,
+    "sha256": "042ca9b87247623a1b42d7d3bfb613d0925c95bfac11229f7ead4caae0685fcb"
+  },
+  "SO101/code/lerobot/src/lerobot/teleoperators/stretch3_gamepad/configuration_stretch3.py": {
+    "bytes": 845,
+    "sha256": "d6656d34a14c7a5242aa531de5bbaea870aa31c23cac214890c3cd2fff4f6e04"
+  },
+  "SO101/code/lerobot/src/lerobot/teleoperators/stretch3_gamepad/stretch3_gamepad.py": {
+    "bytes": 3547,
+    "sha256": "694884d7e716f448595e61bcc84565e33c4bea8d7b59ea73c3b89c1a21806fab"
+  },
+  "SO101/code/lerobot/src/lerobot/teleoperators/teleoperator.py": {
+    "bytes": 6705,
+    "sha256": "9c182f3840a54efd21c52094056d81320451ab89d7063bf96074ded264918967"
+  },
+  "SO101/code/lerobot/src/lerobot/teleoperators/utils.py": {
+    "bytes": 2472,
+    "sha256": "fa6fa6acedcf805b3a65ccaa7facc4de5a76de017a5457754651e09f28b9665c"
+  },
+  "SO101/code/lerobot/src/lerobot/teleoperators/widowx/__init__.py": {
+    "bytes": 702,
+    "sha256": "bb9f3176b170420c5b3a396660bc9db804a3d3d86c8bdff06b6969031cf60dae"
+  },
+  "SO101/code/lerobot/src/lerobot/teleoperators/widowx/config_widowx.py": {
+    "bytes": 855,
+    "sha256": "760d58bbdbb5470eb4e839b97b2827a35aa32b8dbd3c69b48cbf7f003f474d9e"
+  },
+  "SO101/code/lerobot/src/lerobot/teleoperators/widowx/widowx.py": {
+    "bytes": 5919,
+    "sha256": "c574ef5dcfa8d751a755556021edcefabebeb207ece91b6241d39d92c28c85ed"
+  },
+  "SO101/code/lerobot/src/lerobot/templates/lerobot_modelcard_template.md": {
+    "bytes": 3992,
+    "sha256": "5a6f11b377470531500c50bc9ebae5944975f0c9cda06f9815045437bba96bcc"
+  },
+  "SO101/code/lerobot/src/lerobot/templates/visualize_dataset_homepage.html": {
+    "bytes": 3183,
+    "sha256": "f1d8a75a1ef757bd5ed6b265c26f8d44be0f9e83c7427c577e4c66045516b833"
+  },
+  "SO101/code/lerobot/src/lerobot/templates/visualize_dataset_template.html": {
+    "bytes": 27103,
+    "sha256": "4d3ecc293e9873c8243dcd073a6ebc9e2c8aa653c37ece7f51ec188f13225407"
+  },
+  "SO101/code/lerobot/src/lerobot/transport/services.proto": {
+    "bytes": 2718,
+    "sha256": "a3c2c3aee953851f779f052815e7da2c398b2cbe367a47ec3b80cbad902aaef7"
+  },
+  "SO101/code/lerobot/src/lerobot/transport/services_pb2.py": {
+    "bytes": 3712,
+    "sha256": "06efc0dd44bb4a1e532612d6f7994176214028802ecbfd96e9d79376da74657c"
+  },
+  "SO101/code/lerobot/src/lerobot/transport/services_pb2_grpc.py": {
+    "bytes": 17731,
+    "sha256": "3b1cde1f24d00b536e113074385a1bd2f0948d0e8ce2c5cb543ca4debbb377ba"
+  },
+  "SO101/code/lerobot/src/lerobot/transport/utils.py": {
+    "bytes": 6350,
+    "sha256": "12845af75c519f15bb46d75716787198010d63ded3433b74ff4a43eceb0a09f2"
+  },
+  "SO101/code/lerobot/src/lerobot/utils/benchmark.py": {
+    "bytes": 2734,
+    "sha256": "82abcda9090e5abfa7918673693d6e3a92c59469fe4a1e2b9eb8491dc169c2f0"
+  },
+  "SO101/code/lerobot/src/lerobot/utils/buffer.py": {
+    "bytes": 35126,
+    "sha256": "af333ca5e3c5c50df29dae269270502c621cca5dbc55f893bfe082b2179aac5e"
+  },
+  "SO101/code/lerobot/src/lerobot/utils/control_utils.py": {
+    "bytes": 7759,
+    "sha256": "9dbdcb11988cf90da96b4be65b8c276116545af7dceaf77057e3c40a8b47968f"
+  },
+  "SO101/code/lerobot/src/lerobot/utils/encoding_utils.py": {
+    "bytes": 2272,
+    "sha256": "5285eb2b3f62399e95a2fa4b2fcab631bcad547124e8cc9b6a61525148bc924a"
+  },
+  "SO101/code/lerobot/src/lerobot/utils/hub.py": {
+    "bytes": 9032,
+    "sha256": "1981583e520bc73e221491459694d58ad1c1370537bf280968493b31c8e2c51f"
+  },
+  "SO101/code/lerobot/src/lerobot/utils/import_utils.py": {
+    "bytes": 2819,
+    "sha256": "1c162a6179199185e2bb08e1901008ac4dce50fe0b311614c026eb120709020e"
+  },
+  "SO101/code/lerobot/src/lerobot/utils/io_utils.py": {
+    "bytes": 4414,
+    "sha256": "3c04da95df2f211faefec3527603596bcf4231072919d6a8d4bcaa3436a14d5c"
+  },
+  "SO101/code/lerobot/src/lerobot/utils/logging_utils.py": {
+    "bytes": 5230,
+    "sha256": "4f9c6eed8a6aec7b889ee549317546db69bdd80f74d05179f9aaf4617032d50a"
+  },
+  "SO101/code/lerobot/src/lerobot/utils/process.py": {
+    "bytes": 3160,
+    "sha256": "6108e142cfbed7602b3d4d5edf16e83df464fd42ef71237b367e55569cf70a5c"
+  },
+  "SO101/code/lerobot/src/lerobot/utils/queue.py": {
+    "bytes": 1665,
+    "sha256": "fbfc76286938c6b3e707f78a69875f5fbd29ad09378af393303ded3bb40fb20a"
+  },
+  "SO101/code/lerobot/src/lerobot/utils/random_utils.py": {
+    "bytes": 7110,
+    "sha256": "391f4f91ba9028e62c0b68122e3d398365b29fdc45b5b3e561ea52082f0499eb"
+  },
+  "SO101/code/lerobot/src/lerobot/utils/robot_utils.py": {
+    "bytes": 1521,
+    "sha256": "ed4fdf5d3980f7c4d4daddf5dc3cb24e2904ba3750959b80e28e5575c37efba5"
+  },
+  "SO101/code/lerobot/src/lerobot/utils/train_utils.py": {
+    "bytes": 6169,
+    "sha256": "dab9d9e4a25a6b244854aa9d3bf477295ca090fdb2ca34fdb18ff231e8693b8d"
+  },
+  "SO101/code/lerobot/src/lerobot/utils/transition.py": {
+    "bytes": 3331,
+    "sha256": "504bd804e0e638288bb1bc1390f6c366afec5695d147ee1eab9258ee48f24243"
+  },
+  "SO101/code/lerobot/src/lerobot/utils/utils.py": {
+    "bytes": 11534,
+    "sha256": "81b4bffd89c3133f38b214877d12de5835d80c8ab69d832e3e092af3d484c12c"
+  },
+  "SO101/code/lerobot/src/lerobot/utils/visualization_utils.py": {
+    "bytes": 1831,
+    "sha256": "59a15c243f60fa2d6523400494eeb5a095a5c4669d50ae715921ee839900afaf"
+  },
+  "SO101/code/lerobot/src/lerobot/utils/wandb_utils.py": {
+    "bytes": 6654,
+    "sha256": "b917c5df628ff426d1808f7c7e03e8fd8d1dab72c0890554191f3a50dcd9a0e1"
+  },
+  "SO101/code/lerobot/src/lerobot.egg-info/PKG-INFO": {
+    "bytes": 27111,
+    "sha256": "e2c177e46d807c2ea8530a4d64ef62dfddfdff59080a42938e0775de7d2eec0d"
+  },
+  "SO101/code/lerobot/src/lerobot.egg-info/SOURCES.txt": {
+    "bytes": 9320,
+    "sha256": "2945dd6a946da18c7f2a620ecb34ea35610872078955194c73c2fd0c0383115f"
+  },
+  "SO101/code/lerobot/src/lerobot.egg-info/dependency_links.txt": {
+    "bytes": 1,
+    "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+  },
+  "SO101/code/lerobot/src/lerobot.egg-info/entry_points.txt": {
+    "bytes": 407,
+    "sha256": "ff6677f57e9c60b841d9c66be2ccecef75de614a328343140a006e618e10fbe1"
+  },
+  "SO101/code/lerobot/src/lerobot.egg-info/requires.txt": {
+    "bytes": 2118,
+    "sha256": "a5d6b07226e0abf4aad1b309574061c5f4d8304ceb2dcc258983916c5ad775f0"
+  },
+  "SO101/code/lerobot/src/lerobot.egg-info/top_level.txt": {
+    "bytes": 8,
+    "sha256": "2ffc2f47edaf6a3e64608861273e1f70aad3d5455a4aacd5bc0aeafd5675d49b"
+  },
+  "experiments/alibaba_baseline/PROVENANCE.json": {
+    "bytes": 752,
+    "sha256": "8520f1bbf14dfe8d6de4ba857c447273dce67152a1e7ea55c0c95fc38942b296"
+  },
+  "experiments/alibaba_baseline/README.md": {
+    "bytes": 3499,
+    "sha256": "427cf8accb8df5afb886ec922c5c31c37f43230021af37d57f8d404bc2f03284"
+  },
+  "experiments/alibaba_baseline/REPORT.md": {
+    "bytes": 9319,
+    "sha256": "ce4df18ddd368ee119e3b40519fc617b5a32c1a2643933ab1459db5011d6f2cc"
+  },
+  "experiments/alibaba_baseline/RUN_LEDGER.md": {
+    "bytes": 2224,
+    "sha256": "68991a80038198853760bb55fde247accb844776b9f36be819521c985fddad69"
+  },
+  "experiments/alibaba_baseline/VERIFICATION.json": {
+    "bytes": 75,
+    "sha256": "c6b240ff27e361cd4856790a5013bed682364b1896faa41651ec17cb37e51ffd"
+  },
+  "experiments/alibaba_baseline/data/act_cache/manifest.json": {
+    "bytes": 2518,
+    "sha256": "cd3d00e7c7791bb070d8f0c11aacf81af1f349bd3277b2f76b0681d054cc6a71"
+  },
+  "experiments/alibaba_baseline/data/act_cache/train_stats.json": {
+    "bytes": 5263,
+    "sha256": "5b64834cb3811f77b480321a34427b86c08612288f4c723a07c50eefec8b9162"
+  },
+  "experiments/alibaba_baseline/data/aloha_transfer/meta/episodes.jsonl": {
+    "bytes": 5990,
+    "sha256": "ccc43077314365e2bab846ceafefa329f097737bbb14e537d293d1126e8465b5"
+  },
+  "experiments/alibaba_baseline/data/aloha_transfer/meta/episodes_stats.jsonl": {
+    "bytes": 169228,
+    "sha256": "430c60c7c712cca6ce5dfd2fe5e481631f8f617ef4441c0eddd3cd6e854512e6"
+  },
+  "experiments/alibaba_baseline/data/aloha_transfer/meta/info.json": {
+    "bytes": 3369,
+    "sha256": "8f10c5ee8a58bbebbf31fdb8548c3b4e8af346690c8b8a036152ca2e7044a1a6"
+  },
+  "experiments/alibaba_baseline/data/aloha_transfer/meta/tasks.jsonl": {
+    "bytes": 98,
+    "sha256": "97645f5276fc9db0aba3617d2c4a541b94dcb73653d1d56643bcb3086583c693"
+  },
+  "experiments/alibaba_baseline/data/official_act/README.md": {
+    "bytes": 3530,
+    "sha256": "139cd5949227d2b81a9a1b6c0dfb6db3a83034137a0bd91dd759282ea5758e91"
+  },
+  "experiments/alibaba_baseline/data/official_act/config.json": {
+    "bytes": 1334,
+    "sha256": "f8bc4fa4ba67255cf7edfef9a20bc5374a53d6abeaad4cbe6201cf3b4889a9aa"
+  },
+  "experiments/alibaba_baseline/data/official_act/eval_info.json": {
+    "bytes": 66834,
+    "sha256": "566d1661791f6e939efef28826a5cd7f674795d9c94575496d9ce252a11705ba"
+  },
+  "experiments/alibaba_baseline/data/official_act/train_config.json": {
+    "bytes": 5290,
+    "sha256": "aa328da79a2896e29bbed5f57de94151438f3afb76079f17d362b4d47b1a334e"
+  },
+  "experiments/alibaba_baseline/data/qwen_annotation_notes.md": {
+    "bytes": 400,
+    "sha256": "3cd57964c0808b80e57513f34e9b43c6c4055f3fd0a69ffea3d4dab1f2312fe7"
+  },
+  "experiments/alibaba_baseline/data/qwen_cases.json": {
+    "bytes": 28714,
+    "sha256": "107dcefa880dd564fcb71dee8a3ac054c1bc0fc09cab4eadf027970d010861c0"
+  },
+  "experiments/alibaba_baseline/data/qwen_frames/annotation_contact_sheet.jpg": {
+    "bytes": 141765,
+    "sha256": "63eb21d774119dafc27a6fcced515836754ce12ba3d322034decffa35e637920"
+  },
+  "experiments/alibaba_baseline/data/qwen_frames/frame_0000.png": {
+    "bytes": 403395,
+    "sha256": "72ef7ce6cf4e9393200c9b58bfe1ad98cea041671ae2937695fc447c1d01a962"
+  },
+  "experiments/alibaba_baseline/data/qwen_frames/frame_0040.png": {
+    "bytes": 412245,
+    "sha256": "a7a33bf58c4e70417a901777e0c7b4e6602ed6763c5b7cc1a87fefc883920e75"
+  },
+  "experiments/alibaba_baseline/data/qwen_frames/frame_0080.png": {
+    "bytes": 376172,
+    "sha256": "f204d9289ebc02fbdd5acc984655697e7ee9c3af9e4f76cbe074e1302bbc1f14"
+  },
+  "experiments/alibaba_baseline/data/qwen_frames/frame_0120.png": {
+    "bytes": 328920,
+    "sha256": "f1107a7051408d6334039eeed74ab85459a27c9a1157937e8ff38b9bf7965b35"
+  },
+  "experiments/alibaba_baseline/data/qwen_frames/frame_0140.png": {
+    "bytes": 330649,
+    "sha256": "0426ac7e9f54ed016b722f890b522b39c514e3486163123a8476392c1c0f2ac4"
+  },
+  "experiments/alibaba_baseline/data/qwen_frames/frame_0160.png": {
+    "bytes": 348160,
+    "sha256": "037e1895ebb423bcb1cb7fc6c14c27351bf069ccec4cb37a4eea74ee92977a15"
+  },
+  "experiments/alibaba_baseline/data/qwen_frames/frame_0180.png": {
+    "bytes": 348395,
+    "sha256": "fc227e80a1a45a4c3a9912d3ad89a73abf6ff363db4923e2b34f4412b73745c5"
+  },
+  "experiments/alibaba_baseline/data/qwen_frames/frame_0200.png": {
+    "bytes": 346965,
+    "sha256": "0cdec6e481b9d90148142a8023b6acd65f439c449dfdf422b0f9c18945884f59"
+  },
+  "experiments/alibaba_baseline/data/qwen_frames/frame_0220.png": {
+    "bytes": 345563,
+    "sha256": "4de4d949abfe4366558f676708471de4bc4951990e30ab3e65e04867dd0d6c8e"
+  },
+  "experiments/alibaba_baseline/data/qwen_frames/frame_0240.png": {
+    "bytes": 348969,
+    "sha256": "10826b7ae7c40701d085b4892fc21c6377c56c60bda5041e50a72b4686b890c6"
+  },
+  "experiments/alibaba_baseline/data/qwen_frames/frame_0260.png": {
+    "bytes": 343252,
+    "sha256": "661efb08dfeb2192c5d28c34370383cc8d1644d00dbf0236aae772486ea2bd27"
+  },
+  "experiments/alibaba_baseline/data/qwen_frames/frame_0280.png": {
+    "bytes": 342691,
+    "sha256": "61034deef74f546af194e8854777286d91751b52acac496b1151003069441265"
+  },
+  "experiments/alibaba_baseline/data/qwen_frames/frame_0300.png": {
+    "bytes": 325097,
+    "sha256": "5b5cc2abbc82dd40aca7815ab286bc8e50e9e62952029dade797d2be4b240250"
+  },
+  "experiments/alibaba_baseline/data/qwen_frames/frame_0320.png": {
+    "bytes": 335467,
+    "sha256": "b7cbd2221daf08611224acdead3f3cfc92e8fbd6d03ac9a09f8514a5e879784f"
+  },
+  "experiments/alibaba_baseline/data/qwen_frames/frame_0340.png": {
+    "bytes": 341812,
+    "sha256": "39bd77c970ffa56d6b60c7f1502a09c08046b5fa15c6bf26a45b52ba5049c70e"
+  },
+  "experiments/alibaba_baseline/data/qwen_frames/frame_0360.png": {
+    "bytes": 323339,
+    "sha256": "5b0ea0a047ce36b727e3c305963161d3b90137ed64c69ce806383ec1ebb8e816"
+  },
+  "experiments/alibaba_baseline/data/qwen_frames/frame_0380.png": {
+    "bytes": 339095,
+    "sha256": "cdf59fb7993e6f16e9bf2fa9193246a4a637bde1553aa2e6790e13a45a907881"
+  },
+  "experiments/alibaba_baseline/data/qwen_frames/frame_0400.png": {
+    "bytes": 335447,
+    "sha256": "cd88079f1c52dea12c708c7eb2cc57e3432a7e8cebae11b52c4d5c6973244ab5"
+  },
+  "experiments/alibaba_baseline/data/qwen_frames/frame_0420.png": {
+    "bytes": 303155,
+    "sha256": "c795bad7e06c48aa2cad9241a8eb1b129a6871f2ff868931640599552536bb11"
+  },
+  "experiments/alibaba_baseline/data/qwen_frames/frame_0440.png": {
+    "bytes": 373254,
+    "sha256": "df824a2517ad74c92b6cd80563479ea00b3604986b1aa2e6f2d5392a3cedff5c"
+  },
+  "experiments/alibaba_baseline/data/qwen_frames/frame_0460.png": {
+    "bytes": 395467,
+    "sha256": "d94b40643f5d8777687c7a7f547f9061d5ecd1608b074c7b2bbaa0eef0f53cb1"
+  },
+  "experiments/alibaba_baseline/data/qwen_frames/frame_0480.png": {
+    "bytes": 388565,
+    "sha256": "976843fcd8fc2ac8afa810d9640b3712016087c0b1ba702f2b537661b4880919"
+  },
+  "experiments/alibaba_baseline/data/qwen_frames/frame_0500.png": {
+    "bytes": 386985,
+    "sha256": "64a7f18030e209c4a3cc556d29811d2ba2a881a16add24b0a46547fe1dfbab05"
+  },
+  "experiments/alibaba_baseline/data/qwen_frames/frame_0535.png": {
+    "bytes": 386553,
+    "sha256": "bb5a817bf5bcd82efe3737b70360f7472969d265a1bdf3183348e9abde9043ae"
+  },
+  "experiments/alibaba_baseline/data/qwen_split.json": {
+    "bytes": 1846,
+    "sha256": "fbfc3ae95b162b28e9918684f8f5e2d95999f649f1b9a710b5b47fede0380cc2"
+  },
+  "experiments/alibaba_baseline/figures/act_learning.png": {
+    "bytes": 82529,
+    "sha256": "604e4f8c3e2895fb05c6e9ceed3c4d160bbeaf00f857ba015d428ef257e61e07"
+  },
+  "experiments/alibaba_baseline/figures/act_rollout_comparison.png": {
+    "bytes": 39944,
+    "sha256": "16d068984e178c89fa047708f86a0e96c48cedc03e56904101529a8113049077"
+  },
+  "experiments/alibaba_baseline/figures/qwen_instruction.png": {
+    "bytes": 46867,
+    "sha256": "08ff905cc04fafa4f1ac714e742c0dcfe8a21a0a3e7103bf1c52d78b138ce645"
+  },
+  "experiments/alibaba_baseline/figures/qwen_lora_comparison.png": {
+    "bytes": 44141,
+    "sha256": "3da6789e243fb0ba5881f3ba1e32662d81286827620dbae5406d767aaf126bf9"
+  },
+  "experiments/alibaba_baseline/figures/rollout_contact_sheet.jpg": {
+    "bytes": 57549,
+    "sha256": "f2db237e722904cfdb6b8c163021e76d8537c5c8bf8317e864dbefc6bed8f7ae"
+  },
+  "experiments/alibaba_baseline/runs/integrated_demo_001/case_1010.json": {
+    "bytes": 1388,
+    "sha256": "deaf13416bc5facb039a41f4ef3dc8378bcd441938f27b7a003cec1add5f613f"
+  },
+  "experiments/alibaba_baseline/runs/integrated_demo_001/case_1011.json": {
+    "bytes": 1368,
+    "sha256": "541117a61439df0a4ee22724964e9692af5f02f207f9e3dd9b20d3bbe36b5aa1"
+  },
+  "experiments/alibaba_baseline/runs/integrated_demo_001/case_1012.json": {
+    "bytes": 1415,
+    "sha256": "a0c70b00411ae04d2b95d10d6abfb30fec74d5b28503242dfaa841a32766a7a9"
+  },
+  "experiments/alibaba_baseline/runs/integrated_demo_001/case_1013.json": {
+    "bytes": 1369,
+    "sha256": "40707198d83a8d72e34af28179519cea58e0cd937cc24cd5ac5ba3ad0d181672"
+  },
+  "experiments/alibaba_baseline/runs/integrated_demo_001/case_1014.json": {
+    "bytes": 1403,
+    "sha256": "39de7e50bd05d76345f96acc2a3e91e9705acd6111e211f67e99c64b8be2d030"
+  },
+  "experiments/alibaba_baseline/runs/integrated_demo_001/case_1015.json": {
+    "bytes": 1281,
+    "sha256": "385aaca94bbe26a9cf4027c8147e582697ac030ff3b29471cd2e403a9e817c47"
+  },
+  "experiments/alibaba_baseline/runs/integrated_demo_001/case_1016.json": {
+    "bytes": 1293,
+    "sha256": "db35b220c48da1d0071fa27cca1709c48d677ab3c2469e81ae158f9b08c6048a"
+  },
+  "experiments/alibaba_baseline/runs/integrated_demo_001/initial_1010.png": {
+    "bytes": 23285,
+    "sha256": "ef0798f3e7c423a1c4d515a4e49675132a739d810d5e1e20475bc138c9adee34"
+  },
+  "experiments/alibaba_baseline/runs/integrated_demo_001/initial_1011.png": {
+    "bytes": 23300,
+    "sha256": "542f4472edadf40dad12ffa91a28f473a61d147a29294ce6d652a71b47e9ef2a"
+  },
+  "experiments/alibaba_baseline/runs/integrated_demo_001/initial_1012.png": {
+    "bytes": 23203,
+    "sha256": "fd645215d687cba5f19427d1eb3564b0942f46d85a6f0e3424ef39b56762cd13"
+  },
+  "experiments/alibaba_baseline/runs/integrated_demo_001/initial_1013.png": {
+    "bytes": 23301,
+    "sha256": "9409448fdfdceff5030c5d6321c97fc565d9989c95f9dc5ac6eb66108e09d4b8"
+  },
+  "experiments/alibaba_baseline/runs/integrated_demo_001/initial_1014.png": {
+    "bytes": 23245,
+    "sha256": "9ae8fc245524af29bc243e222ac22758024ed120624a1d0c49b27525a23e0bdb"
+  },
+  "experiments/alibaba_baseline/runs/integrated_demo_001/initial_1015.png": {
+    "bytes": 23253,
+    "sha256": "5a4e0f401689512852788399b818077fa01349412ea63a51c1ec7bc47df432f7"
+  },
+  "experiments/alibaba_baseline/runs/integrated_demo_001/initial_1016.png": {
+    "bytes": 23231,
+    "sha256": "42b6e8fa4fbcd4c94d0e80e511d28737c639ef390e7d43518f92044f7d0f82c2"
+  },
+  "experiments/alibaba_baseline/runs/integrated_demo_001/qwen.log": {
+    "bytes": 487,
+    "sha256": "c4f4fd02eb4f400ab980296652e02338fe0ece46b8fb183a8e0a5231264a330c"
+  },
+  "experiments/alibaba_baseline/runs/integrated_demo_001/rollout_1010.mp4": {
+    "bytes": 272126,
+    "sha256": "7850650b2cd4d022e94725b483157665270e6676923f4219181704840950e2ae"
+  },
+  "experiments/alibaba_baseline/runs/integrated_demo_001/rollout_1011.mp4": {
+    "bytes": 202438,
+    "sha256": "34c517fdf73e300881ba10dc351f5e932a9651e2c4b5e698d118668522f9df31"
+  },
+  "experiments/alibaba_baseline/runs/integrated_demo_001/rollout_1012.mp4": {
+    "bytes": 191670,
+    "sha256": "72dacff42fcafff6b9ed4f3178e0b32bf46b168b12001b0ad9ca4e98c73be2ec"
+  },
+  "experiments/alibaba_baseline/runs/integrated_demo_001/rollout_1013.mp4": {
+    "bytes": 272271,
+    "sha256": "30ec640e0881ac694a992646c4a4e4b9ba364cf7e29ae0eac08d7f957b9e82a5"
+  },
+  "experiments/alibaba_baseline/runs/integrated_demo_001/rollout_1014.mp4": {
+    "bytes": 184645,
+    "sha256": "b064e9e7a97d7fb2685992f59bc885a9195120f47dbb36bd176b685a9d4624d8"
+  },
+  "experiments/alibaba_baseline/runs/integrated_demo_001/rollout_1015.mp4": {
+    "bytes": 273216,
+    "sha256": "f62ddbd1a03584467ccaad4a1bd599128a10024d1fb8ac36b13ff601106f273b"
+  },
+  "experiments/alibaba_baseline/runs/integrated_demo_001/rollout_1016.mp4": {
+    "bytes": 180101,
+    "sha256": "d7f94134eaa0d28cea0b82f7921769683547a13983e29af34dc9c9b7a8c61c56"
+  },
+  "experiments/alibaba_baseline/runs/integrated_demo_001/summary.json": {
+    "bytes": 414,
+    "sha256": "fcdc44cb9445f577f2f16e127454bb482103a1120cc3c596e5fcbaee3d2cfeeb"
+  },
+  "experiments/alibaba_baseline/runs/integrated_demo_guarded_001/case_1010.json": {
+    "bytes": 1485,
+    "sha256": "83aa6d2e1f88f0dc030217f9db001a77f9eac8f5237b88080f1e4b1b1cb66079"
+  },
+  "experiments/alibaba_baseline/runs/integrated_demo_guarded_001/case_1011.json": {
+    "bytes": 1465,
+    "sha256": "4a44b049703d86ca3eda549900a3b688b32ae87723c24897d3db99c18f726fdc"
+  },
+  "experiments/alibaba_baseline/runs/integrated_demo_guarded_001/case_1012.json": {
+    "bytes": 1512,
+    "sha256": "57e85cf300f15bea43de938ac85268c8e5287a712cb92b072d5106cd8721d29b"
+  },
+  "experiments/alibaba_baseline/runs/integrated_demo_guarded_001/case_1013.json": {
+    "bytes": 1465,
+    "sha256": "672ae05b38e59dc50c677cbe1891783205f3071e1414d82164fe94c568898c0c"
+  },
+  "experiments/alibaba_baseline/runs/integrated_demo_guarded_001/case_1014.json": {
+    "bytes": 1500,
+    "sha256": "509a54b5478e8e7f614eb5f5b920c3d5c330dc02201adf6956c9f5b65f3871c0"
+  },
+  "experiments/alibaba_baseline/runs/integrated_demo_guarded_001/case_1015.json": {
+    "bytes": 1367,
+    "sha256": "f5ea1af94943b254f3503f71e0635b263020c186efd2a37c51e52ca0e0a1abe4"
+  },
+  "experiments/alibaba_baseline/runs/integrated_demo_guarded_001/case_1016.json": {
+    "bytes": 1380,
+    "sha256": "a4b0da2151faf87933accddca1fbb3e34e12ef6545d437198e0ddae3210324a3"
+  },
+  "experiments/alibaba_baseline/runs/integrated_demo_guarded_001/initial_1010.png": {
+    "bytes": 23285,
+    "sha256": "ef0798f3e7c423a1c4d515a4e49675132a739d810d5e1e20475bc138c9adee34"
+  },
+  "experiments/alibaba_baseline/runs/integrated_demo_guarded_001/initial_1011.png": {
+    "bytes": 23300,
+    "sha256": "542f4472edadf40dad12ffa91a28f473a61d147a29294ce6d652a71b47e9ef2a"
+  },
+  "experiments/alibaba_baseline/runs/integrated_demo_guarded_001/initial_1012.png": {
+    "bytes": 23203,
+    "sha256": "fd645215d687cba5f19427d1eb3564b0942f46d85a6f0e3424ef39b56762cd13"
+  },
+  "experiments/alibaba_baseline/runs/integrated_demo_guarded_001/initial_1013.png": {
+    "bytes": 23301,
+    "sha256": "9409448fdfdceff5030c5d6321c97fc565d9989c95f9dc5ac6eb66108e09d4b8"
+  },
+  "experiments/alibaba_baseline/runs/integrated_demo_guarded_001/initial_1014.png": {
+    "bytes": 23245,
+    "sha256": "9ae8fc245524af29bc243e222ac22758024ed120624a1d0c49b27525a23e0bdb"
+  },
+  "experiments/alibaba_baseline/runs/integrated_demo_guarded_001/initial_1015.png": {
+    "bytes": 23253,
+    "sha256": "5a4e0f401689512852788399b818077fa01349412ea63a51c1ec7bc47df432f7"
+  },
+  "experiments/alibaba_baseline/runs/integrated_demo_guarded_001/initial_1016.png": {
+    "bytes": 23231,
+    "sha256": "42b6e8fa4fbcd4c94d0e80e511d28737c639ef390e7d43518f92044f7d0f82c2"
+  },
+  "experiments/alibaba_baseline/runs/integrated_demo_guarded_001/qwen.log": {
+    "bytes": 487,
+    "sha256": "faa1a8769331659c5b0e5dd7b8590a0d7614761fff5f1e901a838f8ea16b9ac0"
+  },
+  "experiments/alibaba_baseline/runs/integrated_demo_guarded_001/rollout_1010.mp4": {
+    "bytes": 272212,
+    "sha256": "aa798c11fac5d76395a377a1655d0ab1d91853e28ba4c3ea444315689be3d5ab"
+  },
+  "experiments/alibaba_baseline/runs/integrated_demo_guarded_001/rollout_1011.mp4": {
+    "bytes": 202438,
+    "sha256": "34c517fdf73e300881ba10dc351f5e932a9651e2c4b5e698d118668522f9df31"
+  },
+  "experiments/alibaba_baseline/runs/integrated_demo_guarded_001/rollout_1012.mp4": {
+    "bytes": 191670,
+    "sha256": "b44feac1eb4b7388ce02599c0726b5269cfb3802f32fbdb64f42f7f9fca4e834"
+  },
+  "experiments/alibaba_baseline/runs/integrated_demo_guarded_001/rollout_1013.mp4": {
+    "bytes": 272271,
+    "sha256": "30ec640e0881ac694a992646c4a4e4b9ba364cf7e29ae0eac08d7f957b9e82a5"
+  },
+  "experiments/alibaba_baseline/runs/integrated_demo_guarded_001/rollout_1014.mp4": {
+    "bytes": 184645,
+    "sha256": "b064e9e7a97d7fb2685992f59bc885a9195120f47dbb36bd176b685a9d4624d8"
+  },
+  "experiments/alibaba_baseline/runs/integrated_demo_guarded_001/summary.json": {
+    "bytes": 471,
+    "sha256": "e57b47670a0760af9b21138669bbdce31a92aca8a23102ae84b64a0f0fb229cc"
+  },
+  "experiments/alibaba_baseline/runs/official_act_eval_001/episodes.csv": {
+    "bytes": 447,
+    "sha256": "f1d7f7dac66f7dac2ea31c5ca067b86541bcd4467f2d6288ac6fdfc8e5e274cd"
+  },
+  "experiments/alibaba_baseline/runs/official_act_eval_001/metrics.json": {
+    "bytes": 667,
+    "sha256": "4714f713709828a4355cf1b9eafded453b8e75d5ac32d36f89a1209ec86e5398"
+  },
+  "experiments/alibaba_baseline/runs/official_act_eval_001/rollout_1000.json": {
+    "bytes": 160688,
+    "sha256": "7ef84bd253915c5181604407a3b8d6cd95ff44f4f6549bae1893ddaa65907eea"
+  },
+  "experiments/alibaba_baseline/runs/official_act_eval_001/rollout_1000.mp4": {
+    "bytes": 267486,
+    "sha256": "638a59f8453206e6b9fd22653000ad9e4a51c99816e9c41343137c0115d83739"
+  },
+  "experiments/alibaba_baseline/runs/official_act_eval_001/rollout_1001.json": {
+    "bytes": 92984,
+    "sha256": "90ed4ea955a4a9708fecd8b3874de0e10723faad673b341b08907422c79c4e15"
+  },
+  "experiments/alibaba_baseline/runs/official_act_eval_001/rollout_1001.mp4": {
+    "bytes": 147802,
+    "sha256": "3a4e490143e21d1a65c767a8bb9f2af3423d3808a8dbc7f0f076748c96495deb"
+  },
+  "experiments/alibaba_baseline/runs/official_act_eval_001/rollout_1002.json": {
+    "bytes": 108911,
+    "sha256": "ede9c4d334c5139b2a7e3d756c61a902ce466f41bf9bb21c0fc734d5182836d5"
+  },
+  "experiments/alibaba_baseline/runs/official_act_eval_001/rollout_1002.mp4": {
+    "bytes": 163888,
+    "sha256": "a46d2a8ea30bbf1134b075b34c8a006835074dfeef10ae197c0f3f461587e4bb"
+  },
+  "experiments/alibaba_baseline/runs/official_act_eval_001/rollout_1003.json": {
+    "bytes": 126484,
+    "sha256": "ad89d5e9ff2539bef2fe467a5e6ca74d2765be74e309846376fa09a5caf3c6f3"
+  },
+  "experiments/alibaba_baseline/runs/official_act_eval_001/rollout_1003.mp4": {
+    "bytes": 193605,
+    "sha256": "5eb571a3a951ae62b7bed3036a686bbcd83d2f94edcd3802d8582ec37c20b9b9"
+  },
+  "experiments/alibaba_baseline/runs/official_act_eval_001/rollout_1004.json": {
+    "bytes": 123534,
+    "sha256": "8f2160f13764544199e6d02bf64f36848cfcd92460b230142a289f70babf9120"
+  },
+  "experiments/alibaba_baseline/runs/official_act_eval_001/rollout_1004.mp4": {
+    "bytes": 195414,
+    "sha256": "812795d507b792443d1a7f13764fa63527b58dd514b345d6cec3ef09a982d30c"
+  },
+  "experiments/alibaba_baseline/runs/official_act_eval_001/rollout_1005.json": {
+    "bytes": 160685,
+    "sha256": "fb69054946de2486c399ed059f5ae98a1131c04579bd20c0a30b6299e60342b5"
+  },
+  "experiments/alibaba_baseline/runs/official_act_eval_001/rollout_1005.mp4": {
+    "bytes": 266421,
+    "sha256": "c8ab17d29e631e587b609a7f72e4f20fbf409d977e3aa6b39eb97c8f0808c3c8"
+  },
+  "experiments/alibaba_baseline/runs/official_act_eval_001/rollout_1006.json": {
+    "bytes": 112870,
+    "sha256": "b3a0b441522d0e68df1d796ab01cfa429f821ff42eb9eb831f04c60c11c772bf"
+  },
+  "experiments/alibaba_baseline/runs/official_act_eval_001/rollout_1006.mp4": {
+    "bytes": 182172,
+    "sha256": "171ec464f5d2ffa5dada24457e5706dd64f990a7d5318b1654ae7e87365fc524"
+  },
+  "experiments/alibaba_baseline/runs/official_act_eval_001/rollout_1007.json": {
+    "bytes": 114001,
+    "sha256": "65210d90a36281812104d02b085f49b3882efab2a7139a5a163f7d0383b35b5d"
+  },
+  "experiments/alibaba_baseline/runs/official_act_eval_001/rollout_1007.mp4": {
+    "bytes": 183368,
+    "sha256": "13c39e25bad88a7aa0ce15a06ab0a3db75ddd25b51813a11afdf6bd5e0481c45"
+  },
+  "experiments/alibaba_baseline/runs/official_act_eval_001/rollout_1008.json": {
+    "bytes": 114194,
+    "sha256": "95bce8229b053d17601af32d8d9878a0ad739cc2c50070c2d961f92b39f40cf2"
+  },
+  "experiments/alibaba_baseline/runs/official_act_eval_001/rollout_1008.mp4": {
+    "bytes": 176587,
+    "sha256": "faa29ba00e63c1e968d7947267f9bf6dd0fa6d24a42c019c0b09deac6b63676b"
+  },
+  "experiments/alibaba_baseline/runs/official_act_eval_001/rollout_1009.json": {
+    "bytes": 161350,
+    "sha256": "88fa6e3a4143c4ded24e3a79102625b3db4db01061129e13998f2a727fe3909e"
+  },
+  "experiments/alibaba_baseline/runs/official_act_eval_001/rollout_1009.mp4": {
+    "bytes": 254835,
+    "sha256": "7539344df3d891d3838f1538573b86faa487ae7fb95503bdfaad27089c309118"
+  },
+  "experiments/alibaba_baseline/runs/official_act_latency_001/episodes.csv": {
+    "bytes": 92,
+    "sha256": "95dc4baf81878559a68275c5d8546631ad5b0627b8014b2800049e7469629a86"
+  },
+  "experiments/alibaba_baseline/runs/official_act_latency_001/latencies.csv": {
+    "bytes": 11936,
+    "sha256": "69e4190b0ebad8d864140b8b8f952fcd316003724f950414a39682d557a5aba9"
+  },
+  "experiments/alibaba_baseline/runs/official_act_latency_001/metrics.json": {
+    "bytes": 784,
+    "sha256": "e29341dacb16916248d8e946589ef2f654759f363f78532fa97c79571cf734af"
+  },
+  "experiments/alibaba_baseline/runs/official_act_latency_001/rollout_1003.json": {
+    "bytes": 126485,
+    "sha256": "bb00244b7af2484c659106a6935310687e1bed51c8e26f75c2c6e9d5eccd5db1"
+  },
+  "experiments/alibaba_baseline/runs/official_act_latency_001/rollout_1003.mp4": {
+    "bytes": 193605,
+    "sha256": "5eb571a3a951ae62b7bed3036a686bbcd83d2f94edcd3802d8582ec37c20b9b9"
+  },
+  "experiments/alibaba_baseline/runs/own_act_eval_001/episodes.csv": {
+    "bytes": 456,
+    "sha256": "c91453fa23d6d986a5a8d64c31b7a6bbd7b09396a31846434f4dc87e9b25d30a"
+  },
+  "experiments/alibaba_baseline/runs/own_act_eval_001/metrics.json": {
+    "bytes": 690,
+    "sha256": "1fe3fb558b7c9bd1681568cb4700ea8a4ba2616f5b38521ea86760c81a23ced4"
+  },
+  "experiments/alibaba_baseline/runs/own_act_eval_001/rollout_1000.json": {
+    "bytes": 161094,
+    "sha256": "7963d72048ec0dc99dd83f957da1672b2b29958fd7e2fb01900353a191f4e58d"
+  },
+  "experiments/alibaba_baseline/runs/own_act_eval_001/rollout_1000.mp4": {
+    "bytes": 252899,
+    "sha256": "bd4e8c1337e788321e537ec1d7569867a559ba5dd454c2c28f03a30ad0d46d52"
+  },
+  "experiments/alibaba_baseline/runs/own_act_eval_001/rollout_1001.json": {
+    "bytes": 161384,
+    "sha256": "4326225380db5fceee9eaac867b125a2efb79a9e11c240d1fb59d47e2a1b31fd"
+  },
+  "experiments/alibaba_baseline/runs/own_act_eval_001/rollout_1001.mp4": {
+    "bytes": 247090,
+    "sha256": "ad655822da325cc7e568b9462e96ca397d2e4e742e93f32aa961ddf1fba71c21"
+  },
+  "experiments/alibaba_baseline/runs/own_act_eval_001/rollout_1002.json": {
+    "bytes": 161595,
+    "sha256": "725c04fae607b37dbe61c6d9b2b5f9a017de35027da0c7d8acd52de69dfde358"
+  },
+  "experiments/alibaba_baseline/runs/own_act_eval_001/rollout_1002.mp4": {
+    "bytes": 249648,
+    "sha256": "81f190de53dbc78853ded6cbdeba9e481f4a50aa61e233cebfc00a825a2f538b"
+  },
+  "experiments/alibaba_baseline/runs/own_act_eval_001/rollout_1003.json": {
+    "bytes": 126090,
+    "sha256": "318f51f31f88bca2ca5cbe166cc8365684c69c611a56d8125e31fa9af7bd9201"
+  },
+  "experiments/alibaba_baseline/runs/own_act_eval_001/rollout_1003.mp4": {
+    "bytes": 189473,
+    "sha256": "b10cb96e5ec5bfec534bb9334bbd10e07162bc559d129b5c6d6aca27a3a2eeb8"
+  },
+  "experiments/alibaba_baseline/runs/own_act_eval_001/rollout_1004.json": {
+    "bytes": 161521,
+    "sha256": "7a59b84ab75c1c63a4e862471da3bb59a8d7d4ecda2f0d296a27f50869d9afad"
+  },
+  "experiments/alibaba_baseline/runs/own_act_eval_001/rollout_1004.mp4": {
+    "bytes": 255096,
+    "sha256": "4eadb4d0ec3a0ef630344d584f8a2858a72ae66a93c0a35962fc06ff67c2116e"
+  },
+  "experiments/alibaba_baseline/runs/own_act_eval_001/rollout_1005.json": {
+    "bytes": 160911,
+    "sha256": "66e3ae84440662f031c23b77f9cf2a392d8a9c4675ef1508c157bb139ceb34c2"
+  },
+  "experiments/alibaba_baseline/runs/own_act_eval_001/rollout_1005.mp4": {
+    "bytes": 251236,
+    "sha256": "0123caa30d08998f3083d13664633974d66b29b074ece5eacea3622b84c08209"
+  },
+  "experiments/alibaba_baseline/runs/own_act_eval_001/rollout_1006.json": {
+    "bytes": 161012,
+    "sha256": "21814c71947d1e813977a9c2cd1133e521de1c5896180440eb628ef8f7ca5b4f"
+  },
+  "experiments/alibaba_baseline/runs/own_act_eval_001/rollout_1006.mp4": {
+    "bytes": 252577,
+    "sha256": "9829d96f40dfe6f0319b6701d3e824eb3c6def1137d47d50c508f11e0ae3824c"
+  },
+  "experiments/alibaba_baseline/runs/own_act_eval_001/rollout_1007.json": {
+    "bytes": 88632,
+    "sha256": "53ce0c5871ad40d7e56674f6f43cd00f6598b2a5c4ff69c0083ac90657d079bf"
+  },
+  "experiments/alibaba_baseline/runs/own_act_eval_001/rollout_1007.mp4": {
+    "bytes": 142910,
+    "sha256": "3ae49d0723c2c1e36f016a66a4d74869ce0576d9465bcfbc4627ac845e8c3302"
+  },
+  "experiments/alibaba_baseline/runs/own_act_eval_001/rollout_1008.json": {
+    "bytes": 161338,
+    "sha256": "3d4d5ba77f804be7d564c94a1380137f124924261b86e7f787580a17b635e969"
+  },
+  "experiments/alibaba_baseline/runs/own_act_eval_001/rollout_1008.mp4": {
+    "bytes": 241472,
+    "sha256": "3dc2a87921ded1de87957fa60abce0b4d652217eece20ba9df74eabb861f5d75"
+  },
+  "experiments/alibaba_baseline/runs/own_act_eval_001/rollout_1009.json": {
+    "bytes": 161264,
+    "sha256": "95808d4064bf133c5cc9c10b0298dcba5a22a4d4a7078b2dcee41a6dbc40b15c"
+  },
+  "experiments/alibaba_baseline/runs/own_act_eval_001/rollout_1009.mp4": {
+    "bytes": 249434,
+    "sha256": "d337a5e44139efb9f6b32c2f31a53f4d1c5593901b0240af4da6f2c95042f1e5"
+  },
+  "experiments/alibaba_baseline/runs/own_act_latency_001/episodes.csv": {
+    "bytes": 92,
+    "sha256": "83411d8438866057056535b2a923ba205ac64ab25a836a8388abb39690809c46"
+  },
+  "experiments/alibaba_baseline/runs/own_act_latency_001/latencies.csv": {
+    "bytes": 11876,
+    "sha256": "4a143c6e3aaa7ded2110a4c15bb48e655d84e9ef180a515461dafe9ce2c480c8"
+  },
+  "experiments/alibaba_baseline/runs/own_act_latency_001/metrics.json": {
+    "bytes": 803,
+    "sha256": "724afd33df096f43b3b52f9eb933236c3c0a6cee14f5ffb206b5351560893380"
+  },
+  "experiments/alibaba_baseline/runs/own_act_latency_001/rollout_1003.json": {
+    "bytes": 126091,
+    "sha256": "6a4caf0e8873dc006a2fad8023582343e07401941261c0f130a7be0d02324718"
+  },
+  "experiments/alibaba_baseline/runs/own_act_latency_001/rollout_1003.mp4": {
+    "bytes": 189473,
+    "sha256": "b10cb96e5ec5bfec534bb9334bbd10e07162bc559d129b5c6d6aca27a3a2eeb8"
+  },
+  "experiments/alibaba_baseline/runs/own_act_train_001/final_checkpoint/config.json": {
+    "bytes": 1479,
+    "sha256": "7ccceb874f727c78ba24b52b759bb64cfa577291bf768891750b802ee13ab8ea"
+  },
+  "experiments/alibaba_baseline/runs/own_act_train_001/final_checkpoint/model.safetensors": {
+    "bytes": 206766560,
+    "sha256": "07292282e3db3cad816153e14b6fe46a9f59ec238e60ab96bbe95840a5fcb76f"
+  },
+  "experiments/alibaba_baseline/runs/own_act_train_001/normalization.json": {
+    "bytes": 5263,
+    "sha256": "5b64834cb3811f77b480321a34427b86c08612288f4c723a07c50eefec8b9162"
+  },
+  "experiments/alibaba_baseline/runs/own_act_train_001/training.csv": {
+    "bytes": 4512,
+    "sha256": "c039f6aaa10101f398624da2ed4b24982fbb0e57f44842b4b2be37640f9ccf02"
+  },
+  "experiments/alibaba_baseline/runs/own_act_train_001/training_config.json": {
+    "bytes": 1000,
+    "sha256": "738065a975ee2a5657d699a8c7d8ff220024262a6abfc01e9ce273cddffaa70d"
+  },
+  "experiments/alibaba_baseline/runs/own_act_train_001/training_summary.json": {
+    "bytes": 490,
+    "sha256": "9819a5da68d1d52c14cabc2a71e72da2826b82222c051c2d8e7edca1c4b6de31"
+  },
+  "experiments/alibaba_baseline/runs/qwen_instruction_001/0000_blue_case_prompt.txt": {
+    "bytes": 447,
+    "sha256": "0685fa415630ddffd54a454f612b8869a6372a8d2c7fa475d684074a4b18fd8a"
+  },
+  "experiments/alibaba_baseline/runs/qwen_instruction_001/0000_blue_paraphrase_prompt.txt": {
+    "bytes": 438,
+    "sha256": "bca27d3a45c2bde2934d35118bf9a33f2606f19819cd44021d88f840b2fa6883"
+  },
+  "experiments/alibaba_baseline/runs/qwen_instruction_001/0000_red_cup_prompt.txt": {
+    "bytes": 441,
+    "sha256": "a44aac71f4efd00a1c365e04e659ec1ca514b0f11da769645e6c6a117ef790c2"
+  },
+  "experiments/alibaba_baseline/runs/qwen_instruction_001/0040_blue_case_prompt.txt": {
+    "bytes": 447,
+    "sha256": "0685fa415630ddffd54a454f612b8869a6372a8d2c7fa475d684074a4b18fd8a"
+  },
+  "experiments/alibaba_baseline/runs/qwen_instruction_001/0040_blue_paraphrase_prompt.txt": {
+    "bytes": 438,
+    "sha256": "bca27d3a45c2bde2934d35118bf9a33f2606f19819cd44021d88f840b2fa6883"
+  },
+  "experiments/alibaba_baseline/runs/qwen_instruction_001/0040_red_cup_prompt.txt": {
+    "bytes": 441,
+    "sha256": "a44aac71f4efd00a1c365e04e659ec1ca514b0f11da769645e6c6a117ef790c2"
+  },
+  "experiments/alibaba_baseline/runs/qwen_instruction_001/0080_blue_case_prompt.txt": {
+    "bytes": 447,
+    "sha256": "0685fa415630ddffd54a454f612b8869a6372a8d2c7fa475d684074a4b18fd8a"
+  },
+  "experiments/alibaba_baseline/runs/qwen_instruction_001/0080_blue_paraphrase_prompt.txt": {
+    "bytes": 438,
+    "sha256": "bca27d3a45c2bde2934d35118bf9a33f2606f19819cd44021d88f840b2fa6883"
+  },
+  "experiments/alibaba_baseline/runs/qwen_instruction_001/0080_red_cup_prompt.txt": {
+    "bytes": 441,
+    "sha256": "a44aac71f4efd00a1c365e04e659ec1ca514b0f11da769645e6c6a117ef790c2"
+  },
+  "experiments/alibaba_baseline/runs/qwen_instruction_001/0120_blue_case_prompt.txt": {
+    "bytes": 447,
+    "sha256": "0685fa415630ddffd54a454f612b8869a6372a8d2c7fa475d684074a4b18fd8a"
+  },
+  "experiments/alibaba_baseline/runs/qwen_instruction_001/0120_blue_paraphrase_prompt.txt": {
+    "bytes": 438,
+    "sha256": "bca27d3a45c2bde2934d35118bf9a33f2606f19819cd44021d88f840b2fa6883"
+  },
+  "experiments/alibaba_baseline/runs/qwen_instruction_001/0120_red_cup_prompt.txt": {
+    "bytes": 441,
+    "sha256": "a44aac71f4efd00a1c365e04e659ec1ca514b0f11da769645e6c6a117ef790c2"
+  },
+  "experiments/alibaba_baseline/runs/qwen_instruction_001/0140_blue_case_prompt.txt": {
+    "bytes": 447,
+    "sha256": "0685fa415630ddffd54a454f612b8869a6372a8d2c7fa475d684074a4b18fd8a"
+  },
+  "experiments/alibaba_baseline/runs/qwen_instruction_001/0140_blue_paraphrase_prompt.txt": {
+    "bytes": 438,
+    "sha256": "bca27d3a45c2bde2934d35118bf9a33f2606f19819cd44021d88f840b2fa6883"
+  },
+  "experiments/alibaba_baseline/runs/qwen_instruction_001/0140_red_cup_prompt.txt": {
+    "bytes": 441,
+    "sha256": "a44aac71f4efd00a1c365e04e659ec1ca514b0f11da769645e6c6a117ef790c2"
+  },
+  "experiments/alibaba_baseline/runs/qwen_instruction_001/0160_blue_case_prompt.txt": {
+    "bytes": 447,
+    "sha256": "0685fa415630ddffd54a454f612b8869a6372a8d2c7fa475d684074a4b18fd8a"
+  },
+  "experiments/alibaba_baseline/runs/qwen_instruction_001/0160_blue_paraphrase_prompt.txt": {
+    "bytes": 438,
+    "sha256": "bca27d3a45c2bde2934d35118bf9a33f2606f19819cd44021d88f840b2fa6883"
+  },
+  "experiments/alibaba_baseline/runs/qwen_instruction_001/0160_red_cup_prompt.txt": {
+    "bytes": 441,
+    "sha256": "a44aac71f4efd00a1c365e04e659ec1ca514b0f11da769645e6c6a117ef790c2"
+  },
+  "experiments/alibaba_baseline/runs/qwen_instruction_001/0180_blue_case_prompt.txt": {
+    "bytes": 447,
+    "sha256": "0685fa415630ddffd54a454f612b8869a6372a8d2c7fa475d684074a4b18fd8a"
+  },
+  "experiments/alibaba_baseline/runs/qwen_instruction_001/0180_blue_paraphrase_prompt.txt": {
+    "bytes": 438,
+    "sha256": "bca27d3a45c2bde2934d35118bf9a33f2606f19819cd44021d88f840b2fa6883"
+  },
+  "experiments/alibaba_baseline/runs/qwen_instruction_001/0180_red_cup_prompt.txt": {
+    "bytes": 441,
+    "sha256": "a44aac71f4efd00a1c365e04e659ec1ca514b0f11da769645e6c6a117ef790c2"
+  },
+  "experiments/alibaba_baseline/runs/qwen_instruction_001/0200_blue_case_prompt.txt": {
+    "bytes": 447,
+    "sha256": "0685fa415630ddffd54a454f612b8869a6372a8d2c7fa475d684074a4b18fd8a"
+  },
+  "experiments/alibaba_baseline/runs/qwen_instruction_001/0200_blue_paraphrase_prompt.txt": {
+    "bytes": 438,
+    "sha256": "bca27d3a45c2bde2934d35118bf9a33f2606f19819cd44021d88f840b2fa6883"
+  },
+  "experiments/alibaba_baseline/runs/qwen_instruction_001/0200_red_cup_prompt.txt": {
+    "bytes": 441,
+    "sha256": "a44aac71f4efd00a1c365e04e659ec1ca514b0f11da769645e6c6a117ef790c2"
+  },
+  "experiments/alibaba_baseline/runs/qwen_instruction_001/0220_blue_case_prompt.txt": {
+    "bytes": 447,
+    "sha256": "0685fa415630ddffd54a454f612b8869a6372a8d2c7fa475d684074a4b18fd8a"
+  },
+  "experiments/alibaba_baseline/runs/qwen_instruction_001/0220_blue_paraphrase_prompt.txt": {
+    "bytes": 438,
+    "sha256": "bca27d3a45c2bde2934d35118bf9a33f2606f19819cd44021d88f840b2fa6883"
+  },
+  "experiments/alibaba_baseline/runs/qwen_instruction_001/0220_red_cup_prompt.txt": {
+    "bytes": 441,
+    "sha256": "a44aac71f4efd00a1c365e04e659ec1ca514b0f11da769645e6c6a117ef790c2"
+  },
+  "experiments/alibaba_baseline/runs/qwen_instruction_001/0240_blue_case_prompt.txt": {
+    "bytes": 447,
+    "sha256": "0685fa415630ddffd54a454f612b8869a6372a8d2c7fa475d684074a4b18fd8a"
+  },
+  "experiments/alibaba_baseline/runs/qwen_instruction_001/0240_blue_paraphrase_prompt.txt": {
+    "bytes": 438,
+    "sha256": "bca27d3a45c2bde2934d35118bf9a33f2606f19819cd44021d88f840b2fa6883"
+  },
+  "experiments/alibaba_baseline/runs/qwen_instruction_001/0240_red_cup_prompt.txt": {
+    "bytes": 441,
+    "sha256": "a44aac71f4efd00a1c365e04e659ec1ca514b0f11da769645e6c6a117ef790c2"
+  },
+  "experiments/alibaba_baseline/runs/qwen_instruction_001/0260_blue_case_prompt.txt": {
+    "bytes": 447,
+    "sha256": "0685fa415630ddffd54a454f612b8869a6372a8d2c7fa475d684074a4b18fd8a"
+  },
+  "experiments/alibaba_baseline/runs/qwen_instruction_001/0260_blue_paraphrase_prompt.txt": {
+    "bytes": 438,
+    "sha256": "bca27d3a45c2bde2934d35118bf9a33f2606f19819cd44021d88f840b2fa6883"
+  },
+  "experiments/alibaba_baseline/runs/qwen_instruction_001/0260_red_cup_prompt.txt": {
+    "bytes": 441,
+    "sha256": "a44aac71f4efd00a1c365e04e659ec1ca514b0f11da769645e6c6a117ef790c2"
+  },
+  "experiments/alibaba_baseline/runs/qwen_instruction_001/0280_blue_case_prompt.txt": {
+    "bytes": 447,
+    "sha256": "0685fa415630ddffd54a454f612b8869a6372a8d2c7fa475d684074a4b18fd8a"
+  },
+  "experiments/alibaba_baseline/runs/qwen_instruction_001/0280_blue_paraphrase_prompt.txt": {
+    "bytes": 438,
+    "sha256": "bca27d3a45c2bde2934d35118bf9a33f2606f19819cd44021d88f840b2fa6883"
+  },
+  "experiments/alibaba_baseline/runs/qwen_instruction_001/0280_red_cup_prompt.txt": {
+    "bytes": 441,
+    "sha256": "a44aac71f4efd00a1c365e04e659ec1ca514b0f11da769645e6c6a117ef790c2"
+  },
+  "experiments/alibaba_baseline/runs/qwen_instruction_001/0300_blue_case_prompt.txt": {
+    "bytes": 447,
+    "sha256": "0685fa415630ddffd54a454f612b8869a6372a8d2c7fa475d684074a4b18fd8a"
+  },
+  "experiments/alibaba_baseline/runs/qwen_instruction_001/0300_blue_paraphrase_prompt.txt": {
+    "bytes": 438,
+    "sha256": "bca27d3a45c2bde2934d35118bf9a33f2606f19819cd44021d88f840b2fa6883"
+  },
+  "experiments/alibaba_baseline/runs/qwen_instruction_001/0300_red_cup_prompt.txt": {
+    "bytes": 441,
+    "sha256": "a44aac71f4efd00a1c365e04e659ec1ca514b0f11da769645e6c6a117ef790c2"
+  },
+  "experiments/alibaba_baseline/runs/qwen_instruction_001/0320_blue_case_prompt.txt": {
+    "bytes": 447,
+    "sha256": "0685fa415630ddffd54a454f612b8869a6372a8d2c7fa475d684074a4b18fd8a"
+  },
+  "experiments/alibaba_baseline/runs/qwen_instruction_001/0320_blue_paraphrase_prompt.txt": {
+    "bytes": 438,
+    "sha256": "bca27d3a45c2bde2934d35118bf9a33f2606f19819cd44021d88f840b2fa6883"
+  },
+  "experiments/alibaba_baseline/runs/qwen_instruction_001/0320_red_cup_prompt.txt": {
+    "bytes": 441,
+    "sha256": "a44aac71f4efd00a1c365e04e659ec1ca514b0f11da769645e6c6a117ef790c2"
+  },
+  "experiments/alibaba_baseline/runs/qwen_instruction_001/0340_blue_case_prompt.txt": {
+    "bytes": 447,
+    "sha256": "0685fa415630ddffd54a454f612b8869a6372a8d2c7fa475d684074a4b18fd8a"
+  },
+  "experiments/alibaba_baseline/runs/qwen_instruction_001/0340_blue_paraphrase_prompt.txt": {
+    "bytes": 438,
+    "sha256": "bca27d3a45c2bde2934d35118bf9a33f2606f19819cd44021d88f840b2fa6883"
+  },
+  "experiments/alibaba_baseline/runs/qwen_instruction_001/0340_red_cup_prompt.txt": {
+    "bytes": 441,
+    "sha256": "a44aac71f4efd00a1c365e04e659ec1ca514b0f11da769645e6c6a117ef790c2"
+  },
+  "experiments/alibaba_baseline/runs/qwen_instruction_001/0360_blue_case_prompt.txt": {
+    "bytes": 447,
+    "sha256": "0685fa415630ddffd54a454f612b8869a6372a8d2c7fa475d684074a4b18fd8a"
+  },
+  "experiments/alibaba_baseline/runs/qwen_instruction_001/0360_blue_paraphrase_prompt.txt": {
+    "bytes": 438,
+    "sha256": "bca27d3a45c2bde2934d35118bf9a33f2606f19819cd44021d88f840b2fa6883"
+  },
+  "experiments/alibaba_baseline/runs/qwen_instruction_001/0360_red_cup_prompt.txt": {
+    "bytes": 441,
+    "sha256": "a44aac71f4efd00a1c365e04e659ec1ca514b0f11da769645e6c6a117ef790c2"
+  },
+  "experiments/alibaba_baseline/runs/qwen_instruction_001/0380_blue_case_prompt.txt": {
+    "bytes": 447,
+    "sha256": "0685fa415630ddffd54a454f612b8869a6372a8d2c7fa475d684074a4b18fd8a"
+  },
+  "experiments/alibaba_baseline/runs/qwen_instruction_001/0380_blue_paraphrase_prompt.txt": {
+    "bytes": 438,
+    "sha256": "bca27d3a45c2bde2934d35118bf9a33f2606f19819cd44021d88f840b2fa6883"
+  },
+  "experiments/alibaba_baseline/runs/qwen_instruction_001/0380_red_cup_prompt.txt": {
+    "bytes": 441,
+    "sha256": "a44aac71f4efd00a1c365e04e659ec1ca514b0f11da769645e6c6a117ef790c2"
+  },
+  "experiments/alibaba_baseline/runs/qwen_instruction_001/0400_blue_case_prompt.txt": {
+    "bytes": 447,
+    "sha256": "0685fa415630ddffd54a454f612b8869a6372a8d2c7fa475d684074a4b18fd8a"
+  },
+  "experiments/alibaba_baseline/runs/qwen_instruction_001/0400_blue_paraphrase_prompt.txt": {
+    "bytes": 438,
+    "sha256": "bca27d3a45c2bde2934d35118bf9a33f2606f19819cd44021d88f840b2fa6883"
+  },
+  "experiments/alibaba_baseline/runs/qwen_instruction_001/0400_red_cup_prompt.txt": {
+    "bytes": 441,
+    "sha256": "a44aac71f4efd00a1c365e04e659ec1ca514b0f11da769645e6c6a117ef790c2"
+  },
+  "experiments/alibaba_baseline/runs/qwen_instruction_001/0420_blue_case_prompt.txt": {
+    "bytes": 447,
+    "sha256": "0685fa415630ddffd54a454f612b8869a6372a8d2c7fa475d684074a4b18fd8a"
+  },
+  "experiments/alibaba_baseline/runs/qwen_instruction_001/0420_blue_paraphrase_prompt.txt": {
+    "bytes": 438,
+    "sha256": "bca27d3a45c2bde2934d35118bf9a33f2606f19819cd44021d88f840b2fa6883"
+  },
+  "experiments/alibaba_baseline/runs/qwen_instruction_001/0420_red_cup_prompt.txt": {
+    "bytes": 441,
+    "sha256": "a44aac71f4efd00a1c365e04e659ec1ca514b0f11da769645e6c6a117ef790c2"
+  },
+  "experiments/alibaba_baseline/runs/qwen_instruction_001/0440_blue_case_prompt.txt": {
+    "bytes": 447,
+    "sha256": "0685fa415630ddffd54a454f612b8869a6372a8d2c7fa475d684074a4b18fd8a"
+  },
+  "experiments/alibaba_baseline/runs/qwen_instruction_001/0440_blue_paraphrase_prompt.txt": {
+    "bytes": 438,
+    "sha256": "bca27d3a45c2bde2934d35118bf9a33f2606f19819cd44021d88f840b2fa6883"
+  },
+  "experiments/alibaba_baseline/runs/qwen_instruction_001/0440_red_cup_prompt.txt": {
+    "bytes": 441,
+    "sha256": "a44aac71f4efd00a1c365e04e659ec1ca514b0f11da769645e6c6a117ef790c2"
+  },
+  "experiments/alibaba_baseline/runs/qwen_instruction_001/0460_blue_case_prompt.txt": {
+    "bytes": 447,
+    "sha256": "0685fa415630ddffd54a454f612b8869a6372a8d2c7fa475d684074a4b18fd8a"
+  },
+  "experiments/alibaba_baseline/runs/qwen_instruction_001/0460_blue_paraphrase_prompt.txt": {
+    "bytes": 438,
+    "sha256": "bca27d3a45c2bde2934d35118bf9a33f2606f19819cd44021d88f840b2fa6883"
+  },
+  "experiments/alibaba_baseline/runs/qwen_instruction_001/0460_red_cup_prompt.txt": {
+    "bytes": 441,
+    "sha256": "a44aac71f4efd00a1c365e04e659ec1ca514b0f11da769645e6c6a117ef790c2"
+  },
+  "experiments/alibaba_baseline/runs/qwen_instruction_001/0480_blue_case_prompt.txt": {
+    "bytes": 447,
+    "sha256": "0685fa415630ddffd54a454f612b8869a6372a8d2c7fa475d684074a4b18fd8a"
+  },
+  "experiments/alibaba_baseline/runs/qwen_instruction_001/0480_blue_paraphrase_prompt.txt": {
+    "bytes": 438,
+    "sha256": "bca27d3a45c2bde2934d35118bf9a33f2606f19819cd44021d88f840b2fa6883"
+  },
+  "experiments/alibaba_baseline/runs/qwen_instruction_001/0480_red_cup_prompt.txt": {
+    "bytes": 441,
+    "sha256": "a44aac71f4efd00a1c365e04e659ec1ca514b0f11da769645e6c6a117ef790c2"
+  },
+  "experiments/alibaba_baseline/runs/qwen_instruction_001/0500_blue_case_prompt.txt": {
+    "bytes": 447,
+    "sha256": "0685fa415630ddffd54a454f612b8869a6372a8d2c7fa475d684074a4b18fd8a"
+  },
+  "experiments/alibaba_baseline/runs/qwen_instruction_001/0500_blue_paraphrase_prompt.txt": {
+    "bytes": 438,
+    "sha256": "bca27d3a45c2bde2934d35118bf9a33f2606f19819cd44021d88f840b2fa6883"
+  },
+  "experiments/alibaba_baseline/runs/qwen_instruction_001/0500_red_cup_prompt.txt": {
+    "bytes": 441,
+    "sha256": "a44aac71f4efd00a1c365e04e659ec1ca514b0f11da769645e6c6a117ef790c2"
+  },
+  "experiments/alibaba_baseline/runs/qwen_instruction_001/0535_blue_case_prompt.txt": {
+    "bytes": 447,
+    "sha256": "0685fa415630ddffd54a454f612b8869a6372a8d2c7fa475d684074a4b18fd8a"
+  },
+  "experiments/alibaba_baseline/runs/qwen_instruction_001/0535_blue_paraphrase_prompt.txt": {
+    "bytes": 438,
+    "sha256": "bca27d3a45c2bde2934d35118bf9a33f2606f19819cd44021d88f840b2fa6883"
+  },
+  "experiments/alibaba_baseline/runs/qwen_instruction_001/0535_red_cup_prompt.txt": {
+    "bytes": 441,
+    "sha256": "a44aac71f4efd00a1c365e04e659ec1ca514b0f11da769645e6c6a117ef790c2"
+  },
+  "experiments/alibaba_baseline/runs/qwen_instruction_001/config.json": {
+    "bytes": 230,
+    "sha256": "1ed9d9092fbbe6215850bef0ae57121aa4299f1aa84571ed5075dd2ce95452b4"
+  },
+  "experiments/alibaba_baseline/runs/qwen_instruction_001/metrics.json": {
+    "bytes": 757,
+    "sha256": "e9aaf111e57e954efd728368633c3c18298a480a16dda3c977f1ebcf176a9d5d"
+  },
+  "experiments/alibaba_baseline/runs/qwen_instruction_001/predictions.jsonl": {
+    "bytes": 51915,
+    "sha256": "90cb7e208ee78dfab7701e81f193e4e0ababfbabc16e6f5c9ec56af91dfa4cd3"
+  },
+  "experiments/alibaba_baseline/runs/qwen_lora_001/adapter/README.md": {
+    "bytes": 5204,
+    "sha256": "02b765c1997af38585954aca9c1b094b3c2d064717a09aad6d95d834c7ec2fa4"
+  },
+  "experiments/alibaba_baseline/runs/qwen_lora_001/adapter/adapter_config.json": {
+    "bytes": 1011,
+    "sha256": "478f6312aba72f208bc3548e12d6e7126d8542316fef97d52685ec2bf7a52388"
+  },
+  "experiments/alibaba_baseline/runs/qwen_lora_001/adapter/adapter_model.safetensors": {
+    "bytes": 11817664,
+    "sha256": "802f5ad4e002957b01d8ae241d84f3394ee8e4888fb5d2c08c52cfeccc6dfabd"
+  },
+  "experiments/alibaba_baseline/runs/qwen_lora_001/adapter/added_tokens.json": {
+    "bytes": 707,
+    "sha256": "c0284b582e14987fbd3d5a2cb2bd139084371ed9acbae488829a1c900833c680"
+  },
+  "experiments/alibaba_baseline/runs/qwen_lora_001/adapter/chat_template.jinja": {
+    "bytes": 5292,
+    "sha256": "3636d0f0bd6bef02654cdffdc447b79cb2cef8ab02cc75267345946291a489e4"
+  },
+  "experiments/alibaba_baseline/runs/qwen_lora_001/adapter/merges.txt": {
+    "bytes": 1671853,
+    "sha256": "8831e4f1a044471340f7c0a83d7bd71306a5b867e95fd870f74d0c5308a904d5"
+  },
+  "experiments/alibaba_baseline/runs/qwen_lora_001/adapter/preprocessor_config.json": {
+    "bytes": 782,
+    "sha256": "93585062a80db5e8ca038efc7726a3e6411d9db948472d81d63c6303993be8c5"
+  },
+  "experiments/alibaba_baseline/runs/qwen_lora_001/adapter/special_tokens_map.json": {
+    "bytes": 613,
+    "sha256": "76862e765266b85aa9459767e33cbaf13970f327a0e88d1c65846c2ddd3a1ecd"
+  },
+  "experiments/alibaba_baseline/runs/qwen_lora_001/adapter/tokenizer.json": {
+    "bytes": 11422654,
+    "sha256": "aeb13307a71acd8fe81861d94ad54ab689df773318809eed3cbe794b4492dae4"
+  },
+  "experiments/alibaba_baseline/runs/qwen_lora_001/adapter/tokenizer_config.json": {
+    "bytes": 5445,
+    "sha256": "81ec7bb9530159b326c0bef1d0b6c33d392090524014ea3f0123a3c1eb9c2af5"
+  },
+  "experiments/alibaba_baseline/runs/qwen_lora_001/adapter/video_preprocessor_config.json": {
+    "bytes": 817,
+    "sha256": "59c5c9eb52182eb14c06ffb10ca9effd29adce5f238a95de23ca14a38dbd2cb1"
+  },
+  "experiments/alibaba_baseline/runs/qwen_lora_001/adapter/vocab.json": {
+    "bytes": 2776833,
+    "sha256": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910"
+  },
+  "experiments/alibaba_baseline/runs/qwen_lora_001/predictions.jsonl": {
+    "bytes": 6200,
+    "sha256": "2af81898172ce1abf1ac6c89152a771aeb1be13b14d6b9b9361e5234a29859ad"
+  },
+  "experiments/alibaba_baseline/runs/qwen_lora_001/reload_check.json": {
+    "bytes": 197,
+    "sha256": "8b7749f7f73374632fc953f2824d4af6cf6310560ab6e22af73296370d61640c"
+  },
+  "experiments/alibaba_baseline/runs/qwen_lora_001/reload_check_alternate_prompt.json": {
+    "bytes": 153,
+    "sha256": "0b24c9f9ffbaeefba5056c09117ad653a6621d1d305652023bf6f58127dc6e2f"
+  },
+  "experiments/alibaba_baseline/runs/qwen_lora_001/summary.json": {
+    "bytes": 423,
+    "sha256": "511ed0e99ef09f5a8416ce339501cb6569542c1979dda68bfc625f611ba37fc1"
+  },
+  "experiments/alibaba_baseline/runs/qwen_lora_001/training.csv": {
+    "bytes": 5224,
+    "sha256": "dfe445a6bd3ccc9e6bbe7724a54a03e59cf614b4c0660dc490bf1b61cb2209a3"
+  },
+  "experiments/alibaba_baseline/runs/qwen_lora_001/training_config.json": {
+    "bytes": 600,
+    "sha256": "03d7839686a80455294e473f2538faea29def7007d94dcfeadf2b1003d0b3352"
+  },
+  "experiments/alibaba_baseline/scripts/act-python": {
+    "bytes": 411,
+    "sha256": "618ef9bf88b03b4def92447c482fe7345df15a99d27f122652c5e36868646ea4"
+  },
+  "experiments/alibaba_baseline/scripts/download_public.py": {
+    "bytes": 635,
+    "sha256": "f72a39117f4d4ad48738998cecc08d599f08a1b0e4ef33f0f1c1ed9935a7d70b"
+  },
+  "experiments/alibaba_baseline/scripts/evaluate_act.py": {
+    "bytes": 3959,
+    "sha256": "cc465ab1976a691fb5cf97710d3dd243dfd5dc2a9cfd75b7dd099b883b47d9df"
+  },
+  "experiments/alibaba_baseline/scripts/integrated_demo.py": {
+    "bytes": 4997,
+    "sha256": "80e3a8ae3e04292d97a108515070bb79876fa3c233d275cb66712cb9047fffc0"
+  },
+  "experiments/alibaba_baseline/scripts/plot_results.py": {
+    "bytes": 2518,
+    "sha256": "1eb9c552a8a6c1a869d1719819fd53d15851a87028ef572c0d260d048a59b1b0"
+  },
+  "experiments/alibaba_baseline/scripts/prepare_act_data.py": {
+    "bytes": 2536,
+    "sha256": "20832c29b770f3402195dafefa04fa9f26e272665ba16bc9de273bffc9e2b1e7"
+  },
+  "experiments/alibaba_baseline/scripts/qwen_benchmark.py": {
+    "bytes": 3975,
+    "sha256": "951a032cf130431c650f4583085b0db25e14ccc24a257c57c6d9cd8658915b73"
+  },
+  "experiments/alibaba_baseline/scripts/qwen_goal_worker.py": {
+    "bytes": 2110,
+    "sha256": "1ec422dd30d3be6178e36c8aecbd6b48f4333764d75366248ee040cd72e0af61"
+  },
+  "experiments/alibaba_baseline/scripts/qwen_lora.py": {
+    "bytes": 6314,
+    "sha256": "5094a6c63f12764a3a79c62ae3045829ff7fc30889f950d7a2c4c467f219bb47"
+  },
+  "experiments/alibaba_baseline/scripts/train_act.py": {
+    "bytes": 5883,
+    "sha256": "f49f5e700b11442bc93939ab851b7a1aab9a15fd692585fb3faad5aa1095afa4"
+  },
+  "experiments/alibaba_baseline/scripts/verify_lora_reload.py": {
+    "bytes": 1364,
+    "sha256": "fd81ace86f2719b8f96ab6e4cfafdb7121dec42633462c54108ed9dc6d60b4a8"
+  },
+  "experiments/alibaba_baseline/setup_logs/act-cache.log": {
+    "bytes": 1505,
+    "sha256": "bd8acf7a166543535a24d5829484c96110efc48d7914b65fc33ca48a5fc85f73"
+  },
+  "experiments/alibaba_baseline/setup_logs/act-dependencies-pinned.log": {
+    "bytes": 5302,
+    "sha256": "deaf39cd668ff00a01c1019db4277df3ea8715ad4acd4c99667ef65d018689c5"
+  },
+  "experiments/alibaba_baseline/setup_logs/act-dependencies.log": {
+    "bytes": 6709,
+    "sha256": "5d663db50af2ae56c48a955174ee6987b51289b64ad2101e6e66b5071543bd19"
+  },
+  "experiments/alibaba_baseline/setup_logs/act-pip-check.log": {
+    "bytes": 30,
+    "sha256": "9261363b733079a641c2e4cc9bc46ffa1d8336945a87f807b6cf68847dbc9b09"
+  },
+  "experiments/alibaba_baseline/setup_logs/act-requirements.lock.txt": {
+    "bytes": 2721,
+    "sha256": "2ff456619e429898f9fd6afa9485031521e699fa438142850a83df24aeb43cff"
+  },
+  "experiments/alibaba_baseline/setup_logs/integrated-demo-guarded.log": {
+    "bytes": 2132,
+    "sha256": "725171cb542c0d1def3fcc51c8fed2263947b002b5eaa2f8215348f39546c560"
+  },
+  "experiments/alibaba_baseline/setup_logs/integrated-demo.log": {
+    "bytes": 2074,
+    "sha256": "7fb50774243a6a05d8d5b6855c58b98820b7fb9b292e613de594a11b1a35cbfb"
+  },
+  "experiments/alibaba_baseline/setup_logs/lora-dependencies.log": {
+    "bytes": 7934,
+    "sha256": "7567a72cd63b4bfa5395ffc0f25b6a3bf14a10ee85a087fe12c5ca21dd8a9089"
+  },
+  "experiments/alibaba_baseline/setup_logs/lora-reload-exact-prompt.log": {
+    "bytes": 641,
+    "sha256": "33366e0cfd8e68a79b95b4067da271ac5cece4df7d9b6ea7230a44251e234592"
+  },
+  "experiments/alibaba_baseline/setup_logs/lora-reload.log": {
+    "bytes": 545,
+    "sha256": "53ea6aa49c198348f524512cbcd7779a7680ca584798180f46c2105a61eeee06"
+  },
+  "experiments/alibaba_baseline/setup_logs/official-act-eval.log": {
+    "bytes": 1850,
+    "sha256": "079abad6c2137daec4aa2527c1b0a40584deb6b82b5c42cc9303590ea2d1a6c0"
+  },
+  "experiments/alibaba_baseline/setup_logs/official-act-latency.log": {
+    "bytes": 937,
+    "sha256": "540ed7236f6b143c570ec7fcb4b2e6ccaf5d3d37acf426e6d2c3779e6c9feacc"
+  },
+  "experiments/alibaba_baseline/setup_logs/own-act-eval.log": {
+    "bytes": 1882,
+    "sha256": "413c0b14071a0f234132d374b4916d49456ef486157ee3f3ad3820c459707a29"
+  },
+  "experiments/alibaba_baseline/setup_logs/own-act-latency.log": {
+    "bytes": 956,
+    "sha256": "de89d260e6c79f103ac74b18799bcd746968e43007d8156f106a5f57053f9ffd"
+  },
+  "experiments/alibaba_baseline/setup_logs/own-act-train.log": {
+    "bytes": 2800,
+    "sha256": "1365741c33c48c8a402195db9e4ca38ab8312ade54f1c6e9957e23b436135f5a"
+  },
+  "experiments/alibaba_baseline/setup_logs/public-download.log": {
+    "bytes": 2751,
+    "sha256": "4e1667f44f125119d900ece48ff6c2c6423b2fd4d601eb81f9030d0bfcdb4969"
+  },
+  "experiments/alibaba_baseline/setup_logs/qwen-benchmark.log": {
+    "bytes": 5010,
+    "sha256": "95c77d1289eb4cdb9a8fcc3e6764199d8791ebcf581e025b6c1b05575c3609dd"
+  },
+  "experiments/alibaba_baseline/setup_logs/qwen-lora.log": {
+    "bytes": 1366,
+    "sha256": "3f4d39762ff3c206f9f81a9fcae71791b9a927079d7083eb65ffaae3d9808566"
+  },
+  "experiments/alibaba_baseline/setup_logs/qwen-pip-check.log": {
+    "bytes": 30,
+    "sha256": "9261363b733079a641c2e4cc9bc46ffa1d8336945a87f807b6cf68847dbc9b09"
+  },
+  "experiments/alibaba_baseline/setup_logs/qwen-requirements.lock.txt": {
+    "bytes": 2835,
+    "sha256": "8b227d0b77f311fdf78c3a8aa0861952e56fd54e6970f58ff3676da765a39532"
+  },
+  "perception/qwen_scene/engine.py": {
+    "bytes": 4982,
+    "sha256": "9193ea0989c75ef2493c8e079c99e4d6d3324b5f54b8c79aa0f664d791fd8981"
+  }
+}

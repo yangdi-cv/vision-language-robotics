@@ -1,0 +1,36 @@
+{
+  "runner_sha256": "e5d28552be82d553e09b3fcfe45aa95bbc6d38b0338899c2536ed1407935bb9d",
+  "suite": "libero_10",
+  "task_id": 3,
+  "initial_state_id": 2,
+  "mode": "baseline",
+  "environment_seed": 7,
+  "noise_seed": 730302,
+  "initial_state_sha256": "d4452cb6d293450305537a0160f36840b3351a6b381b8e487f3bf2db1b30399b",
+  "original_prompt": "put the black bowl in the bottom drawer of the cabinet and close it",
+  "input_prompt": "put the black bowl in the bottom drawer of the cabinet and close it",
+  "replan_steps": 5,
+  "denoising_steps": 10,
+  "max_steps": 520,
+  "status": "success",
+  "success": true,
+  "steps": 294,
+  "alternate_goal_evaluable": false,
+  "alternate_goal_ever_satisfied": null,
+  "initial_eef": [
+    -0.206912398487564,
+    -0.01175545516226667,
+    1.1784667237225814
+  ],
+  "final_eef": [
+    0.024604244367889775,
+    0.18348016795488417,
+    0.9165743663561985
+  ],
+  "qpos_displacement_norm": 2.1408825427199907,
+  "simulation_elapsed_s": 14.7,
+  "wall_s": 8.352493667999624,
+  "query_count": 59,
+  "warmup_query_wall_s": 0.0743158859995674,
+  "query_median_excluding_first_s": 0.07200650649974705
+}

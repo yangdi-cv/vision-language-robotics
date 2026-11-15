@@ -1,0 +1,11 @@
+{
+  "initials": [
+    8,
+    9,
+    10
+  ],
+  "mode": "positive_continue",
+  "episodes": 12,
+  "purpose": "New passive observation streams for a frozen multiview checker audit, not a prompt-performance expansion",
+  "executor_sha256": "3e2205914f6e92d3107b551391c9558f54753dee5b25870823a363d1a6dcd5cc"
+}

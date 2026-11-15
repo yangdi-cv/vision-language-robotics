@@ -1,0 +1,14 @@
+[
+  "experiments/vla_libero/constraint_retention/episodes/camera_eval/task00_target0_init08/positive_continue/result.json",
+  "experiments/vla_libero/constraint_retention/episodes/camera_eval/task00_target1_init08/positive_continue/result.json",
+  "experiments/vla_libero/constraint_retention/episodes/camera_eval/task00_target0_init09/positive_continue/result.json",
+  "experiments/vla_libero/constraint_retention/episodes/camera_eval/task00_target1_init09/positive_continue/result.json",
+  "experiments/vla_libero/constraint_retention/episodes/camera_eval/task00_target0_init10/positive_continue/result.json",
+  "experiments/vla_libero/constraint_retention/episodes/camera_eval/task00_target1_init10/positive_continue/result.json",
+  "experiments/vla_libero/constraint_retention/episodes/camera_eval/task01_target0_init08/positive_continue/result.json",
+  "experiments/vla_libero/constraint_retention/episodes/camera_eval/task01_target1_init08/positive_continue/result.json",
+  "experiments/vla_libero/constraint_retention/episodes/camera_eval/task01_target0_init09/positive_continue/result.json",
+  "experiments/vla_libero/constraint_retention/episodes/camera_eval/task01_target1_init09/positive_continue/result.json",
+  "experiments/vla_libero/constraint_retention/episodes/camera_eval/task01_target0_init10/positive_continue/result.json",
+  "experiments/vla_libero/constraint_retention/episodes/camera_eval/task01_target1_init10/positive_continue/result.json"
+]

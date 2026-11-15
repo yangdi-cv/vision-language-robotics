@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+set -euo pipefail
+PROJECT_ROOT="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/../.." && pwd)"
+unset PYTHONPATH PYTHONHOME
+web_args=("$PROJECT_ROOT/.venvs/qwen-scene/bin/python" "$PROJECT_ROOT/perception/web_workbench/server.py")
+printf -v web_command '%q ' "${web_args[@]}"
+exec sg dialout -c "exec $web_command"

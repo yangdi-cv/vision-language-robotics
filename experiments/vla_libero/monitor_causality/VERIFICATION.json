@@ -1,0 +1,16 @@
+{
+  "episodes_verified": 150,
+  "expected": 150,
+  "all_complete": true,
+  "frames_decoded": 39452,
+  "queries_verified": 7912,
+  "decisions_verified": 728,
+  "frozen_distinct_current_frames_replaced": 157,
+  "prefix_pairs": 120,
+  "max_prefix_action_difference": 0.0,
+  "policy_inputs_unchanged_before_switch": true,
+  "noise_and_action_execution_exact": true,
+  "image_prompt_metadata_verified": true,
+  "confirmation_streaks_reconstructed": true,
+  "original_sources_and_adapter_unchanged": true
+}

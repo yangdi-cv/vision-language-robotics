@@ -1,0 +1,624 @@
+{
+  "groups": {
+    "base": {
+      "first_lift_correct": 4,
+      "success": 2,
+      "valid_window": 3,
+      "protected_ok": 6,
+      "target_stable": 4,
+      "n": 8,
+      "by_layout": {
+        "normal": {
+          "first_lift_correct": 2,
+          "success": 1
+        },
+        "swap": {
+          "first_lift_correct": 2,
+          "success": 1
+        }
+      }
+    },
+    "text": {
+      "first_lift_correct": 4,
+      "success": 2,
+      "valid_window": 4,
+      "protected_ok": 5,
+      "target_stable": 5,
+      "n": 8,
+      "by_layout": {
+        "normal": {
+          "first_lift_correct": 1,
+          "success": 0
+        },
+        "swap": {
+          "first_lift_correct": 3,
+          "success": 2
+        }
+      }
+    },
+    "goal": {
+      "first_lift_correct": 1,
+      "success": 0,
+      "valid_window": 1,
+      "protected_ok": 6,
+      "target_stable": 1,
+      "n": 8,
+      "by_layout": {
+        "normal": {
+          "first_lift_correct": 1,
+          "success": 0
+        },
+        "swap": {
+          "first_lift_correct": 0,
+          "success": 0
+        }
+      }
+    }
+  },
+  "episodes": [
+    {
+      "variant": "base",
+      "task": 0,
+      "layout": "normal",
+      "initial": 41,
+      "target": 0,
+      "first_lift": 0,
+      "first_lift_correct": true,
+      "success": false,
+      "valid_window": false,
+      "protected_ok": true,
+      "target_stable": false,
+      "settled_sha256": "8d02e6bd98dce88d2a4cdff47c4771e0d8a4503e5d0611b7ebfb8dc2c011adf9",
+      "initial_input_hashes": {
+        "image": "3f95233c8fb1f478d0ca7b332ce3ee94b71000c5ad6c9e22b4f0541c3558255f",
+        "wrist": "460477b2b5e52477bbd54c60a01c67a68abd9ee05a4770d1bd5fd3ed29a8c7e0",
+        "state": "1c4f2c3cf02019c9947ca0b5fdfc0a2712f65995d00f1981988b64331442aa81",
+        "noise": "4f88fa1ea58a598a4ee680768a269d325d0c59a8cc1ff27072a6e1a0f03eab88"
+      },
+      "source": "experiments/vla_libero/point_target/evaluation/base/normal/episodes/task00_init41/target0/result.json"
+    },
+    {
+      "variant": "base",
+      "task": 0,
+      "layout": "normal",
+      "initial": 41,
+      "target": 1,
+      "first_lift": null,
+      "first_lift_correct": false,
+      "success": false,
+      "valid_window": false,
+      "protected_ok": true,
+      "target_stable": false,
+      "settled_sha256": "8d02e6bd98dce88d2a4cdff47c4771e0d8a4503e5d0611b7ebfb8dc2c011adf9",
+      "initial_input_hashes": {
+        "image": "3f95233c8fb1f478d0ca7b332ce3ee94b71000c5ad6c9e22b4f0541c3558255f",
+        "wrist": "460477b2b5e52477bbd54c60a01c67a68abd9ee05a4770d1bd5fd3ed29a8c7e0",
+        "state": "1c4f2c3cf02019c9947ca0b5fdfc0a2712f65995d00f1981988b64331442aa81",
+        "noise": "4f88fa1ea58a598a4ee680768a269d325d0c59a8cc1ff27072a6e1a0f03eab88"
+      },
+      "source": "experiments/vla_libero/point_target/evaluation/base/normal/episodes/task00_init41/target1/result.json"
+    },
+    {
+      "variant": "base",
+      "task": 1,
+      "layout": "normal",
+      "initial": 41,
+      "target": 0,
+      "first_lift": 0,
+      "first_lift_correct": true,
+      "success": true,
+      "valid_window": true,
+      "protected_ok": true,
+      "target_stable": true,
+      "settled_sha256": "54c6a77cacad8e7fde1e1fc20940c0581e3bf8756f75d9983f14a3d7c52555e9",
+      "initial_input_hashes": {
+        "image": "842f8f5285f618866f85e05f4831e3fbe497e8a527fb9d0821d3b3c9d76a4928",
+        "wrist": "5914a321da00bf7c3ad58039a7c58877c4dc451acc4bb83eb46d5a4927e16c2d",
+        "state": "bb7645edbe01a8e3f5a46ce3e22dba0f652ecfb089694288e8a92422054cf137",
+        "noise": "3d56bb9e7f67feced8288285ba07775ac1f7eb1df106eeeff245ad24b5a70aff"
+      },
+      "source": "experiments/vla_libero/point_target/evaluation/base/normal/episodes/task01_init41/target0/result.json"
+    },
+    {
+      "variant": "base",
+      "task": 1,
+      "layout": "normal",
+      "initial": 41,
+      "target": 1,
+      "first_lift": 0,
+      "first_lift_correct": false,
+      "success": false,
+      "valid_window": false,
+      "protected_ok": false,
+      "target_stable": true,
+      "settled_sha256": "54c6a77cacad8e7fde1e1fc20940c0581e3bf8756f75d9983f14a3d7c52555e9",
+      "initial_input_hashes": {
+        "image": "842f8f5285f618866f85e05f4831e3fbe497e8a527fb9d0821d3b3c9d76a4928",
+        "wrist": "5914a321da00bf7c3ad58039a7c58877c4dc451acc4bb83eb46d5a4927e16c2d",
+        "state": "bb7645edbe01a8e3f5a46ce3e22dba0f652ecfb089694288e8a92422054cf137",
+        "noise": "3d56bb9e7f67feced8288285ba07775ac1f7eb1df106eeeff245ad24b5a70aff"
+      },
+      "source": "experiments/vla_libero/point_target/evaluation/base/normal/episodes/task01_init41/target1/result.json"
+    },
+    {
+      "variant": "base",
+      "task": 0,
+      "layout": "swap",
+      "initial": 41,
+      "target": 0,
+      "first_lift": null,
+      "first_lift_correct": false,
+      "success": false,
+      "valid_window": false,
+      "protected_ok": true,
+      "target_stable": false,
+      "settled_sha256": "a11fb8f1e90ed84509e01e35be75f8a94a5fe685a53eabecd2c55969ef4cb79e",
+      "initial_input_hashes": {
+        "image": "a16b3b89c57a4c7d28148c367d67aa64ade0b13d082c7b7b03886d8d9ba959d0",
+        "wrist": "4617f3a10c42ecee907c35cfcd67bb2fcf9dad46bf1a410688d5c5904cc0a927",
+        "state": "7a48c95b2590db161ba917a3e25bc98dfb2c7d235709af6c03f8194228024f78",
+        "noise": "4f88fa1ea58a598a4ee680768a269d325d0c59a8cc1ff27072a6e1a0f03eab88"
+      },
+      "source": "experiments/vla_libero/point_target/evaluation/base/swap/episodes/task00_init41/target0/result.json"
+    },
+    {
+      "variant": "base",
+      "task": 0,
+      "layout": "swap",
+      "initial": 41,
+      "target": 1,
+      "first_lift": null,
+      "first_lift_correct": false,
+      "success": false,
+      "valid_window": false,
+      "protected_ok": true,
+      "target_stable": false,
+      "settled_sha256": "a11fb8f1e90ed84509e01e35be75f8a94a5fe685a53eabecd2c55969ef4cb79e",
+      "initial_input_hashes": {
+        "image": "a16b3b89c57a4c7d28148c367d67aa64ade0b13d082c7b7b03886d8d9ba959d0",
+        "wrist": "4617f3a10c42ecee907c35cfcd67bb2fcf9dad46bf1a410688d5c5904cc0a927",
+        "state": "7a48c95b2590db161ba917a3e25bc98dfb2c7d235709af6c03f8194228024f78",
+        "noise": "4f88fa1ea58a598a4ee680768a269d325d0c59a8cc1ff27072a6e1a0f03eab88"
+      },
+      "source": "experiments/vla_libero/point_target/evaluation/base/swap/episodes/task00_init41/target1/result.json"
+    },
+    {
+      "variant": "base",
+      "task": 1,
+      "layout": "swap",
+      "initial": 41,
+      "target": 0,
+      "first_lift": 0,
+      "first_lift_correct": true,
+      "success": true,
+      "valid_window": true,
+      "protected_ok": true,
+      "target_stable": true,
+      "settled_sha256": "892483f53f12e854ba748798ccbd0312b965fb6b3f75ba808b99ac318d2e1e05",
+      "initial_input_hashes": {
+        "image": "269ba13b34cb47e57a035b3a33d4a9589c9b91d40bc20ff8ee6717d8234e0e87",
+        "wrist": "3dbe3dbbba62bf8ca1c5f0b4ea4e7ea9464a48d1aec23238115c061dff7b04a2",
+        "state": "1a49817a4bbb1884c1e2f988d932e2554bdd0d0ec1ad588ff661ea14a0aa1e70",
+        "noise": "3d56bb9e7f67feced8288285ba07775ac1f7eb1df106eeeff245ad24b5a70aff"
+      },
+      "source": "experiments/vla_libero/point_target/evaluation/base/swap/episodes/task01_init41/target0/result.json"
+    },
+    {
+      "variant": "base",
+      "task": 1,
+      "layout": "swap",
+      "initial": 41,
+      "target": 1,
+      "first_lift": 1,
+      "first_lift_correct": true,
+      "success": false,
+      "valid_window": true,
+      "protected_ok": false,
+      "target_stable": true,
+      "settled_sha256": "892483f53f12e854ba748798ccbd0312b965fb6b3f75ba808b99ac318d2e1e05",
+      "initial_input_hashes": {
+        "image": "269ba13b34cb47e57a035b3a33d4a9589c9b91d40bc20ff8ee6717d8234e0e87",
+        "wrist": "3dbe3dbbba62bf8ca1c5f0b4ea4e7ea9464a48d1aec23238115c061dff7b04a2",
+        "state": "1a49817a4bbb1884c1e2f988d932e2554bdd0d0ec1ad588ff661ea14a0aa1e70",
+        "noise": "3d56bb9e7f67feced8288285ba07775ac1f7eb1df106eeeff245ad24b5a70aff"
+      },
+      "source": "experiments/vla_libero/point_target/evaluation/base/swap/episodes/task01_init41/target1/result.json"
+    },
+    {
+      "variant": "text",
+      "task": 0,
+      "layout": "normal",
+      "initial": 41,
+      "target": 0,
+      "first_lift": null,
+      "first_lift_correct": false,
+      "success": false,
+      "valid_window": false,
+      "protected_ok": true,
+      "target_stable": false,
+      "settled_sha256": "8d02e6bd98dce88d2a4cdff47c4771e0d8a4503e5d0611b7ebfb8dc2c011adf9",
+      "initial_input_hashes": {
+        "image": "3f95233c8fb1f478d0ca7b332ce3ee94b71000c5ad6c9e22b4f0541c3558255f",
+        "wrist": "460477b2b5e52477bbd54c60a01c67a68abd9ee05a4770d1bd5fd3ed29a8c7e0",
+        "state": "1c4f2c3cf02019c9947ca0b5fdfc0a2712f65995d00f1981988b64331442aa81",
+        "noise": "4f88fa1ea58a598a4ee680768a269d325d0c59a8cc1ff27072a6e1a0f03eab88"
+      },
+      "source": "experiments/vla_libero/point_target/evaluation/text/normal/episodes/task00_init41/target0/result.json"
+    },
+    {
+      "variant": "text",
+      "task": 0,
+      "layout": "normal",
+      "initial": 41,
+      "target": 1,
+      "first_lift": null,
+      "first_lift_correct": false,
+      "success": false,
+      "valid_window": false,
+      "protected_ok": true,
+      "target_stable": false,
+      "settled_sha256": "8d02e6bd98dce88d2a4cdff47c4771e0d8a4503e5d0611b7ebfb8dc2c011adf9",
+      "initial_input_hashes": {
+        "image": "3f95233c8fb1f478d0ca7b332ce3ee94b71000c5ad6c9e22b4f0541c3558255f",
+        "wrist": "460477b2b5e52477bbd54c60a01c67a68abd9ee05a4770d1bd5fd3ed29a8c7e0",
+        "state": "1c4f2c3cf02019c9947ca0b5fdfc0a2712f65995d00f1981988b64331442aa81",
+        "noise": "4f88fa1ea58a598a4ee680768a269d325d0c59a8cc1ff27072a6e1a0f03eab88"
+      },
+      "source": "experiments/vla_libero/point_target/evaluation/text/normal/episodes/task00_init41/target1/result.json"
+    },
+    {
+      "variant": "text",
+      "task": 1,
+      "layout": "normal",
+      "initial": 41,
+      "target": 0,
+      "first_lift": 0,
+      "first_lift_correct": true,
+      "success": false,
+      "valid_window": true,
+      "protected_ok": false,
+      "target_stable": true,
+      "settled_sha256": "54c6a77cacad8e7fde1e1fc20940c0581e3bf8756f75d9983f14a3d7c52555e9",
+      "initial_input_hashes": {
+        "image": "842f8f5285f618866f85e05f4831e3fbe497e8a527fb9d0821d3b3c9d76a4928",
+        "wrist": "5914a321da00bf7c3ad58039a7c58877c4dc451acc4bb83eb46d5a4927e16c2d",
+        "state": "bb7645edbe01a8e3f5a46ce3e22dba0f652ecfb089694288e8a92422054cf137",
+        "noise": "3d56bb9e7f67feced8288285ba07775ac1f7eb1df106eeeff245ad24b5a70aff"
+      },
+      "source": "experiments/vla_libero/point_target/evaluation/text/normal/episodes/task01_init41/target0/result.json"
+    },
+    {
+      "variant": "text",
+      "task": 1,
+      "layout": "normal",
+      "initial": 41,
+      "target": 1,
+      "first_lift": 0,
+      "first_lift_correct": false,
+      "success": false,
+      "valid_window": false,
+      "protected_ok": false,
+      "target_stable": true,
+      "settled_sha256": "54c6a77cacad8e7fde1e1fc20940c0581e3bf8756f75d9983f14a3d7c52555e9",
+      "initial_input_hashes": {
+        "image": "842f8f5285f618866f85e05f4831e3fbe497e8a527fb9d0821d3b3c9d76a4928",
+        "wrist": "5914a321da00bf7c3ad58039a7c58877c4dc451acc4bb83eb46d5a4927e16c2d",
+        "state": "bb7645edbe01a8e3f5a46ce3e22dba0f652ecfb089694288e8a92422054cf137",
+        "noise": "3d56bb9e7f67feced8288285ba07775ac1f7eb1df106eeeff245ad24b5a70aff"
+      },
+      "source": "experiments/vla_libero/point_target/evaluation/text/normal/episodes/task01_init41/target1/result.json"
+    },
+    {
+      "variant": "text",
+      "task": 0,
+      "layout": "swap",
+      "initial": 41,
+      "target": 0,
+      "first_lift": null,
+      "first_lift_correct": false,
+      "success": false,
+      "valid_window": false,
+      "protected_ok": true,
+      "target_stable": false,
+      "settled_sha256": "a11fb8f1e90ed84509e01e35be75f8a94a5fe685a53eabecd2c55969ef4cb79e",
+      "initial_input_hashes": {
+        "image": "a16b3b89c57a4c7d28148c367d67aa64ade0b13d082c7b7b03886d8d9ba959d0",
+        "wrist": "4617f3a10c42ecee907c35cfcd67bb2fcf9dad46bf1a410688d5c5904cc0a927",
+        "state": "7a48c95b2590db161ba917a3e25bc98dfb2c7d235709af6c03f8194228024f78",
+        "noise": "4f88fa1ea58a598a4ee680768a269d325d0c59a8cc1ff27072a6e1a0f03eab88"
+      },
+      "source": "experiments/vla_libero/point_target/evaluation/text/swap/episodes/task00_init41/target0/result.json"
+    },
+    {
+      "variant": "text",
+      "task": 0,
+      "layout": "swap",
+      "initial": 41,
+      "target": 1,
+      "first_lift": 1,
+      "first_lift_correct": true,
+      "success": true,
+      "valid_window": true,
+      "protected_ok": true,
+      "target_stable": true,
+      "settled_sha256": "a11fb8f1e90ed84509e01e35be75f8a94a5fe685a53eabecd2c55969ef4cb79e",
+      "initial_input_hashes": {
+        "image": "a16b3b89c57a4c7d28148c367d67aa64ade0b13d082c7b7b03886d8d9ba959d0",
+        "wrist": "4617f3a10c42ecee907c35cfcd67bb2fcf9dad46bf1a410688d5c5904cc0a927",
+        "state": "7a48c95b2590db161ba917a3e25bc98dfb2c7d235709af6c03f8194228024f78",
+        "noise": "4f88fa1ea58a598a4ee680768a269d325d0c59a8cc1ff27072a6e1a0f03eab88"
+      },
+      "source": "experiments/vla_libero/point_target/evaluation/text/swap/episodes/task00_init41/target1/result.json"
+    },
+    {
+      "variant": "text",
+      "task": 1,
+      "layout": "swap",
+      "initial": 41,
+      "target": 0,
+      "first_lift": 0,
+      "first_lift_correct": true,
+      "success": true,
+      "valid_window": true,
+      "protected_ok": true,
+      "target_stable": true,
+      "settled_sha256": "892483f53f12e854ba748798ccbd0312b965fb6b3f75ba808b99ac318d2e1e05",
+      "initial_input_hashes": {
+        "image": "269ba13b34cb47e57a035b3a33d4a9589c9b91d40bc20ff8ee6717d8234e0e87",
+        "wrist": "3dbe3dbbba62bf8ca1c5f0b4ea4e7ea9464a48d1aec23238115c061dff7b04a2",
+        "state": "1a49817a4bbb1884c1e2f988d932e2554bdd0d0ec1ad588ff661ea14a0aa1e70",
+        "noise": "3d56bb9e7f67feced8288285ba07775ac1f7eb1df106eeeff245ad24b5a70aff"
+      },
+      "source": "experiments/vla_libero/point_target/evaluation/text/swap/episodes/task01_init41/target0/result.json"
+    },
+    {
+      "variant": "text",
+      "task": 1,
+      "layout": "swap",
+      "initial": 41,
+      "target": 1,
+      "first_lift": 1,
+      "first_lift_correct": true,
+      "success": false,
+      "valid_window": true,
+      "protected_ok": false,
+      "target_stable": true,
+      "settled_sha256": "892483f53f12e854ba748798ccbd0312b965fb6b3f75ba808b99ac318d2e1e05",
+      "initial_input_hashes": {
+        "image": "269ba13b34cb47e57a035b3a33d4a9589c9b91d40bc20ff8ee6717d8234e0e87",
+        "wrist": "3dbe3dbbba62bf8ca1c5f0b4ea4e7ea9464a48d1aec23238115c061dff7b04a2",
+        "state": "1a49817a4bbb1884c1e2f988d932e2554bdd0d0ec1ad588ff661ea14a0aa1e70",
+        "noise": "3d56bb9e7f67feced8288285ba07775ac1f7eb1df106eeeff245ad24b5a70aff"
+      },
+      "source": "experiments/vla_libero/point_target/evaluation/text/swap/episodes/task01_init41/target1/result.json"
+    },
+    {
+      "variant": "goal",
+      "task": 0,
+      "layout": "normal",
+      "initial": 41,
+      "target": 0,
+      "first_lift": null,
+      "first_lift_correct": false,
+      "success": false,
+      "valid_window": false,
+      "protected_ok": true,
+      "target_stable": false,
+      "settled_sha256": "8d02e6bd98dce88d2a4cdff47c4771e0d8a4503e5d0611b7ebfb8dc2c011adf9",
+      "initial_input_hashes": {
+        "image": "3f95233c8fb1f478d0ca7b332ce3ee94b71000c5ad6c9e22b4f0541c3558255f",
+        "wrist": "460477b2b5e52477bbd54c60a01c67a68abd9ee05a4770d1bd5fd3ed29a8c7e0",
+        "state": "1c4f2c3cf02019c9947ca0b5fdfc0a2712f65995d00f1981988b64331442aa81",
+        "noise": "4f88fa1ea58a598a4ee680768a269d325d0c59a8cc1ff27072a6e1a0f03eab88"
+      },
+      "source": "experiments/vla_libero/point_target/evaluation/goal/normal/episodes/task00_init41/target0/result.json"
+    },
+    {
+      "variant": "goal",
+      "task": 0,
+      "layout": "normal",
+      "initial": 41,
+      "target": 1,
+      "first_lift": null,
+      "first_lift_correct": false,
+      "success": false,
+      "valid_window": false,
+      "protected_ok": true,
+      "target_stable": false,
+      "settled_sha256": "8d02e6bd98dce88d2a4cdff47c4771e0d8a4503e5d0611b7ebfb8dc2c011adf9",
+      "initial_input_hashes": {
+        "image": "3f95233c8fb1f478d0ca7b332ce3ee94b71000c5ad6c9e22b4f0541c3558255f",
+        "wrist": "460477b2b5e52477bbd54c60a01c67a68abd9ee05a4770d1bd5fd3ed29a8c7e0",
+        "state": "1c4f2c3cf02019c9947ca0b5fdfc0a2712f65995d00f1981988b64331442aa81",
+        "noise": "4f88fa1ea58a598a4ee680768a269d325d0c59a8cc1ff27072a6e1a0f03eab88"
+      },
+      "source": "experiments/vla_libero/point_target/evaluation/goal/normal/episodes/task00_init41/target1/result.json"
+    },
+    {
+      "variant": "goal",
+      "task": 1,
+      "layout": "normal",
+      "initial": 41,
+      "target": 0,
+      "first_lift": 0,
+      "first_lift_correct": true,
+      "success": false,
+      "valid_window": true,
+      "protected_ok": false,
+      "target_stable": true,
+      "settled_sha256": "54c6a77cacad8e7fde1e1fc20940c0581e3bf8756f75d9983f14a3d7c52555e9",
+      "initial_input_hashes": {
+        "image": "842f8f5285f618866f85e05f4831e3fbe497e8a527fb9d0821d3b3c9d76a4928",
+        "wrist": "5914a321da00bf7c3ad58039a7c58877c4dc451acc4bb83eb46d5a4927e16c2d",
+        "state": "bb7645edbe01a8e3f5a46ce3e22dba0f652ecfb089694288e8a92422054cf137",
+        "noise": "3d56bb9e7f67feced8288285ba07775ac1f7eb1df106eeeff245ad24b5a70aff"
+      },
+      "source": "experiments/vla_libero/point_target/evaluation/goal/normal/episodes/task01_init41/target0/result.json"
+    },
+    {
+      "variant": "goal",
+      "task": 1,
+      "layout": "normal",
+      "initial": 41,
+      "target": 1,
+      "first_lift": 0,
+      "first_lift_correct": false,
+      "success": false,
+      "valid_window": false,
+      "protected_ok": false,
+      "target_stable": false,
+      "settled_sha256": "54c6a77cacad8e7fde1e1fc20940c0581e3bf8756f75d9983f14a3d7c52555e9",
+      "initial_input_hashes": {
+        "image": "842f8f5285f618866f85e05f4831e3fbe497e8a527fb9d0821d3b3c9d76a4928",
+        "wrist": "5914a321da00bf7c3ad58039a7c58877c4dc451acc4bb83eb46d5a4927e16c2d",
+        "state": "bb7645edbe01a8e3f5a46ce3e22dba0f652ecfb089694288e8a92422054cf137",
+        "noise": "3d56bb9e7f67feced8288285ba07775ac1f7eb1df106eeeff245ad24b5a70aff"
+      },
+      "source": "experiments/vla_libero/point_target/evaluation/goal/normal/episodes/task01_init41/target1/result.json"
+    },
+    {
+      "variant": "goal",
+      "task": 0,
+      "layout": "swap",
+      "initial": 41,
+      "target": 0,
+      "first_lift": null,
+      "first_lift_correct": false,
+      "success": false,
+      "valid_window": false,
+      "protected_ok": true,
+      "target_stable": false,
+      "settled_sha256": "a11fb8f1e90ed84509e01e35be75f8a94a5fe685a53eabecd2c55969ef4cb79e",
+      "initial_input_hashes": {
+        "image": "a16b3b89c57a4c7d28148c367d67aa64ade0b13d082c7b7b03886d8d9ba959d0",
+        "wrist": "4617f3a10c42ecee907c35cfcd67bb2fcf9dad46bf1a410688d5c5904cc0a927",
+        "state": "7a48c95b2590db161ba917a3e25bc98dfb2c7d235709af6c03f8194228024f78",
+        "noise": "4f88fa1ea58a598a4ee680768a269d325d0c59a8cc1ff27072a6e1a0f03eab88"
+      },
+      "source": "experiments/vla_libero/point_target/evaluation/goal/swap/episodes/task00_init41/target0/result.json"
+    },
+    {
+      "variant": "goal",
+      "task": 0,
+      "layout": "swap",
+      "initial": 41,
+      "target": 1,
+      "first_lift": null,
+      "first_lift_correct": false,
+      "success": false,
+      "valid_window": false,
+      "protected_ok": true,
+      "target_stable": false,
+      "settled_sha256": "a11fb8f1e90ed84509e01e35be75f8a94a5fe685a53eabecd2c55969ef4cb79e",
+      "initial_input_hashes": {
+        "image": "a16b3b89c57a4c7d28148c367d67aa64ade0b13d082c7b7b03886d8d9ba959d0",
+        "wrist": "4617f3a10c42ecee907c35cfcd67bb2fcf9dad46bf1a410688d5c5904cc0a927",
+        "state": "7a48c95b2590db161ba917a3e25bc98dfb2c7d235709af6c03f8194228024f78",
+        "noise": "4f88fa1ea58a598a4ee680768a269d325d0c59a8cc1ff27072a6e1a0f03eab88"
+      },
+      "source": "experiments/vla_libero/point_target/evaluation/goal/swap/episodes/task00_init41/target1/result.json"
+    },
+    {
+      "variant": "goal",
+      "task": 1,
+      "layout": "swap",
+      "initial": 41,
+      "target": 0,
+      "first_lift": null,
+      "first_lift_correct": false,
+      "success": false,
+      "valid_window": false,
+      "protected_ok": true,
+      "target_stable": false,
+      "settled_sha256": "892483f53f12e854ba748798ccbd0312b965fb6b3f75ba808b99ac318d2e1e05",
+      "initial_input_hashes": {
+        "image": "269ba13b34cb47e57a035b3a33d4a9589c9b91d40bc20ff8ee6717d8234e0e87",
+        "wrist": "3dbe3dbbba62bf8ca1c5f0b4ea4e7ea9464a48d1aec23238115c061dff7b04a2",
+        "state": "1a49817a4bbb1884c1e2f988d932e2554bdd0d0ec1ad588ff661ea14a0aa1e70",
+        "noise": "3d56bb9e7f67feced8288285ba07775ac1f7eb1df106eeeff245ad24b5a70aff"
+      },
+      "source": "experiments/vla_libero/point_target/evaluation/goal/swap/episodes/task01_init41/target0/result.json"
+    },
+    {
+      "variant": "goal",
+      "task": 1,
+      "layout": "swap",
+      "initial": 41,
+      "target": 1,
+      "first_lift": null,
+      "first_lift_correct": false,
+      "success": false,
+      "valid_window": false,
+      "protected_ok": true,
+      "target_stable": false,
+      "settled_sha256": "892483f53f12e854ba748798ccbd0312b965fb6b3f75ba808b99ac318d2e1e05",
+      "initial_input_hashes": {
+        "image": "269ba13b34cb47e57a035b3a33d4a9589c9b91d40bc20ff8ee6717d8234e0e87",
+        "wrist": "3dbe3dbbba62bf8ca1c5f0b4ea4e7ea9464a48d1aec23238115c061dff7b04a2",
+        "state": "1a49817a4bbb1884c1e2f988d932e2554bdd0d0ec1ad588ff661ea14a0aa1e70",
+        "noise": "3d56bb9e7f67feced8288285ba07775ac1f7eb1df106eeeff245ad24b5a70aff"
+      },
+      "source": "experiments/vla_libero/point_target/evaluation/goal/swap/episodes/task01_init41/target1/result.json"
+    }
+  ],
+  "box_only_probes": [
+    {
+      "task": 0,
+      "layout": "normal",
+      "target": 0,
+      "action_rms": 0.003954988116827091
+    },
+    {
+      "task": 0,
+      "layout": "normal",
+      "target": 1,
+      "action_rms": 0.003954988116827091
+    },
+    {
+      "task": 1,
+      "layout": "normal",
+      "target": 0,
+      "action_rms": 0.01826500636410298
+    },
+    {
+      "task": 1,
+      "layout": "normal",
+      "target": 1,
+      "action_rms": 0.01826500636410298
+    },
+    {
+      "task": 0,
+      "layout": "swap",
+      "target": 0,
+      "action_rms": 0.006614324087943402
+    },
+    {
+      "task": 0,
+      "layout": "swap",
+      "target": 1,
+      "action_rms": 0.006614324087943402
+    },
+    {
+      "task": 1,
+      "layout": "swap",
+      "target": 0,
+      "action_rms": 0.02100815935120208
+    },
+    {
+      "task": 1,
+      "layout": "swap",
+      "target": 1,
+      "action_rms": 0.02100815935120208
+    }
+  ],
+  "audit": {
+    "episodes": 24,
+    "queries": 1440,
+    "extra_box_probe_queries": 8,
+    "frozen_sources": true,
+    "identical_paired_initial_inputs": true,
+    "actual_action_chunks_verified": true,
+    "physical_rescore": true,
+    "physical_audit_sha256": "9397c80dfa37cf3a5fb419fe8d4d4cb87cb3fea4f1341bd9c4d8cfbf3da08a52"
+  }
+}

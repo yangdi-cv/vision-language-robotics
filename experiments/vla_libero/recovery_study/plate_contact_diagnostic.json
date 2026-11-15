@@ -1,0 +1,170 @@
+{
+  "prefix": {
+    "positions": {
+      "porcelain_mug_1": [
+        0.04940648781304217,
+        -0.28223373103096816,
+        0.4469144580227261
+      ],
+      "white_yellow_mug_1": [
+        -0.06657585229643306,
+        0.10122796989345746,
+        0.4368570012643121
+      ],
+      "plate_1": [
+        0.011128654019615016,
+        -0.2864600111943497,
+        0.4392726969056794
+      ],
+      "plate_2": [
+        -0.020068730457446286,
+        0.27812593479242853,
+        0.43927283236836456
+      ]
+    },
+    "predicate_details": [
+      {
+        "mug": "porcelain_mug_1",
+        "plate": "plate_1",
+        "xy_distance_m": 0.03851044019401267,
+        "contact": true,
+        "mug_above_plate": true,
+        "predicate": false
+      },
+      {
+        "mug": "white_yellow_mug_1",
+        "plate": "plate_2",
+        "xy_distance_m": 0.18290927359525533,
+        "contact": false,
+        "mug_above_plate": false,
+        "predicate": false
+      }
+    ]
+  },
+  "continue": {
+    "positions": {
+      "porcelain_mug_1": [
+        0.049403679852569375,
+        -0.28223245483534065,
+        0.44691392015437137
+      ],
+      "white_yellow_mug_1": [
+        -0.0012290861431011272,
+        0.26215630826618086,
+        0.44638561809827576
+      ],
+      "plate_1": [
+        0.011128654018844799,
+        -0.28646001119383624,
+        0.43927269690449794
+      ],
+      "plate_2": [
+        -0.020070774418993746,
+        0.27810195471670046,
+        0.4392726000321153
+      ]
+    },
+    "predicate_details": [
+      {
+        "mug": "porcelain_mug_1",
+        "plate": "plate_1",
+        "xy_distance_m": 0.038507789281345926,
+        "contact": true,
+        "mug_above_plate": true,
+        "predicate": false
+      },
+      {
+        "mug": "white_yellow_mug_1",
+        "plate": "plate_2",
+        "xy_distance_m": 0.024683453117642955,
+        "contact": true,
+        "mug_above_plate": true,
+        "predicate": true
+      }
+    ]
+  },
+  "full": {
+    "positions": {
+      "porcelain_mug_1": [
+        0.049403679852569354,
+        -0.2822324548353406,
+        0.44691392015437137
+      ],
+      "white_yellow_mug_1": [
+        -0.0013156601126475666,
+        0.2645930675337924,
+        0.4463982581061347
+      ],
+      "plate_1": [
+        0.011128654018844799,
+        -0.28646001119383624,
+        0.43927269690449794
+      ],
+      "plate_2": [
+        -0.02007017406848253,
+        0.2781081240344962,
+        0.4392725955590406
+      ]
+    },
+    "predicate_details": [
+      {
+        "mug": "porcelain_mug_1",
+        "plate": "plate_1",
+        "xy_distance_m": 0.03850778928134591,
+        "contact": true,
+        "mug_above_plate": true,
+        "predicate": false
+      },
+      {
+        "mug": "white_yellow_mug_1",
+        "plate": "plate_2",
+        "xy_distance_m": 0.023116845501426526,
+        "contact": true,
+        "mug_above_plate": true,
+        "predicate": true
+      }
+    ]
+  },
+  "replan": {
+    "positions": {
+      "porcelain_mug_1": [
+        0.04940367985256873,
+        -0.2822324548353405,
+        0.4469139201543712
+      ],
+      "white_yellow_mug_1": [
+        -0.006569189877571912,
+        0.26779852047999425,
+        0.4455736938183253
+      ],
+      "plate_1": [
+        0.011128654018844799,
+        -0.28646001119383624,
+        0.43927269690449794
+      ],
+      "plate_2": [
+        -0.019907893829595343,
+        0.27796020225368473,
+        0.4392725882576499
+      ]
+    },
+    "predicate_details": [
+      {
+        "mug": "porcelain_mug_1",
+        "plate": "plate_1",
+        "xy_distance_m": 0.0385077892813453,
+        "contact": true,
+        "mug_above_plate": true,
+        "predicate": false
+      },
+      {
+        "mug": "white_yellow_mug_1",
+        "plate": "plate_2",
+        "xy_distance_m": 0.016768446546698318,
+        "contact": true,
+        "mug_above_plate": true,
+        "predicate": true
+      }
+    ]
+  }
+}

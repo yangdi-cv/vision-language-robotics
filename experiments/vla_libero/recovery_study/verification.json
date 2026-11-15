@@ -1,0 +1,13 @@
+{
+  "paired_states_verified": 3,
+  "result_files": 30,
+  "executed_recovery_and_guided": 26,
+  "planning_errors_preserved": 2,
+  "new_simulated_steps": 10432,
+  "videos_fully_decoded": 28,
+  "historical_sources_unchanged": true,
+  "status": "passed",
+  "state_and_gate_tests_passed": 10,
+  "contract_tests_passed": 6,
+  "ruff_check": "passed"
+}

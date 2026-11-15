@@ -1,0 +1,16 @@
+{
+  "episodes": 28,
+  "policy_queries": 1434,
+  "decisions": 317,
+  "video_frames": 7898,
+  "physics_states": 7870,
+  "original_success_continued": 14,
+  "phase": "pilot",
+  "expected": 28,
+  "max_restored_object_position_error_m": 0.002916079395435589,
+  "restored_predicate_disagreements": 0,
+  "restored_contact_disagreements": 20,
+  "restored_final_score_disagreements": [],
+  "physics_checked": true,
+  "execution_sources_unchanged": true
+}

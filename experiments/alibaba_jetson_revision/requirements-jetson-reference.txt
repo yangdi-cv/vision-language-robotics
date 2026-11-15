@@ -1,0 +1,10 @@
+# Tested reference versions; do not install this into an existing working Jetson environment blindly.
+# torch 2.8.0 + CUDA12.6 and torchvision0.23.0 are Jetson-compatible existing builds.
+ultralytics==8.4.175
+transformers==5.8.1
+bitsandbytes==0.50.2
+accelerate==1.13.0
+numpy==1.26.4
+opencv-python==4.12.0.88
+# System TensorRT10.7.0 bindings are appended to sys.path for the TensorRT backend.
+# Prequantized Qwen weights, CUDA libraries, TensorRT engines and Python environments are not bundled.

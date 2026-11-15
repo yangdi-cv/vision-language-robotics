@@ -1,0 +1,15 @@
+{
+  "step": 1000,
+  "text_loss": 0.0031025257776491344,
+  "grounded_loss": 0.002639305923366919,
+  "mean_loss": 0.0028709158505080268,
+  "initial": {
+    "step": 0,
+    "text_loss": 0.03322079620556906,
+    "grounded_loss": 0.038895568111911416,
+    "mean_loss": 0.03605818215874024
+  },
+  "tensors": 20,
+  "parameters": 49987584,
+  "sha256": "73f67acdf0330eb806f89b939e2a7dd2c12006c78649da2e21c410fb435bd26d"
+}

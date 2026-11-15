@@ -1,0 +1,168 @@
+{
+  "study_mode": "timer150",
+  "stage_budget_enabled": true,
+  "initial_state_sha256": "747b653b2ca1feeae8f3bd994880ce743730993ea5ce4bd003623e877f26b3bd",
+  "suite": "libero_10",
+  "task_id": 0,
+  "initial_state_id": 0,
+  "original_task_language": "put both the alphabet soup and the tomato sauce in the basket",
+  "input_instruction": "把字母汤罐头和番茄沙司罐头都放进篮子里",
+  "planner": "qwen",
+  "execution_profile": "legacy",
+  "planner_profile": "base",
+  "checker_adapter": "experiments/vla_libero/checker_v2/results/model/best_adapter",
+  "monitor": "qwen",
+  "max_steps": 520,
+  "subgoal_step_budget": 300,
+  "monitor_every_queries": 4,
+  "monitor_res": 512,
+  "gripper_gate": true,
+  "confirm": 2,
+  "max_replans": 0,
+  "last_subgoal_runs_to_limit": true,
+  "noise_seed": 730000,
+  "runner_sha256": "3bfa20bd9f7c320cf83dabe80e3c59a72fb5bd053837b65cd3bb6376c3459f61",
+  "events": [
+    {
+      "kind": "plan",
+      "step": 0,
+      "ok": true,
+      "seconds": 1.7402999219484627e-05,
+      "raw": "[\"pick up the alphabet soup can and place it in the basket\", \"pick up the tomato sauce can and place it in the basket\"]",
+      "error": null
+    },
+    {
+      "kind": "subgoal_start",
+      "step": 0,
+      "index": 0,
+      "subgoal": "pick up the alphabet soup can and place it in the basket"
+    },
+    {
+      "kind": "check",
+      "step": 20,
+      "index": 0,
+      "done": false,
+      "confirmed": false,
+      "seconds": 0.006434653998439899,
+      "checker": "timer150",
+      "status": null,
+      "scores": null,
+      "reason": "predeclared step threshold",
+      "error": null,
+      "shadow_long_task_atoms": [
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 40,
+      "index": 0,
+      "done": false,
+      "confirmed": false,
+      "seconds": 0.006355552999593783,
+      "checker": "timer150",
+      "status": null,
+      "scores": null,
+      "reason": "predeclared step threshold",
+      "error": null,
+      "shadow_long_task_atoms": [
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 140,
+      "index": 0,
+      "done": false,
+      "confirmed": false,
+      "seconds": 0.006521799998154165,
+      "checker": "timer150",
+      "status": null,
+      "scores": null,
+      "reason": "predeclared step threshold",
+      "error": null,
+      "shadow_long_task_atoms": [
+        true,
+        false
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 160,
+      "index": 0,
+      "done": true,
+      "confirmed": false,
+      "seconds": 0.006424333998438669,
+      "checker": "timer150",
+      "status": null,
+      "scores": null,
+      "reason": "predeclared step threshold",
+      "error": null,
+      "shadow_long_task_atoms": [
+        true,
+        false
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 180,
+      "index": 0,
+      "done": true,
+      "confirmed": true,
+      "seconds": 0.00563591099853511,
+      "checker": "timer150",
+      "status": null,
+      "scores": null,
+      "reason": "predeclared step threshold",
+      "error": null,
+      "shadow_long_task_atoms": [
+        true,
+        false
+      ]
+    },
+    {
+      "kind": "subgoal_end",
+      "step": 180,
+      "index": 0,
+      "reason": "done",
+      "long_task_atoms": [
+        true,
+        false
+      ]
+    },
+    {
+      "kind": "subgoal_start",
+      "step": 180,
+      "index": 1,
+      "subgoal": "pick up the tomato sauce can and place it in the basket"
+    }
+  ],
+  "status": "success",
+  "success": true,
+  "settled_state_sha256": "358af039709266907fdd0abd2f9b747fbf84abb2814f687b503d32e580d002bd",
+  "subgoals": [
+    "pick up the alphabet soup can and place it in the basket",
+    "pick up the tomato sauce can and place it in the basket"
+  ],
+  "policy_queries": 51,
+  "qwen_checks": 5,
+  "replans": 0,
+  "active_subgoal_index": 1,
+  "active_subgoal": "pick up the tomato sauce can and place it in the basket",
+  "steps": 253,
+  "full_task_fallback": false,
+  "final_subgoals": [
+    "pick up the alphabet soup can and place it in the basket",
+    "pick up the tomato sauce can and place it in the basket"
+  ],
+  "final_atoms": [
+    true,
+    true
+  ],
+  "protocol_sha256": "43102c29b30de89a834dd03413d9b5010377410236d6addcffc618c76a8ff03c",
+  "monitor_model_calls": 0,
+  "monitor_opportunities": 5,
+  "wall_seconds": 18.232775333999598
+}

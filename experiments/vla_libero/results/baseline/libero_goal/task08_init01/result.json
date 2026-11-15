@@ -1,0 +1,36 @@
+{
+  "runner_sha256": "e5d28552be82d553e09b3fcfe45aa95bbc6d38b0338899c2536ed1407935bb9d",
+  "suite": "libero_goal",
+  "task_id": 8,
+  "initial_state_id": 1,
+  "mode": "baseline",
+  "environment_seed": 7,
+  "noise_seed": 720801,
+  "initial_state_sha256": "458b021de5c47d7b23306d6e7f714ef3c2c55174aa4b2281816d6c3792f408cb",
+  "original_prompt": "put the bowl on the plate",
+  "input_prompt": "put the bowl on the plate",
+  "replan_steps": 5,
+  "denoising_steps": 10,
+  "max_steps": 300,
+  "status": "success",
+  "success": true,
+  "steps": 75,
+  "alternate_goal_evaluable": false,
+  "alternate_goal_ever_satisfied": null,
+  "initial_eef": [
+    -0.19173124878881775,
+    0.003846177375132819,
+    1.1880324221620995
+  ],
+  "final_eef": [
+    0.05424721708113664,
+    0.009364521684272518,
+    0.9287666640373857
+  ],
+  "qpos_displacement_norm": 1.8295485301197978,
+  "simulation_elapsed_s": 3.75,
+  "wall_s": 3.6255610349999188,
+  "query_count": 15,
+  "warmup_query_wall_s": 0.07883008899989363,
+  "query_median_excluding_first_s": 0.07691186349984491
+}

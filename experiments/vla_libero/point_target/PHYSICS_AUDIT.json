@@ -1,0 +1,200 @@
+{
+  "episodes": 24,
+  "states": 7800,
+  "final_disagreements": 0,
+  "max_position_error_m": 0.0031763527564235283,
+  "rows": [
+    {
+      "variant": "base",
+      "layout": "normal",
+      "task": 0,
+      "target": 0,
+      "live": false,
+      "restored": false
+    },
+    {
+      "variant": "base",
+      "layout": "normal",
+      "task": 0,
+      "target": 1,
+      "live": false,
+      "restored": false
+    },
+    {
+      "variant": "base",
+      "layout": "swap",
+      "task": 0,
+      "target": 0,
+      "live": false,
+      "restored": false
+    },
+    {
+      "variant": "base",
+      "layout": "swap",
+      "task": 0,
+      "target": 1,
+      "live": false,
+      "restored": false
+    },
+    {
+      "variant": "text",
+      "layout": "normal",
+      "task": 0,
+      "target": 0,
+      "live": false,
+      "restored": false
+    },
+    {
+      "variant": "text",
+      "layout": "normal",
+      "task": 0,
+      "target": 1,
+      "live": false,
+      "restored": false
+    },
+    {
+      "variant": "text",
+      "layout": "swap",
+      "task": 0,
+      "target": 0,
+      "live": false,
+      "restored": false
+    },
+    {
+      "variant": "text",
+      "layout": "swap",
+      "task": 0,
+      "target": 1,
+      "live": true,
+      "restored": true
+    },
+    {
+      "variant": "goal",
+      "layout": "normal",
+      "task": 0,
+      "target": 0,
+      "live": false,
+      "restored": false
+    },
+    {
+      "variant": "goal",
+      "layout": "normal",
+      "task": 0,
+      "target": 1,
+      "live": false,
+      "restored": false
+    },
+    {
+      "variant": "goal",
+      "layout": "swap",
+      "task": 0,
+      "target": 0,
+      "live": false,
+      "restored": false
+    },
+    {
+      "variant": "goal",
+      "layout": "swap",
+      "task": 0,
+      "target": 1,
+      "live": false,
+      "restored": false
+    },
+    {
+      "variant": "base",
+      "layout": "normal",
+      "task": 1,
+      "target": 0,
+      "live": true,
+      "restored": true
+    },
+    {
+      "variant": "base",
+      "layout": "normal",
+      "task": 1,
+      "target": 1,
+      "live": false,
+      "restored": false
+    },
+    {
+      "variant": "base",
+      "layout": "swap",
+      "task": 1,
+      "target": 0,
+      "live": true,
+      "restored": true
+    },
+    {
+      "variant": "base",
+      "layout": "swap",
+      "task": 1,
+      "target": 1,
+      "live": false,
+      "restored": false
+    },
+    {
+      "variant": "text",
+      "layout": "normal",
+      "task": 1,
+      "target": 0,
+      "live": false,
+      "restored": false
+    },
+    {
+      "variant": "text",
+      "layout": "normal",
+      "task": 1,
+      "target": 1,
+      "live": false,
+      "restored": false
+    },
+    {
+      "variant": "text",
+      "layout": "swap",
+      "task": 1,
+      "target": 0,
+      "live": true,
+      "restored": true
+    },
+    {
+      "variant": "text",
+      "layout": "swap",
+      "task": 1,
+      "target": 1,
+      "live": false,
+      "restored": false
+    },
+    {
+      "variant": "goal",
+      "layout": "normal",
+      "task": 1,
+      "target": 0,
+      "live": false,
+      "restored": false
+    },
+    {
+      "variant": "goal",
+      "layout": "normal",
+      "task": 1,
+      "target": 1,
+      "live": false,
+      "restored": false
+    },
+    {
+      "variant": "goal",
+      "layout": "swap",
+      "task": 1,
+      "target": 0,
+      "live": false,
+      "restored": false
+    },
+    {
+      "variant": "goal",
+      "layout": "swap",
+      "task": 1,
+      "target": 1,
+      "live": false,
+      "restored": false
+    }
+  ]
+}

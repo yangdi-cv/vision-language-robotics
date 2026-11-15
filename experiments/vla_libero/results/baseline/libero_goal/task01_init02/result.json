@@ -1,0 +1,36 @@
+{
+  "runner_sha256": "e5d28552be82d553e09b3fcfe45aa95bbc6d38b0338899c2536ed1407935bb9d",
+  "suite": "libero_goal",
+  "task_id": 1,
+  "initial_state_id": 2,
+  "mode": "baseline",
+  "environment_seed": 7,
+  "noise_seed": 720102,
+  "initial_state_sha256": "29144cbfef1149ae98f80bb0a34fe8b19f845f7f42e67242968cdd2fcd93fac4",
+  "original_prompt": "put the bowl on the stove",
+  "input_prompt": "put the bowl on the stove",
+  "replan_steps": 5,
+  "denoising_steps": 10,
+  "max_steps": 300,
+  "status": "success",
+  "success": true,
+  "steps": 121,
+  "alternate_goal_evaluable": false,
+  "alternate_goal_ever_satisfied": null,
+  "initial_eef": [
+    -0.21135385775699994,
+    0.011091387094402628,
+    1.1583910057018099
+  ],
+  "final_eef": [
+    -0.2624673865490772,
+    0.23130671176406925,
+    0.973232405823249
+  ],
+  "qpos_displacement_norm": 1.006825922827683,
+  "simulation_elapsed_s": 6.05,
+  "wall_s": 4.908628539000347,
+  "query_count": 25,
+  "warmup_query_wall_s": 0.07714321100047528,
+  "query_median_excluding_first_s": 0.07746773100006976
+}

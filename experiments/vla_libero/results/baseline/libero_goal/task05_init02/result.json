@@ -1,0 +1,36 @@
+{
+  "runner_sha256": "e5d28552be82d553e09b3fcfe45aa95bbc6d38b0338899c2536ed1407935bb9d",
+  "suite": "libero_goal",
+  "task_id": 5,
+  "initial_state_id": 2,
+  "mode": "baseline",
+  "environment_seed": 7,
+  "noise_seed": 720502,
+  "initial_state_sha256": "4c06373a64e22c7180a440eece4fa0d7ca88f8e4bf1b8614c618f9a98abc6cf9",
+  "original_prompt": "push the plate to the front of the stove",
+  "input_prompt": "push the plate to the front of the stove",
+  "replan_steps": 5,
+  "denoising_steps": 10,
+  "max_steps": 300,
+  "status": "success",
+  "success": true,
+  "steps": 128,
+  "alternate_goal_evaluable": false,
+  "alternate_goal_ever_satisfied": null,
+  "initial_eef": [
+    -0.1981155739430144,
+    0.0047133791126824495,
+    1.1885884770456892
+  ],
+  "final_eef": [
+    -0.0023039766831152338,
+    0.23804661405159078,
+    0.9173628792537601
+  ],
+  "qpos_displacement_norm": 1.6614183502550721,
+  "simulation_elapsed_s": 6.4,
+  "wall_s": 5.0210340080002425,
+  "query_count": 26,
+  "warmup_query_wall_s": 0.07760024400067778,
+  "query_median_excluding_first_s": 0.07355656199979421
+}

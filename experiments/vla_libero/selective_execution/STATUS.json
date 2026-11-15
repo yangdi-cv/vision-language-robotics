@@ -1,0 +1,1127 @@
+{
+  "state": "complete",
+  "stage": "eval",
+  "completed": 140,
+  "rows": [
+    {
+      "case": "task00_target0_init03",
+      "mode": "frozen",
+      "success": false,
+      "protected": false,
+      "target": true,
+      "decision_step": 300
+    },
+    {
+      "case": "task00_target0_init03",
+      "mode": "flat_zh",
+      "success": false,
+      "protected": false,
+      "target": true,
+      "decision_step": 300
+    },
+    {
+      "case": "task00_target0_init03",
+      "mode": "translated_en",
+      "success": false,
+      "protected": false,
+      "target": true,
+      "decision_step": 300
+    },
+    {
+      "case": "task00_target0_init03",
+      "mode": "skill_continue",
+      "success": false,
+      "protected": false,
+      "target": true,
+      "decision_step": 300
+    },
+    {
+      "case": "task00_target0_init03",
+      "mode": "timer150",
+      "success": true,
+      "protected": true,
+      "target": true,
+      "decision_step": 230
+    },
+    {
+      "case": "task00_target0_init03",
+      "mode": "timer_calibrated",
+      "success": true,
+      "protected": true,
+      "target": true,
+      "decision_step": 230
+    },
+    {
+      "case": "task00_target0_init03",
+      "mode": "visual",
+      "success": true,
+      "protected": true,
+      "target": true,
+      "decision_step": 230
+    },
+    {
+      "case": "task00_target1_init03",
+      "mode": "flat_zh",
+      "success": false,
+      "protected": false,
+      "target": true,
+      "decision_step": 300
+    },
+    {
+      "case": "task00_target1_init03",
+      "mode": "translated_en",
+      "success": false,
+      "protected": false,
+      "target": true,
+      "decision_step": 300
+    },
+    {
+      "case": "task00_target1_init03",
+      "mode": "skill_continue",
+      "success": false,
+      "protected": false,
+      "target": true,
+      "decision_step": 300
+    },
+    {
+      "case": "task00_target1_init03",
+      "mode": "timer150",
+      "success": false,
+      "protected": false,
+      "target": false,
+      "decision_step": 160
+    },
+    {
+      "case": "task00_target1_init03",
+      "mode": "timer_calibrated",
+      "success": false,
+      "protected": false,
+      "target": false,
+      "decision_step": 160
+    },
+    {
+      "case": "task00_target1_init03",
+      "mode": "visual",
+      "success": false,
+      "protected": false,
+      "target": true,
+      "decision_step": 300
+    },
+    {
+      "case": "task00_target1_init03",
+      "mode": "frozen",
+      "success": false,
+      "protected": false,
+      "target": true,
+      "decision_step": 300
+    },
+    {
+      "case": "task00_target0_init04",
+      "mode": "translated_en",
+      "success": false,
+      "protected": false,
+      "target": true,
+      "decision_step": 300
+    },
+    {
+      "case": "task00_target0_init04",
+      "mode": "skill_continue",
+      "success": false,
+      "protected": false,
+      "target": true,
+      "decision_step": 300
+    },
+    {
+      "case": "task00_target0_init04",
+      "mode": "timer150",
+      "success": true,
+      "protected": true,
+      "target": true,
+      "decision_step": 190
+    },
+    {
+      "case": "task00_target0_init04",
+      "mode": "timer_calibrated",
+      "success": true,
+      "protected": true,
+      "target": true,
+      "decision_step": 200
+    },
+    {
+      "case": "task00_target0_init04",
+      "mode": "visual",
+      "success": false,
+      "protected": false,
+      "target": true,
+      "decision_step": 300
+    },
+    {
+      "case": "task00_target0_init04",
+      "mode": "frozen",
+      "success": false,
+      "protected": false,
+      "target": true,
+      "decision_step": 300
+    },
+    {
+      "case": "task00_target0_init04",
+      "mode": "flat_zh",
+      "success": true,
+      "protected": true,
+      "target": true,
+      "decision_step": 300
+    },
+    {
+      "case": "task00_target1_init04",
+      "mode": "skill_continue",
+      "success": false,
+      "protected": false,
+      "target": true,
+      "decision_step": 300
+    },
+    {
+      "case": "task00_target1_init04",
+      "mode": "timer150",
+      "success": false,
+      "protected": false,
+      "target": false,
+      "decision_step": 160
+    },
+    {
+      "case": "task00_target1_init04",
+      "mode": "timer_calibrated",
+      "success": false,
+      "protected": false,
+      "target": false,
+      "decision_step": 160
+    },
+    {
+      "case": "task00_target1_init04",
+      "mode": "visual",
+      "success": false,
+      "protected": false,
+      "target": false,
+      "decision_step": 160
+    },
+    {
+      "case": "task00_target1_init04",
+      "mode": "frozen",
+      "success": false,
+      "protected": false,
+      "target": true,
+      "decision_step": 300
+    },
+    {
+      "case": "task00_target1_init04",
+      "mode": "flat_zh",
+      "success": false,
+      "protected": false,
+      "target": false,
+      "decision_step": 300
+    },
+    {
+      "case": "task00_target1_init04",
+      "mode": "translated_en",
+      "success": false,
+      "protected": false,
+      "target": true,
+      "decision_step": 300
+    },
+    {
+      "case": "task00_target0_init05",
+      "mode": "timer150",
+      "success": true,
+      "protected": true,
+      "target": true,
+      "decision_step": 160
+    },
+    {
+      "case": "task00_target0_init05",
+      "mode": "timer_calibrated",
+      "success": false,
+      "protected": false,
+      "target": true,
+      "decision_step": 250
+    },
+    {
+      "case": "task00_target0_init05",
+      "mode": "visual",
+      "success": true,
+      "protected": true,
+      "target": true,
+      "decision_step": 140
+    },
+    {
+      "case": "task00_target0_init05",
+      "mode": "frozen",
+      "success": false,
+      "protected": false,
+      "target": true,
+      "decision_step": 300
+    },
+    {
+      "case": "task00_target0_init05",
+      "mode": "flat_zh",
+      "success": true,
+      "protected": true,
+      "target": true,
+      "decision_step": 300
+    },
+    {
+      "case": "task00_target0_init05",
+      "mode": "translated_en",
+      "success": false,
+      "protected": false,
+      "target": true,
+      "decision_step": 300
+    },
+    {
+      "case": "task00_target0_init05",
+      "mode": "skill_continue",
+      "success": false,
+      "protected": false,
+      "target": true,
+      "decision_step": 300
+    },
+    {
+      "case": "task00_target1_init05",
+      "mode": "timer_calibrated",
+      "success": false,
+      "protected": false,
+      "target": false,
+      "decision_step": 160
+    },
+    {
+      "case": "task00_target1_init05",
+      "mode": "visual",
+      "success": false,
+      "protected": false,
+      "target": true,
+      "decision_step": 300
+    },
+    {
+      "case": "task00_target1_init05",
+      "mode": "frozen",
+      "success": false,
+      "protected": false,
+      "target": true,
+      "decision_step": 300
+    },
+    {
+      "case": "task00_target1_init05",
+      "mode": "flat_zh",
+      "success": false,
+      "protected": false,
+      "target": false,
+      "decision_step": 300
+    },
+    {
+      "case": "task00_target1_init05",
+      "mode": "translated_en",
+      "success": false,
+      "protected": false,
+      "target": true,
+      "decision_step": 300
+    },
+    {
+      "case": "task00_target1_init05",
+      "mode": "skill_continue",
+      "success": false,
+      "protected": false,
+      "target": true,
+      "decision_step": 300
+    },
+    {
+      "case": "task00_target1_init05",
+      "mode": "timer150",
+      "success": false,
+      "protected": false,
+      "target": false,
+      "decision_step": 160
+    },
+    {
+      "case": "task00_target0_init06",
+      "mode": "visual",
+      "success": true,
+      "protected": true,
+      "target": true,
+      "decision_step": 180
+    },
+    {
+      "case": "task00_target0_init06",
+      "mode": "frozen",
+      "success": false,
+      "protected": false,
+      "target": true,
+      "decision_step": 300
+    },
+    {
+      "case": "task00_target0_init06",
+      "mode": "flat_zh",
+      "success": false,
+      "protected": false,
+      "target": true,
+      "decision_step": 300
+    },
+    {
+      "case": "task00_target0_init06",
+      "mode": "translated_en",
+      "success": false,
+      "protected": false,
+      "target": true,
+      "decision_step": 300
+    },
+    {
+      "case": "task00_target0_init06",
+      "mode": "skill_continue",
+      "success": false,
+      "protected": false,
+      "target": true,
+      "decision_step": 300
+    },
+    {
+      "case": "task00_target0_init06",
+      "mode": "timer150",
+      "success": true,
+      "protected": true,
+      "target": true,
+      "decision_step": 180
+    },
+    {
+      "case": "task00_target0_init06",
+      "mode": "timer_calibrated",
+      "success": true,
+      "protected": true,
+      "target": true,
+      "decision_step": 200
+    },
+    {
+      "case": "task00_target1_init06",
+      "mode": "frozen",
+      "success": false,
+      "protected": false,
+      "target": true,
+      "decision_step": 300
+    },
+    {
+      "case": "task00_target1_init06",
+      "mode": "flat_zh",
+      "success": false,
+      "protected": false,
+      "target": true,
+      "decision_step": 300
+    },
+    {
+      "case": "task00_target1_init06",
+      "mode": "translated_en",
+      "success": false,
+      "protected": false,
+      "target": true,
+      "decision_step": 300
+    },
+    {
+      "case": "task00_target1_init06",
+      "mode": "skill_continue",
+      "success": false,
+      "protected": false,
+      "target": true,
+      "decision_step": 300
+    },
+    {
+      "case": "task00_target1_init06",
+      "mode": "timer150",
+      "success": false,
+      "protected": false,
+      "target": false,
+      "decision_step": 170
+    },
+    {
+      "case": "task00_target1_init06",
+      "mode": "timer_calibrated",
+      "success": false,
+      "protected": false,
+      "target": false,
+      "decision_step": 170
+    },
+    {
+      "case": "task00_target1_init06",
+      "mode": "visual",
+      "success": false,
+      "protected": false,
+      "target": true,
+      "decision_step": 290
+    },
+    {
+      "case": "task00_target0_init07",
+      "mode": "flat_zh",
+      "success": false,
+      "protected": true,
+      "target": false,
+      "decision_step": 300
+    },
+    {
+      "case": "task00_target0_init07",
+      "mode": "translated_en",
+      "success": false,
+      "protected": false,
+      "target": true,
+      "decision_step": 300
+    },
+    {
+      "case": "task00_target0_init07",
+      "mode": "skill_continue",
+      "success": false,
+      "protected": false,
+      "target": true,
+      "decision_step": 300
+    },
+    {
+      "case": "task00_target0_init07",
+      "mode": "timer150",
+      "success": true,
+      "protected": true,
+      "target": true,
+      "decision_step": 160
+    },
+    {
+      "case": "task00_target0_init07",
+      "mode": "timer_calibrated",
+      "success": false,
+      "protected": false,
+      "target": true,
+      "decision_step": 250
+    },
+    {
+      "case": "task00_target0_init07",
+      "mode": "visual",
+      "success": true,
+      "protected": true,
+      "target": true,
+      "decision_step": 140
+    },
+    {
+      "case": "task00_target0_init07",
+      "mode": "frozen",
+      "success": false,
+      "protected": false,
+      "target": true,
+      "decision_step": 300
+    },
+    {
+      "case": "task00_target1_init07",
+      "mode": "translated_en",
+      "success": false,
+      "protected": false,
+      "target": true,
+      "decision_step": 300
+    },
+    {
+      "case": "task00_target1_init07",
+      "mode": "skill_continue",
+      "success": false,
+      "protected": false,
+      "target": true,
+      "decision_step": 300
+    },
+    {
+      "case": "task00_target1_init07",
+      "mode": "timer150",
+      "success": false,
+      "protected": false,
+      "target": false,
+      "decision_step": 170
+    },
+    {
+      "case": "task00_target1_init07",
+      "mode": "timer_calibrated",
+      "success": false,
+      "protected": false,
+      "target": false,
+      "decision_step": 170
+    },
+    {
+      "case": "task00_target1_init07",
+      "mode": "visual",
+      "success": false,
+      "protected": false,
+      "target": false,
+      "decision_step": 170
+    },
+    {
+      "case": "task00_target1_init07",
+      "mode": "frozen",
+      "success": false,
+      "protected": false,
+      "target": true,
+      "decision_step": 300
+    },
+    {
+      "case": "task00_target1_init07",
+      "mode": "flat_zh",
+      "success": false,
+      "protected": true,
+      "target": false,
+      "decision_step": 300
+    },
+    {
+      "case": "task01_target0_init03",
+      "mode": "skill_continue",
+      "success": false,
+      "protected": false,
+      "target": true,
+      "decision_step": 300
+    },
+    {
+      "case": "task01_target0_init03",
+      "mode": "timer150",
+      "success": true,
+      "protected": true,
+      "target": true,
+      "decision_step": 160
+    },
+    {
+      "case": "task01_target0_init03",
+      "mode": "timer_calibrated",
+      "success": true,
+      "protected": true,
+      "target": true,
+      "decision_step": 170
+    },
+    {
+      "case": "task01_target0_init03",
+      "mode": "visual",
+      "success": false,
+      "protected": false,
+      "target": true,
+      "decision_step": 300
+    },
+    {
+      "case": "task01_target0_init03",
+      "mode": "frozen",
+      "success": false,
+      "protected": false,
+      "target": true,
+      "decision_step": 300
+    },
+    {
+      "case": "task01_target0_init03",
+      "mode": "flat_zh",
+      "success": true,
+      "protected": true,
+      "target": true,
+      "decision_step": 300
+    },
+    {
+      "case": "task01_target0_init03",
+      "mode": "translated_en",
+      "success": false,
+      "protected": false,
+      "target": true,
+      "decision_step": 300
+    },
+    {
+      "case": "task01_target1_init03",
+      "mode": "timer150",
+      "success": false,
+      "protected": false,
+      "target": false,
+      "decision_step": 160
+    },
+    {
+      "case": "task01_target1_init03",
+      "mode": "timer_calibrated",
+      "success": false,
+      "protected": false,
+      "target": false,
+      "decision_step": 160
+    },
+    {
+      "case": "task01_target1_init03",
+      "mode": "visual",
+      "success": false,
+      "protected": false,
+      "target": true,
+      "decision_step": 300
+    },
+    {
+      "case": "task01_target1_init03",
+      "mode": "frozen",
+      "success": false,
+      "protected": false,
+      "target": true,
+      "decision_step": 300
+    },
+    {
+      "case": "task01_target1_init03",
+      "mode": "flat_zh",
+      "success": false,
+      "protected": false,
+      "target": false,
+      "decision_step": 300
+    },
+    {
+      "case": "task01_target1_init03",
+      "mode": "translated_en",
+      "success": false,
+      "protected": false,
+      "target": true,
+      "decision_step": 300
+    },
+    {
+      "case": "task01_target1_init03",
+      "mode": "skill_continue",
+      "success": false,
+      "protected": false,
+      "target": true,
+      "decision_step": 300
+    },
+    {
+      "case": "task01_target0_init04",
+      "mode": "timer_calibrated",
+      "success": true,
+      "protected": true,
+      "target": true,
+      "decision_step": 170
+    },
+    {
+      "case": "task01_target0_init04",
+      "mode": "visual",
+      "success": false,
+      "protected": false,
+      "target": true,
+      "decision_step": 300
+    },
+    {
+      "case": "task01_target0_init04",
+      "mode": "frozen",
+      "success": false,
+      "protected": false,
+      "target": true,
+      "decision_step": 300
+    },
+    {
+      "case": "task01_target0_init04",
+      "mode": "flat_zh",
+      "success": false,
+      "protected": true,
+      "target": false,
+      "decision_step": 300
+    },
+    {
+      "case": "task01_target0_init04",
+      "mode": "translated_en",
+      "success": false,
+      "protected": false,
+      "target": true,
+      "decision_step": 300
+    },
+    {
+      "case": "task01_target0_init04",
+      "mode": "skill_continue",
+      "success": false,
+      "protected": false,
+      "target": true,
+      "decision_step": 300
+    },
+    {
+      "case": "task01_target0_init04",
+      "mode": "timer150",
+      "success": true,
+      "protected": true,
+      "target": true,
+      "decision_step": 160
+    },
+    {
+      "case": "task01_target1_init04",
+      "mode": "visual",
+      "success": false,
+      "protected": false,
+      "target": true,
+      "decision_step": 300
+    },
+    {
+      "case": "task01_target1_init04",
+      "mode": "frozen",
+      "success": false,
+      "protected": false,
+      "target": true,
+      "decision_step": 300
+    },
+    {
+      "case": "task01_target1_init04",
+      "mode": "flat_zh",
+      "success": false,
+      "protected": true,
+      "target": false,
+      "decision_step": 300
+    },
+    {
+      "case": "task01_target1_init04",
+      "mode": "translated_en",
+      "success": false,
+      "protected": false,
+      "target": true,
+      "decision_step": 300
+    },
+    {
+      "case": "task01_target1_init04",
+      "mode": "skill_continue",
+      "success": false,
+      "protected": false,
+      "target": true,
+      "decision_step": 300
+    },
+    {
+      "case": "task01_target1_init04",
+      "mode": "timer150",
+      "success": false,
+      "protected": false,
+      "target": false,
+      "decision_step": 160
+    },
+    {
+      "case": "task01_target1_init04",
+      "mode": "timer_calibrated",
+      "success": false,
+      "protected": false,
+      "target": false,
+      "decision_step": 160
+    },
+    {
+      "case": "task01_target0_init05",
+      "mode": "frozen",
+      "success": false,
+      "protected": false,
+      "target": true,
+      "decision_step": 300
+    },
+    {
+      "case": "task01_target0_init05",
+      "mode": "flat_zh",
+      "success": false,
+      "protected": true,
+      "target": false,
+      "decision_step": 300
+    },
+    {
+      "case": "task01_target0_init05",
+      "mode": "translated_en",
+      "success": false,
+      "protected": false,
+      "target": true,
+      "decision_step": 300
+    },
+    {
+      "case": "task01_target0_init05",
+      "mode": "skill_continue",
+      "success": false,
+      "protected": false,
+      "target": true,
+      "decision_step": 300
+    },
+    {
+      "case": "task01_target0_init05",
+      "mode": "timer150",
+      "success": true,
+      "protected": true,
+      "target": true,
+      "decision_step": 160
+    },
+    {
+      "case": "task01_target0_init05",
+      "mode": "timer_calibrated",
+      "success": true,
+      "protected": true,
+      "target": true,
+      "decision_step": 170
+    },
+    {
+      "case": "task01_target0_init05",
+      "mode": "visual",
+      "success": false,
+      "protected": false,
+      "target": true,
+      "decision_step": 300
+    },
+    {
+      "case": "task01_target1_init05",
+      "mode": "flat_zh",
+      "success": false,
+      "protected": true,
+      "target": false,
+      "decision_step": 300
+    },
+    {
+      "case": "task01_target1_init05",
+      "mode": "translated_en",
+      "success": false,
+      "protected": false,
+      "target": true,
+      "decision_step": 300
+    },
+    {
+      "case": "task01_target1_init05",
+      "mode": "skill_continue",
+      "success": false,
+      "protected": false,
+      "target": true,
+      "decision_step": 300
+    },
+    {
+      "case": "task01_target1_init05",
+      "mode": "timer150",
+      "success": false,
+      "protected": false,
+      "target": false,
+      "decision_step": 160
+    },
+    {
+      "case": "task01_target1_init05",
+      "mode": "timer_calibrated",
+      "success": false,
+      "protected": false,
+      "target": false,
+      "decision_step": 160
+    },
+    {
+      "case": "task01_target1_init05",
+      "mode": "visual",
+      "success": false,
+      "protected": false,
+      "target": true,
+      "decision_step": 300
+    },
+    {
+      "case": "task01_target1_init05",
+      "mode": "frozen",
+      "success": false,
+      "protected": false,
+      "target": true,
+      "decision_step": 300
+    },
+    {
+      "case": "task01_target0_init06",
+      "mode": "translated_en",
+      "success": false,
+      "protected": false,
+      "target": true,
+      "decision_step": 300
+    },
+    {
+      "case": "task01_target0_init06",
+      "mode": "skill_continue",
+      "success": false,
+      "protected": false,
+      "target": true,
+      "decision_step": 300
+    },
+    {
+      "case": "task01_target0_init06",
+      "mode": "timer150",
+      "success": true,
+      "protected": true,
+      "target": true,
+      "decision_step": 190
+    },
+    {
+      "case": "task01_target0_init06",
+      "mode": "timer_calibrated",
+      "success": true,
+      "protected": true,
+      "target": true,
+      "decision_step": 190
+    },
+    {
+      "case": "task01_target0_init06",
+      "mode": "visual",
+      "success": false,
+      "protected": false,
+      "target": true,
+      "decision_step": 300
+    },
+    {
+      "case": "task01_target0_init06",
+      "mode": "frozen",
+      "success": false,
+      "protected": false,
+      "target": true,
+      "decision_step": 300
+    },
+    {
+      "case": "task01_target0_init06",
+      "mode": "flat_zh",
+      "success": false,
+      "protected": true,
+      "target": false,
+      "decision_step": 300
+    },
+    {
+      "case": "task01_target1_init06",
+      "mode": "skill_continue",
+      "success": false,
+      "protected": false,
+      "target": false,
+      "decision_step": 300
+    },
+    {
+      "case": "task01_target1_init06",
+      "mode": "timer150",
+      "success": false,
+      "protected": false,
+      "target": false,
+      "decision_step": 220
+    },
+    {
+      "case": "task01_target1_init06",
+      "mode": "timer_calibrated",
+      "success": false,
+      "protected": false,
+      "target": false,
+      "decision_step": 220
+    },
+    {
+      "case": "task01_target1_init06",
+      "mode": "visual",
+      "success": false,
+      "protected": false,
+      "target": false,
+      "decision_step": 300
+    },
+    {
+      "case": "task01_target1_init06",
+      "mode": "frozen",
+      "success": false,
+      "protected": false,
+      "target": false,
+      "decision_step": 300
+    },
+    {
+      "case": "task01_target1_init06",
+      "mode": "flat_zh",
+      "success": true,
+      "protected": true,
+      "target": true,
+      "decision_step": 300
+    },
+    {
+      "case": "task01_target1_init06",
+      "mode": "translated_en",
+      "success": false,
+      "protected": false,
+      "target": true,
+      "decision_step": 300
+    },
+    {
+      "case": "task01_target0_init07",
+      "mode": "timer150",
+      "success": true,
+      "protected": true,
+      "target": true,
+      "decision_step": 160
+    },
+    {
+      "case": "task01_target0_init07",
+      "mode": "timer_calibrated",
+      "success": true,
+      "protected": true,
+      "target": true,
+      "decision_step": 170
+    },
+    {
+      "case": "task01_target0_init07",
+      "mode": "visual",
+      "success": false,
+      "protected": false,
+      "target": true,
+      "decision_step": 300
+    },
+    {
+      "case": "task01_target0_init07",
+      "mode": "frozen",
+      "success": false,
+      "protected": false,
+      "target": true,
+      "decision_step": 300
+    },
+    {
+      "case": "task01_target0_init07",
+      "mode": "flat_zh",
+      "success": false,
+      "protected": true,
+      "target": false,
+      "decision_step": 300
+    },
+    {
+      "case": "task01_target0_init07",
+      "mode": "translated_en",
+      "success": false,
+      "protected": false,
+      "target": true,
+      "decision_step": 300
+    },
+    {
+      "case": "task01_target0_init07",
+      "mode": "skill_continue",
+      "success": false,
+      "protected": false,
+      "target": true,
+      "decision_step": 300
+    },
+    {
+      "case": "task01_target1_init07",
+      "mode": "timer_calibrated",
+      "success": false,
+      "protected": false,
+      "target": false,
+      "decision_step": 170
+    },
+    {
+      "case": "task01_target1_init07",
+      "mode": "visual",
+      "success": false,
+      "protected": false,
+      "target": true,
+      "decision_step": 300
+    },
+    {
+      "case": "task01_target1_init07",
+      "mode": "frozen",
+      "success": false,
+      "protected": false,
+      "target": true,
+      "decision_step": 300
+    },
+    {
+      "case": "task01_target1_init07",
+      "mode": "flat_zh",
+      "success": false,
+      "protected": true,
+      "target": false,
+      "decision_step": 300
+    },
+    {
+      "case": "task01_target1_init07",
+      "mode": "translated_en",
+      "success": false,
+      "protected": false,
+      "target": true,
+      "decision_step": 300
+    },
+    {
+      "case": "task01_target1_init07",
+      "mode": "skill_continue",
+      "success": false,
+      "protected": false,
+      "target": true,
+      "decision_step": 300
+    },
+    {
+      "case": "task01_target1_init07",
+      "mode": "timer150",
+      "success": false,
+      "protected": false,
+      "target": false,
+      "decision_step": 170
+    }
+  ]
+}

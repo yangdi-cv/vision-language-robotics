@@ -1,0 +1,9 @@
+{
+  "queries": 187,
+  "matched": {
+    "input_token_sha256": 187,
+    "pixel_values_sha256": 187,
+    "image_grid_thw": 187,
+    "output_token_ids": 138
+  }
+}

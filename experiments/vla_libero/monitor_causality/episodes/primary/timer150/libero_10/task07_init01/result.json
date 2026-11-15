@@ -1,0 +1,151 @@
+{
+  "study_mode": "timer150",
+  "stage_budget_enabled": true,
+  "initial_state_sha256": "44f0d75550c414e622b03a43e56497e8c9bd0fe4a494c1d2b9c0c9625ed80120",
+  "suite": "libero_10",
+  "task_id": 7,
+  "initial_state_id": 1,
+  "original_task_language": "put both the alphabet soup and the cream cheese box in the basket",
+  "input_instruction": "把字母汤罐头和奶油奶酪盒都放进篮子里",
+  "planner": "qwen",
+  "execution_profile": "legacy",
+  "planner_profile": "base",
+  "checker_adapter": "experiments/vla_libero/checker_v2/results/model/best_adapter",
+  "monitor": "qwen",
+  "max_steps": 520,
+  "subgoal_step_budget": 300,
+  "monitor_every_queries": 4,
+  "monitor_res": 512,
+  "gripper_gate": true,
+  "confirm": 2,
+  "max_replans": 0,
+  "last_subgoal_runs_to_limit": true,
+  "noise_seed": 730701,
+  "runner_sha256": "3bfa20bd9f7c320cf83dabe80e3c59a72fb5bd053837b65cd3bb6376c3459f61",
+  "events": [
+    {
+      "kind": "plan",
+      "step": 0,
+      "ok": true,
+      "seconds": 1.4707999071106315e-05,
+      "raw": "[\"pick up the alphabet soup can and place it in the basket\", \"pick up the cream cheese box and place it in the basket\"]",
+      "error": null
+    },
+    {
+      "kind": "subgoal_start",
+      "step": 0,
+      "index": 0,
+      "subgoal": "pick up the alphabet soup can and place it in the basket"
+    },
+    {
+      "kind": "check",
+      "step": 20,
+      "index": 0,
+      "done": false,
+      "confirmed": false,
+      "seconds": 0.006736627001373563,
+      "checker": "timer150",
+      "status": null,
+      "scores": null,
+      "reason": "predeclared step threshold",
+      "error": null,
+      "shadow_long_task_atoms": [
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 40,
+      "index": 0,
+      "done": false,
+      "confirmed": false,
+      "seconds": 0.006516950001241639,
+      "checker": "timer150",
+      "status": null,
+      "scores": null,
+      "reason": "predeclared step threshold",
+      "error": null,
+      "shadow_long_task_atoms": [
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 160,
+      "index": 0,
+      "done": true,
+      "confirmed": false,
+      "seconds": 0.0063848999998299405,
+      "checker": "timer150",
+      "status": null,
+      "scores": null,
+      "reason": "predeclared step threshold",
+      "error": null,
+      "shadow_long_task_atoms": [
+        true,
+        false
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 180,
+      "index": 0,
+      "done": true,
+      "confirmed": true,
+      "seconds": 0.006648850001511164,
+      "checker": "timer150",
+      "status": null,
+      "scores": null,
+      "reason": "predeclared step threshold",
+      "error": null,
+      "shadow_long_task_atoms": [
+        true,
+        false
+      ]
+    },
+    {
+      "kind": "subgoal_end",
+      "step": 180,
+      "index": 0,
+      "reason": "done",
+      "long_task_atoms": [
+        true,
+        false
+      ]
+    },
+    {
+      "kind": "subgoal_start",
+      "step": 180,
+      "index": 1,
+      "subgoal": "pick up the cream cheese box and place it in the basket"
+    }
+  ],
+  "status": "success",
+  "success": true,
+  "settled_state_sha256": "edb6c195c4830265241306f45735991018d3425e3313b2925b4e36a4b7c73e97",
+  "subgoals": [
+    "pick up the alphabet soup can and place it in the basket",
+    "pick up the cream cheese box and place it in the basket"
+  ],
+  "policy_queries": 58,
+  "qwen_checks": 4,
+  "replans": 0,
+  "active_subgoal_index": 1,
+  "active_subgoal": "pick up the cream cheese box and place it in the basket",
+  "steps": 288,
+  "full_task_fallback": false,
+  "final_subgoals": [
+    "pick up the alphabet soup can and place it in the basket",
+    "pick up the cream cheese box and place it in the basket"
+  ],
+  "final_atoms": [
+    true,
+    true
+  ],
+  "protocol_sha256": "43102c29b30de89a834dd03413d9b5010377410236d6addcffc618c76a8ff03c",
+  "monitor_model_calls": 0,
+  "monitor_opportunities": 4,
+  "wall_seconds": 19.919144059997052
+}

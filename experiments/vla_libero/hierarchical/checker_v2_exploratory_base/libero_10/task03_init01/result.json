@@ -1,0 +1,141 @@
+{
+  "suite": "libero_10",
+  "task_id": 3,
+  "initial_state_id": 1,
+  "original_task_language": "put the black bowl in the bottom drawer of the cabinet and close it",
+  "input_instruction": "把黑色的碗放进柜子最下面的抽屉，然后关上抽屉",
+  "planner": "qwen",
+  "execution_profile": "legacy",
+  "planner_profile": "base",
+  "checker_adapter": "/home/yd/Documents/VLA/experiments/vla_libero/checker_v2/results/model/best_adapter",
+  "monitor": "qwen",
+  "max_steps": 520,
+  "subgoal_step_budget": 300,
+  "monitor_every_queries": 4,
+  "monitor_res": 512,
+  "gripper_gate": true,
+  "confirm": 2,
+  "max_replans": 0,
+  "last_subgoal_runs_to_limit": true,
+  "noise_seed": 730301,
+  "runner_sha256": "5df3e099c80231cf64851590c58b1b63d08bc1a2468cb3f1af5729ea5c9e3901",
+  "events": [
+    {
+      "kind": "plan",
+      "step": 0,
+      "ok": true,
+      "seconds": 1.4667995856143534e-05,
+      "raw": "[\"put the black bowl in the bottom drawer of the cabinet\", \"close the bottom drawer of the cabinet\"]",
+      "error": null
+    },
+    {
+      "kind": "subgoal_start",
+      "step": 0,
+      "index": 0,
+      "subgoal": "put the black bowl in the bottom drawer of the cabinet"
+    },
+    {
+      "kind": "check",
+      "step": 20,
+      "index": 0,
+      "done": false,
+      "confirmed": false,
+      "seconds": 0.334470349996991,
+      "checker": "base",
+      "status": null,
+      "scores": null,
+      "reason": "No change detected.",
+      "error": null,
+      "shadow_long_task_atoms": [
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 40,
+      "index": 0,
+      "done": false,
+      "confirmed": false,
+      "seconds": 0.3761673469998641,
+      "checker": "base",
+      "status": null,
+      "scores": null,
+      "reason": "No change detected at the destination.",
+      "error": null,
+      "shadow_long_task_atoms": [
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 60,
+      "index": 0,
+      "done": true,
+      "confirmed": false,
+      "seconds": 0.5818836110047414,
+      "checker": "base",
+      "status": null,
+      "scores": null,
+      "reason": "The black bowl is now in the bottom drawer of the cabinet, which was open in image 1.",
+      "error": null,
+      "shadow_long_task_atoms": [
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 160,
+      "index": 0,
+      "done": true,
+      "confirmed": true,
+      "seconds": 0.4810536229997524,
+      "checker": "base",
+      "status": null,
+      "scores": null,
+      "reason": "The black bowl has been placed in the bottom drawer of the cabinet.",
+      "error": null,
+      "shadow_long_task_atoms": [
+        false,
+        true
+      ]
+    },
+    {
+      "kind": "subgoal_end",
+      "step": 160,
+      "index": 0,
+      "reason": "done",
+      "long_task_atoms": [
+        false,
+        true
+      ]
+    },
+    {
+      "kind": "subgoal_start",
+      "step": 160,
+      "index": 1,
+      "subgoal": "close the bottom drawer of the cabinet"
+    }
+  ],
+  "status": "success",
+  "success": true,
+  "subgoals": [
+    "put the black bowl in the bottom drawer of the cabinet",
+    "close the bottom drawer of the cabinet"
+  ],
+  "steps": 227,
+  "policy_queries": 46,
+  "qwen_checks": 4,
+  "replans": 0,
+  "full_task_fallback": false,
+  "final_subgoals": [
+    "put the black bowl in the bottom drawer of the cabinet",
+    "close the bottom drawer of the cabinet"
+  ],
+  "final_atoms": [
+    true,
+    true
+  ]
+}

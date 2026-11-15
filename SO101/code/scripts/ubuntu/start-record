@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+set -euo pipefail
+SO101_ROOT="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/../../.." && pwd)"
+RECORD_ROOT="$SO101_ROOT/datasets/pilot_$(date +%Y%m%d_%H%M%S)_$$"
+TASK_TEXT="Pick up the dark blue silicone case and place it in the marked area."
+record_args=("$SO101_ROOT/code/scripts/ubuntu/project-python" "$SO101_ROOT/code/scripts/teleop_table_lerobot.py"
+  --leader-port /dev/serial/by-id/usb-1a86_USB_Single_Serial_5CE5121669-if00
+  --follower-port /dev/serial/by-id/usb-1a86_USB_Single_Serial_5CE5122996-if00
+  --record-root "$RECORD_ROOT" --task "$TASK_TEXT" --record-preview "$@")
+printf 'Dataset: %s\n' "$RECORD_ROOT"
+printf -v record_command '%q ' "${record_args[@]}"
+exec sg dialout -c "exec $record_command"

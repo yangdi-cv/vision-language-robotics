@@ -1,0 +1,151 @@
+{
+  "suite": "libero_10",
+  "task_id": 0,
+  "initial_state_id": 0,
+  "original_task_language": "put both the alphabet soup and the tomato sauce in the basket",
+  "input_instruction": "把字母汤罐头和番茄酱都放进篮子里",
+  "planner": "qwen",
+  "monitor": "qwen",
+  "max_steps": 520,
+  "subgoal_step_budget": 300,
+  "monitor_every_queries": 4,
+  "noise_seed": 730000,
+  "runner_sha256": "933dc126a833f7079b44dd0a20ae7238c640d413681fa34d80fc0820b8e0ea41",
+  "events": [
+    {
+      "kind": "plan",
+      "step": 0,
+      "ok": true,
+      "seconds": 1.7770928680001816,
+      "raw": "{\n  \"subgoals\": [\n    {\n      \"instruction\": \"pick up the alphabet soup can and place it in the basket\",\n      \"completion_hint\": \"The alphabet soup can is now inside the basket.\"\n    },\n    {\n      \"instruction\": \"pick up the ketchup bottle and place it in the basket\",\n      \"completion_hint\": \"The ketchup bottle is now inside the basket.\"\n    }\n  ]\n}",
+      "error": null
+    },
+    {
+      "kind": "subgoal_start",
+      "step": 0,
+      "index": 0,
+      "subgoal": "pick up the alphabet soup can and place it in the basket"
+    },
+    {
+      "kind": "check",
+      "step": 20,
+      "index": 0,
+      "done": false,
+      "seconds": 0.42015238599924487,
+      "reason": "The alphabet soup can is still on the table and not in the basket.",
+      "error": null
+    },
+    {
+      "kind": "check",
+      "step": 40,
+      "index": 0,
+      "done": false,
+      "seconds": 0.9047545510002237,
+      "reason": "The robot is holding the alphabet soup can in its gripper and has not yet placed it in the basket. The subgoal requires the can to be placed in the basket for completion, which is not visible in the current state.",
+      "error": null
+    },
+    {
+      "kind": "check",
+      "step": 60,
+      "index": 0,
+      "done": false,
+      "seconds": 0.5216157760005444,
+      "reason": "The robot is holding the alphabet soup can in its gripper and has not yet placed it in the basket.",
+      "error": null
+    },
+    {
+      "kind": "check",
+      "step": 80,
+      "index": 0,
+      "done": false,
+      "seconds": 0.749237271000311,
+      "reason": "The robot is currently holding the alphabet soup can, but it has not yet placed it in the basket. The subgoal requires the can to be placed, which is not yet visible.",
+      "error": null
+    },
+    {
+      "kind": "check",
+      "step": 100,
+      "index": 0,
+      "done": false,
+      "seconds": 0.5505461190005008,
+      "reason": "The robot is holding the alphabet soup can in its gripper, so it has not yet placed it in the basket.",
+      "error": null
+    },
+    {
+      "kind": "check",
+      "step": 120,
+      "index": 0,
+      "done": false,
+      "seconds": 0.41943264799920144,
+      "reason": "The alphabet soup can is still on the table and not in the basket.",
+      "error": null
+    },
+    {
+      "kind": "check",
+      "step": 140,
+      "index": 0,
+      "done": false,
+      "seconds": 0.4012080590000551,
+      "reason": "The alphabet soup can is still on the table and not in the basket.",
+      "error": null
+    },
+    {
+      "kind": "check",
+      "step": 160,
+      "index": 0,
+      "done": false,
+      "seconds": 0.5525152619993605,
+      "reason": "The robot's gripper is currently holding an object, indicating it has not yet placed the alphabet soup can in the basket.",
+      "error": null
+    },
+    {
+      "kind": "check",
+      "step": 180,
+      "index": 0,
+      "done": false,
+      "seconds": 0.5113219559989375,
+      "reason": "The robot is still holding the can in its gripper and has not yet placed it in the basket.",
+      "error": null
+    },
+    {
+      "kind": "check",
+      "step": 200,
+      "index": 0,
+      "done": false,
+      "seconds": 0.5067201609999756,
+      "reason": "The robot is still holding the can in its gripper; it has not yet placed it in the basket.",
+      "error": null
+    },
+    {
+      "kind": "check",
+      "step": 220,
+      "index": 0,
+      "done": false,
+      "seconds": 0.5604861449992313,
+      "reason": "The robot is still holding the alphabet soup can in its gripper; it has not yet placed it in the basket.",
+      "error": null
+    },
+    {
+      "kind": "check",
+      "step": 240,
+      "index": 0,
+      "done": false,
+      "seconds": 0.8657152769992535,
+      "reason": "The alphabet soup can is still in the basket, but the robot's gripper is not holding it; however, the can is not clearly visible as being placed in the basket, and the basket appears to be empty.",
+      "error": null
+    }
+  ],
+  "status": "success",
+  "success": true,
+  "subgoals": [
+    "pick up the alphabet soup can and place it in the basket",
+    "pick up the ketchup bottle and place it in the basket"
+  ],
+  "steps": 244,
+  "policy_queries": 49,
+  "qwen_checks": 12,
+  "final_atoms": [
+    true,
+    true
+  ]
+}

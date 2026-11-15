@@ -1,0 +1,53 @@
+{
+  "scope": "same positive English prefix, with/without constraint suffix × continue/timer150/Qwen stop",
+  "modes": [
+    "positive_continue",
+    "positive_timer",
+    "positive_visual",
+    "constrained_continue",
+    "constrained_timer",
+    "constrained_visual"
+  ],
+  "development_initials": [
+    0
+  ],
+  "evaluation_initials": [
+    8,
+    9,
+    10
+  ],
+  "max_steps": 300,
+  "settle_steps": 25,
+  "check_interval": 10,
+  "confirm": 2,
+  "vote_ttl": 20,
+  "score": "unchanged selective_execution score: final10 In/no-gripper-contact and cumulative protected displacement<=30mm",
+  "monitor": "unchanged base two-frame monitor of selected positive skill; same images and prompt across prompt families",
+  "planning": "same Qwen target/protected selector; deterministic English skill template",
+  "development_reuse": {
+    "positive_continue": "skill_continue",
+    "positive_timer": "timer150",
+    "positive_visual": "visual"
+  },
+  "gate": "Expand only if constraint suffix has more selective successes across the12 matched development cells, or achieves at least one new reverse-target success. Otherwise stop prompt branch.",
+  "no_training": true,
+  "no_hardware": true,
+  "token_preflight_sha256": "3c502d88da995e4dfb38fef0df06ea817c1c5bef5c75c33c2fa144acc2d7953f",
+  "previous_protocol_sha256": "8adfcad65b11d5f41605fc6991299541709915f97d7262df48b8f406f9e719ef",
+  "resources_sha256": "a3f17407e0ec294dc0ca106cab15d010351ae5700f331124fed7816b66dedbf9",
+  "sources": {
+    "experiments/vla_libero/constraint_retention/scripts/design.py": "41d56735343072fbea9e8703d74b53b27123dca244e84afa4a223fe18ccac559",
+    "experiments/vla_libero/constraint_retention/scripts/execution.py": "3e2205914f6e92d3107b551391c9558f54753dee5b25870823a363d1a6dcd5cc",
+    "experiments/vla_libero/constraint_retention/scripts/run.py": "d90514037143d198c9570c724786cdd6fa0810779abf74fbce412ff7acdbee43",
+    "experiments/vla_libero/constraint_retention/scripts/worker.py": "6c4b470d4da3f3056668d9702580577486c96cb886f88e7b0814f7e9983b636d",
+    "experiments/vla_libero/scripts/episode_journal.py": "b73d991a76b216a17564febbdf3d4990712786bec06d5af56cbe1cbdcb715f69",
+    "experiments/vla_libero/scripts/evaluate.py": "e5d28552be82d553e09b3fcfe45aa95bbc6d38b0338899c2536ed1407935bb9d",
+    "experiments/vla_libero/scripts/qwen_planner.py": "87ea0a00e0a662d034cfc200b326cd569ecd2f32f57fe6681851fefdd47aabc7",
+    "experiments/vla_libero/scripts/run_hierarchical.py": "fe190d99b57b276fbe12d3f8e2fd072dd658377f68517ae59c30d12ddda365c3",
+    "experiments/vla_libero/selective_execution/scripts/control.py": "38e750bdd0580a2cb7cd24f31c9212d78277fe42c5bf77ab7dfa9c793d705875",
+    "experiments/vla_libero/selective_execution/scripts/protocol.py": "d39e52bfdafca08456d48da87a284649bd9478a2d2934b226576d45538118b67",
+    "experiments/vla_libero/selective_execution/scripts/worker.py": "eabf321de58b827bd022188cc7c8aba5596e77f0488acbadec7d1988af789f78",
+    "perception/qwen_scene/engine.py": "6c14802fbe468fa57e2ad48b25fc02c9a100d82d9aafdbf8d11224e969b699fb",
+    "perception/qwen_scene/worker_client.py": "3c3a93bd3d5e3f4ad7ea8d64e895244234a093ec779397d0d4f110ef673246b8"
+  }
+}

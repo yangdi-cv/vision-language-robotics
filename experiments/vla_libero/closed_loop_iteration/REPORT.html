@@ -1,0 +1,300 @@
+<meta charset="utf-8"><title>Qwen分层闭环与完成检查器</title><style>@page{size:A4;margin:15mm}body{font-family:"Noto Sans CJK SC",sans-serif;font-size:10pt;line-height:1.55;color:#243448}h1{font-size:21pt;line-height:1.35}h2{font-size:14pt;margin-top:6mm;break-after:avoid}h3{font-size:11pt;break-after:avoid}table{width:100%;border-collapse:collapse;font-size:9pt;margin:3mm 0}td,th{border:1px solid #cbd5df;padding:4px 6px}th{background:#edf2f7}tr{break-inside:avoid}p{orphans:3;widows:3}img{max-width:100%;max-height:95mm}p:has(img){break-inside:avoid;text-align:center}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#f3f5f8;padding:8px;font-size:8pt;line-height:1.4}code{font-family:"Noto Sans Mono CJK SC",monospace;font-size:8pt;overflow-wrap:anywhere}li{margin:1.5mm 0}a{color:#275d8d;text-decoration:none}</style><h1>闭环恢复与完成检查器：实现及测试</h1>
+<h2>1. 本轮结果</h2>
+<table>
+<thead>
+<tr>
+<th>验收点</th>
+<th>结果</th>
+<th>状态</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>t9疑似退化定位</td>
+<td>四组受控配置全部成功；旧超时未稳定复现</td>
+<td>按时间盒收尾，原因未定位</td>
+</tr>
+<tr>
+<td>单入口配置</td>
+<td>统一执行入口和Qwen worker入口，保留历史/严格模式配置</td>
+<td>已完成</td>
+</tr>
+<tr>
+<td>受控恢复</td>
+<td>三类扰动、各3初态、3种策略，共27次</td>
+<td>已完成，未证实Qwen收益</td>
+</tr>
+<tr>
+<td>检查器LoRA</td>
+<td>720例原始样本、180次更新、独立测试和权重重载</td>
+<td>已完成首轮；不接入动作切换</td>
+</tr>
+</tbody>
+</table>
+<p>本轮没有连接实体机械臂、下载新基座模型或修改原有Python环境。先前分层28/30、仅翻译29/30、直接中文22/30的原始结果继续保留。成功视频放在交付文件夹前两项；前者是分层正常任务，后者是受控扰动下π0.5整句重试，不混淆两者。</p>
+<h2>2. t9定位与单入口</h2>
+<p>固定t9初态0、相同动作噪声、512像素监测图、双票、夹爪门控及520步上限。初始规划使用已保存的英文子目标，消除初次Qwen生成文本变化，再分别替换执行逻辑、物体称呼和恢复设置。</p>
+<table>
+<thead>
+<tr>
+<th>配置</th>
+<th>结果</th>
+<th style="text-align:right">步数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>历史逻辑＋原“yellow and white mug”计划</td>
+<td>成功</td>
+<td style="text-align:right">257</td>
+</tr>
+<tr>
+<td>严格逻辑＋同一原计划</td>
+<td>成功</td>
+<td style="text-align:right">257</td>
+</tr>
+<tr>
+<td>严格逻辑＋新“mug with yellow handle”计划</td>
+<td>成功</td>
+<td style="text-align:right">267</td>
+</tr>
+<tr>
+<td>严格逻辑＋新计划＋150步触发恢复</td>
+<td>成功</td>
+<td style="text-align:right">267</td>
+</tr>
+</tbody>
+</table>
+<p>前两组在相同原计划下的动作轨迹逐点一致。这次未稳定复现之前的超时，不能指定某个改动就是原因。旧失败回合与本次相同配置的初始图像逐像素一致，但第一步动作最大绝对差约0.000247，后续轨迹已经分开。四组结果及对比保存在<code>t9_results.json</code>、<code>t9_conclusion.json</code>；记录为未定位，不继续展开排查。</p>
+<p>对外执行入口统一为<code>scripts/run_hierarchical.py</code>：</p>
+<ul>
+<li><code>--execution-profile legacy|strict</code>选择历史或严格状态转换。</li>
+<li><code>--planner-profile base|contract</code>选择原始或目标覆盖/终态约束规划。</li>
+<li><code>--recovery-mode continue|full|replan</code>区分继续、整句重试和重规划。</li>
+<li><code>--operation-checks</code>仍是默认关闭的实验选项。</li>
+</ul>
+<p>Qwen worker统一由<code>qwen_planner.py --profile base|contract</code>启动。原recovery文件保留实现模块和兼容包装，共享图像、串口无关的进程通信等帮助函数，不再维护两套worker循环。历史算法实现保留用于复现；后续不增加平行启动入口。纯平坦执行也不再加载无用的Qwen worker。</p>
+<h2>3. 受控扰动实验</h2>
+<h3>3.1 三类扰动</h3>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>Long任务</th>
+<th>注入方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>撤销一件入篮物体</td>
+<td>t0，汤罐和番茄酱入篮</td>
+<td>第一个目标放置后，将汤罐恢复到原桌面姿态</td>
+</tr>
+<tr>
+<td>破坏操作前提</td>
+<td>t3，碗入底层抽屉并关上</td>
+<td>在放碗前关闭初始打开的底层抽屉</td>
+</tr>
+<tr>
+<td>撤销一个杯子的放置</td>
+<td>t4，双杯分别放盘</td>
+<td>白杯放置并释放后，将它恢复到原桌面姿态</td>
+</tr>
+</tbody>
+</table>
+<p>每类使用公开初态0/1/2。对同一注入状态，比较继续原计划、整句英文重试、Qwen基于当前图像重规划。三分支的扰动状态哈希完全一致，动作噪声种子相同，各给420步恢复预算。t4部分源计划只有一个整句目标，此时“继续”保留真实的当前整句指令，没有为了制造差距而改成故意不完整的指令。</p>
+<p>环境代码使用真值构造和检查扰动；策略和Qwen不读取这些值。恢复调用发生在约定的注入时刻，测试的是已通知扰动后的恢复能力，不是自动故障检测。新分支的恢复预算也不作为标准Long排行榜分数。</p>
+<h3>3.2 结果</h3>
+<table>
+<thead>
+<tr>
+<th>扰动</th>
+<th style="text-align:right">继续原计划</th>
+<th style="text-align:right">整句重试</th>
+<th style="text-align:right">Qwen重规划</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>t0，撤销入篮</td>
+<td style="text-align:right">0/3</td>
+<td style="text-align:right">2/3</td>
+<td style="text-align:right">0/3</td>
+</tr>
+<tr>
+<td>t3，关闭抽屉</td>
+<td style="text-align:right">0/3</td>
+<td style="text-align:right">0/3</td>
+<td style="text-align:right">0/3</td>
+</tr>
+<tr>
+<td>t4，撤销白杯</td>
+<td style="text-align:right">2/3</td>
+<td style="text-align:right">1/3</td>
+<td style="text-align:right">0/3</td>
+</tr>
+<tr>
+<td>合计</td>
+<td style="text-align:right">2/9</td>
+<td style="text-align:right">3/9</td>
+<td style="text-align:right">0/9</td>
+</tr>
+</tbody>
+</table>
+<p><img src="figures/recovery_pair.png" alt="同一扰动状态下的恢复结果" /></p>
+<p>有控制策略救回的例子，说明本轮不全是不可执行状态；但抽屉类仍未被任一方法救回，不能把全部九个状态预设为可恢复。Qwen方案未超过整句重试，因此本轮恢复实验收尾，不继续扩大初态数。</p>
+<p>保留的规划文本也暴露了两个具体问题：入篮任务可能添加未要求的开罐/开瓶动作；抽屉关闭后可能仍只给出放碗和关抽屉，没有补打开这个前提。它们不是JSON格式检查能解决的语义问题，本轮不再追加规划器分支。</p>
+<p>协议在<code>injection_protocol.json</code>，逐例结果在<code>injection_results.json</code>，视频、状态和动作在<code>results/injection/</code>。</p>
+<h2>4. 完成检查器LoRA</h2>
+<h3>4.1 数据与标签</h3>
+<p>从此前四个LIBERO任务集的120个基线回合提取720组图像对。第一张为回合初始图，第二张取早期、中段、终点前20步、终点前5步、终点前1步和终点。视频第k帧对应执行k步后的状态，标签读取<code>trace.predicate[k-1]</code>，不是Qwen生成答案。</p>
+<p>按初态编号隔离：初态0训练、初态1验证、初态2测试，各40个完整回合、240例。回合和初态哈希没有交叉，完全相同的图像对及指令没有跨集合重叠。任务本身在三个集合中共享，这验证的是本次LoRA的初态留出效果，不是新任务泛化；公共初态也不等于基座预训练从未见过。</p>
+<p>终点前5步和前1步共240例被单列为边界样例。其中训练侧80例不参加训练，验证侧80例不参加权重选择；测试侧80例仍完整报告，不隐藏难例。因此实际训练160例，权重选择使用验证集中的固定32正、32负共64例，最终测试240例分为常规160例和边界80例。后续阈值校准使用完整验证集240例，测试分数不用于选择阈值。</p>
+<p>图像统一为两张256×256 RGB，与源视频分辨率一致；本轮没有深度输入。标签表示完整任务/目标条件全部满足。普通任务提供位置关系样例，Long任务提供多条件样例；未把最终判据随意映射给任意中间子目标。</p>
+<h3>4.2 训练配置与权重</h3>
+<p>基座为固定revision的<code>Qwen/Qwen3-VL-4B-Instruct</code>，BF16；视觉模块冻结，仅在语言层q/v投影上训练LoRA，rank8、alpha16、dropout0.05。可训练参数2,949,120，AdamW学习率5e-5，梯度累积2，正负均衡抽样，固定180次更新。</p>
+<p>每60次更新在同一验证子集评估，以平衡准确率最高、再以误报率更低选择。第180步权重被选中，验证平衡准确率87.5%。测试集不选权重，没有做多轮超参数搜索。</p>
+<p>权重在<code>results/checker_lora/best_adapter/</code>。训练、验证及微调后测试计时约103秒，不含之前的基座测试、数据提取、初次加载和后续校准。PyTorch记录的峰值分配约8.79GiB。独立新进程已重新载入保存的adapter，独立CLI输出与保存的测试概率一致。</p>
+<h3>4.3 独立测试：常规识别提升，边界误报严重</h3>
+<table>
+<thead>
+<tr>
+<th>240例完整测试，贪心输出</th>
+<th style="text-align:right">基座</th>
+<th style="text-align:right">LoRA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>总准确率</td>
+<td style="text-align:right">82.9%</td>
+<td style="text-align:right">63.3%</td>
+</tr>
+<tr>
+<td>平衡准确率</td>
+<td style="text-align:right">51.6%</td>
+<td style="text-align:right">72.9%</td>
+</tr>
+<tr>
+<td>已完成召回，39例</td>
+<td style="text-align:right">2/39（5.1%）</td>
+<td style="text-align:right">34/39（87.2%）</td>
+</tr>
+<tr>
+<td>未完成误报，201例</td>
+<td style="text-align:right">4/201（2.0%）</td>
+<td style="text-align:right">83/201（41.3%）</td>
+</tr>
+<tr>
+<td>输出格式合法</td>
+<td style="text-align:right">240/240</td>
+<td style="text-align:right">240/240</td>
+</tr>
+</tbody>
+</table>
+<p>基座大多回答未完成，因负例较多而得到较高总准确率。LoRA能识别更多完成样本，但相应误报增加，不能只展示平衡准确率提升。</p>
+<table>
+<thead>
+<tr>
+<th>分层查看，贪心输出</th>
+<th style="text-align:right">基座</th>
+<th style="text-align:right">LoRA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>常规160例准确率</td>
+<td style="text-align:right">76.9%</td>
+<td style="text-align:right">86.3%</td>
+</tr>
+<tr>
+<td>常规负例误报率</td>
+<td style="text-align:right">0/121</td>
+<td style="text-align:right">17/121（14.0%）</td>
+</tr>
+<tr>
+<td>边界80例误报率</td>
+<td style="text-align:right">4/80（5.0%）</td>
+<td style="text-align:right">66/80（82.5%）</td>
+</tr>
+</tbody>
+</table>
+<p><img src="figures/checker_core.png" alt="常规160例的混淆矩阵" /></p>
+<h3>4.4 验证集阈值校准</h3>
+<p>另外按固定JSON前缀后true/false的相对概率做受限二分类。基座与LoRA使用同一方法，在验证集误报不超过5%的约束下选择召回最高的阈值。此项是追加的运行点校准，原始贪心结果全部保留。</p>
+<table>
+<thead>
+<tr>
+<th>校准后完整240例测试</th>
+<th style="text-align:right">基座</th>
+<th style="text-align:right">LoRA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>完成召回</td>
+<td style="text-align:right">3/39（7.7%）</td>
+<td style="text-align:right">5/39（12.8%）</td>
+</tr>
+<tr>
+<td>未完成误报</td>
+<td style="text-align:right">10/201（5.0%）</td>
+<td style="text-align:right">14/201（7.0%）</td>
+</tr>
+<tr>
+<td>常规负例误报</td>
+<td style="text-align:right">2/121（1.7%）</td>
+<td style="text-align:right">1/121（0.8%）</td>
+</tr>
+<tr>
+<td>边界80例误报</td>
+<td style="text-align:right">8/80（10.0%）</td>
+<td style="text-align:right">13/80（16.3%）</td>
+</tr>
+</tbody>
+</table>
+<p>LoRA阈值为0.985936。验证集的5%约束没有保证测试集也满足，且低误报设置损失了大部分完成召回。因此这轮权重尚不适合用于自动阶段切换。数据正例主要是成功末帧，可能包含执行阶段和机械臂姿态的关联；下一轮应补充外观相似但失败的末帧及反事实负例，而不是立即接入机器人。</p>
+<p>基座和LoRA使用同一份本轮提示词；这些数字不等同于旧分层系统原完成检查提示词的结果。仅含负例的边界子集不报告平衡准确率，避免给单类样本赋予误导性的数值。</p>
+<h2>5. 任务书对应与交付</h2>
+<p>本轮新增了可加载的Qwen-VL LoRA权重与独立推理脚本，是子任务1感知适配中的“完成检查”分支。任务书要求的RGB-D目标定位、可供性和子目标分解微调，不能据此算全部完成。导航、Jetson延迟及真机代测本轮未新增。代码、评测和报告则补充到可复现交付。</p>
+<p>下一步只保留两项：整理与成功末帧相似的难负例并重新审核可观察标签；与导师确认完成检查分支及导航部分的验收范围。暂不扩大恢复回合或启动更多模型训练。</p>
+<h2>6. 文件与运行</h2>
+<pre><code class="language-text">experiments/vla_libero/
+├── scripts/
+│   ├── run_hierarchical.py          # 统一对外执行入口
+│   ├── qwen_planner.py              # 统一worker入口
+│   ├── run_hierarchical_recovery.py # 严格逻辑及兼容包装
+│   └── qwen_planner_recovery.py     # 约束规划实现及兼容包装
+└── closed_loop_iteration/
+    ├── SUMMARY.md / REPORT.md
+    ├── t9_protocol.json / t9_results.json / t9_conclusion.json
+    ├── injection_protocol.json / injection_results.json
+    ├── calibration_protocol.json
+    ├── data/cases.json / audit.json / images/
+    ├── results/injection/taskXX_initYY/模式/
+    ├── results/checker_lora/
+    │   ├── best_adapter/            # 交付权重
+    │   ├── protocol.json / history.json
+    │   ├── base_test.json / adapter_test.json
+    │   ├── base_scores.json / adapter_scores.json
+    │   ├── summary.json / calibrated_summary.json
+    │   └── reload_check.json / cli_reload.json
+    ├── scripts/                    # 数据、训练、推理与验证代码
+    └── archive/                    # 合并入口前的版本
+</code></pre>
+<p>从工程根目录执行，环境沿用<code>.venvs/openpi-libero</code>与<code>.venvs/qwen-scene</code>：</p>
+<pre><code class="language-bash"># 同一入口选择严格状态与约束规划；只在仿真中运行
+experiments/vla_libero/scripts/python_shared \
+  experiments/vla_libero/scripts/run_hierarchical.py \
+  --task-id 0 --init 0 --execution-profile strict \
+  --planner-profile contract --planner qwen --monitor qwen \
+  --subgoal-budget 150 --max-replans 1 --tag new_unique_tag
+
+# 独立图像完成检查，输出结果，不控制机械臂
+.venvs/qwen-scene/bin/python \
+  experiments/vla_libero/closed_loop_iteration/scripts/check_completion.py \
+  --before before.png --after now.png --instruction &quot;put the mug on the plate&quot; \
+  --adapter experiments/vla_libero/closed_loop_iteration/results/checker_lora/best_adapter \
+  --calibrated
+</code></pre>
+<p>数据生成代码在<code>prepare_checker_data.py</code>，训练在<code>train_checker.py</code>，验证校准在<code>calibrate_checker.py</code>，恢复实验在<code>run_injection.py</code>。首次输出拒绝覆盖，重跑请使用另存目录。源码包不含基座权重、环境和原始视频；LoRA权重单独打包，输入案例索引及标签随代码保留，图像可由已记录基线视频提取。</p>

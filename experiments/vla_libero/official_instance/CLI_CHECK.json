@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "command": "bash experiments/vla_libero/official_instance/start.sh --tag cli_smoke --tasks 9 --initials 32",
+  "tag": "cli_smoke",
+  "successes": 1,
+  "episodes": 1,
+  "separate_from_fresh_six": true,
+  "model_actions_verified": true,
+  "source": "runs/cli_smoke/task09_init32/result.json"
+}

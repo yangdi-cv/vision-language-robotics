@@ -1,0 +1,378 @@
+{
+  "case": {
+    "task": 0,
+    "target_index": 1,
+    "initial": 9,
+    "target": "tomato_sauce_1",
+    "protected": "alphabet_soup_1",
+    "objects": [
+      [
+        "alphabet_soup_1",
+        "alphabet soup can",
+        "字母汤罐头"
+      ],
+      [
+        "tomato_sauce_1",
+        "tomato sauce can",
+        "番茄酱罐头"
+      ]
+    ],
+    "instruction": "只把番茄酱罐头放进篮子里，字母汤罐头保持原位。放好后停止，不要继续搬其他物体。",
+    "reference_skill": "pick up the tomato sauce can and place it in the basket",
+    "key": "task00_target1_init09"
+  },
+  "mode": "positive_continue",
+  "phase": "camera_eval",
+  "protocol_sha256": "b96a1a448543cec17d055032b620e45a3f967d63f5a54468c30c6ab853f7f4ee",
+  "noise_seed": 920009,
+  "status": "complete",
+  "steps": 325,
+  "events": [
+    {
+      "kind": "check",
+      "step": 10,
+      "decision": {
+        "done": false,
+        "streak": 0,
+        "stop": false
+      },
+      "images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/camera_eval/task00_target1_init09/positive_continue/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/camera_eval/task00_target1_init09/positive_continue/images/current_0010.png"
+      ],
+      "sent_images": [],
+      "reply": null,
+      "seconds": 1.0498995834495872e-05
+    },
+    {
+      "kind": "check",
+      "step": 20,
+      "decision": {
+        "done": false,
+        "streak": 0,
+        "stop": false
+      },
+      "images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/camera_eval/task00_target1_init09/positive_continue/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/camera_eval/task00_target1_init09/positive_continue/images/current_0020.png"
+      ],
+      "sent_images": [],
+      "reply": null,
+      "seconds": 4.3380059651099145e-06
+    },
+    {
+      "kind": "check",
+      "step": 30,
+      "decision": {
+        "done": false,
+        "streak": 0,
+        "stop": false
+      },
+      "images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/camera_eval/task00_target1_init09/positive_continue/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/camera_eval/task00_target1_init09/positive_continue/images/current_0030.png"
+      ],
+      "sent_images": [],
+      "reply": null,
+      "seconds": 4.228000761941075e-06
+    },
+    {
+      "kind": "check",
+      "step": 40,
+      "decision": {
+        "done": false,
+        "streak": 0,
+        "stop": false
+      },
+      "images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/camera_eval/task00_target1_init09/positive_continue/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/camera_eval/task00_target1_init09/positive_continue/images/current_0040.png"
+      ],
+      "sent_images": [],
+      "reply": null,
+      "seconds": 3.7770005292259157e-06
+    },
+    {
+      "kind": "check",
+      "step": 160,
+      "decision": {
+        "done": false,
+        "streak": 0,
+        "stop": false
+      },
+      "images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/camera_eval/task00_target1_init09/positive_continue/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/camera_eval/task00_target1_init09/positive_continue/images/current_0160.png"
+      ],
+      "sent_images": [],
+      "reply": null,
+      "seconds": 4.23700112150982e-06
+    },
+    {
+      "kind": "check",
+      "step": 170,
+      "decision": {
+        "done": false,
+        "streak": 0,
+        "stop": false
+      },
+      "images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/camera_eval/task00_target1_init09/positive_continue/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/camera_eval/task00_target1_init09/positive_continue/images/current_0170.png"
+      ],
+      "sent_images": [],
+      "reply": null,
+      "seconds": 4.2480023694224656e-06
+    },
+    {
+      "kind": "check",
+      "step": 180,
+      "decision": {
+        "done": false,
+        "streak": 0,
+        "stop": false
+      },
+      "images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/camera_eval/task00_target1_init09/positive_continue/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/camera_eval/task00_target1_init09/positive_continue/images/current_0180.png"
+      ],
+      "sent_images": [],
+      "reply": null,
+      "seconds": 5.009002052247524e-06
+    },
+    {
+      "kind": "check",
+      "step": 190,
+      "decision": {
+        "done": false,
+        "streak": 0,
+        "stop": false
+      },
+      "images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/camera_eval/task00_target1_init09/positive_continue/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/camera_eval/task00_target1_init09/positive_continue/images/current_0190.png"
+      ],
+      "sent_images": [],
+      "reply": null,
+      "seconds": 3.615998139139265e-06
+    },
+    {
+      "kind": "check",
+      "step": 200,
+      "decision": {
+        "done": false,
+        "streak": 0,
+        "stop": false
+      },
+      "images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/camera_eval/task00_target1_init09/positive_continue/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/camera_eval/task00_target1_init09/positive_continue/images/current_0200.png"
+      ],
+      "sent_images": [],
+      "reply": null,
+      "seconds": 4.198001988697797e-06
+    },
+    {
+      "kind": "check",
+      "step": 260,
+      "decision": {
+        "done": false,
+        "streak": 0,
+        "stop": false
+      },
+      "images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/camera_eval/task00_target1_init09/positive_continue/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/camera_eval/task00_target1_init09/positive_continue/images/current_0260.png"
+      ],
+      "sent_images": [],
+      "reply": null,
+      "seconds": 4.228000761941075e-06
+    },
+    {
+      "kind": "check",
+      "step": 270,
+      "decision": {
+        "done": false,
+        "streak": 0,
+        "stop": false
+      },
+      "images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/camera_eval/task00_target1_init09/positive_continue/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/camera_eval/task00_target1_init09/positive_continue/images/current_0270.png"
+      ],
+      "sent_images": [],
+      "reply": null,
+      "seconds": 4.498004273045808e-06
+    },
+    {
+      "kind": "check",
+      "step": 280,
+      "decision": {
+        "done": false,
+        "streak": 0,
+        "stop": false
+      },
+      "images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/camera_eval/task00_target1_init09/positive_continue/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/camera_eval/task00_target1_init09/positive_continue/images/current_0280.png"
+      ],
+      "sent_images": [],
+      "reply": null,
+      "seconds": 4.878995241597295e-06
+    },
+    {
+      "kind": "check",
+      "step": 290,
+      "decision": {
+        "done": false,
+        "streak": 0,
+        "stop": false
+      },
+      "images": [
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/camera_eval/task00_target1_init09/positive_continue/images/reference.png",
+        "/home/yd/Documents/VLA/experiments/vla_libero/constraint_retention/episodes/camera_eval/task00_target1_init09/positive_continue/images/current_0290.png"
+      ],
+      "sent_images": [],
+      "reply": null,
+      "seconds": 4.70800296170637e-06
+    },
+    {
+      "kind": "stop",
+      "step": 300,
+      "reason": "budget"
+    }
+  ],
+  "policy_queries": 60,
+  "model_checks": 0,
+  "control_truth_inputs": false,
+  "original_done_used_for_stopping": false,
+  "initial_state_sha256": "3d09fb7b6965328e11bd7abfdb58333428e00484c192bf88338d0f3d69ac5406",
+  "settled_state_sha256": "20b47543f515236d112a2102395b9190804d1ada3c3ab3fc7f99217549f0b6b0",
+  "goal_atoms": [
+    [
+      "in",
+      "alphabet_soup_1",
+      "basket_1_contain_region"
+    ],
+    [
+      "in",
+      "tomato_sauce_1",
+      "basket_1_contain_region"
+    ]
+  ],
+  "initial_object_positions": [
+    [
+      -0.11131852822855844,
+      -0.13929890425839597,
+      0.4751701239604015
+    ],
+    [
+      -0.11386991964984143,
+      0.06688603057209253,
+      0.4751691503786929
+    ]
+  ],
+  "plan": "plans/camera_eval/task00_target1_init09.json",
+  "plan_sha256": "45fd96dc2e7b3e852feb153b785b1a361f0b200387037fbdb0504be741803a64",
+  "selector_correct": true,
+  "selection": {
+    "raw": "{\"target\":\"tomato_sauce_1\", \"protected\":\"alphabet_soup_1\"}",
+    "seconds": 0.31436759299685946,
+    "inference": {
+      "model": "Qwen/Qwen3-VL-4B-Instruct",
+      "revision": "ebb281ec70b05090aa6165b016eac8ec08e71b17",
+      "prompt": "Inspect the image and the instruction. Select exactly one object to move into the basket, and the one explicitly required to remain untouched.\nKnown object IDs and English/Chinese names: [[\"alphabet_soup_1\", \"alphabet soup can\", \"字母汤罐头\"], [\"tomato_sauce_1\", \"tomato sauce can\", \"番茄酱罐头\"]]\nInstruction: 只把番茄酱罐头放进篮子里，字母汤罐头保持原位。放好后停止，不要继续搬其他物体。\nReturn only JSON: {\"target\":\"one known ID\", \"protected\":\"the other known ID\"}. Do not output coordinates or add another action.",
+      "prompt_sha256": "4a1ee987a32fd4a4fe2e15913d0211138cd7fec672e0040731e79052b5532f49",
+      "engine_sha256": "6c14802fbe468fa57e2ad48b25fc02c9a100d82d9aafdbf8d11224e969b699fb",
+      "generation": {
+        "max_new_tokens": 96,
+        "do_sample": false
+      },
+      "images": [
+        {
+          "size": [
+            512,
+            512
+          ],
+          "mode": "RGB",
+          "pixel_sha256": "b7ce897fb8216b53a33a3ba99cc1ee220582decf0650634b13a5d639641a6b3e"
+        }
+      ],
+      "libraries": {
+        "torch": "2.7.1",
+        "transformers": "4.57.6"
+      },
+      "planner_sha256": "87ea0a00e0a662d034cfc200b326cd569ecd2f32f57fe6681851fefdd47aabc7"
+    },
+    "device": "cuda:0",
+    "allocated_mib": 8478.61669921875,
+    "reserved_mib": 8624.0,
+    "tokens": 19,
+    "ok": true,
+    "target": "tomato_sauce_1",
+    "protected": "alphabet_soup_1",
+    "worker_sha256": "eabf321de58b827bd022188cc7c8aba5596e77f0488acbadec7d1988af789f78"
+  },
+  "translation": {
+    "raw": "{\"instruction\": \"Put the ketchup bottle in the basket and leave the letter soup can where it is.\"}",
+    "seconds": 0.3833477629959816,
+    "inference": {
+      "model": "Qwen/Qwen3-VL-4B-Instruct",
+      "revision": "ebb281ec70b05090aa6165b016eac8ec08e71b17",
+      "prompt": "Translate this robot task instruction into one short English imperative sentence, keeping every object and relation. Use the image only to name the objects correctly. Do not split it into steps.\nInstruction: 只把番茄酱罐头放进篮子里，字母汤罐头保持原位。放好后停止，不要继续搬其他物体。\nReturn only JSON: {\"instruction\": \"English instruction\"}",
+      "prompt_sha256": "767d3c5cf9c53c49f15c0d186c447fcc58e5035c834d0019f3374f3832fa454e",
+      "engine_sha256": "6c14802fbe468fa57e2ad48b25fc02c9a100d82d9aafdbf8d11224e969b699fb",
+      "generation": {
+        "max_new_tokens": 64,
+        "do_sample": false
+      },
+      "images": [
+        {
+          "size": [
+            512,
+            512
+          ],
+          "mode": "RGB",
+          "pixel_sha256": "b7ce897fb8216b53a33a3ba99cc1ee220582decf0650634b13a5d639641a6b3e"
+        }
+      ],
+      "libraries": {
+        "torch": "2.7.1",
+        "transformers": "4.57.6"
+      },
+      "planner_sha256": "87ea0a00e0a662d034cfc200b326cd569ecd2f32f57fe6681851fefdd47aabc7"
+    },
+    "device": "cuda:0",
+    "allocated_mib": 8478.615234375,
+    "reserved_mib": 8624.0,
+    "tokens": 24,
+    "ok": true,
+    "subgoals": [
+      {
+        "instruction": "Put the ketchup bottle in the basket and leave the letter soup can where it is.",
+        "completion_hint": ""
+      }
+    ]
+  },
+  "policy_instruction": "pick up the tomato sauce can and place it in the basket",
+  "selected_target": "tomato_sauce_1",
+  "timer_threshold": 150,
+  "prompt_family": "positive",
+  "stop_family": "skill_continue",
+  "selective_success": false,
+  "target_final_stable": true,
+  "final_released": true,
+  "target_ever_reached": true,
+  "protected_untouched": false,
+  "max_protected_displacement_m": 0.43687700918064226,
+  "first_valid_step": null,
+  "first_violation_step": 62,
+  "self_stop_success": false,
+  "premature_stop": false,
+  "decision_step": 300,
+  "stop_reason": "budget",
+  "wall_seconds": 23.013125461999152,
+  "original_success_observed": true,
+  "policy_steps_after_original_success": 33,
+  "success": false
+}

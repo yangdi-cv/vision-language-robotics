@@ -1,0 +1,1546 @@
+\chapter{指定目标与同场景移动操作}
+显式视觉目标参考Point-VLA\cite{pointvla}，数据配对参考捷径学习分析\cite{shortcut}，动作引导参考CAG\cite{cag}。本地实验范围分别注明，不将思路借鉴表述成原论文的完整复现。
+
+
+只搬指定一件物体比原任务要求更细，也更能暴露目标绑定和停止问题。公开方法参考与局部策略适配没有解决全部问题；同场景导航操作则先把物理世界和坐标接口统一。
+
+\section{指定目标与选择性搬运诊断}
+
+\label{stage:s13}
+
+把任务改为只搬指定物体、另一件保持原位，检查高层选对目标后，低层动作是否真正按目标改变。
+
+\subsection{任务设计与评分}\label{s13-detail-1}
+
+沿用LIBERO-Long的汤罐/番茄酱、奶酪/黄油两个入篮场景，分别交换目标和保留物体，共四种指令。例：``只把字母汤罐头放进篮子里，番茄酱罐头保持原位。放好后停止，不要继续搬其他物体。''不移动物体初态，不改变场景或动力学，不使用mocap代替\(\pi\)0.5动作。
+
+这是自定义选择性任务，不是新的原LIBERO-Long成绩。所有方法均忽略step返回的原长任务done。目标是否在篮子、物体位置和接触真值仅写入日志与离线评分，既不决定停止，也不送进模型。
+
+每回合最多执行300步。自主停止或预算到期后，保持25步，末10帧目标都在原In篮子区域、都没有与夹爪接触，且整个过程中保留物体中心位移最大不超过30毫米，才算选择性成功。中心位移容差允许小幅移动，不代表无接触或无旋转。停止保持时沿用最后的夹爪命令，不自动松爪给任何一组补成功。
+
+flat策略没有独立结束token，其预算终止不计自主停止；主要比较仍是所有方法共同的选择性成功条件。不能因为另一组接了停止接口，就只凭自主停止次数宣称优越。
+
+\subsection{开发小试与冻结设置}\label{s13-detail-2}
+
+先在初态0跑四个固定英文参考技能。可行窗口指连续10步目标入篮、不接触夹爪、保留物体尚未超限。时刻标定只使用这里的数据：将窗口末步向上取整到10步；没有可行窗口时使用预设150步。
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2901}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2366}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2366}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2366}}@{}}
+\caption{开发小试与冻结设置：设置与结果}\label{tab:s13-1}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+目标
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+曾入篮
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+首个可行窗口末步
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+开发定时阈值
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+目标
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+曾入篮
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+首个可行窗口末步
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+开发定时阈值
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+alphabet\_soup\_1 & 是 & 183 & 190 \\
+tomato\_sauce\_1 & 否 & 无 & 150 \\
+cream\_cheese\_1 & 是 & 152 & 160 \\
+butter\_1 & 是 & 无 & 150 \\
+\end{longtable}\endgroup
+
+然后初态0跑七组小试（28回合），不计入评测成绩。正式初态为3--7，两场景\(\times\)两方向\(\times\)五初态=20条件；七组140回合。参数、标定和执行源码在评测前冻结，不按正式结果选时刻或改提示词。这些是该阶段未用于调参的初态，场景仍为已知公开场景，不能称为对新世界泛化。
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2637}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3593}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3769}}@{}}
+\caption{开发小试与冻结设置：设置与结果}\label{tab:s13-2}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+方法
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+策略指令
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+结束方式
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+方法
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+策略指令
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+结束方式
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+完整中文 & 含目标、保留物体与停止要求 & 300步预算 \\
+仅翻译 & Qwen实际翻译的完整英文 & 300步预算 \\
+单技能持续 & Qwen选目标后转换的固定英文技能 & 300步预算 \\
+固定150步 & 同一技能 & 150步后门控两票 \\
+开发定时 & 同一技能 & 开发时标定的时刻后门控两票 \\
+视觉停止 & 同一技能 & Qwen开始/当前帧判断，门控两票 \\
+冻结检查图 & 同一技能 & 只将检查当前图换成开始图 \\
+\end{longtable}\endgroup
+
+五个同技能组完全共享目标选择与英文指令；模型选错不会替它改成正确答案。Qwen选择的是给定双物体词表里的ID，技能文字用固定模板生成，尚不是开放词汇定位或自由多步规划。
+
+停止检查每10步一次，只有上一条命令为张开且夹爪宽度超过0.07时才可查询。连续两票确认；闭爪或票间隔超过20步就清空旧票。两票不假定统计独立。所有方法低层均读取当前224像素RGB/腕部图和8维机器人状态；Qwen读取单独512像素图。每次预测10步、执行前5步，显式提供配对噪声。
+
+\subsection{配对结果与对照解释}\label{s13-detail-3}
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}@{}}
+\caption{配对结果与对照解释：设置与结果}\label{tab:s13-3}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+方法
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+选择性成功
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+目标末10帧入篮
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+保留物体位移未超限
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+过早停止
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+方法
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+选择性成功
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+目标末10帧入篮
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+保留物体位移未超限
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+过早停止
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+完整中文 & 4/20 & 8/20 & 13/20 & 0 \\
+仅翻译 & 0/20 & 20/20 & 0/20 & 0 \\
+单技能持续 & 0/20 & 19/20 & 0/20 & 0 \\
+固定150步 & 10/20 & 10/20 & 10/20 & 10 \\
+开发定时 & 8/20 & 10/20 & 8/20 & 10 \\
+视觉停止 & 4/20 & 17/20 & 4/20 & 2 \\
+冻结检查图 & 0/20 & 19/20 & 0/20 & 0 \\
+\end{longtable}\endgroup
+
+各条件对应的四个方向如下，每格分母为5。四个方向全部计入总分，开发时已证实与未证实可行的方向另列。
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 14\tabcolsep) * \real{0.1929}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 14\tabcolsep) * \real{0.1153}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 14\tabcolsep) * \real{0.1153}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 14\tabcolsep) * \real{0.1153}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 14\tabcolsep) * \real{0.1153}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 14\tabcolsep) * \real{0.1153}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 14\tabcolsep) * \real{0.1153}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 14\tabcolsep) * \real{0.1153}}@{}}
+\caption{配对结果与对照解释：设置与结果}\label{tab:s13-4}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+指令
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+完整中文
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+仅翻译
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+单技能持续
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+固定150步
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+开发定时
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+视觉停止
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+冻结检查图
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+指令
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+完整中文
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+仅翻译
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+单技能持续
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+固定150步
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+开发定时
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+视觉停止
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+冻结检查图
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+字母汤罐头入篮；保留番茄酱罐头 & 2/5 & 0/5 & 0/5 & 5/5 & 3/5 & 4/5 & 0/5 \\
+番茄酱罐头入篮；保留字母汤罐头 & 0/5 & 0/5 & 0/5 & 0/5 & 0/5 & 0/5 & 0/5 \\
+奶油奶酪盒入篮；保留黄油 & 1/5 & 0/5 & 0/5 & 5/5 & 5/5 & 0/5 & 0/5 \\
+黄油入篮；保留奶油奶酪盒 & 1/5 & 0/5 & 0/5 & 0/5 & 0/5 & 0/5 & 0/5 \\
+\end{longtable}\endgroup
+
+\stagefigure{figures/ch05/s13_directions_ec69e6e8.png}{开发可行方向与反向方向}{fig:s13-detail-1}
+
+以视觉停止为参照，按同一场景、目标、初态计算增加与丢失的成功：
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2046}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1988}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1988}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1988}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1988}}@{}}
+\caption{配对结果与对照解释：设置与结果}\label{tab:s13-5}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+另一方法
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+配对数
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+视觉增加成功
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+视觉丢失成功
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+描述性精确p
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+另一方法
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+配对数
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+视觉增加成功
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+视觉丢失成功
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+描述性精确p
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+完整中文 & 20 & 3 & 3 & 1.000 \\
+仅翻译 & 20 & 4 & 0 & 0.125 \\
+单技能持续 & 20 & 4 & 0 & 0.125 \\
+固定150步 & 20 & 0 & 6 & 0.031 \\
+开发定时 & 20 & 2 & 6 & 0.289 \\
+冻结检查图 & 20 & 4 & 0 & 0.125 \\
+\end{longtable}\endgroup
+
+只有两个场景、每方向五初态，且使用共同噪声、多重对照。p仅描述本批配对，不作为普遍显著性或泛化结论。应分别看：视觉比持续执行好多少、真实当前图比冻结图好多少，以及是否超过开发定时规则。完整中文/仅翻译同时改变策略指令，不能将差异单独归因为视觉检查。
+
+另做事后容差敏感性分析，只重算保留物体的允许位移，不改变主评分的30毫米标准，也不据此调模型或选择最有利的阈值：
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}@{}}
+\caption{配对结果与对照解释：设置与结果}\label{tab:s13-6}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+方法
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+10毫米
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+20毫米
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+30毫米（主）
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+50毫米
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+方法
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+10毫米
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+20毫米
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+30毫米（主）
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+50毫米
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+完整中文 & 4/20 & 4/20 & 4/20 & 4/20 \\
+仅翻译 & 0/20 & 0/20 & 0/20 & 0/20 \\
+单技能持续 & 0/20 & 0/20 & 0/20 & 0/20 \\
+固定150步 & 10/20 & 10/20 & 10/20 & 10/20 \\
+开发定时 & 8/20 & 8/20 & 8/20 & 8/20 \\
+视觉停止 & 4/20 & 4/20 & 4/20 & 4/20 \\
+冻结检查图 & 0/20 & 0/20 & 0/20 & 0/20 \\
+\end{longtable}\endgroup
+
+\subsection{失败发生在哪一层}\label{s13-detail-4}
+
+``目标放稳''与``保留物体未超限''分开记录，避免把两件都搬完算作成功。还记录是否出现过合法完成窗口、之后是否继续搬动保留物体、是否过早停止。
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}@{}}
+\caption{失败发生在哪一层：设置与结果}\label{tab:s13-7}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+方法
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+模型检查次数
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+平均决策步数
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+自主停止回合
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+错过可行窗口后超限
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+方法
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+模型检查次数
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+平均决策步数
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+自主停止回合
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+错过可行窗口后超限
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+完整中文 & 0 & 300.0 & 0 & 2 \\
+仅翻译 & 0 & 300.0 & 0 & 10 \\
+单技能持续 & 0 & 300.0 & 0 & 10 \\
+固定150步 & 0 & 172.0 & 20 & 0 \\
+开发定时 & 0 & 184.5 & 20 & 2 \\
+视觉停止 & 233 & 260.5 & 7 & 6 \\
+冻结检查图 & 274 & 300.0 & 0 & 10 \\
+\end{longtable}\endgroup
+
+平均决策步数包含失败，不能单独当作效率排名。检查调用不包含每条件共用的目标选择/翻译（各一次，正式共40次）；完整中文执行时不用共用计划。模拟器在推理时暂停，不据此宣称真机实时频率。
+
+Qwen选择目标正确率为20/20。低层能否遵从目标另行判断：开发参考技能的可行窗口和两个方向的正式结果都保留。如果保留物体先被移动，再搬对目标，停止检查无法撤销这次违反约束；如果已经存在可行窗口，却继续执行到超限，才需要进一步检查视觉判断、门控和票数延迟。
+
+开发小试有两个具体错误：奶酪在第160步已入篮且没有接触夹爪，模型仍回答未完成；反向番茄酱指令在第180步得到完成确认，但番茄酱目标没有入篮。下图为这两个开发回合的实际模型输入与末帧。
+
+篮内目标存在遮挡，模拟器完成标签不等于这张图足够判断。可见性尚需人工审核，不能把所有漏确认画面直接当成高置信训练正例，也不能据此认定换更大模型就能解决。
+
+\stagefigure{figures/ch05/s13_development_errors_8543e730.png}{开发小试的两个检查错误}{fig:s13-detail-2}
+
+演示选取task00\_target0\_init03。选择规则是按编号选第一个``视觉成功、持续失败''的正式条件（若不存在则取首个条件），只为展示，不改变统计。各组结束后保留真实末帧；视频20fps是仿真时间，不包含推理等待。
+
+\stagefigure{figures/ch05/s13_video_keyframe_82fe181b.png}{实际七组回合截图}{fig:s13-detail-3}
+
+\subsection{执行与物理状态核验}\label{s13-detail-5}
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5967}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.4033}}@{}}
+\caption{执行与物理状态核验：设置与结果}\label{tab:s13-8}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+核验项目
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+结果
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+核验项目
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+结果
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+正式完整回合 & 140 \\
+开发小试完整回合 & 28 \\
+正式视频完整解码帧 & 39980 \\
+正式模型策略查询 & 7268 \\
+正式检查机会 & 1657 \\
+原Long成功后仍继续的回合 & 69 \\
+同技能停止前配对 & 80 \\
+停止前输入/动作配对检查 & 通过 \\
+恢复物理状态数 & 39840 \\
+恢复后物体位置最大差(m) & 0.003001 \\
+恢复后关系/接触标签瞬时差异 & 2 / 94 \\
+恢复后最终成功判分差异 & 0 \\
+自包含CPU检查 & 12项通过 \\
+\end{longtable}\endgroup
+
+逐次核对实际策略输入、噪声、动作块与执行动作；停止后是固定保持命令，未补轨迹。冻结图组核对实际送入模型的像素和提示词记录。还将保存的模拟器状态重新forward，独立重算目标关系、夹爪接触和整段保留物体位移。状态重算与调用时缓存存在瞬时差异，但140个正式回合的最终判分一致。
+
+原始逐步状态、输入图和视频保存在实验目录。源码包仅包含代码、配置、结果元信息和报告插图，不包含基座权重、原始大数组或全部图像；完整重算需原实验数据或重新运行。CPU测试自带数据，不依赖这些文件。
+
+开发时曾将最终夹爪张开误作物体释放，已将该版小试与源码保存在development/open\_gripper\_score，随后改为离线接触标签并重新运行。本报告不混入该版数字。原有Long对照与历史结果未修改。
+
+
+\subsection{完整约束与腕部视角对照}\label{s13-detail-6}
+
+\subsubsection{问题与实验范围}\label{s13-detail-7}
+
+目标物体分别来自汤罐头/番茄酱、奶酪/黄油两组场景，并交换指定搬运的目标。最终计分同时要求：目标物体在篮内稳定放置且不接触夹爪，保留物体的累计最大位移不超过30毫米。停止后继续保持25步，使用最后10步检查稳定性。此处为自定义选择性任务得分，不是原 LIBERO-Long 的整任务成功率。
+
+原Long的成功信号不触发控制停止。策略每次预测10步动作，只执行前5步；Qwen检查采用夹爪张开门控、间隔10步、连续两票。物体关系和接触真值只用于记录、评分与离线标签，不传给模型。两组在线视角试验使用相同的正向技能指令、动作噪声、策略输入和停止规则。
+
+相关代码在 \path|scripts/design.py|、\path|scripts/episode.py|；评分与控制复用 \path|../selective_execution/scripts/protocol.py|、\texttt{control.py}。
+
+\subsubsection{完整约束透传}\label{s13-detail-8}
+
+原指令只给低层策略``拿起指定物体并放入篮子''。新指令保留此前缀，并追加``另一件保持原位、不要移动其他物体、放好后停止''。为避免把截断误认为策略不理解约束，先调用实际策略分词器验证：最长38词元，长度上限200，全部约束均被保留。
+
+开发集含4个场景条件，每个条件比较持续执行、定时停止、视觉停止，共12个配对条件。正向指令结果取自已冻结旧回合，新约束指令运行12个新回合。
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2779}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2407}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2407}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2407}}@{}}
+\caption{完整约束透传：设置与结果}\label{tab:s13-9}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+指令形式
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+选择性成功
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+配对新增成功
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+配对损失
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+指令形式
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+选择性成功
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+配对新增成功
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+配对损失
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+正向技能指令 & 3/12 & --- & --- \\
+追加全局约束 & 2/12 & 0 & 1 \\
+\end{longtable}\endgroup
+
+追加约束没有改善该次开发样本，反向目标也没有新增成功。按运行前声明的条件，不启动72回合的新初态扩展。这是开发筛选结果，样本规模不足以支持普遍的语言能力判断。
+
+相关代码在 \path|scripts/run.py|、\texttt{execution.py}、\path|token_preflight.py|，设置与结果见 \texttt{PROTOCOL.json}、\path|TOKEN_PREFLIGHT.json|、\path|PILOT_GATE.json|。
+
+\subsubsection{多视角离线对照}\label{s13-detail-9}
+
+从开发初态0的4条持续执行回合中取50个有效检查时刻；另外在初态8--10运行12条新观察回合，得到155个检查时刻。每个时刻恢复相同仿真状态，分别渲染512像素第三人称与腕部图像，保证两个候选方案看到同一物理状态。标签对应模型所选目标；若选择目标错误，不用正确答案暗中替换。
+
+\stagefigure{figures/ch05/s13_camera_pair_f44ba92e.png}{同一状态的相机比较}{fig:s13-detail-4}
+
+原两帧检查作为参考。主要视角对照均输入三张图，提示词完全一致：开始时第三人称、当前第三人称、当前辅助视图。对照组的第三张重复当前第三人称，实验组替换为腕部图。因而图像数量、尺寸、生成上限和提示词一致，差别仅为第三张图的像素。
+
+严格提示词要求确认目标已经放到目的地并释放；看不清时回答unknown。原两帧参考使用此前问法和布尔输出，其与严格三帧方案的差别不只在相机，不能将差值全部归因于腕部视角。
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1445}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1715}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1368}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1368}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1368}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1368}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1368}}@{}}
+\caption{多视角离线对照：设置与结果}\label{tab:s13-10}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+数据
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+检查方式
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+真正确认/正例
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+误确认/负例
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+召回
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+误报率
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+不确定
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+数据
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+检查方式
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+真正确认/正例
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+误确认/负例
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+召回
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+误报率
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+不确定
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+开发50帧 & 原两帧参考 & 6/18 & 4/32 & 33.3\% & 12.5\% & 0 \\
+开发50帧 & 严格三帧·重复图 & 0/18 & 0/32 & 0\% & 0\% & 2 \\
+开发50帧 & 严格三帧·腕部 & 0/18 & 0/32 & 0\% & 0\% & 1 \\
+新初态155帧 & 原两帧参考 & 38/66 & 11/89 & 57.6\% & 12.4\% & 0 \\
+新初态155帧 & 严格三帧·重复图 & 0/66 & 0/89 & 0\% & 0\% & 0 \\
+新初态155帧 & 严格三帧·腕部 & 1/66 & 0/89 & 1.5\% & 0\% & 6 \\
+\end{longtable}\endgroup
+
+615次检查全部返回可解析结果。严格方案的低误报伴随几乎为零的召回，主要输出为not\_done，不能作为有效停止器。腕部图能展示部分遮挡物体，但可见不等于模型能稳定确认。
+
+同一回合中的多帧高度相关；表中的帧数用于描述分类表现，不等同于205个独立任务回合。标签来自物理谓词，并未逐帧做人类可见性标注。恢复后重新计算物理缓存可能与在线瞬间略有差别，因此在线表现仍须单独验证。
+
+相关代码在 \path|scripts/prepare_views.py|、\path|view_checker.py|、\path|view_worker.py|、\path|view_run.py|；数据索引、原始回复与统计在 \path|view_audit/|、\path|VIEW_SUMMARY.json|。
+
+\subsubsection{多视角在线验证}\label{s13-detail-10}
+
+离线结果没有成为阻止在线小试的门槛。两种三帧检查器实际接入相同策略与停止控制，各运行4个配对回合，比较真实的选择性得分。
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2485}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1879}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1879}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1879}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1879}}@{}}
+\caption{多视角在线验证：设置与结果}\label{tab:s13-11}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+方式
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+新运行回合
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+选择性成功
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+目标最终稳定入篮
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+保留物体未超限
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+方式
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+新运行回合
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+选择性成功
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+目标最终稳定入篮
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+保留物体未超限
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+严格三帧·重复图 & 4 & 0/4 & 3/4 & 0/4 \\
+严格三帧·腕部 & 4 & 0/4 & 3/4 & 0/4 \\
+定时停止参照（旧回合） & 0，复用4 & 2/4 & 2/4 & 2/4 \\
+\end{longtable}\endgroup
+
+两组新回合在分歧前的策略输入哈希相同，动作最大差为0。重复图与腕部方案都没有及时阻止对保留物体的后续动作。腕部方案没有净增成功，按既定条件不再扩到36个新回合。旧定时结果仅作为参照，没有声明其与新进程逐步完全一致。
+
+原始回合保存在 \path|episodes/live_pilot_duplicate_control/|、\path|episodes/live_pilot_wrist/|；在线入口在 \path|scripts/live.py|，汇总见 \path|LIVE_SUMMARY.json|。
+
+\subsubsection{提示词复查与解释}\label{s13-detail-11}
+
+严格问法可能把``看清完成''变成了过强的判定条件。为区分这一影响，另做一次有界开发复查：尽量保留原有的目的地前后变化问法与布尔输出，仅补充第三张辅助图的说明。仍使用相同的三图重复对照，不换模型，不训练新参数。
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2490}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1878}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1878}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1878}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1878}}@{}}
+\caption{提示词复查与解释：设置与结果}\label{tab:s13-12}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+开发50帧
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+真正确认/18
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+误确认/32
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+召回
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+误报率
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+开发50帧
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+真正确认/18
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+误确认/32
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+召回
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+误报率
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+原问法扩展·重复图 & 3 & 1 & 16.7\% & 3.1\% \\
+原问法扩展·腕部 & 5 & 2 & 27.8\% & 6.3\% \\
+\end{longtable}\endgroup
+
+这100次调用只用开发数据。腕部图带来2个额外正确确认，也带来1个额外误报；未在新初态上验证，未接入正式闭环。结果说明提示词严格程度会显著影响完成召回，也提示视角扩展需要与判断标准一起校准。继续随机改提示词不足以证明实际收益，该阶段到此收尾。
+
+相关代码在 \path|scripts/minimal_view.py|，完整提示词与调用数在 \path|minimal_view/PROTOCOL.json|，统计在 \path|MINIMAL_VIEW_SUMMARY.json|。
+
+
+\subsection{选择性任务复现入口}\label{s13-detail-12}
+
+\subsubsection{代码目录与复现}\label{s13-detail-13}
+
+\noindent 运行与目录示例见\hyperlink{s13-command-4}{附录D的对应条目}。\par
+
+相关代码在scripts/run.py、control.py、protocol.py；模型加载/通信用项目已有perception/qwen\_scene/与vla\_libero/scripts/模块。固定上游和许可见RESOURCES.json、RESEARCH.md。
+
+\begin{Verbatim}[breaklines=true,breakanywhere=true,fontsize=\footnotesize]
+bash experiments/vla_libero/scripts/python_shared experiments/vla_libero/selective_execution/scripts/run.py --stage pilot
+bash experiments/vla_libero/scripts/python_shared experiments/vla_libero/selective_execution/scripts/run.py --stage eval
+.venvs/openpi-libero/bin/python experiments/vla_libero/selective_execution/scripts/analyze.py --phase eval
+bash experiments/vla_libero/scripts/python_shared experiments/vla_libero/selective_execution/scripts/verify.py --phase eval --physics
+\end{Verbatim}
+
+沿用本地openpi-libero和qwen-scene环境，4090共驻设置为\path|XLA_PYTHON_CLIENT_MEM_FRACTION=0.40|、\path|PREALLOCATE=false|。完整仿真需公开资产及指定模型缓存；无GPU测试见README。没有连接实体机械臂，也没有训练新模型。
+
+
+\stagefigure{figures/ch05/s13_outcomes.png}{选择性搬运中的不同执行和停止方式。}{fig:s13-retained}
+
+\paragraph{阶段结论}主要对照140回合中，视觉停止4/20，固定150步10/20。Qwen选对目标不代表低层能够可靠按选择执行。 本节把目标选择错误与停止时机错误分开，避免把所有失败都归因于视觉判断。
+
+\stagecode{s13}
+
+\FloatBarrier
+
+\section{公开方法参考与显式目标接口}
+
+\label{stage:s14}
+
+参考CAG（反事实动作引导）的免训练形式和Point-VLA的显式目标思路，构造同一观察对应不同目标的配对数据，并训练轻量策略适配器。
+
+\subsection{目标分叉数据与策略适配}\label{s14-detail-1}
+
+\subsubsection{指令响应诊断}\label{s14-detail-2}
+
+选择Long中的汤罐头/番茄酱与奶酪/黄油两个入篮场景，初态0与11。每个条件分别输入``只搬第一件''\,``只搬第二件''的正向单技能指令，以及原双物体任务指令，共12条回合。模型、观察、初态和动作噪声保持一致，每次输出10步、执行前5步。
+
+沿第一件轨迹的第0、50、100、150、200、250步采样，24个相同观察点各调用三种指令及一次同指令重复，共96次额外推理。图像、本体状态与噪声哈希一致，实际目标词元不同；同条件重复动作差0。四个初始观察点的目标交换动作RMS约0.016--0.030（模型控制量），说明语言进入了推理。
+
+但是四个场景条件的三种指令都先抬起第一件；要求第二件优先的4条均未做到。这里的``抬起''按物体高于初始位置20毫米、夹爪接触且关闭连续3步记录，是行为代理指标，与最终任务得分分开。
+
+因此，该阶段没有修改分词或输入接口，而是补充目标条件化技能。相关代码在\path|instruction_response/scripts/run.py|、\texttt{analyze.py}，逐项记录在该目录SUMMARY.json。
+
+\subsubsection{单物体示教与物理验收}\label{s14-detail-3}
+
+参考物体相对抓取姿态的思路，复用原robosuite OSC控制接口，在同一Long场景中执行清空、靠近、夹持、抬起、移至篮子、释放和退回。抓取姿态取自已成功的第一件轨迹，再根据目标物体位置生成示教。执行仍经过原关节控制、动力学和接触模型，不用mocap，也不直接改动物体位置。
+
+这种生成器具有仿真真值，是训练数据来源，不是VLA算法。两个开发反向小试成功只用于确认数据生成的物理可行性。正式候选按初态预先划分：训练20--25，验证26--27；第一轮策略测试28--29，第二轮测试30--31。
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}@{}}
+\caption{单物体示教与物理验收：设置与结果}\label{tab:s14-1}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+数据部分
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+候选轨迹
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+接受
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+未接受
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+数据部分
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+候选轨迹
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+接受
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+未接受
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+训练 & 24 & 21 & 3 \\
+验证 & 8 & 8 & 0 \\
+\end{longtable}\endgroup
+
+接受标准为目标在篮内稳定放置并脱离夹爪、指定保留物体的全程最大位移不超过30毫米。3条夹持失败轨迹完整保留，不进入训练。训练输入只有图像、本体状态、指令和实际动作，不包含教师使用的物体坐标或阶段标签；阶段标签只用于采样。
+
+独立恢复10595个示教仿真状态，32条最终接受标签全部一致。恢复后与运行缓存的物体位置最大差约2.587毫米。16个布局的两目标示教在初始图像和状态上相同。
+
+相关代码在\path|skill_bootstrap/scripts/teacher.py|、\texttt{generate.py}、\path|audit_data.py|；划分和筛选结果在DATA\_PROTOCOL.json、MANIFEST.json、DATA\_AUDIT.json。
+
+\subsubsection{第一轮策略适配}\label{s14-detail-4}
+
+使用原\(\pi\)0.5检查点，增加原生LoRA，仅训练49,987,584个参数，约占3.40B模型参数的1.47\%。全部基座和视觉编码器保持冻结，图像处理、分词、动作归一化和动作块格式沿用原实现。调用固定版本openpi的train\_step，没有替换底层策略。
+
+首轮200步、batch1，按任务/目标与示教阶段采样。验证固定为初态26--27的16帧，检查点按验证流匹配损失选择。训练前随机LoRA损失为0.02769，最低为0.01337，选中step200。该``训练前''不是未加适配器的原基座：此版本官方LoRA的A、B均随机初始化。
+
+在独立初态28--29，完整单件搬运从0/8变为1/8，先抬起指定物体从3/8变为4/8。要求第二件优先仍为0/4。离线损失下降没有补齐目标选择能力。
+
+相关代码在\path|scripts/train_lora.py|；训练、验证和选模在\path|lora_pilot/|。适配增量在adapter\_best.npz，不覆盖原基座。
+
+\subsubsection{目标分叉配对适配}\label{s14-detail-5}
+
+两条成功示教可能有大量不同的中间画面，却只有很短一段在完全相同的状态下要求不同动作。检查接受轨迹后发现：9个训练布局配对、4个验证布局配对在分叉帧的RGB、腕部图像和本体状态均逐元素一致；动作最大差约0.59--0.90。汤罐头场景分叉在第9帧，奶酪场景在第20帧。
+
+\stagefigure{figures/ch05/s14_paired_observation_68b37fe2.png}{相同观察与不同目标动作}{fig:s14-detail-1}
+
+第二轮从首轮权重继续600步、batch2。一半batch来自共享观察下的两个相反目标，另一半保持原阶段采样。配对时只给模型不同的自然语言目标和正确动作标签，避免只凭画面判断应搬哪一件。没有增加失败轨迹，也没有使用测试图片训练。
+
+验证使用原16帧阶段样本，加8个验证布局的目标分叉样本，以两项平均损失各占一半选模。最终选中step400。该阶段同时改变了采样、更新次数并重置优化器，因此不作为``仅改变采样''的消融结论。
+
+\stagefigure{figures/ch05/s14_loss_b4439336.png}{两轮验证损失}{fig:s14-detail-2}
+
+相关代码在\path|scripts/train_pair_lora.py|；分叉核对在\path|PAIRED_BRANCH_AUDIT.json|，设置与选模在\path|lora_paired/|。
+
+\subsubsection{新布局闭环结果}\label{s14-detail-6}
+
+每轮各有8个条件：两个场景\(\times\)两个目标\(\times\)两个新初态。基座与适配策略使用相同初态、噪声、正向技能指令和动作接口，每条固定执行300步后保持25步。原Long成功信号只记录，不控制停止；没有接Qwen检查器，先隔离低层执行能力。
+
+``完整单件搬运''要求目标末10步在篮内且不接触夹爪，指定另一件全程位移不超过30毫米。``合法窗口''只说明执行中曾满足条件，不代表策略会自主停住。
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2589}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1853}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1853}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1853}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1853}}@{}}
+\caption{新布局闭环结果：设置与结果}\label{tab:s14-2}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+阶段 / 测试布局
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+策略
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+先抬起指定物体
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+有合法完成窗口
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+完整单件搬运
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+阶段 / 测试布局
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+策略
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+先抬起指定物体
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+有合法完成窗口
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+完整单件搬运
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+首轮 / 28--29 & 基座 & 3/8 & 3/8 & 0/8 \\
+首轮 / 28--29 & LoRA200步 & 4/8 & 3/8 & 1/8 \\
+配对适配 / 30--31 & 基座 & 5/8 & 4/8 & 0/8 \\
+配对适配 / 30--31 & 配对适配 & 5/8 & 5/8 & 1/8 \\
+\end{longtable}\endgroup
+
+\stagefigure{figures/ch05/s14_results_03eb45a0.png}{两轮闭环结果}{fig:s14-detail-3}
+
+第二轮按场景/目标分列：
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3196}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3402}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3402}}@{}}
+\caption{新布局闭环结果：设置与结果}\label{tab:s14-3}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+任务与目标
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+第二轮基座：先选对 / 完整成功
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+第二轮适配：先选对 / 完整成功
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+任务与目标
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+第二轮基座：先选对 / 完整成功
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+第二轮适配：先选对 / 完整成功
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+场景0 / 目标0 & 2/2 · 0/2 & 2/2 · 0/2 \\
+场景0 / 目标1 & 1/2 · 0/2 & 1/2 · 1/2 \\
+场景1 / 目标0 & 2/2 · 0/2 & 2/2 · 0/2 \\
+场景1 / 目标1 & 0/2 · 0/2 & 0/2 · 0/2 \\
+\end{longtable}\endgroup
+
+第二轮首次选对物体仍为5/8对5/8，没有提高。唯一完整收益来自场景0、初态30、指定番茄酱：基座同样先抬起了这件物体，但没有完成放置；适配改善了这一条件的后续完成。奶酪/黄油场景的反向目标仍失败。因此，这轮尚未补齐可靠的目标选择能力，不能把单例完成当成普遍的语言条件化提升。
+
+两轮测试布局不同，各自与自己的基座配对。第二轮配对新增完整成功1条、损失0条。只有一个训练种子、每种目标两个测试初态，不能据此推断广泛泛化或统计显著性。
+
+第一轮恢复5200个仿真状态，16条最终判分一致；第二轮恢复5200个状态，最终判分差异0条。动作输入和保存轨迹分别核对960次策略查询，两轮共1920次；另有48\(\times\)2个同状态反事实点。首轮图像与动作生成不能因后续结果被覆盖。
+
+附带视频固定展示第二轮场景0、初态30、指定番茄酱的两组实际仿真回合，不按成功与否挑选，完整326帧。视频使用20Hz仿真时间，不包含推理等待。
+
+相关代码在\path|scripts/evaluate_policy.py|、\path|evaluate_paired.py|、\path|safe_eval.py|、\texttt{summarize.py}；结果在SUMMARY.json、SUMMARY\_PAIRED.json。
+
+
+\subsection{反事实动作引导的免训练形式}\label{s14-detail-7}
+
+\subsubsection{参考方法与复现边界}\label{s14-detail-8}
+
+参考论文《When Vision Overrides Language: Evaluating and Mitigating Counterfactual Failures in VLAs》（2026预印本）：https://arxiv.org/html/2602.17659v1 。采用式4的training-free变体，增强同一观察下由语言引起的动作差异： \path|a = a_cond + (w - 1) × (a_cond - a_null)|
+
+引导尺度固定为原策略1与论文使用的1.5，不搜索更多尺度。两个分支共享同一权重、图像和显式采样噪声；空任务在原输入变换前设置。当前在7维反归一化动作上混合，包括夹爪；不是在流匹配内部速度场上引导。模型动作反归一化是仿射变换，组合系数之和为1，因此数学上与其前的线性组合相容。保留原环境控制器的范围处理，未新加动作放大或裁剪。
+
+作者项目链接该次无法访问，未核实官方代码。此处是按论文公式与明确本地约定实现，不声称与作者采样细节逐项一致。也没有复现另一个需要训练独立视觉动作先验的版本。
+
+场景0的目标0/1分别为汤罐/番茄酱，场景1分别为奶酪/黄油；各初态0、11，分别指定两件物体，共8个条件，每条件比较两方法。初态已参与此前诊断，是开发对照，不是独立测试。每回合300策略步、25保持步；每次预测10步执行前5步，原Long成功只记录，不用于提前停止。
+
+\subsubsection{输入及公式控制检查}\label{s14-detail-9}
+
+5项CPU测试覆盖尺度1/0、公式、相同分支与非法参数。真实模型检查：尺度1相对原策略最大动作差0.0，同噪声重复差0.0，有/空指令动作RMS差0.057409。
+
+预检曾发现具体配置与通用实现的区别：虽然\(\pi\)0.5通用tokenizer支持将状态编码为文本，本地固定pi05\_libero显式关闭discrete\_state\_input。最初预设空任务仍有State文本的检查因此报错，尚未执行模型推理和回合；修正后按真实配置核验。实际空任务解码为换行；原图像和state字典字段均保留。没有修改模型配置来绕过检查。
+
+全部960次策略查询核对保存输入、种子噪声、组合公式与实际执行动作，公式最大差0.0。两方法每条件的初始与稳定后状态哈希一致。另恢复5200个物理状态复算，16条最终判分均一致。
+
+\subsubsection{配对闭环结果}\label{s14-detail-10}
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}@{}}
+\caption{配对闭环结果：设置与结果}\label{tab:s14-4}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+方法
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+接触指定物体
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+首次抬起选对
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+合法完成窗口
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+完整成功
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+方法
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+接触指定物体
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+首次抬起选对
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+合法完成窗口
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+完整成功
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+原\(\pi\)0.5 & 8/8 & 4/8 & 4/8 & 0/8 \\
+CAG 1.5 & 8/8 & 4/8 & 4/8 & 1/8 \\
+\end{longtable}\endgroup
+
+\stagefigure{figures/ch05/s14_results_599aec80.png}{回合结果}{fig:s14-detail-4}
+
+``接触指定物体''只表示该回合中夹爪曾与目标接触，不等于成功选取。首次抬起要求目标升高超过20毫米、夹爪接触且闭合命令持续3步。完整成功要求最后10步目标在篮中且与夹爪分离，另一件全程位移不超过30毫米。三个指标不能互换，也不能把本地完整约束成绩当成原LIBERO排行榜成绩。
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2329}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1918}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1918}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1918}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1918}}@{}}
+\caption{配对闭环结果：设置与结果}\label{tab:s14-5}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+场景 / 初态 / 指定目标
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+原策略先抬起
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+CAG先抬起
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+原策略完整成功
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+CAG完整成功
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+场景 / 初态 / 指定目标
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+原策略先抬起
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+CAG先抬起
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+原策略完整成功
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+CAG完整成功
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+0 / 0 / 0 & 0 & 0 & 否 & 是 \\
+0 / 0 / 1 & 0 & 0 & 否 & 否 \\
+0 / 11 / 0 & 0 & 0 & 否 & 否 \\
+0 / 11 / 1 & 0 & 0 & 否 & 否 \\
+1 / 0 / 0 & 0 & 0 & 否 & 否 \\
+1 / 0 / 1 & 0 & 0 & 否 & 否 \\
+1 / 11 / 0 & 0 & 0 & 否 & 否 \\
+1 / 11 / 1 & 0 & 0 & 否 & 否 \\
+\end{longtable}\endgroup
+
+\stagefigure{figures/ch05/s14_video_frame_eb7295e2.png}{固定条件回放截图}{fig:s14-detail-5}
+
+视频条件在看到该条件结果前固定为场景1、初态0、指定黄油。保留完整326帧，按20Hz仿真时间播放，不含GPU推理等待，没有依据成功筛选片段。
+
+\subsubsection{资源、文件与后续判断}\label{s14-detail-11}
+
+原策略每次一次模型调用，CAG每次两次；实际中位查询时间分别0.082秒、0.157秒（不含仿真推进；包含本地输入检查与记录）。共1440次闭环分支推理，另4次模型预检。模型通过原分块加载，独立systemd单元MemoryHigh14GiB、MemoryMax16GiB，没有双模型驻留，没有改Swap或关闭内存保护。模型进程采样观测RSS峰约5.78GiB、进程组约5.21GiB。独立物理复算最初软上限2GiB过低导致回收节流，调整为软4GiB、硬6GiB后继续同一次复算；没有OOM或重跑策略回合。
+
+目标选择没有改善；唯一新增完整成功来自场景0、初态0、指定原优先汤罐的条件，两方法都先选汤罐。收益表现为该条件下避免后续搬动另一件物体，不能解释为听懂了反向目标。该阶段到此收尾，不扩大尺度搜索。 若后续验证视觉目标接口，需要区分正确目标框的上限实验与真实视觉预测框，不能默认未训练的\(\pi\)0.5能读懂新增标记。所有结果保留，不覆盖上一阶段交付。
+
+\begin{Verbatim}[breaklines=true,breakanywhere=true,fontsize=\footnotesize]
+cag_reproduction/
+  scripts/mixing.py、cag_policy.py  双分支与公式
+  scripts/run.py                   模型控制检查、16开发回合
+  scripts/summarize.py              输入与动作核验
+  tests/test_mixing.py              5项CPU测试
+  PROTOCOL.json、CONTROL_CHECK.json
+  SUMMARY.json、PHYSICS_AUDIT.json
+  development/base/、cag15/         原始回合、动作、输入和视频
+\end{Verbatim}
+
+相关代码在上述scripts目录。源码包包含该阶段源码、统计和调用依赖源码；不包含基座、全部轨迹或图像，完整GPU复现仍需原环境与LIBERO资产。源码解压后的CPU测试只用合成数组。权重未改变，因此该阶段没有新增适配器文件。
+
+
+\subsection{公开可运行实例与目标图接口}\label{s14-detail-12}
+
+\subsubsection{官方开源方案的完整运行实例}\label{s14-detail-13}
+
+使用Physical Intelligence公开的openpi框架、pi05\_libero权重及配套LIBERO环境。不是只运行模型导入或离线预测，而是``新相机图像和原任务指令\(\rightarrow\)动作块\(\rightarrow\)Panda的OSC控制器\(\rightarrow\)新图像''的连续闭环。每次预测10步、执行前5步，再取新图。没有Qwen、脚本教师动作、示教轨迹回放或物体瞬移替代策略。官方成功信号只用于结束和判分。
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.3103}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2299}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2299}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2299}}@{}}
+\caption{官方开源方案的完整运行实例：设置与结果}\label{tab:s14-6}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+原任务
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+初态
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+结果
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+控制步数
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+原任务
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+初态
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+结果
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+控制步数
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+汤罐与番茄酱入篮 & 32 & 成功 & 349 \\
+汤罐与番茄酱入篮 & 33 & 成功 & 313 \\
+奶酪与黄油入篮 & 32 & 成功 & 249 \\
+奶酪与黄油入篮 & 33 & 成功 & 339 \\
+杯子入微波炉并关门 & 32 & 成功 & 242 \\
+杯子入微波炉并关门 & 33 & 成功 & 243 \\
+\end{longtable}\endgroup
+
+\stagefigure{figures/ch05/s14_official_instances_d32be2d2.png}{该次三类自主任务}{fig:s14-detail-6}
+
+这6个新回合独立保存，不混入此前117/120成绩。原入篮任务要求两件都搬入，下一节的新增任务要求只搬指定一件、另一件不动；两组任务和初态不同，6/6与后面的2/8不能直接作性能对比。其作用是提供可以观看、重新启动和核查的完整实例，不能据此声称任意改写任务均能完成。模型仍使用官方权重，复现结果不作为自主训练成果。相关代码在\path|official_instance/scripts/run.py|和\texttt{start.sh}。
+
+\subsubsection{显式目标接口与数据设计}\label{s14-detail-14}
+
+参考Point-VLA的思路：保持当前agentview与腕部图像，额外提供一张标出目标的初始参考图。把原先空置的第三图像槽位用于该图，并显式打开mask；文字模式保持原mask关闭。视觉模式使用不含物体名称的固定指令，目标由红框指定；文字模式使用物体名称。参考图在整个回合固定，不在中途从真值更新位置。
+
+该阶段目标框来自仿真分割，是准确定位条件下的接口上限测试。它不等于实现了Qwen目标定位，也不等于完整复现官方Point-VLA代码或权重。当前图像和参考图均为224像素输入，基座与视觉编码器冻结，只适配语言和动作专家的LoRA。
+
+\stagefigure{figures/ch05/s14_goal_interface.png}{同场景不同目标及位置交换}{fig:s14-detail-7}
+
+为减少``背景/位置决定目标''的关联，加入同一布局的两种目标，以及初始化时交换两件物体XY位置。交换只在策略开始前发生，控制过程中不改物体位置。新训练初态36--39，验证40；旧训练20--25、验证26--27保留。候选中任一目标未通过稳定放置与另一件全程位移不超过30毫米的要求，整对不进入训练。最终22个训练布局对、7个验证布局对，分别44条和14条轨迹。
+
+脚本教师使用物体真值生成动作，仅用于造数据，不能计入VLA成功率。测试初态41未参与该阶段数据生成或选模，42仍保留。公开基座是否接触过相似训练布局不是本试验能够排除的，因此这里只称该阶段微调的保留初态。
+
+相关代码在\path|point_target/scripts/layout.py|、\texttt{prepare.py}、\path|goal_inputs.py|。Point-VLA方法来源：https://arxiv.org/abs/2512.18933 ；数据设计参考Shortcut Learning研究：https://proceedings.mlr.press/v305/xing25a.html 。
+
+\subsubsection{有界联合适配与保留初态测试}\label{s14-detail-15}
+
+1000步、batch2，从原基座和零B的LoRA开始，不沿用上一轮训练后的适配器。仅49,987,584个LoRA参数可训练，主参数为FP32。文字/目标图batch精确1:1；任务与布局均匀采样，每batch成对采两种目标，40\%取共享观察的目标分叉点，其余按动作阶段采样。新增平移将参考图和框一起移动；官方训练原有的当前相机裁剪、旋转和颜色增强仍保留。
+
+固定验证样本的平均流匹配损失从0.036058降至0.002871，选定step1000。没有依据测试结果换权重或追加训练。
+
+\stagefigure{figures/ch05/s14_validation_03dca31b.png}{固定验证损失}{fig:s14-detail-8}
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2964}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2345}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2345}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2345}}@{}}
+\caption{有界联合适配与保留初态测试：设置与结果}\label{tab:s14-7}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+策略/输入
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+首次选对
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+合法完成窗口
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+完整单件搬运
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+策略/输入
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+首次选对
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+合法完成窗口
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+完整单件搬运
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+原权重·文字 & 4/8 & 3/8 & 2/8 \\
+适配权重·文字 & 4/8 & 4/8 & 2/8 \\
+适配权重·目标图 & 1/8 & 1/8 & 0/8 \\
+\end{longtable}\endgroup
+
+\stagefigure{figures/ch05/s14_results_8f7ac150.png}{闭环结果}{fig:s14-detail-9}
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2847}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3541}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3612}}@{}}
+\caption{有界联合适配与保留初态测试：设置与结果}\label{tab:s14-8}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+输入模式
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+原位置：选对/成功
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+交换位置：选对/成功
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+输入模式
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+原位置：选对/成功
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+交换位置：选对/成功
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+基座 & 2/4 · 1/4 & 2/4 · 1/4 \\
+text & 1/4 · 0/4 & 3/4 · 2/4 \\
+goal & 1/4 · 0/4 & 0/4 · 0/4 \\
+\end{longtable}\endgroup
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2176}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1781}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1781}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1853}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2409}}@{}}
+\caption{有界联合适配与保留初态测试：设置与结果}\label{tab:s14-9}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+指定目标/布局
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+原权重先拿
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+文字先拿
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+目标图先拿
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+完整成功：原/文/图
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+指定目标/布局
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+原权重先拿
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+文字先拿
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+目标图先拿
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+完整成功：原/文/图
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+汤罐 / 原位 & 汤罐 & 未明确抬起 & 未明确抬起 & 失败/失败/失败 \\
+番茄酱 / 原位 & 未明确抬起 & 未明确抬起 & 未明确抬起 & 失败/失败/失败 \\
+汤罐 / 交换 & 未明确抬起 & 未明确抬起 & 未明确抬起 & 失败/失败/失败 \\
+番茄酱 / 交换 & 未明确抬起 & 番茄酱 & 未明确抬起 & 失败/成功/失败 \\
+奶酪 / 原位 & 奶酪 & 奶酪 & 奶酪 & 成功/失败/失败 \\
+黄油 / 原位 & 奶酪 & 奶酪 & 奶酪 & 失败/失败/失败 \\
+奶酪 / 交换 & 奶酪 & 奶酪 & 未明确抬起 & 成功/成功/失败 \\
+黄油 / 交换 & 黄油 & 黄油 & 未明确抬起 & 失败/失败/失败 \\
+\end{longtable}\endgroup
+
+首次选对要求夹爪接触、闭合命令且物体升高20毫米持续3步；合法窗口表示过程中曾达到要求，不保证最终保持。完整成功要求末10步目标稳定在篮中并与夹爪分离，另一件全程位移不超过30毫米。每回合300策略步、25保持步，不使用真值提前停止。三种模式每个条件的初态和采样噪声一致。
+
+适配文字与目标图使用同一权重，因此它们是输入方式对照，不能单独分离增加数据、位置交换、联合训练各自的贡献。只换初始参考图红框的同观察探针，动作差RMS中位数为0.012440，说明输入会影响预测；是否选对必须看上面的闭环结果，不能由动作数值变化替代。
+
+目标图模式在该次保留初态上退化，首次选对仅1/8、完整成功0/8，低于同权重文字模式。该适配尚不可用，该阶段不追加训练或扩初态寻找正结果；这也不能据此否定原论文方法。官方原任务实例仍单独跑通。
+
+相关代码在\path|point_target/scripts/train.py|、\path|policy_runtime.py|、\texttt{evaluate.py}和\texttt{summarize.py}。
+
+\subsubsection{核对、边界与后续安排}\label{s14-detail-16}
+
+文字分支变换与原方案逐项相同，目标图只新增第三图像及mask。原始相机、状态和同红框对照的任务词元已核验。目标框通过分割与RGB方向预检并保存图示；缓存图像与即时渲染存在微小时间差，方向检查与目标可见性分别验证，没有用翻转错误的框训练。
+
+40条新教师候选（含拒绝项）共13194状态复算，最终标签全部一致；24条策略测试共7800状态复算，最终判分全部一致。实际1440次策略查询与8次额外换框探针保留输入、预测动作和实际施加动作。官方6回合另核对实际动作与模型动作块一致、末步官方成功谓词为真。
+
+全部模型任务在独立用户服务中单模型运行，软14GiB、硬16GiB限额，沿用分块加载；CPU数据和复算为4/6GiB限额。没有修改系统Python、Swap、ROS2或连接实体设备。
+
+后续若显式接口有稳定收益，再接视觉预测框，并分别报告准确框与预测框表现；若无收益，先定位图像条件与动作对齐，不继续凭验证损失下降宣称技能提升。SO101真机任务需要对应机器人和相机的数据适配，本阶段不将Panda仿真权重直接用于真机。
+
+
+\subsection{后续部署核对：旧适配分数的解释需要保留条件}\label{s14-detail-17}
+
+后续检查目标图分支的权重合并时，发现注意力输出层的低秩增量不能按朴素的逐头矩阵乘法直接加入。原算子两次求和的语义需要与未合并运行一致。固定浮点32位算子检查中，朴素实现最大差约16.6893，按原算子语义修正后约 \(1.91\times10^{-6}\)；这是局部算子测试，不是任务成功率。
+
+在同一适配器的六组已保存实际输入上，读取旧部署输出、原生未合并参考与修正合并输出，得到下表。数值由已存数组重新计算，没有在写报告时运行新模型。
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3043}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3455}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3502}}@{}}
+\caption{后续部署核对：旧适配分数的解释需要保留条件：设置与结果}\label{tab:s14-10}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+输入编号
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+旧部署相对未合并最大动作差
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+修正合并相对未合并最大动作差
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+输入编号
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+旧部署相对未合并最大动作差
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+修正合并相对未合并最大动作差
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+0 & 0.03208 & 0.00195 \\
+1 & 0.60550 & 0.00366 \\
+2 & 0.58115 & 0.01035 \\
+3 & 0.37429 & 0.00447 \\
+4 & 0.42658 & 0.01144 \\
+5 & 0.19806 & 0.00275 \\
+\end{longtable}\endgroup
+
+动作差采用接口输出单位，七维动作含不同物理量，不能统一解释为角度误差。修正合并仍存在BF16数值差；原生未合并适配器的闭环复测尚未完成，也没有新训练。
+
+因此，前述目标图、文字适配分数需要标注为当时部署实现下的结果，不能单独用于否定训练方法或论文思路。已确认该次目标图分支受合并实现影响，其他共用路径也应逐项核对；没有适配器的官方基座不受该问题影响。当前同场景系统使用未适配\(\pi\)0.5，Qwen适配器由PEFT直接加载，也不受此旧JAX合并问题影响。
+
+
+\subsection{显式目标实例运行入口}\label{s14-detail-18}
+
+\subsubsection{文件目录和启动方式}\label{s14-detail-19}
+
+\begin{Verbatim}[breaklines=true,breakanywhere=true,fontsize=\footnotesize]
+official_instance/
+  index.html、start.sh、python_model.sh
+  scripts/run.py、build_page.py
+  runs/fresh_original/             6条原任务输入、动作与录像
+point_target/
+  scripts/layout.py、prepare.py、goal_inputs.py
+  scripts/train.py、policy_runtime.py、evaluate.py
+  training/                       增量权重、训练和验证记录
+  evaluation/base|text|goal/       24条策略测试
+  SUMMARY.json、PHYSICS_AUDIT.json
+\end{Verbatim}
+
+本地实例页面：http://127.0.0.1:8793 。单任务重新运行（使用新tag）：
+
+\begin{Verbatim}[breaklines=true,breakanywhere=true,fontsize=\footnotesize]
+bash experiments/vla_libero/official_instance/start.sh --tag my_demo --tasks 9 --initials 32
+\end{Verbatim}
+
+交付中的``自主任务演示/index.html''可直接打开观看该次6条录像。源码ZIP不含基座、完整环境、训练轨迹及全部帧，完整GPU运行需要README列出的公开资产；增量适配器单独提供，不能独立作为完整模型运行。CPU图像测试使用合成输入，不依赖隐藏案例文件。相关代码目录保留原层级以便检查。
+
+
+\paragraph{阶段结论}CAG开发回合未改善首次目标选择；显式目标图版本在保留初态上首次选对仅1/8。与此同时，官方原任务实例另有6/6成功回合。 本地参考实现及数据规模与原论文不同，负结果不能解释为否定论文方法。官方任务复现与自定义目标能力分别统计。
+
+\stagecode{s14}
+
+\FloatBarrier
+
+\section{同一物理场景中的导航与操作}
+
+\label{stage:s15}
+
+给LIBERO厨房场景加入平面移动底座，让Panda、工作台、物体、相机和障碍物共用同一MuJoCo实例。Nav2导航停靠后，以控制方式展开机械臂，再由\pifive{}操作。
+
+\subsection{已实际完成}\label{s15-detail-1}
+
+\begin{itemize}
+\tightlist
+\item
+  查询并比较robosuite、ManiSkill、RoboCasa、官方mujoco\_ros2\_control等实现、维护信息与许可证；记录在research/SELECTION.md。robosuite上游Omron XML及MIT许可原文以固定提交保存在third\_party/，不是来源不明的复制。
+\item
+  给合适的厨房工作台加入移动底座，Panda、桌面、物体、相机、障碍共用同一MuJoCo实例。客厅场景的固定桌面安装方式会穿模，明确拒绝直接扩展。
+\item
+  底座使用三个平面关节和有限力速度执行器，参考robosuite官方设计；替换原Rethink固定支架，不将它一并移动。不包含差速轮、轮滑或悬架动力学。
+\item
+  Nav2以已知地图、理想仿真位姿和实际MuJoCo射线工作；不是SLAM/AMCL。低位射线与高处点云分别覆盖地面障碍和桌面悬挑。
+\item
+  开发回合results/nav05完成Nav2停靠、展开手臂、\(\pi\)0.5抓碗放入底层抽屉并关闭。没有在导航后重置场景；导航误差约1.64cm，操作317步。
+\end{itemize}
+
+最新结果：局部加载官方tf2/tf2\_ros 0.25.24库后，初态0/1/2均完成同场景导航和操作（3/3开发回归）；逐例实际图像、模型动作、连续时间、夹持与释放及视频核对通过。详见PROGRESS.md与results/regression\_summary.json。此前超时、碰撞和时钟对照均保留，不把更换时钟单独当成修复。
+
+\subsection{关键修正}\label{s15-detail-2}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  直接在原桌面安装点加底座会与家具穿模，不通过关闭碰撞解决。
+\item
+  厨房Panda原模型包含约274kg的固定Rethink支架；移动扩展必须真正替换该支架并同步robosuite元信息。
+\item
+  只有低位激光会漏掉桌面悬挑，必须把高处障碍也纳入局部点云和地图。
+\item
+  导航初始TF需包含map\(\rightarrow\)odom\(\rightarrow\)base\_footprint\(\rightarrow\)base\_link；每回合隔离ROS通信域和仿真时钟，避免跨回合混用。
+\item
+  停车制动为有限摩擦力，运行时不改qpos或固定物体，不用轨迹重放冒充模型闭环。
+\end{enumerate}
+
+
+\subsection{三个初态的开发回归}\label{s15-detail-3}
+
+该阶段优先补统一物理场景，未连接实体设备。固定厨房任务``把黑碗放入底层抽屉并关闭''，导航、机械臂、相机、桌面和物体由同一个MuJoCo实例推进。导航后不重置场景，\(\pi\)0.5读取实时RGB与机器人状态产生动作。
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}@{}}
+\caption{三个初态的开发回归：设置与结果}\label{tab:s15-1}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+初态
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Nav2到达
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+操作完成
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+停靠误差
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+\(\pi\)0.5动作步数
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+初态
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Nav2到达
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+操作完成
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+停靠误差
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+\(\pi\)0.5动作步数
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+0 & 成功 & 成功 & 1.65cm & 308 \\
+1 & 成功 & 成功 & 1.50cm & 318 \\
+2 & 成功 & 成功 & 1.42cm & 223 \\
+\end{longtable}\endgroup
+
+三条均核对实际夹持、物体抬升和最终释放；动作队列与模型输出一致、推理图像持续更新、视频完整解码，导航碰撞停止事件为0。这只是同一任务三个初态的开发回归，不代表多任务或真实世界成功率。
+
+遇到的主要问题包括原固定支架残留、桌面悬挑漏进代价地图，以及本机tf2 0.25.23的已知MessageFilter死锁症状。读取官方上游问题与发行包信息后，在项目目录解包0.25.24，并仅给实验子进程设置库搜索路径；系统包未修改。修复库加载路径已在进程maps中核对。旧失败回合和时钟对照保留，不能把仅更换时钟说成已经定位或修复根因。
+
+参考：https://github.com/ros2/geometry2/issues/992 。本机没有采集GDB锁栈，所以将``具体锁环''记作与上游一致的解释，而非独立证明。当前修复配置保留动态传感器融合，没有把关闭碰撞或改成轨迹回放当作解决方法。
+
+尚未完成：可供性模型、Qwen分解LoRA和两者的正式闭环集成。可供性只先核查了6视角18个真实把手部件标注，未训练或作独立评测。定位仍是已知地图/理想仿真里程计，底座为有限力平面近似，尚无SLAM、AMCL、轮滑、移动底座真机或多工作站泛化结论。
+
+
+\stagefigure{figures/ch05/s15_mobile_scene.jpg}{同一MuJoCo世界中的移动机械臂与厨房工作台。该图来自开发回合nav05。}{fig:s15-retained}
+
+\paragraph{阶段结论}修正支架碰撞、障碍感知和坐标变换后，三个开发初态完成导航及操作。导航之后没有重新生成任务场景。 底座是有限力的平面速度近似，定位使用仿真位姿和已知地图；未包含真实轮地滑移、建图与定位误差。
+
+\stagecode{s15}
+
+\stagevideo{videos/ch05/mobile_navigation_operation.mp4}
+
+\FloatBarrier
+
+\section{Qwen任务准入与记忆里程碑监视}
+
+\label{stage:s16}
+
+在同场景链路中加入Qwen对请求的接受或拒绝、站点和技能匹配，以及带文字记忆的阶段检查。
+
+\subsection{本阶段范围与系统实现}\label{s16-detail-1}
+
+执行链路为：用户指令与场景图像 \(\rightarrow\) Qwen选择站点/技能或拒绝 \(\rightarrow\) Nav2停靠 \(\rightarrow\) \(\pi\)0.5执行英文技能指令 \(\rightarrow\) Qwen视觉检查与停止。站点仅kitchen\_counter，已验证技能仅bowl\_to\_bottom\_drawer\_and\_close，因此高层能力应称为任务准入与单技能匹配，不是多技能长程规划。
+
+系统复用mobile\_vla的场景与导航程序，通过独立子类扩展；没有修改mobile\_vla、vla\_libero已有代码或历史结果。导航和操作共用同一个MuJoCo世界与对象，停靠后通过控制展开机械臂，不重新生成抓取场景。底盘采用平面速度驱动、有限执行力近似，导航使用仿真位姿；尚不包含真实轮地滑移、SLAM或AMCL定位误差。
+
+Qwen3-VL-4B基座在独立PyTorch worker内处理任务与停止判断；\(\pi\)0.5采用公开pi05\_libero权重及分块加载，不包含本项目训练的策略适配器。Qwen先于JAX启动，每回合由systemd用户单元限制内存（MemoryHigh 16G、MemoryMax 18G、OOMPolicy=stop）。
+
+官方LIBERO谓词只用于记录是否真正成功和停止后的评分，不驱动视觉停止。达到520个策略控制步是统一兜底规则。任务拒绝不启动导航或策略执行。
+
+相关代码在scripts/skills.py、scripts/qwen\_worker.py、scripts/sim\_server\_qwen.py、scripts/run\_case\_qwen.py。
+
+\subsection{视觉停止的三版结果}\label{s16-detail-2}
+
+最初直接比较操作开始帧与当前帧，整项判断``碗已入抽屉且门已关闭''。五个可行请求均完成导航与任务，但110次检查全部未确认完成，其中60次发生在官方已经成功之后。抽屉关闭后碗不可见，以及机械臂遮挡，使完整任务单次判断难以成立。
+
+随后改成有序里程碑：先确认碗入抽屉，将事实写成文字记忆，再判断抽屉关闭。每次只看当前一张512像素agentview图，要求先描述再判断，指出白色双指物体是夹爪。第一版在线仍出现误停与漏停。第二版调整碗的问法，避免列举答案导致照抄，并将抽屉关闭确认增加到连续三次；碗入抽屉确认一次。
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.2176}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1722}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1525}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1525}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1525}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1525}}@{}}
+\caption{视觉停止的三版结果：设置与结果}\label{tab:s16-1}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+版本
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+在线初态
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+官方任务成功
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+正确自主停止
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+误停
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+成功却未自主停
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+版本
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+在线初态
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+官方任务成功
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+正确自主停止
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+误停
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+成功却未自主停
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+整任务开始/当前帧判断 & 0--2，含初态0的两条改写 & 5/5 & 0/5 & 0 & 5 \\
+文字记忆里程碑第一版 & 3--7 & 4/5 & 3/5 & 1 & 1 \\
+文字记忆里程碑第二版 & 8--12 & 4/5 & 4/5 & 0 & 0 \\
+\end{longtable}\endgroup
+
+第二版另外一条任务失败回合运行至上限，Qwen没有误报完成。因此``停止决策5/5正确''包含四个成功后的正确停止和一个失败后的正确不停止，并不等于任务成功5/5。
+
+\FloatBarrier\begingroup\small\setlength{\tabcolsep}{2.5pt}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2294}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2294}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2294}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.3119}}@{}}
+\caption{视觉停止的三版结果：设置与结果}\label{tab:s16-2}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+初态
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+首次官方成功步
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+停止步
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+停止结果
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+初态
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+首次官方成功步
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+停止步
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+停止结果
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+8 & 223 & 250 & 正确停止，晚27步 \\
+9 & 267 & 290 & 正确停止，晚23步 \\
+10 & 无 & 520 & 操作失败，未误停 \\
+11 & 227 & 250 & 正确停止，晚23步 \\
+12 & 302 & 320 & 正确停止，晚18步 \\
+\end{longtable}\endgroup
+
+这里的``步''是策略动作施加的仿真控制步，不是毫秒，也不包括Qwen推理时等待的墙钟时间。三版使用不同初态，且同时调整问法和确认次数，不能作为严格配对消融，不能把提升单独归因于连续三票。
+
+近乎关严但差1--2cm的抽屉曾造成误停；最新五回合未覆盖同类边界，不能用本批零误停推导出毫米级状态识别。历史提示词中的dark cabinet与白色柜体不一致，该阶段保持原文以对应历史结果；如改写需另行在线验证。
+
+相关代码在scripts/milestones.py与scripts/skills.py；原始回合在\path|results/ms_zh_i03|至i07、\path|results/ms2_zh_i08|至i12。完整早期结果见RESULTS.md。
+
+
+\paragraph{阶段结论}任务决策7/7正确；后期五回合中停止决策5/5正确，其中实际任务成功4/5。失败回合未被误报成完成。 只验证一个厨房站点和一种技能，应称任务准入与单技能匹配。当前基座模型没有经过指令分解专项微调。
+
+\stagecode{s16}
+
+\stagevideo{videos/ch05/milestone_monitor_example.mp4}
+
+\FloatBarrier

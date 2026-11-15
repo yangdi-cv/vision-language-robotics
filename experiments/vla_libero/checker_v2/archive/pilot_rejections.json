@@ -1,0 +1,99 @@
+[
+  {
+    "group": "synth_t04_i04_g1",
+    "reason": "no supported released positive anchor"
+  },
+  {
+    "group": "synth_t04_i08_g1",
+    "kind": "center_jitter",
+    "reason": "desired label not established"
+  },
+  {
+    "group": "synth_t05_i03_g0",
+    "reason": "no supported released positive anchor"
+  },
+  {
+    "group": "synth_t05_i04_g0",
+    "reason": "no supported released positive anchor"
+  },
+  {
+    "group": "synth_t05_i05_g0",
+    "reason": "no supported released positive anchor"
+  },
+  {
+    "group": "synth_t05_i06_g0",
+    "reason": "no supported released positive anchor"
+  },
+  {
+    "group": "synth_t05_i07_g0",
+    "reason": "no supported released positive anchor"
+  },
+  {
+    "group": "synth_t05_i08_g0",
+    "reason": "no supported released positive anchor"
+  },
+  {
+    "group": "synth_t05_i09_g0",
+    "reason": "no supported released positive anchor"
+  },
+  {
+    "group": "synth_t05_i10_g0",
+    "reason": "no supported released positive anchor"
+  },
+  {
+    "group": "synth_t08_i03_g0",
+    "reason": "no supported released positive anchor"
+  },
+  {
+    "group": "synth_t08_i05_g0",
+    "reason": "no supported released positive anchor"
+  },
+  {
+    "group": "synth_t08_i06_g0",
+    "reason": "no supported released positive anchor"
+  },
+  {
+    "group": "synth_t08_i09_g0",
+    "reason": "no supported released positive anchor"
+  },
+  {
+    "group": "synth_t09_i03_g0",
+    "kind": "floating",
+    "reason": "desired label not established"
+  },
+  {
+    "group": "synth_t09_i04_g0",
+    "kind": "floating",
+    "reason": "desired label not established"
+  },
+  {
+    "group": "synth_t09_i05_g0",
+    "kind": "floating",
+    "reason": "desired label not established"
+  },
+  {
+    "group": "synth_t09_i06_g0",
+    "kind": "floating",
+    "reason": "desired label not established"
+  },
+  {
+    "group": "synth_t09_i07_g0",
+    "kind": "floating",
+    "reason": "desired label not established"
+  },
+  {
+    "group": "synth_t09_i08_g0",
+    "kind": "floating",
+    "reason": "desired label not established"
+  },
+  {
+    "group": "synth_t09_i09_g0",
+    "kind": "floating",
+    "reason": "desired label not established"
+  },
+  {
+    "group": "synth_t09_i10_g0",
+    "kind": "floating",
+    "reason": "desired label not established"
+  }
+]

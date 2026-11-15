@@ -1,0 +1,16 @@
+{
+  "date": "2026-11-14",
+  "pdf_pages": 5,
+  "source_files_sha256_verified": 194,
+  "extracted_source_cpu_tests": {
+    "passed": 4,
+    "failed": 0
+  },
+  "all_deliverable_hashes_verified": true,
+  "pdf_visual_checked_pages": [
+    1,
+    4
+  ],
+  "running_training_or_evaluation": false,
+  "delivery": "deliverables/20261114_阿里_目标条件化执行与策略适配"
+}

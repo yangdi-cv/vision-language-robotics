@@ -1,0 +1,189 @@
+{
+  "suite": "libero_10",
+  "task_id": 3,
+  "initial_state_id": 0,
+  "original_task_language": "put the black bowl in the bottom drawer of the cabinet and close it",
+  "input_instruction": "把黑色的碗放进柜子最下面的抽屉，然后关上抽屉",
+  "planner": "qwen",
+  "execution_profile": "legacy",
+  "planner_profile": "base",
+  "checker_adapter": "/home/yd/Documents/VLA/experiments/vla_libero/checker_v2/results/model/best_adapter",
+  "monitor": "qwen",
+  "max_steps": 520,
+  "subgoal_step_budget": 300,
+  "monitor_every_queries": 4,
+  "monitor_res": 512,
+  "gripper_gate": true,
+  "confirm": 2,
+  "max_replans": 0,
+  "last_subgoal_runs_to_limit": true,
+  "noise_seed": 730300,
+  "runner_sha256": "5df3e099c80231cf64851590c58b1b63d08bc1a2468cb3f1af5729ea5c9e3901",
+  "events": [
+    {
+      "kind": "plan",
+      "step": 0,
+      "ok": true,
+      "seconds": 1.386700023431331e-05,
+      "raw": "[\"put the black bowl in the bottom drawer of the cabinet\", \"close the bottom drawer of the cabinet\"]",
+      "error": null
+    },
+    {
+      "kind": "subgoal_start",
+      "step": 0,
+      "index": 0,
+      "subgoal": "put the black bowl in the bottom drawer of the cabinet"
+    },
+    {
+      "kind": "check",
+      "step": 20,
+      "index": 0,
+      "done": false,
+      "confirmed": false,
+      "seconds": 0.12833318499906454,
+      "checker": "v2",
+      "status": "no",
+      "scores": {
+        "yes": 0.006206456138065805,
+        "no": 0.5586873770911991,
+        "unknown": 0.4351061667707351,
+        "yes_log_odds": -5.075939419878843
+      },
+      "reason": "V2 no; p_yes=0.0062, threshold=3.2481",
+      "error": null,
+      "shadow_long_task_atoms": [
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 40,
+      "index": 0,
+      "done": false,
+      "confirmed": false,
+      "seconds": 0.12608051399729447,
+      "checker": "v2",
+      "status": "no",
+      "scores": {
+        "yes": 0.0015008773341063698,
+        "no": 0.998296001006779,
+        "unknown": 0.0002031216591146977,
+        "yes_log_odds": -6.500203447672128
+      },
+      "reason": "V2 no; p_yes=0.0015, threshold=3.2481",
+      "error": null,
+      "shadow_long_task_atoms": [
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 60,
+      "index": 0,
+      "done": false,
+      "confirmed": false,
+      "seconds": 0.12260922400309937,
+      "checker": "v2",
+      "status": "no",
+      "scores": {
+        "yes": 9.610165739514497e-05,
+        "no": 0.9998960098381897,
+        "unknown": 7.888504415034869e-06,
+        "yes_log_odds": -9.250007889293705
+      },
+      "reason": "V2 no; p_yes=0.0001, threshold=3.2481",
+      "error": null,
+      "shadow_long_task_atoms": [
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 180,
+      "index": 0,
+      "done": false,
+      "confirmed": false,
+      "seconds": 0.12537680500099668,
+      "checker": "v2",
+      "status": "no",
+      "scores": {
+        "yes": 0.003172682385493357,
+        "no": 0.9968271735749491,
+        "unknown": 1.4403955746007128e-07,
+        "yes_log_odds": -5.750000144498017
+      },
+      "reason": "V2 no; p_yes=0.0032, threshold=3.2481",
+      "error": null,
+      "shadow_long_task_atoms": [
+        false,
+        true
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 200,
+      "index": 0,
+      "done": false,
+      "confirmed": false,
+      "seconds": 0.12612325699592475,
+      "checker": "v2",
+      "status": "no",
+      "scores": {
+        "yes": 0.0024726159980552453,
+        "no": 0.9975244888662627,
+        "unknown": 2.895135682165117e-06,
+        "yes_log_odds": -6.000002902316197
+      },
+      "reason": "V2 no; p_yes=0.0025, threshold=3.2481",
+      "error": null,
+      "shadow_long_task_atoms": [
+        false,
+        true
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 220,
+      "index": 0,
+      "done": false,
+      "confirmed": false,
+      "seconds": 0.12412527199921897,
+      "checker": "v2",
+      "status": "no",
+      "scores": {
+        "yes": 0.004066444690867807,
+        "no": 0.9950262088540242,
+        "unknown": 0.0009073464551080662,
+        "yes_log_odds": -5.500911466453772
+      },
+      "reason": "V2 no; p_yes=0.0041, threshold=3.2481",
+      "error": null,
+      "shadow_long_task_atoms": [
+        false,
+        true
+      ]
+    }
+  ],
+  "status": "success",
+  "success": true,
+  "subgoals": [
+    "put the black bowl in the bottom drawer of the cabinet",
+    "close the bottom drawer of the cabinet"
+  ],
+  "steps": 221,
+  "policy_queries": 45,
+  "qwen_checks": 6,
+  "replans": 0,
+  "full_task_fallback": false,
+  "final_subgoals": [
+    "put the black bowl in the bottom drawer of the cabinet",
+    "close the bottom drawer of the cabinet"
+  ],
+  "final_atoms": [
+    true,
+    true
+  ]
+}

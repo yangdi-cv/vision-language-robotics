@@ -1,0 +1,43 @@
+{
+  "started": 1794474248.0726576,
+  "max_hours": 2,
+  "cases": [
+    {
+      "tag": "legacy_old",
+      "plan": [
+        "pick up the yellow and white mug and place it in the microwave",
+        "close the microwave door"
+      ],
+      "budget": 300,
+      "max_replans": 0
+    },
+    {
+      "tag": "strict_old",
+      "plan": [
+        "pick up the yellow and white mug and place it in the microwave",
+        "close the microwave door"
+      ],
+      "budget": 300,
+      "max_replans": 0
+    },
+    {
+      "tag": "strict_new",
+      "plan": [
+        "pick up the mug with the yellow handle and place it in the microwave",
+        "close the microwave door"
+      ],
+      "budget": 300,
+      "max_replans": 0
+    },
+    {
+      "tag": "strict_new_recovery",
+      "plan": [
+        "pick up the mug with the yellow handle and place it in the microwave",
+        "close the microwave door"
+      ],
+      "budget": 150,
+      "max_replans": 1
+    }
+  ],
+  "shared": "same task9/init0, original noise seed, monitor prompt, 512px images, confirm2, gripper gate, 520 steps. Initial plan frozen; no model call changes its wording."
+}

@@ -1,0 +1,85 @@
+{
+  "suite": "libero_10",
+  "task_id": 5,
+  "initial_state_id": 2,
+  "original_task_language": "pick up the book and place it in the back compartment of the caddy",
+  "input_instruction": "拿起那本书，放进桌面收纳盒靠后的格子里",
+  "planner": "qwen",
+  "monitor": "qwen",
+  "max_steps": 520,
+  "subgoal_step_budget": 300,
+  "monitor_every_queries": 4,
+  "monitor_res": 512,
+  "gripper_gate": true,
+  "confirm": 2,
+  "last_subgoal_runs_to_limit": true,
+  "noise_seed": 730502,
+  "runner_sha256": "05d5d8308e3282e683448fad8ccb2b1bff0dcbb4f27f9d8a497c867e7382ae7e",
+  "events": [
+    {
+      "kind": "plan",
+      "step": 0,
+      "ok": true,
+      "seconds": 1.2990554250009154,
+      "raw": "{\n  \"subgoals\": [\n    {\n      \"instruction\": \"pick up the black book\",\n      \"completion_hint\": \"The black book is now held by the robot.\"\n    },\n    {\n      \"instruction\": \"place the black book in the back compartment of the brown desk organizer\",\n      \"completion_hint\": \"The black book is now inside the back compartment of the brown desk organizer.\"\n    }\n  ]\n}",
+      "error": null
+    },
+    {
+      "kind": "subgoal_start",
+      "step": 0,
+      "index": 0,
+      "subgoal": "pick up the black book"
+    },
+    {
+      "kind": "check",
+      "step": 20,
+      "index": 0,
+      "done": false,
+      "confirmed": false,
+      "seconds": 0.3300941880006576,
+      "reason": "No change detected.",
+      "error": null,
+      "shadow_long_task_atoms": [
+        false
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 40,
+      "index": 0,
+      "done": false,
+      "confirmed": false,
+      "seconds": 0.5065725989989005,
+      "reason": "The black book is still on the table, not picked up by the robot.",
+      "error": null,
+      "shadow_long_task_atoms": [
+        false
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 60,
+      "index": 0,
+      "done": true,
+      "confirmed": false,
+      "seconds": 0.40156647699950554,
+      "reason": "The robot has picked up the black book.",
+      "error": null,
+      "shadow_long_task_atoms": [
+        false
+      ]
+    }
+  ],
+  "status": "success",
+  "success": true,
+  "subgoals": [
+    "pick up the black book",
+    "place the black book in the back compartment of the brown desk organizer"
+  ],
+  "steps": 178,
+  "policy_queries": 36,
+  "qwen_checks": 3,
+  "final_atoms": [
+    true
+  ]
+}

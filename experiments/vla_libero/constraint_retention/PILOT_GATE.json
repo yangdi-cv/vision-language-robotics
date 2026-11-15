@@ -1,0 +1,143 @@
+{
+  "expand": false,
+  "gains": 0,
+  "losses": 1,
+  "reverse_gains": 0,
+  "positive_success": 3,
+  "constrained_success": 2,
+  "comparisons": [
+    {
+      "case": "task00_target0_init00",
+      "target_index": 0,
+      "stop": "continue",
+      "positive": false,
+      "constrained": false,
+      "old_source": "experiments/vla_libero/selective_execution/episodes/pilot/task00_target0_init00/skill_continue/result.json",
+      "old_sha256": "544d618a3c5269eaa854779bbbebd9839b2bd3aa82142796cd371f285e3681d1",
+      "new_source": "experiments/vla_libero/constraint_retention/episodes/pilot/task00_target0_init00/constrained_continue/result.json",
+      "new_sha256": "5457aabb6106387c9f8cb89d6e611cfb52fcadee8cd4b1790e63a2b41f07a088"
+    },
+    {
+      "case": "task00_target0_init00",
+      "target_index": 0,
+      "stop": "timer",
+      "positive": true,
+      "constrained": true,
+      "old_source": "experiments/vla_libero/selective_execution/episodes/pilot/task00_target0_init00/timer150/result.json",
+      "old_sha256": "8ef4a2af7de05b75c691f0bfe13fb2158c0901697eceee0358c6686efc8e0ed2",
+      "new_source": "experiments/vla_libero/constraint_retention/episodes/pilot/task00_target0_init00/constrained_timer/result.json",
+      "new_sha256": "4675ed89004b8dc6f48ee66e33ccaf11d059a0a5281ab8d696961ca69275584e"
+    },
+    {
+      "case": "task00_target0_init00",
+      "target_index": 0,
+      "stop": "visual",
+      "positive": true,
+      "constrained": false,
+      "old_source": "experiments/vla_libero/selective_execution/episodes/pilot/task00_target0_init00/visual/result.json",
+      "old_sha256": "a45bf96202cd93e7b37c98e8a98df2d10870ee50511ef15ed29355f4428376a0",
+      "new_source": "experiments/vla_libero/constraint_retention/episodes/pilot/task00_target0_init00/constrained_visual/result.json",
+      "new_sha256": "57c4e01121f375f177d181292a2c17e22ec6e6691eaf306509ea8f3171ce052a"
+    },
+    {
+      "case": "task00_target1_init00",
+      "target_index": 1,
+      "stop": "continue",
+      "positive": false,
+      "constrained": false,
+      "old_source": "experiments/vla_libero/selective_execution/episodes/pilot/task00_target1_init00/skill_continue/result.json",
+      "old_sha256": "55dd24929069f1556fadfc35457dcf747a6c3fa4810b4962d62d9af3a568ba11",
+      "new_source": "experiments/vla_libero/constraint_retention/episodes/pilot/task00_target1_init00/constrained_continue/result.json",
+      "new_sha256": "0e796d84b59ce5af7c1620e7b94e7c084b0b63f816ef7aa9819aff845315f368"
+    },
+    {
+      "case": "task00_target1_init00",
+      "target_index": 1,
+      "stop": "timer",
+      "positive": false,
+      "constrained": false,
+      "old_source": "experiments/vla_libero/selective_execution/episodes/pilot/task00_target1_init00/timer150/result.json",
+      "old_sha256": "03595bb7862b385b21e8a6673f98cbaa961d84fb9e0ef19b7079e362957c2a40",
+      "new_source": "experiments/vla_libero/constraint_retention/episodes/pilot/task00_target1_init00/constrained_timer/result.json",
+      "new_sha256": "6a023d69e950cf3ecd03dc18a324e4598cb13080d9e30d60ee996f88bd81b687"
+    },
+    {
+      "case": "task00_target1_init00",
+      "target_index": 1,
+      "stop": "visual",
+      "positive": false,
+      "constrained": false,
+      "old_source": "experiments/vla_libero/selective_execution/episodes/pilot/task00_target1_init00/visual/result.json",
+      "old_sha256": "33286126e981c8134ca01974b573f93fd652bbfab6f7b26e07ccbc65d132115a",
+      "new_source": "experiments/vla_libero/constraint_retention/episodes/pilot/task00_target1_init00/constrained_visual/result.json",
+      "new_sha256": "8a2d895637e56b544ba4834561537f34fdbcd51718c0f44a757368933cbf979b"
+    },
+    {
+      "case": "task01_target0_init00",
+      "target_index": 0,
+      "stop": "continue",
+      "positive": false,
+      "constrained": false,
+      "old_source": "experiments/vla_libero/selective_execution/episodes/pilot/task01_target0_init00/skill_continue/result.json",
+      "old_sha256": "ae577d7e057cb1609194c3ce631799b7d8c29aee1de3a01a97faf72630e57d8f",
+      "new_source": "experiments/vla_libero/constraint_retention/episodes/pilot/task01_target0_init00/constrained_continue/result.json",
+      "new_sha256": "8464edc380a199b11b453f81e5aaa899bdc37eefc1a194a68d47d7f815ddba2b"
+    },
+    {
+      "case": "task01_target0_init00",
+      "target_index": 0,
+      "stop": "timer",
+      "positive": true,
+      "constrained": true,
+      "old_source": "experiments/vla_libero/selective_execution/episodes/pilot/task01_target0_init00/timer150/result.json",
+      "old_sha256": "743b1e1702050644cae7e52a12b144fd6e5f2237aeec615de0b992cac025b0f3",
+      "new_source": "experiments/vla_libero/constraint_retention/episodes/pilot/task01_target0_init00/constrained_timer/result.json",
+      "new_sha256": "54e70fedbaeedfb7ae2fa8fe89021107a1424a0bc0b2c49108aeac11d8e8c536"
+    },
+    {
+      "case": "task01_target0_init00",
+      "target_index": 0,
+      "stop": "visual",
+      "positive": false,
+      "constrained": false,
+      "old_source": "experiments/vla_libero/selective_execution/episodes/pilot/task01_target0_init00/visual/result.json",
+      "old_sha256": "19e6b61652f6d750367a5d033194cc57b1f08a52d4f27a1b6c8b99b02ab2096b",
+      "new_source": "experiments/vla_libero/constraint_retention/episodes/pilot/task01_target0_init00/constrained_visual/result.json",
+      "new_sha256": "9dfe0861278fd682bb0da80ba743811daefc2fe8562a800a9dbe66a5ca815b81"
+    },
+    {
+      "case": "task01_target1_init00",
+      "target_index": 1,
+      "stop": "continue",
+      "positive": false,
+      "constrained": false,
+      "old_source": "experiments/vla_libero/selective_execution/episodes/pilot/task01_target1_init00/skill_continue/result.json",
+      "old_sha256": "5fa3005c180df98c56a07e27dd6de7d0651a3c53542e5634e7faaa10b185f6dd",
+      "new_source": "experiments/vla_libero/constraint_retention/episodes/pilot/task01_target1_init00/constrained_continue/result.json",
+      "new_sha256": "f6991af748563010eefb7237c32bf1ab0bfd5809f3dc00d31b0e87f892ef3dac"
+    },
+    {
+      "case": "task01_target1_init00",
+      "target_index": 1,
+      "stop": "timer",
+      "positive": false,
+      "constrained": false,
+      "old_source": "experiments/vla_libero/selective_execution/episodes/pilot/task01_target1_init00/timer150/result.json",
+      "old_sha256": "82cfa0b62e84682292f5938e9f56778c13818599670fe9e894897a08846bfad4",
+      "new_source": "experiments/vla_libero/constraint_retention/episodes/pilot/task01_target1_init00/constrained_timer/result.json",
+      "new_sha256": "01b08f830faf6a26758fc56d6cd7ca5976099ee8020153254208469d11d8c128"
+    },
+    {
+      "case": "task01_target1_init00",
+      "target_index": 1,
+      "stop": "visual",
+      "positive": false,
+      "constrained": false,
+      "old_source": "experiments/vla_libero/selective_execution/episodes/pilot/task01_target1_init00/visual/result.json",
+      "old_sha256": "77e8a37e5f8c969fdbcf11962c6932b77a06e7bddca3000fbe2d67fcc5645f2e",
+      "new_source": "experiments/vla_libero/constraint_retention/episodes/pilot/task01_target1_init00/constrained_visual/result.json",
+      "new_sha256": "39d70264db34ed221742a521ed2d8e9d00e180326216ca22052347ae1ed94f28"
+    }
+  ],
+  "independent_test": false
+}

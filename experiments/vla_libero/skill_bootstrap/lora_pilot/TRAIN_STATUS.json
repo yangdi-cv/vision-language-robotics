@@ -1,0 +1,8 @@
+{
+  "state": "complete",
+  "steps": 200,
+  "best_step": 200,
+  "best_validation_loss": 0.013371321098929911,
+  "baseline_validation_loss": 0.027692875752109103,
+  "seconds": 103.18859359500038
+}

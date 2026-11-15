@@ -1,0 +1,14 @@
+{
+  "thresholds": {
+    "alphabet_soup_1": 190,
+    "tomato_sauce_1": 150,
+    "cream_cheese_1": 160,
+    "butter_1": 150
+  },
+  "source_results": [
+    "episodes/skills/task00_target0_init00/reference_skill/result.json",
+    "episodes/skills/task00_target1_init00/reference_skill/result.json",
+    "episodes/skills/task01_target0_init00/reference_skill/result.json",
+    "episodes/skills/task01_target1_init00/reference_skill/result.json"
+  ]
+}

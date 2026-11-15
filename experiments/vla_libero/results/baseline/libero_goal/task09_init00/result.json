@@ -1,0 +1,36 @@
+{
+  "runner_sha256": "e5d28552be82d553e09b3fcfe45aa95bbc6d38b0338899c2536ed1407935bb9d",
+  "suite": "libero_goal",
+  "task_id": 9,
+  "initial_state_id": 0,
+  "mode": "baseline",
+  "environment_seed": 7,
+  "noise_seed": 720900,
+  "initial_state_sha256": "c12cdf642eb5c7b4fd04e4d3b55870f592770742ee5434ad8f80eda6168c9654",
+  "original_prompt": "put the wine bottle on the rack",
+  "input_prompt": "put the wine bottle on the rack",
+  "replan_steps": 5,
+  "denoising_steps": 10,
+  "max_steps": 300,
+  "status": "success",
+  "success": true,
+  "steps": 121,
+  "alternate_goal_evaluable": false,
+  "alternate_goal_ever_satisfied": null,
+  "initial_eef": [
+    -0.21065656173461067,
+    -0.0010771982289965072,
+    1.1709672659526165
+  ],
+  "final_eef": [
+    -0.19461680969302855,
+    -0.2703121870406264,
+    1.2092895824140233
+  ],
+  "qpos_displacement_norm": 1.8848078453232173,
+  "simulation_elapsed_s": 6.05,
+  "wall_s": 4.805228649000128,
+  "query_count": 25,
+  "warmup_query_wall_s": 0.07644915299988497,
+  "query_median_excluding_first_s": 0.07652198049981962
+}

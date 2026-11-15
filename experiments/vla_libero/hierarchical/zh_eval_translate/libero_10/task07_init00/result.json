@@ -1,0 +1,46 @@
+{
+  "suite": "libero_10",
+  "task_id": 7,
+  "initial_state_id": 0,
+  "original_task_language": "put both the alphabet soup and the cream cheese box in the basket",
+  "input_instruction": "把字母汤罐头和奶油奶酪盒都放进篮子里",
+  "planner": "translate",
+  "monitor": "qwen",
+  "max_steps": 520,
+  "subgoal_step_budget": 300,
+  "monitor_every_queries": 4,
+  "monitor_res": 512,
+  "gripper_gate": true,
+  "confirm": 2,
+  "last_subgoal_runs_to_limit": true,
+  "noise_seed": 730700,
+  "runner_sha256": "0fc7e8b3817ad2fbf0df4e4055874ae74c2cda5805297879f63ba77ea00375cd",
+  "events": [
+    {
+      "kind": "plan",
+      "step": 0,
+      "ok": true,
+      "seconds": 0.6963253909998457,
+      "raw": "{\"instruction\": \"Put the letter soup can and the cream cheese box in the basket.\"}",
+      "error": null
+    },
+    {
+      "kind": "subgoal_start",
+      "step": 0,
+      "index": 0,
+      "subgoal": "Put the letter soup can and the cream cheese box in the basket."
+    }
+  ],
+  "status": "success",
+  "success": true,
+  "subgoals": [
+    "Put the letter soup can and the cream cheese box in the basket."
+  ],
+  "steps": 253,
+  "policy_queries": 51,
+  "qwen_checks": 0,
+  "final_atoms": [
+    true,
+    true
+  ]
+}

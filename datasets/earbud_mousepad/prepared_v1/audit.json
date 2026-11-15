@@ -1,0 +1,47 @@
+[
+  {
+    "episode": "episode_01",
+    "raw_frames": 1227,
+    "keep_start": 339,
+    "keep_end_exclusive": 643,
+    "kept_frames": 304,
+    "state_image_receipt_delta_ms_median": 0.144035,
+    "image_to_sent_ms_median": 3.590047,
+    "gripper_min_max": [
+      1.9204389574759946,
+      34.84224965706447
+    ],
+    "raw_sha256": "d00851afac811247d71cc8aabe23a1461c1f5fdfccbae88b1cd065a62698f6f5",
+    "success_label": "operator_reported; contact sheets require review"
+  },
+  {
+    "episode": "episode_02",
+    "raw_frames": 326,
+    "keep_start": 29,
+    "keep_end_exclusive": 314,
+    "kept_frames": 285,
+    "state_image_receipt_delta_ms_median": 0.146349,
+    "image_to_sent_ms_median": 2.799586,
+    "gripper_min_max": [
+      1.9204389574759946,
+      35.80246913580247
+    ],
+    "raw_sha256": "d814037ac9bc54707a79d269ececdca54ad91436921def7b5e7cc0e08f465f89",
+    "success_label": "operator_reported; contact sheets require review"
+  },
+  {
+    "episode": "episode_03",
+    "raw_frames": 355,
+    "keep_start": 44,
+    "keep_end_exclusive": 355,
+    "kept_frames": 311,
+    "state_image_receipt_delta_ms_median": 0.1454,
+    "image_to_sent_ms_median": 3.67451,
+    "gripper_min_max": [
+      1.9204389574759946,
+      46.021947873799725
+    ],
+    "raw_sha256": "6e28e9104d8130bed42b0afb1468fde70b353d418d5211ec45c4069c9fe2922e",
+    "success_label": "operator_reported; contact sheets require review"
+  }
+]

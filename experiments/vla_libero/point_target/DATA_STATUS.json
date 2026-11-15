@@ -1,0 +1,8 @@
+{
+  "state": "complete",
+  "new_completed": 40,
+  "all_candidates": 69,
+  "accepted_pairs": 29,
+  "train_pairs": 22,
+  "validation_pairs": 7
+}

@@ -1,0 +1,159 @@
+{
+  "suite": "libero_10",
+  "task_id": 9,
+  "initial_state_id": 2,
+  "original_task_language": "put the yellow and white mug in the microwave and close it",
+  "input_instruction": "把黄白相间的马克杯放进微波炉，然后关上微波炉门",
+  "planner": "qwen",
+  "monitor": "qwen",
+  "max_steps": 520,
+  "subgoal_step_budget": 300,
+  "monitor_every_queries": 4,
+  "monitor_res": 512,
+  "gripper_gate": true,
+  "confirm": 2,
+  "last_subgoal_runs_to_limit": true,
+  "noise_seed": 730902,
+  "runner_sha256": "05d5d8308e3282e683448fad8ccb2b1bff0dcbb4f27f9d8a497c867e7382ae7e",
+  "events": [
+    {
+      "kind": "plan",
+      "step": 0,
+      "ok": true,
+      "seconds": 1.1917959570000676,
+      "raw": "{\n  \"subgoals\": [\n    {\n      \"instruction\": \"pick up the yellow and white mug and place it in the microwave\",\n      \"completion_hint\": \"the yellow and white mug is now inside the microwave\"\n    },\n    {\n      \"instruction\": \"close the microwave door\",\n      \"completion_hint\": \"the microwave door is now shut\"\n    }\n  ]\n}",
+      "error": null
+    },
+    {
+      "kind": "subgoal_start",
+      "step": 0,
+      "index": 0,
+      "subgoal": "pick up the yellow and white mug and place it in the microwave"
+    },
+    {
+      "kind": "check",
+      "step": 20,
+      "index": 0,
+      "done": false,
+      "confirmed": false,
+      "seconds": 0.3294690200000332,
+      "reason": "No change detected.",
+      "error": null,
+      "shadow_long_task_atoms": [
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 40,
+      "index": 0,
+      "done": false,
+      "confirmed": false,
+      "seconds": 0.5913402049991419,
+      "reason": "The robot has moved its arm towards the yellow and white mug, indicating it is about to pick it up.",
+      "error": null,
+      "shadow_long_task_atoms": [
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 60,
+      "index": 0,
+      "done": false,
+      "confirmed": false,
+      "seconds": 0.6205276849996153,
+      "reason": "The robot has moved its arm and is now holding the yellow and white mug, preparing to place it in the microwave.",
+      "error": null,
+      "shadow_long_task_atoms": [
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 80,
+      "index": 0,
+      "done": false,
+      "confirmed": false,
+      "seconds": 0.6195170589999179,
+      "reason": "The robot has picked up the yellow and white mug and is now holding it, preparing to place it in the microwave.",
+      "error": null,
+      "shadow_long_task_atoms": [
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 180,
+      "index": 0,
+      "done": true,
+      "confirmed": false,
+      "seconds": 0.5716480410010263,
+      "reason": "The yellow and white mug is now inside the microwave, which was closed in image 1.",
+      "error": null,
+      "shadow_long_task_atoms": [
+        true,
+        false
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 200,
+      "index": 0,
+      "done": false,
+      "confirmed": false,
+      "seconds": 0.5769870829990396,
+      "reason": "The yellow and white mug has been picked up by the robot and is no longer on the table.",
+      "error": null,
+      "shadow_long_task_atoms": [
+        true,
+        false
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 220,
+      "index": 0,
+      "done": false,
+      "confirmed": false,
+      "seconds": 0.5761076609996962,
+      "reason": "The yellow and white mug has been picked up by the robot and is no longer on the table.",
+      "error": null,
+      "shadow_long_task_atoms": [
+        true,
+        false
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 240,
+      "index": 0,
+      "done": true,
+      "confirmed": false,
+      "seconds": 0.56257544500113,
+      "reason": "The yellow and white mug has been picked up by the robot and is now inside the open microwave.",
+      "error": null,
+      "shadow_long_task_atoms": [
+        true,
+        false
+      ]
+    }
+  ],
+  "status": "success",
+  "success": true,
+  "subgoals": [
+    "pick up the yellow and white mug and place it in the microwave",
+    "close the microwave door"
+  ],
+  "steps": 251,
+  "policy_queries": 51,
+  "qwen_checks": 8,
+  "final_atoms": [
+    true,
+    true
+  ]
+}

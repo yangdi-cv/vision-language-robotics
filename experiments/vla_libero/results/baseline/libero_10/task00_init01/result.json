@@ -1,0 +1,36 @@
+{
+  "runner_sha256": "e5d28552be82d553e09b3fcfe45aa95bbc6d38b0338899c2536ed1407935bb9d",
+  "suite": "libero_10",
+  "task_id": 0,
+  "initial_state_id": 1,
+  "mode": "baseline",
+  "environment_seed": 7,
+  "noise_seed": 730001,
+  "initial_state_sha256": "cf85ed132ae09bfad8798a3126b14879071228e0e2e7bd17c3e9d20e519cdb5a",
+  "original_prompt": "put both the alphabet soup and the tomato sauce in the basket",
+  "input_prompt": "put both the alphabet soup and the tomato sauce in the basket",
+  "replan_steps": 5,
+  "denoising_steps": 10,
+  "max_steps": 520,
+  "status": "success",
+  "success": true,
+  "steps": 269,
+  "alternate_goal_evaluable": false,
+  "alternate_goal_ever_satisfied": null,
+  "initial_eef": [
+    -0.059784364050842545,
+    0.011380276899608438,
+    0.6751468061545377
+  ],
+  "final_eef": [
+    -0.011591896846386715,
+    0.23755795082035872,
+    0.6308237420120669
+  ],
+  "qpos_displacement_norm": 1.267793310632875,
+  "simulation_elapsed_s": 13.45,
+  "wall_s": 8.689070796000124,
+  "query_count": 54,
+  "warmup_query_wall_s": 0.08091976800005796,
+  "query_median_excluding_first_s": 0.07235093600047549
+}

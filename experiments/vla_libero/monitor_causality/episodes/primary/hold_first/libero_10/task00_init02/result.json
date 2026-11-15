@@ -1,0 +1,152 @@
+{
+  "study_mode": "hold_first",
+  "stage_budget_enabled": false,
+  "initial_state_sha256": "be0c23f82748baf99eea1ecc4ff28eb82163945bc0bfffb509eeef0decced138",
+  "suite": "libero_10",
+  "task_id": 0,
+  "initial_state_id": 2,
+  "original_task_language": "put both the alphabet soup and the tomato sauce in the basket",
+  "input_instruction": "把字母汤罐头和番茄沙司罐头都放进篮子里",
+  "planner": "qwen",
+  "execution_profile": "legacy",
+  "planner_profile": "base",
+  "checker_adapter": "experiments/vla_libero/checker_v2/results/model/best_adapter",
+  "monitor": "qwen",
+  "max_steps": 520,
+  "subgoal_step_budget": 300,
+  "monitor_every_queries": 4,
+  "monitor_res": 512,
+  "gripper_gate": true,
+  "confirm": 2,
+  "max_replans": 0,
+  "last_subgoal_runs_to_limit": true,
+  "noise_seed": 730002,
+  "runner_sha256": "3bfa20bd9f7c320cf83dabe80e3c59a72fb5bd053837b65cd3bb6376c3459f61",
+  "events": [
+    {
+      "kind": "plan",
+      "step": 0,
+      "ok": true,
+      "seconds": 1.4137000107439235e-05,
+      "raw": "[\"pick up the alphabet soup can and place it in the basket\", \"pick up the tomato sauce bottle and place it in the basket\"]",
+      "error": null
+    },
+    {
+      "kind": "subgoal_start",
+      "step": 0,
+      "index": 0,
+      "subgoal": "pick up the alphabet soup can and place it in the basket"
+    },
+    {
+      "kind": "check",
+      "step": 20,
+      "index": 0,
+      "done": false,
+      "confirmed": false,
+      "seconds": 0.006500439001683844,
+      "checker": "hold_first",
+      "status": null,
+      "scores": null,
+      "reason": "no high-level transition",
+      "error": null,
+      "shadow_long_task_atoms": [
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 40,
+      "index": 0,
+      "done": false,
+      "confirmed": false,
+      "seconds": 0.006383657000696985,
+      "checker": "hold_first",
+      "status": null,
+      "scores": null,
+      "reason": "no high-level transition",
+      "error": null,
+      "shadow_long_task_atoms": [
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 140,
+      "index": 0,
+      "done": false,
+      "confirmed": false,
+      "seconds": 0.007067282000207342,
+      "checker": "hold_first",
+      "status": null,
+      "scores": null,
+      "reason": "no high-level transition",
+      "error": null,
+      "shadow_long_task_atoms": [
+        true,
+        false
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 160,
+      "index": 0,
+      "done": false,
+      "confirmed": false,
+      "seconds": 0.006465863996709231,
+      "checker": "hold_first",
+      "status": null,
+      "scores": null,
+      "reason": "no high-level transition",
+      "error": null,
+      "shadow_long_task_atoms": [
+        true,
+        false
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 180,
+      "index": 0,
+      "done": false,
+      "confirmed": false,
+      "seconds": 0.005877871997654438,
+      "checker": "hold_first",
+      "status": null,
+      "scores": null,
+      "reason": "no high-level transition",
+      "error": null,
+      "shadow_long_task_atoms": [
+        true,
+        false
+      ]
+    }
+  ],
+  "status": "success",
+  "success": true,
+  "settled_state_sha256": "ca84817b203bc3aff40ab14f650c705a5581d64a2a0bcc45c5e3238e92600f9d",
+  "subgoals": [
+    "pick up the alphabet soup can and place it in the basket",
+    "pick up the tomato sauce bottle and place it in the basket"
+  ],
+  "policy_queries": 53,
+  "qwen_checks": 5,
+  "replans": 0,
+  "active_subgoal_index": 0,
+  "active_subgoal": "pick up the alphabet soup can and place it in the basket",
+  "steps": 265,
+  "full_task_fallback": false,
+  "final_subgoals": [
+    "pick up the alphabet soup can and place it in the basket",
+    "pick up the tomato sauce bottle and place it in the basket"
+  ],
+  "final_atoms": [
+    true,
+    true
+  ],
+  "protocol_sha256": "43102c29b30de89a834dd03413d9b5010377410236d6addcffc618c76a8ff03c",
+  "monitor_model_calls": 0,
+  "monitor_opportunities": 5,
+  "wall_seconds": 19.001032224998198
+}

@@ -1,0 +1,36 @@
+{
+  "runner_sha256": "e5d28552be82d553e09b3fcfe45aa95bbc6d38b0338899c2536ed1407935bb9d",
+  "suite": "libero_spatial",
+  "task_id": 2,
+  "initial_state_id": 0,
+  "mode": "baseline",
+  "environment_seed": 7,
+  "noise_seed": 700200,
+  "initial_state_sha256": "408c455fb617e5320060d643ef80ec2035d4e98600659cc3deb5a1e85482bf76",
+  "original_prompt": "pick up the black bowl from table center and place it on the plate",
+  "input_prompt": "pick up the black bowl from table center and place it on the plate",
+  "replan_steps": 5,
+  "denoising_steps": 10,
+  "max_steps": 220,
+  "status": "success",
+  "success": true,
+  "steps": 122,
+  "alternate_goal_evaluable": false,
+  "alternate_goal_ever_satisfied": null,
+  "initial_eef": [
+    -0.2093685498908786,
+    -0.004006983696766443,
+    1.1850137400208731
+  ],
+  "final_eef": [
+    0.09244110985673666,
+    0.24122540204615942,
+    0.9466176218711426
+  ],
+  "qpos_displacement_norm": 2.444265986999548,
+  "simulation_elapsed_s": 6.1,
+  "wall_s": 5.33784575899972,
+  "query_count": 25,
+  "warmup_query_wall_s": 0.07706695900014893,
+  "query_median_excluding_first_s": 0.07385837500032721
+}

@@ -1,0 +1,36 @@
+{
+  "runner_sha256": "e5d28552be82d553e09b3fcfe45aa95bbc6d38b0338899c2536ed1407935bb9d",
+  "suite": "libero_object",
+  "task_id": 9,
+  "initial_state_id": 0,
+  "mode": "baseline",
+  "environment_seed": 7,
+  "noise_seed": 710900,
+  "initial_state_sha256": "c838e04306b82002976ee1b73da8a9d0f2d09cd7e51442e899862c51e19b0da9",
+  "original_prompt": "pick up the orange juice and place it in the basket",
+  "input_prompt": "pick up the orange juice and place it in the basket",
+  "replan_steps": 5,
+  "denoising_steps": 10,
+  "max_steps": 280,
+  "status": "success",
+  "success": true,
+  "steps": 115,
+  "alternate_goal_evaluable": false,
+  "alternate_goal_ever_satisfied": null,
+  "initial_eef": [
+    -0.1528716695929079,
+    -0.01550513095575016,
+    0.26069397701004265
+  ],
+  "final_eef": [
+    -0.02644860436921069,
+    0.22170650665283217,
+    0.17892016287704388
+  ],
+  "qpos_displacement_norm": 1.3279569988859783,
+  "simulation_elapsed_s": 5.75,
+  "wall_s": 4.490084099999876,
+  "query_count": 23,
+  "warmup_query_wall_s": 0.07995620400015468,
+  "query_median_excluding_first_s": 0.07493025250005303
+}

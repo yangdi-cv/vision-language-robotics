@@ -1,0 +1,36 @@
+{
+  "suite": "libero_10",
+  "task_id": 0,
+  "initial_state_id": 1,
+  "original_task_language": "put both the alphabet soup and the tomato sauce in the basket",
+  "input_instruction": "把字母汤罐头和番茄沙司罐头都放进篮子里",
+  "planner": "none",
+  "monitor": "qwen",
+  "max_steps": 520,
+  "subgoal_step_budget": 300,
+  "monitor_every_queries": 4,
+  "monitor_res": 512,
+  "gripper_gate": true,
+  "noise_seed": 730001,
+  "runner_sha256": "470de827f0e88145ff2471f24abce6976a623683b9c04d2f0ed61c168e9c647c",
+  "events": [
+    {
+      "kind": "subgoal_start",
+      "step": 0,
+      "index": 0,
+      "subgoal": "把字母汤罐头和番茄沙司罐头都放进篮子里"
+    }
+  ],
+  "status": "timeout",
+  "success": false,
+  "subgoals": [
+    "把字母汤罐头和番茄沙司罐头都放进篮子里"
+  ],
+  "steps": 520,
+  "policy_queries": 104,
+  "qwen_checks": 0,
+  "final_atoms": [
+    false,
+    true
+  ]
+}

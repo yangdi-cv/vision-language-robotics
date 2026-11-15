@@ -1,0 +1,722 @@
+[
+  {
+    "id": "0000_blue_case",
+    "frame_index": 0,
+    "image": "qwen_frames/frame_0000.png",
+    "query_group": "blue_case",
+    "instruction": "找到深蓝色塑胶壳，先定位它。",
+    "target_visible": false,
+    "expected_next_subtask": "observe",
+    "annotation_source": "independent assistant visual inspection of actual frame contact sheet; provisional, not Qwen predictions"
+  },
+  {
+    "id": "0000_blue_paraphrase",
+    "frame_index": 0,
+    "image": "qwen_frames/frame_0000.png",
+    "query_group": "blue_paraphrase",
+    "instruction": "请寻找蓝色耳机保护套。",
+    "target_visible": false,
+    "expected_next_subtask": "observe",
+    "annotation_source": "independent assistant visual inspection of actual frame contact sheet; provisional, not Qwen predictions"
+  },
+  {
+    "id": "0000_red_cup",
+    "frame_index": 0,
+    "image": "qwen_frames/frame_0000.png",
+    "query_group": "red_cup",
+    "instruction": "找到红色杯子，先定位它。",
+    "target_visible": false,
+    "expected_next_subtask": "observe",
+    "annotation_source": "independent assistant visual inspection of actual frame contact sheet; provisional, not Qwen predictions"
+  },
+  {
+    "id": "0040_blue_case",
+    "frame_index": 40,
+    "image": "qwen_frames/frame_0040.png",
+    "query_group": "blue_case",
+    "instruction": "找到深蓝色塑胶壳，先定位它。",
+    "target_visible": false,
+    "expected_next_subtask": "observe",
+    "annotation_source": "independent assistant visual inspection of actual frame contact sheet; provisional, not Qwen predictions"
+  },
+  {
+    "id": "0040_blue_paraphrase",
+    "frame_index": 40,
+    "image": "qwen_frames/frame_0040.png",
+    "query_group": "blue_paraphrase",
+    "instruction": "请寻找蓝色耳机保护套。",
+    "target_visible": false,
+    "expected_next_subtask": "observe",
+    "annotation_source": "independent assistant visual inspection of actual frame contact sheet; provisional, not Qwen predictions"
+  },
+  {
+    "id": "0040_red_cup",
+    "frame_index": 40,
+    "image": "qwen_frames/frame_0040.png",
+    "query_group": "red_cup",
+    "instruction": "找到红色杯子，先定位它。",
+    "target_visible": false,
+    "expected_next_subtask": "observe",
+    "annotation_source": "independent assistant visual inspection of actual frame contact sheet; provisional, not Qwen predictions"
+  },
+  {
+    "id": "0080_blue_case",
+    "frame_index": 80,
+    "image": "qwen_frames/frame_0080.png",
+    "query_group": "blue_case",
+    "instruction": "找到深蓝色塑胶壳，先定位它。",
+    "target_visible": false,
+    "expected_next_subtask": "observe",
+    "annotation_source": "independent assistant visual inspection of actual frame contact sheet; provisional, not Qwen predictions"
+  },
+  {
+    "id": "0080_blue_paraphrase",
+    "frame_index": 80,
+    "image": "qwen_frames/frame_0080.png",
+    "query_group": "blue_paraphrase",
+    "instruction": "请寻找蓝色耳机保护套。",
+    "target_visible": false,
+    "expected_next_subtask": "observe",
+    "annotation_source": "independent assistant visual inspection of actual frame contact sheet; provisional, not Qwen predictions"
+  },
+  {
+    "id": "0080_red_cup",
+    "frame_index": 80,
+    "image": "qwen_frames/frame_0080.png",
+    "query_group": "red_cup",
+    "instruction": "找到红色杯子，先定位它。",
+    "target_visible": false,
+    "expected_next_subtask": "observe",
+    "annotation_source": "independent assistant visual inspection of actual frame contact sheet; provisional, not Qwen predictions"
+  },
+  {
+    "id": "0120_blue_case",
+    "frame_index": 120,
+    "image": "qwen_frames/frame_0120.png",
+    "query_group": "blue_case",
+    "instruction": "找到深蓝色塑胶壳，先定位它。",
+    "target_visible": true,
+    "expected_next_subtask": "locate",
+    "annotation_source": "independent assistant visual inspection of actual frame contact sheet; provisional, not Qwen predictions"
+  },
+  {
+    "id": "0120_blue_paraphrase",
+    "frame_index": 120,
+    "image": "qwen_frames/frame_0120.png",
+    "query_group": "blue_paraphrase",
+    "instruction": "请寻找蓝色耳机保护套。",
+    "target_visible": true,
+    "expected_next_subtask": "locate",
+    "annotation_source": "independent assistant visual inspection of actual frame contact sheet; provisional, not Qwen predictions"
+  },
+  {
+    "id": "0120_red_cup",
+    "frame_index": 120,
+    "image": "qwen_frames/frame_0120.png",
+    "query_group": "red_cup",
+    "instruction": "找到红色杯子，先定位它。",
+    "target_visible": false,
+    "expected_next_subtask": "observe",
+    "annotation_source": "independent assistant visual inspection of actual frame contact sheet; provisional, not Qwen predictions"
+  },
+  {
+    "id": "0140_blue_case",
+    "frame_index": 140,
+    "image": "qwen_frames/frame_0140.png",
+    "query_group": "blue_case",
+    "instruction": "找到深蓝色塑胶壳，先定位它。",
+    "target_visible": true,
+    "expected_next_subtask": "locate",
+    "annotation_source": "independent assistant visual inspection of actual frame contact sheet; provisional, not Qwen predictions"
+  },
+  {
+    "id": "0140_blue_paraphrase",
+    "frame_index": 140,
+    "image": "qwen_frames/frame_0140.png",
+    "query_group": "blue_paraphrase",
+    "instruction": "请寻找蓝色耳机保护套。",
+    "target_visible": true,
+    "expected_next_subtask": "locate",
+    "annotation_source": "independent assistant visual inspection of actual frame contact sheet; provisional, not Qwen predictions"
+  },
+  {
+    "id": "0140_red_cup",
+    "frame_index": 140,
+    "image": "qwen_frames/frame_0140.png",
+    "query_group": "red_cup",
+    "instruction": "找到红色杯子，先定位它。",
+    "target_visible": false,
+    "expected_next_subtask": "observe",
+    "annotation_source": "independent assistant visual inspection of actual frame contact sheet; provisional, not Qwen predictions"
+  },
+  {
+    "id": "0160_blue_case",
+    "frame_index": 160,
+    "image": "qwen_frames/frame_0160.png",
+    "query_group": "blue_case",
+    "instruction": "找到深蓝色塑胶壳，先定位它。",
+    "target_visible": true,
+    "expected_next_subtask": "locate",
+    "annotation_source": "independent assistant visual inspection of actual frame contact sheet; provisional, not Qwen predictions"
+  },
+  {
+    "id": "0160_blue_paraphrase",
+    "frame_index": 160,
+    "image": "qwen_frames/frame_0160.png",
+    "query_group": "blue_paraphrase",
+    "instruction": "请寻找蓝色耳机保护套。",
+    "target_visible": true,
+    "expected_next_subtask": "locate",
+    "annotation_source": "independent assistant visual inspection of actual frame contact sheet; provisional, not Qwen predictions"
+  },
+  {
+    "id": "0160_red_cup",
+    "frame_index": 160,
+    "image": "qwen_frames/frame_0160.png",
+    "query_group": "red_cup",
+    "instruction": "找到红色杯子，先定位它。",
+    "target_visible": false,
+    "expected_next_subtask": "observe",
+    "annotation_source": "independent assistant visual inspection of actual frame contact sheet; provisional, not Qwen predictions"
+  },
+  {
+    "id": "0180_blue_case",
+    "frame_index": 180,
+    "image": "qwen_frames/frame_0180.png",
+    "query_group": "blue_case",
+    "instruction": "找到深蓝色塑胶壳，先定位它。",
+    "target_visible": true,
+    "expected_next_subtask": "locate",
+    "annotation_source": "independent assistant visual inspection of actual frame contact sheet; provisional, not Qwen predictions"
+  },
+  {
+    "id": "0180_blue_paraphrase",
+    "frame_index": 180,
+    "image": "qwen_frames/frame_0180.png",
+    "query_group": "blue_paraphrase",
+    "instruction": "请寻找蓝色耳机保护套。",
+    "target_visible": true,
+    "expected_next_subtask": "locate",
+    "annotation_source": "independent assistant visual inspection of actual frame contact sheet; provisional, not Qwen predictions"
+  },
+  {
+    "id": "0180_red_cup",
+    "frame_index": 180,
+    "image": "qwen_frames/frame_0180.png",
+    "query_group": "red_cup",
+    "instruction": "找到红色杯子，先定位它。",
+    "target_visible": false,
+    "expected_next_subtask": "observe",
+    "annotation_source": "independent assistant visual inspection of actual frame contact sheet; provisional, not Qwen predictions"
+  },
+  {
+    "id": "0200_blue_case",
+    "frame_index": 200,
+    "image": "qwen_frames/frame_0200.png",
+    "query_group": "blue_case",
+    "instruction": "找到深蓝色塑胶壳，先定位它。",
+    "target_visible": true,
+    "expected_next_subtask": "locate",
+    "annotation_source": "independent assistant visual inspection of actual frame contact sheet; provisional, not Qwen predictions"
+  },
+  {
+    "id": "0200_blue_paraphrase",
+    "frame_index": 200,
+    "image": "qwen_frames/frame_0200.png",
+    "query_group": "blue_paraphrase",
+    "instruction": "请寻找蓝色耳机保护套。",
+    "target_visible": true,
+    "expected_next_subtask": "locate",
+    "annotation_source": "independent assistant visual inspection of actual frame contact sheet; provisional, not Qwen predictions"
+  },
+  {
+    "id": "0200_red_cup",
+    "frame_index": 200,
+    "image": "qwen_frames/frame_0200.png",
+    "query_group": "red_cup",
+    "instruction": "找到红色杯子，先定位它。",
+    "target_visible": false,
+    "expected_next_subtask": "observe",
+    "annotation_source": "independent assistant visual inspection of actual frame contact sheet; provisional, not Qwen predictions"
+  },
+  {
+    "id": "0220_blue_case",
+    "frame_index": 220,
+    "image": "qwen_frames/frame_0220.png",
+    "query_group": "blue_case",
+    "instruction": "找到深蓝色塑胶壳，先定位它。",
+    "target_visible": true,
+    "expected_next_subtask": "locate",
+    "annotation_source": "independent assistant visual inspection of actual frame contact sheet; provisional, not Qwen predictions"
+  },
+  {
+    "id": "0220_blue_paraphrase",
+    "frame_index": 220,
+    "image": "qwen_frames/frame_0220.png",
+    "query_group": "blue_paraphrase",
+    "instruction": "请寻找蓝色耳机保护套。",
+    "target_visible": true,
+    "expected_next_subtask": "locate",
+    "annotation_source": "independent assistant visual inspection of actual frame contact sheet; provisional, not Qwen predictions"
+  },
+  {
+    "id": "0220_red_cup",
+    "frame_index": 220,
+    "image": "qwen_frames/frame_0220.png",
+    "query_group": "red_cup",
+    "instruction": "找到红色杯子，先定位它。",
+    "target_visible": false,
+    "expected_next_subtask": "observe",
+    "annotation_source": "independent assistant visual inspection of actual frame contact sheet; provisional, not Qwen predictions"
+  },
+  {
+    "id": "0240_blue_case",
+    "frame_index": 240,
+    "image": "qwen_frames/frame_0240.png",
+    "query_group": "blue_case",
+    "instruction": "找到深蓝色塑胶壳，先定位它。",
+    "target_visible": true,
+    "expected_next_subtask": "locate",
+    "annotation_source": "independent assistant visual inspection of actual frame contact sheet; provisional, not Qwen predictions"
+  },
+  {
+    "id": "0240_blue_paraphrase",
+    "frame_index": 240,
+    "image": "qwen_frames/frame_0240.png",
+    "query_group": "blue_paraphrase",
+    "instruction": "请寻找蓝色耳机保护套。",
+    "target_visible": true,
+    "expected_next_subtask": "locate",
+    "annotation_source": "independent assistant visual inspection of actual frame contact sheet; provisional, not Qwen predictions"
+  },
+  {
+    "id": "0240_red_cup",
+    "frame_index": 240,
+    "image": "qwen_frames/frame_0240.png",
+    "query_group": "red_cup",
+    "instruction": "找到红色杯子，先定位它。",
+    "target_visible": false,
+    "expected_next_subtask": "observe",
+    "annotation_source": "independent assistant visual inspection of actual frame contact sheet; provisional, not Qwen predictions"
+  },
+  {
+    "id": "0260_blue_case",
+    "frame_index": 260,
+    "image": "qwen_frames/frame_0260.png",
+    "query_group": "blue_case",
+    "instruction": "找到深蓝色塑胶壳，先定位它。",
+    "target_visible": true,
+    "expected_next_subtask": "locate",
+    "annotation_source": "independent assistant visual inspection of actual frame contact sheet; provisional, not Qwen predictions"
+  },
+  {
+    "id": "0260_blue_paraphrase",
+    "frame_index": 260,
+    "image": "qwen_frames/frame_0260.png",
+    "query_group": "blue_paraphrase",
+    "instruction": "请寻找蓝色耳机保护套。",
+    "target_visible": true,
+    "expected_next_subtask": "locate",
+    "annotation_source": "independent assistant visual inspection of actual frame contact sheet; provisional, not Qwen predictions"
+  },
+  {
+    "id": "0260_red_cup",
+    "frame_index": 260,
+    "image": "qwen_frames/frame_0260.png",
+    "query_group": "red_cup",
+    "instruction": "找到红色杯子，先定位它。",
+    "target_visible": false,
+    "expected_next_subtask": "observe",
+    "annotation_source": "independent assistant visual inspection of actual frame contact sheet; provisional, not Qwen predictions"
+  },
+  {
+    "id": "0280_blue_case",
+    "frame_index": 280,
+    "image": "qwen_frames/frame_0280.png",
+    "query_group": "blue_case",
+    "instruction": "找到深蓝色塑胶壳，先定位它。",
+    "target_visible": true,
+    "expected_next_subtask": "locate",
+    "annotation_source": "independent assistant visual inspection of actual frame contact sheet; provisional, not Qwen predictions"
+  },
+  {
+    "id": "0280_blue_paraphrase",
+    "frame_index": 280,
+    "image": "qwen_frames/frame_0280.png",
+    "query_group": "blue_paraphrase",
+    "instruction": "请寻找蓝色耳机保护套。",
+    "target_visible": true,
+    "expected_next_subtask": "locate",
+    "annotation_source": "independent assistant visual inspection of actual frame contact sheet; provisional, not Qwen predictions"
+  },
+  {
+    "id": "0280_red_cup",
+    "frame_index": 280,
+    "image": "qwen_frames/frame_0280.png",
+    "query_group": "red_cup",
+    "instruction": "找到红色杯子，先定位它。",
+    "target_visible": false,
+    "expected_next_subtask": "observe",
+    "annotation_source": "independent assistant visual inspection of actual frame contact sheet; provisional, not Qwen predictions"
+  },
+  {
+    "id": "0300_blue_case",
+    "frame_index": 300,
+    "image": "qwen_frames/frame_0300.png",
+    "query_group": "blue_case",
+    "instruction": "找到深蓝色塑胶壳，先定位它。",
+    "target_visible": true,
+    "expected_next_subtask": "locate",
+    "annotation_source": "independent assistant visual inspection of actual frame contact sheet; provisional, not Qwen predictions"
+  },
+  {
+    "id": "0300_blue_paraphrase",
+    "frame_index": 300,
+    "image": "qwen_frames/frame_0300.png",
+    "query_group": "blue_paraphrase",
+    "instruction": "请寻找蓝色耳机保护套。",
+    "target_visible": true,
+    "expected_next_subtask": "locate",
+    "annotation_source": "independent assistant visual inspection of actual frame contact sheet; provisional, not Qwen predictions"
+  },
+  {
+    "id": "0300_red_cup",
+    "frame_index": 300,
+    "image": "qwen_frames/frame_0300.png",
+    "query_group": "red_cup",
+    "instruction": "找到红色杯子，先定位它。",
+    "target_visible": false,
+    "expected_next_subtask": "observe",
+    "annotation_source": "independent assistant visual inspection of actual frame contact sheet; provisional, not Qwen predictions"
+  },
+  {
+    "id": "0320_blue_case",
+    "frame_index": 320,
+    "image": "qwen_frames/frame_0320.png",
+    "query_group": "blue_case",
+    "instruction": "找到深蓝色塑胶壳，先定位它。",
+    "target_visible": true,
+    "expected_next_subtask": "locate",
+    "annotation_source": "independent assistant visual inspection of actual frame contact sheet; provisional, not Qwen predictions"
+  },
+  {
+    "id": "0320_blue_paraphrase",
+    "frame_index": 320,
+    "image": "qwen_frames/frame_0320.png",
+    "query_group": "blue_paraphrase",
+    "instruction": "请寻找蓝色耳机保护套。",
+    "target_visible": true,
+    "expected_next_subtask": "locate",
+    "annotation_source": "independent assistant visual inspection of actual frame contact sheet; provisional, not Qwen predictions"
+  },
+  {
+    "id": "0320_red_cup",
+    "frame_index": 320,
+    "image": "qwen_frames/frame_0320.png",
+    "query_group": "red_cup",
+    "instruction": "找到红色杯子，先定位它。",
+    "target_visible": false,
+    "expected_next_subtask": "observe",
+    "annotation_source": "independent assistant visual inspection of actual frame contact sheet; provisional, not Qwen predictions"
+  },
+  {
+    "id": "0340_blue_case",
+    "frame_index": 340,
+    "image": "qwen_frames/frame_0340.png",
+    "query_group": "blue_case",
+    "instruction": "找到深蓝色塑胶壳，先定位它。",
+    "target_visible": true,
+    "expected_next_subtask": "locate",
+    "annotation_source": "independent assistant visual inspection of actual frame contact sheet; provisional, not Qwen predictions"
+  },
+  {
+    "id": "0340_blue_paraphrase",
+    "frame_index": 340,
+    "image": "qwen_frames/frame_0340.png",
+    "query_group": "blue_paraphrase",
+    "instruction": "请寻找蓝色耳机保护套。",
+    "target_visible": true,
+    "expected_next_subtask": "locate",
+    "annotation_source": "independent assistant visual inspection of actual frame contact sheet; provisional, not Qwen predictions"
+  },
+  {
+    "id": "0340_red_cup",
+    "frame_index": 340,
+    "image": "qwen_frames/frame_0340.png",
+    "query_group": "red_cup",
+    "instruction": "找到红色杯子，先定位它。",
+    "target_visible": false,
+    "expected_next_subtask": "observe",
+    "annotation_source": "independent assistant visual inspection of actual frame contact sheet; provisional, not Qwen predictions"
+  },
+  {
+    "id": "0360_blue_case",
+    "frame_index": 360,
+    "image": "qwen_frames/frame_0360.png",
+    "query_group": "blue_case",
+    "instruction": "找到深蓝色塑胶壳，先定位它。",
+    "target_visible": true,
+    "expected_next_subtask": "locate",
+    "annotation_source": "independent assistant visual inspection of actual frame contact sheet; provisional, not Qwen predictions"
+  },
+  {
+    "id": "0360_blue_paraphrase",
+    "frame_index": 360,
+    "image": "qwen_frames/frame_0360.png",
+    "query_group": "blue_paraphrase",
+    "instruction": "请寻找蓝色耳机保护套。",
+    "target_visible": true,
+    "expected_next_subtask": "locate",
+    "annotation_source": "independent assistant visual inspection of actual frame contact sheet; provisional, not Qwen predictions"
+  },
+  {
+    "id": "0360_red_cup",
+    "frame_index": 360,
+    "image": "qwen_frames/frame_0360.png",
+    "query_group": "red_cup",
+    "instruction": "找到红色杯子，先定位它。",
+    "target_visible": false,
+    "expected_next_subtask": "observe",
+    "annotation_source": "independent assistant visual inspection of actual frame contact sheet; provisional, not Qwen predictions"
+  },
+  {
+    "id": "0380_blue_case",
+    "frame_index": 380,
+    "image": "qwen_frames/frame_0380.png",
+    "query_group": "blue_case",
+    "instruction": "找到深蓝色塑胶壳，先定位它。",
+    "target_visible": false,
+    "expected_next_subtask": "observe",
+    "annotation_source": "independent assistant visual inspection of actual frame contact sheet; provisional, not Qwen predictions"
+  },
+  {
+    "id": "0380_blue_paraphrase",
+    "frame_index": 380,
+    "image": "qwen_frames/frame_0380.png",
+    "query_group": "blue_paraphrase",
+    "instruction": "请寻找蓝色耳机保护套。",
+    "target_visible": false,
+    "expected_next_subtask": "observe",
+    "annotation_source": "independent assistant visual inspection of actual frame contact sheet; provisional, not Qwen predictions"
+  },
+  {
+    "id": "0380_red_cup",
+    "frame_index": 380,
+    "image": "qwen_frames/frame_0380.png",
+    "query_group": "red_cup",
+    "instruction": "找到红色杯子，先定位它。",
+    "target_visible": false,
+    "expected_next_subtask": "observe",
+    "annotation_source": "independent assistant visual inspection of actual frame contact sheet; provisional, not Qwen predictions"
+  },
+  {
+    "id": "0400_blue_case",
+    "frame_index": 400,
+    "image": "qwen_frames/frame_0400.png",
+    "query_group": "blue_case",
+    "instruction": "找到深蓝色塑胶壳，先定位它。",
+    "target_visible": false,
+    "expected_next_subtask": "observe",
+    "annotation_source": "independent assistant visual inspection of actual frame contact sheet; provisional, not Qwen predictions"
+  },
+  {
+    "id": "0400_blue_paraphrase",
+    "frame_index": 400,
+    "image": "qwen_frames/frame_0400.png",
+    "query_group": "blue_paraphrase",
+    "instruction": "请寻找蓝色耳机保护套。",
+    "target_visible": false,
+    "expected_next_subtask": "observe",
+    "annotation_source": "independent assistant visual inspection of actual frame contact sheet; provisional, not Qwen predictions"
+  },
+  {
+    "id": "0400_red_cup",
+    "frame_index": 400,
+    "image": "qwen_frames/frame_0400.png",
+    "query_group": "red_cup",
+    "instruction": "找到红色杯子，先定位它。",
+    "target_visible": false,
+    "expected_next_subtask": "observe",
+    "annotation_source": "independent assistant visual inspection of actual frame contact sheet; provisional, not Qwen predictions"
+  },
+  {
+    "id": "0420_blue_case",
+    "frame_index": 420,
+    "image": "qwen_frames/frame_0420.png",
+    "query_group": "blue_case",
+    "instruction": "找到深蓝色塑胶壳，先定位它。",
+    "target_visible": false,
+    "expected_next_subtask": "observe",
+    "annotation_source": "independent assistant visual inspection of actual frame contact sheet; provisional, not Qwen predictions"
+  },
+  {
+    "id": "0420_blue_paraphrase",
+    "frame_index": 420,
+    "image": "qwen_frames/frame_0420.png",
+    "query_group": "blue_paraphrase",
+    "instruction": "请寻找蓝色耳机保护套。",
+    "target_visible": false,
+    "expected_next_subtask": "observe",
+    "annotation_source": "independent assistant visual inspection of actual frame contact sheet; provisional, not Qwen predictions"
+  },
+  {
+    "id": "0420_red_cup",
+    "frame_index": 420,
+    "image": "qwen_frames/frame_0420.png",
+    "query_group": "red_cup",
+    "instruction": "找到红色杯子，先定位它。",
+    "target_visible": false,
+    "expected_next_subtask": "observe",
+    "annotation_source": "independent assistant visual inspection of actual frame contact sheet; provisional, not Qwen predictions"
+  },
+  {
+    "id": "0440_blue_case",
+    "frame_index": 440,
+    "image": "qwen_frames/frame_0440.png",
+    "query_group": "blue_case",
+    "instruction": "找到深蓝色塑胶壳，先定位它。",
+    "target_visible": false,
+    "expected_next_subtask": "observe",
+    "annotation_source": "independent assistant visual inspection of actual frame contact sheet; provisional, not Qwen predictions"
+  },
+  {
+    "id": "0440_blue_paraphrase",
+    "frame_index": 440,
+    "image": "qwen_frames/frame_0440.png",
+    "query_group": "blue_paraphrase",
+    "instruction": "请寻找蓝色耳机保护套。",
+    "target_visible": false,
+    "expected_next_subtask": "observe",
+    "annotation_source": "independent assistant visual inspection of actual frame contact sheet; provisional, not Qwen predictions"
+  },
+  {
+    "id": "0440_red_cup",
+    "frame_index": 440,
+    "image": "qwen_frames/frame_0440.png",
+    "query_group": "red_cup",
+    "instruction": "找到红色杯子，先定位它。",
+    "target_visible": false,
+    "expected_next_subtask": "observe",
+    "annotation_source": "independent assistant visual inspection of actual frame contact sheet; provisional, not Qwen predictions"
+  },
+  {
+    "id": "0460_blue_case",
+    "frame_index": 460,
+    "image": "qwen_frames/frame_0460.png",
+    "query_group": "blue_case",
+    "instruction": "找到深蓝色塑胶壳，先定位它。",
+    "target_visible": false,
+    "expected_next_subtask": "observe",
+    "annotation_source": "independent assistant visual inspection of actual frame contact sheet; provisional, not Qwen predictions"
+  },
+  {
+    "id": "0460_blue_paraphrase",
+    "frame_index": 460,
+    "image": "qwen_frames/frame_0460.png",
+    "query_group": "blue_paraphrase",
+    "instruction": "请寻找蓝色耳机保护套。",
+    "target_visible": false,
+    "expected_next_subtask": "observe",
+    "annotation_source": "independent assistant visual inspection of actual frame contact sheet; provisional, not Qwen predictions"
+  },
+  {
+    "id": "0460_red_cup",
+    "frame_index": 460,
+    "image": "qwen_frames/frame_0460.png",
+    "query_group": "red_cup",
+    "instruction": "找到红色杯子，先定位它。",
+    "target_visible": false,
+    "expected_next_subtask": "observe",
+    "annotation_source": "independent assistant visual inspection of actual frame contact sheet; provisional, not Qwen predictions"
+  },
+  {
+    "id": "0480_blue_case",
+    "frame_index": 480,
+    "image": "qwen_frames/frame_0480.png",
+    "query_group": "blue_case",
+    "instruction": "找到深蓝色塑胶壳，先定位它。",
+    "target_visible": false,
+    "expected_next_subtask": "observe",
+    "annotation_source": "independent assistant visual inspection of actual frame contact sheet; provisional, not Qwen predictions"
+  },
+  {
+    "id": "0480_blue_paraphrase",
+    "frame_index": 480,
+    "image": "qwen_frames/frame_0480.png",
+    "query_group": "blue_paraphrase",
+    "instruction": "请寻找蓝色耳机保护套。",
+    "target_visible": false,
+    "expected_next_subtask": "observe",
+    "annotation_source": "independent assistant visual inspection of actual frame contact sheet; provisional, not Qwen predictions"
+  },
+  {
+    "id": "0480_red_cup",
+    "frame_index": 480,
+    "image": "qwen_frames/frame_0480.png",
+    "query_group": "red_cup",
+    "instruction": "找到红色杯子，先定位它。",
+    "target_visible": false,
+    "expected_next_subtask": "observe",
+    "annotation_source": "independent assistant visual inspection of actual frame contact sheet; provisional, not Qwen predictions"
+  },
+  {
+    "id": "0500_blue_case",
+    "frame_index": 500,
+    "image": "qwen_frames/frame_0500.png",
+    "query_group": "blue_case",
+    "instruction": "找到深蓝色塑胶壳，先定位它。",
+    "target_visible": false,
+    "expected_next_subtask": "observe",
+    "annotation_source": "independent assistant visual inspection of actual frame contact sheet; provisional, not Qwen predictions"
+  },
+  {
+    "id": "0500_blue_paraphrase",
+    "frame_index": 500,
+    "image": "qwen_frames/frame_0500.png",
+    "query_group": "blue_paraphrase",
+    "instruction": "请寻找蓝色耳机保护套。",
+    "target_visible": false,
+    "expected_next_subtask": "observe",
+    "annotation_source": "independent assistant visual inspection of actual frame contact sheet; provisional, not Qwen predictions"
+  },
+  {
+    "id": "0500_red_cup",
+    "frame_index": 500,
+    "image": "qwen_frames/frame_0500.png",
+    "query_group": "red_cup",
+    "instruction": "找到红色杯子，先定位它。",
+    "target_visible": false,
+    "expected_next_subtask": "observe",
+    "annotation_source": "independent assistant visual inspection of actual frame contact sheet; provisional, not Qwen predictions"
+  },
+  {
+    "id": "0535_blue_case",
+    "frame_index": 535,
+    "image": "qwen_frames/frame_0535.png",
+    "query_group": "blue_case",
+    "instruction": "找到深蓝色塑胶壳，先定位它。",
+    "target_visible": false,
+    "expected_next_subtask": "observe",
+    "annotation_source": "independent assistant visual inspection of actual frame contact sheet; provisional, not Qwen predictions"
+  },
+  {
+    "id": "0535_blue_paraphrase",
+    "frame_index": 535,
+    "image": "qwen_frames/frame_0535.png",
+    "query_group": "blue_paraphrase",
+    "instruction": "请寻找蓝色耳机保护套。",
+    "target_visible": false,
+    "expected_next_subtask": "observe",
+    "annotation_source": "independent assistant visual inspection of actual frame contact sheet; provisional, not Qwen predictions"
+  },
+  {
+    "id": "0535_red_cup",
+    "frame_index": 535,
+    "image": "qwen_frames/frame_0535.png",
+    "query_group": "red_cup",
+    "instruction": "找到红色杯子，先定位它。",
+    "target_visible": false,
+    "expected_next_subtask": "observe",
+    "annotation_source": "independent assistant visual inspection of actual frame contact sheet; provisional, not Qwen predictions"
+  }
+]

@@ -1,0 +1,5 @@
+benchmark_root: /home/yd/Documents/VLA/experiments/vla_libero/third_party/libero/libero/libero
+bddl_files: /home/yd/Documents/VLA/experiments/vla_libero/third_party/libero/libero/libero/bddl_files
+init_states: /home/yd/Documents/VLA/experiments/vla_libero/third_party/libero/libero/libero/init_files
+datasets: /home/yd/Documents/VLA/experiments/vla_libero/datasets
+assets: /home/yd/Documents/VLA/experiments/vla_libero/third_party/libero/libero/libero/assets

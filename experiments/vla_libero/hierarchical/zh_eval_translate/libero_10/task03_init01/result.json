@@ -1,0 +1,46 @@
+{
+  "suite": "libero_10",
+  "task_id": 3,
+  "initial_state_id": 1,
+  "original_task_language": "put the black bowl in the bottom drawer of the cabinet and close it",
+  "input_instruction": "把黑色的碗放进柜子最下面的抽屉，然后关上抽屉",
+  "planner": "translate",
+  "monitor": "qwen",
+  "max_steps": 520,
+  "subgoal_step_budget": 300,
+  "monitor_every_queries": 4,
+  "monitor_res": 512,
+  "gripper_gate": true,
+  "confirm": 2,
+  "last_subgoal_runs_to_limit": true,
+  "noise_seed": 730301,
+  "runner_sha256": "0fc7e8b3817ad2fbf0df4e4055874ae74c2cda5805297879f63ba77ea00375cd",
+  "events": [
+    {
+      "kind": "plan",
+      "step": 0,
+      "ok": true,
+      "seconds": 0.35420497199811507,
+      "raw": "{\"instruction\": \"Put the black bowl into the bottom drawer of the cabinet and close the drawer.\"}",
+      "error": null
+    },
+    {
+      "kind": "subgoal_start",
+      "step": 0,
+      "index": 0,
+      "subgoal": "Put the black bowl into the bottom drawer of the cabinet and close the drawer."
+    }
+  ],
+  "status": "success",
+  "success": true,
+  "subgoals": [
+    "Put the black bowl into the bottom drawer of the cabinet and close the drawer."
+  ],
+  "steps": 221,
+  "policy_queries": 45,
+  "qwen_checks": 0,
+  "final_atoms": [
+    true,
+    true
+  ]
+}

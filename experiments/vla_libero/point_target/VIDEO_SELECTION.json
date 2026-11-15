@@ -1,0 +1,11 @@
+{
+  "task": 1,
+  "layout": "normal",
+  "target": 1,
+  "initial": 41,
+  "variants": [
+    "text",
+    "goal"
+  ],
+  "selection": "fixed before evaluation outcomes; cream-cheese/butter scene, requested butter"
+}

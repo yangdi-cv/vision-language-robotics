@@ -1,0 +1,46 @@
+{
+  "method": "Training-free final-action CAG, local reproduction of arXiv:2602.17659v1 Eq4; official code not verified",
+  "tasks": [
+    0,
+    1
+  ],
+  "initials": [
+    0,
+    11
+  ],
+  "targets": [
+    0,
+    1
+  ],
+  "scales": [
+    1.0,
+    1.5
+  ],
+  "episodes": 16,
+  "split": "exploratory development layouts already used in diagnostic; not held-out",
+  "policy_steps": 300,
+  "hold_steps": 25,
+  "horizon": 10,
+  "execute": 5,
+  "same_explicit_noise": true,
+  "null_task": "empty prompt before original transforms; proprioception retained",
+  "mix_space": "7D unnormalized LIBERO action output; original env clipping unchanged; gripper also mixed",
+  "mix_note": "Final-action linear mixing, not flow-velocity guidance. Inverse affine normalization commutes with this rule.",
+  "baseline": "native base only, no adapter; one call/query; scale1 algebra control",
+  "no_training": true,
+  "no_hardware": true,
+  "no_Qwen": true,
+  "no_oracle_control": true,
+  "source_sha256": {
+    "experiments/vla_libero/cag_reproduction/scripts/cag_policy.py": "e63de25d2573ede668132f002103390688e317a1943d4aaa1e5ed0d0f12d8efc",
+    "experiments/vla_libero/cag_reproduction/scripts/mixing.py": "c8a718160aecc0038c57fcd913984bd1bf9a88261d87cc7a6129055ef5387d33",
+    "experiments/vla_libero/cag_reproduction/scripts/run.py": "7162c214229d8bfd97deb6cef693dcd55c921cb33f76e8f4aedcb23ff6bf2903",
+    "experiments/vla_libero/cag_reproduction/scripts/summarize.py": "11ad1854fbd9bda26bd4516ba2ae76cf15364487e3b389918d79b8eec95e068b",
+    "experiments/vla_libero/skill_bootstrap/scripts/runtime.py": "15e6f6e2012a5c10287e51c6c2d5e6cd697c1db316edf5d7993e97055e817620",
+    "experiments/vla_libero/skill_bootstrap/scripts/bounded_restore.py": "b906042560726b8f92242fca1ba0b5e2adc12f1b294559a3dbf8550601aa5961",
+    "experiments/vla_libero/skill_bootstrap/scripts/chunk_math.py": "02655758b0ad1abf6196c317c5ec1b32e1cdc14cadbf154adba049bde1126c99",
+    "experiments/vla_libero/instruction_response/scripts/run.py": "1b7d09c8c4d1d982c784bed00125af742412c21831fad329f914b86da63f693b",
+    "experiments/vla_libero/selective_execution/scripts/protocol.py": "d39e52bfdafca08456d48da87a284649bd9478a2d2934b226576d45538118b67",
+    "experiments/vla_libero/scripts/evaluate.py": "e5d28552be82d553e09b3fcfe45aa95bbc6d38b0338899c2536ed1407935bb9d"
+  }
+}

@@ -1,0 +1,165 @@
+{
+  "selection": "Eight targeted diagnostic pairs, 4 positive and 4 negative; not representative benchmark; same existing before/after prompts for both models",
+  "cases": [
+    {
+      "id": "wrong_plate",
+      "source_tag": "zh_eval_hier_v2",
+      "task_id": 4,
+      "initial_state": 2,
+      "step": 120,
+      "subgoal": "put the white mug on the left plate",
+      "images": [
+        "experiments/vla_libero/hierarchical/zh_eval_hier_v2/libero_10/task04_init02/qwen_inputs/ref_step0000.png",
+        "experiments/vla_libero/hierarchical/zh_eval_hier_v2/libero_10/task04_init02/qwen_inputs/check_step0120.png"
+      ],
+      "image_sha256": [
+        "1c785cb2e5fa1a5bb79a083f300e8b2ef1d5b7dccfa1f403477e033cfff9797f",
+        "5ae33836702dcbe1ff0e8074b1050468af5bbd1539f30aed73c21a3ae1dabb56"
+      ],
+      "expected_done": false,
+      "label_source": "Logged first official goal atom; index0 aligned with first subgoal for these selected tasks only",
+      "historical_4b_done": false,
+      "historical_reason": "The white mug is now on the right plate, which was not the case in image 1."
+    },
+    {
+      "id": "false_done_mug",
+      "source_tag": "zh_eval_hier_v2",
+      "task_id": 4,
+      "initial_state": 2,
+      "step": 160,
+      "subgoal": "put the white mug on the left plate",
+      "images": [
+        "experiments/vla_libero/hierarchical/zh_eval_hier_v2/libero_10/task04_init02/qwen_inputs/ref_step0000.png",
+        "experiments/vla_libero/hierarchical/zh_eval_hier_v2/libero_10/task04_init02/qwen_inputs/check_step0160.png"
+      ],
+      "image_sha256": [
+        "1c785cb2e5fa1a5bb79a083f300e8b2ef1d5b7dccfa1f403477e033cfff9797f",
+        "453fe0f53a5b8f011532c150522559493cef28ef43e6db6f922232715ab02265"
+      ],
+      "expected_done": false,
+      "label_source": "Logged first official goal atom; index0 aligned with first subgoal for these selected tasks only",
+      "historical_4b_done": true,
+      "historical_reason": "The white mug is now on the left plate, which was empty in image 1."
+    },
+    {
+      "id": "plate_viewpoint",
+      "source_tag": "zh_eval_hier_v3",
+      "task_id": 4,
+      "initial_state": 2,
+      "step": 120,
+      "subgoal": "put the white mug on the left plate",
+      "images": [
+        "experiments/vla_libero/hierarchical/zh_eval_hier_v3/libero_10/task04_init02/qwen_inputs/ref_step0000.png",
+        "experiments/vla_libero/hierarchical/zh_eval_hier_v3/libero_10/task04_init02/qwen_inputs/check_step0120.png"
+      ],
+      "image_sha256": [
+        "1c785cb2e5fa1a5bb79a083f300e8b2ef1d5b7dccfa1f403477e033cfff9797f",
+        "40381de38178808c281a9646e234e9cd5dbe50aa01527c74bebf7228085cb54d"
+      ],
+      "expected_done": true,
+      "label_source": "Logged first official goal atom; index0 aligned with first subgoal for these selected tasks only",
+      "historical_4b_done": false,
+      "historical_reason": "The white mug is now on the right plate, which was not the case in image 1."
+    },
+    {
+      "id": "basket_occlusion",
+      "source_tag": "zh_eval_hier_v3",
+      "task_id": 1,
+      "initial_state": 0,
+      "step": 160,
+      "subgoal": "pick up the cream cheese box and place it in the basket",
+      "images": [
+        "experiments/vla_libero/hierarchical/zh_eval_hier_v3/libero_10/task01_init00/qwen_inputs/ref_step0000.png",
+        "experiments/vla_libero/hierarchical/zh_eval_hier_v3/libero_10/task01_init00/qwen_inputs/check_step0160.png"
+      ],
+      "image_sha256": [
+        "8b5dbaa074ce796848bb8f99ffaab98105a4f6ab66f5f01b9935ec0868a0914d",
+        "1ed8794da582b9b3ef4dc3bae203d028493086375a9512f76d06635941f0a5e5"
+      ],
+      "expected_done": true,
+      "label_source": "Logged first official goal atom; index0 aligned with first subgoal for these selected tasks only",
+      "historical_4b_done": false,
+      "historical_reason": "No change detected"
+    },
+    {
+      "id": "soup_done",
+      "source_tag": "zh_eval_hier_v3",
+      "task_id": 0,
+      "initial_state": 0,
+      "step": 140,
+      "subgoal": "pick up the alphabet soup can and place it in the basket",
+      "images": [
+        "experiments/vla_libero/hierarchical/zh_eval_hier_v3/libero_10/task00_init00/qwen_inputs/ref_step0000.png",
+        "experiments/vla_libero/hierarchical/zh_eval_hier_v3/libero_10/task00_init00/qwen_inputs/check_step0140.png"
+      ],
+      "image_sha256": [
+        "1eb527dbc172082674147db6943ad7501f89afd189139bff9c5992ea35b1fe99",
+        "ecba1f409bbc5e6b1fcf3ba92e00349984099dc0843581c8128c4dbfd2960d14"
+      ],
+      "expected_done": true,
+      "label_source": "Logged first official goal atom; index0 aligned with first subgoal for these selected tasks only",
+      "historical_4b_done": true,
+      "historical_reason": "The alphabet soup can has been picked up by the robot and placed into the basket."
+    },
+    {
+      "id": "soup_not_done",
+      "source_tag": "zh_eval_hier_v3",
+      "task_id": 0,
+      "initial_state": 0,
+      "step": 40,
+      "subgoal": "pick up the alphabet soup can and place it in the basket",
+      "images": [
+        "experiments/vla_libero/hierarchical/zh_eval_hier_v3/libero_10/task00_init00/qwen_inputs/ref_step0000.png",
+        "experiments/vla_libero/hierarchical/zh_eval_hier_v3/libero_10/task00_init00/qwen_inputs/check_step0040.png"
+      ],
+      "image_sha256": [
+        "1eb527dbc172082674147db6943ad7501f89afd189139bff9c5992ea35b1fe99",
+        "7aa17a465cbc96ab9d149be77cf0f089fd32d027f172c76a9792f478c61cf14e"
+      ],
+      "expected_done": false,
+      "label_source": "Logged first official goal atom; index0 aligned with first subgoal for these selected tasks only",
+      "historical_4b_done": false,
+      "historical_reason": "No change detected; the alphabet soup can is still on the table and not in the basket."
+    },
+    {
+      "id": "false_done_pot",
+      "source_tag": "zh_eval_hier_v2",
+      "task_id": 8,
+      "initial_state": 2,
+      "step": 100,
+      "subgoal": "put the first moka pot on the stove",
+      "images": [
+        "experiments/vla_libero/hierarchical/zh_eval_hier_v2/libero_10/task08_init02/qwen_inputs/ref_step0000.png",
+        "experiments/vla_libero/hierarchical/zh_eval_hier_v2/libero_10/task08_init02/qwen_inputs/check_step0100.png"
+      ],
+      "image_sha256": [
+        "6e20b9b11791455eb2d40306e3ebd80de3c4a5887c057445a5eb5fc57ff41c41",
+        "15f9b04a4c17af21a5f5f254a7ea1ae864220f46b0156acfa05e00efdffbfaaf"
+      ],
+      "expected_done": false,
+      "label_source": "Logged first official goal atom; index0 aligned with first subgoal for these selected tasks only",
+      "historical_4b_done": true,
+      "historical_reason": "The robot has moved the first moka pot and placed it on the stove."
+    },
+    {
+      "id": "microwave_done",
+      "source_tag": "zh_eval_hier_v3",
+      "task_id": 9,
+      "initial_state": 0,
+      "step": 180,
+      "subgoal": "pick up the yellow and white mug and place it in the microwave",
+      "images": [
+        "experiments/vla_libero/hierarchical/zh_eval_hier_v3/libero_10/task09_init00/qwen_inputs/ref_step0000.png",
+        "experiments/vla_libero/hierarchical/zh_eval_hier_v3/libero_10/task09_init00/qwen_inputs/check_step0180.png"
+      ],
+      "image_sha256": [
+        "82ebbc5dabaecdff78d618fb4b146f769d3c79e0c37123cc113352348a578e10",
+        "b142867e91cc76aa19755867c452d79b62e791deb8e2429b1efcf84532a275eb"
+      ],
+      "expected_done": true,
+      "label_source": "Logged first official goal atom; index0 aligned with first subgoal for these selected tasks only",
+      "historical_4b_done": true,
+      "historical_reason": "The yellow and white mug is now inside the microwave, which was not the case in image 1."
+    }
+  ]
+}

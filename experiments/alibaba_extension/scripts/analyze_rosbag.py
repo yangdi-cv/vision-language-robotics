@@ -1,0 +1,5 @@
+"""Validate and inventory a real recorded simulator rosbag, not enterprise data."""
+from pathlib import Path
+import sqlite3,json
+ROOT=Path(__file__).resolve().parents[1];bag=ROOT/'runs/qwen_nav_act_001/workflow/sim_rosbag';db=next(bag.glob('*.db3'));c=sqlite3.connect(db)
+rows=c.execute('select topics.name,topics.type,count(messages.id),min(messages.timestamp),max(messages.timestamp) from topics left join messages on topics.id=messages.topic_id group by topics.id').fetchall();metrics={'source':'actual Gazebo/Nav2 simulation rosbag','enterprise_real_robot':False,'sqlite_integrity':c.execute('pragma integrity_check').fetchone()[0],'topics':[{'name':n,'type':t,'messages':count,'host_duration_s':(maximum-minimum)/1e9 if maximum is not None else 0} for n,t,count,minimum,maximum in rows]};c.close();assert metrics['sqlite_integrity']=='ok';assert all(x['messages']>0 for x in metrics['topics']);(bag.parent/'rosbag_inventory.json').write_text(json.dumps(metrics,indent=2));print('Bag verified',sum(x['messages'] for x in metrics['topics']))

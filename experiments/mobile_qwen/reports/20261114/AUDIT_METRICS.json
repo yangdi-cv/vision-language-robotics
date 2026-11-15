@@ -1,0 +1,23 @@
+{
+  "matched_queries": 1014,
+  "frames": 350,
+  "fixed_training_pixel": [
+    222.62205882352941,
+    327.592700729927
+  ],
+  "base": {
+    "n": 350,
+    "strict_hits": 20,
+    "near_hits": 62
+  },
+  "lora": {
+    "n": 350,
+    "strict_hits": 323,
+    "near_hits": 345
+  },
+  "fixed": {
+    "n": 350,
+    "strict_hits": 61,
+    "near_hits": 115
+  }
+}

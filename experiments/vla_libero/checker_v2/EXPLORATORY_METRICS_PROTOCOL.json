@@ -1,0 +1,42 @@
+{
+  "mapping": {
+    "0": [
+      0
+    ],
+    "1": [
+      0
+    ],
+    "2": [
+      0
+    ],
+    "3": [
+      1
+    ],
+    "4": [
+      0
+    ],
+    "5": null,
+    "6": [
+      0
+    ],
+    "7": [
+      0
+    ],
+    "8": "any(atom0,atom1)",
+    "9": [
+      0
+    ]
+  },
+  "source": "BDDL final predicate order; frozen v3 two-subgoal plans",
+  "switch_false": "done-confirmed with target official predicate false; budget reported separately",
+  "delay": "latest continuously true segment to correct confirmation, steps; nonconfirmations counted separately",
+  "unscorable": "t5 standalone book grasp; no final-task predicate",
+  "t8": "any moka pot; identical pots not internally assigned by RGB",
+  "evaluation_only": true,
+  "source_hashes": {
+    "scripts/run_hierarchical.py": "5df3e099c80231cf64851590c58b1b63d08bc1a2468cb3f1af5729ea5c9e3901",
+    "scripts/completion_checker_v2.py": "6288d9d7c0d9ade9e615beb39c932048e73ea6203ef95eb1ed4f664552f1af4e",
+    "checker_v2/scripts/evaluate_loop.py": "e634c441ea14dc0f0d4c3242ef5c045d44376dbc401d1d3773259ea295b2428b",
+    "checker_v2/scripts/summarize_loop.py": "79fef2e06470b3a865c0c32787e17bb25b97e740a49a33b0a72c993c129511af"
+  }
+}

@@ -1,0 +1,42 @@
+[
+  {
+    "case": "legacy_old",
+    "success": true,
+    "status": "success",
+    "steps": 257,
+    "final_atoms": [
+      true,
+      true
+    ]
+  },
+  {
+    "case": "strict_old",
+    "success": true,
+    "status": "success",
+    "steps": 257,
+    "final_atoms": [
+      true,
+      true
+    ]
+  },
+  {
+    "case": "strict_new",
+    "success": true,
+    "status": "success",
+    "steps": 267,
+    "final_atoms": [
+      true,
+      true
+    ]
+  },
+  {
+    "case": "strict_new_recovery",
+    "success": true,
+    "status": "success",
+    "steps": 267,
+    "final_atoms": [
+      true,
+      true
+    ]
+  }
+]

@@ -1,0 +1,146 @@
+{
+  "captured_unix": 1794650640.4380772,
+  "architecture": "aarch64",
+  "python": "3.10.22 | packaged by conda-forge | (main, Oct  6 2026, 22:53:30) [GCC 14.4.0]",
+  "executable": "/home/csip/miniforge3/envs/ali-jetson/bin/python",
+  "model": "NVIDIA Jetson Orin Nano Developer Kit",
+  "l4t": "# R36 (release), REVISION: 4.4, GCID: 41062509, BOARD: generic, EABI: aarch64, DATE: Mon Jun 16 16:07:13 UTC 2025\n# KERNEL_VARIANT: oot\nTARGET_USERSPACE_LIB_DIR=nvidia\nTARGET_USERSPACE_LIB_DIR_PATH=usr/lib/aarch64-linux-gnu/nvidia",
+  "meminfo": "MemTotal:        7802744 kB\nMemFree:         2093924 kB\nMemAvailable:    5879048 kB\nBuffers:          120060 kB\nCached:          3731180 kB\nSwapCached:           40 kB\nActive:          1460288 kB\nInactive:        2712364 kB\nActive(anon):       3620 kB\nInactive(anon):   384096 kB\nActive(file):    1456668 kB\nInactive(file):  2328268 kB\nUnevictable:       35400 kB\nMlocked:               0 kB\nSwapTotal:       3901344 kB\nSwapFree:        3892384 kB\nDirty:                16 kB\nWriteback:             0 kB\nAnonPages:        355472 kB\nMapped:           210756 kB\nShmem:             30904 kB\nKReclaimable:     219476 kB\nSlab:             319124 kB\nSReclaimable:     219476 kB\nSUnreclaim:        99648 kB\nKernelStack:        7080 kB\nPageTables:        11516 kB\nNFS_Unstable:          0 kB\nBounce:                0 kB\nWritebackTmp:          0 kB\nCommitLimit:     7802716 kB\nCommitted_AS:    2359496 kB\nVmallocTotal:   133143592960 kB\nVmallocUsed:       64296 kB\nVmallocChunk:          0 kB\nPercpu:             3888 kB\nHardwareCorrupted:     0 kB\nAnonHugePages:    129024 kB\nShmemHugePages:        0 kB\nShmemPmdMapped:        0 kB\nFileHugePages:         0 kB\nFilePmdMapped:         0 kB\nCmaTotal:         262144 kB\nCmaFree:            9828 kB\nHugePages_Total:       0\nHugePages_Free:        0\nHugePages_Rsvd:        0\nHugePages_Surp:        0\nHugepagesize:       2048 kB\nHugetlb:               0 kB",
+  "jetpack": {
+    "returncode": 0,
+    "output": "nvidia-jetpack\t6.2.1+b38\nnvidia-l4t-core\t36.4.4-20250616085344"
+  },
+  "cuda": {
+    "cuda": {
+      "name": "CUDA SDK",
+      "version": "12.6.11"
+    },
+    "cuda_cccl": {
+      "name": "CUDA C++ Core Compute Libraries",
+      "version": "12.6.37"
+    },
+    "cuda_compat": {
+      "name": "CUDA Specific Libraries",
+      "version": "12.6.36890662"
+    },
+    "cuda_cudart": {
+      "name": "CUDA Runtime (cudart)",
+      "version": "12.6.68"
+    },
+    "cuda_cuobjdump": {
+      "name": "cuobjdump",
+      "version": "12.6.68"
+    },
+    "cuda_cupti": {
+      "name": "CUPTI",
+      "version": "12.6.68"
+    },
+    "cuda_cuxxfilt": {
+      "name": "CUDA cu++ filt",
+      "version": "12.6.68"
+    },
+    "cuda_gdb": {
+      "name": "CUDA GDB",
+      "version": "12.6.68"
+    },
+    "cuda_nvcc": {
+      "name": "CUDA NVCC",
+      "version": "12.6.68"
+    },
+    "cuda_nvdisasm": {
+      "name": "CUDA nvdisasm",
+      "version": "12.6.68"
+    },
+    "cuda_nvml_dev": {
+      "name": "CUDA NVML Headers",
+      "version": "12.6.68"
+    },
+    "cuda_nvprune": {
+      "name": "CUDA nvprune",
+      "version": "12.6.68"
+    },
+    "cuda_nvrtc": {
+      "name": "CUDA NVRTC",
+      "version": "12.6.68"
+    },
+    "cuda_nvtx": {
+      "name": "CUDA NVTX",
+      "version": "12.6.68"
+    },
+    "cuda_sanitizer_api": {
+      "name": "CUDA Compute Sanitizer API",
+      "version": "12.6.68"
+    },
+    "libcublas": {
+      "name": "CUDA cuBLAS",
+      "version": "12.6.1.4"
+    },
+    "libcudla": {
+      "name": "CUDA cuDLA",
+      "version": "12.6.68"
+    },
+    "libcufft": {
+      "name": "CUDA cuFFT",
+      "version": "11.2.6.59"
+    },
+    "libcufile": {
+      "name": "GPUDirect Storage (cufile)",
+      "version": "1.11.1.6"
+    },
+    "libcurand": {
+      "name": "CUDA cuRAND",
+      "version": "10.3.7.68"
+    },
+    "libcusolver": {
+      "name": "CUDA cuSOLVER",
+      "version": "11.6.4.69"
+    },
+    "libcusparse": {
+      "name": "CUDA cuSPARSE",
+      "version": "12.5.3.3"
+    },
+    "libnpp": {
+      "name": "CUDA NPP",
+      "version": "12.3.1.54"
+    },
+    "libnvfatbin": {
+      "name": "Fatbin interaction library",
+      "version": "12.6.68"
+    },
+    "libnvjitlink": {
+      "name": "JIT Linker Library",
+      "version": "12.6.68"
+    },
+    "libnvjpeg": {
+      "name": "CUDA nvJPEG",
+      "version": "12.3.3.54"
+    },
+    "nsight_compute": {
+      "name": "Nsight Compute",
+      "version": "2024.3.1.2"
+    },
+    "nvidia_fs": {
+      "name": "NVIDIA file-system",
+      "version": "2.22.3"
+    }
+  },
+  "disk": {
+    "returncode": 0,
+    "output": "Filesystem      Size  Used Avail Use% Mounted on\n/dev/mmcblk0p1  468G   24G  421G   6% /"
+  },
+  "packages": {
+    "torch": {
+      "installed": false
+    },
+    "transformers": {
+      "installed": false
+    },
+    "bitsandbytes": {
+      "installed": false
+    },
+    "peft": {
+      "installed": false
+    }
+  },
+  "cuda_tensor_test": "not run: torch not installed; package installation requires next phase"
+}

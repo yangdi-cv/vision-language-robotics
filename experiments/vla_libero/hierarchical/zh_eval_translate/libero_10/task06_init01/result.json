@@ -1,0 +1,46 @@
+{
+  "suite": "libero_10",
+  "task_id": 6,
+  "initial_state_id": 1,
+  "original_task_language": "put the white mug on the plate and put the chocolate pudding to the right of the plate",
+  "input_instruction": "把白色马克杯放到盘子上，再把巧克力布丁放到盘子右边",
+  "planner": "translate",
+  "monitor": "qwen",
+  "max_steps": 520,
+  "subgoal_step_budget": 300,
+  "monitor_every_queries": 4,
+  "monitor_res": 512,
+  "gripper_gate": true,
+  "confirm": 2,
+  "last_subgoal_runs_to_limit": true,
+  "noise_seed": 730601,
+  "runner_sha256": "0fc7e8b3817ad2fbf0df4e4055874ae74c2cda5805297879f63ba77ea00375cd",
+  "events": [
+    {
+      "kind": "plan",
+      "step": 0,
+      "ok": true,
+      "seconds": 0.3980418159990222,
+      "raw": "{\"instruction\": \"Place the white mug on the plate and put the chocolate pudding to the right of the plate.\"}",
+      "error": null
+    },
+    {
+      "kind": "subgoal_start",
+      "step": 0,
+      "index": 0,
+      "subgoal": "Place the white mug on the plate and put the chocolate pudding to the right of the plate."
+    }
+  ],
+  "status": "success",
+  "success": true,
+  "subgoals": [
+    "Place the white mug on the plate and put the chocolate pudding to the right of the plate."
+  ],
+  "steps": 218,
+  "policy_queries": 44,
+  "qwen_checks": 0,
+  "final_atoms": [
+    true,
+    true
+  ]
+}

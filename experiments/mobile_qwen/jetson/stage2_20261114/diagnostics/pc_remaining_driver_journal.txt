@@ -1,0 +1,3 @@
+Nov 14 22:54:53 yd systemd[2095]: Started /usr/bin/bash /home/yd/Documents/VLA/experiments/mobile_qwen/jetson/stage2_20261114/scripts/pc_remaining.sh.
+Nov 14 23:15:52 yd systemd[2095]: ali-pc-nf4-driver-20261114.service: Main process exited, code=exited, status=2/INVALIDARGUMENT
+Nov 14 23:15:52 yd systemd[2095]: ali-pc-nf4-driver-20261114.service: Failed with result 'exit-code'.

@@ -1,0 +1,8 @@
+{
+  "mode": "recorded_action_replay",
+  "frames": 536,
+  "task_success": true,
+  "evidence": "user confirmed successful grasp and placement",
+  "log": "/home/yd/Documents/VLA/SO101/records/replay_1791788857513529031.csv",
+  "scope": "single replay with restored object placement; not learned policy evaluation"
+}

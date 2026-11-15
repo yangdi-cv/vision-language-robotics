@@ -1,0 +1,36 @@
+{
+  "runner_sha256": "e5d28552be82d553e09b3fcfe45aa95bbc6d38b0338899c2536ed1407935bb9d",
+  "suite": "libero_10",
+  "task_id": 5,
+  "initial_state_id": 2,
+  "mode": "baseline",
+  "environment_seed": 7,
+  "noise_seed": 730502,
+  "initial_state_sha256": "83ff554be370e25fb3b049d5c3db3f2cf4f20524a0eab8beeda093c6a81bad66",
+  "original_prompt": "pick up the book and place it in the back compartment of the caddy",
+  "input_prompt": "pick up the book and place it in the back compartment of the caddy",
+  "replan_steps": 5,
+  "denoising_steps": 10,
+  "max_steps": 520,
+  "status": "success",
+  "success": true,
+  "steps": 151,
+  "alternate_goal_evaluable": false,
+  "alternate_goal_ever_satisfied": null,
+  "initial_eef": [
+    -0.30647924743396776,
+    0.0036907634647928515,
+    1.1588692274484502
+  ],
+  "final_eef": [
+    -0.4107144950084442,
+    -0.1238073497228662,
+    1.136187236493106
+  ],
+  "qpos_displacement_norm": 1.2867223026180887,
+  "simulation_elapsed_s": 7.55,
+  "wall_s": 5.3089299610001035,
+  "query_count": 31,
+  "warmup_query_wall_s": 0.08192650999990292,
+  "query_median_excluding_first_s": 0.0765042924995214
+}

@@ -1,0 +1,12 @@
+{
+  "best_step": 600,
+  "val_median_px": 0.6620123749604808,
+  "val_within_15px": 0.875,
+  "base_val": [
+    30.294721453086233,
+    0.3958333333333333
+  ],
+  "wall_seconds": 412.5782621059989,
+  "trainable_parameters": 2949120,
+  "peak_mib": 9201.0537109375
+}

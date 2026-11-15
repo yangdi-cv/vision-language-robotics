@@ -1,0 +1,36 @@
+{
+  "suite": "libero_10",
+  "task_id": 2,
+  "initial_state_id": 0,
+  "original_task_language": "turn on the stove and put the moka pot on it",
+  "input_instruction": "打开炉子，然后把摩卡壶放到炉子上",
+  "planner": "none",
+  "monitor": "qwen",
+  "max_steps": 520,
+  "subgoal_step_budget": 300,
+  "monitor_every_queries": 4,
+  "monitor_res": 512,
+  "gripper_gate": true,
+  "noise_seed": 730200,
+  "runner_sha256": "470de827f0e88145ff2471f24abce6976a623683b9c04d2f0ed61c168e9c647c",
+  "events": [
+    {
+      "kind": "subgoal_start",
+      "step": 0,
+      "index": 0,
+      "subgoal": "打开炉子，然后把摩卡壶放到炉子上"
+    }
+  ],
+  "status": "success",
+  "success": true,
+  "subgoals": [
+    "打开炉子，然后把摩卡壶放到炉子上"
+  ],
+  "steps": 264,
+  "policy_queries": 53,
+  "qwen_checks": 0,
+  "final_atoms": [
+    true,
+    true
+  ]
+}

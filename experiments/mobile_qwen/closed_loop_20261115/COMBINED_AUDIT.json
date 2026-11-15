@@ -1,0 +1,22 @@
+[
+  {
+    "tag": "combined_probe1_nominal_i00_lora",
+    "complete_artifacts": true,
+    "joint_handover_checked": true
+  },
+  {
+    "tag": "combined_validation1_nominal_i01_lora",
+    "complete_artifacts": true,
+    "joint_handover_checked": true
+  },
+  {
+    "tag": "combined_validation1_nominal_i04_lora",
+    "complete_artifacts": true,
+    "joint_handover_checked": true
+  },
+  {
+    "tag": "combined_validation1_nominal_i05_lora",
+    "complete_artifacts": true,
+    "joint_handover_checked": true
+  }
+]

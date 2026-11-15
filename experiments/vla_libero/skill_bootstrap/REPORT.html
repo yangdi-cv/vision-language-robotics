@@ -1,0 +1,169 @@
+<!doctype html><meta charset="utf-8"><style>@page{size:A4;margin:17mm}body{font:10pt/1.65 "Noto Sans CJK SC","Noto Sans CJK JP",sans-serif;color:#24374a}h1{font-size:23pt;color:#153b58}h2{font-size:15pt;break-after:avoid;border-bottom:1px solid #ccd8e3}table{width:100%;border-collapse:collapse;font-size:8pt;break-inside:avoid}td,th{padding:5px;border:1px solid #ccd8e3}th{background:#edf3f8}img{width:100%}pre{font-size:8pt;white-space:pre-wrap;overflow-wrap:anywhere;background:#f1f5f8;padding:10px}code{overflow-wrap:anywhere}p:has(img){break-inside:avoid}</style><h1>目标条件化执行与单物体策略适配</h1>
+<p>阿里具身项目 · 阶段报告<br />
+2026年11月14日 · RTX4090 / LIBERO / π0.5</p>
+<h2>摘要</h2>
+<p>此前的选择性搬运实验要求“只搬指定一件，另一件保持原位”。追加文字约束和腕部视角均没有解决主要问题。本阶段先检查低层策略是否收到并响应目标指令，再补充同场景单件搬运数据，完成轻量策略适配与独立布局闭环验证。</p>
+<p>12条配对诊断中，目标词元和动作数值均会变化，但所有回合仍先抬起原任务的第一件物体。随后使用原机器人动力学和OSC控制器生成32条候选示教，29条通过物理验收，其中21条训练、8条验证。第一轮200步LoRA在初态28–29的完整单件搬运为基座0/8、适配1/8，尚未改变第二件优先的行为。</p>
+<p>进一步检查发现，决定目标选择的共享观察分叉点在普通阶段采样中覆盖不足。第二轮将半数训练batch改为“相同观察、不同目标、不同正确动作”的配对，从第一轮权重继续600步，并改用初态30–31测试。第二轮完整单件搬运为基座0/8、配对适配1/8；首次抬起指定物体为5/8、5/8。完整逐项结果在第5节。</p>
+<p>两轮使用不同测试布局，不将第二轮与第一轮的差值解释为单一采样因素的收益。此处是两个场景、一个训练种子的小规模适配实验，不是原LIBERO整套基准成绩。示教生成使用仿真真值，策略测试没有使用物体坐标或真值停止。</p>
+<h2>目录</h2>
+<ol>
+<li>指令响应诊断</li>
+<li>单物体示教与物理验收</li>
+<li>第一轮策略适配</li>
+<li>目标分叉配对适配</li>
+<li>新布局闭环结果</li>
+<li>内存故障与加载修复</li>
+<li>代码、权重与后续工作</li>
+</ol>
+<h2>1. 指令响应诊断</h2>
+<p>选择Long中的汤罐头/番茄酱与奶酪/黄油两个入篮场景，初态0与11。每个条件分别输入“只搬第一件”“只搬第二件”的正向单技能指令，以及原双物体任务指令，共12条回合。模型、观察、初态和动作噪声保持一致，每次输出10步、执行前5步。</p>
+<p>沿第一件轨迹的第0、50、100、150、200、250步采样，24个相同观察点各调用三种指令及一次同指令重复，共96次额外推理。图像、本体状态与噪声哈希一致，实际目标词元不同；同条件重复动作差0。四个初始观察点的目标交换动作RMS约0.016–0.030（模型控制量），说明语言进入了推理。</p>
+<p>但是四个场景条件的三种指令都先抬起第一件；要求第二件优先的4条均未做到。这里的“抬起”按物体高于初始位置20毫米、夹爪接触且关闭连续3步记录，是行为代理指标，与最终任务得分分开。</p>
+<p>因此，本轮没有修改分词或输入接口，而是补充目标条件化技能。相关代码在<code>instruction_response/scripts/run.py</code>、<code>analyze.py</code>，逐项记录在该目录SUMMARY.json。</p>
+<h2>2. 单物体示教与物理验收</h2>
+<p>参考物体相对抓取姿态的思路，复用原robosuite OSC控制接口，在同一Long场景中执行清空、靠近、夹持、抬起、移至篮子、释放和退回。抓取姿态取自已成功的第一件轨迹，再根据目标物体位置生成示教。执行仍经过原关节控制、动力学和接触模型，不用mocap，也不直接改动物体位置。</p>
+<p>这种生成器具有仿真真值，是训练数据来源，不是VLA算法。两个开发反向小试成功只用于确认数据生成的物理可行性。正式候选按初态预先划分：训练20–25，验证26–27；第一轮策略测试28–29，第二轮测试30–31。</p>
+<table>
+<thead>
+<tr>
+<th>数据部分</th>
+<th style="text-align:right">候选轨迹</th>
+<th style="text-align:right">接受</th>
+<th style="text-align:right">未接受</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>训练</td>
+<td style="text-align:right">24</td>
+<td style="text-align:right">21</td>
+<td style="text-align:right">3</td>
+</tr>
+<tr>
+<td>验证</td>
+<td style="text-align:right">8</td>
+<td style="text-align:right">8</td>
+<td style="text-align:right">0</td>
+</tr>
+</tbody>
+</table>
+<p>接受标准为目标在篮内稳定放置并脱离夹爪、指定保留物体的全程最大位移不超过30毫米。3条夹持失败轨迹完整保留，不进入训练。训练输入只有图像、本体状态、指令和实际动作，不包含教师使用的物体坐标或阶段标签；阶段标签只用于采样。</p>
+<p>独立恢复10595个示教仿真状态，32条最终接受标签全部一致。恢复后与运行缓存的物体位置最大差约2.587毫米。16个布局的两目标示教在初始图像和状态上相同。</p>
+<p>相关代码在<code>skill_bootstrap/scripts/teacher.py</code>、<code>generate.py</code>、<code>audit_data.py</code>；划分和筛选结果在DATA_PROTOCOL.json、MANIFEST.json、DATA_AUDIT.json。</p>
+<h2>3. 第一轮策略适配</h2>
+<p>使用原π0.5检查点，增加原生LoRA，仅训练49,987,584个参数，约占3.40B模型参数的1.47%。全部基座和视觉编码器保持冻结，图像处理、分词、动作归一化和动作块格式沿用原实现。调用固定版本openpi的train_step，没有替换底层策略。</p>
+<p>首轮200步、batch1，按任务/目标与示教阶段采样。验证固定为初态26–27的16帧，检查点按验证流匹配损失选择。训练前随机LoRA损失为0.02769，最低为0.01337，选中step200。该“训练前”不是未加适配器的原基座：此版本官方LoRA的A、B均随机初始化。</p>
+<p>在独立初态28–29，完整单件搬运从0/8变为1/8，先抬起指定物体从3/8变为4/8。要求第二件优先仍为0/4。离线损失下降没有补齐目标选择能力。</p>
+<p>相关代码在<code>scripts/train_lora.py</code>；训练、验证和选模在<code>lora_pilot/</code>。适配增量在adapter_best.npz，不覆盖原基座。</p>
+<h2>4. 目标分叉配对适配</h2>
+<p>两条成功示教可能有大量不同的中间画面，却只有很短一段在完全相同的状态下要求不同动作。检查接受轨迹后发现：9个训练布局配对、4个验证布局配对在分叉帧的RGB、腕部图像和本体状态均逐元素一致；动作最大差约0.59–0.90。汤罐头场景分叉在第9帧，奶酪场景在第20帧。</p>
+<p><img src="figures/paired_observation.png" alt="相同观察与不同目标动作" /></p>
+<p>第二轮从首轮权重继续600步、batch2。一半batch来自共享观察下的两个相反目标，另一半保持原阶段采样。配对时只给模型不同的自然语言目标和正确动作标签，避免只凭画面判断应搬哪一件。没有增加失败轨迹，也没有使用测试图片训练。</p>
+<p>验证使用原16帧阶段样本，加8个验证布局的目标分叉样本，以两项平均损失各占一半选模。最终选中step400。本轮同时改变了采样、更新次数并重置优化器，因此不作为“仅改变采样”的消融结论。</p>
+<p><img src="figures/loss.png" alt="两轮验证损失" /></p>
+<p>相关代码在<code>scripts/train_pair_lora.py</code>；分叉核对在PAIRED_BRANCH_AUDIT.json，设置与选模在<code>lora_paired/</code>。</p>
+<h2>5. 新布局闭环结果</h2>
+<p>每轮各有8个条件：两个场景×两个目标×两个新初态。基座与适配策略使用相同初态、噪声、正向技能指令和动作接口，每条固定执行300步后保持25步。原Long成功信号只记录，不控制停止；没有接Qwen检查器，先隔离低层执行能力。</p>
+<p>“完整单件搬运”要求目标末10步在篮内且不接触夹爪，指定另一件全程位移不超过30毫米。“合法窗口”只说明执行中曾满足条件，不代表策略会自主停住。</p>
+<table>
+<thead>
+<tr>
+<th>阶段 / 测试布局</th>
+<th>策略</th>
+<th>先抬起指定物体</th>
+<th>有合法完成窗口</th>
+<th>完整单件搬运</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>首轮 / 28–29</td>
+<td>基座</td>
+<td>3/8</td>
+<td>3/8</td>
+<td>0/8</td>
+</tr>
+<tr>
+<td>首轮 / 28–29</td>
+<td>LoRA200步</td>
+<td>4/8</td>
+<td>3/8</td>
+<td>1/8</td>
+</tr>
+<tr>
+<td>配对适配 / 30–31</td>
+<td>基座</td>
+<td>5/8</td>
+<td>4/8</td>
+<td>0/8</td>
+</tr>
+<tr>
+<td>配对适配 / 30–31</td>
+<td>配对适配</td>
+<td>5/8</td>
+<td>5/8</td>
+<td>1/8</td>
+</tr>
+</tbody>
+</table>
+<p><img src="figures/results.png" alt="两轮闭环结果" /></p>
+<p>第二轮按场景/目标分列：</p>
+<table>
+<thead>
+<tr>
+<th>任务与目标</th>
+<th>第二轮基座：先选对 / 完整成功</th>
+<th>第二轮适配：先选对 / 完整成功</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>场景0 / 目标0</td>
+<td>2/2 · 0/2</td>
+<td>2/2 · 0/2</td>
+</tr>
+<tr>
+<td>场景0 / 目标1</td>
+<td>1/2 · 0/2</td>
+<td>1/2 · 1/2</td>
+</tr>
+<tr>
+<td>场景1 / 目标0</td>
+<td>2/2 · 0/2</td>
+<td>2/2 · 0/2</td>
+</tr>
+<tr>
+<td>场景1 / 目标1</td>
+<td>0/2 · 0/2</td>
+<td>0/2 · 0/2</td>
+</tr>
+</tbody>
+</table>
+<p>第二轮首次选对物体仍为5/8对5/8，没有提高。唯一完整收益来自场景0、初态30、指定番茄酱：基座同样先抬起了这件物体，但没有完成放置；适配改善了这一条件的后续完成。奶酪/黄油场景的反向目标仍失败。因此，这轮尚未补齐可靠的目标选择能力，不能把单例完成当成普遍的语言条件化提升。</p>
+<p>两轮测试布局不同，各自与自己的基座配对。第二轮配对新增完整成功1条、损失0条。只有一个训练种子、每种目标两个测试初态，不能据此推断广泛泛化或统计显著性。</p>
+<p>第一轮恢复5200个仿真状态，16条最终判分一致；第二轮恢复5200个状态，最终判分差异0条。动作输入和保存轨迹分别核对960次策略查询，两轮共1920次；另有48×2个同状态反事实点。首轮图像与动作生成不能因后续结果被覆盖。</p>
+<p>附带视频固定展示第二轮场景0、初态30、指定番茄酱的两组真实回合，不按成功与否挑选，完整326帧。视频使用20Hz仿真时间，不包含推理等待。</p>
+<p>相关代码在<code>scripts/evaluate_policy.py</code>、<code>evaluate_paired.py</code>、<code>safe_eval.py</code>、<code>summarize.py</code>；结果在SUMMARY.json、SUMMARY_PAIRED.json。</p>
+<h2>6. 内存故障与加载修复</h2>
+<p>重载校验时同时驻留两个模型，进程RSS一度约20.4GiB。工作站只有约30GiB系统内存且无Swap，systemd-oomd两次终止了包含实验的VSCode进程组。分离Unix会话没有分离systemd资源组，因此原先的后台启动方式不足以保护编辑器。日志没有据此证明显卡或其他硬件损坏。</p>
+<p>修复分两步：实验放入独立systemd用户服务，设置14GiB软上限、16GiB硬上限，超限退出实验；模型按TensorStore/Orbax原存储块读取、转换和传入GPU，缓存限制16/32MiB，不再将完整权重多次复制到主机内存。LoRA增量逐块合并回原模型结构，基座与适配推理统一采用相同加载路径。</p>
+<p>分块加载的基座进程观测RSS峰约3.81GiB，包含页缓存的进程组约10.67GiB。51数组/408块的基座与真正零增量适配器哈希全部一致，动作最大差0，通过原0.001阈值。历史进程输出仍有0.00146差异，保留记录，不将其算成训练收益。当前数学合并通过四项自包含CPU测试，模拟注意力、KV、前馈布局及零增量比特保持。</p>
+<p>没有关闭系统内存保护，没有修改Swap、显卡驱动或升级硬件。相关代码在<code>scripts/bounded_restore.py</code>、<code>chunk_math.py</code>、<code>watch_resources.py</code>，故障与实际资源日志在<code>resource_checks/</code>。</p>
+<h2>7. 代码、权重与后续工作</h2>
+<pre><code class="language-text">instruction_response/
+  scripts/run.py、analyze.py       配对输入与执行顺序诊断
+  PROTOCOL.json、SUMMARY.json
+skill_bootstrap/
+  scripts/teacher.py、generate.py  仿真示教
+  scripts/train_lora.py            首轮适配
+  scripts/train_pair_lora.py       目标分叉配对适配
+  scripts/runtime.py、bounded_restore.py、chunk_math.py
+  scripts/evaluate_policy.py、evaluate_paired.py、safe_eval.py
+  scripts/summarize.py、audit_policy.py
+  lora_pilot/、lora_paired/         权重与训练记录
+  policy_eval/、policy_eval_paired/ 实际回合及输入/动作
+  resource_checks/、tests/
+</code></pre>
+<p>代码包只包含源码、规格、统计、示教接受名单和少量图示，不包含原基座、全部帧和轨迹。权重增量单独保存，并附SHA256与固定基座来源；不是可独立运行的完整模型。完整GPU复现需要README列出的模型和LIBERO资产。解压代码包后的四项CPU测试使用合成张量，不依赖隐藏数据文件。</p>
+<p>本阶段新增的是π0.5执行策略适配，不是Qwen高层微调。下一阶段应依据各目标的闭环表现决定是否继续补执行数据；只有能够按目标执行的技能，才接回Qwen检查器比较停止收益。Jetson端部署、统一导航与抓取场景、实体测试均未在本阶段开展。</p>

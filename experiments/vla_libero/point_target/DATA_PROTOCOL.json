@@ -1,0 +1,49 @@
+{
+  "new_train_initials": [
+    36,
+    37,
+    38,
+    39
+  ],
+  "new_validation_initials": [
+    40
+  ],
+  "old_train_initials": [
+    20,
+    21,
+    22,
+    23,
+    24,
+    25
+  ],
+  "old_validation_initials": [
+    26,
+    27
+  ],
+  "held_out_initials": [
+    41,
+    42
+  ],
+  "layouts": [
+    "normal",
+    "swap"
+  ],
+  "tasks": [
+    0,
+    1
+  ],
+  "targets": [
+    0,
+    1
+  ],
+  "new_teacher_candidates": 40,
+  "acceptance": "both goals must pass original selective score within same layout; accepted pairs only",
+  "oracle_boxes": true,
+  "oracle_actions_only_teacher": true,
+  "swap_only_at_reset": true,
+  "source_sha256": {
+    "experiments/vla_libero/point_target/scripts/prepare.py": "94b03d15d6d433fd39dfa2eeb52f26197ba7322d6c3525ac8f137a8ee5e498a8",
+    "experiments/vla_libero/point_target/scripts/layout.py": "ca4ab8caacb54c979451a03bb799652468894fe6495ede04a65defeb7acea88b",
+    "experiments/vla_libero/skill_bootstrap/scripts/teacher.py": "4665ffb0344800fbb05410c05e614a4eebb37d09ef0b4429ea1fb6ba3cd0935c"
+  }
+}

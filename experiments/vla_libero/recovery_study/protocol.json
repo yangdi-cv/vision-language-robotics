@@ -1,0 +1,56 @@
+{
+  "suite": "libero_10",
+  "cases": [
+    {
+      "task": 2,
+      "init": 2,
+      "source": "hierarchical/zh_eval_hier_v2/libero_10/task02_init02",
+      "source_result_sha256": "e4f0838e5722d3210806022143a6448d281fe14f51b16bcf8ab67fecf677dca6",
+      "prefix_actions_sha256": "cf56833b33e4f3fc4aa943278dfde152441ba98954bf59a4c8055c0edfd3d1ac",
+      "subgoals": [
+        "turn on the stove",
+        "put the moka pot on the stove"
+      ]
+    },
+    {
+      "task": 4,
+      "init": 2,
+      "source": "hierarchical/zh_eval_hier_v2/libero_10/task04_init02",
+      "source_result_sha256": "c4fe352a3a5dbd940f45119a72efbf241fcef79f67207517887b1f5cfe6f884e",
+      "prefix_actions_sha256": "10c7357ea1883ef0b213c7d28827a82e0b6b60bb65ae5c6bc939b4aa5922bda3",
+      "subgoals": [
+        "put the white mug on the left plate",
+        "put the yellow and white mug on the right plate"
+      ]
+    },
+    {
+      "task": 8,
+      "init": 2,
+      "source": "hierarchical/zh_eval_hier_v2/libero_10/task08_init02",
+      "source_result_sha256": "b4b1e377c4e55afb87e3a40a978bace191897c7b4ea12c5f0d296bb7c82aea0b",
+      "prefix_actions_sha256": "e6465aaa07c767f7c8f9ddcde6f22e7f03d7cb6a23a71c41de61e16f84896f2c",
+      "subgoals": [
+        "put the first moka pot on the stove",
+        "put the second moka pot on the stove"
+      ]
+    }
+  ],
+  "prefix_steps": 150,
+  "remaining_steps": 370,
+  "action_chunk_execute": 5,
+  "modes": [
+    "continue",
+    "full",
+    "replan"
+  ],
+  "noise_seeds": [
+    31001,
+    31002
+  ],
+  "n": 18,
+  "monitor_confirm": 2,
+  "monitor_every_queries": 4,
+  "gripper_gate": true,
+  "pure_replan_no_full_fallback": true,
+  "selection": "Three previously identified v2 failures, fixed before new rollout; conditional recovery, not suite success rate. Two seeds are stochastic repeats, not independent initial states."
+}

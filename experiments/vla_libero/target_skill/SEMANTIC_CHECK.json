@@ -1,0 +1,7 @@
+{
+  "equation": "BTNH,NHD->BTD",
+  "naive_max_abs": 16.689332962036133,
+  "corrected_max_abs": 1.9073486328125e-06,
+  "passed": true,
+  "source": "pinned openpi.models.lora.Einsum.apply, float32"
+}

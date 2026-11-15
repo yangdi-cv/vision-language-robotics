@@ -1,0 +1,84 @@
+{
+  "modes": {
+    "continue": {
+      "attempts": 6,
+      "executed": 6,
+      "success": 0,
+      "errors": 0,
+      "steps": 2220,
+      "checks": 23
+    },
+    "full": {
+      "attempts": 6,
+      "executed": 6,
+      "success": 0,
+      "errors": 0,
+      "steps": 2220,
+      "checks": 0
+    },
+    "replan": {
+      "attempts": 6,
+      "executed": 4,
+      "success": 0,
+      "errors": 2,
+      "steps": 1480,
+      "checks": 30
+    },
+    "contract": {
+      "attempts": 6,
+      "executed": 6,
+      "success": 0,
+      "errors": 0,
+      "steps": 2220,
+      "checks": 24
+    },
+    "centering": {
+      "attempts": 2,
+      "executed": 2,
+      "success": 0,
+      "errors": 0,
+      "steps": 740,
+      "checks": 0
+    },
+    "typed": {
+      "attempts": 2,
+      "executed": 2,
+      "success": 0,
+      "errors": 0,
+      "steps": 740,
+      "checks": 11
+    }
+  },
+  "smoke": [
+    {
+      "task_id": 0,
+      "success": true,
+      "status": "success",
+      "steps": 292,
+      "final_atoms": [
+        true,
+        true
+      ],
+      "qwen_checks": 5
+    },
+    {
+      "task_id": 9,
+      "success": false,
+      "status": "timeout",
+      "steps": 520,
+      "final_atoms": [
+        false,
+        true
+      ],
+      "qwen_checks": 6
+    }
+  ],
+  "paired_states_identical": true,
+  "max_prefix_eef_error": 0.0,
+  "unique_failure_states": 3,
+  "stochastic_repeats_per_state": 2,
+  "recovery_attempts": 26,
+  "guided_attempts": 2,
+  "smoke_attempts": 2,
+  "actual_simulated_steps": 10432
+}

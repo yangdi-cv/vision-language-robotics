@@ -1,0 +1,25 @@
+{
+  "steps": 1000,
+  "batch_size": 2,
+  "seed": 20261116,
+  "start": "native pi05_libero with zero-B LoRA; no previous trained adapter",
+  "trainable": "only LoRA A/B in language and action expert; float32 master parameters; frozen base and vision",
+  "interface": "unused right_wrist image slot carries fixed marked initial image; mask true only in grounded mode",
+  "language": "generic marked-object instruction in grounded mode, object name in text mode",
+  "sampling": "alternate grounded/text batches exactly 1:1; paired opposite targets per batch; 40% exact shared-observation branch,60% phase",
+  "augmentation": "grounded reference RGB and box translated together by at most12px; current camera unchanged",
+  "selection": "minimum equal-weight text/grounded fixed validation loss at steps200/600/1000; never use test rollouts",
+  "oracle_reference": true,
+  "test_initials": [
+    41,
+    42
+  ],
+  "scope": "local Point-VLA-inspired interface, not official code/weights reproduction",
+  "source_sha256": {
+    "experiments/vla_libero/point_target/scripts/train.py": "a97b77313ce3d7f26b1bc699969cfa166149b0fdd03eb40a4b726a4ebd44711d",
+    "experiments/vla_libero/point_target/scripts/goal_inputs.py": "f5b1e1512bcb2959bce2945d5925644ffdf0cfdb31060cdccb418a9c886297db",
+    "experiments/vla_libero/point_target/scripts/visual_prompt.py": "937995275b7fc30709caf5eec45a7b493bdebf63d928abdea5a416b6d10705f8",
+    "experiments/vla_libero/point_target/PAIRS.json": "2e67c6754b2c101a35f3b4fd6f368ce4296850188c753d4a200cd47597990542",
+    "experiments/vla_libero/point_target/DATA_PROTOCOL.json": "44b671e725167af1c573c4f6acff28568823638b27aae271f5334691821cd42c"
+  }
+}

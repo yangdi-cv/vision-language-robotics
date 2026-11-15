@@ -1,0 +1,13 @@
+{
+  "cases": 3,
+  "navigation_success": 3,
+  "whole_task_success": 3,
+  "scope": "one kitchen task with three public initial states; development regression",
+  "cases_verified": [
+    "tf22524_i00",
+    "tf22524_i01",
+    "tf22524_i02"
+  ],
+  "qwen_affordance_integrated": false,
+  "qwen_planner_finetuned": false
+}

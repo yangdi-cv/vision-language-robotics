@@ -1,0 +1,36 @@
+{
+  "runner_sha256": "e5d28552be82d553e09b3fcfe45aa95bbc6d38b0338899c2536ed1407935bb9d",
+  "suite": "libero_goal",
+  "task_id": 3,
+  "initial_state_id": 2,
+  "mode": "baseline",
+  "environment_seed": 7,
+  "noise_seed": 720302,
+  "initial_state_sha256": "afaf84a681a98d73f9e7c38ad570b8264e40f0cefb2f8a8cd263790e183bdddb",
+  "original_prompt": "open the top drawer and put the bowl inside",
+  "input_prompt": "open the top drawer and put the bowl inside",
+  "replan_steps": 5,
+  "denoising_steps": 10,
+  "max_steps": 300,
+  "status": "success",
+  "success": true,
+  "steps": 236,
+  "alternate_goal_evaluable": false,
+  "alternate_goal_ever_satisfied": null,
+  "initial_eef": [
+    -0.20220425070192977,
+    0.00487764238075122,
+    1.1815076688741781
+  ],
+  "final_eef": [
+    0.06607966908919122,
+    -0.057672075159832456,
+    1.1697258148746963
+  ],
+  "qpos_displacement_norm": 2.2096486825404957,
+  "simulation_elapsed_s": 11.8,
+  "wall_s": 7.898462300999199,
+  "query_count": 48,
+  "warmup_query_wall_s": 0.08124530700024479,
+  "query_median_excluding_first_s": 0.0761077489996751
+}

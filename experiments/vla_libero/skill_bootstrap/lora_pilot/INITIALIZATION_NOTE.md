@@ -1,0 +1,1 @@
+官方固定版本LoRA对A、B矩阵均使用标准差0.01随机初始化，训练前step0000不是零增量。最初将step0000用于零增量检查，最大动作差0.003587，未通过0.001阈值；保留结果于INITIAL_RANDOM_ADAPTER_CHECK.json。检查重载链路使用单独adapter_zero.npz，将所有lora_b置零，不修改已训练适配器、不放宽阈值。训练日志中的baseline_validation_loss指训练前随机初始化适配器的损失，不是原始无适配器基座的单独评测。

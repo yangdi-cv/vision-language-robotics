@@ -1,0 +1,36 @@
+{
+  "runner_sha256": "e5d28552be82d553e09b3fcfe45aa95bbc6d38b0338899c2536ed1407935bb9d",
+  "suite": "libero_goal",
+  "task_id": 7,
+  "initial_state_id": 2,
+  "mode": "baseline",
+  "environment_seed": 7,
+  "noise_seed": 720702,
+  "initial_state_sha256": "178344b07b2669d92ab02ea97992756d8df1ae410227474836defedef009ab64",
+  "original_prompt": "turn on the stove",
+  "input_prompt": "turn on the stove",
+  "replan_steps": 5,
+  "denoising_steps": 10,
+  "max_steps": 300,
+  "status": "success",
+  "success": true,
+  "steps": 81,
+  "alternate_goal_evaluable": false,
+  "alternate_goal_ever_satisfied": null,
+  "initial_eef": [
+    -0.2015953845574648,
+    -0.004973021653182756,
+    1.1783411550654104
+  ],
+  "final_eef": [
+    -0.4276139610716774,
+    0.20618351288036793,
+    0.9297729244100946
+  ],
+  "qpos_displacement_norm": 1.1196655346942004,
+  "simulation_elapsed_s": 4.05,
+  "wall_s": 3.7419057230008548,
+  "query_count": 17,
+  "warmup_query_wall_s": 0.0815256590003628,
+  "query_median_excluding_first_s": 0.07531640299976061
+}

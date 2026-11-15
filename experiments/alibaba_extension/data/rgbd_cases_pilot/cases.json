@@ -1,0 +1,1742 @@
+[
+  {
+    "id": "000_red",
+    "scene": 0,
+    "image": "scene_000.png",
+    "instruction": "抓起红色方块。",
+    "target_visible": true,
+    "bbox_xyxy_pixels": [
+      363,
+      244,
+      382,
+      261
+    ],
+    "expected_skill": "transfer_red_cube",
+    "query_color": "red",
+    "negated": false,
+    "depth_m": 0.7300000786781311
+  },
+  {
+    "id": "000_blue",
+    "scene": 0,
+    "image": "scene_000.png",
+    "instruction": "抓起蓝色方块。",
+    "target_visible": false,
+    "bbox_xyxy_pixels": null,
+    "expected_skill": "observe",
+    "query_color": "blue",
+    "negated": false,
+    "depth_m": null
+  },
+  {
+    "id": "000_green",
+    "scene": 0,
+    "image": "scene_000.png",
+    "instruction": "抓起绿色方块。",
+    "target_visible": false,
+    "bbox_xyxy_pixels": null,
+    "expected_skill": "observe",
+    "query_color": "green",
+    "negated": false,
+    "depth_m": null
+  },
+  {
+    "id": "000_negation",
+    "scene": 0,
+    "image": "scene_000.png",
+    "instruction": "不要抓起红色方块，只观察。",
+    "target_visible": true,
+    "bbox_xyxy_pixels": [
+      363,
+      244,
+      382,
+      261
+    ],
+    "expected_skill": "observe",
+    "query_color": "red",
+    "negated": true,
+    "depth_m": 0.7300000786781311
+  },
+  {
+    "id": "001_red",
+    "scene": 1,
+    "image": "scene_001.png",
+    "instruction": "抓起红色方块。",
+    "target_visible": false,
+    "bbox_xyxy_pixels": null,
+    "expected_skill": "observe",
+    "query_color": "red",
+    "negated": false,
+    "depth_m": null
+  },
+  {
+    "id": "001_blue",
+    "scene": 1,
+    "image": "scene_001.png",
+    "instruction": "抓起蓝色方块。",
+    "target_visible": true,
+    "bbox_xyxy_pixels": [
+      297,
+      256,
+      319,
+      279
+    ],
+    "expected_skill": "observe",
+    "query_color": "blue",
+    "negated": false,
+    "depth_m": 0.7243432402610779
+  },
+  {
+    "id": "001_green",
+    "scene": 1,
+    "image": "scene_001.png",
+    "instruction": "抓起绿色方块。",
+    "target_visible": false,
+    "bbox_xyxy_pixels": null,
+    "expected_skill": "observe",
+    "query_color": "green",
+    "negated": false,
+    "depth_m": null
+  },
+  {
+    "id": "001_negation",
+    "scene": 1,
+    "image": "scene_001.png",
+    "instruction": "不要抓起蓝色方块，只观察。",
+    "target_visible": true,
+    "bbox_xyxy_pixels": [
+      297,
+      256,
+      319,
+      279
+    ],
+    "expected_skill": "observe",
+    "query_color": "blue",
+    "negated": true,
+    "depth_m": 0.7243432402610779
+  },
+  {
+    "id": "002_red",
+    "scene": 2,
+    "image": "scene_002.png",
+    "instruction": "抓起红色方块。",
+    "target_visible": false,
+    "bbox_xyxy_pixels": null,
+    "expected_skill": "observe",
+    "query_color": "red",
+    "negated": false,
+    "depth_m": null
+  },
+  {
+    "id": "002_blue",
+    "scene": 2,
+    "image": "scene_002.png",
+    "instruction": "抓起蓝色方块。",
+    "target_visible": false,
+    "bbox_xyxy_pixels": null,
+    "expected_skill": "observe",
+    "query_color": "blue",
+    "negated": false,
+    "depth_m": null
+  },
+  {
+    "id": "002_green",
+    "scene": 2,
+    "image": "scene_002.png",
+    "instruction": "抓起绿色方块。",
+    "target_visible": true,
+    "bbox_xyxy_pixels": [
+      270,
+      199,
+      302,
+      231
+    ],
+    "expected_skill": "observe",
+    "query_color": "green",
+    "negated": false,
+    "depth_m": 0.7209604978561401
+  },
+  {
+    "id": "002_negation",
+    "scene": 2,
+    "image": "scene_002.png",
+    "instruction": "不要抓起绿色方块，只观察。",
+    "target_visible": true,
+    "bbox_xyxy_pixels": [
+      270,
+      199,
+      302,
+      231
+    ],
+    "expected_skill": "observe",
+    "query_color": "green",
+    "negated": true,
+    "depth_m": 0.7209604978561401
+  },
+  {
+    "id": "003_red",
+    "scene": 3,
+    "image": "scene_003.png",
+    "instruction": "抓起红色方块。",
+    "target_visible": true,
+    "bbox_xyxy_pixels": [
+      267,
+      214,
+      287,
+      232
+    ],
+    "expected_skill": "transfer_red_cube",
+    "query_color": "red",
+    "negated": false,
+    "depth_m": 0.7305048108100891
+  },
+  {
+    "id": "003_blue",
+    "scene": 3,
+    "image": "scene_003.png",
+    "instruction": "抓起蓝色方块。",
+    "target_visible": false,
+    "bbox_xyxy_pixels": null,
+    "expected_skill": "observe",
+    "query_color": "blue",
+    "negated": false,
+    "depth_m": null
+  },
+  {
+    "id": "003_green",
+    "scene": 3,
+    "image": "scene_003.png",
+    "instruction": "抓起绿色方块。",
+    "target_visible": false,
+    "bbox_xyxy_pixels": null,
+    "expected_skill": "observe",
+    "query_color": "green",
+    "negated": false,
+    "depth_m": null
+  },
+  {
+    "id": "003_negation",
+    "scene": 3,
+    "image": "scene_003.png",
+    "instruction": "不要抓起红色方块，只观察。",
+    "target_visible": true,
+    "bbox_xyxy_pixels": [
+      267,
+      214,
+      287,
+      232
+    ],
+    "expected_skill": "observe",
+    "query_color": "red",
+    "negated": true,
+    "depth_m": 0.7305048108100891
+  },
+  {
+    "id": "004_red",
+    "scene": 4,
+    "image": "scene_004.png",
+    "instruction": "抓起红色方块。",
+    "target_visible": false,
+    "bbox_xyxy_pixels": null,
+    "expected_skill": "observe",
+    "query_color": "red",
+    "negated": false,
+    "depth_m": null
+  },
+  {
+    "id": "004_blue",
+    "scene": 4,
+    "image": "scene_004.png",
+    "instruction": "抓起蓝色方块。",
+    "target_visible": true,
+    "bbox_xyxy_pixels": [
+      287,
+      156,
+      311,
+      183
+    ],
+    "expected_skill": "observe",
+    "query_color": "blue",
+    "negated": false,
+    "depth_m": 0.7284988164901733
+  },
+  {
+    "id": "004_green",
+    "scene": 4,
+    "image": "scene_004.png",
+    "instruction": "抓起绿色方块。",
+    "target_visible": false,
+    "bbox_xyxy_pixels": null,
+    "expected_skill": "observe",
+    "query_color": "green",
+    "negated": false,
+    "depth_m": null
+  },
+  {
+    "id": "004_negation",
+    "scene": 4,
+    "image": "scene_004.png",
+    "instruction": "不要抓起蓝色方块，只观察。",
+    "target_visible": true,
+    "bbox_xyxy_pixels": [
+      287,
+      156,
+      311,
+      183
+    ],
+    "expected_skill": "observe",
+    "query_color": "blue",
+    "negated": true,
+    "depth_m": 0.7284988164901733
+  },
+  {
+    "id": "005_red",
+    "scene": 5,
+    "image": "scene_005.png",
+    "instruction": "抓起红色方块。",
+    "target_visible": false,
+    "bbox_xyxy_pixels": null,
+    "expected_skill": "observe",
+    "query_color": "red",
+    "negated": false,
+    "depth_m": null
+  },
+  {
+    "id": "005_blue",
+    "scene": 5,
+    "image": "scene_005.png",
+    "instruction": "抓起蓝色方块。",
+    "target_visible": false,
+    "bbox_xyxy_pixels": null,
+    "expected_skill": "observe",
+    "query_color": "blue",
+    "negated": false,
+    "depth_m": null
+  },
+  {
+    "id": "005_green",
+    "scene": 5,
+    "image": "scene_005.png",
+    "instruction": "抓起绿色方块。",
+    "target_visible": true,
+    "bbox_xyxy_pixels": [
+      239,
+      213,
+      274,
+      244
+    ],
+    "expected_skill": "observe",
+    "query_color": "green",
+    "negated": false,
+    "depth_m": 0.720508337020874
+  },
+  {
+    "id": "005_negation",
+    "scene": 5,
+    "image": "scene_005.png",
+    "instruction": "不要抓起绿色方块，只观察。",
+    "target_visible": true,
+    "bbox_xyxy_pixels": [
+      239,
+      213,
+      274,
+      244
+    ],
+    "expected_skill": "observe",
+    "query_color": "green",
+    "negated": true,
+    "depth_m": 0.720508337020874
+  },
+  {
+    "id": "006_red",
+    "scene": 6,
+    "image": "scene_006.png",
+    "instruction": "抓起红色方块。",
+    "target_visible": true,
+    "bbox_xyxy_pixels": [
+      261,
+      197,
+      282,
+      217
+    ],
+    "expected_skill": "transfer_red_cube",
+    "query_color": "red",
+    "negated": false,
+    "depth_m": 0.7332196831703186
+  },
+  {
+    "id": "006_blue",
+    "scene": 6,
+    "image": "scene_006.png",
+    "instruction": "抓起蓝色方块。",
+    "target_visible": false,
+    "bbox_xyxy_pixels": null,
+    "expected_skill": "observe",
+    "query_color": "blue",
+    "negated": false,
+    "depth_m": null
+  },
+  {
+    "id": "006_green",
+    "scene": 6,
+    "image": "scene_006.png",
+    "instruction": "抓起绿色方块。",
+    "target_visible": false,
+    "bbox_xyxy_pixels": null,
+    "expected_skill": "observe",
+    "query_color": "green",
+    "negated": false,
+    "depth_m": null
+  },
+  {
+    "id": "006_negation",
+    "scene": 6,
+    "image": "scene_006.png",
+    "instruction": "不要抓起红色方块，只观察。",
+    "target_visible": true,
+    "bbox_xyxy_pixels": [
+      261,
+      197,
+      282,
+      217
+    ],
+    "expected_skill": "observe",
+    "query_color": "red",
+    "negated": true,
+    "depth_m": 0.7332196831703186
+  },
+  {
+    "id": "007_red",
+    "scene": 7,
+    "image": "scene_007.png",
+    "instruction": "抓起红色方块。",
+    "target_visible": false,
+    "bbox_xyxy_pixels": null,
+    "expected_skill": "observe",
+    "query_color": "red",
+    "negated": false,
+    "depth_m": null
+  },
+  {
+    "id": "007_blue",
+    "scene": 7,
+    "image": "scene_007.png",
+    "instruction": "抓起蓝色方块。",
+    "target_visible": true,
+    "bbox_xyxy_pixels": [
+      310,
+      191,
+      332,
+      215
+    ],
+    "expected_skill": "observe",
+    "query_color": "blue",
+    "negated": false,
+    "depth_m": 0.729857325553894
+  },
+  {
+    "id": "007_green",
+    "scene": 7,
+    "image": "scene_007.png",
+    "instruction": "抓起绿色方块。",
+    "target_visible": false,
+    "bbox_xyxy_pixels": null,
+    "expected_skill": "observe",
+    "query_color": "green",
+    "negated": false,
+    "depth_m": null
+  },
+  {
+    "id": "007_negation",
+    "scene": 7,
+    "image": "scene_007.png",
+    "instruction": "不要抓起蓝色方块，只观察。",
+    "target_visible": true,
+    "bbox_xyxy_pixels": [
+      310,
+      191,
+      332,
+      215
+    ],
+    "expected_skill": "observe",
+    "query_color": "blue",
+    "negated": true,
+    "depth_m": 0.729857325553894
+  },
+  {
+    "id": "008_red",
+    "scene": 8,
+    "image": "scene_008.png",
+    "instruction": "抓起红色方块。",
+    "target_visible": false,
+    "bbox_xyxy_pixels": null,
+    "expected_skill": "observe",
+    "query_color": "red",
+    "negated": false,
+    "depth_m": null
+  },
+  {
+    "id": "008_blue",
+    "scene": 8,
+    "image": "scene_008.png",
+    "instruction": "抓起蓝色方块。",
+    "target_visible": false,
+    "bbox_xyxy_pixels": null,
+    "expected_skill": "observe",
+    "query_color": "blue",
+    "negated": false,
+    "depth_m": null
+  },
+  {
+    "id": "008_green",
+    "scene": 8,
+    "image": "scene_008.png",
+    "instruction": "抓起绿色方块。",
+    "target_visible": true,
+    "bbox_xyxy_pixels": [
+      258,
+      199,
+      287,
+      228
+    ],
+    "expected_skill": "observe",
+    "query_color": "green",
+    "negated": false,
+    "depth_m": 0.7249478697776794
+  },
+  {
+    "id": "008_negation",
+    "scene": 8,
+    "image": "scene_008.png",
+    "instruction": "不要抓起绿色方块，只观察。",
+    "target_visible": true,
+    "bbox_xyxy_pixels": [
+      258,
+      199,
+      287,
+      228
+    ],
+    "expected_skill": "observe",
+    "query_color": "green",
+    "negated": true,
+    "depth_m": 0.7249478697776794
+  },
+  {
+    "id": "009_red",
+    "scene": 9,
+    "image": "scene_009.png",
+    "instruction": "抓起红色方块。",
+    "target_visible": true,
+    "bbox_xyxy_pixels": [
+      280,
+      230,
+      299,
+      248
+    ],
+    "expected_skill": "transfer_red_cube",
+    "query_color": "red",
+    "negated": false,
+    "depth_m": 0.7308295369148254
+  },
+  {
+    "id": "009_blue",
+    "scene": 9,
+    "image": "scene_009.png",
+    "instruction": "抓起蓝色方块。",
+    "target_visible": false,
+    "bbox_xyxy_pixels": null,
+    "expected_skill": "observe",
+    "query_color": "blue",
+    "negated": false,
+    "depth_m": null
+  },
+  {
+    "id": "009_green",
+    "scene": 9,
+    "image": "scene_009.png",
+    "instruction": "抓起绿色方块。",
+    "target_visible": false,
+    "bbox_xyxy_pixels": null,
+    "expected_skill": "observe",
+    "query_color": "green",
+    "negated": false,
+    "depth_m": null
+  },
+  {
+    "id": "009_negation",
+    "scene": 9,
+    "image": "scene_009.png",
+    "instruction": "不要抓起红色方块，只观察。",
+    "target_visible": true,
+    "bbox_xyxy_pixels": [
+      280,
+      230,
+      299,
+      248
+    ],
+    "expected_skill": "observe",
+    "query_color": "red",
+    "negated": true,
+    "depth_m": 0.7308295369148254
+  },
+  {
+    "id": "010_red",
+    "scene": 10,
+    "image": "scene_010.png",
+    "instruction": "抓起红色方块。",
+    "target_visible": false,
+    "bbox_xyxy_pixels": null,
+    "expected_skill": "observe",
+    "query_color": "red",
+    "negated": false,
+    "depth_m": null
+  },
+  {
+    "id": "010_blue",
+    "scene": 10,
+    "image": "scene_010.png",
+    "instruction": "抓起蓝色方块。",
+    "target_visible": true,
+    "bbox_xyxy_pixels": [
+      207,
+      179,
+      238,
+      208
+    ],
+    "expected_skill": "observe",
+    "query_color": "blue",
+    "negated": false,
+    "depth_m": 0.7328705787658691
+  },
+  {
+    "id": "010_green",
+    "scene": 10,
+    "image": "scene_010.png",
+    "instruction": "抓起绿色方块。",
+    "target_visible": false,
+    "bbox_xyxy_pixels": null,
+    "expected_skill": "observe",
+    "query_color": "green",
+    "negated": false,
+    "depth_m": null
+  },
+  {
+    "id": "010_negation",
+    "scene": 10,
+    "image": "scene_010.png",
+    "instruction": "不要抓起蓝色方块，只观察。",
+    "target_visible": true,
+    "bbox_xyxy_pixels": [
+      207,
+      179,
+      238,
+      208
+    ],
+    "expected_skill": "observe",
+    "query_color": "blue",
+    "negated": true,
+    "depth_m": 0.7328705787658691
+  },
+  {
+    "id": "011_red",
+    "scene": 11,
+    "image": "scene_011.png",
+    "instruction": "抓起红色方块。",
+    "target_visible": false,
+    "bbox_xyxy_pixels": null,
+    "expected_skill": "observe",
+    "query_color": "red",
+    "negated": false,
+    "depth_m": null
+  },
+  {
+    "id": "011_blue",
+    "scene": 11,
+    "image": "scene_011.png",
+    "instruction": "抓起蓝色方块。",
+    "target_visible": false,
+    "bbox_xyxy_pixels": null,
+    "expected_skill": "observe",
+    "query_color": "blue",
+    "negated": false,
+    "depth_m": null
+  },
+  {
+    "id": "011_green",
+    "scene": 11,
+    "image": "scene_011.png",
+    "instruction": "抓起绿色方块。",
+    "target_visible": true,
+    "bbox_xyxy_pixels": [
+      253,
+      231,
+      289,
+      265
+    ],
+    "expected_skill": "observe",
+    "query_color": "green",
+    "negated": false,
+    "depth_m": 0.7207963466644287
+  },
+  {
+    "id": "011_negation",
+    "scene": 11,
+    "image": "scene_011.png",
+    "instruction": "不要抓起绿色方块，只观察。",
+    "target_visible": true,
+    "bbox_xyxy_pixels": [
+      253,
+      231,
+      289,
+      265
+    ],
+    "expected_skill": "observe",
+    "query_color": "green",
+    "negated": true,
+    "depth_m": 0.7207963466644287
+  },
+  {
+    "id": "012_red",
+    "scene": 12,
+    "image": "scene_012.png",
+    "instruction": "抓起红色方块。",
+    "target_visible": true,
+    "bbox_xyxy_pixels": [
+      220,
+      223,
+      247,
+      247
+    ],
+    "expected_skill": "transfer_red_cube",
+    "query_color": "red",
+    "negated": false,
+    "depth_m": 0.7331020832061768
+  },
+  {
+    "id": "012_blue",
+    "scene": 12,
+    "image": "scene_012.png",
+    "instruction": "抓起蓝色方块。",
+    "target_visible": false,
+    "bbox_xyxy_pixels": null,
+    "expected_skill": "observe",
+    "query_color": "blue",
+    "negated": false,
+    "depth_m": null
+  },
+  {
+    "id": "012_green",
+    "scene": 12,
+    "image": "scene_012.png",
+    "instruction": "抓起绿色方块。",
+    "target_visible": false,
+    "bbox_xyxy_pixels": null,
+    "expected_skill": "observe",
+    "query_color": "green",
+    "negated": false,
+    "depth_m": null
+  },
+  {
+    "id": "012_negation",
+    "scene": 12,
+    "image": "scene_012.png",
+    "instruction": "不要抓起红色方块，只观察。",
+    "target_visible": true,
+    "bbox_xyxy_pixels": [
+      220,
+      223,
+      247,
+      247
+    ],
+    "expected_skill": "observe",
+    "query_color": "red",
+    "negated": true,
+    "depth_m": 0.7331020832061768
+  },
+  {
+    "id": "013_red",
+    "scene": 13,
+    "image": "scene_013.png",
+    "instruction": "抓起红色方块。",
+    "target_visible": false,
+    "bbox_xyxy_pixels": null,
+    "expected_skill": "observe",
+    "query_color": "red",
+    "negated": false,
+    "depth_m": null
+  },
+  {
+    "id": "013_blue",
+    "scene": 13,
+    "image": "scene_013.png",
+    "instruction": "抓起蓝色方块。",
+    "target_visible": true,
+    "bbox_xyxy_pixels": [
+      298,
+      225,
+      327,
+      255
+    ],
+    "expected_skill": "observe",
+    "query_color": "blue",
+    "negated": false,
+    "depth_m": 0.727628767490387
+  },
+  {
+    "id": "013_green",
+    "scene": 13,
+    "image": "scene_013.png",
+    "instruction": "抓起绿色方块。",
+    "target_visible": false,
+    "bbox_xyxy_pixels": null,
+    "expected_skill": "observe",
+    "query_color": "green",
+    "negated": false,
+    "depth_m": null
+  },
+  {
+    "id": "013_negation",
+    "scene": 13,
+    "image": "scene_013.png",
+    "instruction": "不要抓起蓝色方块，只观察。",
+    "target_visible": true,
+    "bbox_xyxy_pixels": [
+      298,
+      225,
+      327,
+      255
+    ],
+    "expected_skill": "observe",
+    "query_color": "blue",
+    "negated": true,
+    "depth_m": 0.727628767490387
+  },
+  {
+    "id": "014_red",
+    "scene": 14,
+    "image": "scene_014.png",
+    "instruction": "抓起红色方块。",
+    "target_visible": false,
+    "bbox_xyxy_pixels": null,
+    "expected_skill": "observe",
+    "query_color": "red",
+    "negated": false,
+    "depth_m": null
+  },
+  {
+    "id": "014_blue",
+    "scene": 14,
+    "image": "scene_014.png",
+    "instruction": "抓起蓝色方块。",
+    "target_visible": false,
+    "bbox_xyxy_pixels": null,
+    "expected_skill": "observe",
+    "query_color": "blue",
+    "negated": false,
+    "depth_m": null
+  },
+  {
+    "id": "014_green",
+    "scene": 14,
+    "image": "scene_014.png",
+    "instruction": "抓起绿色方块。",
+    "target_visible": true,
+    "bbox_xyxy_pixels": [
+      264,
+      218,
+      300,
+      253
+    ],
+    "expected_skill": "observe",
+    "query_color": "green",
+    "negated": false,
+    "depth_m": 0.7235795259475708
+  },
+  {
+    "id": "014_negation",
+    "scene": 14,
+    "image": "scene_014.png",
+    "instruction": "不要抓起绿色方块，只观察。",
+    "target_visible": true,
+    "bbox_xyxy_pixels": [
+      264,
+      218,
+      300,
+      253
+    ],
+    "expected_skill": "observe",
+    "query_color": "green",
+    "negated": true,
+    "depth_m": 0.7235795259475708
+  },
+  {
+    "id": "015_red",
+    "scene": 15,
+    "image": "scene_015.png",
+    "instruction": "抓起红色方块。",
+    "target_visible": true,
+    "bbox_xyxy_pixels": [
+      260,
+      235,
+      285,
+      259
+    ],
+    "expected_skill": "transfer_red_cube",
+    "query_color": "red",
+    "negated": false,
+    "depth_m": 0.7320999503135681
+  },
+  {
+    "id": "015_blue",
+    "scene": 15,
+    "image": "scene_015.png",
+    "instruction": "抓起蓝色方块。",
+    "target_visible": false,
+    "bbox_xyxy_pixels": null,
+    "expected_skill": "observe",
+    "query_color": "blue",
+    "negated": false,
+    "depth_m": null
+  },
+  {
+    "id": "015_green",
+    "scene": 15,
+    "image": "scene_015.png",
+    "instruction": "抓起绿色方块。",
+    "target_visible": false,
+    "bbox_xyxy_pixels": null,
+    "expected_skill": "observe",
+    "query_color": "green",
+    "negated": false,
+    "depth_m": null
+  },
+  {
+    "id": "015_negation",
+    "scene": 15,
+    "image": "scene_015.png",
+    "instruction": "不要抓起红色方块，只观察。",
+    "target_visible": true,
+    "bbox_xyxy_pixels": [
+      260,
+      235,
+      285,
+      259
+    ],
+    "expected_skill": "observe",
+    "query_color": "red",
+    "negated": true,
+    "depth_m": 0.7320999503135681
+  },
+  {
+    "id": "016_red",
+    "scene": 16,
+    "image": "scene_016.png",
+    "instruction": "抓起红色方块。",
+    "target_visible": false,
+    "bbox_xyxy_pixels": null,
+    "expected_skill": "observe",
+    "query_color": "red",
+    "negated": false,
+    "depth_m": null
+  },
+  {
+    "id": "016_blue",
+    "scene": 16,
+    "image": "scene_016.png",
+    "instruction": "抓起蓝色方块。",
+    "target_visible": true,
+    "bbox_xyxy_pixels": [
+      238,
+      207,
+      270,
+      238
+    ],
+    "expected_skill": "observe",
+    "query_color": "blue",
+    "negated": false,
+    "depth_m": 0.7344838380813599
+  },
+  {
+    "id": "016_green",
+    "scene": 16,
+    "image": "scene_016.png",
+    "instruction": "抓起绿色方块。",
+    "target_visible": false,
+    "bbox_xyxy_pixels": null,
+    "expected_skill": "observe",
+    "query_color": "green",
+    "negated": false,
+    "depth_m": null
+  },
+  {
+    "id": "016_negation",
+    "scene": 16,
+    "image": "scene_016.png",
+    "instruction": "不要抓起蓝色方块，只观察。",
+    "target_visible": true,
+    "bbox_xyxy_pixels": [
+      238,
+      207,
+      270,
+      238
+    ],
+    "expected_skill": "observe",
+    "query_color": "blue",
+    "negated": true,
+    "depth_m": 0.7344838380813599
+  },
+  {
+    "id": "017_red",
+    "scene": 17,
+    "image": "scene_017.png",
+    "instruction": "抓起红色方块。",
+    "target_visible": false,
+    "bbox_xyxy_pixels": null,
+    "expected_skill": "observe",
+    "query_color": "red",
+    "negated": false,
+    "depth_m": null
+  },
+  {
+    "id": "017_blue",
+    "scene": 17,
+    "image": "scene_017.png",
+    "instruction": "抓起蓝色方块。",
+    "target_visible": false,
+    "bbox_xyxy_pixels": null,
+    "expected_skill": "observe",
+    "query_color": "blue",
+    "negated": false,
+    "depth_m": null
+  },
+  {
+    "id": "017_green",
+    "scene": 17,
+    "image": "scene_017.png",
+    "instruction": "抓起绿色方块。",
+    "target_visible": true,
+    "bbox_xyxy_pixels": [
+      254,
+      216,
+      291,
+      252
+    ],
+    "expected_skill": "observe",
+    "query_color": "green",
+    "negated": false,
+    "depth_m": 0.7285873889923096
+  },
+  {
+    "id": "017_negation",
+    "scene": 17,
+    "image": "scene_017.png",
+    "instruction": "不要抓起绿色方块，只观察。",
+    "target_visible": true,
+    "bbox_xyxy_pixels": [
+      254,
+      216,
+      291,
+      252
+    ],
+    "expected_skill": "observe",
+    "query_color": "green",
+    "negated": true,
+    "depth_m": 0.7285873889923096
+  },
+  {
+    "id": "018_red",
+    "scene": 18,
+    "image": "scene_018.png",
+    "instruction": "抓起红色方块。",
+    "target_visible": true,
+    "bbox_xyxy_pixels": [
+      296,
+      229,
+      319,
+      253
+    ],
+    "expected_skill": "transfer_red_cube",
+    "query_color": "red",
+    "negated": false,
+    "depth_m": 0.737082839012146
+  },
+  {
+    "id": "018_blue",
+    "scene": 18,
+    "image": "scene_018.png",
+    "instruction": "抓起蓝色方块。",
+    "target_visible": false,
+    "bbox_xyxy_pixels": null,
+    "expected_skill": "observe",
+    "query_color": "blue",
+    "negated": false,
+    "depth_m": null
+  },
+  {
+    "id": "018_green",
+    "scene": 18,
+    "image": "scene_018.png",
+    "instruction": "抓起绿色方块。",
+    "target_visible": false,
+    "bbox_xyxy_pixels": null,
+    "expected_skill": "observe",
+    "query_color": "green",
+    "negated": false,
+    "depth_m": null
+  },
+  {
+    "id": "018_negation",
+    "scene": 18,
+    "image": "scene_018.png",
+    "instruction": "不要抓起红色方块，只观察。",
+    "target_visible": true,
+    "bbox_xyxy_pixels": [
+      296,
+      229,
+      319,
+      253
+    ],
+    "expected_skill": "observe",
+    "query_color": "red",
+    "negated": true,
+    "depth_m": 0.737082839012146
+  },
+  {
+    "id": "019_red",
+    "scene": 19,
+    "image": "scene_019.png",
+    "instruction": "抓起红色方块。",
+    "target_visible": false,
+    "bbox_xyxy_pixels": null,
+    "expected_skill": "observe",
+    "query_color": "red",
+    "negated": false,
+    "depth_m": null
+  },
+  {
+    "id": "019_blue",
+    "scene": 19,
+    "image": "scene_019.png",
+    "instruction": "抓起蓝色方块。",
+    "target_visible": true,
+    "bbox_xyxy_pixels": [
+      224,
+      265,
+      257,
+      294
+    ],
+    "expected_skill": "observe",
+    "query_color": "blue",
+    "negated": false,
+    "depth_m": 0.7198313474655151
+  },
+  {
+    "id": "019_green",
+    "scene": 19,
+    "image": "scene_019.png",
+    "instruction": "抓起绿色方块。",
+    "target_visible": false,
+    "bbox_xyxy_pixels": null,
+    "expected_skill": "observe",
+    "query_color": "green",
+    "negated": false,
+    "depth_m": null
+  },
+  {
+    "id": "019_negation",
+    "scene": 19,
+    "image": "scene_019.png",
+    "instruction": "不要抓起蓝色方块，只观察。",
+    "target_visible": true,
+    "bbox_xyxy_pixels": [
+      224,
+      265,
+      257,
+      294
+    ],
+    "expected_skill": "observe",
+    "query_color": "blue",
+    "negated": true,
+    "depth_m": 0.7198313474655151
+  },
+  {
+    "id": "020_red",
+    "scene": 20,
+    "image": "scene_020.png",
+    "instruction": "抓起红色方块。",
+    "target_visible": false,
+    "bbox_xyxy_pixels": null,
+    "expected_skill": "observe",
+    "query_color": "red",
+    "negated": false,
+    "depth_m": null
+  },
+  {
+    "id": "020_blue",
+    "scene": 20,
+    "image": "scene_020.png",
+    "instruction": "抓起蓝色方块。",
+    "target_visible": false,
+    "bbox_xyxy_pixels": null,
+    "expected_skill": "observe",
+    "query_color": "blue",
+    "negated": false,
+    "depth_m": null
+  },
+  {
+    "id": "020_green",
+    "scene": 20,
+    "image": "scene_020.png",
+    "instruction": "抓起绿色方块。",
+    "target_visible": true,
+    "bbox_xyxy_pixels": [
+      230,
+      194,
+      269,
+      232
+    ],
+    "expected_skill": "observe",
+    "query_color": "green",
+    "negated": false,
+    "depth_m": 0.737125039100647
+  },
+  {
+    "id": "020_negation",
+    "scene": 20,
+    "image": "scene_020.png",
+    "instruction": "不要抓起绿色方块，只观察。",
+    "target_visible": true,
+    "bbox_xyxy_pixels": [
+      230,
+      194,
+      269,
+      232
+    ],
+    "expected_skill": "observe",
+    "query_color": "green",
+    "negated": true,
+    "depth_m": 0.737125039100647
+  },
+  {
+    "id": "021_red",
+    "scene": 21,
+    "image": "scene_021.png",
+    "instruction": "抓起红色方块。",
+    "target_visible": true,
+    "bbox_xyxy_pixels": [
+      248,
+      220,
+      274,
+      245
+    ],
+    "expected_skill": "transfer_red_cube",
+    "query_color": "red",
+    "negated": false,
+    "depth_m": 0.7396216988563538
+  },
+  {
+    "id": "021_blue",
+    "scene": 21,
+    "image": "scene_021.png",
+    "instruction": "抓起蓝色方块。",
+    "target_visible": false,
+    "bbox_xyxy_pixels": null,
+    "expected_skill": "observe",
+    "query_color": "blue",
+    "negated": false,
+    "depth_m": null
+  },
+  {
+    "id": "021_green",
+    "scene": 21,
+    "image": "scene_021.png",
+    "instruction": "抓起绿色方块。",
+    "target_visible": false,
+    "bbox_xyxy_pixels": null,
+    "expected_skill": "observe",
+    "query_color": "green",
+    "negated": false,
+    "depth_m": null
+  },
+  {
+    "id": "021_negation",
+    "scene": 21,
+    "image": "scene_021.png",
+    "instruction": "不要抓起红色方块，只观察。",
+    "target_visible": true,
+    "bbox_xyxy_pixels": [
+      248,
+      220,
+      274,
+      245
+    ],
+    "expected_skill": "observe",
+    "query_color": "red",
+    "negated": true,
+    "depth_m": 0.7396216988563538
+  },
+  {
+    "id": "022_red",
+    "scene": 22,
+    "image": "scene_022.png",
+    "instruction": "抓起红色方块。",
+    "target_visible": false,
+    "bbox_xyxy_pixels": null,
+    "expected_skill": "observe",
+    "query_color": "red",
+    "negated": false,
+    "depth_m": null
+  },
+  {
+    "id": "022_blue",
+    "scene": 22,
+    "image": "scene_022.png",
+    "instruction": "抓起蓝色方块。",
+    "target_visible": true,
+    "bbox_xyxy_pixels": [
+      262,
+      238,
+      292,
+      267
+    ],
+    "expected_skill": "observe",
+    "query_color": "blue",
+    "negated": false,
+    "depth_m": 0.7277703285217285
+  },
+  {
+    "id": "022_green",
+    "scene": 22,
+    "image": "scene_022.png",
+    "instruction": "抓起绿色方块。",
+    "target_visible": false,
+    "bbox_xyxy_pixels": null,
+    "expected_skill": "observe",
+    "query_color": "green",
+    "negated": false,
+    "depth_m": null
+  },
+  {
+    "id": "022_negation",
+    "scene": 22,
+    "image": "scene_022.png",
+    "instruction": "不要抓起蓝色方块，只观察。",
+    "target_visible": true,
+    "bbox_xyxy_pixels": [
+      262,
+      238,
+      292,
+      267
+    ],
+    "expected_skill": "observe",
+    "query_color": "blue",
+    "negated": true,
+    "depth_m": 0.7277703285217285
+  },
+  {
+    "id": "023_red",
+    "scene": 23,
+    "image": "scene_023.png",
+    "instruction": "抓起红色方块。",
+    "target_visible": false,
+    "bbox_xyxy_pixels": null,
+    "expected_skill": "observe",
+    "query_color": "red",
+    "negated": false,
+    "depth_m": null
+  },
+  {
+    "id": "023_blue",
+    "scene": 23,
+    "image": "scene_023.png",
+    "instruction": "抓起蓝色方块。",
+    "target_visible": false,
+    "bbox_xyxy_pixels": null,
+    "expected_skill": "observe",
+    "query_color": "blue",
+    "negated": false,
+    "depth_m": null
+  },
+  {
+    "id": "023_green",
+    "scene": 23,
+    "image": "scene_023.png",
+    "instruction": "抓起绿色方块。",
+    "target_visible": true,
+    "bbox_xyxy_pixels": [
+      244,
+      198,
+      282,
+      235
+    ],
+    "expected_skill": "observe",
+    "query_color": "green",
+    "negated": false,
+    "depth_m": 0.7335143089294434
+  },
+  {
+    "id": "023_negation",
+    "scene": 23,
+    "image": "scene_023.png",
+    "instruction": "不要抓起绿色方块，只观察。",
+    "target_visible": true,
+    "bbox_xyxy_pixels": [
+      244,
+      198,
+      282,
+      235
+    ],
+    "expected_skill": "observe",
+    "query_color": "green",
+    "negated": true,
+    "depth_m": 0.7335143089294434
+  },
+  {
+    "id": "024_red",
+    "scene": 24,
+    "image": "scene_024.png",
+    "instruction": "抓起红色方块。",
+    "target_visible": true,
+    "bbox_xyxy_pixels": [
+      252,
+      217,
+      278,
+      241
+    ],
+    "expected_skill": "transfer_red_cube",
+    "query_color": "red",
+    "negated": false,
+    "depth_m": 0.738154947757721
+  },
+  {
+    "id": "024_blue",
+    "scene": 24,
+    "image": "scene_024.png",
+    "instruction": "抓起蓝色方块。",
+    "target_visible": false,
+    "bbox_xyxy_pixels": null,
+    "expected_skill": "observe",
+    "query_color": "blue",
+    "negated": false,
+    "depth_m": null
+  },
+  {
+    "id": "024_green",
+    "scene": 24,
+    "image": "scene_024.png",
+    "instruction": "抓起绿色方块。",
+    "target_visible": false,
+    "bbox_xyxy_pixels": null,
+    "expected_skill": "observe",
+    "query_color": "green",
+    "negated": false,
+    "depth_m": null
+  },
+  {
+    "id": "024_negation",
+    "scene": 24,
+    "image": "scene_024.png",
+    "instruction": "不要抓起红色方块，只观察。",
+    "target_visible": true,
+    "bbox_xyxy_pixels": [
+      252,
+      217,
+      278,
+      241
+    ],
+    "expected_skill": "observe",
+    "query_color": "red",
+    "negated": true,
+    "depth_m": 0.738154947757721
+  },
+  {
+    "id": "025_red",
+    "scene": 25,
+    "image": "scene_025.png",
+    "instruction": "抓起红色方块。",
+    "target_visible": false,
+    "bbox_xyxy_pixels": null,
+    "expected_skill": "observe",
+    "query_color": "red",
+    "negated": false,
+    "depth_m": null
+  },
+  {
+    "id": "025_blue",
+    "scene": 25,
+    "image": "scene_025.png",
+    "instruction": "抓起蓝色方块。",
+    "target_visible": true,
+    "bbox_xyxy_pixels": [
+      248,
+      225,
+      280,
+      255
+    ],
+    "expected_skill": "observe",
+    "query_color": "blue",
+    "negated": false,
+    "depth_m": 0.7294471263885498
+  },
+  {
+    "id": "025_green",
+    "scene": 25,
+    "image": "scene_025.png",
+    "instruction": "抓起绿色方块。",
+    "target_visible": false,
+    "bbox_xyxy_pixels": null,
+    "expected_skill": "observe",
+    "query_color": "green",
+    "negated": false,
+    "depth_m": null
+  },
+  {
+    "id": "025_negation",
+    "scene": 25,
+    "image": "scene_025.png",
+    "instruction": "不要抓起蓝色方块，只观察。",
+    "target_visible": true,
+    "bbox_xyxy_pixels": [
+      248,
+      225,
+      280,
+      255
+    ],
+    "expected_skill": "observe",
+    "query_color": "blue",
+    "negated": true,
+    "depth_m": 0.7294471263885498
+  },
+  {
+    "id": "026_red",
+    "scene": 26,
+    "image": "scene_026.png",
+    "instruction": "抓起红色方块。",
+    "target_visible": false,
+    "bbox_xyxy_pixels": null,
+    "expected_skill": "observe",
+    "query_color": "red",
+    "negated": false,
+    "depth_m": null
+  },
+  {
+    "id": "026_blue",
+    "scene": 26,
+    "image": "scene_026.png",
+    "instruction": "抓起蓝色方块。",
+    "target_visible": false,
+    "bbox_xyxy_pixels": null,
+    "expected_skill": "observe",
+    "query_color": "blue",
+    "negated": false,
+    "depth_m": null
+  },
+  {
+    "id": "026_green",
+    "scene": 26,
+    "image": "scene_026.png",
+    "instruction": "抓起绿色方块。",
+    "target_visible": true,
+    "bbox_xyxy_pixels": [
+      273,
+      215,
+      309,
+      251
+    ],
+    "expected_skill": "observe",
+    "query_color": "green",
+    "negated": false,
+    "depth_m": 0.7281544208526611
+  },
+  {
+    "id": "026_negation",
+    "scene": 26,
+    "image": "scene_026.png",
+    "instruction": "不要抓起绿色方块，只观察。",
+    "target_visible": true,
+    "bbox_xyxy_pixels": [
+      273,
+      215,
+      309,
+      251
+    ],
+    "expected_skill": "observe",
+    "query_color": "green",
+    "negated": true,
+    "depth_m": 0.7281544208526611
+  },
+  {
+    "id": "027_red",
+    "scene": 27,
+    "image": "scene_027.png",
+    "instruction": "抓起红色方块。",
+    "target_visible": true,
+    "bbox_xyxy_pixels": [
+      221,
+      226,
+      248,
+      250
+    ],
+    "expected_skill": "transfer_red_cube",
+    "query_color": "red",
+    "negated": false,
+    "depth_m": 0.7381414175033569
+  },
+  {
+    "id": "027_blue",
+    "scene": 27,
+    "image": "scene_027.png",
+    "instruction": "抓起蓝色方块。",
+    "target_visible": false,
+    "bbox_xyxy_pixels": null,
+    "expected_skill": "observe",
+    "query_color": "blue",
+    "negated": false,
+    "depth_m": null
+  },
+  {
+    "id": "027_green",
+    "scene": 27,
+    "image": "scene_027.png",
+    "instruction": "抓起绿色方块。",
+    "target_visible": false,
+    "bbox_xyxy_pixels": null,
+    "expected_skill": "observe",
+    "query_color": "green",
+    "negated": false,
+    "depth_m": null
+  },
+  {
+    "id": "027_negation",
+    "scene": 27,
+    "image": "scene_027.png",
+    "instruction": "不要抓起红色方块，只观察。",
+    "target_visible": true,
+    "bbox_xyxy_pixels": [
+      221,
+      226,
+      248,
+      250
+    ],
+    "expected_skill": "observe",
+    "query_color": "red",
+    "negated": true,
+    "depth_m": 0.7381414175033569
+  },
+  {
+    "id": "028_red",
+    "scene": 28,
+    "image": "scene_028.png",
+    "instruction": "抓起红色方块。",
+    "target_visible": false,
+    "bbox_xyxy_pixels": null,
+    "expected_skill": "observe",
+    "query_color": "red",
+    "negated": false,
+    "depth_m": null
+  },
+  {
+    "id": "028_blue",
+    "scene": 28,
+    "image": "scene_028.png",
+    "instruction": "抓起蓝色方块。",
+    "target_visible": true,
+    "bbox_xyxy_pixels": [
+      288,
+      241,
+      317,
+      271
+    ],
+    "expected_skill": "observe",
+    "query_color": "blue",
+    "negated": false,
+    "depth_m": 0.7257952094078064
+  },
+  {
+    "id": "028_green",
+    "scene": 28,
+    "image": "scene_028.png",
+    "instruction": "抓起绿色方块。",
+    "target_visible": false,
+    "bbox_xyxy_pixels": null,
+    "expected_skill": "observe",
+    "query_color": "green",
+    "negated": false,
+    "depth_m": null
+  },
+  {
+    "id": "028_negation",
+    "scene": 28,
+    "image": "scene_028.png",
+    "instruction": "不要抓起蓝色方块，只观察。",
+    "target_visible": true,
+    "bbox_xyxy_pixels": [
+      288,
+      241,
+      317,
+      271
+    ],
+    "expected_skill": "observe",
+    "query_color": "blue",
+    "negated": true,
+    "depth_m": 0.7257952094078064
+  },
+  {
+    "id": "029_red",
+    "scene": 29,
+    "image": "scene_029.png",
+    "instruction": "抓起红色方块。",
+    "target_visible": false,
+    "bbox_xyxy_pixels": null,
+    "expected_skill": "observe",
+    "query_color": "red",
+    "negated": false,
+    "depth_m": null
+  },
+  {
+    "id": "029_blue",
+    "scene": 29,
+    "image": "scene_029.png",
+    "instruction": "抓起蓝色方块。",
+    "target_visible": false,
+    "bbox_xyxy_pixels": null,
+    "expected_skill": "observe",
+    "query_color": "blue",
+    "negated": false,
+    "depth_m": null
+  },
+  {
+    "id": "029_green",
+    "scene": 29,
+    "image": "scene_029.png",
+    "instruction": "抓起绿色方块。",
+    "target_visible": true,
+    "bbox_xyxy_pixels": [
+      231,
+      229,
+      270,
+      264
+    ],
+    "expected_skill": "observe",
+    "query_color": "green",
+    "negated": false,
+    "depth_m": 0.7232248783111572
+  },
+  {
+    "id": "029_negation",
+    "scene": 29,
+    "image": "scene_029.png",
+    "instruction": "不要抓起绿色方块，只观察。",
+    "target_visible": true,
+    "bbox_xyxy_pixels": [
+      231,
+      229,
+      270,
+      264
+    ],
+    "expected_skill": "observe",
+    "query_color": "green",
+    "negated": true,
+    "depth_m": 0.7232248783111572
+  }
+]

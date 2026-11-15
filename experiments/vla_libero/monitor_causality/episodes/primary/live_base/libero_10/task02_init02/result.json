@@ -1,0 +1,134 @@
+{
+  "study_mode": "live_base",
+  "stage_budget_enabled": true,
+  "initial_state_sha256": "8227fd36ba47ae92020986ff9b090acd500ddadcc057c66b04f8afe6fb4de2bb",
+  "suite": "libero_10",
+  "task_id": 2,
+  "initial_state_id": 2,
+  "original_task_language": "turn on the stove and put the moka pot on it",
+  "input_instruction": "打开炉子，然后把摩卡壶放到炉子上",
+  "planner": "qwen",
+  "execution_profile": "legacy",
+  "planner_profile": "base",
+  "checker_adapter": "experiments/vla_libero/checker_v2/results/model/best_adapter",
+  "monitor": "qwen",
+  "max_steps": 520,
+  "subgoal_step_budget": 300,
+  "monitor_every_queries": 4,
+  "monitor_res": 512,
+  "gripper_gate": true,
+  "confirm": 2,
+  "max_replans": 0,
+  "last_subgoal_runs_to_limit": true,
+  "noise_seed": 730202,
+  "runner_sha256": "3bfa20bd9f7c320cf83dabe80e3c59a72fb5bd053837b65cd3bb6376c3459f61",
+  "events": [
+    {
+      "kind": "plan",
+      "step": 0,
+      "ok": true,
+      "seconds": 1.3957000192021951e-05,
+      "raw": "[\"turn on the stove\", \"put the moka pot on the stove\"]",
+      "error": null
+    },
+    {
+      "kind": "subgoal_start",
+      "step": 0,
+      "index": 0,
+      "subgoal": "turn on the stove"
+    },
+    {
+      "kind": "check",
+      "step": 20,
+      "index": 0,
+      "done": false,
+      "confirmed": false,
+      "seconds": 0.37134633300229325,
+      "checker": "base",
+      "status": null,
+      "scores": null,
+      "reason": "No change detected.",
+      "error": null,
+      "shadow_long_task_atoms": [
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 40,
+      "index": 0,
+      "done": false,
+      "confirmed": false,
+      "seconds": 0.4950607559985656,
+      "checker": "base",
+      "status": null,
+      "scores": null,
+      "reason": "No new object at the stove; the stove is still off.",
+      "error": null,
+      "shadow_long_task_atoms": [
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 60,
+      "index": 0,
+      "done": false,
+      "confirmed": false,
+      "seconds": 0.5495853739994345,
+      "checker": "base",
+      "status": null,
+      "scores": null,
+      "reason": "The robot has moved to the stove, indicating it is preparing to turn it on.",
+      "error": null,
+      "shadow_long_task_atoms": [
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "subgoal_end",
+      "step": 300,
+      "index": 0,
+      "reason": "budget",
+      "long_task_atoms": [
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "subgoal_start",
+      "step": 300,
+      "index": 1,
+      "subgoal": "put the moka pot on the stove"
+    }
+  ],
+  "status": "timeout",
+  "success": false,
+  "settled_state_sha256": "c8cd374787adbeb4643af030fbe2a8981171ccd14caae7812c34304c76e34858",
+  "subgoals": [
+    "turn on the stove",
+    "put the moka pot on the stove"
+  ],
+  "policy_queries": 104,
+  "qwen_checks": 3,
+  "replans": 0,
+  "active_subgoal_index": 1,
+  "active_subgoal": "put the moka pot on the stove",
+  "steps": 520,
+  "full_task_fallback": false,
+  "final_subgoals": [
+    "turn on the stove",
+    "put the moka pot on the stove"
+  ],
+  "final_atoms": [
+    false,
+    false
+  ],
+  "protocol_sha256": "43102c29b30de89a834dd03413d9b5010377410236d6addcffc618c76a8ff03c",
+  "monitor_model_calls": 3,
+  "monitor_opportunities": 3,
+  "wall_seconds": 34.06583784599934
+}

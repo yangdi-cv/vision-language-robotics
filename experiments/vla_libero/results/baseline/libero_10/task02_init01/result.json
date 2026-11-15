@@ -1,0 +1,36 @@
+{
+  "runner_sha256": "e5d28552be82d553e09b3fcfe45aa95bbc6d38b0338899c2536ed1407935bb9d",
+  "suite": "libero_10",
+  "task_id": 2,
+  "initial_state_id": 1,
+  "mode": "baseline",
+  "environment_seed": 7,
+  "noise_seed": 730201,
+  "initial_state_sha256": "453d74e45f2f7141904a047d4237db1ee0b5576fe7a3f6c2cb4801e83bacb88a",
+  "original_prompt": "turn on the stove and put the moka pot on it",
+  "input_prompt": "turn on the stove and put the moka pot on it",
+  "replan_steps": 5,
+  "denoising_steps": 10,
+  "max_steps": 520,
+  "status": "success",
+  "success": true,
+  "steps": 254,
+  "alternate_goal_evaluable": false,
+  "alternate_goal_ever_satisfied": null,
+  "initial_eef": [
+    -0.20572580851261663,
+    -0.0021857464926257424,
+    1.1782544393221284
+  ],
+  "final_eef": [
+    -0.02013908728583404,
+    0.15259271017804465,
+    1.0542789472380287
+  ],
+  "qpos_displacement_norm": 3.0110765378871314,
+  "simulation_elapsed_s": 12.7,
+  "wall_s": 7.206110608000017,
+  "query_count": 51,
+  "warmup_query_wall_s": 0.07686331300010352,
+  "query_median_excluding_first_s": 0.07388217800007624
+}

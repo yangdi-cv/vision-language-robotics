@@ -1,0 +1,38 @@
+{
+  "n": 1040,
+  "splits": {
+    "train": {
+      "n": 468,
+      "groups": 77,
+      "classes": {
+        "yes": 28,
+        "no": 52,
+        "unknown": 388
+      }
+    },
+    "validation": {
+      "n": 288,
+      "groups": 54,
+      "classes": {
+        "yes": 28,
+        "no": 54,
+        "unknown": 206
+      }
+    },
+    "test": {
+      "n": 284,
+      "groups": 53,
+      "classes": {
+        "yes": 27,
+        "no": 52,
+        "unknown": 205
+      }
+    }
+  },
+  "source_counts": {
+    "synthetic": 799,
+    "natural": 241
+  },
+  "rejected": 20,
+  "protocol_sha256": "8768ae8602e03b24283e1bafbfcf4bd2a80c220b5213eafa44483b47fa3f2bcc"
+}

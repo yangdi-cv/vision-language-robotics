@@ -1,0 +1,23 @@
+{
+  "steps": 200,
+  "batch_size": 1,
+  "seed": 20261114,
+  "trainable": "only lora leaves; vision and all base weights frozen",
+  "weight_source": "existing pi05_libero",
+  "source_hashes": {
+    "experiments/vla_libero/skill_bootstrap/scripts/train_lora.py": "151020be16d2deef138a7850dd79a63cd7f32a244a6bb0acabe7da5a92794faa",
+    "experiments/vla_libero/third_party/openpi/scripts/train.py": "22f98a06aaa6e68e0f725d727ab95398238d1cae8a46bb94e829f330758a9baf",
+    "experiments/vla_libero/third_party/openpi/src/openpi/training/weight_loaders.py": "a54ac3222f81f8c6233241bc16b6f369c9416cdaa83f7058f96f7ddcfde1a3b4",
+    "experiments/vla_libero/skill_bootstrap/DATA_PROTOCOL.json": "d45b9f3c1e6fbc3d6630b1158f77e0a87c3579695d71be73410f9e17202af55c",
+    "experiments/vla_libero/skill_bootstrap/MANIFEST.json": "bbca4b3134de2d4f43b1e785b79ea66acb7bda23371a1b54b05157e2c1fb4448"
+  },
+  "validation": "fixed16 phase-balanced samples from initials26/27; fixed loss RNG; check0/50/100/150/200",
+  "selection": "minimum validation flow loss among trained steps; test initials28/29 untouched",
+  "evaluation": "exploratory paired policy rollouts required regardless of validation result",
+  "data_counts": {
+    "train": 21,
+    "validation": 8
+  },
+  "teacher_privileged": true,
+  "no_hardware": true
+}

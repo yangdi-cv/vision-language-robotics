@@ -1,0 +1,36 @@
+{
+  "runner_sha256": "e5d28552be82d553e09b3fcfe45aa95bbc6d38b0338899c2536ed1407935bb9d",
+  "suite": "libero_spatial",
+  "task_id": 4,
+  "initial_state_id": 0,
+  "mode": "baseline",
+  "environment_seed": 7,
+  "noise_seed": 700400,
+  "initial_state_sha256": "2e3f91b350eaef1b23c2d4ee14c513b2158a106bff7ed6c249b58e2cf89367f4",
+  "original_prompt": "pick up the black bowl in the top drawer of the wooden cabinet and place it on the plate",
+  "input_prompt": "pick up the black bowl in the top drawer of the wooden cabinet and place it on the plate",
+  "replan_steps": 5,
+  "denoising_steps": 10,
+  "max_steps": 220,
+  "status": "success",
+  "success": true,
+  "steps": 119,
+  "alternate_goal_evaluable": false,
+  "alternate_goal_ever_satisfied": null,
+  "initial_eef": [
+    -0.20418505180804783,
+    -7.233856785741922e-05,
+    1.172908450164054
+  ],
+  "final_eef": [
+    0.03556312204181012,
+    0.25437702124282746,
+    0.9517237534412126
+  ],
+  "qpos_displacement_norm": 1.825519509430718,
+  "simulation_elapsed_s": 5.95,
+  "wall_s": 5.357504104999862,
+  "query_count": 24,
+  "warmup_query_wall_s": 0.07736437400035356,
+  "query_median_excluding_first_s": 0.07522978399993008
+}

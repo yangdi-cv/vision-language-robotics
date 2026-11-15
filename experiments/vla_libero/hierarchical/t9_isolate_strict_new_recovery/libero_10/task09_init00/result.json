@@ -1,0 +1,178 @@
+{
+  "suite": "libero_10",
+  "task_id": 9,
+  "initial_state_id": 0,
+  "original_task_language": "put the yellow and white mug in the microwave and close it",
+  "input_instruction": "put the yellow and white mug in the microwave and close it",
+  "planner": "qwen",
+  "monitor": "qwen",
+  "max_steps": 520,
+  "subgoal_step_budget": 150,
+  "monitor_every_queries": 4,
+  "monitor_res": 512,
+  "gripper_gate": true,
+  "confirm": 2,
+  "max_replans": 1,
+  "recovery_mode": "replan",
+  "transition_version": "confirmed_only_v1",
+  "operation_checks": false,
+  "last_subgoal_runs_to_limit": true,
+  "noise_seed": 730900,
+  "runner_sha256": "2820554d73962412d2b13d8990621a085a1781a1ad9b9ae77a9b44b4f46aca60",
+  "events": [
+    {
+      "kind": "plan",
+      "step": 0,
+      "ok": true,
+      "seconds": 1.612099731573835e-05,
+      "raw": "[\"pick up the mug with the yellow handle and place it in the microwave\", \"close the microwave door\"]",
+      "error": null
+    },
+    {
+      "kind": "subgoal_start",
+      "step": 0,
+      "index": 0,
+      "subgoal": "pick up the mug with the yellow handle and place it in the microwave"
+    },
+    {
+      "kind": "check",
+      "step": 20,
+      "index": 0,
+      "done": false,
+      "confirmed": false,
+      "seconds": 0.32178964400372934,
+      "reason": "No change detected.",
+      "error": null,
+      "shadow_long_task_atoms": [
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 40,
+      "index": 0,
+      "done": false,
+      "confirmed": false,
+      "seconds": 0.6505779270009953,
+      "reason": "No change detected at the destination (microwave). The mug with the yellow handle is still on the table, not inside the microwave.",
+      "error": null,
+      "shadow_long_task_atoms": [
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 60,
+      "index": 0,
+      "done": false,
+      "confirmed": false,
+      "seconds": 0.6363673550004023,
+      "reason": "The mug with the yellow handle is now being picked up by the robot, but it has not yet been placed in the microwave.",
+      "error": null,
+      "shadow_long_task_atoms": [
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 80,
+      "index": 0,
+      "done": false,
+      "confirmed": false,
+      "seconds": 0.8194480099991779,
+      "reason": "The robot has picked up the mug with the yellow handle and is now holding it, preparing to place it in the microwave. The microwave door is open, and the mug is not yet inside.",
+      "error": null,
+      "shadow_long_task_atoms": [
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "subgoal_timeout",
+      "step": 150,
+      "index": 0,
+      "subgoal": "pick up the mug with the yellow handle and place it in the microwave",
+      "confirmed_completed": []
+    },
+    {
+      "kind": "recovery",
+      "step": 150,
+      "index": 0,
+      "mode": "replan",
+      "ok": false,
+      "seconds": 0.8484910859988304,
+      "raw": "{\n  \"subgoals\": [\n    {\n      \"goal_id\": \"g0\",\n      \"instruction\": \"place the mug with the yellow handle inside the microwave\",\n      \"completion_hint\": \"mug visible inside microwave, door still open\"\n    }\n  ]\n}",
+      "error": "Every unconfirmed goal must occur exactly once",
+      "confirmed_completed": []
+    },
+    {
+      "kind": "check",
+      "step": 200,
+      "index": 0,
+      "done": true,
+      "confirmed": false,
+      "seconds": 0.6600223280038335,
+      "reason": "The mug with the yellow handle has been picked up by the robot and is now inside the microwave, which was closed in image 1.",
+      "error": null,
+      "shadow_long_task_atoms": [
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 220,
+      "index": 0,
+      "done": true,
+      "confirmed": true,
+      "seconds": 0.5617174950020853,
+      "reason": "The mug with the yellow handle has been placed inside the microwave, which was open in image 1.",
+      "error": null,
+      "shadow_long_task_atoms": [
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "subgoal_end",
+      "step": 220,
+      "index": 0,
+      "reason": "confirmed",
+      "long_task_atoms": [
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "subgoal_start",
+      "step": 220,
+      "index": 1,
+      "subgoal": "close the microwave door"
+    }
+  ],
+  "status": "success",
+  "success": true,
+  "subgoals": [
+    "pick up the mug with the yellow handle and place it in the microwave",
+    "close the microwave door"
+  ],
+  "steps": 267,
+  "policy_queries": 54,
+  "qwen_checks": 6,
+  "replans": 1,
+  "full_task_fallback": false,
+  "final_subgoals": [
+    "pick up the mug with the yellow handle and place it in the microwave",
+    "close the microwave door"
+  ],
+  "confirmed_completed": [
+    "pick up the mug with the yellow handle and place it in the microwave"
+  ],
+  "final_atoms": [
+    true,
+    true
+  ]
+}

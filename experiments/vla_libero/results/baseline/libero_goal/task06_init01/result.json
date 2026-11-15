@@ -1,0 +1,36 @@
+{
+  "runner_sha256": "e5d28552be82d553e09b3fcfe45aa95bbc6d38b0338899c2536ed1407935bb9d",
+  "suite": "libero_goal",
+  "task_id": 6,
+  "initial_state_id": 1,
+  "mode": "baseline",
+  "environment_seed": 7,
+  "noise_seed": 720601,
+  "initial_state_sha256": "966aeb21a670231379b9f10d6cbfc0eb03741996551ca163b501e5552fab08ac",
+  "original_prompt": "put the cream cheese in the bowl",
+  "input_prompt": "put the cream cheese in the bowl",
+  "replan_steps": 5,
+  "denoising_steps": 10,
+  "max_steps": 300,
+  "status": "success",
+  "success": true,
+  "steps": 91,
+  "alternate_goal_evaluable": false,
+  "alternate_goal_ever_satisfied": null,
+  "initial_eef": [
+    -0.2088529127281849,
+    -0.003754189602981872,
+    1.1767924908485714
+  ],
+  "final_eef": [
+    -0.10011924668419667,
+    -0.0182479737862051,
+    0.9920519532838381
+  ],
+  "qpos_displacement_norm": 0.8049765693045363,
+  "simulation_elapsed_s": 4.55,
+  "wall_s": 3.9658154189992274,
+  "query_count": 19,
+  "warmup_query_wall_s": 0.07917286900010367,
+  "query_median_excluding_first_s": 0.07302615549951952
+}

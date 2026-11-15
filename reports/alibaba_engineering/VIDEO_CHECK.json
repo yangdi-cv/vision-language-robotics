@@ -1,0 +1,37 @@
+[
+  {
+    "path": "videos/ch03/desktop_pickplace_example.mp4",
+    "frames": 401,
+    "first_and_last_decoded": true
+  },
+  {
+    "path": "videos/ch04/hierarchical_long_example.mp4",
+    "frames": 255,
+    "first_and_last_decoded": true
+  },
+  {
+    "path": "videos/ch05/milestone_monitor_example.mp4",
+    "frames": 777,
+    "first_and_last_decoded": true
+  },
+  {
+    "path": "videos/ch06/policy_handover_success.mp4",
+    "frames": 1072,
+    "first_and_last_decoded": true
+  },
+  {
+    "path": "videos/ch07/jetson_vision_pc_execution.mp4",
+    "frames": 1042,
+    "first_and_last_decoded": true
+  },
+  {
+    "path": "videos/ch05/mobile_navigation_operation.mp4",
+    "frames": 871,
+    "first_and_last_decoded": true
+  },
+  {
+    "path": "videos/ch03/pi05_official_long_task00.mp4",
+    "frames": 285,
+    "first_and_last_decoded": true
+  }
+]

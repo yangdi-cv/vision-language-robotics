@@ -1,0 +1,70 @@
+{
+  "status": "complete",
+  "task": 1,
+  "initial": 41,
+  "mode": "target0",
+  "prompt": "pick up the cream cheese box and place it in the basket",
+  "all_prompts": {
+    "target0": "pick up the cream cheese box and place it in the basket",
+    "target1": "pick up the butter and place it in the basket",
+    "original": "put both the cream cheese box and the butter in the basket"
+  },
+  "protocol_sha256": "1ad395dd8bb83804aee57b2d6fd61efe4a96d4d14f85e9463418659fa2a34458",
+  "noise_seed": 930141,
+  "original_done_used_for_stopping": false,
+  "steps": 325,
+  "initial_sha256": "2a99704c9a9d12a860a0ab6e6a723560adc507d64f88fc31890b1200ca406bf6",
+  "settled_sha256": "54c6a77cacad8e7fde1e1fc20940c0581e3bf8756f75d9983f14a3d7c52555e9",
+  "origins": [
+    [
+      0.10629240779004046,
+      -0.22420550169446635,
+      0.44569592152000004
+    ],
+    [
+      0.03324392917504433,
+      0.03145772982245251,
+      0.44546992152000003
+    ]
+  ],
+  "goal_atoms": [
+    [
+      "in",
+      "cream_cheese_1",
+      "basket_1_contain_region"
+    ],
+    [
+      "in",
+      "butter_1",
+      "basket_1_contain_region"
+    ]
+  ],
+  "scores": {
+    "target0": {
+      "selective_success": true,
+      "target_final_stable": true,
+      "final_released": true,
+      "target_ever_reached": true,
+      "protected_untouched": true,
+      "max_protected_displacement_m": 0.014906451846091238,
+      "first_valid_step": 147,
+      "first_violation_step": null,
+      "self_stop_success": false,
+      "premature_stop": false
+    },
+    "target1": {
+      "selective_success": false,
+      "target_final_stable": false,
+      "final_released": true,
+      "target_ever_reached": false,
+      "protected_untouched": false,
+      "max_protected_displacement_m": 0.5013662965156526,
+      "first_valid_step": null,
+      "first_violation_step": 66,
+      "self_stop_success": false,
+      "premature_stop": false
+    }
+  },
+  "original_success_observed": false,
+  "wall_seconds": 15.755023054000048
+}

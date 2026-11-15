@@ -1,0 +1,7 @@
+{
+  "complete": true,
+  "evaluation_episodes": 140,
+  "pilot_episodes": 28,
+  "reference_skills": 4,
+  "cpu_acceptance": true
+}

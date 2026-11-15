@@ -1,0 +1,398 @@
+[
+  {
+    "id": "pilot_v0_top",
+    "development_only": true,
+    "image": "view00.png",
+    "functional_part": "top",
+    "action": "pull_handle",
+    "label": {
+      "visible": true,
+      "point": [
+        223,
+        484
+      ],
+      "bbox": [
+        166,
+        434,
+        254,
+        641
+      ],
+      "visible_pixels": 876
+    },
+    "label_source": "exact visible handle mesh segmentation; not full object segmentation or model self-label"
+  },
+  {
+    "id": "pilot_v0_middle",
+    "development_only": true,
+    "image": "view00.png",
+    "functional_part": "middle",
+    "action": "pull_handle",
+    "label": {
+      "visible": true,
+      "point": [
+        238,
+        566
+      ],
+      "bbox": [
+        201,
+        516,
+        266,
+        617
+      ],
+      "visible_pixels": 771
+    },
+    "label_source": "exact visible handle mesh segmentation; not full object segmentation or model self-label"
+  },
+  {
+    "id": "pilot_v0_bottom",
+    "development_only": true,
+    "image": "view00.png",
+    "functional_part": "bottom",
+    "action": "pull_handle",
+    "label": {
+      "visible": true,
+      "point": [
+        443,
+        635
+      ],
+      "bbox": [
+        414,
+        584,
+        463,
+        686
+      ],
+      "visible_pixels": 716
+    },
+    "label_source": "exact visible handle mesh segmentation; not full object segmentation or model self-label"
+  },
+  {
+    "id": "pilot_v1_top",
+    "development_only": true,
+    "image": "view01.png",
+    "functional_part": "top",
+    "action": "pull_handle",
+    "label": {
+      "visible": true,
+      "point": [
+        186,
+        541
+      ],
+      "bbox": [
+        131,
+        490,
+        217,
+        691
+      ],
+      "visible_pixels": 801
+    },
+    "label_source": "exact visible handle mesh segmentation; not full object segmentation or model self-label"
+  },
+  {
+    "id": "pilot_v1_middle",
+    "development_only": true,
+    "image": "view01.png",
+    "functional_part": "middle",
+    "action": "pull_handle",
+    "label": {
+      "visible": true,
+      "point": [
+        203,
+        615
+      ],
+      "bbox": [
+        166,
+        564,
+        230,
+        664
+      ],
+      "visible_pixels": 704
+    },
+    "label_source": "exact visible handle mesh segmentation; not full object segmentation or model self-label"
+  },
+  {
+    "id": "pilot_v1_bottom",
+    "development_only": true,
+    "image": "view01.png",
+    "functional_part": "bottom",
+    "action": "pull_handle",
+    "label": {
+      "visible": true,
+      "point": [
+        398,
+        676
+      ],
+      "bbox": [
+        369,
+        627,
+        418,
+        727
+      ],
+      "visible_pixels": 662
+    },
+    "label_source": "exact visible handle mesh segmentation; not full object segmentation or model self-label"
+  },
+  {
+    "id": "pilot_v2_top",
+    "development_only": true,
+    "image": "view02.png",
+    "functional_part": "top",
+    "action": "pull_handle",
+    "label": {
+      "visible": true,
+      "point": [
+        213,
+        443
+      ],
+      "bbox": [
+        158,
+        395,
+        244,
+        596
+      ],
+      "visible_pixels": 839
+    },
+    "label_source": "exact visible handle mesh segmentation; not full object segmentation or model self-label"
+  },
+  {
+    "id": "pilot_v2_middle",
+    "development_only": true,
+    "image": "view02.png",
+    "functional_part": "middle",
+    "action": "pull_handle",
+    "label": {
+      "visible": true,
+      "point": [
+        229,
+        525
+      ],
+      "bbox": [
+        191,
+        477,
+        258,
+        574
+      ],
+      "visible_pixels": 755
+    },
+    "label_source": "exact visible handle mesh segmentation; not full object segmentation or model self-label"
+  },
+  {
+    "id": "pilot_v2_bottom",
+    "development_only": true,
+    "image": "view02.png",
+    "functional_part": "bottom",
+    "action": "pull_handle",
+    "label": {
+      "visible": true,
+      "point": [
+        434,
+        596
+      ],
+      "bbox": [
+        404,
+        547,
+        453,
+        645
+      ],
+      "visible_pixels": 709
+    },
+    "label_source": "exact visible handle mesh segmentation; not full object segmentation or model self-label"
+  },
+  {
+    "id": "pilot_v3_top",
+    "development_only": true,
+    "image": "view03.png",
+    "functional_part": "top",
+    "action": "pull_handle",
+    "label": {
+      "visible": true,
+      "point": [
+        184,
+        465
+      ],
+      "bbox": [
+        133,
+        416,
+        215,
+        602
+      ],
+      "visible_pixels": 798
+    },
+    "label_source": "exact visible handle mesh segmentation; not full object segmentation or model self-label"
+  },
+  {
+    "id": "pilot_v3_middle",
+    "development_only": true,
+    "image": "view03.png",
+    "functional_part": "middle",
+    "action": "pull_handle",
+    "label": {
+      "visible": true,
+      "point": [
+        201,
+        543
+      ],
+      "bbox": [
+        164,
+        496,
+        230,
+        592
+      ],
+      "visible_pixels": 709
+    },
+    "label_source": "exact visible handle mesh segmentation; not full object segmentation or model self-label"
+  },
+  {
+    "id": "pilot_v3_bottom",
+    "development_only": true,
+    "image": "view03.png",
+    "functional_part": "bottom",
+    "action": "pull_handle",
+    "label": {
+      "visible": true,
+      "point": [
+        400,
+        609
+      ],
+      "bbox": [
+        371,
+        562,
+        420,
+        658
+      ],
+      "visible_pixels": 651
+    },
+    "label_source": "exact visible handle mesh segmentation; not full object segmentation or model self-label"
+  },
+  {
+    "id": "pilot_v4_top",
+    "development_only": true,
+    "image": "view04.png",
+    "functional_part": "top",
+    "action": "pull_handle",
+    "label": {
+      "visible": true,
+      "point": [
+        221,
+        525
+      ],
+      "bbox": [
+        168,
+        467,
+        252,
+        680
+      ],
+      "visible_pixels": 970
+    },
+    "label_source": "exact visible handle mesh segmentation; not full object segmentation or model self-label"
+  },
+  {
+    "id": "pilot_v4_middle",
+    "development_only": true,
+    "image": "view04.png",
+    "functional_part": "middle",
+    "action": "pull_handle",
+    "label": {
+      "visible": true,
+      "point": [
+        238,
+        609
+      ],
+      "bbox": [
+        197,
+        553,
+        266,
+        662
+      ],
+      "visible_pixels": 832
+    },
+    "label_source": "exact visible handle mesh segmentation; not full object segmentation or model self-label"
+  },
+  {
+    "id": "pilot_v4_bottom",
+    "development_only": true,
+    "image": "view04.png",
+    "functional_part": "bottom",
+    "action": "pull_handle",
+    "label": {
+      "visible": true,
+      "point": [
+        451,
+        678
+      ],
+      "bbox": [
+        422,
+        625,
+        471,
+        732
+      ],
+      "visible_pixels": 811
+    },
+    "label_source": "exact visible handle mesh segmentation; not full object segmentation or model self-label"
+  },
+  {
+    "id": "pilot_v5_top",
+    "development_only": true,
+    "image": "view05.png",
+    "functional_part": "top",
+    "action": "pull_handle",
+    "label": {
+      "visible": true,
+      "point": [
+        156,
+        486
+      ],
+      "bbox": [
+        92,
+        430,
+        193,
+        658
+      ],
+      "visible_pixels": 1070
+    },
+    "label_source": "exact visible handle mesh segmentation; not full object segmentation or model self-label"
+  },
+  {
+    "id": "pilot_v5_middle",
+    "development_only": true,
+    "image": "view05.png",
+    "functional_part": "middle",
+    "action": "pull_handle",
+    "label": {
+      "visible": true,
+      "point": [
+        178,
+        576
+      ],
+      "bbox": [
+        135,
+        520,
+        209,
+        631
+      ],
+      "visible_pixels": 963
+    },
+    "label_source": "exact visible handle mesh segmentation; not full object segmentation or model self-label"
+  },
+  {
+    "id": "pilot_v5_bottom",
+    "development_only": true,
+    "image": "view05.png",
+    "functional_part": "bottom",
+    "action": "pull_handle",
+    "label": {
+      "visible": true,
+      "point": [
+        406,
+        650
+      ],
+      "bbox": [
+        373,
+        594,
+        426,
+        705
+      ],
+      "visible_pixels": 860
+    },
+    "label_source": "exact visible handle mesh segmentation; not full object segmentation or model self-label"
+  }
+]

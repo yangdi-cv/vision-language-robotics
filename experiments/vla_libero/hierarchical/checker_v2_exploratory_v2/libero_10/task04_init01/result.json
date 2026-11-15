@@ -1,0 +1,167 @@
+{
+  "suite": "libero_10",
+  "task_id": 4,
+  "initial_state_id": 1,
+  "original_task_language": "put the white mug on the left plate and put the yellow and white mug on the right plate",
+  "input_instruction": "把白色马克杯放到左边的盘子上，再把黄白相间的马克杯放到右边的盘子上",
+  "planner": "qwen",
+  "execution_profile": "legacy",
+  "planner_profile": "base",
+  "checker_adapter": "/home/yd/Documents/VLA/experiments/vla_libero/checker_v2/results/model/best_adapter",
+  "monitor": "qwen",
+  "max_steps": 520,
+  "subgoal_step_budget": 300,
+  "monitor_every_queries": 4,
+  "monitor_res": 512,
+  "gripper_gate": true,
+  "confirm": 2,
+  "max_replans": 0,
+  "last_subgoal_runs_to_limit": true,
+  "noise_seed": 730401,
+  "runner_sha256": "5df3e099c80231cf64851590c58b1b63d08bc1a2468cb3f1af5729ea5c9e3901",
+  "events": [
+    {
+      "kind": "plan",
+      "step": 0,
+      "ok": true,
+      "seconds": 1.447700196877122e-05,
+      "raw": "[\"put the white mug on the left plate\", \"put the yellow and white mug on the right plate\"]",
+      "error": null
+    },
+    {
+      "kind": "subgoal_start",
+      "step": 0,
+      "index": 0,
+      "subgoal": "put the white mug on the left plate"
+    },
+    {
+      "kind": "check",
+      "step": 20,
+      "index": 0,
+      "done": false,
+      "confirmed": false,
+      "seconds": 0.12961084299604408,
+      "checker": "v2",
+      "status": "no",
+      "scores": {
+        "yes": 0.013814170007353419,
+        "no": 0.9684480845927594,
+        "unknown": 0.017737745399887272,
+        "yes_log_odds": -4.268149927917811
+      },
+      "reason": "V2 no; p_yes=0.0138, threshold=3.2481",
+      "error": null,
+      "shadow_long_task_atoms": [
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 40,
+      "index": 0,
+      "done": false,
+      "confirmed": false,
+      "seconds": 0.12167941799998516,
+      "checker": "v2",
+      "status": "no",
+      "scores": {
+        "yes": 0.0019266576199456732,
+        "no": 0.998033355876843,
+        "unknown": 3.998650321129069e-05,
+        "yes_log_odds": -6.250040064494797
+      },
+      "reason": "V2 no; p_yes=0.0019, threshold=3.2481",
+      "error": null,
+      "shadow_long_task_atoms": [
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 120,
+      "index": 0,
+      "done": false,
+      "confirmed": false,
+      "seconds": 0.12395004199788673,
+      "checker": "v2",
+      "status": "unknown",
+      "scores": {
+        "yes": 0.6791776565238693,
+        "no": 1.5351652296053796e-06,
+        "unknown": 0.32082080831090104,
+        "yes_log_odds": 0.7499952148940565
+      },
+      "reason": "V2 unknown; p_yes=0.6792, threshold=3.2481",
+      "error": null,
+      "shadow_long_task_atoms": [
+        true,
+        false
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 140,
+      "index": 0,
+      "done": false,
+      "confirmed": false,
+      "seconds": 0.12104730399732944,
+      "checker": "v2",
+      "status": "unknown",
+      "scores": {
+        "yes": 0.09533579831006592,
+        "no": 0.00014333157567315814,
+        "unknown": 0.904520870114261,
+        "yes_log_odds": -2.250158448771444
+      },
+      "reason": "V2 unknown; p_yes=0.0953, threshold=3.2481",
+      "error": null,
+      "shadow_long_task_atoms": [
+        true,
+        false
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 160,
+      "index": 0,
+      "done": false,
+      "confirmed": false,
+      "seconds": 0.12476994399912655,
+      "checker": "v2",
+      "status": "no",
+      "scores": {
+        "yes": 0.001169503931130993,
+        "no": 0.9988250801912054,
+        "unknown": 5.415877663615291e-06,
+        "yes_log_odds": -6.75000542223367
+      },
+      "reason": "V2 no; p_yes=0.0012, threshold=3.2481",
+      "error": null,
+      "shadow_long_task_atoms": [
+        true,
+        false
+      ]
+    }
+  ],
+  "status": "success",
+  "success": true,
+  "subgoals": [
+    "put the white mug on the left plate",
+    "put the yellow and white mug on the right plate"
+  ],
+  "steps": 215,
+  "policy_queries": 43,
+  "qwen_checks": 5,
+  "replans": 0,
+  "full_task_fallback": false,
+  "final_subgoals": [
+    "put the white mug on the left plate",
+    "put the yellow and white mug on the right plate"
+  ],
+  "final_atoms": [
+    true,
+    true
+  ]
+}

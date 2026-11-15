@@ -1,0 +1,4 @@
+{
+  "complete": true,
+  "old_reference": "stored actual-input outputs; independent re-run showed small cross-process rounding difference and was retained"
+}

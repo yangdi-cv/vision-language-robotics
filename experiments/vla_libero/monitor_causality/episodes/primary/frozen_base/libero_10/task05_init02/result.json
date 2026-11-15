@@ -1,0 +1,114 @@
+{
+  "study_mode": "frozen_base",
+  "stage_budget_enabled": true,
+  "initial_state_sha256": "83ff554be370e25fb3b049d5c3db3f2cf4f20524a0eab8beeda093c6a81bad66",
+  "suite": "libero_10",
+  "task_id": 5,
+  "initial_state_id": 2,
+  "original_task_language": "pick up the book and place it in the back compartment of the caddy",
+  "input_instruction": "拿起那本书，放进桌面收纳盒靠后的格子里",
+  "planner": "qwen",
+  "execution_profile": "legacy",
+  "planner_profile": "base",
+  "checker_adapter": "experiments/vla_libero/checker_v2/results/model/best_adapter",
+  "monitor": "qwen",
+  "max_steps": 520,
+  "subgoal_step_budget": 300,
+  "monitor_every_queries": 4,
+  "monitor_res": 512,
+  "gripper_gate": true,
+  "confirm": 2,
+  "max_replans": 0,
+  "last_subgoal_runs_to_limit": true,
+  "noise_seed": 730502,
+  "runner_sha256": "3bfa20bd9f7c320cf83dabe80e3c59a72fb5bd053837b65cd3bb6376c3459f61",
+  "events": [
+    {
+      "kind": "plan",
+      "step": 0,
+      "ok": true,
+      "seconds": 1.4536999515257776e-05,
+      "raw": "[\"pick up the black book\", \"place the black book in the back compartment of the brown desk organizer\"]",
+      "error": null
+    },
+    {
+      "kind": "subgoal_start",
+      "step": 0,
+      "index": 0,
+      "subgoal": "pick up the black book"
+    },
+    {
+      "kind": "check",
+      "step": 20,
+      "index": 0,
+      "done": false,
+      "confirmed": false,
+      "seconds": 0.36888537000049837,
+      "checker": "base",
+      "status": null,
+      "scores": null,
+      "reason": "No change detected.",
+      "error": null,
+      "shadow_long_task_atoms": [
+        false
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 40,
+      "index": 0,
+      "done": false,
+      "confirmed": false,
+      "seconds": 0.37023012599820504,
+      "checker": "base",
+      "status": null,
+      "scores": null,
+      "reason": "No change detected.",
+      "error": null,
+      "shadow_long_task_atoms": [
+        false
+      ]
+    },
+    {
+      "kind": "check",
+      "step": 60,
+      "index": 0,
+      "done": false,
+      "confirmed": false,
+      "seconds": 0.36283771799935494,
+      "checker": "base",
+      "status": null,
+      "scores": null,
+      "reason": "No change detected.",
+      "error": null,
+      "shadow_long_task_atoms": [
+        false
+      ]
+    }
+  ],
+  "status": "success",
+  "success": true,
+  "settled_state_sha256": "1488a6f52d8e3173c007a70b147a14c26d1d9172191b0cf5ddda65060fe15d59",
+  "subgoals": [
+    "pick up the black book",
+    "place the black book in the back compartment of the brown desk organizer"
+  ],
+  "policy_queries": 36,
+  "qwen_checks": 3,
+  "replans": 0,
+  "active_subgoal_index": 0,
+  "active_subgoal": "pick up the black book",
+  "steps": 176,
+  "full_task_fallback": false,
+  "final_subgoals": [
+    "pick up the black book",
+    "place the black book in the back compartment of the brown desk organizer"
+  ],
+  "final_atoms": [
+    true
+  ],
+  "protocol_sha256": "43102c29b30de89a834dd03413d9b5010377410236d6addcffc618c76a8ff03c",
+  "monitor_model_calls": 3,
+  "monitor_opportunities": 3,
+  "wall_seconds": 14.089191662002122
+}
