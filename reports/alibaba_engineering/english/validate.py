@@ -6,7 +6,7 @@ sources=sorted((D/'chapters').glob('*.tex'))+sorted((D/'appendices').glob('*.tex
 protected=re.compile(r'\\(?:label|cite|ref|url|hyperlink)\{[^}]*\}|\\path\|[^|]*\|')
 figs=re.compile(r'\\(?:stagefigure|motionfigure)\{([^}]+)\}')
 video=re.compile(r'\\stagevideo\{([^}]+)\}')
-summary={'edition':'Complete English v0.2','translated_files':len(sources),'files':[]}
+summary={'edition':'Complete English v0.3','translated_files':len(sources),'files':[]}
 all_zh=[];all_en=[]
 for s in sources:
  rel=s.relative_to(D);p=E/rel;assert p.is_file(),p;a=s.read_text();b=p.read_text();assert not re.search(r'[\u3400-\u9fff]',b.replace(r'deliverables/20261113\_阿里\_代码修订/阿里\_修订源码.zip','')),p
@@ -22,7 +22,7 @@ a='\n'.join(all_zh);b='\n'.join(all_en)
 media=json.loads((D/'asset_manifest.json').read_text())
 for p in set(figs.findall(b)+video.findall(b)):assert (D/p).is_file(),p
 info=subprocess.check_output(['pdfinfo',str(E/'build/main_en.pdf')],text=True);pages=int(re.search(r'Pages:\s*(\d+)',info)[1])
-summary.update(chapters=8,appendices=4,stages=24,longtables=b.count('\\begin{longtable}'),unique_figure_assets=len(set(figs.findall(b))),video_references=len(set(video.findall(b))),english_pdf_pages=pages,english_pdf_sha256=hashlib.sha256((E/'build/main_en.pdf').read_bytes()).hexdigest(),chinese_pdf_sha256=hashlib.sha256((D/'build/main_zh.pdf').read_bytes()).hexdigest(),original_embedded_screenshot_text_retained=True)
+summary.update(chapters=9,appendices=4,stages=24,longtables=b.count('\\begin{longtable}'),unique_figure_assets=len(set(figs.findall(b))),video_references=len(set(video.findall(b))),english_pdf_pages=pages,english_pdf_sha256=hashlib.sha256((E/'build/main_en.pdf').read_bytes()).hexdigest(),chinese_pdf_sha256=hashlib.sha256((D/'build/main_zh.pdf').read_bytes()).hexdigest(),original_embedded_screenshot_text_retained=True)
 diagnostics=E/'BUILD_DIAGNOSTICS.json'
 if (E/'build/main_en.log').exists():
  log=(E/'build/main_en.log').read_text(errors='replace')

@@ -328,6 +328,8 @@ PC第一次NF4导出出现CPU内存膨胀并触发systemd保护，训练和两�
 
 \paragraph{阶段结论}三个联合预接触回合3/3通过，误差18.2、8.5、15.4毫米；六次正式响应的图片哈希与PC源帧匹配，稳定段无交换活动。 模型返回期间仿真暂停，联合成功不能替代实时达标。512像素配置沿用既有350帧精度对照，未做实体机械臂联调。
 
+\motionfigure{figures/ch07/jetson_vision_pc_execution_frames.png}{Jetson视觉服务与PC仿真联合预接触的录屏关键帧。端侧运行2B四位量化可供性模型，PC执行规划；不包含端侧自主抓取或完整放碗关抽屉。视频播放时间不等于端到端实时延迟。}{fig:v03-jetson-vision-pc-execution-frames}
+\motionfigure{figures/ch07/jetson_model_inputs.png}{三个Jetson联合预接触回合的实际图像与预测点（红圈）；右下为单独验证集初态13的未标注图。两类输入分开标识，避免把验证图当作第四个联合测试回合。}{fig:v03-jetson-model-inputs}
 \stagecode{s23}
 
 \stagevideo{videos/ch07/jetson_vision_pc_execution.mp4}

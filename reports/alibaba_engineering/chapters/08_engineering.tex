@@ -1,0 +1,69 @@
+\chapter{工程整理、接口约束与交付验证}
+\label{ch:engineering}
+本章记录2026年11月22日的工程改进。它是在前述二十四个实验阶段之上整理当前运行链路，不是新增模型实验；原有任务成功率、提示词版本和历史失败结论不因代码整理而改变。
+
+\section{从原机器可运行到明确的运行条件}
+\subsection{配置与环境分工}
+评审指出，工程依赖散落在多处路径、解释器和设备参数中。新维护入口使用\path{configs/runtime.example.json}，将解释器、ROS安装位置、远端目录、端口和验收阈值集中配置。相对路径以工程根目录为基准，不要求调用者恰好处于某个工作目录；未知配置字段直接报错。
+
+本机配置通过\texttt{VLA\_CONFIG}指定，工程根目录通过\texttt{VLA\_ROOT}指定。环境变量可覆盖明确的路径或远端设置，配置中不保存密码。\texttt{vla-doctor}只检查本机路径，不启动模型、网络连接或机械臂。
+
+公共运行层只使用Python标准库，兼容Python 3.10及以上；CPU离线审查使用独立Python 3.11环境。Qwen、JAX策略、ROS2和Jetson CUDA仍分属不同环境，没有强行合并成一个通用依赖文件，也没有修改原模型环境或系统Python。
+
+\subsection{启动器边界}
+ROS启动器原先清空了Python包路径。若只在调度端引入公共包，ROS子进程就会找不到它。本轮保留环境清理，再恢复当前工程与ROS自身的包路径，并增加临时ROS设置文件测试，验证外来模型路径被隔离、运行层仍可导入。策略启动器也显式保留工程根目录，原显存限制不变。
+
+相关代码在\path{vla_runtime/config.py}、\path{experiments/mobile_vla/scripts/ros-python}和\path{experiments/vla_libero/scripts/python_shared}。
+
+\section{共用调度与跨模块数据约束}
+\subsection{减少两份流程的版本漂移}
+原预接触与完整操作调度中，导航、定位、规划、启动和清理逻辑大段重复。现在由\path{run_cases.py}的\texttt{--task precontact}或\texttt{--task combined}选择流程，\path{run_combined.py}只保留兼容入口。完整操作仍先停用MoveIt及其控制桥，再交还动作策略控制权；不改变原实验中官方真值仅作评分与旁路记录的角色。
+
+新标签不能覆盖旧结果，输入前缀、模式、初态和修正次数作基本检查。模拟器退出或规划子进程失败返回非零退出码，外层不能再把“进程结束”直接当作“实验通过”。
+
+\subsection{类型检查与运行期校验分别承担责任}
+类型标注用于开发检查，不能替代对模型输出和进程返回值的实际检查。公共运行层以数据类表示核心机械臂状态，并对结构化定位输出、几何和轨迹作运行期校验。
+
+\begin{longtable}{p{.23\linewidth}p{.66\linewidth}}
+\toprule 数据边界 & 检查内容\\\midrule\endhead
+定位输出 & 成功标记必须为布尔真；二维点为有限数，使用0--1000相对坐标。\\
+机器人状态 & 关节和夹爪维数一致；拒绝非数值、NaN和无穷大。\\
+坐标与几何 & 旋转矩阵正交且行列式为正一；碰撞尺寸为正；网格索引有效。\\
+规划目标与轨迹 & 四元数归一；关节名不重复；点数非零；时间严格递增。\\
+执行与完成判断 & 同时检查MoveIt错误码、动作状态及实际轨迹；字符串“false”不作为完成。\\
+\bottomrule\end{longtable}
+
+碰撞矩阵只允许明确列出的链接对，其余接触默认禁止。规划前核对MoveIt与仿真末端的正运动学一致性，保持原有0.00001米阈值。仿真控制器仍发布实际测量关节反馈，不把命令值冒充反馈。
+
+相关代码在\path{vla_runtime/schemas.py}、\path{vla_runtime/geometry.py}、\path{vla_runtime/milestones.py}和\path{experiments/mobile_qwen/closed_loop_20261115/scripts/plan_execute.py}。
+
+\section{通信、异常和中断记录}
+Unix套接字与模型逐行JSON共用传输模块，限制消息大小与总读取期限，拒绝非法JSON、非对象响应和非有限数字。模型标准输出继续只传协议，普通日志写标准错误，避免日志混入响应。
+
+工作进程超时或返回错误格式时清理子进程；仅当子进程拥有独立进程组时向进程组发信号，避免误终止调用者所在进程组。通信接口维持原有报文结构，旧导入位置转为兼容导出。
+
+新回合启动时即保存参数、配置和代码版本；阶段日志逐条同步到文件，结果快照采用同目录临时文件和原子替换。即使模拟器未建立结果目录便退出，日志目录仍保存进度、完整异常堆栈与退出码。控制桥逐步保存实际反馈，另外保存整段轨迹。强制终止不能运行清理代码，磁盘故障或断电也不承诺绝对零丢失。
+
+相关代码在\path{vla_runtime/transport.py}、\path{vla_runtime/records.py}和\path{experiments/mobile_qwen/closed_loop_20261115/scripts/physics_bridge.py}。
+
+\section{远程服务与历史脚本的范围}
+新Jetson入口使用SSH密钥与主机密钥检查，主机由SSH别名配置，不再传递密码或自动执行管理权限命令。稳定测量前由管理员准备交换空间与电源设置，脚本只检查前提。服务保持独立进程和5G/6G内存限制，记录模型输入摘要、提示词摘要、异常和资源结果。
+
+新的服务目录按标签隔离，不覆盖原有记录。服务接收的图像长度、尺寸和预测点均作检查，进程异常或正常停止时清理资源。设备电源模式不在响应中写死，应以实际测量记录为准。
+
+新源码包排除11个含密码登录逻辑的历史远程驱动。旧脚本仍在仓库中供历史阅读；本轮并未宣称已把全部早期训练、制图和部署工具迁入公共层。当前维护范围由\path{repository/MAINTAINED_ENTRYPOINTS.json}明确列出。
+
+相关代码在\path{vla_runtime/remote.py}和\path{experiments/mobile_qwen/jetson/stage3_20261115/scripts/run_joint_service.py}。
+
+\section{本轮验证结果与尚未复测的内容}
+\subsection{独立解压验收}
+保留原92项CPU检查，新增35项测试，共127项、13组通过。新增测试包括分帧、错误JSON、超时、子进程退出、非有限数、坐标变换、正运动学误差、碰撞白名单、轨迹时间、里程碑状态和SSH参数；还通过立即退出的替身模拟器调用真实调度函数，检查失败退出码和中途记录。
+
+源码包解压到带空格的新目录，用全新Python 3.11环境安装依赖后重复检查。文件访问跟踪没有发现读取原工作区，2542个包内文件的清单核验通过，510个Python文件语法解析通过。维护范围通过代码与格式检查，公共运行层9个模块通过严格类型检查。494个历史数据、报告和视频等已跟踪文件在本轮工程改进时保持原内容；本次报告更新另外保留旧PDF版本。
+
+\subsection{验证边界}
+本轮没有运行GPU推理、完整ROS2物理闭环或Jetson设备回归。轨迹接口测试使用合成消息结构，不冒充真实ROS消息录制回放。历史117/120、28/30、4/4和2/4等成绩仍属于原实验版本，不能作为修改后入口的新成绩。
+
+离线测试通过说明相关输入、接口和故障处理可检查，不等于算法能力提高、设备实时达标或真实机械臂安全已验证。后续完整环境回归应使用新标签，分别检查轨迹约束、模型加载、资源清理与任务行为。
+
+相关代码在\path{scripts/check_offline.py}、\path{scripts/check_engineering.py}、\path{scripts/build_review_bundle.py}和\path{tests/runtime/}。详细记录见\path{reports/engineering_hardening_20261122/acceptance.json}。

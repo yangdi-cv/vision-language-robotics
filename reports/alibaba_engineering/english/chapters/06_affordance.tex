@@ -122,6 +122,7 @@ The lower bound of the 1.4 cm error partly arises from the discrepancy between t
 
 \paragraph{Stage Conclusion} On a 350-frame test subset, the 4B model strictly improved handle hit rate from 5.7\% to 92.3\%, and 4-pixel neighborhood hit rate from 17.7\% to 98.6\%. The fixed-pixel-point baseline excludes some explanations that rely solely on memorizing fixed positions. Training and test initial states are separated, but action templates are shared. Depth is provided by simulator ground truth; testing remains within the same scene and does not represent cross-scene or real-world three-dimensional localization capability.
 
+\motionfigure{figures/ch06/affordance_training_labels.png}{Images from training initial states 17, 25, 35, and 49 with saved simulator labels. Red crosses mark handle-mask centroids, blue crosses bowl-mask centroids, and green boxes cabinets. These are simulator ground-truth labels, not model predictions.}{fig:v03-affordance-training-labels}
 \stagecode{s17}
 
 \FloatBarrier
@@ -580,6 +581,7 @@ The actuators publish actual joint feedback; successful planning, actual traject
 
 \paragraph{Stage Conclusion} Under two initial states and two camera translation conditions, LoRA pre-contact passed 4/4, base 0/4, true-value localization 4/4; median positioning errors were 10.4, 73.3, and 6.2 millimeters, respectively. The target is the pre-approach position approximately 18.5 cm diagonally in front and above the object, not contact or grasping. Collision map and depth are known quantities from simulation, with only four conditions.
 
+\motionfigure{figures/ch06/camera_shift_point_predictions.png}{Saved images for initial state 3 with the camera shifted upward or rightward by 3 cm, overlaid with the corresponding base-model and LoRA predictions (red circles). These examples do not replace the four-episode paired statistics or establish cross-scene generalization.}{fig:v03-camera-shift-point-predictions}
 \stagecode{s19}
 
 \FloatBarrier
@@ -683,6 +685,7 @@ The correct next step here is to define skill prerequisites and stage interfaces
 
 \paragraph{Stage Conclusion} One development probe plus three replicative rounds, overall task success rate 2/4; native control for failure initial state 4 bypassed pre-contact and succeeded at step 320. Additional preposed postures may interfere with policy and should not be default-added to all skills. A single post-hoc control cannot establish causality; existing native closed-loop policy remains.
 
+\motionfigure{figures/ch06/policy_handover_success_frames.png}{A successful handover after pre-contact, entirely in PC simulation: Qwen localizes, MoveIt approaches, and the official action policy performs subsequent manipulation. This example does not imply success in every episode.}{fig:v03-policy-handover-success-frames}
 \stagecode{s20}
 
 \stagevideo{videos/ch06/policy_handover_success.mp4}

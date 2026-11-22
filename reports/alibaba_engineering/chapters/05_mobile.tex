@@ -1410,6 +1410,7 @@ Nav2到达
 
 \paragraph{阶段结论}修正支架碰撞、障碍感知和坐标变换后，三个开发初态完成导航及操作。导航之后没有重新生成任务场景。 底座是有限力的平面速度近似，定位使用仿真位姿和已知地图；未包含真实轮地滑移、建图与定位误差。
 
+\motionfigure{figures/ch05/mobile_navigation_operation_frames.png}{同一仿真世界中移动与操作的开发回合。画面由原录屏固定裁剪，便于观察工作台和机械臂；不是新增测试，时间为视频播放时间。}{fig:v03-mobile-navigation-operation-frames}
 \stagecode{s15}
 
 \stagevideo{videos/ch05/mobile_navigation_operation.mp4}
@@ -1539,6 +1540,8 @@ Qwen3-VL-4B基座在独立PyTorch worker内处理任务与停止判断；\(\pi\)
 
 \paragraph{阶段结论}任务决策7/7正确；后期五回合中停止决策5/5正确，其中实际任务成功4/5。失败回合未被误报成完成。 只验证一个厨房站点和一种技能，应称任务准入与单技能匹配。当前基座模型没有经过指令分解专项微调。
 
+\motionfigure{figures/ch05/milestone_monitor_example_frames.png}{里程碑监视方案的全局录屏关键帧。此全局视角用于展示过程，不是替代视觉模型的实际输入。时间为视频播放时间。}{fig:v03-milestone-monitor-example-frames}
+\motionfigure{figures/ch05/milestone_model_observations.png}{同一已保存回合ms2\_zh\_i08的操作起始帧与第100、180、250策略步的模型观察。与全局录屏分开显示，说明模型可见的遮挡和视角。}{fig:v03-milestone-model-observations}
 \stagecode{s16}
 
 \stagevideo{videos/ch05/milestone_monitor_example.mp4}

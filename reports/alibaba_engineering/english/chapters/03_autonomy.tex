@@ -472,6 +472,7 @@ The relevant code is in \path|scripts/train_act_expanded.py|, and the execution 
 
 \paragraph{Stage Conclusion} The autonomous grasp-and-release process can run, and the impact of coordinate noise on success has been measured, providing a reference for identifying ideal control conditions in subsequent work. The end-effector is driven toward the desired position via position-reference constraints, achieving near-ideal position control; depth is directly provided by simulation and cannot yet represent real motor or real camera conditions.
 
+\motionfigure{figures/ch03/desktop_pickplace_example_frames.png}{Recorded frames from the early desktop pick-and-place simulation, using idealized end-effector position control rather than the later public action policy. Labels show video playback time.}{fig:v03-desktop-pickplace-example-frames}
 \stagecode{s05}
 
 \stagevideo{videos/ch03/desktop_pickplace_example.mp4}
@@ -1317,6 +1318,7 @@ The source code package does not include official weights, environments, upstrea
 
 \paragraph{Stage Conclusion} The baseline completed 120 episodes, of which 117 succeeded; additionally, 126 paired input interventions were completed, with trajectories and videos saved. Tests with zeroed or frozen real-time images demonstrate that visual input affects policy execution. Here, the official task weights for LIBERO are used, belonging to reproduction and evaluation. Subsequent modifications to the task, inputs, or training one's own adapter should be scored separately.
 
+\motionfigure{figures/ch03/pi05_official_long_task00_frames.png}{Recorded frames of the official action policy on LIBERO-Long task 0. This example illustrates continuous behavior; the 117/120 aggregate comes from the full evaluation. Labels show video playback time.}{fig:v03-pi05-official-long-task00-frames}
 \stagecode{s08}
 \stagevideo{videos/ch03/pi05_official_long_task00.mp4}
 

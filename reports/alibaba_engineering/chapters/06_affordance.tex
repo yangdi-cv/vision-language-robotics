@@ -122,6 +122,7 @@ Qwen基座
 
 \paragraph{阶段结论}在350帧测试子集上，4B模型严格把手命中由5.7\%提高到92.3\%，4像素邻域命中由17.7\%提高到98.6\%。固定像素点对照排除了部分仅记住固定位置的解释。 训练与测试初态分开，但动作模板有共享。深度由仿真真值提供，测试仍是同场景，不代表跨场景或真实三维定位能力。
 
+\motionfigure{figures/ch06/affordance_training_labels.png}{训练初态17、25、35、49的图像及已保存的仿真标签。红十字为把手掩码质心，蓝十字为碗掩码质心，绿色框为柜体。标签是仿真真值，不是模型预测。}{fig:v03-affordance-training-labels}
 \stagecode{s17}
 
 \FloatBarrier
@@ -580,6 +581,7 @@ MoveIt直接完成把手接触、夹持及拉动仍未验证。本阶段另做�
 
 \paragraph{阶段结论}两个初态、两种相机平移条件下，LoRA预接触4/4通过，基座0/4，真值定位4/4；到位误差中位数分别10.4、73.3和6.2毫米。 目标是把手斜前上方约18.5厘米的预接近位置，不是接触或抓取。碰撞地图与深度来自仿真已知量，只有四个条件。
 
+\motionfigure{figures/ch06/camera_shift_point_predictions.png}{相机上移和右移各3厘米的已保存初态3图像，叠加对应基座与LoRA预测点（红圈）。此图展示具体输出，不代替四回合配对统计或跨场景验证。}{fig:v03-camera-shift-point-predictions}
 \stagecode{s19}
 
 \FloatBarrier
@@ -683,6 +685,7 @@ Qwen完成
 
 \paragraph{阶段结论}一个开发探针加三个重复性回合，整任务2/4成功；失败初态4的原生对照跳过预接触后在320步成功。 额外前置姿态可能干扰策略，不应默认加入所有技能。单个事后对照不能证明因果；现有原生闭环继续保留。
 
+\motionfigure{figures/ch06/policy_handover_success_frames.png}{预接触后交还官方动作策略的成功示例。整段在PC工作站仿真运行：Qwen定位、MoveIt预接触、官方动作策略执行后续操作。不能将该例推广为全部回合成功。}{fig:v03-policy-handover-success-frames}
 \stagecode{s20}
 
 \stagevideo{videos/ch06/policy_handover_success.mp4}

@@ -1,53 +1,18 @@
 {
-  "pdf_pages": 158,
-  "pdf_sha256": "775f35db6af1020be3e9d380cad5547ca1d77d5fa3f9ae2d27424bbaeb187b05",
-  "text_outside_page_safe_bounds": [],
-  "missing_glyphs": false,
-  "undefined_references": false,
+  "pdf_pages": 174,
+  "pdf_sha256": "6f25a201bd158543c2561a9061114e9be16ec3d5841210b195df0f2ac6a30651",
+  "missing_font_glyphs": 0,
+  "undefined_control_sequences": 0,
+  "undefined_references": 0,
+  "max_overfull_box_pt": 0.13313,
   "vertical_overflow": false,
-  "minor_horizontal_warnings_pt": [
-    0.13313,
-    0.12328
-  ],
+  "figures": 72,
+  "videos": 7,
   "visual_samples_pdf_pages": [
-    24,
-    133
-  ],
-  "videos": [
-    {
-      "path": "videos/ch03/desktop_pickplace_example.mp4",
-      "frames": 401,
-      "first_and_last_decoded": true
-    },
-    {
-      "path": "videos/ch04/hierarchical_long_example.mp4",
-      "frames": 255,
-      "first_and_last_decoded": true
-    },
-    {
-      "path": "videos/ch05/milestone_monitor_example.mp4",
-      "frames": 777,
-      "first_and_last_decoded": true
-    },
-    {
-      "path": "videos/ch06/policy_handover_success.mp4",
-      "frames": 1072,
-      "first_and_last_decoded": true
-    },
-    {
-      "path": "videos/ch07/jetson_vision_pc_execution.mp4",
-      "frames": 1042,
-      "first_and_last_decoded": true
-    },
-    {
-      "path": "videos/ch05/mobile_navigation_operation.mp4",
-      "frames": 871,
-      "first_and_last_decoded": true
-    },
-    {
-      "path": "videos/ch03/pi05_official_long_task00.mp4",
-      "frames": 285,
-      "first_and_last_decoded": true
-    }
+    18,
+    127,
+    139,
+    148,
+    151
   ]
 }

@@ -1410,6 +1410,7 @@ Not yet completed: visual affordance model, Qwen decomposition LoRA, and their f
 
 \paragraph{Stage Conclusion} After correcting the support frame collision, obstacle perception, and coordinate transformation, the three initial development states completed navigation and manipulation. The task scene was not regenerated after navigation. The base is modeled as a finite-force planar velocity approximation; localization uses simulated pose and known map; real wheel-ground slip, mapping, and localization errors are not included.
 
+\motionfigure{figures/ch05/mobile_navigation_operation_frames.png}{A development episode of mobility and manipulation in one simulated world. A fixed crop of the original recording makes the arm and work area easier to inspect. This is not a new test; times are video playback times.}{fig:v03-mobile-navigation-operation-frames}
 \stagecode{s15}
 
 \stagevideo{videos/ch05/mobile_navigation_operation.mp4}
@@ -1539,6 +1540,8 @@ The relevant code is in scripts/milestones.py and scripts/skills.py; the origina
 
 \paragraph{Stage Conclusion} Task decision correct in 7/7; stop decisions in the latter rounds correct in 5/5, with actual task success in 4/5. Failed rounds were not falsely reported as completed. Only one kitchen station and one skill were validated, which should be termed task admission with single-skill matching. The current base model has not undergone specialized fine-tuning for instruction decomposition.
 
+\motionfigure{figures/ch05/milestone_monitor_example_frames.png}{Global-view recording of the milestone-monitoring pipeline. This view illustrates execution and does not replace the actual visual-model inputs. Times are video playback times.}{fig:v03-milestone-monitor-example-frames}
+\motionfigure{figures/ch05/milestone_model_observations.png}{Model observations from the saved episode ms2\_zh\_i08: manipulation start and policy steps 100, 180, and 250. These are shown separately from the global recording to expose model-visible occlusion and viewpoint.}{fig:v03-milestone-model-observations}
 \stagecode{s16}
 
 \stagevideo{videos/ch05/milestone_monitor_example.mp4}

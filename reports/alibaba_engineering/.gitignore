@@ -1,0 +1,5 @@
+# Retain PDFs and source; compiler diagnostics are summarized in JSON.
+/build/*.log
+/build/*.out
+/english/build/*.log
+/english/build/*.out

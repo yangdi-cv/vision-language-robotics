@@ -18,5 +18,7 @@
   ],
   "regular_and_bold_times_embedded": true,
   "font_files_in_repository": false,
-  "font_installer_sha256_verified_against_ubuntu_package": "db56595ec6ef5d3de5c24994f001f03b2a13e37cee27bc25c58f6f43e8f807ab"
+  "font_installer_sha256_verified_against_ubuntu_package": "db56595ec6ef5d3de5c24994f001f03b2a13e37cee27bc25c58f6f43e8f807ab",
+  "pdf_sha256": "32f5ad5ed0e36603dc8ff99810f04ec041c6b9efc2d5b42a7dab513d48b53f1d",
+  "edition": "v0.3"
 }

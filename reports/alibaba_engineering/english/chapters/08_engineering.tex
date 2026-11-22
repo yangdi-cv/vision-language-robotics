@@ -1,0 +1,69 @@
+\chapter{Engineering Maintenance, Interface Contracts, and Delivery Checks}
+\label{ch:engineering}
+This chapter records the engineering revision of 22 November 2026. It consolidates the current execution pipeline on top of the twenty-four experimental stages rather than adding model experiments. Existing success rates, prompt versions, and conclusions about failures do not change merely because the code has been reorganized.
+
+\section{From Running on One Machine to Explicit Runtime Requirements}
+\subsection{Configuration and Separate Environments}
+The code review identified dependencies scattered across paths, interpreters, and device settings. The maintained entrypoints now use \path{configs/runtime.example.json} to configure interpreters, the ROS installation, remote directories, ports, and acceptance thresholds. Relative paths resolve against the project root, without requiring a particular working directory. Unknown configuration fields produce an error.
+
+A local configuration is selected through \texttt{VLA\_CONFIG}, and the project root through \texttt{VLA\_ROOT}. Explicit environment variables can override paths or remote settings; passwords do not belong in configuration files. The \texttt{vla-doctor} command only checks local paths and starts no models, network connections, or robot devices.
+
+The shared runtime uses only the Python standard library and supports Python 3.10 and later. CPU review runs in a separate Python 3.11 environment. Qwen, the JAX policy, ROS2, and Jetson CUDA remain in separate environments, rather than being forced into a universal dependency file. Existing model environments and system Python were not modified.
+
+\subsection{Launcher Boundaries}
+The ROS launcher previously cleared Python package paths. Introducing a shared package only in the orchestrator would therefore make it unavailable to ROS subprocesses. The revised launcher retains environment isolation, then restores the project and ROS package paths. A temporary ROS setup-file test checks that foreign model paths are removed while the runtime remains importable. The policy launcher also explicitly retains the project root; its existing GPU memory settings are unchanged.
+
+Related code is in \path{vla_runtime/config.py}, \path{experiments/mobile_vla/scripts/ros-python}, and \path{experiments/vla_libero/scripts/python_shared}.
+
+\section{Shared Orchestration and Cross-Module Data Contracts}
+\subsection{Reducing Drift between Duplicated Pipelines}
+Pre-contact and complete-operation orchestration previously duplicated substantial navigation, grounding, planning, startup, and cleanup logic. They now share \path{run_cases.py}, selected through \texttt{--task precontact} or \texttt{--task combined}; \path{run_combined.py} remains a compatibility entrypoint. Complete operation still stops MoveIt and its controller bridge before returning control to the action policy. Official ground truth retains its original role in scoring and shadow logging rather than driving control decisions.
+
+New tags cannot overwrite earlier results. Prefixes, modes, initial states, and correction counts receive basic validation. Simulator exits and planning subprocess failures return a nonzero exit code, so an outer driver cannot equate a finished process with a passed experiment.
+
+\subsection{Static Types and Runtime Validation Serve Different Purposes}
+Type annotations support development checks but do not replace validation of model outputs or process responses. The shared runtime uses a data class for the core arm state and validates structured grounding output, geometry, and trajectories at runtime.
+
+\begin{longtable}{p{.23\linewidth}p{.66\linewidth}}
+\toprule Data boundary & Checks\\\midrule\endhead
+Grounding output & Success must be Boolean true; a two-dimensional point must contain finite numbers in normalized 0--1000 coordinates.\\
+Robot state & Joint and gripper dimensions must match; non-numeric values, NaN, and infinity are rejected.\\
+Coordinates and geometry & Rotations must be orthogonal with determinant positive one; collision dimensions must be positive and mesh indices valid.\\
+Planning targets and trajectories & Quaternions must be normalized, joint names unique, point lists nonempty, and times strictly increasing.\\
+Execution and completion & MoveIt error codes, action status, and actual trajectories are checked together; the string ``false'' is not completion.\\
+\bottomrule\end{longtable}
+
+The collision matrix allows only explicitly listed link pairs; other contacts are disallowed by default. Before planning, MoveIt and simulator end-effector forward kinematics are compared using the unchanged 0.00001 m threshold. The simulation controller continues to publish measured joint feedback rather than substituting commanded positions.
+
+Related code is in \path{vla_runtime/schemas.py}, \path{vla_runtime/geometry.py}, \path{vla_runtime/milestones.py}, and \path{experiments/mobile_qwen/closed_loop_20261115/scripts/plan_execute.py}.
+
+\section{Communication, Exceptions, and Interrupted Runs}
+Unix sockets and newline-delimited model JSON share a transport module with message-size bounds and total read deadlines. Invalid JSON, non-object responses, and non-finite numbers are rejected. Model standard output remains protocol-only; ordinary logs go to standard error to avoid corrupting responses.
+
+Worker timeouts or malformed responses trigger subprocess cleanup. A process group is signaled only when the subprocess owns that group, avoiding termination of the caller's group. Existing wire formats are preserved, while earlier import locations become compatibility exports.
+
+New episodes record parameters, configuration, and code versions from startup. Progress entries are synchronized individually, and snapshots use a temporary file in the same directory followed by atomic replacement. Even if the simulator exits before creating its results directory, the log directory retains progress, a full traceback, and exit codes. The controller bridge records measured feedback incrementally and also saves the complete trajectory. Forced termination cannot execute cleanup code, and disk failure or power loss cannot be guaranteed to lose no data.
+
+Related code is in \path{vla_runtime/transport.py}, \path{vla_runtime/records.py}, and \path{experiments/mobile_qwen/closed_loop_20261115/scripts/physics_bridge.py}.
+
+\section{Remote Service and the Scope of Historical Scripts}
+The new Jetson entrypoint uses SSH keys and host-key checking, with the host selected through an SSH alias. It no longer passes passwords or automatically runs administrative commands. An administrator prepares swap and power settings before stable measurement; the driver only checks prerequisites. The service remains a separate process with 5G/6G memory limits and records input and prompt hashes, failures, and resource results.
+
+New service outputs are isolated by tag rather than overwriting previous records. Image length, image dimensions, and predicted points are validated, and resources are cleaned up on normal shutdown or exceptions. The response no longer hardcodes a device power mode, which must instead come from actual measurement records.
+
+The new source bundle excludes eleven historical remote drivers that contain password-login logic. Earlier scripts remain in the repository for historical reading. This revision does not claim that every early training, plotting, or deployment tool has migrated to the shared layer. The maintained scope is listed in \path{repository/MAINTAINED_ENTRYPOINTS.json}.
+
+Related code is in \path{vla_runtime/remote.py} and \path{experiments/mobile_qwen/jetson/stage3_20261115/scripts/run_joint_service.py}.
+
+\section{Verification Results and Work Not Rerun}
+\subsection{Clean Extraction Acceptance}
+The original 92 CPU checks are retained and 35 tests added, giving 127 passing tests across 13 groups. The additions cover framing, malformed JSON, timeouts, subprocess exits, non-finite values, coordinate transforms, forward-kinematics errors, collision allowlists, trajectory timing, milestone state, and SSH arguments. An immediately exiting substitute simulator also exercises the real orchestration function to check failure exit codes and intermediate records.
+
+The source bundle was extracted into a new directory containing spaces, dependencies installed in a fresh Python 3.11 environment, and the checks repeated. File-access tracing found no reads from the original workspace. The manifest for 2,542 bundled files passed verification, and 510 Python files parsed successfully. Maintained files passed lint and formatting checks; nine shared-runtime modules passed strict type checking. During the engineering revision, 494 tracked historical data, report, and video artifacts retained their contents. This report update separately preserves the earlier PDFs.
+
+\subsection{Verification Boundaries}
+This revision did not run GPU inference, complete ROS2 physics rollouts, or Jetson hardware regression. Trajectory interface tests use synthetic message structures and are not presented as replay of recorded ROS messages. Historical scores such as 117/120, 28/30, 4/4, and 2/4 remain results of the earlier experiment versions, not new scores for the revised entrypoints.
+
+Passing offline tests makes the relevant inputs, interfaces, and failure handling checkable. It does not establish improved model capability, real-time device performance, or physical robot safety. Subsequent full-environment regression should use new tags and separately verify trajectory constraints, model loading, resource cleanup, and task behavior.
+
+Related code is in \path{scripts/check_offline.py}, \path{scripts/check_engineering.py}, \path{scripts/build_review_bundle.py}, and \path{tests/runtime/}. Detailed records are in \path{reports/engineering_hardening_20261122/acceptance.json}.

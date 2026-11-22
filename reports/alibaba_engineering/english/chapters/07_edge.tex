@@ -328,6 +328,8 @@ No swap check during stable service segment: True. Model first load time: 11.77 
 
 \paragraph{Stage Conclusion} Three joint pre-contact rounds passed 3/3, with errors of 18.2, 8.5, and 15.4 millimeters; six formal responses' image hashes matched the PC source frames, with no swap activity in stable segments. Simulation paused during model return; joint success cannot substitute real-time compliance. The 512-pixel configuration retains the existing 350-frame precision baseline without physical robotic arm co-tuning.
 
+\motionfigure{figures/ch07/jetson_vision_pc_execution_frames.png}{Recorded joint pre-contact with the Jetson vision service and PC simulation. The edge device runs the 2B four-bit affordance model; the PC executes planning. This is not edge-side grasping or a complete bowl-and-drawer task. Video time is not end-to-end latency.}{fig:v03-jetson-vision-pc-execution-frames}
+\motionfigure{figures/ch07/jetson_model_inputs.png}{Actual images and predicted points (red circles) from three joint Jetson pre-contact episodes. The lower-right panel is a separate unannotated validation image from initial state 13, not a fourth joint test episode.}{fig:v03-jetson-model-inputs}
 \stagecode{s23}
 
 \stagevideo{videos/ch07/jetson_vision_pc_execution.mp4}

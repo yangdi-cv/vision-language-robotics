@@ -14,15 +14,15 @@ for a in assets:
  assert hashlib.sha256(p.read_bytes()).hexdigest()==a['sha256'],p
  assert a['local'].isascii(),a['local']
 for tex in D.rglob('*.tex'):
- for p in re.findall(r'\\(?:stagefigure|stagevideo)\{([^}]+)\}',tex.read_text()):assert (D/p).exists(),(tex,p)
+ for p in re.findall(r'\\(?:stagefigure|motionfigure|stagevideo)\{([^}]+)\}',tex.read_text()):assert (D/p).exists(),(tex,p)
 assert (D/'build/main_zh.pdf').stat().st_size>10000
 print('24 stages, source links, copied media hashes and PDF: OK')
 print('Figures:',sum(a['kind']=='figure' for a in assets),'Videos:',sum(a['kind']=='video' for a in assets))
 
 assert json.loads((D/'missing_assets.json').read_text()) == []
 chapters='\n'.join(p.read_text() for p in (D/'chapters').glob('*.tex'))
-assert len(re.findall(r'\\stagefigure\{',chapters))==60
+assert len(re.findall(r'\\(?:stagefigure|motionfigure)\{',chapters))==sum(a['kind']=='figure' for a in assets)
 assert chapters.count('\\begin{longtable}')>=99
 for marker in ['本稿先给出','本稿的审阅重点','报告后续完善顺序']:
  assert marker not in chapters,marker
-print('Expanded chapters: 60 figure citations, 99+ detailed tables, no draft-only placeholders: OK')
+print('Expanded chapters: all manifest figures cited, 99+ detailed tables, no draft-only placeholders: OK')

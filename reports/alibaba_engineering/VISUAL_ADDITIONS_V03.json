@@ -1,0 +1,698 @@
+[
+  {
+    "kind": "figure",
+    "stage": "s05",
+    "local": "figures/ch03/desktop_pickplace_example_frames.png",
+    "source": "videos/ch03/desktop_pickplace_example.mp4",
+    "sources": [
+      "videos/ch03/desktop_pickplace_example.mp4"
+    ],
+    "sha256": "638b9a5e7dc5974e1553ed0a06b34ca602ae54ba5b2110f0af84a2ceeea1618a",
+    "derivation": {
+      "operation": "recorded frame selection, fixed crop where specified, contact sheet",
+      "source_sha256": "cc297cc7e16849c212037a85b651ffc569595059204515e140f421a731d61041",
+      "fps": 25.0,
+      "frames": [
+        {
+          "frame": 8,
+          "video_time_s": 0.32,
+          "crop": null,
+          "original_size": [
+            640,
+            480
+          ]
+        },
+        {
+          "frame": 140,
+          "video_time_s": 5.6,
+          "crop": null,
+          "original_size": [
+            640,
+            480
+          ]
+        },
+        {
+          "frame": 272,
+          "video_time_s": 10.88,
+          "crop": null,
+          "original_size": [
+            640,
+            480
+          ]
+        },
+        {
+          "frame": 392,
+          "video_time_s": 15.68,
+          "crop": null,
+          "original_size": [
+            640,
+            480
+          ]
+        }
+      ],
+      "time_basis": "video playback time; not inference wall time or simulator steps"
+    }
+  },
+  {
+    "kind": "figure",
+    "stage": "s08",
+    "local": "figures/ch03/pi05_official_long_task00_frames.png",
+    "source": "videos/ch03/pi05_official_long_task00.mp4",
+    "sources": [
+      "videos/ch03/pi05_official_long_task00.mp4"
+    ],
+    "sha256": "17119ef273741fce654570c181ae318af9848a83d5129c44f00c84e623ee7df4",
+    "derivation": {
+      "operation": "recorded frame selection, fixed crop where specified, contact sheet",
+      "source_sha256": "764737ab594719191d756e0a7b0001d25276a971b4275308946069957f06bcec",
+      "fps": 20.0,
+      "frames": [
+        {
+          "frame": 6,
+          "video_time_s": 0.3,
+          "crop": null,
+          "original_size": [
+            256,
+            256
+          ]
+        },
+        {
+          "frame": 99,
+          "video_time_s": 4.95,
+          "crop": null,
+          "original_size": [
+            256,
+            256
+          ]
+        },
+        {
+          "frame": 193,
+          "video_time_s": 9.65,
+          "crop": null,
+          "original_size": [
+            256,
+            256
+          ]
+        },
+        {
+          "frame": 278,
+          "video_time_s": 13.9,
+          "crop": null,
+          "original_size": [
+            256,
+            256
+          ]
+        }
+      ],
+      "time_basis": "video playback time; not inference wall time or simulator steps"
+    }
+  },
+  {
+    "kind": "figure",
+    "stage": "s09",
+    "local": "figures/ch04/hierarchical_long_example_frames.png",
+    "source": "videos/ch04/hierarchical_long_example.mp4",
+    "sources": [
+      "videos/ch04/hierarchical_long_example.mp4"
+    ],
+    "sha256": "918da3a984d30616ae08ac3a8b1db146d109ccdd95f0718c4ff68df903584257",
+    "derivation": {
+      "operation": "recorded frame selection, fixed crop where specified, contact sheet",
+      "source_sha256": "541a325bade39e9cffcce334dd8b09fe97ff799051473a53e6113aebbf3c17e8",
+      "fps": 20.0,
+      "frames": [
+        {
+          "frame": 5,
+          "video_time_s": 0.25,
+          "crop": null,
+          "original_size": [
+            256,
+            256
+          ]
+        },
+        {
+          "frame": 89,
+          "video_time_s": 4.45,
+          "crop": null,
+          "original_size": [
+            256,
+            256
+          ]
+        },
+        {
+          "frame": 173,
+          "video_time_s": 8.65,
+          "crop": null,
+          "original_size": [
+            256,
+            256
+          ]
+        },
+        {
+          "frame": 249,
+          "video_time_s": 12.45,
+          "crop": null,
+          "original_size": [
+            256,
+            256
+          ]
+        }
+      ],
+      "time_basis": "video playback time; not inference wall time or simulator steps"
+    }
+  },
+  {
+    "kind": "figure",
+    "stage": "s15",
+    "local": "figures/ch05/mobile_navigation_operation_frames.png",
+    "source": "videos/ch05/mobile_navigation_operation.mp4",
+    "sources": [
+      "videos/ch05/mobile_navigation_operation.mp4"
+    ],
+    "sha256": "847ff6df75c31fd90f7f735a0ffbc76ddda6a1850594c49784ca9c71d4bda36d",
+    "derivation": {
+      "operation": "recorded frame selection, fixed crop where specified, contact sheet",
+      "source_sha256": "f136d2398375689adf950e5e558aed1aa16bef9b6478645ff3ef9c35b3b93826",
+      "fps": 20.0,
+      "frames": [
+        {
+          "frame": 17,
+          "video_time_s": 0.85,
+          "crop": [
+            83,
+            0,
+            557,
+            317
+          ],
+          "original_size": [
+            640,
+            480
+          ]
+        },
+        {
+          "frame": 304,
+          "video_time_s": 15.2,
+          "crop": [
+            83,
+            0,
+            557,
+            317
+          ],
+          "original_size": [
+            640,
+            480
+          ]
+        },
+        {
+          "frame": 592,
+          "video_time_s": 29.6,
+          "crop": [
+            83,
+            0,
+            557,
+            317
+          ],
+          "original_size": [
+            640,
+            480
+          ]
+        },
+        {
+          "frame": 853,
+          "video_time_s": 42.65,
+          "crop": [
+            83,
+            0,
+            557,
+            317
+          ],
+          "original_size": [
+            640,
+            480
+          ]
+        }
+      ],
+      "time_basis": "video playback time; not inference wall time or simulator steps"
+    }
+  },
+  {
+    "kind": "figure",
+    "stage": "s16",
+    "local": "figures/ch05/milestone_monitor_example_frames.png",
+    "source": "videos/ch05/milestone_monitor_example.mp4",
+    "sources": [
+      "videos/ch05/milestone_monitor_example.mp4"
+    ],
+    "sha256": "50996955bb668655b04e31f421110af331b2dfd2ed155af672a6ab0f8f3b2024",
+    "derivation": {
+      "operation": "recorded frame selection, fixed crop where specified, contact sheet",
+      "source_sha256": "df7c2e9bb717f7bc83270e838215636ea526e3d0730b17a543b6d2ef98f31a27",
+      "fps": 20.0,
+      "frames": [
+        {
+          "frame": 16,
+          "video_time_s": 0.8,
+          "crop": [
+            83,
+            0,
+            557,
+            317
+          ],
+          "original_size": [
+            640,
+            480
+          ]
+        },
+        {
+          "frame": 272,
+          "video_time_s": 13.6,
+          "crop": [
+            83,
+            0,
+            557,
+            317
+          ],
+          "original_size": [
+            640,
+            480
+          ]
+        },
+        {
+          "frame": 528,
+          "video_time_s": 26.4,
+          "crop": [
+            83,
+            0,
+            557,
+            317
+          ],
+          "original_size": [
+            640,
+            480
+          ]
+        },
+        {
+          "frame": 760,
+          "video_time_s": 38.0,
+          "crop": [
+            83,
+            0,
+            557,
+            317
+          ],
+          "original_size": [
+            640,
+            480
+          ]
+        }
+      ],
+      "time_basis": "video playback time; not inference wall time or simulator steps"
+    }
+  },
+  {
+    "kind": "figure",
+    "stage": "s20",
+    "local": "figures/ch06/policy_handover_success_frames.png",
+    "source": "videos/ch06/policy_handover_success.mp4",
+    "sources": [
+      "videos/ch06/policy_handover_success.mp4"
+    ],
+    "sha256": "15cc80f003309bf44303082a68a45ff4cd8ff81e8602fbad12f00e29d5aafe8b",
+    "derivation": {
+      "operation": "recorded frame selection, fixed crop where specified, contact sheet",
+      "source_sha256": "488bde174c3da79e65fae2d6b28dccb9179799f5564b206071d3bfea852a750d",
+      "fps": 20.0,
+      "frames": [
+        {
+          "frame": 21,
+          "video_time_s": 1.05,
+          "crop": [
+            83,
+            0,
+            557,
+            317
+          ],
+          "original_size": [
+            640,
+            480
+          ]
+        },
+        {
+          "frame": 375,
+          "video_time_s": 18.75,
+          "crop": [
+            83,
+            0,
+            557,
+            317
+          ],
+          "original_size": [
+            640,
+            480
+          ]
+        },
+        {
+          "frame": 728,
+          "video_time_s": 36.4,
+          "crop": [
+            83,
+            0,
+            557,
+            317
+          ],
+          "original_size": [
+            640,
+            480
+          ]
+        },
+        {
+          "frame": 1050,
+          "video_time_s": 52.5,
+          "crop": [
+            83,
+            0,
+            557,
+            317
+          ],
+          "original_size": [
+            640,
+            480
+          ]
+        }
+      ],
+      "time_basis": "video playback time; not inference wall time or simulator steps"
+    }
+  },
+  {
+    "kind": "figure",
+    "stage": "s23",
+    "local": "figures/ch07/jetson_vision_pc_execution_frames.png",
+    "source": "videos/ch07/jetson_vision_pc_execution.mp4",
+    "sources": [
+      "videos/ch07/jetson_vision_pc_execution.mp4"
+    ],
+    "sha256": "e4426867238721ed1dbcea11e1120d181e8b26de7fec6229ae496878b06e0a1f",
+    "derivation": {
+      "operation": "recorded frame selection, fixed crop where specified, contact sheet",
+      "source_sha256": "6f7311d173cc624267c1c995ec80c0c29fa249f04eed8665e77f8fd6fb3d997a",
+      "fps": 20.0,
+      "frames": [
+        {
+          "frame": 21,
+          "video_time_s": 1.05,
+          "crop": [
+            83,
+            0,
+            557,
+            317
+          ],
+          "original_size": [
+            640,
+            480
+          ]
+        },
+        {
+          "frame": 364,
+          "video_time_s": 18.2,
+          "crop": [
+            83,
+            0,
+            557,
+            317
+          ],
+          "original_size": [
+            640,
+            480
+          ]
+        },
+        {
+          "frame": 708,
+          "video_time_s": 35.4,
+          "crop": [
+            83,
+            0,
+            557,
+            317
+          ],
+          "original_size": [
+            640,
+            480
+          ]
+        },
+        {
+          "frame": 1020,
+          "video_time_s": 51.0,
+          "crop": [
+            83,
+            0,
+            557,
+            317
+          ],
+          "original_size": [
+            640,
+            480
+          ]
+        }
+      ],
+      "time_basis": "video playback time; not inference wall time or simulator steps"
+    }
+  },
+  {
+    "kind": "figure",
+    "stage": "s17",
+    "local": "figures/ch06/affordance_training_labels.png",
+    "source": "experiments/mobile_qwen/affordance/data_train_v1/rgb/transfer_i17_ms2_zh_i09_s0020.png",
+    "sources": [
+      "experiments/mobile_qwen/affordance/data_train_v1/rgb/transfer_i17_ms2_zh_i09_s0020.png",
+      "experiments/mobile_qwen/affordance/data_train_v1/rgb/transfer_i25_ms_zh_i07_s0020.png",
+      "experiments/mobile_qwen/affordance/data_train_v1/rgb/transfer_i35_ms2_zh_i12_s0020.png",
+      "experiments/mobile_qwen/affordance/data_train_v1/rgb/transfer_i49_ms2_zh_i11_s0020.png"
+    ],
+    "sha256": "26bf30e5ac6997ff24301a2cd0c14cac40146791ecbf410e4c817559668d8e42",
+    "derivation": {
+      "operation": "overlay recorded simulator mask centroids and cabinet boxes",
+      "labels_source": "experiments/mobile_qwen/affordance/data_train_v1/labels.jsonl",
+      "labels_sha256": "0faea72a93fec55e8849ef9e0c18707d1ebc2b48949e3f8a87e997a5e34ffed0",
+      "samples": [
+        {
+          "id": "transfer_i17_ms2_zh_i09_s0020",
+          "handle_centroid": [
+            230.18851251840942,
+            327.59941089838
+          ],
+          "bowl_centroid": [
+            292.6110795454546,
+            329.44204545454545
+          ],
+          "cabinet_bbox": [
+            0,
+            181,
+            238,
+            413
+          ],
+          "source_sha256": "aaf8a48547c11c1abc0972e696329c7ec1be71b30281c59f3873889cd771ee26"
+        },
+        {
+          "id": "transfer_i25_ms_zh_i07_s0020",
+          "handle_centroid": [
+            226.32748538011697,
+            327.5029239766082
+          ],
+          "bowl_centroid": [
+            283.63411864887877,
+            329.6125461254613
+          ],
+          "cabinet_bbox": [
+            0,
+            181,
+            235,
+            413
+          ],
+          "source_sha256": "828092a75922562c5228554766503dbed1b1be814e5028deff5a8e51fb8da3b2"
+        },
+        {
+          "id": "transfer_i35_ms2_zh_i12_s0020",
+          "handle_centroid": [
+            231.95876288659792,
+            327.52282768777616
+          ],
+          "bowl_centroid": [
+            300.06659358728416,
+            337.8048780487805
+          ],
+          "cabinet_bbox": [
+            0,
+            181,
+            240,
+            413
+          ],
+          "source_sha256": "5e162808816809ec5916502c35a6a91f1b15d2cef93964507a41a248eab3d451"
+        },
+        {
+          "id": "transfer_i49_ms2_zh_i11_s0020",
+          "handle_centroid": [
+            229.20771513353117,
+            327.3635014836795
+          ],
+          "bowl_centroid": [
+            274.37172088142705,
+            348.25104931794334
+          ],
+          "cabinet_bbox": [
+            0,
+            181,
+            237,
+            413
+          ],
+          "source_sha256": "342ed0459fcd1dbc961519258fe716d079923f2c4d9fb909968d4434efe8d36c"
+        }
+      ]
+    }
+  },
+  {
+    "kind": "figure",
+    "stage": "s16",
+    "local": "figures/ch05/milestone_model_observations.png",
+    "source": "experiments/mobile_qwen/results/ms2_zh_i08/qwen_inputs/manip_start.png",
+    "sources": [
+      "experiments/mobile_qwen/results/ms2_zh_i08/qwen_inputs/manip_start.png",
+      "experiments/mobile_qwen/results/ms2_zh_i08/qwen_inputs/check_0100.png",
+      "experiments/mobile_qwen/results/ms2_zh_i08/qwen_inputs/check_0180.png",
+      "experiments/mobile_qwen/results/ms2_zh_i08/qwen_inputs/check_0250.png"
+    ],
+    "sha256": "1fe059d430a281082a3c28806b44fdfc37b5cec9ab44f92b00096cbc475a9b17",
+    "derivation": {
+      "operation": "contact sheet of original saved model inputs",
+      "policy_steps": [
+        0,
+        100,
+        180,
+        250
+      ],
+      "source_hashes": [
+        "b1b1b6443de1db8780574eebe0ca9bb87a0d00edf3c4046dbfbcbe5da901303f",
+        "715ac59fc0c393119d9dcae201e2cf830e136ff1f0fcffc6bc25f163abb4b6a0",
+        "db0a0d5447fd25bef4bb7cf437b5ec7a9908723d3e822198ebb682751b9f1481",
+        "466316ebd620b9de6a543196d7b330d072110a8d101c9a33b865bb7172239768"
+      ]
+    }
+  },
+  {
+    "kind": "figure",
+    "stage": "s19",
+    "local": "figures/ch06/camera_shift_point_predictions.png",
+    "source": "experiments/mobile_qwen/closed_loop_20261115/results/paired_v1_camera_up_3cm_i03_base/grounding_000.png",
+    "sources": [
+      "experiments/mobile_qwen/closed_loop_20261115/results/paired_v1_camera_up_3cm_i03_base/grounding_000.png",
+      "experiments/mobile_qwen/closed_loop_20261115/results/paired_v1_camera_up_3cm_i03_base/prediction_00.json",
+      "experiments/mobile_qwen/closed_loop_20261115/results/paired_v1_camera_up_3cm_i03_lora/grounding_000.png",
+      "experiments/mobile_qwen/closed_loop_20261115/results/paired_v1_camera_up_3cm_i03_lora/prediction_00.json",
+      "experiments/mobile_qwen/closed_loop_20261115/results/paired_v1_camera_right_3cm_i03_base/grounding_000.png",
+      "experiments/mobile_qwen/closed_loop_20261115/results/paired_v1_camera_right_3cm_i03_base/prediction_00.json",
+      "experiments/mobile_qwen/closed_loop_20261115/results/paired_v1_camera_right_3cm_i03_lora/grounding_000.png",
+      "experiments/mobile_qwen/closed_loop_20261115/results/paired_v1_camera_right_3cm_i03_lora/prediction_00.json"
+    ],
+    "sha256": "da3eca254c12fb0a37180ec6ce1431a135711ea5e9c6e8b7dd28650882b891e2",
+    "derivation": {
+      "operation": "overlay saved model prediction points in normalized 0-1000 coordinates",
+      "predictions": [
+        {
+          "case": "paired_v1_camera_up_3cm_i03_base",
+          "point_2d": [
+            406,
+            672
+          ],
+          "image_sha256": "52cbef4e126b67a21822fef32e9eba2c9aac97eb996e94c9876c5e1318b2e856",
+          "prediction_sha256": "38581a1c67f4a5cde2c6daa6edd0ebc6aeae27b82c6fa19694793aecc5c0124c"
+        },
+        {
+          "case": "paired_v1_camera_up_3cm_i03_lora",
+          "point_2d": [
+            434,
+            669
+          ],
+          "image_sha256": "3d914d7c5fd21e08725fb9499bec97ed8b2a87c3661928e96c4138c6e089b3a0",
+          "prediction_sha256": "746bbfb392aabbeecac852c80198aa376a0f9de35dad7e1169c8860802430ea9"
+        },
+        {
+          "case": "paired_v1_camera_right_3cm_i03_base",
+          "point_2d": [
+            466,
+            634
+          ],
+          "image_sha256": "fe3b57b4292ddca01f67a145f528a0339f803a6a27ecb5b0a77147ef33ebea01",
+          "prediction_sha256": "f8e4a252ab3095ca8660897204f1f9aeaff6941e12ae99487787577fa305b088"
+        },
+        {
+          "case": "paired_v1_camera_right_3cm_i03_lora",
+          "point_2d": [
+            471,
+            640
+          ],
+          "image_sha256": "8061be30224c017b21898fa13bf1aa01f864135670bac7f222eb8944d50833d5",
+          "prediction_sha256": "e9cd815492b779431793d1f7d1b200b17e7868ac806f260bc5a22653e46a2212"
+        }
+      ]
+    }
+  },
+  {
+    "kind": "figure",
+    "stage": "s23",
+    "local": "figures/ch07/jetson_model_inputs.png",
+    "source": "experiments/mobile_qwen/closed_loop_20261115/results/jetson_joint_v1_nominal_i02_lora/grounding_000.png",
+    "sources": [
+      "experiments/mobile_qwen/closed_loop_20261115/results/jetson_joint_v1_nominal_i02_lora/grounding_000.png",
+      "experiments/mobile_qwen/closed_loop_20261115/results/jetson_joint_v1_nominal_i02_lora/prediction_00.json",
+      "experiments/mobile_qwen/closed_loop_20261115/results/jetson_joint_v1_nominal_i03_lora/grounding_000.png",
+      "experiments/mobile_qwen/closed_loop_20261115/results/jetson_joint_v1_nominal_i03_lora/prediction_00.json",
+      "experiments/mobile_qwen/closed_loop_20261115/results/jetson_joint_v1_nominal_i04_lora/grounding_000.png",
+      "experiments/mobile_qwen/closed_loop_20261115/results/jetson_joint_v1_nominal_i04_lora/prediction_00.json",
+      "experiments/mobile_qwen/jetson/stage3_20261115/validation/static_i13_0.png"
+    ],
+    "sha256": "6762c7a4594fdf6230c214de9b01510063bb11d3149f00e95a2417d3097dcbf1",
+    "derivation": {
+      "operation": "three saved joint-run point overlays plus an unannotated validation input",
+      "predictions": [
+        {
+          "initial": 2,
+          "point_2d": [
+            432,
+            640
+          ],
+          "image_sha256": "e164fedc79099cbef5c1529359b50d4cf8e3aaa8e7fd54798b8c16379b32333d",
+          "prediction_sha256": "0c73874e2624bde30b48c9815e6572e01fc57eb492606230d9e24eb9bf0ba8ba"
+        },
+        {
+          "initial": 3,
+          "point_2d": [
+            439,
+            640
+          ],
+          "image_sha256": "fbd47216f48236b698e08fabfeb14591c4bc6d09ffba0dcb34d2bf254e91d78a",
+          "prediction_sha256": "b21d34077513e332ad514b1631948fdd5c507b3e71f9bd1ce342e4826724ee41"
+        },
+        {
+          "initial": 4,
+          "point_2d": [
+            454,
+            640
+          ],
+          "image_sha256": "9110fab3a6b684c1747628ede1fdeb0f190daf00d7eaa11ef3176990b7895827",
+          "prediction_sha256": "ccba4425cfd5019dfec3f7a88adfa5dc3197a3f6bae58a047904928ae12b675e"
+        }
+      ],
+      "validation_image_sha256": "9c5bd45428443108ced1014e5145f44f99daffc6fa2c8bb4ce43616478e63e20"
+    }
+  },
+  {
+    "kind": "figure",
+    "stage": "s01",
+    "local": "figures/ch02/so101_wrist_sensor_mount.jpg",
+    "source": "user_photo/IMG_0829.jpg",
+    "sha256": "fb25938025082b8c60711b61b76327ef741b2ddbc2621af4f6daefbc354bcdc8",
+    "derivation": {
+      "operation": "unchanged user-provided historical photo",
+      "source_sha256": "fb25938025082b8c60711b61b76327ef741b2ddbc2621af4f6daefbc354bcdc8"
+    }
+  }
+]

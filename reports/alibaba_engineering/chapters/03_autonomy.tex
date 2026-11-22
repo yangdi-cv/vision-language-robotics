@@ -472,6 +472,7 @@ ACT输入为RGB、关节/夹爪、任务符号及初始RGB-D坐标，训练10000
 
 \paragraph{阶段结论}自主抓放流程能够运行，也测量了坐标噪声对成功的影响，为后续识别理想控制条件提供了参照。 末端通过位置参考约束驱动，接近理想位置控制；深度由仿真直接提供，尚不能代表真实电机或真实相机条件。
 
+\motionfigure{figures/ch03/desktop_pickplace_example_frames.png}{早期桌面抓放仿真的录屏关键帧。该阶段采用理想化末端位置控制，不是后续公开动作策略的闭环。标记为视频播放时间。}{fig:v03-desktop-pickplace-example-frames}
 \stagecode{s05}
 
 \stagevideo{videos/ch03/desktop_pickplace_example.mp4}
@@ -1317,6 +1318,7 @@ libero\_object / 0 & 2 & 超时 & 280 \\
 
 \paragraph{阶段结论}基线完成120个回合，其中117个成功；另完成126组配对输入干预，保存轨迹与视频。实时图像置零或冻结的测试说明视觉输入会影响策略执行。 这里使用针对LIBERO的官方任务权重，属于复现和评测。后续改任务、改输入或训练自己的适配器，应单独评分。
 
+\motionfigure{figures/ch03/pi05_official_long_task00_frames.png}{官方动作策略在LIBERO-Long任务0上的录屏关键帧。示例说明连续动作过程，117/120的总体成绩仍以完整评测为准。标记为视频播放时间。}{fig:v03-pi05-official-long-task00-frames}
 \stagecode{s08}
 \stagevideo{videos/ch03/pi05_official_long_task00.mp4}
 

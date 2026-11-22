@@ -1,0 +1,41 @@
+{
+  "edition": "v0.3",
+  "date": "2026-11-22",
+  "pages": {
+    "zh": 174,
+    "en": 176
+  },
+  "figures_before": 60,
+  "figures_after": 72,
+  "added_figures": 12,
+  "videos_unchanged": 7,
+  "experimental_stages_unchanged": 24,
+  "chapters": 9,
+  "new_engineering_chapter": "chapters/08_engineering.tex",
+  "existing_technical_sources_preserved": [
+    "reports/alibaba_engineering/chapters/02_platform.tex",
+    "reports/alibaba_engineering/chapters/03_autonomy.tex",
+    "reports/alibaba_engineering/chapters/04_hierarchy.tex",
+    "reports/alibaba_engineering/chapters/05_mobile.tex",
+    "reports/alibaba_engineering/chapters/06_affordance.tex",
+    "reports/alibaba_engineering/chapters/07_edge.tex",
+    "reports/alibaba_engineering/chapters/08_conclusions.tex",
+    "reports/alibaba_engineering/english/chapters/02_platform.tex",
+    "reports/alibaba_engineering/english/chapters/03_autonomy.tex",
+    "reports/alibaba_engineering/english/chapters/04_hierarchy.tex",
+    "reports/alibaba_engineering/english/chapters/05_mobile.tex",
+    "reports/alibaba_engineering/english/chapters/06_affordance.tex",
+    "reports/alibaba_engineering/english/chapters/07_edge.tex",
+    "reports/alibaba_engineering/english/chapters/08_conclusions.tex"
+  ],
+  "original_media_assets_unchanged": 67,
+  "model_experiments_started": false,
+  "hardware_connected": false,
+  "new_media_manifest": "VISUAL_ADDITIONS_V03.json",
+  "engineering_acceptance": "../engineering_hardening_20261122/acceptance.json",
+  "comparison": {
+    "bytedance_manifest_figures": 97,
+    "ali_original_figures_in_affordance_chapter": 3,
+    "ali_original_figures_in_edge_chapter": 1
+  }
+}
