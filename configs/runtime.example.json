@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "paths": {
+    "qwen_python": ".venvs/qwen-scene/bin/python",
+    "policy_python": "experiments/vla_libero/scripts/python_shared",
+    "ros_python": "experiments/mobile_vla/scripts/ros-python",
+    "ros_prefix": "/opt/ros/humble"
+  },
+  "remote": {
+    "host": "jetson-vla",
+    "stage_root": "/srv/vla/experiments/mobile_qwen/jetson/stage3_20261115",
+    "python": "/srv/vla/deployment/jetson_python.sh",
+    "local_port": 18889,
+    "remote_port": 18888
+  },
+  "limits": {
+    "worker_ready_seconds": 120,
+    "worker_response_seconds": 90,
+    "rpc_seconds": 120,
+    "visual_residual_m": 0.025,
+    "precontact_error_m": 0.03,
+    "fk_error_m": 0.00001,
+    "ros_domain": 118
+  }
+}

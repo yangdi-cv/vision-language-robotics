@@ -29,3 +29,10 @@ __pycache__/
 *.lot
 *.xdv
 *.synctex.gz
+
+# Python review/build outputs
+*.egg-info/
+.mypy_cache/
+/build/
+/dist/
+configs/runtime.local.json

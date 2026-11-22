@@ -1,11 +1,17 @@
 #!/usr/bin/env bash
+# Isolate ROS libraries while retaining only this checkout's runtime package.
 set -euo pipefail
+VLA_RUNTIME_ROOT="${VLA_ROOT:-$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/../../.." && pwd)}"
 unset PYTHONHOME PYTHONPATH LD_LIBRARY_PATH AMENT_PREFIX_PATH CMAKE_PREFIX_PATH COLCON_PREFIX_PATH
+export PYTHONPATH="$VLA_RUNTIME_ROOT"
+VLA_ROS_SETUP_PREFIX="$(/usr/bin/python3 -c 'from vla_runtime.config import load_config; print(load_config().path("ros_prefix"))')"
+unset PYTHONPATH
 set +u
-source /opt/ros/humble/setup.bash
+source "$VLA_ROS_SETUP_PREFIX/setup.bash"
 set -u
+export PYTHONPATH="$VLA_RUNTIME_ROOT${PYTHONPATH:+:$PYTHONPATH}"
 export ROS_DOMAIN_ID="${MOBILE_VLA_DOMAIN:-74}" ROS_LOCALHOST_ONLY=1 RMW_IMPLEMENTATION=rmw_fastrtps_cpp
 if [[ -n "${MOBILE_TF_OVERLAY:-}" ]]; then
-  export LD_LIBRARY_PATH="$MOBILE_TF_OVERLAY/opt/ros/humble/lib:${LD_LIBRARY_PATH:-}"
+  export LD_LIBRARY_PATH="$MOBILE_TF_OVERLAY$VLA_ROS_SETUP_PREFIX/lib:${LD_LIBRARY_PATH:-}"
 fi
-exec /usr/bin/python3 "$@"
+exec "${VLA_ROS_INTERPRETER:-/usr/bin/python3}" "$@"

@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "vla-runtime"
+version = "0.1.0"
+description = "Shared configuration, transport and validation for simulation experiments"
+requires-python = ">=3.10"
+dependencies = []
+
+[project.scripts]
+vla-doctor = "vla_runtime.config:main"
+
+[tool.setuptools]
+packages = ["vla_runtime"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.mypy]
+python_version = "3.10"
+strict = true
+files = ["vla_runtime"]

@@ -4,7 +4,7 @@ set -euo pipefail
 TASK_ROOT="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)"
 WORKSPACE_ROOT="$(cd -- "$TASK_ROOT/../.." && pwd)"
 unset PYTHONHOME PYTHONPATH
-export PYTHONPATH="$TASK_ROOT/third_party/libero"
+export PYTHONPATH="$WORKSPACE_ROOT:$TASK_ROOT/third_party/libero"
 export MUJOCO_GL=egl PYOPENGL_PLATFORM=egl
 export OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1
 export XLA_PYTHON_CLIENT_MEM_FRACTION=0.40 XLA_PYTHON_CLIENT_PREALLOCATE=false

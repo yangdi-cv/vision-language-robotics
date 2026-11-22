@@ -1,0 +1,64 @@
+[
+  {
+    "command": [
+      "ruff",
+      "check",
+      "vla_runtime",
+      "tests/runtime",
+      "experiments/mobile_qwen/closed_loop_20261115/scripts/run_cases.py",
+      "experiments/mobile_qwen/closed_loop_20261115/scripts/run_combined.py",
+      "experiments/mobile_qwen/closed_loop_20261115/scripts/plan_execute.py",
+      "experiments/mobile_qwen/closed_loop_20261115/scripts/physics_bridge.py",
+      "experiments/mobile_qwen/closed_loop_20261115/scripts/kinematics.py",
+      "experiments/mobile_qwen/closed_loop_20261115/scripts/remote_grounding_worker.py",
+      "experiments/mobile_qwen/jetson/stage3_20261115/scripts/run_joint_service.py",
+      "experiments/mobile_qwen/jetson/stage3_20261115/scripts/vision_service.py",
+      "perception/qwen_scene/worker_client.py",
+      "experiments/mobile_vla/scripts/rpc.py",
+      "experiments/mobile_qwen/scripts/milestones.py",
+      "scripts/check_offline.py",
+      "scripts/check_engineering.py",
+      "experiments/mobile_qwen/closed_loop_20261115/scripts/moveit.launch.py",
+      "scripts/build_review_bundle.py"
+    ],
+    "returncode": 0,
+    "stdout": "All checks passed!\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "ruff",
+      "format",
+      "--check",
+      "vla_runtime",
+      "tests/runtime",
+      "experiments/mobile_qwen/closed_loop_20261115/scripts/run_cases.py",
+      "experiments/mobile_qwen/closed_loop_20261115/scripts/run_combined.py",
+      "experiments/mobile_qwen/closed_loop_20261115/scripts/plan_execute.py",
+      "experiments/mobile_qwen/closed_loop_20261115/scripts/physics_bridge.py",
+      "experiments/mobile_qwen/closed_loop_20261115/scripts/kinematics.py",
+      "experiments/mobile_qwen/closed_loop_20261115/scripts/remote_grounding_worker.py",
+      "experiments/mobile_qwen/jetson/stage3_20261115/scripts/run_joint_service.py",
+      "experiments/mobile_qwen/jetson/stage3_20261115/scripts/vision_service.py",
+      "perception/qwen_scene/worker_client.py",
+      "experiments/mobile_vla/scripts/rpc.py",
+      "experiments/mobile_qwen/scripts/milestones.py",
+      "scripts/check_offline.py",
+      "scripts/check_engineering.py",
+      "experiments/mobile_qwen/closed_loop_20261115/scripts/moveit.launch.py",
+      "scripts/build_review_bundle.py"
+    ],
+    "returncode": 0,
+    "stdout": "27 files already formatted\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "mypy",
+      "vla_runtime"
+    ],
+    "returncode": 0,
+    "stdout": "Success: no issues found in 9 source files\n",
+    "stderr": ""
+  }
+]

@@ -1,0 +1,80 @@
+[
+  {
+    "group": "shared_runtime",
+    "returncode": 0,
+    "stdout": "{\"task\": \"precontact\", \"tag\": \"crash_test_nominal_i00_oracle\", \"mode\": \"oracle\", \"initial\": 0, \"variant\": \"nominal\", \"navigate\": false, \"success\": false, \"precontact_success\": false, \"success_criterion\": \"visual residual <=25mm; true precontact error <=30mm; no contacts; single unchanged physics instance\", \"attempts\": [], \"error\": \"Simulator exited\", \"error_type\": \"RuntimeError\", \"traceback\": \"Traceback (most recent call last):\\n  File \\\"/home/yd/Documents/GitHub/vision-language-robotics/experiments/mobile_qwen/closed_loop_20261115/scripts/run_cases.py\\\", line 182, in main\\n    raise RuntimeError(\\\"Simulator exited\\\")\\nRuntimeError: Simulator exited\\n\", \"process_exit_codes\": [7], \"cleanup_ok\": true}\n",
+    "stderr": ".................usage: run_cases [-h] --prefix PREFIX [--task {precontact,combined}]\n                 [--worker-script WORKER_SCRIPT] [--modes MODES]\n                 [--initials INITIALS] [--variants VARIANTS] [--navigate]\n                 [--max-corrections MAX_CORRECTIONS]\nrun_cases: error: Prefix must be 1-40 letters, numbers, - or _\n....2026-11-22 18:31:57,947 ERROR tested_cases Case failed: crash_test_nominal_i00_oracle\nTraceback (most recent call last):\n  File \"/home/yd/Documents/GitHub/vision-language-robotics/experiments/mobile_qwen/closed_loop_20261115/scripts/run_cases.py\", line 182, in main\n    raise RuntimeError(\"Simulator exited\")\nRuntimeError: Simulator exited\n..............\n----------------------------------------------------------------------\nRan 35 tests in 4.782s\n\nOK\n"
+  },
+  {
+    "group": "libero_interfaces",
+    "returncode": 0,
+    "stdout": "",
+    "stderr": "......\n----------------------------------------------------------------------\nRan 6 tests in 0.018s\n\nOK\n"
+  },
+  {
+    "group": "recovery",
+    "returncode": 0,
+    "stdout": "",
+    "stderr": "................\n----------------------------------------------------------------------\nRan 16 tests in 0.000s\n\nOK\n"
+  },
+  {
+    "group": "iteration_inputs",
+    "returncode": 0,
+    "stdout": "",
+    "stderr": ".....\n----------------------------------------------------------------------\nRan 5 tests in 0.105s\n\nOK\n"
+  },
+  {
+    "group": "checker",
+    "returncode": 0,
+    "stdout": "",
+    "stderr": ".........\n----------------------------------------------------------------------\nRan 9 tests in 0.009s\n\nOK\n"
+  },
+  {
+    "group": "delivery",
+    "returncode": 0,
+    "stdout": "{\"kind\": \"subgoal_start\", \"step\": 0, \"index\": 0, \"subgoal\": \"test\"}\nTraceback (most recent call last):\n  File \"/home/yd/Documents/GitHub/vision-language-robotics/experiments/vla_libero/scripts/run_hierarchical.py\", line 404, in run\n    obs, _, done, _ = env.step(applied.tolist())\n                      ^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/yd/Documents/GitHub/vision-language-robotics/experiments/vla_libero/tests/test_delivery_fixes.py\", line 186, in step\n    raise RuntimeError(\"injected step failure\")\nRuntimeError: injected step failure\n\n{\"kind\": \"subgoal_start\", \"step\": 0, \"index\": 0, \"subgoal\": \"test\"}\nTraceback (most recent call last):\n  File \"/home/yd/Documents/GitHub/vision-language-robotics/experiments/vla_libero/scripts/run_hierarchical_recovery.py\", line 320, in run\n    obs, _, done, _ = env.step(applied.tolist())\n                      ^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/yd/Documents/GitHub/vision-language-robotics/experiments/vla_libero/tests/test_delivery_fixes.py\", line 186, in step\n    raise RuntimeError(\"injected step failure\")\nRuntimeError: injected step failure\n\n",
+    "stderr": "........\n----------------------------------------------------------------------\nRan 8 tests in 0.274s\n\nOK\n"
+  },
+  {
+    "group": "runtime_logging",
+    "returncode": 0,
+    "stdout": "{\"tag\": \"failuretest\", \"request\": \"test\", \"initial\": 0, \"monitor\": \"milestone\", \"check_every\": 10, \"error\": \"RuntimeError('Simulator startup failed')\"}\n",
+    "stderr": "......\n----------------------------------------------------------------------\nRan 6 tests in 0.104s\n\nOK\n"
+  },
+  {
+    "group": "selective_execution",
+    "returncode": 0,
+    "stdout": "",
+    "stderr": "............\n----------------------------------------------------------------------\nRan 12 tests in 0.001s\n\nOK\n"
+  },
+  {
+    "group": "visual_interventions",
+    "returncode": 0,
+    "stdout": "",
+    "stderr": "..........\n----------------------------------------------------------------------\nRan 10 tests in 0.053s\n\nOK\n"
+  },
+  {
+    "group": "constraint_interfaces",
+    "returncode": 0,
+    "stdout": "",
+    "stderr": "........\n----------------------------------------------------------------------\nRan 8 tests in 0.000s\n\nOK\n"
+  },
+  {
+    "group": "action_guidance",
+    "returncode": 0,
+    "stdout": "",
+    "stderr": ".....\n----------------------------------------------------------------------\nRan 5 tests in 0.010s\n\nOK\n"
+  },
+  {
+    "group": "chunk_math",
+    "returncode": 0,
+    "stdout": "",
+    "stderr": "....\n----------------------------------------------------------------------\nRan 4 tests in 0.010s\n\nOK\n"
+  },
+  {
+    "group": "visual_target",
+    "returncode": 0,
+    "stdout": "",
+    "stderr": "...\n----------------------------------------------------------------------\nRan 3 tests in 0.002s\n\nOK\n"
+  }
+]

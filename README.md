@@ -54,6 +54,7 @@ https://github.com/user-attachments/assets/436bb141-7333-4f43-85c7-de7a269b3662
 
 ```bash
 python -m pip install -r requirements-offline.txt
+python -m pip install --no-build-isolation -e .
 python scripts/check_offline.py
 ```
 
@@ -79,3 +80,7 @@ python scripts/fetch_upstream.py
 `PROJECT_LOG.md`是整理前的共享技术日志，含另一控制方向的背景；本仓库的主题范围以本README、章节索引和报告为准。当前上传整理的文件校验清单见`repository/export_manifest.json`，离线检查输出见`repository/offline_checks.json`。
 
 [第三方来源与许可](THIRD_PARTY.md)保留原项目约定。仓库私有，未为全部内容统一授予新的开源许可证。
+
+## 工程修订（2026-11-22）
+
+配置、SSH 密钥、共享接口、逐阶段日志和本轮验证见 [工程修订说明](docs/ENGINEERING_HARDENING.md)。新回合使用新标签；历史结果不重新解释为修改后的结果。
