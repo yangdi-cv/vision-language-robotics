@@ -1,0 +1,21 @@
+{
+  "source_commit": "c95fa0cc6621873edb311a2aced6d2286e204aad",
+  "source_zip_sha256": "46553b8d468aee108df8e2d210c60d9bb557b847d59fac22f52341889898551a",
+  "files": 2542,
+  "manifest_verified": true,
+  "python_files_parsed": 510,
+  "offline_tests": 127,
+  "groups": 13,
+  "all_groups_passed": true,
+  "quality_checks_passed": true,
+  "fresh_python": "3.11",
+  "extraction_path_contains_spaces": true,
+  "original_workspace_file_reads": 0,
+  "legacy_password_driver_files_excluded": 11,
+  "not_tested": [
+    "GPU model inference",
+    "full ROS2/MoveIt simulation",
+    "Jetson hardware"
+  ],
+  "acceptance_directory": "/tmp/vla final acceptance dbkl5ozq"
+}
